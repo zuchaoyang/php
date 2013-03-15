@@ -28,6 +28,7 @@ class SnsController extends FrontController {
     protected function checkoutClassCode($class_code) {
         
         $class_code_list = $this->user['class_info'];
+        
         if(empty($class_code_list)) {
            return false; 
         }
@@ -41,7 +42,7 @@ class SnsController extends FrontController {
             }
         }
         
-        return !in_array($class_code, $class_code_list) ? $class_code : reset($class_code_list);
+        return isset($class_code_list[$class_code]) ? $class_code : key($class_code_list);
     }
     
 	/**
