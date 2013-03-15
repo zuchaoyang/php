@@ -98,7 +98,7 @@ class_member_list.prototype.attachEvent=function() {
 	//班级名称的编辑事件
 	var contextClassInfo = $('#class_info_div');
 	$('a', contextClassInfo).click(function() {
-		var pObj = $('#class_name_p', contextClassInfo);
+		var pObj = $('#class_name_p>span', contextClassInfo);
 		var class_name = pObj.html();
 		$('#edit_class_div').trigger('openEvent', [{
 			datas:{'class_name' : class_name},

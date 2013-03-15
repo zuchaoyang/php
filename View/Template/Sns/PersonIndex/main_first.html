@@ -226,11 +226,13 @@
        <div class="first_main_left">
          <p></p>
          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         {if $vuid == $client_account}
           <tr onMouseOver="this.className='li_on'" onMouseOut="this.className=''">
             <td class="td_icon_width"><span class="icon_sx"></span></td>
             <td><a href="#">私信</a></td>
             <td>&nbsp;</td>
           </tr>
+          {/if}
           <tr onMouseOver="this.className='li_on'" onMouseOut="this.className=''">
             <td><span class="icon_say"></span></td>
             <td><a href="#">说说</a></td>
@@ -239,12 +241,12 @@
           <tr onMouseOver="this.className='li_on'" onMouseOut="this.className=''">
             <td><span class="icon_photo"></span></td>
             <td><a href="#">相册</a></td>
-            <td><a href="#" class="f_666">上传</a></td>
+            <td>{if $vuid == $client_account}<a href="#" class="f_666">上传</a>{/if}</td>
           </tr>
           <tr onMouseOver="this.className='li_on'" onMouseOut="this.className=''">
             <td><span class="icon_rz"></span></td>
             <td><a href="#">日志</a></td>
-            <td><a href="#" class="f_666">发表</a></td>
+            <td>{if $vuid == $client_account}<a href="#" class="f_666">发表</a>{/if}</td>
           </tr>
           <tr onMouseOver="this.className='li_on'" onMouseOut="this.className=''">
             <td><span class="icon_friend"></span></td>
@@ -350,11 +352,11 @@
        <div class="first_main_right">
          <!--my_friend star-->
          <div class="my_friend">
-           <h3>{if $client_account == $vuid}<span>我的好友({$friend_total_count})</span><a href="javascript:;">更多&gt;&gt;</a>{else}<span>Ta的好友(120)</span>{/if}</h3>
+           <h3>{if $client_account == $vuid}<span>我的好友({$friend_total_count})</span><a href="/Sns/Friend/Manage/index" target="__blank;">更多&gt;&gt;</a>{else}<span>Ta的好友({$friend_total_count})</span>{/if}</h3>
            
            <p id="friend_list_div">
              {literal}
-             	<a href="javascript:;" title="{user_friend.client_name}" class="clone" style="display:none;"><img src="{user_friend.client_headimg_url}" class="photo_width40"></a>
+             	<a href="javascript:;" class="clone" style="display:none;"><img src="{user_friend.client_headimg_url}" class="photo_width40"  title="{user_friend.client_name}" ></a>
              {/literal}
            </p>
            
@@ -398,6 +400,24 @@
   <!--per_main end-->
 <div class="clear"></div> 
 </div>
+
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="del_div">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_question"></span></dt>
+      </dl>
+      <p>
+       确认要删除该访客吗？ 
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="qd_btn"  id="queding_btn"></input><input type="button" value="取消" class="qx_btn" id="cancel_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
 <!--content end-->
 {include file="Public/sns_footer.html"}
 </body>

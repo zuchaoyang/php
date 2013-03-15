@@ -714,15 +714,23 @@ class ClassAction extends SnsController{
     	
     	$mExamInfo = ClsFactory::Create('Model.mExamInfo');
 		//查询条件
-		$firter = array(
-			$sr_subject_id,
-			$sr_exam_name,
-			$sr_exam_date,
-			$end_exam_date,
-			$this->user['client_account']
-		);
+		$where_appends = array();
+		$where_appends[] = "add_account='{$this->user['client_account']}'";
+		if(!empty($sr_subject_id)) {
+			$where_appends[] = "subject_id='$sr_subject_id'";
+		}
+		if(!empty($sr_exam_name)) {
+			$where_appends[] = "exam_name like '$sr_exam_name%'";
+		}
+		if(!empty($sr_exam_date)) {
+			$where_appends[] = "exam_date>='$sr_exam_date'";
+		}
+		if(!empty($end_exam_date)) {
+			$where_appends[] = "exam_date<='$end_exam_date'";
+		}
+		
 		$offset = ($page-1)*$pagesize;
-		$RS_DATA_EXAM = $mExamInfo->getExamInfoByClassCode($schoolid, $class_code, $firter, $offset, $pagesize+1);
+		$RS_DATA_EXAM = $mExamInfo->getExamInfoByClassCode($class_code, $where_appends, $offset, $pagesize+1);
 	    $is_class_admin = false;
 		foreach($this->user['client_class'] as $key=>$val){
 			if(intval($val['class_code']) == $class_code) {
@@ -931,7 +939,7 @@ class ClassAction extends SnsController{
 		    }
 		    unset($exam_subjectinfolist);
 		}
-		//dump($examinfolist);
+
 		$this->assign('class_list', $myclasslist);
 		$this->assign('exam_name' , $exam_name);
 		$this->assign('exam_date' , $exam_date);
@@ -1396,16 +1404,29 @@ class ClassAction extends SnsController{
 		//获取科目名称
 		$mSubjectInfo = ClsFactory::Create('Model.mSubjectInfo');
 		$subjectinfolist = $mSubjectInfo->getSubjectInfoById($subject_id);
-		
+	
 		$mUser = ClsFactory::Create('Model.mUser');	
 		$login_info = $mUser->getUserByUid($account);
 		$user_client_name = $login_info[$account]['client_name'];
-
-
-		$firter = $subject_id.",".$sr_exam_name.",".$sdate.",".$edate;
+		
+		$where_appends = array();
+		if(!empty($subject_id)) {
+			$where_appends[] = "subject_id='$subject_id'";
+		}
+		if(!empty($str_exam_name)) {
+			$where_appends[] = "exam_name like '$str_exam_name%'";
+		}
+		if(!empty($sdate)) {
+			$where_appends[] = "exam_date>='$sdate'";
+		}
+		if(!empty($edate)) {
+			$where_appends[] = "exam_date<='$edate'";
+		}
+		
 		$arrmExamInfo = array();
 		$mExamInfo = ClsFactory::Create('Model.mExamInfo');
-		$mExamInfoList = $mExamInfo->getExamInfoByClassCode($class_code,$firter);
+		$mExamInfoList = $mExamInfo->getExamInfoByClassCode($class_code, $where_appends);
+
 		$mStudentScoreInfo = ClsFactory::Create('Model.mStudentScore');
 
 		// 合并数据
@@ -1470,7 +1491,6 @@ class ClassAction extends SnsController{
 				$Value_av_score= round($totalscores / $examstudentCount , 2);
 				$total_Value_av_score=="" ? $total_Value_av_score = $Value_av_score : $total_Value_av_score = $total_Value_av_score.",".$Value_av_score;
 			}
-
 		}
 
 		$outVar =  "<table width='640' border='0' align='center' cellpadding='5' cellspacing='0'>";
@@ -1545,10 +1565,23 @@ class ClassAction extends SnsController{
     	 $subjectinfolist = $this->getTeacherSubjectList($class_code);
     	
 		//首先读取考试信息；参数当前用户所在学校ID 班级ID
-		$firter = $sr_subject_id.",".$sr_exam_name.",".$sr_exam_date.",".$end_exam_date;
+		$where_appends = array();
+		if(!empty($sr_subject_id)) {
+			$where_appends[] = "subject_id='$sr_subject_id'";
+		}
+		if(!empty($sr_exam_name)) {
+			$where_appends[] = "exam_name like '$sr_exam_name%'";
+		}
+		if(!empty($sr_exam_date)) {
+			$where_appends[] = "exam_date>='$sr_exam_date'";
+		}
+		if(!empty($end_exam_date)) {
+			$where_appends[] = "exam_date<='$end_exam_date'";
+		}
+		
 		$arrmExamInfo = array();
 		$mExamInfo = ClsFactory::Create('Model.mExamInfo');
-		$mExamInfoList = $mExamInfo->getExamInfoByClassCode($class_code,$firter);
+		$mExamInfoList = $mExamInfo->getExamInfoByClassCode($class_code,$where_appends);
 		$mStudentScoreInfo = ClsFactory::Create('Model.mStudentScore');
 
 		// 合并数据

@@ -26,6 +26,7 @@ function nearest_visitor(){
 	this.attachEvent();
 	this.attachEventForLoadMore();
 	this.delattachment();
+	this.attcheEvent();
 }
 
 nearest_visitor.prototype.init=function() {
@@ -33,6 +34,7 @@ nearest_visitor.prototype.init=function() {
 	$('#load_more_a').data('page', 2);
 	$("#add_friend_div").hide();
 	$("#msg_div").hide();
+	$("#del_div").hide();
 	//加载页面数据
 	$.ajax({
 		type:'get',
@@ -171,26 +173,60 @@ nearest_visitor.prototype.delattachment=function() {
 		var self = $(this);
 		var parentObj = self.closest(".per_main_tab");
 		var client_info = parentObj.data('data' || {});
-		if(confirm('确定要删除该访客吗？')) {
-			$.ajax({
-				type:'get',
-				url:'/Sns/Friend/Manage/del_vistior',
-				dataType:'json',
-				async:false,
-				data:{id:client_info.id},
-				success:function(json){
-					if(json.status < 0) {
-						$.showError(json.info);
-					} else {
-						$.showSuccess(json.info);
-						parentObj.remove();
+		//打开删除弹层
+		var divObj = $("#del_div");
+		divObj.data('parentObj', parentObj);
+		
+		art.dialog({
+			id:'delete_type_dialog',
+			title:'删除访客',
+			padding: '0px 0px',
+			drag  :false,
+			lock : true,
+			content:divObj.get(0)
+		});
+	});
+};
+
+nearest_visitor.prototype.attcheEvent = function(){
+	var me=this;
+	var divObj = $("#del_div");
+	$("#queding_btn",divObj).click(function() {
+		var parentObj = divObj.data('parentObj');
+		var client_info = parentObj.data('data');
+		$.ajax({
+			type:'get',
+			url:'/Sns/Friend/Manage/del_vistior',
+			dataType:'json',
+			async:false,
+			data:{id:client_info.id},
+			success:function(json){
+				if(json.status < 0) {
+					$.showError(json.info);
+				} else {
+					$.showSuccess(json.info);
+					var dialogObj = art.dialog.list['delete_type_dialog'];
+					if(!$.isEmptyObject(dialogObj)) {
+						dialogObj.close();
 					}
-					
-					return false;
+
+					parentObj.remove();
 				}
-			});
+			}
+		});
+		
+		return false;
+	});
+	
+	//取消按钮
+	$('#cancel_btn', divObj).click(function() {
+		var dialogObj = art.dialog.list['delete_type_dialog'];
+		if(!$.isEmptyObject(dialogObj)) {
+			dialogObj.close();
 		}
 	});
+	
+	
 };
 
 

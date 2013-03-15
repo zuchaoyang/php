@@ -7,20 +7,12 @@
 */
 
 class MoodApi extends ApiController {
-    private $ClassMood;
-    private $PersonMood;
-    
     /**
      * 
      * 固定函数
      */
     public function __construct() {
         parent::__construct();
-        
-        import('@.Control.Api.MoodImpl.ClassMood');
-        $this->ClassMood = new ClassMood();
-        import('@.Control.Api.MoodImpl.PersonMood');
-        $this->PersonMood = new PersonMood();
     }    
    
     /**
@@ -42,7 +34,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->PersonMood->getPersonMoodList($client_account, $offset, $limit);
+        import('@.Control.Api.MoodImpl.PersonMood');
+        $PersonMood = new PersonMood();
+        
+        return $PersonMood->getPersonMoodList($client_account, $offset, $limit);
     }
     
     /**
@@ -55,7 +50,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->PersonMood->getPersonMood($client_account, $mood_id);
+        import('@.Control.Api.MoodImpl.PersonMood');
+        $PersonMood = new PersonMood();
+        
+        return $PersonMood->getPersonMood($client_account, $mood_id);
     }
     
     /**
@@ -68,7 +66,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->PersonMood->addPersonMood($client_account, $mood_datas);
+        import('@.Control.Api.MoodImpl.PersonMood');
+        $PersonMood = new PersonMood();
+        
+        return $PersonMood->addPersonMood($client_account, $mood_datas);
     }
     
     /**
@@ -81,7 +82,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->PersonMood->delPersonMood($client_account, $mood_id);
+        import('@.Control.Api.MoodImpl.PersonMood');
+        $PersonMood = new PersonMood();
+        
+        return $PersonMood->delPersonMood($client_account, $mood_id);
     }
     
     
@@ -93,7 +97,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->ClassMood->addClassMood($class_code, $mood_datas);
+        import('@.Control.Api.MoodImpl.ClassMood');
+        $ClassMood = new ClassMood();
+        
+        return $ClassMood->addClassMood($class_code, $mood_datas);
     }
     
     /**
@@ -106,7 +113,10 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->ClassMood->getClassMood($class_code, $mood_id);
+        import('@.Control.Api.MoodImpl.ClassMood');
+        $ClassMood = new ClassMood();
+        
+        return $ClassMood->getClassMood($class_code, $mood_id);
     }
     
     /**
@@ -119,7 +129,87 @@ class MoodApi extends ApiController {
             return false;
         }
         
-        return $this->ClassMood->delClassMood($class_code, $mood_id);
+        import('@.Control.Api.MoodImpl.ClassMood');
+        $ClassMood = new ClassMood();
+        
+        return $ClassMood->delClassMood($class_code, $mood_id);
     }
     
+    
+    /*******************************************************************************
+     * 说说的评论管理
+     *******************************************************************************/
+     
+     /**
+     * 通过Comment_id获取评论信息
+     * @param $comment_ids		mixed	    说说的评论id
+     * @return 					mixed    成功：评论组成的数组； 失败：false    
+     */
+    public function getMoodCommentsById($comment_ids) {
+        if(empty($comment_ids)) {
+            return false;
+        }
+        
+        import('@.Control.Api.MoodImpl.MoodComments');
+        $MoodComments = new MoodComments();
+        
+        return $MoodComments->getMoodCommentsById($comment_ids);
+    }
+    
+    /**
+     * 通过mood_id获取mood_id的评论信息
+     * @param $mood_id			int	             说说id
+     * @param $where_appends	array    附加过滤条件
+     * @param $offset			int      记录的偏移位置
+     * @param $limit	        int      获取的记录数
+     * @return 					mixed    成功：评论组成的数组； 失败：false    
+     */
+    public function getMoodCommentsByMoodId($mood_id, $where_appends, $offset = 0, $limit = 10) {
+        if(empty($mood_id)) {
+            return false;
+        }
+        
+        import('@.Control.Api.MoodImpl.MoodComments');
+        $MoodComments = new MoodComments();
+        
+        return $MoodComments->getMoodCommentsByMoodId($mood_id, $where_appends, $offset, $limit);
+    }
+    
+    /**
+     * 添加说说评论信息
+     * @param $comment_datas array(
+     *    'mood_id',
+     *    'up_id',
+     *    'content',
+     * 	  'client_account',
+     *    'add_time',
+     *    'level'
+     * )
+     * @return 成功:comment_id; 失败:false;
+     */
+    public function addMoodComments($comment_datas) {
+        if(empty($comment_datas) || !is_array($comment_datas)) {
+            return false;
+        }
+        
+        import('@.Control.Api.MoodImpl.MoodComments');
+        $MoodComments = new MoodComments();
+        
+        return $MoodComments->addMoodComments($comment_datas);
+    }
+    
+    /**
+     * 删除说说评论信息
+     * @param $comment_id   说说对应的评论id
+     */
+    public function delMoodComments($comment_id) {
+        if(empty($comment_id)) {
+            return false;
+        }
+        
+        import('@.Control.Api.MoodImpl.MoodComments');
+        $MoodComments = new MoodComments();
+        
+        return $MoodComments->delMoodComments($comment_id);
+    }
 }

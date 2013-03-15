@@ -1,18 +1,18 @@
-<div id="comment_2nd_unit_div" class="agin_reply_main comment_2nd_unit_selector" style="display:none;">
+<div id="comment_mood_2nd_unit_div" class="agin_reply_main comment_2nd_unit_selector" style="display:none;">
    {literal}
    <dl>
     <dt>
-    	<img width="40" height="40" src="{child_comment.client_headimg_url}">
+    	<img width="40" height="40" src="{child_comment.user_info.client_headimg_url}">
     </dt>
    </dl>
    <div class="agin_reply">
      <table width="100%" cellspacing="0" cellpadding="0" border="0">
        <tr>
          <td>
-         	<a class="fc_288c00" href="javascript:;">{child_comment.client_name}:</a>
+         	<a class="fc_288c00" href="javascript:;">{child_comment.user_info.client_name}:</a>
          </td>
          <td>
-         	<p>{child_comment.content}（{child_comment.add_time_diff}）</p>
+         	<p>{child_comment.content}（{child_comment.add_time_format}）</p>
          </td>
          <td>
          	<a class="fc_288c00 comment_2nd_delete_selector" href="javascript:;">删除</a>

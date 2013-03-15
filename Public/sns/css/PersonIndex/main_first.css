@@ -90,7 +90,7 @@
 					.my_friend h3 a:hover{color:#3a8a00;}
 					
 				.my_friend p{background:url(../../images/PersonIndex/main_first/class_people_bj.gif) repeat; border:1px #ccc solid; padding:10px 4px; margin:10px 0px 0px 0px;}	
-					.my_friend p a{display:inline-block; margin:0px 8px 8px 0px; background:#fff; padding:2px;}
+					.my_friend p a{display:inline-block; margin:0px 8px 8px 0px; background:#fff;}
 			
 			.visitor{width:210px; color:#464646;}
 				.visitor h3{font:14px "微软雅黑"; color:#3a8a00; height:32px; line-height:32px; border-bottom:1px #cdced0 solid;}

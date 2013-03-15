@@ -14,6 +14,7 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Feed/feed.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Feed/feed_unit.js"></script>
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassIndex/main.js"></script>
 
@@ -245,6 +246,12 @@
       <div class="card_center_main">
       <dl>
         <dt><img class="photo_width60" src="{student_info.header_pic}"></dt>
+        <dt class="xsmp_jlq">
+        	{if student_info.is_self == false}
+          	<input type="button" value="" id="private_msg_{student_info.client_account}" class="jhy" title="好友">{if student_info.is_friend == false}<input type="button" value="" id="client_account_{student_info.client_account}" title="私信" class="sx  add_friend">{/if}
+          	<input id="client_name_{student_info.client_account}" type="hidden" value="{student_info.client_name}"/>
+          	{/if}
+        </dt>
       </dl>
       <div class="stu_info">
         <strong>{student_info.client_name}</strong>

@@ -1,11 +1,32 @@
+(function($) {
+	$.showError=function(msg) {
+		art.dialog({
+			id:'show_error_dialog',
+			title:'错误提示',
+			content:msg,
+			icon:'error'
+		}).lock().time(3);
+	};
+	$.showSuccess=function(msg) {
+		art.dialog({
+			id:'show_success_dialog',
+			title:'成功提示',
+			content:msg,
+			icon:'succeed'
+		}).lock().time(3);
+	};
+})(jQuery);
+
 function vistior() {
 	this.init();
 	this.delattachEvent();
+	this.attcheEvent();
 }
 
 vistior.prototype.init=function() {
 	var me=this;
 	var vuid = $("#vuid").val();
+	$("#del_div").hide();
 	//加载页面数据
 	$.ajax({
 		type:'get',
@@ -60,8 +81,8 @@ vistior.prototype.delattachEvent = function(){
 		$("#show_del_btn",$(this)).hide();
 	});
 	
-	var me = this;
-	context = $('#friend_list_div');
+	var me=this;
+	context = $('#vistior_list_div');
 	$("#del_btn",context).live('click',function(){
 		var self = $(this);
 		var parentObj = self.closest(".visitor_main_tab");
@@ -70,29 +91,65 @@ vistior.prototype.delattachEvent = function(){
 		if(client_info.client_account != client_info.vuid){
 			$("#show_del_btn",$(this)).hide();
 		}
+		//打开删除弹层
+		var divObj = $("#del_div");
+		divObj.data('parentObj', parentObj);
 		
-		if(confirm('确定要删除该访客吗？')) {
-			$.ajax({
-				type:'get',
-				url:'/Sns/Friend/Manage/del_vistior',
-				dataType:'json',
-				async:false,
-				data:{id:client_info.id},
-				success:function(json){
-					if(json.status < 0) {
-						$.showError(json.info);
-					} else {
-						$.showSuccess(json.info);
-						parentObj.remove();
-					}
-					
-					return false;
-				}
-			});
-		}
+		art.dialog({
+			id:'delete_type_dialog',
+			title:'删除访客',
+			padding: '0px 0px',
+			drag  :false,
+			lock : true,
+			content:divObj.get(0)
+		});
+		
+			
 	});
 	
 };
+
+vistior.prototype.attcheEvent = function(){
+	var me=this;
+	var divObj = $("#del_div");
+	$("#queding_btn",divObj).click(function() {
+		var parentObj = divObj.data('parentObj');
+		var client_info = parentObj.data('data');
+		$.ajax({
+			type:'get',
+			url:'/Sns/Friend/Manage/del_vistior',
+			dataType:'json',
+			async:false,
+			data:{id:client_info.id},
+			success:function(json){
+				if(json.status < 0) {
+					$.showError(json.info);
+				} else {
+					$.showSuccess(json.info);
+					var dialogObj = art.dialog.list['delete_type_dialog'];
+					if(!$.isEmptyObject(dialogObj)) {
+						dialogObj.close();
+					}
+
+					parentObj.remove();
+				}
+			}
+		});
+		
+		return false;
+	});
+	
+	//取消按钮
+	$('#cancel_btn', divObj).click(function() {
+		var dialogObj = art.dialog.list['delete_type_dialog'];
+		if(!$.isEmptyObject(dialogObj)) {
+			dialogObj.close();
+		}
+	});
+	
+	
+};
+
 
 $(document).ready(function() {
 	new vistior();

@@ -119,29 +119,21 @@ class mExamInfo extends mBase {
     }
     
     // 我的考试成绩信息
-    public function getExamInfoByClassCode($school_id, $classcode, $firter, $offset, $limit) {
-        if(empty($classcode) || empty($school_id)) {
+    public function getExamInfoByClassCode($class_code, $where_appends, $offset = 0, $limit = 10) {
+        if(empty($class_code)) {
             return false;
         }
         
         $offset = max(0,$offset);
         $limit = max(0,$limit);
-        $classcode = (array)$classcode;
         
-		if(!empty($firter[0])) {
-			$wheresql[] = " subject_id=".$firter[0];
-		}
-		if(!empty($firter[1])) {
-			$wheresql[] = " exam_name like '%".$firter[1]."%'";
-		}
-		if(!empty($firter[2]) && !empty($firter[3])) {
-			$wheresql[] = " (exam_date between '".$firter[2]."' and '".$firter[3]."')";
-		}
-		if(!empty($firter[4])) {
-		    $wheresql[] = "add_account=$firter[4]";
-		}
-        return $this->_dExamInfo->getInfo($wheresql, 'exam_id desc', $offset, $limit);
+        $where_arr = array();
+        $where_arr[] = "class_code in('" . implode("','", (array)$class_code) . "')";
+        if(!empty($where_appends)) {
+        	$where_arr = array_merge($where_arr, (array)$where_appends);
+        }
         
+        return $this->_dExamInfo->getInfo($where_arr, 'exam_id desc', $offset, $limit);
     }
     
 

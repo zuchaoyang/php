@@ -1,9 +1,9 @@
 <!--一级评论 star-->
-<div id="comment_1st_unit_div" class="mb10 comment_1st_unit_selector" style="display:none;">
+<div id="comment_mood_1st_unit_div" class="mb10 comment_1st_unit_selector" style="display:none;">
      {literal}
      <dl>
        <dt>
-       	<img width="40" height="40" src="{comment.client_headimg_url}">
+       	<img width="40" height="40" src="{comment.user_info.client_headimg_url}">
        </dt>
      </dl>
      <!--tcc_single star-->
@@ -12,14 +12,16 @@
 		  <table width="100%" cellspacing="0" cellpadding="0" border="0">
 		   <tr>
 			   <td>
-			   	<a class="fc_288c00" href="javascript:;">{comment.client_name}:</a>
+			   	<a class="fc_288c00" href="javascript:;">{comment.user_info.client_name}:</a>
 			   </td>
 			   <td>
-			   	<p>{comment.content}（{comment.add_time_diff}）</p>
+			   	<p>{comment.content}（{comment.add_time_format}）</p>
 			   </td>
+			   {if comment.can_del}
 			   <td>
 			   		<a class="fc_288c00 comment_1st_delete_selector" href="javascript:;">删除</a>
 			   </td>
+			   {/if}
 			   <td>
 			   	    <a class="fc_288c00 ml10 comment_1st_reply_selector" href="javascript:;">回复</a>
 			   </td>
@@ -80,19 +82,15 @@
 	<!--tcc_single end-->
 	<div class="clear"></div>
 	
-	<input type="hidden" id="comment_id" value="{comment.comment_id}"/>
-	{/literal}
-  
-  {literal}
-  <div class="comment_1st_unit_params_selector" style="display:none;">
-  	<input type="hidden" name="publish_comment_url" value="/Sns/Mood/Comments/publishMoodCommentsAjax"/>
-  	<input type="hidden" name="delete_comment_url" value="/Sns/Mood/Comments/deleteMoodCommentsAjax/comment_id/{comment.comment_id}"/>
-  	<input type="hidden" name="feed_type_name" value="mood"/>
-  	<div class="post_selector">
+    <div class="comment_1st_unit_params_selector" style="display:none;">
+  	  <input type="hidden" name="publish_comment_url" value="/Sns/Mood/Comments/publishMoodCommentsAjax"/>
+  	  <input type="hidden" name="delete_comment_url" value="/Sns/Mood/Comments/deleteMoodCommentsAjax/comment_id/{comment.comment_id}"/>
+  	  <input type="hidden" name="child_items_name" value="child_items"/>
+  	  <div class="post_selector">
   		<input type="hidden" name="mood_id" value="{comment.mood_id}"/>
   		<input type="hidden" name="up_id" value="{comment.comment_id}"/>
-  	</div>
-  </div>
+  	  </div>
+    </div>
   {/literal}
 
  </div>

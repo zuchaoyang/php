@@ -35,7 +35,9 @@ friend.prototype.fillFriendList=function(user_list) {
 		var divObj = $('.clone', $('#friend_list_div')).clone().removeClass('clone').show();
 		divObj.renderHtml({
 			user_friend:user || {}
+		
 		});
+		
 		return divObj;
 	};
 	
