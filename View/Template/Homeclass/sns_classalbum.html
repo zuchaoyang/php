@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_相册</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/slAlbum.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqyphoto.js"></script>
+
+</head>
+
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+	<div class="classsub_diary">
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di1"></i><a href='/Homeclass/Class/classalbum/class_code/{$class_code}'>相册列表</a></li>
+			</ul>
+		</div>
+        <div style='font-size:14px;padding-top:10px;font-weight:bold;'>当前位置->班级相册</div>
+
+	</div><!--sub_diary end-->
+<span class="blank20"></span>
+{if !empty($xiangce_list)}
+	{foreach from=$xiangce_list item=xc}
+	<div class='classAlbumImgK'>
+		<div class='classAlbumImg'><a href="/Homeclass/Class/xcmanager/class_code/{$class_code}/xcid/{$xc.album_id}">
+		<img src="{$xc.album_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/no_photo_f.jpg'"/></a></div>
+		<div class='classAlbumTitle'>{$xc.album_name}</div>
+		{if $xc.album_create_type!=2}
+		<div class='classAlbumTitle'>创建人：{$xc.client_name}</div>
+		{/if}
+		<div class='classAlbumcontrol'><!--{$ALBUM_SYS_CREATE}-->
+		 </div>
+	</div>
+	{/foreach}
+	{if $pageinfo_count >$pageinfo_pagesize}
+	<div class='divpageinfo'>{$pageinfo}</div>
+	{/if}
+{/if}
+<!--sub_right end-->
+<div class="kong"></div>
+{$pageinfohtml}
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+
+</body>
+</html>

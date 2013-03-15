@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级导航</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/gradeclass.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <h4 class="border_line">班级导航</h4>
+        <p class="a_tab">
+        {foreach from=$gradelist item=grade key=key}
+        	<a href="/Oa/Classnaviga/index/gradeid/{$key}" {if $grade_id == $key}class="a_blue2"{/if}>
+        	{$grade}</a>
+       	{/foreach}</p>
+        <!--bjdh_people-->
+        <div class="bjdh_people">
+        {if $classlist != ''}
+         {foreach from=$classlist item=val}
+          <dl>
+            <dt>{if $val.headTercherPic != ''}<img src="{$val.headTercherPic}" width="80" height="80"/>{else}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic03.jpg" width="80" height="80"/>{/if}</dt>
+            <dd>{$val.headTercherName}</dd>
+          </dl>
+         {/foreach}
+        {else}
+          <dl>
+            <dd>目前还没有班级</dd>
+          </dl>
+        {/if}
+          <div class="clear"></div>
+        </div>
+        {foreach from=$Talk_ContentList item=val key=key}
+        <!--bjdh_people end-->
+        <ul class="bjdh_ul">
+          <a href="javascript:;" class="bjdt" onclick="move('{$key}')" id="bjdt{$key}">班级动态</a><a href="javascript:;" class="bjgg" id="bjgg{$key}" onclick="ggao('{$key}')">班级公告</a><a href="javascript:;" class="bjgg" id="bjzy{$key}" onclick="work('{$key}')">班级作业</a>
+        </ul>
+        <!--bjdh_main-->
+        <div class="bjdh_main">
+          <h4>
+           <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic06.gif" /><a href="/Homeclass/Classspace/index/class_code/{$key}" target="blank">访问班级</a>&nbsp;&nbsp;<span>{$classlist[$key].class_name}&nbsp;&nbsp;人数：{$num.$key}人&nbsp;&nbsp;班主任：{$classlist[$key].headTercherName}</span>
+          </h4>
+          <table border="0" cellspacing="0" cellpadding="0" class="bjdh_tab" id="move{$key}">
+          {if $val != ''}
+          {foreach from=$val item=val2}
+          <tr>
+            <td width="10%"><img {if $val2.client_headimg_url != ''}src="{$val2.client_headimg_url}"{else}src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic05.jpg"{/if} width="60" height="60"/></td>
+            <td width="10%"><span>{$val2.client_name}</span></td>
+            <td width="12%">{$val2.feed_title}</td>
+            <td width="50%"><div style="display:block;clear:both;width:350px;word-wrap:break-word;word-break:break-all;"><span>{$val2.feed_name}</span></div></td>
+            <td width="18%"align="right"><span class="gray">{$val2.feed_upd_time}</span></td>
+          </tr>
+          {/foreach}
+          {else}
+          <tr>
+            <td>本班没用动态</td>
+          </tr>
+          {/if}
+        </table>
+        <div class="bjdh_bjgg" style="display:none;clear:both;width:700px;word-wrap:break-word;word-break:break-all;" id="ggao{$key}"></div>
+        <div class="bjdh_bjgg" style="display:none;clear:both;width:700px;word-wrap:break-word;word-break:break-all;" id="work{$key}"></div>
+        <input type="hidden" id="subid{$key}"/>
+        <input type="hidden" id="class{$key}" value="{$key}"/>
+        <div class="clear"></div>
+        </div>
+        {/foreach}
+        <!--bjdh_main end-->
+        <div id='idpycontent'></div>
+        <input type='hidden' name='nextLlimit' id='nextLlimit' value='{$nextLlimit}'/>
+		<input type='hidden' name='grade_id' id='grade_id' value='{$grade_id}'/>
+		<input type='hidden' name='school_id' id='school_id' value='{$school_id}'/>
+		<div class="m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlist();">点击加载更多班级</a></div>
+        <div class="clear"></div>
+      </div>
+    <!--you end-->   
+   <div class="clear"></div> 
+ </div>  
+ <!--main end-->   
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>已发布公告</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassNotice/list.css" type="text/css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassNotice/published.js" charset="utf-8"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+ {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    
+    <ul class="sub_nav">
+     <li>{if $access_list.is_show_fbgg}<a href="/Sns/ClassNotice/Publish/index/class_code/{$class_code}" class="main_nav_a2 f16" title="">发布公告</a>{/if}<a href="/Sns/ClassNotice/Published/index/class_code/{$class_code}" id="msg_notice_list" class="main_nav_a1 f16" title="">已发布公告</a></li>
+    </ul>
+    
+    <!--publish_main star-->
+    	<input type="hidden" value="{$class_code}" id="class_code"/>
+	     <div class="publish_main">
+	      <p id="search_p" class="list_top_main">
+	       <span>发布日期：从<input type="text" class="release_text" id="start_time" value="{$start_date}" name="startdate">到<input id="end_time" type="text" class="release_text" value="{$end_date}" name="enddate"></span><a href="javascript:;" title="" id="search"><span class="btn_left"></span><span id="search_btn" class="btn_right" >查询</span></a>
+	      </p>
+	      <!--has_release_main star-->
+	      <div id="notice_list_div">
+		  
+	      </div>
+	      <input type='hidden' id="current_page" value="0"/>
+	      <p class="see_homework"><span><a id="more_a" href="javascript:;">查看更多班级公告</a></span></p>
+	      <div class="clear"></div>
+	      <!--has_release_main end-->
+	     </div>
+     
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> </div>
+  <!--content end-->
+  <input id="class_code" type="hidden" value="{$class_code}"/>
+  <input id="client_type" type="hidden" value="{$user.client_type}"/>
+  
+  {include file="Sns/ClassNotice/Subtemplate/notice_delete_prompt.inc.html"}
+  {include file="Sns/ClassNotice/Subtemplate/notice_list_unit.inc.html"}
+  {include file="Sns/ClassNotice/Subtemplate/notice_refer.inc.html"}
+  {include file="Public/sns_footer.html"}
+</body>
+</html>

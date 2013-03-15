@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>批量处理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/plcl.js"></script>
+
+{literal}
+<style >
+	<!--
+	html,body {height:100%; margin:0px; font-size:12px;}
+	.mydiv {
+	background-color: #fff;
+	border: 5px solid #E0E0E0;
+	text-align: center;
+	padding-top:40px;
+	z-index:999;
+	width: 300px;
+	height: 120px;
+	left:50%;
+	top:50%;
+	margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+	margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+	margin-top:0px;
+	position:fixed!important;/* FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+	}
+	.mydiv p{color:#AE0000;line-height: 40px;font-weight: bold; font-size:20px;}
+	.bg,.popIframe {
+	background-color: #666; display:none;
+	width: 100%;
+	height: 100%;
+	left:0;
+	top:0;/*FF IE7*/
+	filter:alpha(opacity=50);/*IE*/
+	opacity:0.5;/*FF*/
+	z-index:1;
+	position:fixed!important;/*FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+	}
+	.popIframe {
+	filter:alpha(opacity=0);/*IE*/
+	opacity:0;/*FF*/
+	}
+	-->
+</style>
+
+<script type="text/javascript">
+	studentTable.name="name[]";
+
+	function showDiv(){
+		document.getElementById('popDiv').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
+	
+	function closeDiv(){
+		document.getElementById('popDiv').style.display='none';
+		document.getElementById('bg').style.display='none';
+		document.getElementById('popIframe').style.display='none';
+	}
+</script>
+
+
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%" onload="winLoad();">
+
+<div id="popDiv" class="mydiv" style="display:none;"><p>正在生成账号，请稍后...</p>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+ 
+
+<a href="/" class="bjwha">返回首页</a>
+<form id="form" name="form" action="/Homeclass/Classmanage/addLotsStu/cid/{$classCode}/uid/{$uid}/gradeid/{$gradeid}/schoolid/{$schoolid}" method="post">
+<div id="pInputData">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+ <tr>
+    <td height="27" colspan="2" class="line">
+    <a href="/Homeclass/Classmanage/classManager/class_code/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}" class="bjgk">班级概况</a>
+    <a href="/Homeclass/Classmanage/showClassClient/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}/stop_flag/0" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;" class="zhgl">班级成员账号管理</a>
+  </tr>
+  <tr>
+    <td height="10" colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="5"><a href="#" class="sglr">手工录入</a> <a href="/Homeclass/Classmanage/batchinputinfo/schoolid/{$schoolid}/cid/{$classCode}/uid/{$uid}/gradeid/{$gradeid}" class="ztlr">粘贴录入</a> <a href="/Homeclass/Classmanage/showClassClient/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}/stop_flag/0" class="bjwha">返回上一级</a></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center" bgcolor="#fbf6f7">
+      
+        <table width="40%" border="0" align="left" cellspacing="1" id="student_table">
+         	 <tr id="student_table_0">
+	            <td width="10%" height="30" align="center" bgcolor="#CCCCCC"><strong>序号</strong></td>
+	            <td width="50%" height="30" align="center" bgcolor="#CCCCCC"><strong>学生姓名</strong></td>
+	            <td width="40%" height="30" align="left">&nbsp;</td>
+            </tr>
+          	<tr id="student_table_1">
+	            <td height="30" align="center" bgcolor="#dfdbdb">1</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_1" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_1_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_2">
+	            <td height="30" align="center" bgcolor="#dfdbdb">2</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_2" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_2_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_3">
+	            <td height="30" align="center" bgcolor="#dfdbdb">3</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_3" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_3_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_4">
+	            <td height="30" align="center" bgcolor="#dfdbdb">4</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_4" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_4_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_5">
+	            <td height="30" align="center" bgcolor="#dfdbdb">5</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_5" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_5_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_6">
+	            <td height="30" align="center" bgcolor="#dfdbdb">6</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_6" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_6_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_7">
+	            <td height="30" align="center" bgcolor="#dfdbdb">7</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_7" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_7_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_8">
+	            <td height="30" align="center" bgcolor="#dfdbdb">8</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_8" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_8_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_9">
+	            <td height="30" align="center" bgcolor="#dfdbdb">9</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_9" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_9_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_10">
+	            <td height="30" align="center" bgcolor="#dfdbdb">10</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_10" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_10_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_11">
+	            <td height="30" align="center" bgcolor="#dfdbdb">11</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_11" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_11_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_12">
+	            <td height="30" align="center" bgcolor="#dfdbdb">12</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_12" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_12_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_13">
+	            <td height="30" align="center" bgcolor="#dfdbdb">13</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_13" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_13_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_14">
+	            <td height="30" align="center" bgcolor="#dfdbdb">14</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_14" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_14_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_15">
+	            <td height="30" align="center" bgcolor="#dfdbdb">15</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_15" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_15_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_16">
+	            <td height="30" align="center" bgcolor="#dfdbdb">16</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_16" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_16_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_17">
+	            <td height="30" align="center" bgcolor="#dfdbdb">17</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_17" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_17_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_18">
+	            <td height="30" align="center" bgcolor="#dfdbdb">18</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_18" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_18_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_19">
+	            <td height="30" align="center" bgcolor="#dfdbdb">19</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_19" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_19_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_20">
+	            <td height="30" align="center" bgcolor="#dfdbdb">20</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_20" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_20_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_21">
+	            <td height="30" align="center" bgcolor="#dfdbdb">21</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_21" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_21_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_22">
+	            <td height="30" align="center" bgcolor="#dfdbdb">22</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_22" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_22_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_23">
+	            <td height="30" align="center" bgcolor="#dfdbdb">23</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_23" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_23_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_24">
+	            <td height="30" align="center" bgcolor="#dfdbdb">24</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_24" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_24_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_25">
+	            <td height="30" align="center" bgcolor="#dfdbdb">25</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_25" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_25_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_26">
+	            <td height="30" align="center" bgcolor="#dfdbdb">26</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_26" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_26_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_27">
+	            <td height="30" align="center" bgcolor="#dfdbdb">27</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_27" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_27_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_28">
+	            <td height="30" align="center" bgcolor="#dfdbdb">28</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_28" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_28_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_29">
+	            <td height="30" align="center" bgcolor="#dfdbdb">29</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_29" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_29_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_30">
+	            <td height="30" align="center" bgcolor="#dfdbdb">30</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_30" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_30_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_31">
+	            <td height="30" align="center" bgcolor="#dfdbdb">31</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_31" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_31_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_32">
+	            <td height="30" align="center" bgcolor="#dfdbdb">32</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_32" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_32_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_33">
+	            <td height="30" align="center" bgcolor="#dfdbdb">33</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_33" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_33_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_34">
+	            <td height="30" align="center" bgcolor="#dfdbdb">34</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_34" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_34_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_35">
+	            <td height="30" align="center" bgcolor="#dfdbdb">35</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_35" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_35_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_36">
+	            <td height="30" align="center" bgcolor="#dfdbdb">36</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_36" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_36_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_37">
+	            <td height="30" align="center" bgcolor="#dfdbdb">37</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_37" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_37_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_38">
+	            <td height="30" align="center" bgcolor="#dfdbdb">38</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_38" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_38_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_39">
+	            <td height="30" align="center" bgcolor="#dfdbdb">39</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_39" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_39_err" style="color:red;size:15px;"></span></td>
+            </tr>
+            <tr id="student_table_40">
+	            <td height="30" align="center" bgcolor="#dfdbdb">40</td>
+	            <td height="30" align="center" bgcolor="#dfdbdb"><input id="student_table_input_40" name="name[]" type="text" class="kctx" /></td>
+	            <td height="30" align="left"><span id="student_table_input_40_err" style="color:red;size:15px;"></span></td>
+            </tr>
+        </table>    
+    </td>
+  </tr>
+  <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;"><a href="javascript:studentTable.addStudent();" class="amsqd">+增加行</a><a href="javascript:studentTable.cutStudent();" class="amsqx">-减少行</a></td>
+  </tr>
+  <tr>
+     <td height="60" bgcolor="#fbf6f7"><a href="javascript:confirmData();" class="amsqx" style="margin-right:25px;" >确认提交</a></td>
+  </tr>
+</table>
+
+</div>
+<div id="pShowData" style="display:none;">
+
+    <table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+      <tr>
+        <td height="27" colspan="5" class="bt STYLE1">批量处理</td>
+      </tr>
+      <tr>
+        <td height="10" colspan="5">&nbsp;</td>
+      </tr>
+        <tr>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" bgcolor="#fbf6f7">
+            <table width="20%" border="0" align="left" cellspacing="1">
+              <tr>
+                <td width="22%" height="30" align="center" bgcolor="#CCCCCC"><strong>序号</strong></td>
+                <td width="78%" height="30" align="center" bgcolor="#CCCCCC"><strong>学生姓名</strong></td>
+              </tr>
+              <tbody id="studShow_table"> 
+              </tbody>
+            </table>
+        </td>
+      </tr>
+      <tr>
+         <td height="60" bgcolor="#fbf6f7"><a href="javascript:document.forms['form'].submit();" onclick="javascript:showDiv();" class="amsqd" style=" width:120px; background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/amsqd_btn1.gif) no-repeat;">确认提交，生成账号</a><a href="javascript:backFun();" class="amsqx">修改</a></td>
+      </tr>
+    </table>
+</div>
+</form>
+</body>
+</html>

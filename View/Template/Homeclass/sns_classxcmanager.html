@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_班级相册</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/slAlbum.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqyphoto.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/photo/jquery.carouFredSel-5.5.0-packed.js"></script>
+</head>
+
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+	<div class="sub_diary">
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di1"></i><a href='/Homeclass/Class/classalbum/class_code/{$class_code}'>相册列表</a></li>
+			</ul>
+		</div>
+        <div style='font-size:14px;padding-top:10px;font-weight:bold;'>当前位置->班级相册</div>
+	</div>
+	
+	<!--sub_diary end-->
+<span class="blank20"></span>
+<table width="99%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr><td>
+
+<form action="" method="post" id="formphoto">
+<input type="hidden" id="xcfm" name="xcfm" value=""/>
+<input type="hidden" id="delphoto" name="delphoto" value=""/>
+<input type="hidden" id="delphoto_str" name="delphoto_str" value=""/>
+<input type="hidden" id="movephoto" name="movephoto" value=""/>
+<input type="hidden" id="hxcid" name="hxcid" value="{$xcid}"/>
+<input type="hidden" id="hclass_code" name="hclass_code" value="{$class_code}"/>
+<input type="hidden" id="haccount" name="haccount" value="{$account}"/>
+
+  <div class="wdxcgl_main">
+      <div id="photoimg" class="wdxcgl_main_left">
+		<div id="photoslist" style='width:auto;height:auto;'>
+		
+		   <div style="float:left;width:550px;">
+		   {if !empty($photoinfo)}
+				<div class="poto_list">
+				<uL>
+				{foreach from=$photoinfo item=pi}
+					<li>
+						{if $xcinfo.album_imgname==$pi.photo_min_url}
+						<cite><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/feng.gif" width="30" height="21" /></cite>
+						{/if}
+						<a class="album-list-img" href="javascript:void(0)" onclick="javascript:showphotosdeatial('{$pi.photo_id}');" title="照片"><img src="{$pi.photo_min_urlall}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a>
+						<span class="album-title">
+						<span>
+							评论{$pi.plunnums}
+							<input name="xcphotoid" type="hidden" value="{$pi.photo_id}"/>
+							<input name="xcphotobig" id="xcphotobig_{$pi.photo_id}" type="hidden" value="{$pi.photo_url}"/>
+							<input name="bigphotosh" id="bigphotosh_{$pi.photo_id}" type="hidden" value="{$pi.photo_urlall}"/>
+						
+						<input name="bigphotosname" id="bigphotosname_{$pi.photo_id}" type="hidden" value="{$pi.photo_name}"/>
+						<input name="bigphotoscontent" id="bigphotoscontent_{$pi.photo_id}" type="hidden" value="{$pi.photo_explain}"/>
+						</span>
+						</span>
+					</li>
+				{/foreach}
+				</uL>
+				</div>
+			{/if}
+		</div>
+
+		{$pageinfohtml}
+	
+
+      </div>
+      <div style="clear:both; height:1px;overflow:hidden;"></div>
+
+		<div id="photoslisdeatial" style='width:auto;height:auto;'>
+			<table width="97%" border="0" align="center" cellpadding="3" cellspacing="1">
+			  <tr>
+				<td height="25">
+				<a href="/Homeclass/Class/classalbum/class_code/{$class_code}">班级相册</a> > 
+				<a href="/Homeclass/Class/xcmanager/class_code/{$class_code}/xcid/{$xcinfo.album_id}">{$xcinfo.album_name}</a> > 相片浏览	</td>
+			  </tr>
+			  <tr><td height="40"></td></tr>
+			  <tr bgcolor="#f2f2f2">
+				<td height="100">
+	
+				<div class="list_carousel">
+				<ul id="foo2">
+				{foreach from=$photoinfo item=pis}
+				<li>
+				<a href='javascript:void(0);'><img width="70px" height="70px" src="{$pis.photo_min_urlall}" border=0 style='cursor:hand;' onclick="javascript:showphotosdeatial('{$pis.photo_id}');"/></a>
+				</li>
+				{/foreach}
+				</ul>
+				<div class="clearfix"></div>
+				<a id="prev2" class="prev" href="#">&lt;</a>
+				<a id="next2" class="next" href="#">&gt;</a>
+				<!--<div id="pager2" class="pager"></div>-->
+				</div>
+				</td>
+			  </tr>
+				<tr><td height="25">&nbsp;</td></tr>
+
+
+				  <tr>
+					<td height="25" align="center">&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td height="25" align="center">
+						<span id='spanbigphotos'></div>
+						<p style="width:730px; float:left; padding-top:20px; text-align:center; height:20px;">
+					</td>
+				  </tr>
+				
+
+				  <tr><td height="35" align="center">照片名称：<span id="photoname"></span></td></tr>
+				  <tr style='line-height:22px;font-size:14px;color:#666'>
+					<td height="25" align="left">&nbsp;&nbsp;<div class='wordwrap' style="word-break:break-all;width:500px;"><span id="photoexplain"></span></div>
+					<input type='hidden' name='bigphotoid' id='bigphotoid'>
+					</td>
+					</tr>
+					<tr><td height="25">&nbsp;</td></tr>
+
+				</table>
+
+
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			  <tr>
+				<td>
+				<table id="disphotopluns" width="96%" border="0" cellspacing="0" cellpadding="0" style="float:left;" class="xppl_asx">
+				</table>
+					<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="xppl_asx" style="float:left;">
+					 
+					  <tr>
+					  <td width="10%" valign="top">
+				<!--begin input_msgK-->
+				<div class='input_msgK'>
+					<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');" maxlength="200"></textarea></div>
+
+					<div class="funBox">
+						<div class="insertFun">
+							<div id="showface" style="display:none;"></div>
+							<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+							<div class="uploadPic">
+								<input type="hidden" name="pic" id="pic" value="" />  
+								<input type="hidden" name="mid" id="mid" value="" />
+								<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+							</div>
+						</div>
+						<div class="sendFun">
+							<input type='hidden' name='delphoto' id='delphoto' value=''>
+							<input type="button" style="cursor:pointer;" value="发表评论" class="inputbg2" onclick="btnplun('{$account}','{$friendaccount}');"/>
+							<span class="countTxt">还能输入<em>140</em>字</span>
+							<span class='blank20'></span>
+						</div>
+						
+					</div>
+				</div>
+				<!--end input_msgK-->
+					  
+					  </td>
+					  </tr>
+				<tr><td>&nbsp;</td></tr>
+
+				</table>
+
+				</td>
+			  </tr>
+			</table>
+
+		{literal}
+		<script type="text/javascript">
+			getphotopluncontent();
+		</script>
+		{/literal}
+
+			</div>
+
+
+</div>
+         
+      <div class="wdxcgl_main_right">
+	  
+	    <table width="100%" border="0" cellpadding="3" cellspacing="1">
+          <tr>
+            <td height="30" class="tag_title">相册信息：</td>
+            </tr>
+          <tr>
+            <td height="30" align="center"><img src="{$xcinfo.album_imgfm}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" /></td>
+            </tr>
+          <tr>
+            <td height="30">相册名称：{$xcinfo.album_name}</td>
+            </tr>
+          <tr>
+            <td height="30">相册描述：</td>
+            </tr>
+          <tr style='line-height:22px;'>
+            <td height="30">{$xcinfo.album_explain}</td>
+          </tr>
+          <tr>
+            <td height="30">相册内共&nbsp;{$photocount}&nbsp;张照片</td>
+            </tr>
+          <tr>
+            <td height="30">创建人：&nbsp;{$xcinfo.client_name}&nbsp;</td>
+            </tr>
+
+			
+          <tr>
+            <td height="30">创建于：{$xcinfo.add_date}</td>
+            </tr>
+          <tr>
+            <td height="30">更新于：{$xcinfo.upd_date}</td>
+            </tr>
+			{if $falg_albumManager==1 || $account_Jurisdiction==1}
+			  {if $xcinfo.album_create_type!=2}
+			  <tr>
+				<td height="30">
+			<input type="button" value="删除共享相册" class="inpusublong" onclick="javascript:masterdeletexc('{$class_code}','{$account}','{$xcinfo.album_id}');"/></td>
+			  </tr>
+			    {/if}
+			  {/if}
+        </table>
+      </div>
+  </div>
+  {literal}
+  <script type="text/javascript">
+	function masterdeletexc(class_code,account,xcid){
+		if(confirm('确认删除相册吗?')){
+			window.location='/Homeclass/Class/deletexc/class_code/'+class_code+'/user_account/'+account+'/xcid/'+xcid;
+		}
+	}
+	
+  </script>
+  {/literal}
+  </form>
+</td>
+</tr>
+</table>
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

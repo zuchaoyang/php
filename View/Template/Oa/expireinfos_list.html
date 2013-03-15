@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>布置工作-已发布的工作</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <!--button end-->
+        <!--yfb_main-->
+        {if $TaskInfos != ''}
+	        {foreach from=$TaskInfos item=val}
+	        <div class="yfb_main">
+	          <h4><span class="h4_zuo">{$val.task_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+	          <p style="line-height:22px;">
+	            {$val.task_content}	
+	          </p>
+	          <h4><span class="h4_zuo2"><a href="/Oa/Task/taskDetail/task_id/{$val.task_id}" style="text-decoration:none; " class="a_green2">查看详情</a>
+	          
+	         	{if $val.expiration_time == 1}
+		          	<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>
+		          {/if}
+		          
+		          {if $val.need_sms_remind == 1}
+		           <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif"/></a>
+		          {/if}
+		          
+		          {if $val.need_sms_push == 1}
+		           <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif" /></a>
+		          {/if}
+		       
+		          {if $val.need_reply == 1}
+		          	<a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif" /></a>
+		          {/if}
+	          
+	          <a href="#" {if $val.is_reply == '已回复'}class="font_lan"{else}class="font_hong"{/if}>{$val.is_reply}</a></span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+	        </div>
+	        {/foreach}
+	        
+	        <p class="fenye">
+	        	当前第_{$page}_页
+	        	<a href="/Oa/Expireremind/getTaskInfosByUidType">首页</a>
+	        {if $page <= 1}
+	        	上一页
+	        {else}
+	        	<a href="/Oa/Expireremind/getTaskInfosByUidType/page/{$page-1}">上一页</a>
+	        {/if}
+	        
+	        {if $flag == true}
+	        	已到最后一页
+	        {else}
+	        	<a href="/Oa/Expireremind/getTaskInfosByUidType/page/{$page+1}">下一页</a>
+	        {/if}
+	        
+	        </p>
+	      </div>
+      {else}
+      	<div class="yfb_main" align="center">
+      		<p>暂无数据</p>
+      	<div/>
+      {/if}
+    <!--you end-->   
+  
+   <div class="clear"></div> 
+ </div>  
+ </div>
+ <!--main end-->   
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="refresh" content="{$timeout}; url={$backurl}">
+
+<title>提示页面</title>
+{literal}
+<style>
+body{font-size:12px;}
+#notice { margin: 200px auto 0; background: #FFF; border-style: solid; border-color: #86B9D6 #B2C9D3 #B2C9D3; border-width: 4px 1px 1px;font-size:12px; }
+#notice_message { padding: 1.5em 1em; font-size: 1.17em; font-size:12px;}
+#notice_message.warning { color:red; }
+#notice_links { margin: 0; line-height: 2em; border-top: 1px solid #F5F5F5; background: #F5FBFF; padding: 0 1em; }
+#notice_links a { margin: 0 2px;color:black; }
+</style>
+{/literal}
+</head>
+<body>
+<center>
+	<table id='notice' cellpadding='0' cellspacing='0' border='0'>
+		<tr>
+			<td id='notice_message' class='warning'><img src='{$pathImg}'></td>
+			<td id='notice_message' class='warning'><span style='font-size:18px;color:#9C0D3F;font-weight:bod;'>{$msg}</span></td>
+		</tr>
+	</table>
+<center/>
+</body>
+</html>

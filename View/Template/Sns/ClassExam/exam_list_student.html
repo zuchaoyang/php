@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>班级成绩</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassExam/list.css" type="text/css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/exam_list_student.js"></script>
+</head>
+<body>
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <!--nav star-->
+	{insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <!--publish_main star-->
+      <div class="publish_main">
+        <p class="list_student_title">
+        	 孩子成绩
+        </p>
+        <!--list_exam_main star-->
+        <div class="list_exam_main">
+          <h3 class="main_title">查找成绩</h3>
+          <!--fill_info star-->
+        <div class="fill_info">
+          <p>{$class_name}</p>
+          <form id="search_form" name="form" action="/Sns/ClassExam/Exam/index/class_code/{$class_code}" method="post">
+          
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>科目：</th>
+            <td>
+            <select name="subject_id" id="subject_id">
+            <option value="">所有科目</option>
+			{foreach from=$subject_list item=subject }
+	 	    	<option  value="{$subject.subject_id}" {if $exam_info.subject_id == $subject.subject_id}selected{/if} >
+	 	    	{$subject.subject_name}{if $subject.teacher_name}({$subject.teacher_name}){/if}
+	 	    	</option>
+			{/foreach}
+
+            </select>
+            </td>
+            <th>考试名称：</th>
+            <td><input type="text" id="exam_name" value="{$exam_name}" name="exam_name" maxlength="10" class="text120"></td>
+            <th>考试日期：</th>
+            <td class="width_td">从&nbsp;<input type="text" id="start_time" name="start_time" value="{$start_time}" {literal}onclick="WdatePicker({el:'start_time'})"{/literal}  readonly="readonly" class="text120"></td>
+            <td>到&nbsp;<input type="text" id="end_time" name="end_time" value="{$end_time}" {literal}onclick="WdatePicker({el:'end_time'})"{/literal}  readonly="readonly" class="text120"></td>
+            <td><a href="#" id="search_btn" class="f14" title=""><span class="btn_left"></span><span class="btn_right">查询</span></a></td>
+          </tr>
+        </table>
+        <input type="hidden" name="class_code" id="class_code" value="{$class_code}"/>
+        </form>
+        </div>
+        <!--fill_info end-->
+        <div class="exam_list">
+          <span class="pic01">成绩列表</span>
+        </div>
+        <!--list_main star-->
+        <div id="exam_list_div">
+          <!-- clone start -->
+          <div class="list_main clone" style="display:none;">
+	         <p>
+	         <span class="pr30">考试名称：%s</span>
+	         <span class="pr30">科目：%s</span>
+	         <span class="pr30">考试日期：%s</span>
+	         <span class="pr30">考试成绩：%s</span>
+	         </p>
+	         <h3 class="list_main_title">
+	           	综合分析：
+	         </h3>
+	         <table width="100%" border="0" cellspacing="1" cellpadding="0">
+	          <tr>
+	            <th class="boder_left">参加人数</th>
+	            <th>未参加人数</th>
+	            <th>满分</th>
+	            <th>平均分</th>
+	            <th>最高分</th>
+	            <th>最低分</th>
+	            <th>优秀率</th>
+	            <th>及格率</th>
+	          </tr>
+	          <tr>
+	            <td class="boder_left"></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	            <td></td>
+	          </tr>
+	        </table>
+	        <p class="line_top">
+	                           考试评语<br/>
+	          <span class="pl20"></span>
+	        </p>
+	      </div>
+	      <!-- clone end -->  
+	      
+	      {foreach from=$exam_list item=exam}
+	      <div class="list_main">
+	         <p>
+	         <span class="pr30">考试名称：{$exam.exam_name}</span>
+	         <span class="pr30">科目：{$exam.subject_name}</span>
+	         <span class="pr30">考试日期：{$exam.exam_time}</span>
+	         <span class="pr30">考试成绩：{if $exam.score.exam_score}{$exam.score.exam_score}分{else}未参加{/if}</span>
+	         </p>
+	         <h3 class="list_main_title">
+	           	综合分析：
+	         </h3>
+	         <table width="100%" border="0" cellspacing="1" cellpadding="0">
+	          <tr>
+	            <th class="boder_left">参加人数</th>
+	            <th>未参加人数</th>
+	            <th>满分</th>
+	            <th>平均分</th>
+	            <th>最高分</th>
+	            <th>最低分</th>
+	            <th>优秀率</th>
+	            <th>及格率</th>
+	          </tr>
+	          <tr>
+	            <td class="boder_left">{$exam.stat.join_nums}</td>
+	            <td>{$exam.stat.unjoin_nums}</td>
+	            <td>{$exam.exam_well}</td>
+	            <td>{$exam.stat.avg_score}</td>
+	            <td>{$exam.stat.top_score}</td>
+	            <td>{$exam.stat.lower_score}</td>
+	            <td>{$exam.stat.excellent_percent}</td>
+	            <td>{$exam.stat.pass_percent}</td>
+	          </tr>
+	        </table>
+	        <p class="line_top">
+	                            考试评语<br/>
+	          <span class="pl20">{if $exam.score.score_py}{$exam.score.score_py}{else}暂无{/if}</span>
+	        </p>
+	      </div>
+	      {/foreach}
+        </div>
+        <!--list_main end-->
+        </div>
+        <!--list_exam_main end-->
+        <p class="see_homework">
+        <span>
+        {if $is_next_page}
+		  <a href="javascript:;" id="next_page">查看更多成绩</a>
+		{else} 
+		  <a href="javascript:;" style="cursor:default;">没有更多了</a>
+		{/if}
+        </span></p>
+      </div>
+    <!--publish_main end-->  
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+
+  </div>
+  <!--main end-->
+  <div class="clear"></div>
+</div>
+<!--cotent end-->
+
+<!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+</body>
+</html>

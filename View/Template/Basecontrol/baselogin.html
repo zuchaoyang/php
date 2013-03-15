@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我们网_后台登陆页</title>
+<meta name="description" content="我们网_最大的未成年人成长社区,学生,老师,家长互通平台,未成年人成长社区,教育资源平台">
+<meta name="Keywords" content="我们网,我们,我们网资源,资源,教育资源,我们网社区,我们网登录,我们网帐号,未成年人成长社区">
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/page/bms_login.js"></script>
+
+
+{literal}
+<style >
+	*{margin:0px; padding:0px;}
+	body{background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_bj.gif) repeat-x;font-size:12px;}
+	a{text-decoration:none;}
+	.big{width:960px; margin:0 auto; padding-top:220px;}
+	.dly_cotent1{background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_cotent1.gif) center no-repeat; height:69px;}
+	.dly_cotent2{margin:0 auto; height:151px;background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_cotent2.gif) center no-repeat; padding-left:300px;}
+	.dly_cotent3{background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_cotent3.gif) center no-repeat; height:40px; text-align:center; padding-top:63px;}
+	.dly_srk{width:156px; height:22px; line-height:22px; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_wbk.gif) no-repeat; border:none; padding-left:6px;}
+	.dly_aniu{display:block; text-align:center;width:54px; height:20px; line-height:20px; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dly_dlk.gif) no-repeat; border:none; color:#fff; margin-left:50px;}
+</style>
+
+<script type="text/javascript"> 
+	if (top.location != self.location) {
+		    top.location = self.location; //跳出框架
+		}
+	function keyLogin(){
+		document.onkeydown = function Enter(e) {
+	        var e = e || event; 
+	        var keyPress = e.keyCode || e.whick || e.charCode; 
+	        if (Number(keyPress) == 13) { 
+	        	pSubmit();  //调用登录按钮的登录事件
+			}
+		}
+	}
+</script>
+{/literal}
+
+</head>
+
+<body onkeydown="javascript:keyLogin();">
+<div class="big">
+  <div class="dly_cotent1"></div>
+     <div class="dly_cotent2">
+       <form id="myform" name="myform" action="/Adminlogin/Login/loginin/app_name/bms" method="post">
+         <p id="errInfo" style="color:red; size:20px;">{$message}</p>
+         <p style="padding-top:20px;">用户名：<input id="pUserId" name="uid" type="text" class="dly_srk" maxlength="30" tabindex="1" /></p>
+         <p style="padding-top:14px; text-indent:12px;">密码：<input id="pPwdId" name="passwd" type="password" class="dly_srk" maxlength="20" tabindex="2"/></p>
+         <p style="padding-top:16px;"><a href="javascript:pSubmit();" class="dly_aniu">登录</a></p>
+       </form>
+     </div>
+     <div class="dly_cotent3"> <p>{$smarty.const.COPYRIGHT}</p></div>
+     
+</div>
+</body>
+</html>

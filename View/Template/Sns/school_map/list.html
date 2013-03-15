@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>学校列表</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/school_map/frame.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/school_map/gov_hall.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/school_map/skin.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/school_map/out_frame.css"  />
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/sns_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/school_map/list.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/school_map/maps/gaea_1_19.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/school_map/maps/top.js"></script>
+	{literal}
+<script type="text/javascript">
+
+	var $CONFIG = {	
+			
+	};
+
+	
+	//WBtopPublic.init($CONFIG);
+</script>
+{/literal}
+
+</head>
+
+<body>
+
+<!--header-->
+
+<!--header end-->
+
+<!--main-->
+<div class="sns_concent_bg01"><!--渐变色背景-->
+    <div class="sns_concent_bg02"><!--插画背景图-->
+        <!--主体内容-->
+        <div class="maps_content">
+        	<!--左侧地区列表-->
+        	<div class="Area_list" id="pl_home_leftNav">
+				  <div  style="" node-type="navBox" class="nav_barMain">
+				   <ul>
+				   {foreach from=$provinces key=list_area_id item=list_area_name}
+				  		<li action-type="menuShow" class="nav_aItem">
+					   		<div class="a_outer">
+					    		<div class="a_inner"> <a class="a_link" href="/Sns/school_maps/get_school_list?area_id={$list_area_id}">{$list_area_name}<em class="nav_arr">&gt;</em></a> </div>
+					   		</div>
+					   		<div node-type="subMenu" class="item_child">
+				    			<ul class="child_inner clearfix">
+				    				{foreach from=$citys[$list_area_id] key=list_city_id item=list_city_name}
+								    <li class="ct_b"><a class="child_link" href="/Sns/school_maps/get_school_list?area_id={$list_area_id}&city_id={$list_city_id}">{$list_city_name}</a></li>
+				   					{/foreach}
+				    			</ul>
+				   			</div>
+				    	</li>
+				    {/foreach}
+				  	</ul>
+				  </div>
+            </div>
+            <!--左侧地区列表 end-->
+            
+            <!--右侧列表部分-->
+            <div class="content_right">
+            	<!--位置导航-->
+                <div class="title_area">
+                	<a href="#">{$area_name}</a> >> <a href="#">{$city_name}</a>                
+                </div>
+                <!--位置导航 end-->
+                
+                <!--学校列表-->
+                <ul class="school_name_list">
+                	{foreach from=$schoolInfo key=school_id item=school}
+                	<li> <a href="{$school.url}" target="_blank">·{$school.name}</a></li>
+					{/foreach}
+                </ul>
+                <!--学校列表 end-->
+                	{if $page == 1 && $curpage == 'end'} 
+                	{else if}
+                	<p class="school_name_fenye">
+						{if $curpage == 'start'}当前第1页{elseif $curpage == 'end'}当前最后1页{else}当前第{$page}页{/if}
+					  <a href='/Sns/school_maps/get_school_list?area_id={$area_id}&city_id={$city_id}&page={$prepage}'>上一页</a><a href='/Sns/school_maps/get_school_list?area_id={$area_id}&city_id={$city_id}&page={$endpage}'>下一页</a>
+					</p>
+					{/if} 
+					  
+            </div>            
+            <!--右侧地图部分 end-->
+            
+        
+        </div>  
+        <!--主体内容 end-->
+        <div class="clear"></div>
+    </div>
+</div>
+<!--main end-->
+
+<div class="clear"></div>
+            
+<!--绿色底图-->
+    <div class="lsdt">
+    </div>
+<!--绿色底图 end-->
+
+<!--footer-->
+
+<!--footer end-->
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/school_map/maps/cityinfo.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/school_map/maps/gov.js"></script>
+</body>
+</html>

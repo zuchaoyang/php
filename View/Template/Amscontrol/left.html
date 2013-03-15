@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>ams左侧菜单</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+{literal}
+<style>
+	body{ background:#fbf6f7;}
+</style>
+
+<script type="text/javascript">
+
+	function aa(page) {
+		  window.open(page,"mainFram");
+	}
+
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="left">
+<h4><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/lefttop.gif" width="187" height="32" /></h4>
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >学校管理</div> 
+<div id="child1">
+
+	<dl>
+    	<dt>--<a href="javascript:;" onclick="javascript:aa('/Amscontrol/Schoolinfo/showSchoolInfo/schoolId/{$school_id}');return false;">{$schoolinfo.school_name}</a></dt>
+
+        <dd><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Subjectmanage/showSubjectInfo/schoolId/{$school_id}'); return false;">课程管理</a></dd>
+        <dd><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Amsteacher/showTercherManage/schoolId/{$school_id}'); return false;">老师管理</a></dd>
+
+        <dd><a href="#">班级管理</a></dd>
+        {foreach from=$gradelist item=gradename key=gradeid}
+        	<dd class="nj"><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Amsclasslist/showClassList/gradeId/{$gradeid}/schoolId/{$school_id}'); return false;">{$gradename}</a></dd>
+        {/foreach}
+        
+    </dl>
+
+</div> 
+<div class="main" onclick="document.getElementById('child2').style.display=(document.getElementById('child2').style.display =='none')?'':'none'" >部门管理</div> 
+<div id="child2"> 
+	<dl>
+    	<dt><a href="#" onclick="javascript:aa('/Amscontrol/Oadepartment/index/action/createDepartment/school_id/{$school_id}');">新建部门</a></dt>
+        <dt><a href="#" onclick="javascript:aa('/Amscontrol/Oadepartment/index/action/modify/school_id/{$school_id}');">编辑部门</a></dt>
+        <dt><a href="#" onclick="javascript:aa('/Amscontrol/Oadepartment/index/action/departmentMemberssort/school_id/{$school_id}');">人员排序</a></dt>        
+    </dl>
+</div> 
+<div class="main" onclick="document.getElementById('child3').style.display=(document.getElementById('child3').style.display =='none')?'':'none'" >集中办公平台设置</div> <div id="child3"> 
+	<dl>
+    	<dt>--<a href="javascript:;" onclick="javascript:aa('/Amscontrol/Oarole/roleList'); return false;">集中办公平台设置</a></dt>
+    	<dd><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Oarole/roleList'); return false;">角色管理</a></dd>
+        <dd><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Oarole/roleDetail/act_flag/add'); return false;">新增角色</a></dd>
+        <dt>--<a href="javascript:;" onclick="javascript:aa('/Amscontrol/Oarole/schoolLogo'); return false;">相关设置</a></dt>      
+    </dl>
+</div> 
+
+<div class="main" onclick="document.getElementById('child4').style.display=(document.getElementById('child4').style.display =='none')?'':'none'" >个人信息</div> <div id="child4"> 
+	<dl>
+        <dd><a href="javascript:;" onclick="javascript:aa('/Amscontrol/Amsaccountmanage/showAmsUserInfo'); return false;">个人信息修改 </a></dd>
+    </dl>
+</div> 
+<div id="child5" style="display:none" > 
+	<dl>
+    	<dt>--子站会员管理</dt>
+        <dd><a href="#">注册会员列表</a></dd>
+        <dd><a href="#">会员求职管理</a></dd>
+        <dd><a href="#">会员需求管理</a></dd>
+    </dl>
+</div> 
+<div id="child6" style="display:none" > 
+	<dl>
+    	<dt>--子站招聘供应</dt>
+        <dd><a href="#">招聘信息管理</a></dd>
+        <dd><a href="#">供应信息管理</a></dd>
+    </dl>
+</div> 
+<div id="child7" style="display:none" > 
+	<dl>
+    	<dt>--友情链接管理</dt>
+        <dd><a href="#">友情链接管理</a></dd>
+    </dl>
+</div> 
+</div>
+</body>
+</html>

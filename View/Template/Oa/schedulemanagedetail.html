@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>布置工作-详细工作内容</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <!--button end-->
+        {foreach from=$Infos item=val}
+        	{if $fl == "task"}
+		        <h4>{$val.task_title}</h4>
+		        <ul class="font_gray">发布时间：{$val.add_time}</ul>
+		        <p class="light_blue" style="line-height:22px;">
+		        {$val.task_content}
+		        </p>
+		        <p class="blue_bj"><span class="font_blue">工作发布日期：{$val.add_time}</span><span class="font_red">工作交付日期：{$val.expiration_time}</span></p>
+        	{else}
+        		<h4>{$val.schedule_title}</h4>
+		        <ul class="font_gray">发布时间：{$val.add_time}</ul>
+		        <p class="light_blue" style="line-height:22px;"> 
+		        {$val.schedule_message}
+		        </p>
+		        <p class="blue_bj"><span class="font_blue">工作发布日期：{$val.add_time}</span></p>
+        	{/if}
+        <!--xxgz_main-->
+  		{/foreach}
+ </div>  
+ <div class="clear"></div>
+ </div>
+ <!--main end-->   
+
+</body>
+</html>

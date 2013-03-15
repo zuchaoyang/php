@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>设置邮箱</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/set_email.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/set_email.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="uc_header"}
+<!--top end-->
+
+<!--main-->
+<div class="tip">
+   <p class="font_main"><span class="font_darkblue">{$user.client_name}</span>&nbsp;&nbsp;<span class="font_olive">您好，如果您的密码长期未改或过于简单，建议您定期修改密码。</span></p>
+ </div>
+ <div class="container">
+<div class="content_frame_01">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+    	<h4 class="c_f_01_c_title">设置邮箱</h4>
+    	<form method="post" id="set_form" action="/Uc/Accountset/setEmaildo">
+        <table  cellpadding="0" cellspacing="0" border="0" class="pwd_table">
+        	<tr>
+            	<th>确认设置邮箱：</th>
+                <td> 
+                	<input type="text" name="email" id="email"  maxlength="60"/>
+					<span id="emailTip"></span><br/>
+                	<input id="sendScode" type="button" class="yzm_btn" value="获取邮箱验证码"/>
+                </td>
+            </tr>
+            <tr>
+            	<th>邮箱验证码：</th>
+                <td><input type="text" name="scode"  id="scode"  maxlength="6"/>
+                 <span id="scodeTip"></span></td>
+            </tr>
+            <tr>
+            	<th>&nbsp;</th>
+                <td>
+                 <span class="zsxi_tip" id="sendScode_span">请输入正确的邮箱，方便获取验证码</span></td>
+            </tr>
+            <tr>
+            	<th></th>
+                <td><input id="submit_btn" type="button" value="确定" class="btn_2_word"/></td>
+            </tr>
+        </table>
+        </form>  
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+
+
+
+<!--main end-->
+
+<!--footer -->
+{insert name="uc_footer"}
+<!--footer end-->
+
+
+</body>
+</html>

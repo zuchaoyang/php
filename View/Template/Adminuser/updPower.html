@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>修改权限</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+
+<script type="text/javascript" src="/Public/js/jquery-1.5.2.min.js"></script>
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+
+<script type="text/javascript">
+
+	function a(){
+		var role = document.getElementsByName("role_code");
+		var len=document.getElementsByName("role_code").length;
+		var strrole="";
+		for(var i=0;i<len;i++){
+			if(role[i].checked){
+				strrole = strrole+role[i].value+",";
+			}
+		}
+		document.getElementById("role_str").value=strrole;
+		document.forms[0].submit();
+	}
+
+	$(document).ready(function (){
+		if($("#success").val()) {
+			alert("数据已更新");
+		}
+	});
+	
+</script>
+{/literal}
+</head>
+
+<body>
+<form name="form" action="__URL__/updPower" method="post">
+<input type="hidden" id="role_str" name="role_str"/>
+<input type="hidden" name="relation_id" value="{$account_info.relation_id}"/>
+<input type="hidden" name="client_account" value="{$account_info.wms_account}"/>
+<input type="hidden" name="success" value="{$success}" id="success"/>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">修改权限</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff">
+    <table width="750" border="0" align="left" bgcolor="#f0f8ff">
+  <tr>
+    <td width="10%" height="35px" align="right">账号：</td>
+    <td width="15%">{$account_info.wms_account}</td>
+    <td width="10%" align="right">姓名：</td>
+    <td width="15%">{$account_info.wms_name}</td>
+  </tr>
+  
+  {foreach from = $rolelist item = list}
+  
+	  <tr>
+	    <td height="35px">&nbsp;</td>
+			{if $list.flag == true}
+			    <td colspan="5">
+			      <label style="cursor:pointer;">
+			      <input type="checkbox" name="role_code" id="checkbox{$list.role_code}" checked value="{$list.role_code}"/>
+			      {$list.role_name}</label></td>
+		   	{else}
+			    <td colspan="5">
+			     <label style="cursor:pointer;">
+			     <input type="checkbox" name="role_code" id="checkbox{$list.role_code}" value="{$list.role_code}"/>
+			     {$list.role_name}</label></td>
+		    {/if}
+	  </tr>
+  {/foreach}
+  
+  <tr>
+    <td height="35px">&nbsp;</td>
+    <td height="65px" colspan="5"><input type="button" value="保存数据" onclick="a()" class="f_btn" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+   <tr>
+    <td height="45" align="left" bgcolor="#f0f8ff">&nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

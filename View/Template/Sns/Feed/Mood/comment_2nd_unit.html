@@ -1,0 +1,29 @@
+<div id="comment_2nd_unit_div" class="agin_reply_main comment_2nd_unit_selector" style="display:none;">
+   {literal}
+   <dl>
+    <dt>
+    	<img width="40" height="40" src="{child_comment.client_headimg_url}">
+    </dt>
+   </dl>
+   <div class="agin_reply">
+     <table width="100%" cellspacing="0" cellpadding="0" border="0">
+       <tr>
+         <td>
+         	<a class="fc_288c00" href="javascript:;">{child_comment.client_name}:</a>
+         </td>
+         <td>
+         	<p>{child_comment.content}（{child_comment.add_time_diff}）</p>
+         </td>
+         <td>
+         	<a class="fc_288c00 comment_2nd_delete_selector" href="javascript:;">删除</a>
+         </td>
+       </tr>
+     </table>
+    </div>
+   <div class="clear"></div>  
+   
+   <div class="comment_2nd_unit_params_selector">
+   	   <input type="hidden" name="delete_comment_url" value="/Sns/Mood/Comments/deleteMoodCommentsAjax/comment_id/{child_comment.comment_id}"/>
+   </div>
+   {/literal}
+</div>

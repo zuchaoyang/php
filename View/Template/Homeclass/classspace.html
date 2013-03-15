@@ -1,0 +1,106 @@
+{include file="Public/banji_header.html"}
+	<div class="class_space_main">
+
+		<div class="class_space_banner">
+			<div class="class_space_banner_name">
+				<h2>{$tpl_school_Name}</h2>
+				<b>{$tpl_gradeclass_Name}</b>
+			</div>
+		</div><!--class_space_banner end-->
+
+
+		<div class="class_space_row">
+			<!--class_space_row_left start-->
+				{include file="Public/banji_left.html"}
+			<!--class_space_row_left end-->
+
+
+
+			<div class="class_space_row_right">
+			<span class='blank10'></span>
+			<div class="space_dongtai"><h2>班级动态</h2></div>
+
+			{if !empty($Talk_ContentList)}
+			{foreach from=$Talk_ContentList item=val}
+			<div class="m_message">
+				<div class="m_message_l">
+					<a href='/Homeuser/Index/spacehome/spaceid/{$val.client_account}' title='访问Ta的空间' target='_blank'><img src="{$val.client_headimg_url}" width="60" height="60" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a> 
+				</div>
+				<div class="m_message_r">
+					<h3 style="padding-left:10px;"><strong>
+					{$val.client_name}<br/>
+					{$val.feed_title}：<br/>{if $val.feed_url != ''}<a href="{$val.feed_url}" target='_blank'>{/if}<div class='wordwrap' style="word-break:break-all">{$val.feed_name}</div>{if $val.feed_url != ''}</a>{/if}
+					</strong>
+					</h3>
+					<div class="m_message_rt">
+					<p>
+						{$val.feed_upd_time}
+						{if $val.res_type == $smarty.const.CLASS_FEED_TALK || $val.res_type == $smarty.const.CLASS_FEED_LOG || $val.res_type == $smarty.const.CLASS_FEED_ALBUM}
+						评论(<span id="pcount_{$val.res_id}">{$val.CommentNums}</span>)↓
+						{/if}
+					</p>
+					</div>
+			
+				</div>
+				<div class="kong"></div>
+			</div>
+			<!--m_message end-->
+			{/foreach}
+			{/if}
+				<span class='blank10'></span>
+			<div class="space_dongtai"><h2>班级日志</h2></div>
+
+			
+
+			{if !empty($mylog_list)}
+			{foreach from=$mylog_list item=vo}
+			<div class="class_diary_k">
+			    <div class='class_diary_kleft'>
+				<br>
+				<a href="/Homeuser/Index/spacehome/spaceid/{$vo.add_account}" target='_blank'>
+				<img src="{$vo.headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/avatar_small.jpg'" width=60 height=60/></a>
+				<br>{$vo.client_name}
+				</div>
+				<div class="class_diary_kight" style="margin_top:20px;">
+					<h2><span>发布时间：{$vo.upd_date}&nbsp;&nbsp;&nbsp;</span>{$vo.log_name}</h2>
+					<div class='wordwrap' style="word-break:break-all"><p>{$vo.log_contentall}</p></div>
+					<div class="sub_diary_tlb">
+					<div class="sub_diary_tlb_left">
+					<a href="/Homeuser/Index/spacelogview/spaceid/{$vo.add_account}/log_id/{$vo.log_id}" target="_blank">阅读全文</a>(<span>{$vo.read_count}</span>)
+					&nbsp;&nbsp;
+					<a href="/Homeuser/Index/spacelogview/spaceid/{$vo.add_account}/log_id/{$vo.log_id}" target="_blank">评论(<span>{$vo.plun_count}</span>)</a>
+					</div>
+					
+					</div>
+
+				</div>
+			</div>
+			{/foreach}
+			{/if}
+			<span class='blank10'></span>
+			<div class="space_dongtai"><h2>班级相册</h2></div>
+
+			{if !empty($xiangce_list)}
+			{foreach from=$xiangce_list item=xc}
+			<div class='classAlbumImgK'>
+				<div class='classAlbumImg'><a href="/Homeuser/Index/albumphotodetail/spaceid/{$xc.add_account}/xcid/{$xc.album_id}" target='_blank'>
+				<img src="{$xc.album_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/no_photo_f.jpg'"/></a></div>
+				<div class='classAlbumTitle'>{$xc.album_name}</div>
+				<div class='classAlbumTitle'>创建人：{$xc.client_name}</div>
+				<div class='classAlbumcontrol'><!--{$ALBUM_SYS_CREATE}-->
+				 </div>
+			</div>
+			{/foreach}
+			{/if}
+
+			</div>
+			<div class="kong"></div>
+		</div><!--class_space_row end-->
+	</div><!--class_space_main end-->
+
+
+</div><!--class_space_box end-->
+{include file="Public/banji_footer.html"}
+
+</body>
+</html>

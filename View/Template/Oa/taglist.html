@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>布置工作-详细工作内容</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+</head>
+
+<body>
+<!--弹出层-->
+<div id="popDiv1" class="mydiv1" style="display:none;">
+ <p>
+  移动分类：<select><option>特殊记事</option></select>
+ </p>
+ <p class="no_line"><a href="#" style="text-decoration:none;" class="qd_btn">确定提交</a><a href="javascript:guanDiv()" style="text-decoration:none;" class="qd_btn">取消</a></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <h4 class="border_line">所有标签</h4>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="bqfl_main">
+        {if $person != ''}
+        <tr>
+        {foreach from=$taglist item=val name="tag"}
+            <td><a href="/Oa/Labelclass/persontagtasklist/tag_id/{$val.tag_id}">{$val.tag_name}</a></td>
+          {if $smarty.foreach.tag.iteration%6 == 0}
+          </tr>
+          <tr>
+          {/if}
+         {/foreach}
+         </tr>
+        </table>
+        <p class="fenye">
+       	  <span style="text-decoration:none;">当前第_{$currentpage}_页</span>
+       	  <a href="/Oa/Labelclass/persontaglist/page/1">首页</a>
+       	  {if $currentpage==1}<span style="text-decoration:none;">上一页</span>{else}<a href="/Oa/Labelclass/persontaglist/page/{$prepage}">上一页</a>{/if}
+		  {if $currentpage==$endpage}<span style="text-decoration:none;">最后一页</span>{else}<a href="/Oa/Labelclass/persontaglist/page/{$endpage}">下一页</a>{/if}
+	     </p>
+        {else}
+        <tr>
+        {foreach from=$taglist item=val name="tag"}
+            <td><a href="/Oa/Labelclass/tagtasklist/tag_id/{$val.tag_id}">{$val.tag_name}</a></td>
+          {if $smarty.foreach.tag.iteration%6 == 0}
+          </tr>
+          <tr>
+          {/if}
+         {/foreach}
+         </tr>
+        </table>
+        <p class="fenye">
+       	  <span style="text-decoration:none;">当前第_{$currentpage}_页</span>
+       	  <a href="/Oa/Labelclass/taglist/page/1">首页</a>
+       	  {if $currentpage==1}<span style="text-decoration:none;">上一页</span>{else}<a href="/Oa/Labelclass/taglist/page/{$prepage}">上一页</a>{/if}
+		  {if $currentpage==$endpage}<span style="text-decoration:none;">最后一页</span>{else}<a href="/Oa/Labelclass/taglist/page/{$endpage}">下一页</a>{/if}
+	     </p>
+        {/if}
+         
+        <!--button end-->
+      
+        
+        <div class="clear"></div>
+        </div>
+        <!--隐藏层 end-->
+        <div class="clear"></div>
+      </div>
+      
+    <!--you end-->   
+  
+ <!--main end-->   
+
+</body>
+</html>

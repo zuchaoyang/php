@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+
+<title>我们网_班级空间</title>
+<meta name="description" content="我们网_最大的未成年人成长社区,学生,老师,家长互通平台,未成年人成长社区,教育资源平台">
+<meta name="Keywords" content="我们网,我们,我们网资源,资源,教育资源,我们网社区,我们网登录,我们网帐号,未成年人成长社区">
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/space/banji1.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/xxs/xxs.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/postion.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="class_space_box">
+	<div class="class_space_top">
+		<div class="class_space_top_t">
+			<div class="space_logo"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/space_logo.gif" width="140" height="34" /></div>
+			<div class="span_top_r">
+				<div class="top_rb_menu" id="top_rb_menu">
+					<ul>
+						<li {if $chanelid=='chanel1'} class="active" {else} class="normal" {/if} ><a href="/Homepage/Homepage/index">首页</a></li>
+						<li {if $chanelid=='chanel2'} class="active" {else} class="normal" {/if} ><a href="/Homepage/Homepage/homespace">个人空间</a></li>
+						<li {if $chanelid=='chanel3'} class="active" {else} class="normal" {/if} ><a href="/Homefriends/Friendsmanage/index">社交</a></li>
+						<li {if $chanelid=='chanel4'} class="active" {else} class="normal" {/if} ><a href="/Homeusernews/News/zxnews" >消息<span id="newscount"></span></a></li>
+					</ul>
+					{literal}
+					<script type="text/javascript">
+						$.ajax({
+							type:"get",
+							url:"/Homeuser/Index/getnewscount",
+							success:function(msg){
+								$("#newscount").html(msg);
+							}
+						});	
+					</script>
+					{/literal}
+				</div><!--top_rb_menu end-->
+				<div class="top_rb_menur">
+					<ul>
+						<li id="school"><i class="t4"></i><a href="/Homeclass/School/Campus" target="_blank">校园门户</a></li>
+						<li id="class"><i class="t5"></i>{if $tab_class_list}<span ></span><a href='#' id='spanbtnclass' onclick="changeClassHmtl();">班级空间</a>
+					    {else}<a href='/Homeclass/Classspace/index'>班级空间</a>{/if}</li>
+						<li id="chuying"><i class="t6"></i><a target="_blank" href="http://www.zscy.cn">雏鹰争章</a></li>
+	               		<li id="leyou"><i class="t7"></i><a target="_blank" href="http://leyou.wm616.cn">乐优导航</a></li>
+					</ul>
+					<div id="classChange" style="display:none;">
+					<div class="title">您可以切换到下列班级</div>
+						{foreach from=$myclasslist item=class_list}
+						<div class='l_school_list'><a href="/Homeclass/Classspace/index/class_code/{$class_list.class_code}">{$class_list.class_name}</a></div>
+						{/foreach}
+					</div>
+				</div><!--top_rb_menur end-->
+			</div>
+		</div><!--class_space_top_t end-->
+	</div><!--class_space_top end-->

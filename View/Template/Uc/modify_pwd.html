@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>修改密码</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/modify_pwd.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/password_strength/password_strength.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/modify_pwd.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+
+<div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;&nbsp;<span class="font_olive">建议您定期修改密码.</span></p>
+ </div>
+ <div class="container">
+<div class="content_frame_01">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+    	<h4 class="c_f_01_c_title">修改密码</h4>
+    	<form action="/Uc/Accountset/changePwd" method="post" name="change_password" id="change_password">
+    	<ul id="errorlist"></ul>
+        <table  cellpadding="0" cellspacing="0" border="0" class="pwd_table">
+        	<tr>
+            	<th>输入旧密码：</th>
+                <td> <input name="old_client_pwd" type="password" id="old_client_pwd"  maxlength="20" class="sryx"/><span class="err_msg" id="old_client_pwdTip" ></span></td>
+            </tr>
+            <tr>
+            	<th>输入新密码：</th>
+                <td> <input name="new_client_pwd" id="new_client_pwd" type="password" maxlength="20" class="sryx"/><span class="err_msg" id="new_client_pwdTip"></span><br />
+                	 <p id="level_0" class="pwd_wu"></p>
+                	 <p id="level_3" class="pwd_qiang display_none"></p>
+                	 <p id="level_2" class="pwd_zhong display_none"></p>
+                	 <p id="level_1" class="pwd_ruo display_none"></p>
+                 </td>
+            </tr>
+            <tr>
+            	<th>确认新密码：</th>
+                <td> <input name="re_client_pwd" id="re_client_pwd" type="password" maxlength="20" class="sryx"/><span class="err_msg" id="re_client_pwdTip"></span> </td>
+            </tr>
+            <tr>
+            	<th></th>
+                <td><input name="change_pwd" type="button" class="btn_2_word"  value="确定" id="change_pwd"/></td>
+            </tr>
+        </table>
+        </form>
+         
+    
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+
+</div>
+{insert name="uc_footer"}
+
+
+</body>
+</html>

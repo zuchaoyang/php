@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>雏鹰登录页</title>
+<link href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/login/zscy_login.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery_plugins/jquery.md5.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/login/uc_login.js"></script>
+</head>
+<body>
+<div id="head_body" onload="MM_preloadImages('images/home_.gif','images/ghgl_.gif','images/xgwj_.gif','images/cybk_.gif','images/zzwb_.gif','images/phb_.gif','images/grt_.gif','images/cywb_.gif','images/jzdg_.gif','images/zxzz_.gif')"  style="overflow:hidden;">
+<div id="head_nav"  >
+	<ul>
+        <li><a href="{$zscy_server_url}/Home/Index/index" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/home_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/home.gif" alt="雏鹰首页" name="Image1" width="78" height="80" border="0" id="Image1" /></a></li>
+        <li><a href="{$zscy_server_url}/Admin/Adminindex/getArticleTypeInfo/article_type_id/{$smarty.const.GHGL_NAME}" target="__blank" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/ghgl_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/ghgl.gif" alt="关怀鼓励" name="Image2" width="78" height="80" border="0" id="Image2" /></a></li>
+        <li><a href="{$zscy_server_url}/Admin/Adminindex/getArticleTypeInfo/article_type_id/{$smarty.const.XGWJ_NAME}" target="__blank" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/xgwj_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/xgwj.gif" alt="相关文件" name="Image3" width="78" height="80" border="0" id="Image3" /></a></li>
+        <li><a href="{$zscy_server_url}/Admin/Adminindex/getArticleTypeInfo/article_type_id/{$smarty.const.CYBK_NAME}" target="__blank" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/cybk_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/cybk.gif" alt="雏鹰百科" name="Image4" width="78" height="80" border="0" id="Image4" /></a></li>
+        <li class="no_line"><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/zzwb_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/zzwb.gif" alt="争章微博" name="Image5" width="78" height="80" border="0" id="Image5" /></a></li>
+        <li class="head_logo"></li>
+        <li><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/phb_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/phb.gif" alt="排行榜" name="Image6" width="78" height="80" border="0" id="Image6" /></a></li>
+        <li><a href="{$zscy_server_url}/Admin/Adminindex/getArticleTypeInfo/article_type_id/{$smarty.const.GRT_NAME}" target="__blank" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/grt_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/grt.gif" alt="光荣台" name="Image7" width="78" height="80" border="0" id="Image7" /></a></li>
+        <li><a href="http://www.zscy.cn/t/" target="__blank;" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/cywb_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/cywb.gif" alt="雏鹰微博" name="Image8" width="78" height="80" border="0" id="Image8" /></a></li>
+        <li><a href="http://shop.zscy.cn" target="__blank;" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/jzdg_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/jzdg.gif" alt="奖章订购" name="Image9" width="78" height="80" border="0" id="Image9" /></a></li>
+        <li class="no_line"><a href="{$zscy_server_url}/Squadron/Index/index" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/zxzz_.gif',1)"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/zscy_login/zxzz.gif" alt="在线争章" name="Image10" width="78" height="80" border="0" id="Image10" /></a></li>
+    </ul>
+   <div class="flash_buy">
+             <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" id="InterFace_z" width="140" height="74" align="middle">
+            <param name="allowScriptAccess" value="crossDomain" />
+            <param name="movie" value="{$zscy_server_url}__PUBLIC__/flash/奖章订购动画.swf" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <embed src="{$zscy_server_url}__PUBLIC__/flash/奖章订购动画.swf" quality="high" wmode="transparent" width="140" height="74" swLiveConnect=true id="InterFace_z" name="InterFace_z" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer_cn" />
+        </object>
+   </div>
+</div>
+</div>
+
+<div class="Frame_bg">
+	<div class="top_bg"></div>
+    <div class="zscy_login_content">
+    	<div class="z_l_c_left">
+    		<a href="http://leifeng.zscy.cn" class="jczhd"></a>
+        </div>
+        
+        <div class="z_l_c_right">
+        	<table>
+            	<tr>
+                	<td valign="middle" height="270">
+			<div id="errorMessage" class="red_tip">&nbsp;</div>
+            <div class="clear"></div>
+        	<span class="zscy_login_zh"></span> <div class="z_l_input_bg"><input name="" type="text" class="zh_text" id="username" name="username" maxlength="60" value=""/></div>
+            <div class="clear"></div>
+            <span class="zscy_login_mm"></span> <div class="z_l_input_bg2"><input name="" type="password" class="mm_text" id="password" name="password" maxlength="20"/></div>
+            <div class="clear"></div>
+            
+            <div class="yzm_main" id="captcha" style="display:none"><!--验证码-->
+                <p class="yzm_style02"> <span class="yzm_tc"><img alt="验证码" id="img_captcha" src="" ></span></p><a href="javascript:;" id="change_captcha" class="text_blue_wjmm2">换一个</a>
+                <!--验证码 end--> 
+                <div class="clear"></div>
+                <span class="zscy_login_yzm"></span> <div class="z_l_input_bg2"><input type="text" id="captcha_input_code" name="captcha_input_code" value="" maxlength="20"/></div>
+             </div>
+             
+            <div class="clear"></div>
+            <input id="login_btn" type="button" class="dl_btn" /> <a href="/Uc/findpwd" class="text_blue_wjmm">忘记密码</a><a href="http://service.wmw.cn/portal.php?mod=list&catid=24" class="text_blue_wjmm">帮助中心</a>
+            </td>
+            </tr>
+            </table>
+            
+        </div>
+    	
+    </div>
+
+</div>
+
+<input type="hidden" id="client_id" name="client_id" value="{$client_id}"></input>
+<input type="hidden" id="client_secret" name="client_secret" value="{$client_secret}"></input>
+<input type="hidden" id="callback" name="callback" value="{$callback}"></input>		
+
+<div id="footer">   服务邮箱：fuwu@zscy.cn 客服电话：0571-85106087<br />
+Copyright©2010-2012 www.zscy.cn All Rights Reserved.<br />
+       北京中青网脉科技发展有限公司 版权所有</div>
+
+</body>
+</html>

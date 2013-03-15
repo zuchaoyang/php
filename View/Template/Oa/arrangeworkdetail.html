@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>布置工作-详细工作内容</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+{literal}
+<script type="text/javascript">
+	$(function(){
+		$("#is_show").click(function(){
+			var is_show = $("#div_reply").css("display");
+			var content = $("#div_reply").text();
+			var uname = $("#uname").text();
+			var uid = $("#uid").text();
+			if(is_show == "block"){
+				$("#div_reply").hide();
+				$("#more_reply").hide();
+				return false;
+			}else{
+				$("#div_reply").show();
+				$("#more_reply").show();
+			}
+			
+			if(is_show == "none" && content == ""){
+				var url ="/Oa/Expireremind/getReplyList";
+				var param = {};
+				param.task_id = $("#task_id").val();
+				$.ajax( {
+					type : "GET",
+					url : url,
+					dataType : "json",
+					data : param,
+					success : function(data) {
+					var json = data.data;
+					var last_key = 0;
+						if(data.error.code>0){
+							for(var key in json){
+								$("<p class='hidden_left' id='reply_str_"+key+"'>"+uname+":"+json[key].reply_content+"<br /><span class='font_gray'>回复时间："+json[key].add_time+"</span></p>").appendTo("#div_reply");
+								last_key = key;
+							}
+							$("#more_reply").show();
+							$("#last_key").val(last_key);
+							$("#page").val(2);
+						}else{
+							alert(data.error.message);
+						}
+						
+					}
+				});
+			}
+		});
+		
+		$("#more_reply").click(function(){
+			var url ="/Oa/Expireremind/getReplyList";
+			var page = $("#page").val();
+			var param = {};
+			param.task_id = $("#task_id").val();
+			param.page = $("#page").val();
+			$.ajax( {
+				type : "GET",
+				url : url,
+				dataType : "json",
+				data : param,
+				success : function(data) {
+				var json = data.data;
+					if(data.error.code>0){
+						var last_key = key;
+						for(var key in json){
+							$("<p class='hidden_left' id='reply_str_"+key+"'>"+json[key].reply_content+"<br /><span class='font_gray'>回复时间："+json[key].add_time+"</span></p>").appendTo("#div_reply");
+							last_key = key;
+						}
+						var new_page = parseInt(page) + 1;
+						$("#page").val(new_page);
+						$("#last_key").val(last_key);
+					}else{
+						alert("当前最后页");
+						$("#more_reply").hide();
+					}
+					
+				}
+			});
+		});
+	
+			$("#reply").click(function(){
+				var url = "/Oa/Expireremind/addTaskReply";
+				var param={};
+				param.reply_content = $("#reply_content").val();
+				param.task_id = $("#task_id").val();
+				param.push_id = $("#push_id").val();
+				if(param.reply_content.length > 150){
+					alert('工作回复不能超过50个字!');
+					return false;
+				}
+				$.ajax( {
+					type : "POST",
+					url : url,
+					dataType : "json",
+					data : param,
+					success : function(data) {
+					var json = data.data;
+						if(data.error.code>0){
+							var date = new Date();
+							var year = date.getYear();
+							var month = date.getMonth()+1;
+							var day = date.getDate();
+							var hour = date.getHours();
+							var min = date.getMinutes();
+							var seconds = date.getSeconds();
+							var content = $("#reply_content").val();
+							var nry_date = year+"-"+month+"-"+day+" "+hour+":"+min+":"+seconds;
+							$("#div_reply").prepend("<p class='hidden_left' id='reply_str_1000'>"+content+"<br /><span class='font_gray'>回复时间："+nry_date+"</span></p>");
+							var key = $("#last_key").val();
+							$("#reply_str_"+key).remove();
+							$("#reply_content").hide();
+							$("#reply").hide();
+						}else{
+							alert(data.error.message);
+						}
+						
+					}
+				});
+		
+			});
+	})
+
+</script>
+{/literal}
+
+</head>
+<body>
+<input type="hidden" id="last_key"/>
+<input type="hidden" id="page"/>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <ul>
+          <a href="#" class="a_green">发布新工作</a><a href="#" class="a_limegreen">已发布的工作</a>
+        </ul>
+        <!--button end-->
+        <h4>{$TaskInfos.task_title}</h4>
+        <ul class="font_gray">发布时间:{$TaskInfos.add_time}</ul>
+        <p class="light_blue">
+         	{$TaskInfos.task_content}
+        </p>
+        <p class="blue_bj"><span class="font_blue">工作发布日期：{$TaskInfos.add_time}</span><span class="font_red">工作交付日期：{$TaskInfos.expiration_time}</span></p>
+        <!--xxgz_main-->
+        <div class="xxgz_main">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <form method="post" id="form" action="/Oa/Expireremind/addTaskReply">
+        {if $TaskInfos.is_replied != ''}
+        	{if $TaskInfos.is_replied == 0}
+	          <tr>
+	            <td>工作回复:</td>
+	            <td><textarea class="textarea" id="reply_content" name="reply_content"></textarea></td>
+	          </tr>
+	          <tr>
+	            <td height="30"></td>
+	            <td><input type="button" value="确定" id="reply" class="green_btn" /></td>
+	          </tr>
+          
+          <input type="hidden" name="flag" value="{$flag}"/>
+          <input type="hidden" name="push_id" value="{$push_id}" id="push_id"/>
+         </form>
+         {else}
+        </table>
+        </div>
+        <!--xxgz_main end-->
+        <div class="clear"></div>
+        <p class="xshf"> <a href="#" id="is_show">显示回复</a> </p>
+        <input type="hidden" id="task_id" value="{$TaskInfos.task_id}"/>
+        <input type="hidden" id="uid" name="uid" value="{$uid}"/>
+        <!--隐藏层-->
+        <div class="hidden" id="div_reply" style="display:none">
+        </div>
+        <div class="clear"></div>
+	        <h4><span id="more_reply" style="display:none;">点击载入更多</span></h4>
+	        <div class="clear"></div>
+        <!--隐藏层 end-->
+      </div>
+      	{/if}
+      {/if}
+    <!--you end-->   
+  
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->   
+
+</body>
+</html>

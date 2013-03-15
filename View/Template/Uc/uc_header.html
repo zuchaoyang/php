@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_header.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/uc_header.js"></script>
+
+<!--top-->
+<div id="top">
+  <div class="top_main">
+    <p class="logo"></p>
+    <div class="font_tip">
+    {if $user}
+    <span>{$user.client_name}</span>（{$user.client_account}）您好<a href="{$uc_logout_url}">安全退出</a>
+    {/if}
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--top end-->
+<!--nav-->
+<div id="nav">
+  <div class="nav_main">
+    <ul class="nav_a_style">
+	    <li><a href="/Uc/Index/index"">首页</a></li>
+	    <li><a href="/Uc/Findpwd">找回密码</a></li>
+	    <li><a href="/Uc/Accountset/changePwdShow">修改密码</a></li>
+	    <li><a href="/Uc/Accountset">账号设置</a></li>
+	    <li class="line_none"><a href="/Uc/Userinfos/head_photo">用户信息</a></li>
+   </ul>
+   <p class="nav_a_style"><a href="{$wmw_server}">返回我们网</a><a href="{$zscy_server}">返回雏鹰网</a></p>
+   <div class="clear"></div>
+  </div>
+</div>
+<!--nav end-->

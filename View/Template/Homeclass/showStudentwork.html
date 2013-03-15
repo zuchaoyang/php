@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>作业_布置作业</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class="sub_class">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级作业</span></div>
+
+
+<div class="class_work_list">
+
+
+	  <table width="80%" border="0" cellpadding="0" cellspacing="1" bgcolor="#d4d4d4" style='margin-top:20px;'>
+		<tr>
+		  <td width="18%" height="28" align="center" bgcolor="#d4edca" id="text_t">发布日期</td>
+		  <td width="10%" height="28" align="center" bgcolor="#d4edca" id="text_t">学科</td>
+		  <td width="15%" height="28" align="center" bgcolor="#d4edca" id="text_t">交作业日期</td>
+		  <td width="6%" height="28" align="center" bgcolor="#d4edca" id="text_t">状态</td>
+		  <td width="12%" height="28" align="center" bgcolor="#d4edca" id="text_t">发布人</td>
+		  <td width="9%" height="28" align="center" bgcolor="#d4edca" id="text_t">操作</td>
+		</tr>
+
+{if !empty($homework_list)}
+	          {foreach from=$homework_list item=homework}
+		<tr>
+		  <td height="30" align="center" bgcolor="#ffffc6">{$homework.add_date}</td>
+		  <td height="30" align="center" bgcolor="#ffffc6">{$homework.subject_name}</td>
+		  <td height="30" align="center" bgcolor="#FFE6B0">{$homework.expiration_date}</td>
+		  <td  height="30" align="center" bgcolor="#ffffc6" {if $homework.status_tag} class="font_red"{/if}>{$homework.status_val}</td>
+		  <td height="30" align="center" bgcolor="#ffffc6">{$homework.client_name}</td>
+		  <td height="30" align="center" bgcolor="#FFFF99"><a href="/Homeclass/Class/hoemworkview/workid/{$homework.news_id}">查看</a></td>
+		</tr>
+
+
+	          {/foreach}
+	         
+          {else}
+	          <tr>
+	          	<td colspan="7"><span class="font_red">暂时没有相关记录!</span></td>
+	          </tr>
+          {/if}
+
+
+	  </table>
+
+
+{$pageinfohtml}
+
+</div>
+<!--class_work_con end-->
+
+</div>
+<!--sub_class end-->
+
+
+
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+
+
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

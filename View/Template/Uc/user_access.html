@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>隐私设置</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/user_access.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/user_access.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+        {include file="Uc/uc_left.html"}
+       <form method="post" action="/Uc/Userinfos/SaveAccountPrivacy" id="save_form">
+	       <div class="main_right">
+	         <h4>隐私设置</h4>
+	        
+	         <div class="user_access_main">
+	          <h3 class="font_cotent font_huise">设置空间访问权限</h3> 
+	          <p id="show_access">
+		          <a href="javascript:;" {if $client_space_access == $smarty.const.WMW_ALLUSER}class="all_Current" {else}class="all"{/if}></a>
+		          <a href="javascript:;" {if $client_space_access == $smarty.const.WMW_FRIENDS} class="friend_Current"{else}class="friend"{/if}></a>
+		          <a href="javascript:;" {if $client_space_access == $smarty.const.WMW_MYSELEF}class="me_Current"{else}class="me"{/if}></a>
+		          <input type="hidden" id="space_access" name="space_access"/>
+		          <input type="hidden" id="access_id" value="{$client_space_access}"/>
+	          </p>
+	           <!--2011.08.30 添加未修改的提示-->
+	          	
+	          <!---->
+	         </div>
+	         <p class="save"><input type="button" value="都完善好了，保存" class="lightblue_btn" id="save_btn"/></p>
+	       </div>
+       </form>
+       
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

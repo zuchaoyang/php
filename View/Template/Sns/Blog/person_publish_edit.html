@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>班级日志</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Blog/person_publish.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/person_publish.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/ext/person_draft.js"></script>
+
+</head>
+<body>
+ 
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+
+<!--per_tip star-->
+  <div class="per_tip">
+   <div class="pertip_main">
+    <dl>
+      <dt><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Common/sns_images/per_img.jpg"></a></dt>
+    </dl>
+    <a href="#"><span>皮卡丘的个人空间</span><span class="icon_white_sjx"></span></a>
+    <div class="clear"></div>
+   </div> 
+  </div>
+<!--per_tip end-->
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+    <h4><a href="/Sns/Blog/PersonList/index/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回日志列表</span></a></h4>
+    <!--publish_main star-->
+     <div class="publish_main" id="blog_info_div">
+
+       <div class="blog_title">
+         <h3>写班级日志</h3><p><a href="javascript:;" id="draft_a">读取草稿</a></p>
+       </div>
+       <!-- todo 先不做信纸 --><!--
+       <div class="letter_paper" style="display:none;">
+        <p>选择信纸：</p><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Blog/person_publish/icon_pic01.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Blog/person_publish/icon_pic02.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Blog/person_publish/icon_pic03.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Blog/person_publish/icon_pic04.jpg"></a>
+        <p class="align_right"><a href="#">移除信纸</a></p>
+       </div>
+       --><!-- 先不做信纸 -->
+       <p class="blog_title_text">
+       <input id="title" name="title" type="text" maxlength="40" placeholder="请输入日志标题" value="{if $blog_info}{$blog_info.title}{else}请输入日志标题{/if}" class="bt_text" >
+       </p>
+       <div class="edit_device">
+        <textarea id="content" name="content"  style="border: 1px solid #CCCCCC;width:880px;height:460px;">{$blog_info.content}</textarea>
+       </div>
+       <p class="blog_classified">
+       	分类：<select id="type_id" name="type_id" >
+		 {if $blog_type}      	  
+      	  {foreach from=$blog_type item=type}
+      	   <option value="{$type.type_id}" {if $type.type_id == $blog_info.type_id}selected{/if}>{$type.name}</option>
+      	  {/foreach}
+      	  {else}
+      	   <option value="-1">暂无分类</option>
+      	  {/if}
+      	  </select> 
+      	  <a id="add_type_a" href="javascript:;" class="mr10">添加分类</a>  
+      	       权限设置：<select id="grant" name="grant">
+      	   {foreach from=$blog_grant item=grant_name key=grant_id}
+      	   <option value="{$grant_id}" {if $blog_info.grant == $grant_id}selected{/if}>{$grant_name}</option>
+      	   {/foreach}
+      	  </select>
+       </p>
+       
+       <ul>
+         <li>
+         <input id="class_code" type="hidden" name="class_code" value="{$class_code}"/>
+         <input id="blog_id" type="hidden" name="blog_id" value="{$blog_info.blog_id}"/>
+         <input id="draft_id" type="hidden" name="draft_id" value="{$blog_info.draft_id}"/>
+         
+         <input id="publish_btn" type="button" value="发表" class="publish_btn" >
+         <input id="preview_btn" type="button" value="预览" class="preview_btn" >
+         </li>
+         <li class="li_width"><input id="draft_btn" type="button" value="保存草稿" class="save_btn"></li>
+       </ul>
+       <div class="clear"></div> 
+     </div>
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+
+<!-- 引入弹层模板 -->
+{include file="Sns/Blog/Subtemplate/person_preview.inc.html"}
+
+ <!--读取草稿 star-->
+ <div class="read_comment" id="draft_div" style="display:none;">
+   <h1>读取草稿<span class="pl10">您上次编辑的日志未发布，您可以读取以下草稿继续编辑并发布。</span></h1>
+   <div class="read_main">
+     <div class="read_main_tab">
+         <table id="draft_tab" width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th class="th_width">标题</th>
+            <th class="time_width" style="text-align:center;">保存时间</th>
+            <th class="cz_width" >操作</th>
+          </tr>
+          {literal}
+          <tr class="clone" style="display:none;">
+            <td class="align_left choice_td" style="cursor:pointer" title="选择标题即读取"> {title}</td>
+            <td>{add_time}</td>
+            <td><a href="javascript:;" class="delete_a" >删除</a></td>
+          </tr>
+          {/literal}
+        </table>
+        <div id="pager_div" class="fenye" >   	
+        	<a id="pre_page_btn" href="javascript:;" class="f_green" >上一页</a>
+			<a id="next_page_btn" href="javascript:;" class="f_green"   >下一页</a>
+		</div>
+    </div>
+   </div>
+ </div>
+ <!--读取草稿 end-->
+
+ <!--添加日志分类 star-->
+ <div id="add_type_div" class="edit_comment" style="display:none;">
+   <h1 class="tcc_title">添加日志分类</h1>
+   <p class="textarea_main">
+     分类名称：<input id="type_name" maxlength="12" type="text" class="text_wbk"><span id="error">(最多12个字母或6个汉字)</span>
+   </p>
+   <div class="msg_btn">
+     <p>
+     <input id="confirm_btn" type="button" value="确定"  class="green_btn" />
+     <input id="cancel_btn" type="button" value="取消" class="qx_btn" />
+     </p>
+   </div>
+ </div>
+ <!--添加日志分类 end-->
+
+<!-- 引入弹层模板 end-->
+
+<!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+
+</body>
+</html>

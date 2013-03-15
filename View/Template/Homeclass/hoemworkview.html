@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>作业管理_作业详细</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class="sub_class">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级作业</span></div>
+
+<!--
+<div class="class_work">
+	<ul>
+		<li id="work1">布置作业</li>
+		<li id="work2">作业管理</li>
+	</ul>
+</div>-->
+<!--sub_class_gg end-->
+
+<div class="class_work_list">
+<div class="class_work_title">
+<ul>
+<li><span>学科：</span> {$work_subject_name}</li>
+<li><span>发布日期：</span>{$work_date}</li>
+<li><span>发布人：</span>{$client_name}</li>
+<li id="work_time"><span>交作业日期：</span>{$work_expiration_date}</li>
+</ul>
+</div>
+
+<div class="sub_class_ylb" style="border:solid 1px #e5e5e5;word-break:break-all">
+<div class='wordwrap'>{$work_content}</div>
+<!--<div class="work_xiugai">修改</div>-->
+</div>
+{if !empty($filename)}
+<div class="sub_class_fj"><a href='/Homeclass/Class/downloaddoc/file/{$encodefilename}'>{$filename}</a>&nbsp;&nbsp;&nbsp;
+  <input type="button" name="Submit" value="下载附件" onclick="javascript:window.location='/Homeclass/Class/downloaddoc/file/{$encodefilename}';"/>
+</div>
+{/if}
+
+</div>
+<!--class_work_con end-->
+
+</div>
+<!--sub_class end-->
+
+
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+
+
+
+
+<div class="footer">
+<p>{$smarty.const.COPYRIGHT}</p>
+</div><!-- footer end-->
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

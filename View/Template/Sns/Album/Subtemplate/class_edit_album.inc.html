@@ -1,0 +1,31 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_edit_album.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.min.js"></script>
+ <!--创建相册 star-->
+ <div id="edit_album_div" class="edit_comment" style="display:none;">
+   <h1 class="tcc_title">编辑相册<!-- <a href="#" class="close_icon"></a> --></h1>
+   <form name="edit_album_form" method="post" action="/Sns/Album/Class/updalbum">
+   <div class="edit_comment_tab">
+   	<table id="edit_album_tab" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>相册名称：</th>
+        <td><input id="album_name" type="text" class="text" value="请输入名称，你还可以输入30字" name="album_name" maxlength=30></td>
+      </tr>
+      <tr>
+        <th class="align_top">相册描述：</th>
+        <td>
+         <textarea id="album_explain"  class="textarea" maxlength=180 name="album_explain"></textarea>
+         <p>你还能输入<span class="f_orange" id="span_count">180</span>字。</p>
+        </td>
+      </tr>
+      <tr>
+        <th>权限设置：</th>
+        <td><select id="grant_sel" name="grant_sel"><option>公开（所有人可见）</option><option>班级成员可见</option><option>学校成员可见</option></select></td>
+      </tr>
+    </table>
+    </div>
+   <div class="msg_btn">
+     <p><input type="button" value="确定"  class="green_btn" id="sub_btn"><input type="button" value="取消" class="qx_btn" id="cancel_btn"></p>
+   </div>
+   </form>
+ </div>
+ <!--创建相册 end-->

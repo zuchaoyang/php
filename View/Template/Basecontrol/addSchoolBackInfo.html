@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>校开通申请 — 开通流程</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript">
+
+    var typeErr={$typeErr};
+{literal}
+    switch(typeErr){
+        case -1:
+            alert("上传文件超过了2M，请重试");
+            window.history.back();   
+            break;
+        case -2:
+            alert("系统繁忙，请稍后重试");
+            window.location='/Basecontrol/Applyschool/showSchoolApp';
+            break;
+    }
+    
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">申请提交反馈</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">校开通申请 — 申请提交反馈</td>
+  </tr>
+</table>
+
+
+<table width="92%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f0f0f0">
+
+  <tr>
+    <td><table width="40%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="200" align="center" style="line-height:26px;">您好：{$school_name}的开通申请表提交{$school_flag}<br />
+          如有问题，请拨打客服电话：{$smarty.const.WMW_CS_PHONE}<br />
+          <a href="/Basecontrol/Applyschool/getSchool" style="display:block; width:85px; height:24px; line-height:24px; background:url({$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/images/anniu.gif) no-repeat; border:none; color:#fff;">确定</a></td>
+      </tr>
+    </table></td>
+  </tr>
+
+  <tr>
+    <td height="30">&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+</html>

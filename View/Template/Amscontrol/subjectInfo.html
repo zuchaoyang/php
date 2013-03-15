@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>课程管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/kcsz.js"></script>
+
+</head>
+ 
+<body style="padding-top:20px; _width:98%;padding-left:60px">
+ 
+<div id="popDiv" class="xzkc" style="display:none;">
+     <p class="amstitle"><font>新增课程信息</font><a href="javascript:addWinFun.close();">关闭</a></p>
+     <p><font color="#FF0000" >注意：课程不能删除，只能修改课程名称！</font></p>
+     <p id="errorInfo" style="color:Red;"></p>
+     <p><span>课程名称：</span><input id="popDiv_inp" maxlength="10" type="text" class="kctx" /></p>
+  <p><a href="javascript:addWinFun.ok({$schoolId});" class="amsqd">确定保存课程</a><a href="javascript:addWinFun.close();" class="amsqx">取消</a></p>
+</div>
+<div id="bg" class="bg" style="display:none;"><div style="float:left; background:#666666;"></div></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+<div id="popDiv1" class="xzkc" style="display:none;">
+     <p class="amstitle"><font>修改课程信息</font><a href="javascript:updWinFun.close();">关闭</a></p>
+     <p id="errorInfo_2" style="color:Red;"></p>
+     <p><span>课程名称：</span><input type="text" maxlength="10" class="kctx" id="popDiv1_inp"/></p>
+     <p><a href="javascript:updWinFun.ok({$schoolId});" class="amsqd">保存修改</a><a href="javascript:updWinFun.close();" class="amsqx">取消</a></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"><div style="float:left; background:#666666;"></div></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">课程管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" class="bt STYLE1">课程管理</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+    <tr>
+    <td height="25" bgcolor="#fbf6f7" style="padding:10px;"><a href="javascript:addWinFun.open();" class="amsqd">增加新课程</a></td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf6f7" style=" padding-bottom:10px;">
+        <table width="20%" border="0" align="left" cellspacing="1" id="courseTable">
+          <tr id="courseTr_0">
+            <td width="46%" height="30" align="center" bgcolor="#CCCCCC" id="course_0"><strong>课程名称</strong></td>
+            <td width="54%" height="30" align="center" bgcolor="#CCCCCC"><strong>操作</strong></td>
+            </tr>
+            {if $subjects != ""}
+            {foreach from=$subjects item=val}
+          <tr id="courseTr_{$val.subject_id}"> 
+            <td height="30" align="center" bgcolor="#dfdbdb" id="course_{$val.subject_id}">{$val.subject_name}</td>
+            <td height="30" align="center" bgcolor="#dfdbdb"><a href="javascript:updWinFun.open({$val.subject_id});" class="zjxk">修改</a></td>
+            </tr>
+            {/foreach}
+	  {else}
+		<tr>
+	     <td colspan='2' align='center' style='font-size:15px; color:red;  line-height:3;'>没有记录</td>
+	     </tr> 
+		
+		{/if}
+        </table>    
+
+     </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<div class="left">
+		<div class="lt">
+			<div class="lt_l">
+				<img src="{$UserInfo.client_headimg_url}"  onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width=80 height=80/>
+			</div>
+			<div class="lt_r">
+				<h2>{$UserInfo.client_name}</h2>
+				<div class="lt_rb">
+				<i class="xg"></i><a href='{$uc_server}/Uc/Userinfos/head_photo'>修改头像</a>
+				<i class="xg"></i><a href='{$uc_server}/Uc/Userinfos/UserBaseInfos'>个人资料</a>
+				</div>
+			</div>
+</div><!--lt end-->
+
+<div class="l_menut">
+<ul>
+<li><i class="lmt"></i><a href='/Homeclass/Stalkabout/index{$class_code_url}'>我的新鲜事儿</a></li>
+<li><i class="lmt1"></i><a href='/Homepzone/Pzonelog/mylogindex{$class_code_url}'>我的日记</a></li>
+<li><i class="lmt2"></i><a href="/Homepzone/Pzonephoto/photoindex{$class_code_url}">我的相册</a></li>
+</ul>
+</div><!--l_menut end-->
+	
+	<div class="l_school_b">
+	{if $class_code != ''}
+		{if $UserInfo.client_type!= $smarty.const.CLIENT_TYPE_STUDENT && $UserInfo.client_type!= $smarty.const.CLIENT_TYPE_FAMILY}
+		<ul>
+			{if $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSADMIN || $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSTEACHER || $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSBOTH}
+			<li><i class="lmm1"></i><a href='/Homeclass/Class/manageclamember/class_code/{$class_code}'>班级成员</a></li>
+			{/if}
+			<li><i class="lmm2"></i><a href='/Homeclass/Myclass/Announcement/class_code/{$class_code}'>班级公告</a></li>
+			<li><i class="lmm3"></i><a href='/Homeclass/Class/sethomework/class_code/{$class_code}'>班级作业</a></li>
+			<li><i class="lmm4"></i><a href='/Homeclass/Class/cjtmanage/class_code/{$class_code}'>班级成绩</a></li>
+			<li><i class="lmm5"></i><a href='/Homeclass/Curriculum/index/class_code/{$class_code}'>课程表</a></li>
+			<li><i class="lmm6"></i><a href='/Homeclass/Class/classJournal/class_code/{$class_code}'>班级日志</a></li>
+			<li><i class="lmm7"></i><a href='/Homeclass/Class/classalbum/class_code/{$class_code}'>班级相册</a></li>
+			{if $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSADMIN  || $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSBOTH}
+			<li><i class="lmm1"></i><a href='/Homeclass/Class/clamemberlist/class_code/{$class_code}'>学生信息</a></li>
+			{/if}
+			{if $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSADMIN  || $var_teacher_class_role== $smarty.const.TEACHER_CLASS_ROLE_CLASSBOTH}
+			<li><i class="lmm1"></i><a href='/Homeclass/Classmanage/classManager/class_code/{$class_code}'>班级管理</a></li>
+			{/if}
+		</ul>
+		{else}
+		<ul>
+			<li><i class="lmm1"></i><a href='/Homeclass/Class/clamembers/class_code/{$class_code}'>班级成员</a></li>
+			<li><i class="lmm2"></i><a href='/Homeclass/Class/Announcement/class_code/{$class_code}'>班级公告</a></li>
+			<li><i class="lmm3"></i><a href='/Homeclass/Class/showStudentwork/class_code/{$class_code}'>班级作业</a></li>
+			<li><i class="lmm4"></i><a href='/Homeclass/Class/achievement/class_code/{$class_code}'>班级成绩</a></li>
+			<li><i class="lmm5"></i><a href='/Homeclass/Curriculum/index/class_code/{$class_code}'>课程表</a></li>
+			<li><i class="lmm6"></i><a href='/Homeclass/Class/classJournal/class_code/{$class_code}'>班级日志</a></li>
+			<li><i class="lmm7"></i><a href='/Homeclass/Class/classalbum/class_code/{$class_code}'>班级相册</a></li>
+			
+		</ul>
+		{/if}
+	{/if}
+	</div><!--l_school_b end-->
+
+	<div class="l_yingyong">
+		<h2><i class="yy1"></i>应用中心</h2>
+		<div class="l_yingyongt">
+			<ul>
+			{if $class_code != ''}
+				{if $UserInfo.client_type== $smarty.const.CLIENT_TYPE_TEACHER}
+				<li><i class="yy6"></i><a href='/Homeclass/Myclass/pyComment/class_code/{$class_code}'>评语大师</a></li>
+				{/if}
+				{if $UserInfo.client_type== $smarty.const.CLIENT_TYPE_FAMILY || $UserInfo.client_type== $smarty.const.CLIENT_TYPE_TEACHER}
+				<li><i class="yy6"></i><a href='/Homeclass/Myclass/Communicate/class_code/{$class_code}'>成长沟通</a></li>
+				{/if}
+			{/if}
+			<li><i class="yy6"></i><a href='/Sns/Resource/Resource/qualityschool1'>精品网校</a></li>
+			<li><i class="yy7"></i><a href='/Sns/Resource/Resource/qualityresource'>精品资源</a></li>
+			<li><i class="yy8"></i><a href='/Sns/Resource/Resource/synchroresource'>同步资源</a></li>
+			{if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_TEACHER}
+          	<li><i class="yy8"></i><a target="_blank" href="/View/Template/Public/studyresources_teacher.html">学习资源</a></li>
+            {/if}
+            {if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_STUDENT || $client_type == $smarty.const.CLIENT_TYPE_FAMILY}
+          	<li><i class="yy8"></i><a target="_blank" href="/View/Template/Public/studyresources_student.html">学习资源</a></li>
+            {/if}
+            {if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_FAMILY && $operation_strategy==true}
+          	<li><i class="yy8"></i><a href="/Thirdapp/Gazxregistinfo/childwz">孩子位置</a></li>
+            {/if}
+            {if $goto_oa}
+          	<li><i class="yy10"></i><a target="_blank" href="/Oa/Index/index" >集中办公平台</a></li>
+          	{else}
+          	<li><i class="yy10"></i><a href="javascript:;" onclick="needtoLogTip('您无权访问');">集中办公平台</a></li>
+            {/if}
+            {if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_STUDENT}
+            <li><i class="yy10"></i><a target="_blank" href="http://zuoye.wmw.cn/">作业测评系统</a></li>
+            {elseif $UserInfo.client_type == $smarty.const.CLIENT_TYPE_TEACHER}
+            <li><i class="yy10"></i><a target="_blank" href="http://zuoye.wmw.cn/">作业测评系统</a></li>
+            {/if}
+            
+			<!--<li><i class="yy10"></i><a href='http://www.coomix.net/' target="_blank">电子围栏</a></li>
+			<li><i class="yy9"></i><a href='#' onclick="tips();">精品英语</a></li>
+			<li><i class="yy10"></i><a href='#' onclick="tips();">学习小工具</a></li>
+			<li><i class="yy11"></i><a href='#' onclick="tips();">第二课堂</a></li>
+			<li><i class="yy12"></i><a href='#' onclick="tips();">动画乐园</a></li>
+			<li><i class="yy13"></i><a href='#' onclick="tips();">听书联盟</a></li>
+			<li><i class="yy14"></i><a href='#' onclick="tips();">休闲小游戏</a></li> -->
+			</ul>
+		</div>
+	</div><!--l_yingyong end-->
+</div>	
+
+	{literal}
+	<script type="text/javascript">
+		function tips(){
+			alert("正在建设中。。。");
+			}
+	</script>
+	{/literal}

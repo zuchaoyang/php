@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级作业发布预览</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	function checksetwork(){
+		var sub2 = document.getElementById('sub2');
+		document.forms[0].action="__URL__/addworkcont";
+		document.forms[0].submit();
+		sub2.disabled=true;
+	    return false;
+		
+	}
+	
+	function checkempty(){
+		if(document.getElementById("ggao_content").value!=''){
+			document.getElementById("showspan").innerHTML='';
+		}
+	}
+	
+	function num(){
+		if(document.getElementById("showspan").innerHTML != ""){
+	  	  document.getElementById("showspan").innerHTML="";
+	    }
+		var content = document.getElementById("ggao_content").value;
+		document.getElementById("num").innerHTML=content.length;
+	}
+
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级作业发布预览</span></div>
+
+<div class="sub_class">
+
+<div class="sub_class_fb">
+  <table width="80%" border="0" align="center" cellpadding="3" cellspacing="1">
+    <tr>
+      <td height="60" colspan="2" align="center" valign="middle" class="class_fb_text2">提示：班级作业一旦发布不能修改或者删除</td>
+    </tr>
+    <tr>
+      <td bgcolor="#efefef" style="padding:10px;border:1px solid #dddddd;"><table width="100%" border="0" cellpadding="5" cellspacing="1">
+    <tr>
+      <td width="46%" height="45" align="left" valign="middle" class="class_fb_text">学科：{$subjectName}</td>
+      <td width="84%" height="45" align="left" valign="middle" class="class_fb_text">
+	  <input name="news_title" id="news_title" type="hidden" class='input_txt2' value="{$news_title}" size='40' />
+	  发布人：{$client_name}</td>
+    </tr>
+    <tr>
+      <td height="45" align="left" valign="middle" class="class_fb_text">发布日期：{$add_date}</td>
+      <td class="class_fb_text">交作业日期：{$expiration_date}
+       </td>
+    </tr>
+
+    <tr style="font-size:14px;">
+      <td height="30" colspan="2" >
+	  <div class='wordwrap' style="white-space:normal;word-break:break-all;width:560px;">{$news_content}</div>
+	  </td>
+      </tr>
+		 {if $sendMessage=="on"}
+			<tr>
+			  <td height="30">&nbsp;</td>
+			  <td height="30" align="left" valign="middle"><font style="color:red;font-size:12px;">&nbsp;同时发送到全班家长的手机上</font></p></td>
+			</tr>
+		{/if}
+      </table></td>
+    </tr>
+  </table>
+  <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+<form name="form" id="form" action="__URL__/addworkcont/class_code/{$class_code}" method="post" enctype="multipart/form-data">
+    <tr>
+      <td height="50" colspan="2" align="center">
+	   <input type="button" name="Submit" value="返回修改" class="inputbg2" onclick="javascript:window.history.back(-1);"/>&nbsp;&nbsp;&nbsp;
+	    <input type="button" name="Submit2" id="sub2" value="确认发布" class="inpusublong" onclick="javascript:checksetwork();" />
+		 <input type="hidden" name="schoolid" value="{$school_id}"/>
+	    <input type='hidden' name='subject_id' value='{$subject_id}'>   
+		<input type='hidden' name='expiration_date' value='{$expiration_date}'>      	   
+		<input type='hidden' name='class_code' value='{$class_code}'>   
+		<input type='hidden' name='strSaveFile1Url1' value='{$strSaveFile1Url1}'>  
+		<input type='hidden' name='subjectName' value='{$subjectName}'> 
+		
+		<input type="hidden" name="sendMessage" id="sendMessage"  value="{$sendMessage}" /> 
+		 <input type="hidden" id="news_content" name="news_content"   value="{$news_contenthidden}"  />	  
+		</td>
+		</tr>
+	  </form>
+  </table>
+</div>
+<!--sub_class_fb end-->
+
+</div>
+<!--sub_class end-->
+
+
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

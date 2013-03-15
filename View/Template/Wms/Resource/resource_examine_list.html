@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+<title>资源审核</title>
+<link rel="stylesheet" href="__PUBLIC__/wms/css/common.css"  />
+<link rel="stylesheet" href="__PUBLIC__/wms/css/sqsh.css" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wms/js/page/resource_examine_list.js"></script>
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<div class="pllr">
+  <h3 class="bt">资源审核</h3>
+</div>    
+
+
+ <table width="92%" border="0" cellspacing="1" cellpadding="0" class="zysh_main">
+ <tr id="nav">
+    <td id="nav_list" colspan="2">
+     <input type="button" value="未审理" id="nav_0" /><input type="button" value="通过" id="nav_1" /><input type="button" value="未通过" id="nav_-1" />
+     <input type="hidden" id="resource_status" value="{$resource_status}"/>
+    </td>
+   </tr>
+    {if !empty($resource)}
+   {foreach from=$resource item=val}
+   <tr>
+    <td width="50%"> 
+     <div class="my_upload_main">
+          <span class="up_icon01"></span><h4>{$val.title}</h4><span class="up_my_nr">格式：{$val.file_type_name}&nbsp;&nbsp;</span>
+          <div class="clean"></div>
+          <p>
+           简介：{$val.description}<br />
+           年级：{$val.grade_name}&nbsp;科目：{$val.subject_name}&nbsp;版本：{$val.version_name}本&nbsp;章：{$val.chapter_name}&nbsp;节：{$val.section_name}<br />
+           分类：备课资料<br />
+           发布教师：{$val.client_name}&nbsp;&nbsp;发布时间：{$val.add_time} </p>
+        </div>    </td>
+
+    <td valign="top" class="click_nr"><a href="{$val.file_path}" target="_blank" class="click_see">{$val.show_btn}</a></td>
+
+  </tr>
+  <tr>
+    <td colspan="2">
+    {if empty($val.resource_status)}
+     <input type="button" value="审核通过" id="pass_{$val.resource_id}" class="blue_word4_btn" />
+     
+     <input type="button" value="审核未通过" id="nopass_{$val.resource_id}" class="blue_word5_btn" />
+     {/if}
+     {if $val.resource_status != 1 && $val.resource_status != 0}
+     <input type="button" value="删除" id="del_{$val.resource_id}" class="blue_word4_btn" />
+     {/if}
+     {if $val.resource_status == 1}
+     <span style="color:green;">资源已经通过审核</span>
+     {/if}
+  	 <form id="no_pass_{$val.resource_id}" action="/Wms/Resource/Resourcetoexamine/examine_no_pass" onsubmit="checkyuanyin('{$val.resource_id}')" method="post">
+     <div class="zysc_tcc" id="comment_gai_{$val.resource_id}">
+	     <p><textarea name="yuanyin" id="gai_{$val.resource_id}" class="text_area"></textarea></p>
+	     <input type="hidden" value="{$val.resource_id}" name="resource_id"></input>
+	     <p><input type="button" value="确定" id="no_reason_{$val.resource_id}" class="zysh_qd" /><input type="button" value="取消" id="guanbi_{$val.resource_id}" class="zysh_qx" /></p>
+  	 </div>
+  	 </form>
+    </td>
+   </tr>
+   {/foreach}
+   {else}
+   <tr><td width="50%" style="text-align:center;color:red;">没有记录</td></tr>
+   {/if}
+</table>
+{if !empty($resource)}
+<div class="pllr zysh_fenye">
+  <p style="float:left;">当前第{$page}/{$total_page}页
+  {if $page == 1 && $page != $total_page}
+  上一页<a href="/Wms/Resource/Resourcetoexamine/show_upload_resource_list/page/{$page+1}/resource_status/{$resource_status}">下一页</a>
+  {elseif $page == $total_page || empty($total_page)}
+  <a href="/Wms/Resource/Resourcetoexamine/show_upload_resource_list/page/{$page-1}/resource_status/{$resource_status}">上一页</a>下一页
+  {else}
+  <a href="/Wms/Resource/Resourcetoexamine/show_upload_resource_list/page/{$page-1}/resource_status/{$resource_status}">上一页</a><a href="/Wms/Resource/Resourcetoexamine/show_upload_resource_list/page/{$page+1}/resource_status/{$resource_status}">下一页</a>
+  {/if}
+  &nbsp;&nbsp;&nbsp;&nbsp;<input style="width:30px;" type="text" id="to_page"/><input type="button" id="to_page_submit" value="跳转"/></p>
+  {if !empty($total_page)}<span style="float:left; padding-left:30px;">总记录：{$total_num}</span>{/if}
+</div> 
+{/if}
+<input type="hidden" id="current_page" value="{$page}"/>
+<input type="hidden" id="total_page" value="{$total_page}"/>
+</body>
+</html>

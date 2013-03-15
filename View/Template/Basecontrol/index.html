@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我们网_代理管理系统</title>
+<meta name="description" content="我们网_最大的未成年人成长社区,学生,老师,家长互通平台,未成年人成长社区,教育资源平台">
+<meta name="Keywords" content="我们网,我们,我们网资源,资源,教育资源,我们网社区,我们网登录,我们网帐号,未成年人成长社区">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+{literal}
+<style>
+	*,html{ margin:0px; padding:0px;}
+</style>
+{/literal} 
+
+</head>
+
+<body id="bodcont" scroll="no">
+<iframe name="topFrame" frameborder="0" scrolling="no" width="100%" height="110" src="/Basecontrol/Index/top" style="display:block"></iframe>
+<iframe name="leftFrame" frameborder="0" width="204" src="/Basecontrol/Index/left" id="hoho" style="display:block; float:left; overflow-x:hidden " scrolling="yes"></iframe>
+<iframe name="mainFrame" frameborder="0" scrolling="auto" id="hoho2"  src="/Basecontrol/Index/main" style="display:block; float:right;overflow-x:hidden"></iframe>
+
+{literal}
+<script type="text/javascript"> 
+	<!-- 
+	var winWidth = 0; 
+	var winHeight = 0; 
+	function findDimensions() //函数：获取尺寸 
+	{ 
+	//获取窗口宽度 
+	if (window.innerWidth) 
+	winWidth = window.innerWidth; 
+	else if ((document.body) && (document.body.clientWidth)) 
+	winWidth = document.body.clientWidth; 
+	//获取窗口高度 
+	if (window.innerHeight) 
+	winHeight = window.innerHeight; 
+	else if ((document.body) && (document.body.clientHeight)) 
+	winHeight = document.body.clientHeight; 
+	//通过深入Document内部对body进行检测，获取窗口大小 
+	if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) 
+	{ 
+	winHeight = document.documentElement.clientHeight; 
+	winWidth = document.documentElement.clientWidth; 
+	} 
+	//结果输出至两个文本框 
+	document.getElementById("bodcont").style.height= winHeight;
+	document.getElementById("hoho").height=winHeight-112;
+	document.getElementById("hoho2").width=winWidth-204;
+	document.getElementById("hoho2").height=winHeight-112;
+	
+	} 
+	findDimensions(); 
+	//调用函数，获取数值 
+	window.onresize=findDimensions; 
+	//--> 
+</script> 
+{/literal}
+</body>
+</html>

@@ -1,0 +1,74 @@
+{insert name="space_header"}
+<div style="display:"></div>
+<div class='b_main'>
+<div class='block_left' id="Left">
+		<!--begin input_msgK--><!--end input_msgK-->
+<div class='UserTalkbg'><span style="float:left">{$space_client_name}的照片</span><span style="float:right"><a href="javascript:history.go(-1);">返回</a></span></div><br />
+<table width="100%" border="0">
+							  <tr>
+								<td width="16%" rowspan="4"><img src="__ROOT__/attachment/photo_pic/{$album_info[0].add_account}/{$album_info[0].album_img}" width="150" height="100" /></td>
+								<td width="34%">相册名称：{$album_info[0].album_name}</td>
+								<td width="37%">&nbsp;</td>
+								<td width="13%" rowspan="3"><img src="{$album_info[0].plunheadimg}" width="50" height="50" /></td>
+							  </tr>
+							  <tr>
+								<td>相册描述：{$album_info[0].album_explain}</td>
+								<td></td>
+							  </tr>
+							  <tr>
+								<td>创建于：{$album_info[0].add_date}</td>
+								<td>更新于：{$album_info[0].upd_date}</td>
+							  </tr>
+							  <tr>
+								<td>共{$zong}张</td>
+								<td>&nbsp;</td>
+								<td>{$album_info[0].client_name}</td>
+							  </tr>
+	</table>
+<table width="100%" border="0">
+  <tr>
+  {foreach from=$photos_info item=vo}
+    <td>
+		<table width="100%" border="0">
+		
+		  <tr>
+			<td>{if $photos_info != ''}<img src="__ROOT__/attachment/photo_pic/{$vo.upd_account}/{$vo.photo_url}" width="100" height="100" />{else}<img src="__ROOT__/attachment/photo_pic/1.jpg" width="100" height="100" />{/if}</td>
+		  </tr>
+		  <tr>
+			<td>{$vo.photo_name}</td>
+		  </tr>
+		 
+		</table>
+</td>
+{/foreach}
+  </tr>
+  
+</table>
+
+
+
+		  
+		  
+		
+	{$page}	
+	
+  </div>
+
+
+	<div class='block_right' id="Right">
+		<h5>{$space_client_name}的个人资料</h5>
+		<ul class='user-info2'>
+		
+			<li>所在班级：{$tpl_gradeclass_Name}</li>
+			<li>星座: {$space_constellation_nam}</li>
+			<li>生日: {$space_client_birthday}</li>
+			<li>血型: {$space_blood_type_name}</li>
+		</ul>
+		
+
+		{include file="Public/space_menu.html"}
+
+	</div>
+
+</div>
+{include file="Public/talkjs.html"}

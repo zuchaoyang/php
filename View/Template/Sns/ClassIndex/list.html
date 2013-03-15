@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>学生排序</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassIndex/list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassIndex/list.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+ {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4><a href="/Sns/ClassIndex/Mailbook/publish_send/class_code/{$class_code}" class="f14" title="">短信群发</a></h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+     <div class="publish_main">
+       <!--list_main star-->
+       {foreach from=$new_info_arr item=new_info name=loop}
+       <div class="list_main {if $smarty.foreach.loop.iteration % 2 !== 0}list_main_bg01{else}list_main_bg02{/if}" >
+         <dl>
+          <dt><img src="{if $new_info.client_headimg}{$new_info.client_headimg_img}{else}{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pic.jpg{/if}"></dt>
+          <dd class="client_name_selector">{$new_info.client_name}</dd>
+         </dl>
+         <div class="list_main_nr tab_width">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th>帐号：</th>
+                <td>{$new_info.client_account}</td>
+              </tr>
+              <tr>
+                <th>性别：</th>
+                <td>{$new_info.client_sex}</td>
+              </tr>
+              <tr>
+                <th>生日：</th>
+                <td>{$new_info.client_birthday}</td>
+              </tr>
+            </table>
+         </div>
+         <div class="list_main_nr">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th>邮箱：</th>
+                <td>{$new_info.client_email}</td>
+              </tr>
+              <tr>
+                <th class="align_top">通讯地址：</th>
+                <td>{$new_info.client_address}</td>
+              </tr>
+            </table>
+         </div>
+         <div class="list_main_nr">
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th><span class="parent_type_selector">父亲</span>：</th>
+                <td>{$new_info[0].client_name}(<span class="parent_account_selector">{$new_info[0].client_account}</span>)</td>
+              </tr>
+              <tr>
+                <th>邮箱：</th>
+                <td>{$new_info[0].client_email}</td>
+              </tr>
+              <tr>
+                <th>手机：</th>
+                <td>{if $new_info[0].phone_id}<span class="phone_id_selector">{$new_info[0].phone_id}</span><a href="javascript:;" class="send_phone">发短信</a>{/if}</td>
+              </tr>
+            </table>
+         </div>
+         <div class="list_main_nr list_line_none">
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <th><span class="parent_type_selector">母亲</span>：</th>
+                <td>{$new_info[1].client_name}(<span class="parent_account_selector">{$new_info[1].client_account}</span>)</td>
+              </tr>
+              <tr>
+                <th>邮箱：</th>
+                <td>{$new_info[1].client_email}</td>
+              </tr>
+              <tr>
+                <th>手机：</th>
+                <td>{if $new_info[1].phone_id}<span class="phone_id_selector">{$new_info[1].phone_id}</span><a href="javascript:;" class="send_phone">发短信</a>{/if}</td>
+              </tr>
+            </table>
+         </div>
+         <div class="clear"></div>
+       </div>
+       {/foreach}
+       
+       <!--list_main end-->
+       <p class="align_right">
+       	当前第{$page}页
+       {if $page == 1}
+      	 <a href="javascript:;" class="mr10">上一页</a>
+       {else}
+       	 <a href="/Sns/ClassIndex/Mailbook/index/page/{$page-1}/class_code/{$class_code}" class="mr10">上一页</a>
+       {/if}
+       
+       {if $next == 'true'}
+       		<a href="/Sns/ClassIndex/Mailbook/index/page/{$page+1}/class_code/{$class_code}">下一页</a>
+       {else}
+       		<a href="javascript:;">下一页</a>
+       {/if}
+       
+       <div class="clear"></div>
+     </div>
+    <!--publish_main end-->
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+  <!--content end-->
+  
+  <!--弹出层 star-->
+  <!--查阅回执名单弹出层-->
+  <div id="send_sms_div" class="tcc_send_to" style="display:none;">
+    <p class="refer_to_top"></p>
+    <div class="refer_to_main">
+      {literal}
+      <h1 id="prompt_h1">{client_name}的{parent_type}<span class="pl20">手机号：{phone_id}</span></h1>                                 
+      {/literal}
+      <p><textarea class="tcc_textarea" id="sms_content" maxlength=60></textarea></p>
+      <p class="f12 f_gray">
+	      <span class="span_width">您还可以输入<span class="f_red">60</span>字</span>
+	      <input id="isure_btn" type="button" value="确定" class="qd_btn">
+	      <input id="cancel_btn" type="button" value="取消" class="qx_btn">
+	      <input id="class_code" type="hidden" value="{$class_code}"/>
+      </p>
+    </div>
+  </div>
+   <!--tcc end-->
+   <!--弹出层 end-->
+  
+  {include file="Public/sns_footer.html"}
+</body>
+</html>

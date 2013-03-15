@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>系统评语库</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/comment.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/pyComment/index.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="sub_right">
+
+	<div class="comment">评语大师</div>
+	<div class="commenm">
+		<ul>
+			<li id="py_c"><a href='/Homeclass/Myclass/pyComment/class_code/{$class_code}'>系统评语库</a></li>
+			<li id="py_c1"><a href='/Homeclass/Myclass/mypyComment/class_code/{$class_code}'>我的评语库</a></li>
+		</ul>
+	</div>
+	<div class="commenb">
+		<div class="commenbl">
+			<ul>
+				{foreach from=$arrpytype item=votype key=key name=rownumber}
+				<li id="{$votype.id}" {if $votype.id == 4}class="tab-nav hover"{else}class="tab-nav"{/if}><a href="javascript:void(0);">{$votype.name}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+		<input type="hidden" id="hidtypeid" value="4"/>
+		<div class="commenbr">
+			<div class="commenbrt">
+				<ul>
+					{foreach from=$pytypeatt item=val}
+					<li id="{$val.id}" {if $val.id == 1}class="tab-right hover_t"{else}class="tab-right"{/if}><a href="javascript:void(0);">{$val.name}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+			<div class="commenbrbt">
+			  <table width="100%" border="0" cellpadding="0" cellspacing="0" height='40'>
+				<tr>
+				  <td width="14%" align="right" style="font-weight:bold;">关键字：</td>
+				  <td width="26%" align="left"><input type="text" name="pytxt" id='pytxt' /></td>
+				  <td width="60%" align="left"><input type="submit" name="Submit" value="搜索" onclick="javascript:pysearch();"/></td>
+				</tr>
+			  </table>
+			</div>
+
+				<div id='idpycontent' style='bakcground:#efefef;width:600px;height:500px;'>
+				{literal}
+				<script type="text/javascript">getpyContentBytypeatt(4,1);</script>
+				{/literal}
+				</div>
+
+		</div>
+
+	<!--commenb end-->
+
+
+	</div>
+
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+
+</body>
+</html>

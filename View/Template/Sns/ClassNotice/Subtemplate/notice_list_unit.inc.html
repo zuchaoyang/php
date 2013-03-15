@@ -1,0 +1,55 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassNotice/ext/notice_list_unit.js"></script>
+<div id="clone_teacher" class="has_release_main" style="display:none;">
+  <h3 id="notice_title"></h3>
+  <p id="notice_content"></p>
+  <ul>
+   <li>
+	   <span id="send_icon" class="icon_send"></span>
+	   <span id="send_des" class="pr20">
+	   	<input type="button" value="发送短信" class="send_btn send_sms_btn_selector">
+	   </span>
+	   
+	   <span id="sended_icon" class="icon_email"></span>
+	   <span id="sended_des" class="pr20">已发短信</span>
+	   
+	   <span id="add_time" class="pr20">发布日期：%s</span>
+	   <span id="client_name">发布人：%s</span>
+   </li>
+   <li class="align_left">
+  	<a href="javascript:;" class="refer_a_selector f_green">查看回执</a>
+   	<a href="javascript:;" class="icon_sjx refer_a_selector"></a>
+   </li>
+   <li class="align_right">
+   	<a class="delete_a_selector" href="javascript:;">删除</a>
+   </li>
+  </ul>
+</div>
+
+<div id="clone_student" class="has_release_main" style="display:none;">
+  <h3 id="notice_title"></h3>
+  <p id="notice_content"></p>
+  <ul>
+   <li>
+   	<span id="add_time" class="pr20">发布日期：%s</span>
+   	<span id="client_name">发布人：%s</span>
+   </li>
+   <li class="student_align_right">
+   	<span id="viewed_des">已查看</span>
+   	<a id="set_view_a" href="javascript:;" title="">
+	   	<span class="btn_left"></span>
+	   	<span class="btn_right i_know_btn_selector">老师， 我知道了</span>
+   	</a>
+   </li>
+  </ul>
+</div>
+
+<div id="clone_family" class="has_release_main" style="display:none;">
+  <h3 id="notice_title"></h3>
+  <p id="notice_content"></p>
+  <ul>
+   <li>
+     	<span id="add_time" class="pr20">发布日期：%s</span>
+   		<span id="client_name">发布人：%s</span>
+   </li>
+  </ul>
+</div>

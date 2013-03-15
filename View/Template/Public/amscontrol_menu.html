@@ -1,0 +1,45 @@
+<tr>
+   <td height="27" class="line">
+    <a href="/Amscontrol/Amsclasslist/classManager{$params_str}" class="bjgk" {if $mod == 'Amsclasslist'}style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;"{/if}>班级概况</a>
+    <a href="/amscontrol/Classclientmanage/showclassClient{$params_str}" class="zhgl" {if $mod == 'Classclientmanage'}style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;"{/if}>班级成员账号管理</a>
+    <a href="/Amscontrol/Amssquadron/showSquadron{$params_str}" class="bjgk" {if $mod == 'Amssquadron'}style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;"{/if}>中队设置</a>
+    <a href="/Amscontrol/Amsteam/teamManage{$params_str}" class="bjgk" {if $mod == 'Amsteam'}style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;"{/if}>小队设置</a>
+   </td>
+ </tr>
+ <tr>
+   <td height="10">&nbsp;</td>
+ </tr>
+ 
+ {if $mod == 'Amsclasslist'}
+ <tr>
+    <td height="25" colspan="2"><a href="/Amscontrol/Amsclasslist/vindicateSchoolClassInfo/schoolid/{$schoolid}/classcode/{$class_code}/gradeid/{$gradeid}/uid/{$headerTeacherUid}" class="bjwha">班级信息维护</a></td>
+  </tr> 
+ {elseif $mod == 'Classclientmanage'}
+ <tr>
+   <td height="25" bgcolor="#fbf6f7"  style="padding-top:10px;">
+	   <a href="/Amscontrol/classclientmanage/goToLotsAdd{$params_str}" class="amsqd">批量录入</a>
+	   {if $operation_strategy}
+	   <a href="/Amscontrol/classclientmanage/addParentBPhone/stop_flag/0{$params_str}" class="bindingBtn">手机号绑定</a>
+	   {/if}
+	   <a href="/Amscontrol/classclientmanage/dj_account/stop_flag/3{$params_str}" class="amsqd">已冻结账号</a>
+	   {if $open_oldaccount_import}
+	   <a href="/Amscontrol/Oldaccountimport/oldStudentUploadExcel{$params_str}" class="amsqd">学生账号导入</a>
+	   {/if}
+   </td>
+ </tr>
+ {elseif $mod == 'Amssquadron'}
+ <tr>
+    <td height="30" colspan="2" bgcolor="#fbf6f7">
+	    <a href="/Amscontrol/Amssquadron/squadronList/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd">进行中队设置</a>
+	    {if $gradeid == 1}
+	    <a href="javascript:selectCounselor.open('{$classCode}','{$smallfdy.client_account}','{$smallfdy.squadron_member_duties_id}')" class="amsqd">设置小辅导员</a>
+	    {/if}
+    </td>
+  </tr>
+ {elseif $mod == 'Amsteam'}
+ <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;">
+    	<a href="/Amscontrol/Amsteam/addTeam{$params_str}" class="amsqd">设置小队</a>
+    </td>
+  </tr>
+ {/if}

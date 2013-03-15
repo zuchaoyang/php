@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>选择找回方式</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/find_pwd_mode.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="uc_header"}
+<!--top end-->
+
+<div class="tip">
+	<p class="font_main"><span class="font_darkblue">温馨提示</span>&nbsp;&nbsp;<span class="font_olive">找回密码方式选择...</span></p>
+</div>
+<div class="container">
+<div class="main">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+      <div class="sub_nav">
+        <ul>
+          <span class="sub_nav_first_end">1，输入账号</span>
+          <span class="sub_nav_current">2，选择找回方式</span>
+          <span class="sub_nav_center">3，安全验证</span>
+          <span class="sub_nav_center">4，重置密码</span>
+          <span class="sub_nav_right">5，完成</span>
+        </ul>
+        <div class="clear"></div>
+      </div> 
+      <h4 class="font_cotent">正在为：<span class="font_red">{$username}&nbsp;</span>找回密码，可以通过以下方式找回。</h4>
+      <table border="0" cellpadding="0" cellspacing="0" class="find_pwd_tab">
+          <tr>
+          	<!--{if $user_binding_list.phone}-->
+          	
+          	<th><span class="icon_phone"></span></th>
+            <td><a href="/Uc/Findpwd/findPhoneShow?username={$username}" class="font_blue"><strong>通过手机号找回密码</strong></a></td>
+          	<!--{else}-->
+          	<th><span class="icon_phone_hover"></span></th>
+            <td class="nav_a_style"><span class="font_gray"><strong >没有设置手机号</strong></span></td>
+          	<!--{/if}-->
+          	
+          	<!--{if $user_binding_list.email}-->
+            <th><span class="icon_email"></span></th>
+            <td><a href="/Uc/Findpwd/findEmailShow?username={$username}" class="font_blue"><strong>通过邮箱找回密码</strong></a></td>
+            <!--{else}-->
+            <th><span class="icon_email_hover"></span></th>
+            <td class="nav_a_style"><span class="font_gray"><strong>没有设置邮箱</strong></span></td>
+            <!--{/if}-->
+          </tr>
+        </table>
+       <p class="font_red pwd_mode_p">如果您没有设置手机号或邮箱，可以通过申诉找回密码。</p>
+       <p class="font_gray"><a href="/Uc/Findpwd/showAppeal" class="font_darkblue">现在就去申诉</a></p> 
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+
+ {insert name="uc_footer"}
+</body>
+</html>

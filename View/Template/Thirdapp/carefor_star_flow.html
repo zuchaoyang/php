@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>关爱之星-办理业务流程</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/star.css"  />
+
+{literal}
+<script type="text/javascript">
+	function downfile(){
+		window.location.href="/Thirdapp/Gazxregistinfo/downBusinessProcessFile";
+	}
+</script>
+{/literal}
+
+</head>
+
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+<div class="right">
+  <div class="star_main">
+    <h4>关爱之星-办理业务流程</h4>
+    <p><span class="font_blue">1、家长在“wm616（我们网）”网站上点击关爱之星办理界面</span><br /><span class="font_blue">2、填入家长手机号（定位人手机号）和孩子手机号（被定位人手机号）</span>
+	<br />&nbsp;&nbsp;A、孩子已有联通手机号：
+	将孩子手机号按要求填入，并打印协议条款签字，完成定位人和被定位人的手机号码捆绑。
+	<br />&nbsp;&nbsp;B、孩子没有联通手机号：
+	打印协议条款签字。
+	<br /><span class="font_blue">3、家长到联通自有营业厅办理开通“关爱之星”业务</span>
+	<br />&nbsp;&nbsp;A、孩子已有联通手机号：
+	携带打印签字的协议、身份证件到联通营业厅，填写办理“关爱之星”业务单。协议原件由营业厅保留，营业员复印协议一份交给家长。<span style="font-weight:bold;">（“关爱之星”业务需开通办理至被监护人，即孩子手机号码上）</span>
+	<br />&nbsp;&nbsp;B、孩子没有联通手机号：
+	携带打印签字的协议、身份证件到联通营业厅，首先办理一张联通手机卡，然后填写办理“关爱之星”业务单。协议原件由营业厅保留，营业员复印协议一份交给家长。<span style="font-weight:bold;">（“关爱之星”业务需开通办理至被监护人，即孩子手机号码上）</span>
+	<br /><span class="font_blue">4、业务成功开通</span>
+	<br />&nbsp;&nbsp;A、孩子已有联通手机号：营业厅办理后即开通0元关爱之星业务。
+	<br />&nbsp;&nbsp;B、孩子没有联通手机号：营业厅办理后在“wm616（我们网）”网站的关爱之星办理界面进行确认和捆绑，按要求填写孩子手机号码，最终实现关爱之星开通工作。
+	</p>
+	<h4>家长办理业务须知</h4>
+	<p>1、为回馈广大wm616（我们网）用户，每位wm616（我们网）家长用户均能以0元价格体验“关爱之星”业务。
+	<br />2、家长须有联通手机号，且该手机号为“wm616（我们网）”平台的用户登陆账号。（即定位人、被定为人均为“wm616”用户）。
+	<br />3、家长必须在网站上打印“协议”并签字同意，持签字协议到联通指定营业厅开通关爱之星，方享受体验期0元资费优惠。
+	<br />4、定位及被定位人手机终端由用户自备。
+	<br />5、到指定营业厅办理关爱之星业务时，需携带：协议（原件由营业厅收回）、家长身份证件。
+	<br />6、孩子（被定为人）没有联通手机号的，需在关爱之星业务开通前办理一张联通手机卡。
+	<br />7、业务办理成功后，关爱之星用户名为家长手机号码，初始密码为手机号后6位，家长首次登陆后请及时更改密码，以免信息泄露。因密码原因引起的被定位人信息泄露的责任由用户本人负责。
+	<br />8、因国家相关规定和自然环境等原因，本业务服务会存在一定程度误差，不担保一定能满足用户对准确性的要求。
+	</p>    
+    <p class="star_btn"><a href="javascript:downfile();" class="green_btn">下载</a></p>
+  </div>
+</div><!--right end-->
+
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end-->  
+</body>
+</html>

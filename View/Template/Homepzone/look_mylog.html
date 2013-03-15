@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>我的日记_查看详细</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/log/log.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+</head>
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+<div class="sub_diary">
+<div class="sub_diaryl">
+<ul>
+<li><i class="di1"></i><a href='/Homepzone/Pzonelog/mylogindex/class_code/{$class_code}'>我的日记</a></li>
+<li><i class="di2"></i><a href='/Homepzone/Pzonelog/logDraft/class_code/{$class_code}'>草稿箱</a></li>
+<li><i class="di2"></i><a href='/Homepzone/Pzonelog/mylogindex/logtype/{$logtype}/class_code/{$class_code}'>返回列表</a></li>
+
+</ul>
+</div>
+<div class="sub_diaryr">
+<ul>
+<li><i class="di3"></i><a href='/Homepzone/Pzonelog/writelog/log_account/{$log_account}/class_code/{$class_code}'>写日记</a></li>
+<li><i class="di4"></i><a href="/Homepzone/Pzonelog/manage_log_type/log_account/{$log_account}/class_code/{$class_code}" style="float:right; margin-right:10px;">分类管理</a></li>
+</ul>
+</div>
+</div><!--sub_diary end-->
+ <span class="blank20"></span>
+<div style="border:1px solid #eeeeee;width:750px;height:auto; margin-left:10px;background:url({$smarty.const.IMG_SERVER}__PUBLIC__/latterbg/{$log_info.contentbg}) repeat" >
+<table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" >
+<form action="" method="post" name="formlog">
+ <tr>
+   <td height="60" colspan="3" align="center" valign="middle" ><table width="100%" height="80" border="0" cellpadding="3" cellspacing="1">
+     <tr>
+       <td width="60" rowspan="2" align="center" valign="middle">
+	   <br />
+		<img src="{$log_info.headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/avatar_small.jpg'" width=60 height=60/><br />
+		<br />{$log_info.client_name}</td>
+       <td height="30" align="left" class="log_titleCss">&nbsp;&nbsp;{$log_info.log_name}</td>
+       <td rowspan="2" align="center"></td>
+     </tr>
+     <tr>
+       <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;发布日期：{$log_info.add_date} &nbsp;</td>
+       </tr>
+   </table> </td>
+ </tr>
+ <tr>
+   <td height="25" colspan="3" valign="bottom">&nbsp;<hr size=1/></td>
+ </tr>
+ <tr>
+
+   <td colspan="3" valign="bottom"> 
+   <div class='wordwrap' style="word-break:break-all;width:700px">
+   {$log_info.log_contentall}</div></td>
+ </tr>
+ <tr>
+   <td height="40" valign="middle">
+		阅读({$log_info.read_count})&nbsp;&nbsp;|&nbsp;&nbsp;评论({$count})		</td>
+   <td align="center" valign="middle">&nbsp;</td>
+   <td align="right" valign="middle">
+   {if $friendaccount==$log_account}
+		<input type="button"  value="编辑" onclick="javascript:window.location='/Homepzone/Pzonelog/writelog/logid/{$log_info.log_id}';" class='inputbg1'>
+		
+		<input type="button"  value="删除" onclick="javascript:dellog('{$log_info.log_id}','{$log_info.log_type}','1');" class='inputbg1'>
+	{/if}
+	  </td>
+ </tr>
+ </form>
+</table>
+</div>
+
+
+<span class="blank20"></span>
+
+<div style="border:1px solid #eeeeee;width:750px; margin-left:10px;">
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr><td height="30" class="tag_title">评论</td>
+  </tr>
+   <tr><td style="border-bottom:1px solid #dddddd;"></td></tr>
+   {if $count==0}
+	  <tr>
+    <td height="50" align="center"><p>暂无评论</p></td>
+  </tr>
+  {else}
+  {foreach from=$plun_list item=log_plun}
+	  <tr>
+	    <td><table width="100%" border="0" cellpadding="3" cellspacing="1">
+          <tr>
+            <td width="100" rowspan="2">&nbsp;<img src="{$log_plun.plunheadimg}"  onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/avatar_small.jpg'" width=60 height=60/></td>
+            <td height="40" valign="top"><b><span style="color:#0000FF">{$log_plun.client_name}</span></b>&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-size:12px;color:#666666;">{$log_plun.add_date_sec}</font>
+			{if $friendaccount==$log_account}
+			<a href='javascript:void(0);' onclick="javascript:delplun('{$log_plun.plun_id}','{$log_id}','{$class_code}');">【删除】</a>
+			{/if}
+			</td>
+            <td valign="top">&nbsp;</td>
+          </tr>
+          <tr style='line-height:22px;'>
+            <td colspan="2" valign="top"><div class='wordwrap' style="word-break:break-all;width:560px">{$log_plun.plun_content}</div></td>
+          </tr>
+        </table></td>
+	    </tr>
+	  <tr>
+		<td><div style="border-bottom:1px dashed #dddddd;"></div></td>
+	  </tr>
+	  <tr><td>&nbsp;</td></tr>
+	  {/foreach}
+	{/if}
+</table>
+
+ <table width="96%" border="0" cellspacing="0" cellpadding="0" style="float:left; margin-top:20px;" class="xppl_asx">
+ <form action='/Homeclass/Class/addplun' method='post' onsubmit='return logplunadd();'>
+ <tr>
+  <td width="10%" align="center" valign="top">
+  <img src="{$head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/avatar_small.jpg'" width="60px" height="60px"/></td>
+	<td width="90%" colspan="3">
+		<!--begin input_msgK-->
+		<div class='input_msgK'>
+			<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');"></textarea></div>
+
+			<div class="funBox">
+				<div class="insertFun">
+					<div id="showface" style="display:none;"></div>
+					<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+					<div class="uploadPic">
+						<input type="hidden" name="pic" id="pic" value="" />  
+						<input type="hidden" name="mid" id="mid" value="" />
+						<input type="hidden" name="log_id" id="log_id" value="{$log_id}" />
+
+						<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+					</div>
+				</div>
+				<div class="sendFun">
+					<span class="countTxt">还能输入<em>140</em>字</span>
+					<span class='blank20'></span>
+				</div>
+				
+			</div>
+		</div>
+		<!--end input_msgK-->	
+	</td>
+  </tr>
+  <tr>
+	<td width="10%">&nbsp;</td>
+	<td width="90%" height="50" colspan="4" valign="top" >
+	<input type='hidden' name='type' value='0'>
+	<input type="submit" value="发表评论" class="inpusub"/></td>
+  </tr>
+  </form>
+</table>
+
+</div>
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{literal}
+<script type="text/javascript">
+	function delplun(plun_id,log_id,class_code){
+		if(confirm("是否要删除该评论？")){
+			document.forms[0].action="/Homepzone/Pzonelog/delplun/class_code/"+class_code+"/plun_id/"+plun_id+"/log_id/"+log_id;
+			document.forms[0].submit();
+		}
+	}
+</script>
+{/literal}
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

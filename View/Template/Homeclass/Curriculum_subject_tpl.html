@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>课程设置</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/curriculum.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+</head>
+<body>
+<table width="500" border="0" align="center" cellpadding="3" cellspacing="3" bgcolor="#ffffff">
+  <tr >
+    <td height="30" colspan='5' style="border-bottom:1px dashed #cccccc;">&nbsp;<span class="tag_title">选择您要设置的课程</span></td>
+  </tr>
+  {if !empty($subjectinfo)}
+   
+  <tr bgcolor="#FFFFFF">
+  {foreach from=$subjectinfo item=info key=key name=rownumber}
+    <td height="30"><span style="font-size:14px;">{$info.subjectName}</span></td>
+ 	{if $smarty.foreach.rownumber.iteration % 5 ==0}  
+	</tr>
+	{/if}
+  {/foreach}
+  {/if}
+    <tr bgcolor="#FFFFFF">
+      <td height="30" align="center" colspan="5">&nbsp;</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+    <td height="30" align="left" colspan="5">
+	
+&nbsp;<input type="text" name="subject" value="" id="subject"  class="input_txt2" maxlength='10'/>&nbsp;&nbsp;<input type="button"  value="添加"onclick="javascript:return ajaxSubject();" class="inputbg1"/>	</td>
+  </tr>
+</table>
+</body>
+</html>

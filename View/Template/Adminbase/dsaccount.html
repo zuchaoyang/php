@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>指定账号申请</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+
+</head>
+
+<body>
+<form name="zdzh" method="post" action="">
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">指定账号申请</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"><table width="100%" border="0" style="margin-top:20px;">
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+    <td height="92%" bgcolor="#f0f8ff"><input type="text" id="cn" name="client_name" class="h_text"/><span id="client_name"></span></td>
+  </tr>
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</td>
+    <td height="92%" bgcolor="#f0f8ff"><input type="text" id="yx" name="client_email" class="h_text"/><span id="client_email"></span></td>
+  </tr>
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</td>
+    <td height="92%" bgcolor="#f0f8ff">
+    		<label style="cursor:pointer;"><input name="client_type" type="radio" checked value="wms"/> WMS</label>
+    		<label style="cursor:pointer;"><input name="client_type" type="radio" value="base"/> BMS</label>
+    </td>
+  </tr>
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">指定账号：</td>
+    <td height="92%" bgcolor="#f0f8ff">
+	    	<input type="text" id="user_account" name="client_account" value="{$account}" class="h_text"/><span id="client_account"></span>
+    </td>
+  </tr>
+  <tr>
+  	<td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+  	<td height="92%" bgcolor="#f0f8ff"><input type="password" id="yx" name="client_pwd" value="" class="h_text"/></td>
+  </tr>
+  <tr>
+  	<td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">确认密码：</td>
+  	<td height="92%" bgcolor="#f0f8ff"><input type="password" id="user_account" name="re_client_pwd" value="" class="h_text"/></td>
+  </tr>
+  <tr>
+    <td width="8%" height="45" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">&nbsp;</td>
+    <td width="92%" height="60" bgcolor="#f0f8ff"><input type="button" value="申请账号" id="sqsubmit" class="f_btn"/></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</form>
+<script type="text/javascript">
+var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+
+{literal} 
+
+	/*$(document).ready(function(){
+		var spanShow = {};
+		spanShow.REMIND_MSG = {client_name:"请填写真实姓名",client_email:"电子邮箱是找回密码的重要途径，请一定要牢记",client_account:"请输入账号"};
+		spanShow.ERROR_MSG = {client_name:"姓名只能是中文",client_email:"邮箱格式不正确,请重新输入",client_account:"账号必须是数字"};
+		spanShow.REG_MSG = {client_name:/[^\u4E00-\u9FA5]+$/,client_email:/^([a-zA-Z0-9_-]|[.])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/,client_account:/[0-9]$/};
+		spanShow.erroring = function(obj){
+			$("#"+obj).css("color","#ff6600").html('<img src="'+IMG_SERVER+'__PUBLIC__/images/error.gif" class="img_align" />'+spanShow.ERROR_MSG[obj]);
+		};
+		spanShow.remaining = function(obj){
+			$("#"+obj).css("color","#FF0000").html(spanShow.REMIND_MSG[obj]);
+		};
+		spanShow.pass = function(obj){
+			$("#"+obj).html('<img src="'+IMG_SERVER+'__PUBLIC__/images/ok.jpg" class="img_align" />');
+			
+		};
+		spanShow.check = function(name,value){
+			if(value == '') return;
+				if(spanShow.REG_MSG[name] != undefined){
+					if(spanShow.REG_MSG[name].test(value)){
+						if(name=="client_name" && !/^[\u4E00-\u9FA5]+$/.test(value)){
+							spanShow.erroring(name);
+						}else{
+							spanShow.pass(name);
+						}
+					}else {
+						spanShow.erroring(name);
+					}
+				}
+		};
+		spanShow.checkinfo = function(){
+			var checkflag = true;
+			var spanId = ["client_name","client_email","client_account"];
+			var inputId = ["cn","yx","user_account"];
+			for(var i=0; i<spanId.length; i++){
+				if(!spanShow.REG_MSG[spanId[i]].test($("#"+inputId[i]).val())){
+					spanShow.erroring(spanId[i]);
+					checkflag = false;
+				}
+				if(spanId[i]=="client_name" && !/^[\u4E00-\u9FA5]+$/.test($("#cn").val())){
+					spanShow.erroring(spanId[i]);
+					checkflag = false;
+				}
+			}
+			return checkflag;
+		};
+		$(".h_text").focus(function(){
+			$(this).removeClass("input1_focus").addClass("input1_focus");
+			spanShow.remaining($(this).attr("name"));
+		});
+		$(".h_text").blur(function(){
+			$(this).toggleClass("input1_focus");
+			spanShow.check($(this).attr("name"),$(this).val());
+		});	
+		$("#sqsubmit").click(function(){
+			if(spanShow.checkinfo()){
+				document.forms[0].action="/Adminbase/Body/updsaccount";
+				document.forms[0].submit();
+			}
+		});
+	});
+	*/
+$("#sqsubmit").click(function(){
+	//if(spanShow.checkinfo()){
+		document.forms[0].action="/Adminbase/Body/updsaccount";
+		document.forms[0].submit();
+	//}
+});
+
+</script>
+{/literal}
+</body>
+</html>

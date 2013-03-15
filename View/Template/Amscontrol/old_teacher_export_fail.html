@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>老师账号生成账号</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+</head>
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >><a href="#" class="amswz">老师账号导入-生成账号</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27"class="bt">老师管理</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25" bgcolor="#fbf6f7"  style="padding-top:10px;">
+		<a href="javascript:addWinFun.open();" class="amsqd">增加老师信息</a>
+        {if $operationStrategy!=1}<a class="amsqd" href="/Amscontrol/Amsteacher/addTeacherBPhone/schoolid/{$schoolid}">手机号绑定</a>{/if}
+        {if $smarty.const.IS_SET_OLDACCOUNT_IMPORT == 1}<a class="amsqd" href="/Amscontrol/Oldaccountimport/showimportaccount/schoolid/{$schoolid}">老师账号导入</a>{/if}
+	</td>
+  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">
+       <table width="30%" border="1" align="left" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;">
+      <tr>
+        <td width="110" height="30">导入成功：</td>
+        <td>{$success_num}条数据</td>
+      </tr>
+      <tr>
+        <td height="30">导入失败：</td>
+        <td>{$fail_num}条数据</td>
+      </tr>
+      {if $falg == 'true'}
+      <form action="/Amscontrol/Oldaccountimport/export_fail_excel" method="post">
+      <tr>
+        <td height="30">下载有冲突的账号：</td>
+        <td>
+        	<input type="submit" value="导出数据" class="zh" />
+        	<input type="hidden" name="fail_filename" value="{$fail_filename}"/>
+        	<input type="hidden" name="file_name" value="{$file_name}"/>
+        </td>
+      </tr>
+      </form>
+      {/if}
+    </table>
+
+    </td>
+  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+</table>
+    
+</body>
+</html>

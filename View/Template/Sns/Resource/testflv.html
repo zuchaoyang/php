@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>播放资源</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/list.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+<div id="top">
+  <div class="top-main-h">
+    <p style="text-align:right; float:right;">当前位置：{$product_name}&nbsp;>>&nbsp;&nbsp;{$r_info.grade}&nbsp;-&nbsp;{$r_info.subject}&nbsp;-&nbsp;{$r_info.version}</p>
+    <div class="clean"></div>
+  </div>
+  <div class="clean"></div>
+</div>
+ <div class="nav-s"></div>
+   <div class="clean"></div>  <div class="clean"></div>
+<div class="clear" style="text-align:center;">
+{if $r_info.show_type_flag == 'swf'}
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0" id="InterFace_z" width="800" height="454" align="middle">
+            <param name="allowScriptAccess" value="sameDomain" />
+            <param name="autoStart" value="1" />
+            <param name="movie" value="{$r_info.file_url}" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+	<embed src="{$r_info.file_url}"  quality="high" bgcolor="#ffffff" width="680" height="480" swLiveConnect=true id="InterFace_z" name="InterFace_z" align="middle" allowScriptAccess="sameDomain" autoStart="-1" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer_cn" />
+</object>
+
+{elseif $r_info.show_type_flag == 'flv'}
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="650" height="650"> 
+	<param name="movie" value="__PUBLIC__/local/flash/vcastr22.swf?vcastr_file=http://ziyuan.wmw.cn/WLKT/NEWS/20110705/Z1003/Z10003/T10477.flv" /> 
+	<param name="quality" value="high" /> 
+	<param name="allowFullScreen" value="true" /> 
+	<embed 
+		src="__PUBLIC__/local/flash/vcastr22.swf?vcastr_file=http://ziyuan.wmw.cn/WLKT/NEWS/20110705/Z1003/Z10003/T10477.flv" 
+		quality="high" 
+		pluginspage="http://www.macromedia.com/go/getflashplayer" 
+		type="application/x-shockwave-flash" width="650" height="650"> 
+	</embed> 
+</object>"D:/wmw-tpl-new/wmw-tpl/cy-website/web-zscy/js/Share_mini.js"
+{elseif $r_info.show_type_flag == 'mp3'}
+<object id="MediaPlayer" height="500" width="500" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" VIEWASTEXT>
+	<param name="URL" value="{$r_info.file_url}" />
+	<param name="autoStart" value="-1" />
+	<param name="currentMarker" value="0" />
+	<param name="invokeURLs" value="-1" />
+	<param name="volume" value="50" />
+	<param name="uiMode" value="mini" />
+	<param name="stretchToFit" value="0" />
+	<param name="windowlessVideo" value="0" />
+	<param name="enabled" value="-1" /> 
+	<param name="fullScreen" value="0" />
+	<EMBED  height="500" width="500"  type=application/x-mplayer2 pluginspage=http://www.microsoft.com/isapi/redir.dll?prd=windows&amp;sbp=mediaplayer&amp;ar=media&amp;sba=plugin&amp; width=320 src={$r_info.file_url}?xcode=7b4e2af2b1988fce578f247b5baed415 wmode="transparent" invokeurls="false" loop="0" allowScriptAccess="never" allowNetworking="internal" />
+</object>
+
+{/if}
+
+</div>
+</body>
+</html>

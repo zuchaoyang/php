@@ -1,0 +1,20 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Common/sns_nav.js"></script>
+	<!--nav star-->
+    <div id="sns_nav_list" class="nav">
+      <ul>
+        <li><a href="/Sns/ClassIndex/Index/index/class_code/{$class_code}" class="nav_a1"></a></li>
+        <li><a href="/Sns/ClassNotice/Published/index/class_code/{$class_code}" class="nav_a2"></a></li>
+        <li><a href="/Sns/ClassHomework/Published/index/class_code/{$class_code}" class="nav_a3"></a></li>
+        <li><a href="/Sns/ClassExam/Exam/index/class_code/{$class_code}" class="nav_a4"></a></li>
+        <li><a href="/Sns/ClassCourse/Course/index/class_code/{$class_code}" class="nav_a5"></a></li>
+        <!-- {if !empty($is_admin)}
+        <li><a href="/Sns/ClassAdmin/Index/index/class_code/{$class_code}" class="nav_a6"></a></li>
+        {else}
+        <li><a href="javascript:;" class="nav_a6"></a></li>
+        {/if}
+         -->
+        <li><a href="/Sns/Blog/List/index/class_code/{$class_code}/publish_type/2" class="nav_a7"></a></li>
+        <li><a href="/Sns/Album/Class/albumlist/class_code/{$class_code}" class="nav_a8"></a></li>
+      </ul>
+    </div>
+    <!--nav end-->

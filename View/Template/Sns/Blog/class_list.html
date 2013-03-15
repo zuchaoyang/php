@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>日志列表</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Blog/class_list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/class_list.js"></script>
+
+</head>
+<body>
+
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <!--publish_main star-->
+     <div class="publish_main">
+       <div class="publish_title">
+        <h3 id="search_h3">
+        {if $can_publish_blog}
+         <a href="/Sns/Blog/Publish/index/class_code/{$class_code}" class="f14" title="">
+	         <span class="btn_left"></span>
+	         <span class="btn_right">写班级日志</span>
+         </a>
+         <a href="/Sns/Blog/List/draftList/class_code/{$class_code}" class="f14" title="">
+         	<span class="btn_left"></span><span class="btn_right">草稿箱</span>
+         </a>
+         {/if}
+         <span>查询时间：</span><span class="pl_r10">从</span>
+         <input type="text" id="start_time" name="start_time" value="{$start_time}" readonly="readonly" class="date_text">
+         <span class="pl_r10">至</span>
+         <input type="text" id="end_time" name="end_time" value="{$end_time}" readonly="readonly" class="date_text">
+         
+         <input type="hidden" id="class_code" value="{$class_code}" />
+         <a id="search_btn_a" href="javascript:;" class="f14 ml30" title="点击查询"><span class="btn_left"></span><span class="btn_right">查询</span></a>
+        </h3>
+        <div class="clear"></div>
+       </div>
+       <div class="clear"></div>
+       <!--blog_main star-->
+       <div class="blog_main" >
+         <!--blog_main_left star-->
+         
+         <div class="blog_main_left"  >
+         {literal}
+         <div id="blog_list_div">
+           <!--single_blog star-->
+           <div class="single_blog clone" style="display:none">
+             <h3>{title}</h3>
+             {if top_img_html != ''}
+             <dl>
+              <dt>{top_img_html}</dt>
+             </dl>
+            {/if}
+             <p class="single_blog_p">
+             {summary}
+             &nbsp;&nbsp;
+             <a href="javascript:;" class="view_a">查看全文>></a>
+             </p>
+             <ul>
+              <li>
+	              <span class="pr20">{add_time}</span>
+	              <span class="pr20">发布者：{client_name}</span>
+	              <span class="pr20">日志分类：{type_name}</span>
+	              <span class="pr20">
+	              	<a href="javascript:;" class="view_a">阅读({views})</a>
+	              </span>
+	              <a href="javascript:;" class="view_a">评论({comments})</a>
+              </li>
+              <li class="li_wdith">
+              {if can_del_blog} 
+              	<a href="javascript:;" class="delete_a">删除</a>
+              {/if}
+              </li>
+             </ul>
+           </div>
+           <!--single_blog end-->
+           
+          </div>
+          {/literal}
+           <p class="see_homework"><span><a id="more_blog" href="javascript:;">查看更多班级日志</a></span></p>
+           
+           <p id="not_have_blog" class="see_homework" style="display:none;">
+	           <span style="background:none;">
+	           {if $can_publish_blog}
+	           	没有日志，<a href="/Sns/Blog/Publish/index/class_code/{$class_code}">快去写日志吧</a>
+	           {else}
+	             <a href="javascript:;">没有日志</a> 
+	           {/if}
+	           </span>
+           </p>
+         </div>
+         
+         <!--blog_main_left end-->
+         <!--blog_main_right star-->
+         <div id="blog_type_list_div" class="blog_main_right">
+           <h3><span>班级日志分类</span><a href="/Sns/Blog/Type/index/class_code/{$class_code}">管理</a></h3>
+            {literal}
+           <div id="top_div">
+           	<p class="clone" style="display:none;"><a href="{url}"><span>{name}</span>({nums})</a></p>
+           </div>
+           
+           <div id="other_type_div">
+	           <h5><a id="other_type"  href="javascript:;" >其他<span id="other_type_nums"></span>项分类<span class="icon_sjx"></span></a></h5>
+	           <div class="blog_branch">
+				   <p id="down_div" style="display:none;">
+				   <span class="clone" style="display:none;">
+				    <a href="{url}"><span>{name}</span>({nums})</a>
+				   </span>
+				   </p>
+		    	</div>
+			</div>
+           {/literal}
+         </div>
+         <!--blog_main_right end-->
+         <div class="clear"></div>
+       </div>
+       <!--blog_main end-->
+       <div class="clear"></div> 
+     </div>
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+<!--弹出层 star-->
+<!--提示信息弹出层 star--><!--
+  <div id=del_blog_div class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+      <span class="icon_question"></span>&nbsp;<span class="f12">确认要删除这篇日志吗？</span>
+      <p><input type="button" class="qd_btn"><input type="button" class="qx_btn" value="取消"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+--><!--提示信息弹出层 end-->  
+
+<!--弹出层 end-->
+
+<input type="hidden" id="type_id" value="{$type_id}" />
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

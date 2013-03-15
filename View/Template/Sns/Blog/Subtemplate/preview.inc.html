@@ -1,0 +1,28 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/ext/preview.js"></script>
+<!--publish_main star-->
+{literal}
+<div id="preview_div" class="tcc_blog publish_main" style="display:none;">
+  <h5 class="see_blog_title">
+    <span class="pr10"></span><span class="pr10">分类标签：{type_name}</span>|<span class="pl10">{grant_name}</span>
+  </h5>
+  <div class="text_show">
+    <!--<div class="blog_bj_img"></div>-->
+    <div class="blog_main_bj">
+    <h5>{title}</h5>
+    <p>
+	{content}
+    </p>
+    </div>
+  </div>
+  <ul>
+    <li>&nbsp;</li>
+    <li class="li_width">
+    <input id="go_back_btn" type="button" value="返回修改" class="publish_btn" >
+    <input id="publish_btn" type="button" value="发表" class="save_btn">
+    </li>
+  </ul>
+  <div class="clear"></div> 
+</div>
+{/literal}
+
+<!--publish_main end--> 

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>分类管理</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Blog/class_type.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/class_type.js"></script>
+
+</head>
+<body>
+
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+     {insert name="sns_nav" class_code = $class_code}
+     <!--nav end-->
+    <h4><a href="/Sns/Blog/List/index/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回日志列表</span></a></h4>
+    <!--publish_main star-->
+     <div class="publish_main">
+      <!--publish_title star-->
+       <div class="publish_title">
+        <h3 id="search_h3">
+         <a href="/Sns/Blog/Publish/index/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">写班级日志</span></a><span>查询时间：</span>
+         <span class="pl_r10">从</span><input type="text" id="start_time" name="start_time" readonly="readonly" class="date_text">
+         <span class="pl_r10">至</span><input type="text" id="end_time" name="end_time" readonly="readonly" class="date_text">
+         <a id="search_btn_a" href="javascript:;" title="点击查询" class="f14 ml30"><span class="btn_left"></span><span class="btn_right">查询</span></a>
+         <input type="hidden" id="class_code" value="{$class_code}" />
+        
+        </h3>
+        <div class="clear"></div>
+       </div>
+       <div class="clear"></div>
+       <!--publish_title end-->
+       <p class="text_title">
+         	日志分类管理
+       </p>
+       <!--blog_main star-->
+       <div class="blog_main">
+         <!--blog_main_left star-->
+         <div class="blog_main_left">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" id="left_type_list_tab">
+              {literal}
+              <tr class="single_type clone" style="display:none;">
+                <td>{name}</td>
+                <td><a href="javascript:;" class="mr10 modify_a">编辑</a>|
+                <a href="javascript:;" class="ml10 delete_a">删除</a></td>
+              </tr>
+          	  {/literal}
+              <tr class="clone_default" style="display:none;">
+                <th class="th_width">班级日志(此分类不支持编辑与删除)</th>
+                <th class="cz_width">&nbsp;</th>
+              </tr>
+              <tr id="modify_tr" style="display:none;">
+                <td>
+                	<input id="name" type="text" class="text_blog" maxlength="12">
+                	<input id="modify_sure_btn" type="button" value="确定" class="green_btn" >
+                	<input id="cancel_btn" type="button" value="取消" class="qx_btn">
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr style="display:none;" class="insert_pos_selector"></tr>
+              <tr class="add_type_tr_selector" style="display:none;">
+                <td>
+                	<input id="name" type="text" class="text_blog" maxlength="12">
+                	<input id="sure_btn" type="button" value="确定" class="green_btn">
+                	<input id="cancel_btn" type="button" value="取消" class="qx_btn">
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+            <p class="add_fied">
+            	<input type="button" id="add_type" value="添加分类" class="publish_btn"></p>
+            <p class="urse_msg">
+             温馨提示<br />
+             点击分类名称或编辑按钮可修改日志分类名称，点击确定按钮即可生效。<br />
+             请您注意，分类名称长度不超过12个英文字母或6个汉字长度。<br />
+             若删除日志分类，则该分类下的所有日志将自动迁移到“班级日志”分类下。
+           </p>
+         </div>
+         <!--blog_main_left end-->
+         <!--blog_main_right star-->
+         {literal}
+         <div id=right_type_list_div class="blog_main_right">
+           <h3><span>班级日志分类</span><a href="#">管理</a></h3>
+           <div id="top_div">
+           	<p class="clone" style="display:none;"><a href="{url}" ><span>{name}</span>({nums})</a></p>
+           </div>
+           <div id="other_type_div" style="display:none;">
+	           <h5><a href="javascript:;" id="other_type" >其他<span id="other_type_nums"></span>项分类<span class="icon_sjx"></span></a></h5>
+			   <div class="blog_branch">
+				  <p id="down_div" style="display:none;">
+				  <span class="clone" style="display:none;">
+				   <a href="{url}" ><span>{name}({nums})</span></a>
+				   </span>
+				  </p>
+			   </div>
+	          </div>
+         <div>
+         {/literal}
+         <!--blog_main_right end-->
+         <div class="clear"></div>
+       </div>
+       <!--blog_main end-->
+       <div class="clear"></div> 
+     </div>
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+<!--日志分类 star-->
+
+<!--日志分类 end-->  
+<!--弹出层 end-->
+
+<!--弹出层 star-->
+<!--提示信息弹出层 star-->
+<div id="delete_msg" class="tcc_msg" style="display:none;">
+  <p class="tcc_msg_top"></p>
+  <div class="tcc_msg_center">
+   <div class="msg_center_main">
+    <dl>
+     <dt><span class="icon_question"></span></dt>
+    </dl>
+    <p>删除分类后，该分类内容将归到“班级日志”分类下，此操作不可恢复，你确定要继续吗？</p>
+    <div class="clear"></div>
+   </div>
+    <p class="msg_center_btn">
+    <input id="sure_btn" type="button" class="qd_btn" >
+    <input id="cancel_btn" type="button" class="qx_btn" value="取消"></p>
+  </div>
+  <p class="tcc_msg_bottom"></p>
+</div>
+<!--提示信息弹出层 end--> 
+
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

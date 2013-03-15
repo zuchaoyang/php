@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>班级_成员</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/wdbj.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/postion.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+          <div class="bj_cy_title">
+               <h3>班级老师</h3>
+          </div>
+          <div class="bj_cy_bottom">
+         {foreach from=$teacherlist key=client_account item=teacherinfo}
+               <div class="ls_gl">
+                 <dl>
+                    <dt>
+                    	<a href="/Homeuser/Index/spacehome/spaceid/{$client_account}" target='_blank'>
+                    	{if !empty($teacherinfo.client_headimg_url)}
+                    	<img src="{$teacherinfo.client_headimg_url}" border="0" width="60" height="60"  />
+                    	{else}
+                    	<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pic.jpg'"   border="0" width="60" height="60"/>
+                    	{/if}
+                    	</a>
+                    </dt>
+                    <dd>{$teacherinfo.client_name}</dd>
+                    <dd style="color:red;font-size:12px;" id="s{$client_account}"></dd>
+                 </dl>
+                    <p>
+                       {$teacherinfo.subject_info.subject_name}老师
+                       {if $teacherinfo.client_class.teacher_class_role == $smarty.const.TEACHER_CLASS_ROLE_CLASSTEACHER || $teacherinfo.client_class.teacher_class_role == '' }
+                           <span id="admin{$teacherinfo.client_account}"> 
+							   {if $teacherinfo.client_class.class_admin == 0 }
+									<a href="javascript:;" onclick="changetype('admin','{$client_account}', {$teacherinfo.client_class.client_class_id}, '{$class_code}')">设为管理员</a>
+		                       {else}
+		                       		<a href="javascript:;" onclick="changetype('canceladmin','{$client_account}', {$teacherinfo.client_class.client_class_id}, {$class_code})">取消管理员</a>
+		                       {/if}
+                       	   </span>
+                       {else}
+                           <br/><span>班主任</span>
+                       {/if}
+                    </p>
+               </div>
+         {/foreach}
+          
+         </div>
+         
+         {literal}
+
+         <script type="text/javascript">
+			function changetype(action , account, client_class_id,class_code){  
+				var url = "/Homeclass/Class/changetype/action/"+action+"/toaccount/"+account+"/class_code/"+class_code;
+
+				if(action == "role"){
+					url +="/type/"+$("#"+account).val();
+				}
+				if(class_code != ""){
+					url +="/client_class_id/"+client_class_id;
+				}
+				$.ajax({
+					type:"get",
+					 url:url,
+					success:function(msg){
+						if(action == "role"){
+							needtoLogTip(msg);
+						}else{
+							if(msg=="error"){
+								needtoLogTip("只能设置三个管理员");
+								//$("#s"+account).show();
+								//$("#s"+account).html("只能设置三个管理员");
+							}else{
+								//needtoLogTip(msg);
+								$("#admin"+account).html(msg);
+							}
+						}
+						//$("#s"+account).fadeOut(4000);
+					}
+				});
+			}
+			
+         </script>
+         {/literal}
+         
+         <div class="bj_cy_title" style="margin-top:30px;"><h3>班级学生</h3></div>
+          <div class="bj_cy_bottom">
+              {foreach from=$studentlist item=studentinfo key=client_account}
+               <div class="ls_gl">
+               
+               	<div style="width:100px; ">
+                      <select style="width:60px;margin:0 auto;" id="{$studentinfo.client_account}" class="km_xz" onchange="changetype('role','{$studentinfo.client_account}','{$studentinfo.client_class.client_class_id}',{$class_code})">
+                        
+                       {foreach from=$leadertype item=client_class_role key=key}
+	                       {if $key == $studentinfo.client_class.client_class_role}
+	                          <option value="{$key}" selected>{$client_class_role}</option>
+	                       {else}                
+	                       	  <option value="{$key}">{$client_class_role}</option>
+	                       {/if}
+                      {/foreach}
+                      </select>
+                      </div>
+                    
+               
+                    <dl>
+                    <dt>
+                    <a href="/Homeuser/Index/spacehome/spaceid/{$client_account}" target='_blank'>
+                    {if !empty($studentinfo.client_headimg_url)}
+                    <img src="{$studentinfo.client_headimg_url}" border="0" width="60" height="60"  />
+                    {else}
+                    <img  src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pic.jpg' border="0" width="60" height="60"/>
+                    {/if}
+                    </a>
+                    
+                    </dt>
+                    <dd>{$studentinfo.client_name}</dd>
+                    <dd style="color:red;font-size:12px;" id="s{$studentinfo.client_account}"></dd>
+                    </dl>
+                      
+                      <span id="admin{$studentinfo.client_account}">
+                      
+                       {if $studentinfo.client_class.class_admin == 0 }
+                       	    <a href="javascript:;" onclick="changetype('admin' , '{$client_account}' , '{$studentinfo.client_class.client_class_id}', '{$class_code}')">设为管理员</a>
+                       {else $studentinfo.client_class.class_admin == 1}
+                       		<a href="javascript:;" onclick="changetype('canceladmin' , '{$client_account}', {$studentinfo.client_class.client_class_id}, '{$class_code}')"><font color='blue'>取消管理员</font></a>
+                       {/if}
+                       
+                       </span>
+                                           {if $studentinfo.family_account != ""}
+                          <!--<a href="javascript:__showAccountFamily('{$studentinfo.client_account}');">联系家长</a>-->
+						  <a href="javascript:contactfamily('{$studentinfo.client_account}');">联系家长</a>
+                       {/if}
+
+               </div>
+               {/foreach}
+
+         </div>
+       
+         <div style="text-align:center; margin:25px 500px 25px 0;">
+         	
+         </div>   
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

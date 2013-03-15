@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学生账号生成账号</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/oldstudent.js"></script>
+
+</head>
+<body onload="oldStudentExportAccount();" style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >><a href="#" class="amswz">学生账号导入-账号生成</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  {insert name="amscontrol_menu" uid=$uid school_id=$school_id grade_id=$grade_id class_code=$class_code mod="Classclientmanage"}
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">
+    <form action="/Amscontrol/Oldaccountimport/exportStudentFailFile" method="post" id="form_export_fail_excel">
+       <table width="30%" border="1" align="left" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;">
+      <tr>
+        <td width="110" height="30">导入成功：</td>
+        <td>{$success_nums}条数据</td>
+      </tr>
+      <tr>
+        <td height="30">导入失败：</td>
+        <td>{$fail_nums}条数据</td>
+      </tr>
+      <tr>
+        <td height="30">下载有冲突的账号：</td>
+        <td>
+        	<input type="button" value="导出失败文件" class="zh" id="export_button" {if !$can_export}disabled="disabled"{/if}/>
+        </td>
+      </tr>
+    </table>
+    <textarea style="display:none;" name="file_attrs">{$file_attrs}</textarea>
+	</form>
+    </td>
+  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+</table>
+    
+</body>
+</html>

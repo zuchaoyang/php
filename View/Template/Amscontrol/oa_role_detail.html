@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>角色权限管理_新增/修改角色</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/kcsz.js"></script>
+
+<script type="text/javascript" >
+	var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+	
+{literal}
+	function turn_access(num){
+		var ori_access = 1*($("#access_"+num).val()); //获取隐藏域中上次的权限值
+		var turn_access = 1*(!ori_access); //翻转权限,并将bool值转换为int类型
+	
+		$("#access_"+num).val(turn_access);
+		$("#access_btn_"+num).attr("src",IMG_SERVER+"__PUBLIC__/amsmanage/images/access_"+turn_access+".gif");
+	}
+	function check(flag){
+		var role_name = $("#role_name_"+flag).val();  
+		role_name = role_name.replace(/(^\s*)|(\s*$)/g,""); //先去除空格再做判断
+		if(role_name == ""){
+			alert("请输入角色名称");
+			return false;
+		}else{
+			return true;
+		}
+	}
+</script>
+{/literal}
+
+</head>
+<!-- update_2011-08-09_02 -->
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">集中办公平台设置</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" class="bt STYLE1">集中办公平台设置</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+  <!-- 添加id和方法_2011-08-09_02_star -->
+    <tr>
+    <td height="25" bgcolor="#fbf6f7" style="padding:10px;">
+    	<a href="/Amscontrol/Oarole/roleList" class="amsqd">角色与权限管理</a> 
+        <a href="/Amscontrol/Oarole/schoolLogo" class="amsqd">相关设置</a>
+    </td>
+  </tr>
+  
+{if $act_flag=='justshow' } 
+  	<tr bgcolor="#fbf6f7">
+  	<td>
+    	<div >
+        	<span>角色名称： </span> {$role_info.role_name} &nbsp; &nbsp;请选择该角色拥有的权限 <a href="/Amscontrol/Oarole/roleList" class="amsqx_bt01" >返回</a> </div>
+        <table cellpadding="0" cellspacing="1" class="qxgl">
+        {foreach  from=$access_model key=num item=model_name}
+        	<tr>
+            	<td>{$model_name}</td>
+                <td><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/access_{$role_info.access_bin_arr.$num}.gif" /></td>
+            </tr>
+            {/foreach}
+        </table>
+        <div class="clear"></div>
+    </td>
+  </tr>
+  {/if}
+ {if $act_flag=='add' }
+  <form action="/Amscontrol/Oarole/addRole"  method="post" onsubmit="return check('add');">
+  <input type="hidden" name="act_flag" value="{$act_flag}"></input>
+  <tr bgcolor="#fbf6f7">
+  	<td>
+    	<div >
+        	<span>角色名称 </span><input name="role_name" id="role_name_add" type="text"  /> &nbsp; &nbsp;请选择该角色拥有的权限 <a href="/Amscontrol/Oarole/roleList" class="amsqx_bt01" >返回</a> </div>
+        <table cellpadding="0" cellspacing="1" class="qxgl">
+        {foreach  from=$access_model key=num item=model_name}
+        	<tr>
+            	<td>{$model_name}</td>
+                <td><a href="#" onclick="javascript:turn_access({$num});"><img id="access_btn_{$num}" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/access_0.gif" /></a></td>
+            </tr>
+        	<input type="hidden" name="role_access[{$num}]"  id="access_{$num}"  value="0"></input>
+        {/foreach}
+        </table>
+        <div class="clear"></div>
+    </td>
+    
+  </tr>
+  <tr bgcolor="#fbf6f7"><td><div><input type="submit" value="保存" class="amsqx_bt01"></input></div></td></tr> 
+  <div class="clear"></div>
+  </form>
+  {/if}
+  
+ {if $act_flag=='modify' }
+  <form action="/Amscontrol/Oarole/modifyRole"  method="post" onsubmit="return check('modify');">
+    <input type="hidden" name="act_flag" value="{$act_flag}"></input>
+    <input type="hidden" name="role_id" value="{$role_info.role_id}" ></input>
+    <input type="hidden" name="role_name_old" value="{$role_info.role_name}"></input>
+  <tr bgcolor="#fbf6f7">
+  	<td>
+    	<div >
+        	<span>角色名称 </span><input name="role_name"  id="role_name_modify" type="text"  value="{$role_info.role_name}" /> &nbsp; &nbsp;请选择该角色拥有的权限 <a href="/Amscontrol/Oarole/roleList" class="amsqx_bt01" >返回</a> </div>
+        <table cellpadding="0" cellspacing="1" class="qxgl">
+        {foreach  from=$access_model key=num item=model_name}
+        	<tr>
+            	<td>{$model_name}</td>
+                <td><a href="#" onclick="javascript:turn_access({$num});"><img id="access_btn_{$num}" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/access_{$role_info.access_bin_arr.$num}.gif" /></a></td>
+            </tr>
+        	<input type="hidden" name="role_access[{$num}]"  id="access_{$num}"  value="{$role_info.access_bin_arr.$num}"></input>    
+        {/foreach}
+        </table>
+        <div class="clear"></div>
+    </td>
+    
+  </tr>
+  <tr bgcolor="#fbf6f7"><td><div><input type="submit" value="保存" class="amsqx_bt01"></input></div></td></tr> 
+  </form>
+  {/if}
+</table>  <div class="clear"></div>
+
+</body>
+</html>

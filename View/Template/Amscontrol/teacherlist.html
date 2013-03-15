@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>老师列表</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+</head>
+
+<body style="padding-top:30px; _width:98%" onload="javascript:window.print();">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>姓名</strong></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>所任科目</strong></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>账号</strong></td>
+  </tr>
+  <tbody id="pTbody">
+  {if $tercherInfo != ""}
+  {foreach from=$tercherInfo item=val}
+  <tr>
+    <td height="30" align="center" id="pTbody_name_{$val.client_account}">{$val.client_name}</td><!-- pTbody_name_1注解:"pTbody_name_"死数据; "1":为数据id -->
+    <td height="30" align="center" id="pTbody_course_{$val.client_account}">{$val.subjectName}</td><!-- pTbody_course_1注解:"pTbody_course_"死数据; "1":为数据id -->
+    <td height="30" align="center">{$val.client_account}</td>
+  </tr>
+  {/foreach}
+ 	  {else}
+	<tr>
+     <td colspan='3' align='center' style='font-size:15px; color:red;  line-height:3;'>没有记录</td>
+     </tr> 
+	
+	{/if}
+  </tbody>
+  
+</table>
+</body>
+</html>

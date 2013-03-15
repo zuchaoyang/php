@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>新建部门</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/css/weebox/weebox.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/css/tree/tree.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/ui/ext/dialog.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/jquery.simple.tree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/bgiframe.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/weebox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/dialogtree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/demo.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/oa_department.js"></script>
+{literal}
+<style>
+	.selected {
+	    color: green;
+	}
+	pre {
+		background-color:#F0E68C;
+		font-size: 12px;
+	}
+</style>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<form method="post" action="/Amscontrol/Oadepartment/addDepartment/school_id/{$school_id}" enctype="multipart/form-data" id="dpt_form">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt STYLE1">新建部门</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>新建部门：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">部门排序号：</td>
+    <td bgcolor="#fbf6f7"><input type="text" class="text" name="sort_id" id="sort_id"/></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">部门名称：</td>
+    <td bgcolor="#fbf6f7"><input type="text" class="text" name="dpt_name" id="dpt_name"/></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">电话：</td>
+    <td bgcolor="#fbf6f7"><input type="text" class="text" name="dpt_phone" id="dpt_phone"/></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">上级部门：</td>
+    <td bgcolor="#fbf6f7">
+    	<input type="text" class="text" id="up_dptname" value="请选择上级部门" readonly="readonly" onfocus="this.blur();"/>
+    	<input type="hidden" id="up_id" name="up_id"/>
+    	<input type="button" value="选择上级部门" class="amsqx_bt" id="showUpDpt" {if empty($show_updpt)}disabled="disabled"{/if}/>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#fbf6f7">部门职能：</td>
+    <td bgcolor="#fbf6f7" style="padding:4px 8px;"><textarea cols="40" rows="4" name="dpt_description" id="dpt_description"></textarea></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">部门照片：</td>
+    <td bgcolor="#fbf6f7"><input type="file" class="text" name="dpt_photo" id="dpt_photo"/></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7"></td>
+    <td bgcolor="#fbf6f7"><input type="submit" value="保存" class="bc"/></td>
+  </tr>
+</table>
+<input type="hidden" id="school_id" value="{$school_id}"/>
+</form>
+</body>
+</html>

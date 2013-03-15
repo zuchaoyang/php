@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>{$school_name}&nbsp;&nbsp;{$class_name}&nbsp;&nbsp;学生账号数：{$stunum}&nbsp;&nbsp;家长账号数：{$parentnum}</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/bms_dy.css"  />
+
+</head>
+
+<body onload="javascript:window.print();">
+<div class="dy-alldiv">
+{foreach from = $uidarr item=parentsList key=childAccount name=shownum}
+{if $parentsList.print == 'true'}
+  <p/>
+  {/if}
+  
+<div class="dy-div">
+  <div class="dy-div-a">
+    <div class="dy-div-a-xx">{$school_name}</div>
+    <div class="dy-div-a-bj">{$class_name}</div>
+  </div>
+  <div class="dy-div-b">姓名：{$parentsList.child_name}&nbsp;&nbsp;&nbsp;&nbsp;账号：{$childAccount}</div>
+  {foreach from=$parentsList item=parents key=parentAccount name=parentnum}
+  {if $parents.client_account == $childAccount}
+  <div class="dy-div-c">家长办理凭证号{$parents.family_type}：{$parents.family_account}</div>
+  {/if}
+  {/foreach}
+  </div>
+  {/foreach}
+  </div>
+</body>
+</html>

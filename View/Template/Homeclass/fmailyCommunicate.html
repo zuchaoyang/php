@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>成长沟通_家长视角</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/comment.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+<div class="comment">
+成长沟通
+</div><!--comment end-->
+<div class="commenm">
+  <table width="100%" height="47" border="0" cellpadding="0">
+    <tr>
+      <td  align="left" valign="top" ><span style="font-size:14px; line-height:22px;">请选择一个老师进行沟通</span></td>
+    </tr>
+  </table>
+</div>
+<!--commenm end-->
+
+<div class="grow_t">
+<div class="grow_tl">
+<div id="grow_tlt">
+ {foreach from=$clientclasslist key=uid item=teacher}
+<dl onmouseover="javascript:this.style.background='#fdeecb';" onmouseout="javascript:this.style.background='#ffffff';">
+<div class="grow_tlt_l" >
+	<a href="javascript:getCommunicateData('{$teacher.client_account}');">
+	<img src="{$teacher.client_headimg_url}" border="0" width="60" height="60"  onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a>
+</div>
+<div class="grow_tlt_r">
+<dd>{$teacher.msgnums}</dd>
+<dt>{$teacher.max_add_date}</dt>
+</div>
+<div class="grow_b">{$teacher.client_name}</div>
+</dl>
+{/foreach}
+
+</div><!--grow_tlt end-->
+
+</div><!--grow_tl end-->
+
+<div class="grow_tr">
+<div id='CommunicateContent'>
+</div>
+
+	<div class="grow_trb">
+	  <table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor='#dddddd'>
+			<tr>
+			  <td align='center' height='10'>&nbsp;</td>
+			</tr>
+			<tr>
+			  <td align='center' height='50'><textarea name="textCommunicate" id="textCommunicate" class="inputextarea" cols="50" rows="3"></textarea></td>
+			</tr>
+			<tr>
+			  <td align="center">
+			  <input type="hidden" name="hclass_code" id="hclass_code" value="{$class_code}" />
+			  <input type="hidden" name="haccount" id="haccount" value="{$defaultuser}" />
+			  <input type="submit" name="Submit2" value="发送消息" class="inputbg2" onclick='javascript:CommunicateSave();'/></td>
+			</tr>
+		  </table>
+	</div>
+</div>
+
+</div><!--grow_t end-->
+
+
+<script type="text/javascript">
+	getCommunicateData({$defaultuser});
+{literal}
+	//ajax请求照片评论内容
+	function getCommunicateData(account){
+		var url = "/Homeclass/Myclass/CommunicateData/class_code/"+document.getElementById("hclass_code").value+"/account/"+account + '?' +  Date.parse(new Date());
+		$.ajax({
+			type: "GET",
+			url: url,
+			success: function(msg){
+				var strarr = msg.split("??");
+				$("#haccount").val(strarr[0]);
+				$("#CommunicateContent").html(strarr[1]);
+				
+		   }
+		});
+	}
+
+	function CommunicateSave(){
+		var account = document.getElementById("haccount").value;
+		var hclass_code = document.getElementById("hclass_code").value;
+		var textCommunicate  = $.trim($("#textCommunicate").val());
+		textCommunicate = textCommunicate.replace("<P>","");
+		textCommunicate = textCommunicate.replace("</P>",";");
+		textCommunicate = textCommunicate.replace("&nbsp;","");
+		textCommunicate = textCommunicate.replace("<BR>","");
+		textCommunicate= delHtmlTag(textCommunicate);	
+		var param,paramobj;
+		
+		if(textCommunicate==""){
+			needtoLogTip("请输入您要沟通的内容");
+			return false;
+		}
+		paramobj = {
+			msg:encodeURIComponent(textCommunicate),
+			account:account,
+			class_code:hclass_code
+	
+		};
+			
+		param = $.param(paramobj);
+		$.ajax({
+			type: "POST",
+			 url: "/Homeclass/Myclass/familyCommunicateSave",
+			 data: param,
+			success: function(data){
+				//alert(data);exit;
+				 if(data=="success"){
+				 	getCommunicateData(account);
+					art.dialog.tips('发送成功');
+					document.getElementById("textCommunicate").value='';
+				 }else{
+					 getCommunicateData(account);
+					art.dialog.tips('身份验证失败、未成功发送信息');
+					return false;
+				 }
+		   }
+		});
+	
+	}
+
+</script>
+{/literal}
+
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+
+</body>
+</html>

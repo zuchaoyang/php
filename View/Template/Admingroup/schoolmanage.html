@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学校审核管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/js/schoolmanage.js"></script>
+
+{literal}
+<script type="text/javascript">
+	function checkuid(){
+		var acton = document.getElementById('shaixuanuid');
+		var flag = document.getElementById('flag');
+		var uid = document.getElementById('uid');
+		if(uid.value!='请输入你要搜索申请人的账号' && !isNaN(uid.value) && uid.value!=""){
+			acton.action="__URL__/getSchool?uid="+uid.value+"&flag="+flag.value;
+			acton.submit();
+		}else{
+			alert('请输入你要搜索申请人的账号!');
+			return false;
+		}
+	}
+	
+	function commit(){
+		var val = document.getElementById('uid');
+		var flag0 = document.getElementById('flag0');
+		var flag1 = document.getElementById('flag1');
+		var flag2 = document.getElementById('flag2');
+		if(val.value=="" ||val.value=="请输入你要搜索申请人的账号" || val.value==0){
+			val.value="请输入你要搜索申请人的账号";
+			flag0.href="__URL__/getSchool/flag/0";
+			flag1.href="__URL__/getSchool/flag/1";
+			flag2.href="__URL__/getSchool/flag/2";
+		}
+	}
+
+	function check () {
+		var val = document.getElementById('uid');
+		val.value = "";
+	}
+	function nav (){
+		var flag = document.getElementById("flag");
+		if(flag.value == ""){
+			var a = document.getElementById("flag0");
+		}else{
+			var a = document.getElementById("flag"+flag.value);
+		}
+		a.style.color="#ff0000";
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%" onload="commit();nav();">
+<div id="popemail" class="mydiv" style="display:none;"><span><font>学校申请审核中</font></span>
+     <p>学校管理员账号邮件发送中，请稍等······</p>
+</div>
+<div id="popDiv" class="mydiv" style="display:none;"><span><font>原因：</font><a href="javascript:closeDiv()" >关闭</a></span>
+     <p style="padding-left:10px; padding-top:10px;" id='reason'>
+</div>
+<div id="bg" class="bg" style="display:none;"><div style="float:left; background:#666666;"></div></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+<div id="jxpopDiv" class="mydiv" style="display:none;"><span><font>申请审核：</font><a href="javascript:closeDiv1()">关闭</a></span>
+  <p><label style="cursor:hand;"><input name="wtg" type="radio" value="1" checked="checked" class="jxdx" onClick="show()"/><font>通过</font></label><label style="cursor:hand;"><input name="wtg" type="radio" class="jxdx" onClick="hidly()" value="2" /><font>未通过</font></label></p>
+  <p id="pStrategy">运营策略：<select name="sell" id="sellid">
+	  <option value="{$smarty.const.OPERATION_STRATEGY_DEFAULT}">默认无策略</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_HLJ}">黑龙江联通</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_CZ}">常州电信</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_JL}">吉林联通</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_GD}">广东联通</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_LN}">辽宁联通</option>
+	  <option value="{$smarty.const.OPERATION_STRATEGY_CQ}">重庆联通</option>
+  </select></p>
+  <p id="jxly" style="display:none;">原因：{literal}<TEXTAREA id="cmt_content" name="refuse_reason" cols="35" rows="4" onBlur="if(this.innerHTML==''){this.innerHTML='请输入拒绝的理由......';this.style.color='#999999'}" style="COLOR: #999999" onFocus="if(this.innerHTML=='请输入拒绝的理由......'){this.innerHTML='';this.style.color='#999999'}">请输入拒绝的理由......</TEXTAREA>{/literal}</p>
+  <p><a href="javascript:tijiao();" class="jxqd">确定</a></p>
+</div>
+<input type="hidden" id="flag" value="{$flag}"></input>
+<form method="post" name="sh" action="" id="resaon">
+<input type="hidden" name="cmt_content" id="hid"/>
+<input type="hidden" name="schoolid" id="sid"/>
+</form>
+<div id="jxbg" class="bg" style="display:none;"><div style=" float:left; background:#666666;"></div></div>
+<iframe id='jxpopIframe' class='popIframe' frameborder='0' ></iframe>
+<table width="92%" border="0" cellspacing="1" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="8" class="bt">学校审核管理</td>
+  </tr>
+  <tr>
+    <td height="12" colspan="8"></td>
+  </tr>
+  <tr>
+    <td  colspan="3" class="aa">
+	    <span><a href="__URL__/getSchool/flag/0/uid/{$uid}" id="flag0">未处理</a></span>
+	    <span><a href="__URL__/getSchool/flag/1/uid/{$uid}" id="flag1">已通过</a></span>
+	    <span><a href="__URL__/getSchool/flag/2/uid/{$uid}" id="flag2">未通过</a></span>
+    </td>
+    <td height="27" colspan="5">
+    	<form action="" id="shaixuanuid" method="get" onsubmit="return checkuid();">
+    	<input type="hidden" id="flag" name="flag" value="{$flag}"></input>
+    	<input type="text" name="uid" value="{$uid}" id="uid" size="25" style="margin-right:10px;height:20px;" onfocus="check();" onblur="commit();"/>
+    	<input type="submit" style="height:26px;width:50px;" value="搜索" id="btn"/>
+    	</form>
+    </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="8" align="center" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+  	<td width="8%" height="30" align="center" bgcolor="#c2daee"><strong>序号</strong></td>
+    <td width="15%" height="30" align="center" bgcolor="#c2daee"><strong>学校名称</strong></td>
+    <td width="10%" height="30" align="center" bgcolor="#c2daee"><strong>扫描件</strong></td>
+    <td width="15%" height="30" align="center" bgcolor="#c2daee"><strong>申请人</strong></td>
+    <td width="15%" height="30" align="center" bgcolor="#c2daee"><strong>提交日期</strong></td>
+    <td width="15%" height="30" align="center" bgcolor="#c2daee"><strong>审批结果</strong></td>
+    <td height="30" align="center" bgcolor="#c2daee"><strong>审批时间</strong></td>
+    <td height="30" align="center" bgcolor="#c2daee"><strong>操作</strong></td>
+  </tr>
+  {if empty($schoolInfo)}
+  	<tr>
+  	<td colspan="8" width="100%" height="30" align="center" bgcolor="#f0f8ff"><h1 style="color:#ff0000">当前无搜索数据</h1></td>
+  </tr>
+  {else}
+  {foreach from=$schoolInfo item=key}
+  {if $key.school_status == 0}
+  <tr>
+  	<td width="8%" height="30" align="center" bgcolor="#f0f8ff">{$key.shownum}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff"><a href="#{$key.school_id}" class="spxx" onclick="javascript:showDiv2()">{$key.school_name}</a></td>
+    <td width="10%" height="30" align="center" bgcolor="#f0f8ff"><a href="/Admingroup/Schoolmanage/showScanningCopy/sid/{$key.school_id}" target="_blank" class="ck">查看</a></td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_account}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_date}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff"><a  style="color:red;font-size:15px;"  class='show'><B>未处理</B></a></td>
+    <td height="30" align="center" bgcolor="#f0f8ff">{$key.check_date}</td>
+    <td height="30" align="center" bgcolor="#f0f8ff"><a href="javascript:showDiv1({$key.school_id})" class="jxsp">进行审批</a></td>
+  </tr>
+  {/if}
+  {if $key.school_status == 1}
+  <tr>
+    <td width="8%" height="30" align="center" bgcolor="#f0f8ff">{$key.shownum}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff"><a href="#{$key.school_id}" class="spxx" onclick="javascript:showDiv2()">{$key.school_name}</a></td>
+    <td width="10%" height="30" align="center" bgcolor="#f0f8ff"><a href="/Admingroup/Schoolmanage/showScanningCopy?imgsrc={$key.school_scan}" target="_blank" class="ck">查看</a></td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_account}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_date}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">已通过</td>
+    <td height="30" align="center" bgcolor="#f0f8ff">{$key.check_date}</td>
+    <td height="30" align="center" bgcolor="#f0f8ff"><a href="#" class="jxsp"  disabled="true">进行审批</a></td>
+  </tr>
+  {/if}
+  {if $key.school_status == 2}
+  <tr>
+    <td width="8%" height="30" align="center" bgcolor="#f0f8ff">{$key.shownum}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff"><a href="#{$key.school_id}" class="spxx" onclick="javascript:showDiv2()">{$key.school_name}</a></td>
+    <td width="10%" height="30" align="center" bgcolor="#f0f8ff"><a href="/Admingroup/Schoolmanage/showScanningCopy?imgsrc={$key.school_scan}" target="_blank" class="ck">查看</a></td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_account}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff">{$key.add_date}</td>
+    <td width="15%" height="30" align="center" bgcolor="#f0f8ff"><a href="#{$key.school_id}" style="color:red;font-size:15px;" onclick="javascript:showDiv()" class='show'><B>未通过</B></a></td>
+    <td height="30" align="center" bgcolor="#f0f8ff">{$key.check_date}</td>
+    <td height="30" align="center" bgcolor="#f0f8ff"><a href="#" class="jxsp" disabled="true">进行审批</a></td>
+  </tr>
+  {/if}
+  {/foreach}
+  <tr>
+	  <td colspan='8' align='center'>
+	  	  {if $page.nextpage == 'end'}
+	  	      	当前最后1页
+	  	  {elseif $page.nextpage == 0}
+	  	      	当前第1页
+	  	  {else}
+	  	  		当前第{$page.prepage+1}页
+	  	  {/if}
+		  {if $page.prepage == 0}
+		  	上一页
+		  {else}
+		  	{if empty($uid)}
+		  		<a href='__URL__/getSchool/page/{$page.prepage}/flag/{$flag}'>上一页</a>
+		  	{else}
+		  		<a href='__URL__/getSchool/page/{$page.prepage}/uid/{$uid}/flag/{$flag}'>上一页</a>
+		  	{/if}
+		  {/if}
+		  &nbsp;
+		  {if $page.nextpage == 'end'}
+		  	下一页
+		  {else}
+		  	{if empty($uid)}
+		  		<a href='__URL__/getSchool/page/{$page.nextpage}/flag/{$flag}'>下一页</a>
+		  	{else}
+		  		<a href='__URL__/getSchool/page/{$page.nextpage}/uid/{$uid}/flag/{$flag}'>下一页</a>
+		  	{/if}
+		  
+		  {/if}
+	  </td>
+  </tr>
+  {/if}
+</table>
+
+<div id="popDiv2" class="shxx" style="display:none;">
+<a href="javascript:closeDiv2()" style="float:right;">关闭</a>
+<table width="500" border="1" cellspacing="0" bordercolor="#CCCCCC" class="padleft">
+  <tr>
+    <td height="30" colspan="3" bgcolor="#CCCCCC"><strong>学校基本资料：</strong></td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">学校名称：</td>
+    <td width="390" height="30" id='scname'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">学校地址：</td>
+    <td width="390" height="30" id='scaddr'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">邮政编码：</td>
+    <td width="390" height="30" id='sccode'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">建校年月：</td>
+    <td width="390" height="30" id='scdate'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">学校类别：</td>
+    <td width="390" height="30" id='sctype'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">学制类型：</td>
+    <td width="390" height="30" id='gradetype'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">资源优势：</td>
+    <td width="390" height="30" id='scresource'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</td>
+    <td width="390" height="30" id='scmaster'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="25" height="30">&nbsp;</td>
+    <td width="85" height="30">联系方式：</td>
+    <td width="390" height="30" id='sccontact'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="3" bgcolor="#CCCCCC"><strong>师生情况：</strong></td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">班级数量：</td>
+    <td width="390" height="30" id='classnum'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">教师人数：</td>
+    <td width="390" height="30" id='technum'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">学生人数：</td>
+    <td width="390" height="30" id="stunum">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="3" bgcolor="#CCCCCC"><strong>学校网络负责人：</strong></td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+    <td width="390" height="30" id='netmanager'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">联系方式：</td>
+    <td width="390" height="30" id='netphone'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">邮箱设置：</td>
+    <td width="390" height="30" id='netemail'>&nbsp;</td>
+  </tr>
+    <tr>
+    <td height="30" colspan="3" bgcolor="#CCCCCC"><strong>校园门户网站申请：</strong></td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">原校园网站：</td>
+    <td width="390" height="30" id='oldurl'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30">&nbsp;</td>
+    <td width="85" height="30">新网址申请：</td>
+    <td width="390" height="30" id='newurl'>&nbsp;</td>
+  </tr>
+</table>
+<table width="500" border="0" >
+  <tr>
+    <td height="30"  style="padding-left:200px;"><a href="javascript:closeDiv2()" class="jxqd">确定</a></td>
+  </tr>
+</table>
+</div>
+<div id='bg2'class='bg' style="display:none;"><div style=" float:left; background:#666666;"></div></div>
+<iframe id='popIframe2' class='popIframe' frameborder='0' ></iframe>
+</body>
+</html>

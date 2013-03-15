@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>角色功能关联</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	*{margin:0px; padding:0px;}
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+	label{cursor:pointer;}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function (){
+		if($("#upd_success").val()) {
+			alert("数据已更新");
+		}
+	});
+	function clickrole(code){
+		window.location.href="__URL__/clickrole/code/"+code;
+	}
+	
+	function a(){
+		var role = document.getElementsByName("func_name");
+		var len=document.getElementsByName("func_name").length;
+		var strrole="";
+		for(var i=0;i<len;i++){
+			if(role[i].checked){
+				strrole = strrole+role[i].value+",";
+			}
+		}
+		document.getElementById("func_str").value=strrole;
+		document.forms[1].submit();
+	}
+	
+</script>
+
+{/literal}
+
+</head>
+<body>
+<input type="hidden" name="upd_success" id="upd_success" value="{$upd_success}"></input>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">角色功能关联</td>
+  </tr>
+  
+  <tr>
+    <td align="left" bgcolor="#f0f8ff">
+    <form name="form1" action="__URL__/searchRole" method="post"> 
+      <table width="350" border="0" align="left" cellpadding="0" cellspacing="0" class="yycx_cx" style="margin-top:20px;" >
+          <tr>
+            <td style="padding-left:25px;">角色：</td>
+            <td>
+              <select name="rolecode" style="cursor:pointer;">
+                    <option value="">请选择</option>
+                {foreach from = $roles item = rolelist}
+	                  {if $rolelist.role_code == $selected_role_code}
+	                    <option value="{$rolelist.role_code}" selected="selected">{$rolelist.role_name}</option>
+	                  {else}
+	                    <option value="{$rolelist.role_code}">{$rolelist.role_name}</option>
+	                  {/if}
+                {/foreach}
+              </select>
+            </td>
+            <td height="35"><input type="submit" style="cursor:hand;" value="搜索" class="sh_btn" /></td>
+        </tr>
+      </table>
+      </form>
+    </td>
+  </tr>
+  <tr>
+   <td bgcolor="#f0f8ff" align="left">
+   <form name="rfform" method="post" action="__URL__/updrolefunc">
+  <table border="0" align="left" cellpadding="0" cellspacing="0" class="yycx_cx" style="margin-top:20px;" >
+  <tr>
+     <td>
+     <div style="overflow:scroll; height:250px; width:210px; float:left; margin-right:10px; border:1px #CCC solid; overflow-x:hidden; scrollbar-face-color: #DBEBFE; scrollbar-shadow-color: #B8D6FA; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #DBEBFE; scrollbar-darkshadow-color:#458CE4; scrollbar-track-color: #DAF2FE; scrollbar-arrow-color: #458CE4; border:1px solid #DAF2FE;">
+       <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f0f8ff" class="yycx_xh">
+        {foreach from = $roles item = rolelist}
+	        <tr>
+	          <td height="30" align="left" style="padding-left:10px;">
+	           {if $rolelist.role_code == $selected_role_code}
+	          	<label><input type="radio" name="role_code" onclick="clickrole('{$rolelist.role_code}')" value="{$rolelist.role_code}" checked/>{$rolelist.role_name}</label>
+	          {else}
+	          	<label><input type="radio" name="role_code" onclick="clickrole('{$rolelist.role_code}')" value="{$rolelist.role_code}"/>{$rolelist.role_name}</label>
+	          {/if}
+	          </td>
+	        </tr>
+        {/foreach}
+      </table>
+     </div>
+    
+    <div style="overflow:scroll; height:250px; width:210px;  float:left; margin-left:10px; border:1px #CCC solid; overflow-x:hidden; scrollbar-face-color: #DBEBFE; scrollbar-shadow-color: #B8D6FA; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #DBEBFE; scrollbar-darkshadow-color:#458CE4; scrollbar-track-color: #DAF2FE; scrollbar-arrow-color: #458CE4; border:1px solid #DAF2FE;">
+ 	  <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f0f8ff" class="yycx_xh" >
+
+ 		{foreach from = $funcs item = funclist}
+	        <tr>
+	          <td height="30" align="left" style="padding-left:10px;">
+	          <label>
+		          	{if $funclist.flag == true}
+		          		<input type="checkbox" name="func_name" value="{$funclist.func_code}" checked/>{$funclist.func_name}
+		          	{else}
+		          		<input type="checkbox" name="func_name" value="{$funclist.func_code}" />{$funclist.func_name}
+		          	{/if}
+	          	</label>
+	          </td>
+	        </tr>
+        {/foreach}
+        
+      </table>
+   	</div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td height="45" bgcolor="#f0f8ff"  style="padding:10px 0px 30px 25px;"><input type="button" style="cursor:pointer;" value="数据保存" onclick="javascript:a()" class="f_btn" /></td>
+  </tr>
+  </table>
+  <input type="hidden" name="func_str" id="func_str"/>
+  </form>
+  </td>
+  </tr>
+</table>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

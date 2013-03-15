@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>学生排序</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassAdmin/student_sort.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassAdmin/student_sort.js"></script>
+
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+ {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4>
+	  <a href="/Sns/ClassAdmin/StudentList/index/class_code/{$class_code}" class="f14" title="">
+	    <span class="btn_left"></span>
+	    <span class="btn_right">返回学生信息维护</span>
+	  </a>
+    </h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+     <form action="/Sns/ClassAdmin/StudentSort/saveSortedStudent/class_code/{$class_code}" method="post">
+	     <div class="publish_main">
+	       <p class="blog_title">
+	         	学生排序
+	       </p>
+	       <p class="stu_sort_msg">温馨提示：请输入1-9999之间的数字，排序规则为升序排列（1,2，3....9999）</p>
+	       <div class="stu_main">
+	         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	          <tr>
+	            <th class="border_left">学生姓名</th>
+	            <th>学生排序</th>
+	          </tr>
+	          {foreach from=$client_class_list item=student}
+	          <tr>
+	            <td class="border_left">{$student.client_name}</td>
+	            <td>
+	            	<div class="input_bj">
+	            		<input type="text" class="input_text sort_seq_selector" name="sorted_list[{$student.client_account}]" value="{$student.sort_seq}">
+	            	</div>
+	            </td>
+	          </tr>
+	          {/foreach}
+	        </table>
+	       </div>
+	       <p class="stu_sort_btn">
+	       	<a id="sure_btn_a" href="javascript:;" class="f14" title="">
+		       	<span class="btn_left"></span>
+		       	<span class="btn_right">确定</span>
+	       	</a>
+	       </p>
+	       <div class="clear"></div>
+	     </div>
+     </form>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+  <!--弹出层 star-->
+  <!--提示信息弹出层 star-->
+  <div id="prompt_div" class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_warn"></span></dt>
+      </dl>
+      <p>
+      	 请您输入正确的学生排序(1-9999之间的数字)!
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="msg_center_btn"><input id="sure_btn" type="button" class="qd_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+ <!--提示信息弹出层 end--> 
+ <!--弹出层 end-->
+ 
+ <input id="class_code" type="hidden" value="{$class_code}"/>
+</body>
+</html>

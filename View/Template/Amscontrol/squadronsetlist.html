@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>中队设置表单</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/kcsz.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/squadronsetlist.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+
+<script type="text/javascript">
+	function checkform(){
+		if($("#squadronnameid").val() == ""){
+			$("#namealert").html("不可为空");return;
+		}else if($("#zd").val() == ""){
+			$("#alert1").html("不可不选");return;
+		}else if($("#fzd1").val() == "" && $("#fzd2").val() == ""){
+			$("#alert2").html("副队长必选一个");return;
+		}else{
+			document.forms['form'].submit();
+		}
+	}
+</script>
+
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<div id="popDiv1" class="xzkc" style="display:none;">
+     <p class="amstitle"><font>选择中队委员</font><a href="javascript:popWin.close();">关闭</a></p>
+     <div style="height:280px; overflow:auto;">
+     <table width="94%" border="0" cellspacing="1" cellpadding="0" bgcolor="#cccccc">
+          <tr>
+            <td height="30" align="center" bgcolor="#ffffff">姓名</td>
+            <td align="center" bgcolor="#ffffff">选择</td>
+          </tr>
+          {foreach from=$uidarr item=val}
+    		{if $val.squadron_duties_id != 1 && $val.squadron_duties_id != 2 && $val.squadron_duties_id != 3}
+          <tr>
+            <td height="30" align="center" bgcolor="#ffffff" id="popDiv_td_{$val.client_account}">{$val.client_name}</td>
+            <td align="center" bgcolor="#ffffff">
+            	<input type="checkbox" name="popDiv_inp" id="popDiv_inp_{$val.client_account}" value="{$val.client_account}" {if $val.flag == 'ture'}checked{/if} />&nbsp;&nbsp;
+            	<input type="text" class="text" id="popDiv_inpVal_{$val.client_account}" value="{$val.squadron_duties_name}" />
+            </td>
+          </tr>
+            {/if}
+  		  {/foreach}
+     </table>
+     </div>
+     <p><a href="javascript:popWin.save();" class="amsqd">确定保存</a></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"><div style="float:left; background:#666666;"></div></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">班级管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+	<td height="27" class="bt">
+    	<a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+		<a href="/amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="zhgl">班级成员账号管理</a>
+	    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >中队设置</a>
+	    <a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">小队设置</a>
+    </td>
+  </tr>
+</table>
+<form name="form" id="form" enctype="multipart/form-data" method="post" action="/Amscontrol/Amssquadron/formsub">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="padleft" style="margin:0px auto;">
+  <tr>
+    <td width="90" height="30" bgcolor="#fbf6f7">中队名称：</td>
+    <td height="30" bgcolor="#fbf6f7"><input type="text" class="text" maxLength= "20" id="squadronnameid" name="squadronname" value="{$squadron.squadronname}"/><input type="hidden" name="presquadronname" value="{$squadron.squadronname}"/><span id="namealert" style="color:red;padding-left:10px;"></span></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">中队辅导员：</td>
+    <td height="30" bgcolor="#fbf6f7">{$squadron.username}<input type="hidden" name="useraccount" value="{$squadron.account}"/></td>
+  </tr>
+  
+  <tr>
+    <td height="30" rowspan="2" bgcolor="#fbf6f7">中队logo：</td>
+    <td height="14" bgcolor="#fbf6f7"><img src="{$logourl}"/><input type="hidden" name="logourl" value="{$logourl}" /></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7"><input type="file" name="file"/></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">中队队长：</td>
+    <td height="30" bgcolor="#fbf6f7"><select name="zd" id="zd"><option value="">请选择</option>{foreach from=$clientInfo item=val}<option value="{$val.client_account}" {foreach from=$squadronUsers item=vals}{if $vals.squadron_duties_id == 1 && $vals.client_account == $val.client_account}selected{/if}{/foreach}>{$val.client_name}</option>{/foreach}</select><span id="alert1" style="color:red;padding-left:10px;"></span></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">中队副队长1 ：</td>
+    <td height="30" bgcolor="#fbf6f7"><select name="fzd1" id="fzd1"><option value="">请选择</option>{foreach from=$clientInfo item=val}<option value="{$val.client_account}" {foreach from=$squadronUsers item=vals}{if $vals.dutiesflag == 1 && $vals.client_account == $val.client_account}selected{/if}{/foreach}>{$val.client_name}</option>{/foreach}</select><span id="alert2" style="color:red;padding-left:10px;"></span></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">中队副队长2 ：</td>
+    <td height="30" bgcolor="#fbf6f7"><select name="fzd2" id="fzd2"><option value="">请选择</option>{foreach from=$clientInfo item=val}<option value="{$val.client_account}" {foreach from=$squadronUsers item=vals}{if $vals.dutiesflag == 2 && $vals.client_account == $val.client_account}selected{/if}{/foreach}>{$val.client_name}</option>{/foreach}</select></td>
+  </tr>
+  <tr>
+    <td height="30" rowspan="2" bgcolor="#fbf6f7">中队委员：</td>
+    <td height="14" bgcolor="#fbf6f7">
+      <table width="20%" border="0" align="left" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF">
+  <tr>
+    <td width="10%" height="30" align="center" bgcolor="#fbf6f7"><strong>姓名</strong></td>
+    <td width="10%" align="center" bgcolor="#fbf6f7"><strong>职务</strong></td>
+    </tr>
+    <tbody id="showTbody">
+  {foreach from=$squadronUsers item=val}
+    {if $val.squadron_duties_id != 3 && $val.squadron_duties_id != 1 && $val.squadron_duties_id != 2}
+  <tr>
+    <td height="30" align="center" bgcolor="#fbf6f7">{$val.client_name}</td>
+    <td align="center" bgcolor="#fbf6f7">{$val.squadron_duties_name}</td>
+    </tr>
+    {/if}
+  {foreachelse}
+  	<tr>
+  		 <td height="30" align="center" bgcolor="#fbf6f7" colspan="2">请选择中队委员</td>
+  	</tr>
+  {/foreach}
+  </tbody>
+  
+</table>  
+     </td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7"><a href="javascript:popWin.open();" class="amsqx">请选择</a><input type="hidden" name="duties_name_json" value="" id="positionArr" /></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7"><input type="hidden" name="classCode" value="{$classCode}"/></td>
+    <td bgcolor="#fbf6f7"><a href="javascript:checkform();" class="amsqd">保存</a><a href="javascript:history.go(-1);" class="amsqd">返回</a></td>
+  </tr>
+</table>
+<input type="hidden" name="uid" value="{$uid}"/>
+<input type="hidden" name="gradeid" value="{$gradeid}"/>
+<input type="hidden" name="schoolid" value="{$schoolid}"/>
+{foreach from=$clientInfo item=val}
+  {foreach from=$squadronUsers item=vals}
+    {if $vals.squadron_duties_id == 1 && $vals.client_account == $val.client_account}
+    <input type="hidden" name="prezd" value="{$val.client_account}"/>
+    <input type="hidden" name="prezdid" value="{$vals.squadron_member_duties_id}"/>
+    {/if}
+    {if $vals.dutiesflag == 1 && $vals.client_account == $val.client_account}
+    <input type="hidden" name="prefzd1" value="{$val.client_account}"/>
+    <input type="hidden" name="prefzd1id" value="{$vals.squadron_member_duties_id}"/>
+    {/if}
+    {if $vals.dutiesflag == 2 && $vals.client_account == $val.client_account}
+    <input type="hidden" name="prefzd2" value="{$val.client_account}"/>
+    <input type="hidden" name="prefzd2id" value="{$vals.squadron_member_duties_id}"/>
+    {/if}
+  {/foreach}
+{/foreach}
+</form>
+</body>
+</html>

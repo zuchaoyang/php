@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>布置工作-已发布的工作</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxcommon.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxtree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/ext/dhtmlxtree_json.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/oa_task.js"></script>
+
+</head>
+
+<body>
+ <!--tcc1-->
+ <div class="tcc1 mydiv" style="display:none;" id="show_member_div">
+   <h3><span>追加人员</span><a href="javascript:;" id="close_member_div_img"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/close_pic.gif" /></a></h3>
+   <div class="clear"></div>
+   <!--tcc_main-->
+   <div class="tcc_main">
+       <!--zuo-->
+       <div class="zuo">
+         <h4>部门列表</h4>
+         <ul><li id="doctree_box_member"></li></ul>
+       </div>
+       <!--zuo end-->
+       <!--button-->
+       <div class="button">
+         <input type="button" value="显示用户" class="xs_btn" id="show_members_button"/>
+       </div>
+       <!--button end-->
+       <!--zuo-->
+       <div class="zuo" align="center">
+         <h4>选择用户</h4>
+         <select id="members_list" size="20" multiple="multiple" style="width:100px; " >
+         </select>
+       </div>
+       <!--zuo end-->
+       <!--button-->
+       <div class="button">
+         <input type="button" value="添加" class="xs_btn" id="add_member_button"/>
+         <input type="button" value="移除" class="yc_btn" id="remove_member_button"/>
+       </div>
+       <!--button end-->
+       <!--zuo-->
+       <div class="zuo" align="center">
+         <h4>已选用户</h4>
+         <select id="selected_members_list" size=20; multiple="multiple" style="width:100px;">
+		 </select>
+       </div>
+       <!--zuo end-->
+       <div class="clear"></div>
+   </div>
+   <!--tcc_main end-->
+   <p class="queren"><input type="button" value="确认人员" class="xs_btn" id="submit_member_button"/></p>
+   <div class="clear"></div>
+ </div>
+<!--tcc1 end--> 
+
+<!--tcc2-->
+ <div class="tcc1 tcc2 mydiv" style="display:none;" id="show_dpt_div">
+   <h3><span>选择部门</span><a href="javascript:;" id="close_dpt_div_img"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/close_pic.gif" /></a></h3>
+   <div class="clear"></div>
+   <!--tcc_main-->
+   <div class="tcc_main">
+       <!--zuo-->
+       <div class="zuo">
+         <h4>部门列表</h4>
+         <ul><li id="doctree_box_dpt"></li></ul>
+       </div>
+       <!--zuo end-->
+       <!--button-->
+       <div class="button">
+         <input type="button" value="添加部门" class="xs_btn" id="add_dpt_button"/>
+         <input type="button" value="移除部门" class="yc_btn" id="remove_dpt_button"/>
+       </div>
+       <!--button end-->
+       <!--zuo-->
+       <div class="zuo" id="dpt_div" align="center">
+         <h4>已选部门</h4>
+         <select id="dpt_list" size=10 multiple="multiple" style="width:100px;">
+		 </select>
+       </div>
+       <!--zuo end-->
+       <div class="clear"></div>
+   </div>
+   <!--tcc_main end-->
+   <p class="queren"><input type="button" value="确认人员" class="xs_btn" id="submit_dpt_button"/></p>
+   <div class="clear"></div>
+ </div>
+<!--tcc2 end--> 
+
+
+<!--tcc3-->
+<div class="tcc3 mydiv" style="display:none;" id="show_detail_div">
+
+  <h3><span>收件人列表<label id="label_show_stat"></label></span><a href="javascript:;" id="close_show_detail_div_img"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/close_pic.gif" /></a></h3>
+
+  <div id="show_detail_list">
+	  <p>没有相关信息</p>
+  </div>
+</div>
+<!--tcc3-->
+
+
+<div class="mydiv" style="display:none;" id="show_draft_div">
+  <h4>
+	 <span><strong id="draft_type_name"></strong>&nbsp;每次只能完成单篇文章草稿的提取</span>
+	 <a href="javascript:;" id="close_draft_div_img">
+	 	<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/close_pic.gif" />
+	 </a>
+  </h4>
+  <div id="show_draft_list">
+	 <p>
+	  <input type="radio" name="draft_id_radio" value="1"/>&nbsp;<span class="fontwidth">内容标题内容内容内容内容内容内容内容内容……</span><span class="font_hui">上次编辑时间：3月15日 18时</span>
+	 </p>
+  </div>
+ <p align="center" id="show_more_draft_p">
+ 	<a href="javascript:;" id="load_more_draft">点击继续加载内容……</a>
+ 	<input type="hidden" id="load_page"/>
+ </p>
+ <p class="no_line"><a href="javascript:;" class="qd_btn" style="text-decoration:none;" id="show_draft_by_id_submit">确定提交</a><a href="javascript:;" class="qd_btn"style="text-decoration:none;"  id="close_draft_div_button">取消</a></p>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+    <form action="/Oa/Task/savaTask" method="post" id="form_task">
+      <div class="you">
+        <!--button-->
+        <ul>
+        	<li><a href="/Oa/Task/pushTask" style="text-decoration:none;" class="a_green">发布新工作</a><a href="/Oa/Task/taskListFromMe" style="text-decoration:none;" class="a_limegreen">已发布的工作</a></li>
+        </ul>
+        <!--button end-->
+        <h4 class="border_line">发布新工作（{$push_date}）</h4>
+        <!--fbxgz_tab-->
+        <div class="fbxgz_tab">
+        <table width="93%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="50" height="30"><label style="color:red;font-size:12px;">*</label>标&nbsp;题：</td>
+            <td><input type="text" class="text2" value="{$task_title_default}" id="task_title" name="task_title" maxlength="55"/></td>
+            <td><input type="button" value="提取草稿" class="green_btn" id="get_draft_list_button"/></td>
+          </tr>
+          <tr>
+          	<td width="80">&nbsp;分&nbsp;类：</td>
+            <td width="100">
+            	<select id="task_type" name="task_type" style="width:100px;">
+            		{foreach from=$tasktype_list item=task_type}
+            			<option value="{$task_type.type_id}">{$task_type.type_name}</option>
+            		{/foreach}
+            	</select>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        <p class="sjr"><label style="color:red;font-size:12px;">*</label>收件人：<span class="span"><a href="javascript:;" id="choice_dpt" style="text-decoration:none;">选择部门</a><a href="javascript:;" id="choice_member" style="text-decoration:none;">追加人员</a></span><a href="javascript:;" id="choice_detail">已添加<span id="total_nums">0</span>人，点击查看详细..</a></p>
+        <div class="class_work_con_m">
+	 	<textarea name=task_content id="task_content" style="width:680px;height:200px;">{$current_news.news_content}</textarea>
+	</div>
+        <!-- <div style="width:100%;overflow:hidden;margin-top:5px;">
+	        <label style="float:right;">
+	        	已输入<span id="word_counter">0</span>个字符
+	        	<span id="font_for_remind"></span>
+	        </label>
+        </div> -->
+        </div>
+        <!--fbxgz_tab end-->
+        <!--fbxgz_yi-->
+        <div class="fbxgz_yi">
+          <p><input type="checkbox" id="expiration_time_switch" name="expiration_time_switch" value="1"/>&nbsp;启用到期日期</p>
+          <div id="show_expiration_time" style="display:none;float:right;width:200px;overflow:hidden;">
+          	<input style="display:inline-block;float:left;" name="expiration_time" class='input_txt2' type="text" {literal}onclick="WdatePicker({startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true});"{/literal} id="expiration_time" onchange="tcObj.checkExpirationTime();tcObj.loadPreviewMsg();tcObj.fillRemindDate();return false;"/>
+		  	<img width="20" border="0" align="absmiddle" {literal}onclick="WdatePicker({el:'expiration_time',isShowClear:false,startDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd',alwaysUseStartDate:true})"{/literal} title="日历" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon15.gif" />
+          	<div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <!--fbxgz_yi end-->
+        <!--fbxgz_er-->
+        <div class="fbxgz_er" id="sms_remind_div" style="display:none;">
+          <p>
+	          <input type="checkbox" id="need_sms_remind" name="need_sms_remind" value="1"/>&nbsp;启用短信提醒
+          </p>
+          <p id="show_dealine_hours" style="display:none;">
+	          <label>到期前&nbsp;
+	          <select name="deadline_hours" id="deadline_hours">
+	          	<option value="6">6小时</option>
+	          	<option value="12">12小时</option>
+	          	<option value="24">24小时</option>
+	          </select>
+	          &nbsp;提醒我</label><label>系统大约在<span id="show_remind_date"></span>给您发短信提醒</label>
+	          </p>
+          <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon16.gif" />
+          <div class="clear"></div>
+        </div>
+        <!--fbxgz_er end-->
+        <!--fbxgz_san-->
+        <div class="fbxgz_san">
+           <p style="width:100%;"><input type="checkbox" class="checkbox" id="need_sms_push" name="need_sms_push" value="1"/>启用短信推送方式</p>
+           <p id="show_sms_push_msg" style="display:none;">
+            	内容预览：<br />
+            	<span id="show_preview_msg">
+            	</span>
+            	<br/>
+           </p>
+          <div class="clear"></div>
+        </div>
+        <!--fbxgz_san end-->
+        <!--fbxgz_yi-->
+        <div class="fbxgz_yi">
+          <p><input type="checkbox" id="need_reply" name="need_reply" value="1"/>&nbsp;启用回复功能</p>
+          <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon15.gif" />
+          <div class="clear"></div>
+        </div>
+        <!--fbxgz_yi end-->
+        <p class="biaoqian"> 标签：<input type="text" class="text2" value="{$tag_names_default}" id="tag_names" name="tag_names"/>注：每个标签之间用空格分开 </p>
+        <p><input type="button" value="直接发布" class="zjfb_btn" onmouseover="this.style.color='white'" onmouseout="this.style.color='#4d8900'" id="submit_button"/><input type="button" value="保存草稿" class="bccg_btn" onmouseover="this.style.color='white'" onmouseout="this.style.color='#4d8900'" id="submit_draft_button"/></p>
+        <div class="clear"></div>
+  </div>
+  <input type="hidden" id="client_account" value="{$client_account}"/>
+  <input type="hidden" id="school_id" value="{$school_id}"/>
+  <input type="hidden" id="school_name" value="{$school_name}"/>
+  <input type="hidden" id="task_title_default" value="{$task_title_default}"/>
+  <input type="hidden" id="tag_names_default" value="{$tag_names_default}"/>
+  <input type="hidden" id="system_date" value="{$system_date}"/>
+  <textarea id="dpt_arr" name="dpt_arr" style="display:none;"></textarea>
+  <textarea id="member_arr" name="member_arr" style="display:none;"></textarea>
+  </form>
+      
+    <!--you end-->  
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我们网_个人首页_集中办公平台</title>
+<meta name="description" content="我们网_最大的未成年人成长社区,学生,老师,家长互通平台,未成年人成长社区,教育资源平台">
+<meta name="Keywords" content="我们网,我们,我们网资源,资源,教育资源,我们网社区,我们网登录,我们网帐号,未成年人成长社区">
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/index.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+	<!--导航-->
+	 <div class="main_nav">
+	 	<a href="{if $show_access_arr.5}javascript:openHref('/Oa/Classnaviga'); {else}javascript:;{/if}" style="text-decoration:none;">班级导航</a>
+	    <a href="{if $show_access_arr.6}javascript:openHref('/Oa/Department/guide'); {else}javascript:;{/if}" style="text-decoration:none;">部门导航</a>
+	    <a href="javascript:;" style="text-decoration:none;" id="show_schetype_div">分类管理</a>
+	    <a href="javascript:openHref('/Oa/Labelclass/taglist');" style="text-decoration:none;">标签管理</a> 
+	 </div>
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+	<!--left end-->
+    <!--middle-->
+<div class="index_middle">
+	<form id="my_ksjs" action="/Oa/Index/QuickNotes" method="post">
+	<textarea cols="" rows="" name="ksjs" id="ksjs" class="ksjs" >快速记事哦...</textarea>
+    <a href="#" id="ksjs_btn" style="text-decoration:none;" class="ksjs_btn">发布</a>
+    </form>
+    <div class="clear"></div>
+    
+    <!--到期提醒-->
+    <h4 class="dqtx_title">到期提醒</h4>
+    <div class="dqtx">
+    <div class="dqtx_left">
+    {if $remind_task_infos == ''}
+    	<h4>工作</h4><a href="#" class="dqtx_more">更多</a>
+    {/if}
+    <div class="clear"></div>
+    {if $remind_task_infos != ''}
+	        <h4>工作</h4><a href="/Oa/Expireremind/expireinfoslist" class="dqtx_more">更多</a>
+	        <ul>
+	        {foreach from=$remind_task_infos item=task_infos}
+	            <li><a href="/Oa/Expireremind/arrangeworkdetail/task_id/{$task_infos.task_id}"><span>&nbsp;{$task_infos.task_title}</span></a> {$task_infos.expiration_time}到期</li>
+            {/foreach}
+	        </ul>
+      {else}
+	        <div class="clear"></div>
+	        <ul>
+	            <li style="color:#0073b2;">暂无数据</li>
+	        </ul>
+      {/if}
+      <div class="clear"></div>
+      </div>
+      <div class="dqtx_left dqtx_right">
+      {if $remind_schedule_infos == ''}
+	  	<h4>日程</h4><a href="#" class="dqtx_more">更多</a>
+	  {/if}
+      {if $remind_schedule_infos != ''}
+	          <h4>日程</h4><a href="/Oa/Expireremind/getScheduleByRemindTime" class="dqtx_more">更多</a>
+	          <ul>
+	          {foreach from=$remind_schedule_infos item=schedule_infos}
+	            <li><a href="/Oa/Schedulemanage/showScheduleinfo/schedule_id/{$schedule_infos.schedule_id}"><span>&nbsp;{$schedule_infos.schedule_title}</span></a> {$schedule_infos.expiration_time}到期</li>
+              {/foreach}
+	        </ul>
+	   {else}
+		        <div class="clear"></div>
+		        <ul>
+		            <li style="color:#0073b2;">暂无数据</li>
+		        </ul>
+	   {/if}
+	   </div>
+      <div class="clear"></div>
+    </div>
+	
+    <!--工作列表-->
+    <div>
+    <div class="gzlb">
+    	{if empty($TaskInfos1)}
+    		<h4>局里工作</h4><a href="#" class="gzlb_more">更多</a>
+    	{else}
+    	<h4>局里工作</h4><a href="/Oa/Expireremind/getTaskInfosByUidType/type_id/1" class="gzlb_more">更多</a>
+    	{/if}
+    	 <table cellpadding="0" cellspacing="0">
+    	{if !empty($TaskInfos1)}
+    		
+	        {foreach from=$TaskInfos1 item=val}
+	        	<tr>
+	            	<td class="bt"><a href="/Oa/Task/taskDetail/task_id/{$val.task_id}">{$val.task_title}</a> </td>
+	                <td >{$val.add_time}</td>            
+	            </tr>
+	         {/foreach}
+        {else}
+	        	<tr colspan="6">
+	                <td >暂无数据</td>            
+	            </tr>
+        {/if}    
+        </table>
+    </div>
+
+	<div class="gzlb">
+		{if empty($TaskInfos2)}
+    		<h4>学校工作</h4><a href="#" class="gzlb_more">更多</a>
+   		{else}
+    		<h4>学校工作</h4><a href="/Oa/Expireremind/getTaskInfosByUidType/type_id/2" class="gzlb_more">更多</a>
+    	{/if}
+    	<table cellpadding="0" cellspacing="0">
+    	{if !empty($TaskInfos2)}
+	        	{foreach from=$TaskInfos2 item=val2}
+	        	<tr>
+	            	<td class="bt"><a href="/Oa/Task/taskDetail/task_id/{$val2.task_id}">{$val2.task_title}</a> </td>
+	                <td>{$val2.add_time}</td>            
+	            </tr>
+	           {/foreach}
+        {else}
+	        	<tr colspan="6">
+	                <td >暂无数据</td>            
+	            </tr>
+        {/if}    
+        </table>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <div>
+    <div class="gzlb">
+    	{if empty($TaskInfos3)}
+    		<h4>重要通知</h4><a href="#" class="gzlb_more">更多</a>
+    	{else}
+    	<h4>重要通知</h4><a href="/Oa/Expireremind/getTaskInfosByUidType/type_id/3" class="gzlb_more">更多</a>
+    	{/if}
+    	<table cellpadding="0" cellspacing="0">
+    	{if !empty($TaskInfos3)}
+		        {foreach from=$TaskInfos3 item=val3}
+		        	<tr>
+		            	<td class="bt"><a href="/Oa/Task/taskDetail/task_id/{$val3.task_id}">{$val3.task_title}</a> </td>
+		                <td>{$val3.add_time}</td>            
+		            </tr>
+		         {/foreach}
+        {else}
+	        	<tr colspan="6">
+	                <td >暂无数据</td>            
+	            </tr>
+        {/if}    
+         </table>
+    </div>
+    
+    <div class="gzlb">
+    	{if empty($TaskInfos4)}
+    		<h4>校务公开</h4><a href="#" class="gzlb_more">更多</a>
+   		{else}
+   			<h4>校务公开</h4><a href="/Oa/Expireremind/getTaskInfosByUidType/type_id/4" class="gzlb_more">更多</a>
+    	{/if}
+    	<table cellpadding="0" cellspacing="0">
+    	{if !empty($TaskInfos4)}
+	    	{foreach from =$TaskInfos4 item=val4}
+		        	<tr>
+		            	<td class="bt"><a href="/Oa/Task/taskDetail/task_id/{$val4.task_id}">{$val4.task_title}</a> </td>
+		                <td>{$val4.add_time}</td>            
+		            </tr>
+		     {/foreach}
+        {else}
+	        	<tr colspan="6">
+	                <td >暂无数据</td>            
+	            </tr>
+        {/if}    
+        </table>
+    </div>
+    <div class="clear"></div>
+    </div>
+</div>
+    <!--middle end-->
+    
+    <!--right-->
+	{insert name="oa_right" uid=$uid}
+    <!--right end-->
+	    
+   <div class="clear"></div> 
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

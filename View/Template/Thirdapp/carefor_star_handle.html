@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>关爱之星-办理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/star.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	$.formValidator.initConfig({formid:"form_gazx",debug:false,submitonce:true,onerror:function(msg,obj,errorlist){
+			//$.map(errorlist,function(msg1){alert(msg1)});
+			//alert(msg);
+		}
+	});	
+	
+	$("#parent_id").formValidator({onshow:"请输入15或18位的身份证",onfocus:"输入15或18位的身份证",oncorrect:"输入正确"}).functionValidator({fun:isCardID});
+	$("#child_phone").formValidator({onshow:"请输入手机号码",onfocus:"请输入11位手机号码",oncorrect:"输入正确"}).inputValidator({min:11,max:11,onerror:"手机号码必须是11位的,请确认"}).regexValidator({regexp:"mobile",datatype:"enum",onerror:"你输入的手机号码格式不正确"});
+	$("#child_id").formValidator({onshow:"请输入15或18位的身份证",onfocus:"输入15或18位的身份证",oncorrect:"输入正确"}).functionValidator({fun:isCardID});
+	
+
+});
+
+
+function btn_submit() {	
+	 $('#form_gazx').submit();
+}
+</script>
+{/literal}
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="right">
+  <div class="star_main">
+
+   <form action="/Thirdapp/Gazxregistinfo/dohandle" method="post" name="form_gazx" id="form_gazx">
+    <h4>关爱之星-办理</h4>
+    <ul id="errorlist"></ul>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>家长姓名：</th>
+        <td>{$info.parent_name}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>家长手机号：</th>
+        <td>{$info.parent_phone}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>家长身份证号：</th>
+        <td><input id="parent_id" type="text" name="parent_id" maxlength="18" tabindex="1"/></td>
+        <td><div id="parent_idTip" ></div></td>
+      </tr>
+      <tr>
+        <th>孩子姓名：</th>
+        <td>{$info.child_name}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>孩子手机号：</th>
+        <td><input id="child_phone" type="text" name="child_phone" maxlength="11" tabindex="1"/></td>
+        <td><div id="child_phoneTip" ></div></td>
+      </tr>
+      <tr>
+        <th>孩子身份证号：</th>
+        <td><input id="child_id" type="text" name="child_id" maxlength="18" tabindex="1"/></td>
+        <td><div id="child_idTip" ></div></td>
+      </tr>
+    </table>
+    <p class="star_btn"><a href="#" id="btn_submit" onclick="javascript:btn_submit();" class="green_btn">办理</a></p>
+	<input type="hidden" name="parent_account" value="{$info.parent_account}"/>
+	<input type="hidden" name="parent_phone" value="{$info.parent_phone}"/>
+	<input type="hidden" name="child_account" value="{$info.child_account}"/>
+	</form>
+  </div>
+
+</div><!--right end-->
+
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end-->  
+</body>
+</html>

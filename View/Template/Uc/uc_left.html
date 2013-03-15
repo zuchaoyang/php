@@ -1,0 +1,24 @@
+{literal}
+<script type="text/javascript">
+	$(function(){
+		var pathname = window.location.pathname.toLowerCase();
+		$('a', $('.main_left')).each(function() {
+			var href = $(this).attr('href').toLowerCase();
+			if(pathname.indexOf(href) >= 0) {
+				$(this).addClass('headpic');
+			} else {
+				$(this).removeClass('headpic');
+			}
+		});
+	});
+</script>
+{/literal}
+<div class="main_left">
+  <ul class="nav_a_style">
+   <li><a href="/Uc/Userinfos/head_photo">修改头像</a></li>
+   <li><a href="/Uc/Userinfos/UserBaseInfos">基本资料</a></li>
+   <li><a href="/Uc/Userinfos/contact_manage">联系方式</a></li>
+   <li><a href="/Uc/Userinfos/getUserStretchInfo">扩展资料</a></li>
+   <li><a href="/Uc/Userinfos/AccountPrivacy">隐私设置</a></li>
+  </ul>
+</div>

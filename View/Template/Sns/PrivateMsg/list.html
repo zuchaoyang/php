@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>私信</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/PrivateMsg/list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/PrivateMsg/list.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+</head>
+<body>
+<!--弹出层 star-->
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="private_msg_relation" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_question"></span></dt>
+      </dl>
+      <p>
+       确认要删除本条信息吗？ 
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="qd_btn"><input type="button" value="取消" class="qx_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+<!--编辑评语 star-->
+ <div class="edit_comment" id="replay_content" style="display:none;">
+   <h1 class="tcc_title"></h1>
+   <p class="textarea_main">
+    <textarea id="replay_textarea"></textarea>
+   </p>
+ </div>
+ <!--编辑评语 end-->
+ 
+ <!--保存成功 star-->
+   <div class="success" style="display:none;">
+     <p>发送成功</p>
+   </div>
+ <!--保存成功 end-->
+ 
+  <!--同意好友请求 star-->
+ <div class="tcc_request" style="display:none;">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><span class="icon_warn"></span></td>
+        <td>请您输入私信内容</td>
+      </tr>
+    </table>
+ </div>
+ <!--同意好友请求 end-->
+ 
+<!--弹出层 end-->
+{insert name="sns_header"}
+<!--per_tip star-->
+  {include file="Public/sns_person_space_header.html"}
+<!--per_tip end--> 
+<!--content star-->
+<div class="content pt20">
+  <!--mood_main star-->
+  <div class="mood_main">
+    <ul>
+      <li><a href="#" class="main_nav_a1 f16" title="">我的私信</a></li>
+      <li class="align_right pt10"></li>
+    </ul>
+    {if !empty($private_list)}
+    {foreach from=$private_list item=val}
+    {if !empty($val.is_send)}
+	    <!--list_main star-->
+	    <div class="list_main">
+	      <dl>
+	        <dt><img src="{$val.to_url}" class="list_tx"></dt>
+	      </dl>
+	      <div class="list_main_right">
+	        <p>发给 <a href="#">{$val.to_name}</a>{$val.content}</p>
+	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.to_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.to_uid}" class="reply_msg">回复</a><input type="hidden" value="{$val.to_name}" id="replay_name_{$val.send_uid}"/></p>
+	      </div>
+	      <div class="clear"></div>
+	      <div class="tcc_close">
+	        <a href="javascript:;" id="private_msg_{$val.relation_id}_{$val.to_uid}" class="icon_close"></a>
+	      </div>
+	    </div>
+	    <!--list_main end-->
+	{else}
+		<!--list_main star-->
+	    <div class="list_main">
+	      <dl>
+	        <dt><img src="{$val.send_url}" class="list_tx"></dt>
+	      </dl>
+	      <div class="list_main_right">
+	        <p><a href="#">{$val.send_name}:</a>{$val.content}</p>
+	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.send_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.send_uid}" class="replay_msg">回复</a><input type="hidden" value="{$val.send_name}" id="replay_name_{$val.send_uid}"/></p>
+	      </div>
+	      <div class="clear"></div>
+	      <div class="tcc_close">
+	        <a href="javascript:;" id="private_msg_{$val.relation_id}_{$val.send_uid}" class="icon_close"></a>
+	      </div>
+	    </div>
+	    <!--list_main end-->
+	{/if}
+    {/foreach}
+    {/if}
+    <!--fen_page star-->
+    <div class="fen_page">
+      <p>当前第{$page}页
+      {if $page == 1 && empty($is_end_page)}
+      	<a href="javascript:;" class="ml10">上一页</a><a href="/Sns/PrivateMsg/PrivateMsg/index/page/{$page+1}" class="ml10">下一页</a>
+      {elseif !empty($is_end_page) && $page != 1}
+      	<a href="/Sns/PrivateMsg/PrivateMsg/index/page/{$page-1}" class="ml10">上一页</a><a href="javascript:;" class="ml10">下一页</a>
+      {elseif $page ==1 && !empty($is_end_page)} 
+      	<a href="javascript:;" class="ml10">上一页</a><a href="javascript:;" class="ml10">下一页</a>
+      {else}
+      	<a href="/Sns/PrivateMsg/PrivateMsg/index/page/{$page-1}" class="ml10">上一页</a><a href="/Sns/PrivateMsg/PrivateMsg/index/page/{$page+1}" class="ml10">下一页</a>
+      {/if}
+      </p>
+    </div>
+    <!--fen_page end-->
+  </div>  
+  <!--mood_main end-->
+<div class="clear"></div> 
+</div>
+<!--content end-->
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

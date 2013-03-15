@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我的评语</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	// 关闭并返回数据到主页面
+	function copyText(msg){
+	
+		var origin = artDialog.open.origin;
+		var aValue = msg;
+		var rt = document.getElementById('backid').value;
+		var input = origin.document.getElementById('py_id_'+rt);
+		input.value = aValue;
+		input.select();
+		art.dialog.close();
+	}
+
+</script>
+{/literal}
+
+</head>
+
+<body>
+<table width="500" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+  <tr bgcolor="#efefef">
+    <td height="30" align="center">&nbsp;</td>
+    <td width="20%" align="center">操作</td>
+  </tr>
+  {if !empty($rsmpy_info)}
+   {foreach from=$rsmpy_info item=info key=key name=rownumber}
+  <tr bgcolor="#FFFFFF">
+    <td height="30">{$info.py_content}</td>
+
+    <td height="30" align="center"><a href="javascript:copyText('{$info.py_content}');">【选中】</a></td>
+  </tr>
+  {/foreach}
+  {/if}
+  <input type="hidden" name="backid" id="backid" value="{$rowsid}" />
+</table>
+</body>
+</html>

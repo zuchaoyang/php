@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>老师首页</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassIndex/main.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Feed/feed.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassIndex/main.js"></script>
+
+</head>
+<body>
+{insert name="sns_header"}
+
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <!--bladkground star-->
+    {include file="Sns/ClassIndex/backborad.html"}
+    <!--bladkground end-->
+    <!--active_member star-->
+    {include file="Sns/ClassIndex/active_member.html"}
+    <!--active_member end-->
+    <!--主要内容 star-->
+     <div class="mian_index">
+     <!--main_left star-->
+     <div class="main_left">
+       <ul>
+          <li>
+          	<a href="javascript:;" class="main_nav_a1 mr6" title="">班级动态</a>
+          	<a href="javascript:;" class="main_nav_a2" title="">孩子动态</a>
+          </li>
+       </ul>
+       <!--say_box star-->
+       <div class="say_box">
+         <p>
+         	<textarea class="say_text" style="display:none;"></textarea>
+         </p>
+         <input id="client_account" type="hidden" value="{$user.client_account}"/>
+       </div>
+       <!--say_box end-->
+       <!--system_message star-->
+       <div class="system_message">
+         <p class="system_top"></p>
+         <!--system_center star-->
+         <div class="system_center">
+           <!--info star-->
+           <div class="info">
+             <dl>
+               <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/icon_info.jpg"></dt>
+               <dd>系统消息</dd>
+             </dl>
+             <div class="info_right">
+               <p class="info_right_top"></p>
+               <p class="info_right_center">
+                	 欢迎您加入我们网——老师、家长、学生教育sns互动交流平台。
+               </p>
+               <p class="info_right_bottom"></p>
+               <p class="info_time">发布时间：2012.12.05<span class="pl10">13:21</span><span class="pl20">发布者：我们网</span><a href="#" class="fc_4f9f32 f14">删除</a></p>
+             </div>
+             <div class="clear"></div>
+           </div>
+           <!--info end-->
+           <!--info star-->
+           <div class="info">
+             <dl>
+               <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/icon_notice.jpg"></dt>
+               <dd>公告</dd>
+             </dl>
+             <div class="info_right">
+               <p class="info_right_top"><span class="fc_288c00">周五大扫除</span></p>
+               <p class="info_right_center">
+                 	周五全校大扫除，放学后请值日班长安排值日生对班级桌椅板凳及分担区进行彻底清扫。
+               </p>
+               <p class="info_right_bottom"></p>
+               <p class="info_time">发布时间：2012.12.05<span class="pl10">13:21</span><span class="pl20">发布者：我们网</span><a href="#" class="fc_4f9f32 f14">删除</a></p>
+             </div>
+             <div class="clear"></div>
+           </div>
+           <!--info end-->
+           <!--info star-->
+           <div class="info">
+             <dl>
+               <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/icon_homework.jpg"></dt>
+               <dd>作业</dd>
+             </dl>
+             <div class="info_right">
+               <p class="info_right_top"><span class="fc_288c00">语文作业</span></p>
+               <p class="info_right_center">
+                	 交作业日期 2012.12.05<a href="#" class="fc_4f9f32 f14">查看作业</a>
+               </p>
+               <p class="info_right_bottom"></p>
+               <p class="info_time">发布时间：2012.12.05<span class="pl10">13:21</span><span class="pl20">发布者：我们网</span><a href="#" class="fc_4f9f32 f14">删除</a></p>
+             </div>
+             <div class="clear"></div>
+           </div>
+           <!--info end-->
+            <!--info star-->
+           <div class="info">
+             <dl>
+               <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/icon_exam.jpg"></dt>
+               <dd>成绩</dd>
+             </dl>
+             <div class="info_right">
+               <p class="info_right_top"><span class="fc_288c00">期中考试成绩公布</span></p>
+               <p class="info_right_center">
+               	  考试日期 2012.12.20<a href="#" class="fc_4f9f32 f14">查看成绩</a>
+               </p>
+               <p class="info_right_bottom"></p>
+               <p class="info_time">发布时间：2012.12.05<span class="pl10">13:21</span><span class="pl20">发布者：我们网</span><a href="#" class="fc_4f9f32 f14">删除</a></p>
+             </div>
+             <div class="clear"></div>
+           </div>
+           <!--info end-->
+         </div>
+         <!--system_center end-->
+         <p class="system_bottom"></p>
+       </div>
+       <!--system_message end-->
+       
+       
+       <div id="show_feed">
+
+
+	  </div>
+       
+       <!--personal_active star-->
+       <div class="personal_active">
+         <div class="per_active_l">
+          <dl>
+           <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/per_img01.jpg"></dt>
+          </dl>
+         </div>
+         <!--per_active_r star-->
+         <div class="per_active_r">
+           <p class="per_right_top"><span class="fc_288c00">王晓</span></p>
+           <div class="per_right_center">
+             <h6>为什么要和孩子一起阅读</h6>
+             <dl>
+               <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/tp01.jpg" height="181"></dt>
+             </dl>
+             <p>
+                   	 妈妈或爸爸带孩子一起看书，这种一对一的模式，最能培养孩子的注意力。孩子喜欢模仿父母行为，父母参与的活动会让孩子兴趣大增。而且父母和孩子在阅读中建立的情感交流是孩子成长中最需要的营养成分。这种爱让孩子感受...<a href="#" class="fc_288c00 ml10">(阅读全文)</a>
+             </p>
+             <div class="per_release_time">
+              <p class="per_p_width">发布时间：2012.12.22</p>
+              <p><a href="#" class="fc_288c00">删除</a><a href="#" class="fc_288c00">分享(12)</a><a href="#" class="fc_288c00">评论(4)</a></p>
+             </div>
+           </div>
+           <p class="per_right_bottom"></p>
+         </div>
+         <!--per_active_r end-->
+         <div class="clear"></div>
+       </div>
+       <!--personal_active end-->
+       
+       <!--more_active star-->
+         <div class="more_active">
+           <a href="#">查看更多动态</a>
+         </div>
+       <!--more_active end-->
+       <div class="clear"></div>
+     </div>
+      <!--main_left end-->
+      
+      <!--mian_right star-->
+      <div class="mian_right">
+        <div class="photo_index">
+          <dl>
+            <dt><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassIndex/photo_pic01.jpg"></dt>
+            <dd><input type="button" value="上一张" class="up_btn"><input type="button" value="下一张" class="up_btn"></dd>
+          </dl>
+        </div>
+        <!--hot_resource star-->
+        {include file="Sns/ClassIndex/hotresource.html"}
+        <!--hot_resource end-->
+      </div>
+      <!--mian_right end-->
+      <div class="clear"></div>
+      </div>
+    <!--主要内容 end-->
+    <div class="clear"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div>
+  </div>
+<!--content end-->
+{include file="Public/sns_footer.html"}
+
+
+ <!--老师名片 star-->
+ {literal}
+  <div id="teacher_info" class="stu_card" style="display:none;">
+    <p class="card_top"></p>
+    <div class="card_center">
+      <div class="card_title"></div>
+      <div class="card_center_main">
+       <dl>
+         <dt><img class="photo_width60" src="{teacher_info.header_pic}"></dt>
+       </dl>
+       <div class="stu_info">
+         <strong>{teacher_info.client_name}</strong>
+         <p>{teacher_info.school_address}</p>
+         <p>活跃值：{teacher_info.active_value}</p>
+         <p>
+         	{if teacher_info.is_self == false}
+         	<input type="button" value="" id="private_msg_{teacher_info.client_account}" class="gt_btn">
+         	{if teacher_info.is_friend == false}
+         		<input type="button" id="client_account_{teacher_info.client_account}" value="" class="add_btn">
+         	{/if}
+         	<input id="client_name_{teacher_info.client_account}" type="hidden" value="{teacher_info.client_name}"/>
+         	{/if}
+        </p>
+       </div>
+       <div class="clear"></div>
+      </div>
+    </div>
+    <p class="card_bottom"></p>
+  </div>
+  {/literal}
+ <!--老师名片 end-->
+ <!--学生名片 star-->
+ {literal}
+  <div id="student_info" class="stu_card" style="display:none;">
+    <p class="card_top"></p>
+    <div class="card_center">
+      <div class="card_title stu_card_title"></div>
+      <!--card_center_main star-->
+      <div class="card_center_main">
+      <dl>
+        <dt><img class="photo_width60" src="{student_info.header_pic}"></dt>
+      </dl>
+      <div class="stu_info">
+        <strong>{student_info.client_name}</strong>
+        <p>{student_info.school_address}</p>
+        <p>活跃值：{student_info.active_value}</p>
+      </div>
+      <div class="clear"></div>
+      <div class="stu_main">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><p id="child_father">{student_info.client_name}的父亲</p></td>
+            <td><p id="child_mather">{student_info.client_name}的母亲</p></td>
+          </tr>
+          <tr>
+            <td id="father_name">{student_info.father_name}</td>
+            <td id="mather_name">{student_info.mather_name}</td>
+          </tr>
+          <tr>
+            <td>
+            	{if student_info.is_father_self == false}
+            	<input type="button" value="" id="private_msg_{student_info.father_account}" class="gt_btn mr3">{if student_info.is_father_friend == false}<input type="button" value="" id="client_account_{student_info.father_account}" class="add_btn  add_friend">{/if}
+            	<input id="client_name_{student_info.father_account}" type="hidden" value="{student_info.father_name}"/>
+            	{/if}
+            </td>
+            <td>
+            	{if student_info.is_mather_self == false}
+            	<input type="button" value="" id="private_msg_{student_info.mather_account}" class="gt_btn mr3">{if student_info.is_mather_friend == false}<input type="button" value="" id="client_account_{student_info.mather_account}" class="add_btn  add_friend">{/if}
+            	<input id="client_name_{student_info.mather_account}" type="hidden" value="{student_info.mather_name}"/>
+            	{/if}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="clear"></div>
+      </div>
+      <!--card_center_main end-->
+    </div>
+    <p class="card_bottom"></p>
+  </div>
+  {/literal}
+ <!--学生名片 end-->
+ 
+ <!--添加好友 star-->
+ <div class="edit_comment" id="add_frient_div"  style="display:none;">
+   <h1 class="tcc_title">向<span></span>发送好友请求</h1>
+   <p class="textarea_main">
+    <textarea id="add_friend_textarea"></textarea>
+   </p>
+ </div>
+ <!--添加好友 end-->
+ 
+ 
+ <!--添加私信 star-->
+ <div class="edit_comment" id="add_privatemsg_div"  style="display:none;">
+   <h1 class="tcc_title">向<span></span>发送私信</h1>
+   <p class="textarea_main">
+    <textarea id="add_privatemsg_textarea"></textarea>
+   </p>
+ </div>
+ <!--添加私信 end-->
+ 
+ <!--提示信息弹出层 star-->
+  <div class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_warn"></span></dt>
+      </dl>
+      <p>
+       	请您输入附加信息。
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="qd_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_right"></span></dt>
+      </dl>
+      <p>
+       您的好友添加请求已经发送成功，正在等待对方确认。
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="orange_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+ 
+ <!--保存成功 star-->
+   <div class="success" style="display:none;">
+     <p>保存成功</p>
+   </div>
+ <!--保存成功 end-->
+<!--弹出层 end-->
+
+<input type="hidden" value="{$class_code}" id="class_code"/>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>老用户导入结果</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">老用户导入结果</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">老用户导入结果</td>
+  </tr>
+  <tr>
+   <td>
+     <table width="35%" border="0" align="left" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+      <tr>
+        <td height="40" bgcolor="#FFFFFF" style="padding-left:10px;">
+          成功数据：{$success}条
+        </td>
+      </tr>
+      <tr>
+        <td height="40" bgcolor="#FFFFFF"style="padding-left:10px;">
+          失败数据：{$error}条  
+        </td>
+      </tr>
+      <tr>
+       <td height="40" bgcolor="#FFFFFF" style="padding-left:10px;">
+       {if $error != 0}
+         <input type="button" value="请将失败数据保存到本地" onclick="javascript:location.href='/Basecontrol/Phonebinding/outerror{$error_path}';" class="blue_btn3" />{/if}<input type="button" onclick="javascript:history.go(-1);" value="返回" class="gray_btn" />
+         <br/>
+         {if $error != 0}<span style="padding-left:10px; color:#FF0000;">注意：如未保存，失败数据将不会重现</span>{/if}
+       </td> 
+      </tr>
+    </table>
+   </td>
+  </tr>
+</table>
+</body>
+</html>

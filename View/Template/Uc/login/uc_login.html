@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>UC登录页</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/login/uc_login.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/tip_green/tip_green.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/login/jqcss/style.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery_plugins/jquery.md5.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/login/uc_login.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/images_rotation/images_rotation.js"></script>
+
+</head>
+
+<body>
+  <div id="top">
+    <p><a href="#">联系我们</a><a class="a_line">|</a><a href="#" id="addbookmark">收藏</a></p>
+  </div>
+  <!--main star-->
+  <div id="main">
+   <div class="cotent">
+     <div class="cotent_left">
+       <div id="errorMessage" class="red_tip">&nbsp;</div>
+       <div class="zh_text_bg"><input type="text"  class="zh_text" id="username" name="username" maxlength="60" value=""/></div>
+       <div class="mm_text_bg"><input type="password" class="mm_text" id="password" name="password" maxlength="20"/></div>      
+       <div id="captcha" style="display:none">
+	       <p class="yzm_style"><img alt="验证码" id="img_captcha" src=""></p> <a href="javascript:;" id="change_captcha" class="yzm_hh">换一张</a>
+	       <div class="clear"></div>
+	       <div class="yzm_text_bg"><input type="text" class="yzm_text" id="captcha_input_code" name="captcha_input_code" value="" maxlength="20"/></div>
+       </div>
+       <div class="clear"></div>
+       
+       <p><input type="button" value="" id="login_btn" class="login_btn" /><a href="/Uc/findpwd">忘记密码？</a></p>
+       <input type="hidden" id="client_id" name="client_id" value="{$client_id}"></input>
+       <input type="hidden" id="client_secret" name="client_secret" value="{$client_secret}"></input>
+       <input type="hidden" id="callback" name="callback" value="{$callback}"></input>
+       <div class="clear"></div>
+	    <p><input type="button" id="qq_login_btn" value="用QQ帐号登录" class="qq_login" /><input type="button" onclick="javascript:window.open('http://connect.qq.com/qqlogin');" value="什么是QQ登录？" class="qq_btn" /></p>
+     </div>
+     <div class="cotent_right">
+     <div style="OVERFLOW: visible">
+			<div id="banner" class="banner">
+				<div class="banner_bg" align="center">
+					<ul>
+					  <li class="on">1</li>
+					  <li>2</li>
+					  <li>3</li>
+					  <li>4</li>
+					</ul>
+				</div>
+				<div id="banner_list" class="banner_list">
+					<a title="" href="/View/Template/Public/list_win/list_win.html" target="_blank"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/uc_login/img03.jpg" width="628" height="416"/></a>
+					<a title="" href="/View/Template/Public/uc_zuoyeflash.html" target="_blank"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/uc_login/img04.jpg" width="628" height="416"/></a>
+					<a title="" href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/uc_login/img01.jpg" width="628" height="416"/></a> 
+					<a title="" href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/login/uc_login/img02.jpg" width="628" height="416"/></a>
+				</div>
+			</div>
+		</div>
+	 </div>
+	 <script language="javascript">
+	 	show('banner');
+	 </script>
+	</div>
+     <div class="clear"></div>
+   </div> 
+  </div>
+  <!--main end-->
+  <!--link star-->
+  <div id="link">
+    <div class="link_main">
+     <div class="link_cotent">
+       <dl>
+        <a href = "http://leyou.wm616.cn/" target="_blank"><dt class="link_pic1"></dt></a>
+       </dl>
+       <h4>少儿导航</h4>
+       <p>中国首个少年儿童专属网址导航网站。</p>
+     </div>
+     <div class="link_cotent">
+       <dl>
+        <a href = "http://www.zscy.cn/" target="_blank"><dt class="link_pic2"></dt></a>
+       </dl>
+       <h4>雏鹰争章</h4>
+       <p>服务少年儿童参加少先队雏鹰争章活动。</p>
+     </div>
+     <div class="link_cotent">
+       <dl>
+        <a href = "http://kd.wmw.cn/" target="_blank"><dt class="link_pic3"></dt></a>
+       </dl>
+       <h4>学习资源</h4>
+       <p>全版本， 海量资源库。</p>
+     </div>
+     <div class="link_cotent link_line">
+       <dl>
+        <a href = "/Sns/school_maps/index" target="_blank"><dt class="link_pic4"></dt></a>
+       </dl>
+       <h4>校园导图</h4>
+       <p>全国中小学，最全的导航地图。</p>
+     </div>
+     <div class="clear"></div>
+    </div>
+  </div>
+  
+  <!--link_indent start 2012.10.15添加-->
+  <div class="link_indent">
+    <dl>
+     <dt><a href="#" class="link_indent_pic1" target="_blank;"></a></dt>
+    </dl>
+    <dl>
+     <dt><a href="http://www.bjwhzf.gov.cn/accuse.do" class="link_indent_pic2" target="_blank;"></a></dt>
+    </dl>
+    <dl>
+     <dt><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202012110100003" class="link_indent_pic3" target="_blank;"></a></dt>
+    </dl>
+    <dl>
+     <dt><a href="http://net.china.cn/chinese/index.htm" class="link_indent_pic4" target="_blank;"></a></dt>
+    </dl>
+    <div class="clear"></div>
+  </div>
+  <!--link_indent end 2012.10.15添加-->
+  
+  <!--link end-->
+    <div class="copyright">
+     <dl>
+      <dt></dt>
+     </dl>
+     <p>
+      <a href="#" class="first">首页</a>|<a href="#">关于我们</a>|<a href="#">联系我们</a>|<a href="#">招贤纳士</a>|<a href="http://kd.wmw.cn/" target="_blank">学习资源</a>|<a href="http://leyou.wm616.cn/" target="_blank">少儿导航</a>|<a href="http://www.zscy.cn/" target="_blank">雏鹰争章</a><br />
+      {$smarty.const.WMW_COPYRIGHT}
+      <!-- 2012-11-15 zlei add 百度统计-->
+      <span style="padding-left:-1px;">
+		<script type="text/javascript">
+		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F7d52bc42d82ed0bee7194a896122e928' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<!-- 2012-11-15 zlei add 百度统计-->
+	  </span><br /> 
+      {$smarty.const.WMW_COMPANY} <br />
+     {$smarty.const.WMW_ADDRESS} {$smarty.const.WMW_ZIP_CODE}
+     </p>
+     <div class="clear"></div>
+    </div>
+</body>
+</html>

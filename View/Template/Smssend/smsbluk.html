@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>信息群发</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/js/page/smsbluk.js"></script>
+{literal}
+<script type="text/javascript">
+	function showDiv(){
+		$('#popDiv').show();
+		$('#popIframe').show();
+		$('#bg').show();
+	}
+	
+	function closeDiv(){
+		$('#popDiv').hide();
+		$('#bg').hide();
+		$('#popIframe').hide();
+	}
+	
+	function countnum(){
+		var strLength = $('#smscontent').val().length;
+	    var numcount = $('#numcount').html(strLength);
+	}
+	
+	function check (){
+		var operation = document.getElementsByName('operation_strategy[]');
+		var parents = document.getElementById('parents');
+		var teacher = document.getElementById('teacher');
+		var smscontent = document.getElementById('smscontent').value;
+		
+		if(isEmptyObject(operation)) {
+			alert('至少要选中一个收件学校!');
+			return ;
+		}
+		
+		if(parents.checked == false && teacher.checked == false){
+			alert('至少要选中一个信息接收人!');
+			return ;
+		}
+		
+		if(smscontent.length==0){
+			alert('信息内容不能为空!');
+			return ;
+		}
+
+		if(smscontent.length>200) {
+			alert('信息内容不能超过200个字符!');
+			return ;
+		}
+		var fom = document.getElementById('fom');
+		fom.submit();
+		showDiv();
+		
+	}
+	function isEmptyObject(obj){
+		
+	    for(i=0;i<obj.length;i++)
+	    {
+	        if(obj[i].checked)
+	        {
+	            return false;
+	        }
+	    }
+	    return true; 
+	} 
+</script>
+{/literal}
+</head>
+<body style="padding-top:30px; _width:98%" onload="countnum();">
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$username}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">信息群发</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">信息群发</td>
+  </tr>
+</table>
+
+<form id="fom" action="/Smssend/Smsmultiple/{if $modify!=''}{$modify}{else}addsendtmp{/if}" method="post">
+	<table width="92%" border="0" cellpadding="0" cellspacing="0"
+		bgcolor="f0f0f0">
+		<tr>
+			<td width="80" height="35" style="padding-left: 30px;">收件学校:</td>
+			<td style="text-align: left;">
+				<input type="checkbox" class="operation_strategy" name='operation_strategy[]' value="{$smarty.const.OPERATION_STRATEGY_HLJ}" {if $sms_info!=""}{if in_array($smarty.const.OPERATION_STRATEGY_HLJ,$sms_info.operation_strategy_keys )}checked{/if}{else}checked{/if}/>黑龙江区域所有学校
+				<input type="checkbox" class="operation_strategy" name='operation_strategy[]' value="{$smarty.const.OPERATION_STRATEGY_JL}" {if in_array($smarty.const.OPERATION_STRATEGY_JL,$sms_info.operation_strategy_keys )}checked{/if}/>吉林区域所有学校
+				<input type="checkbox" class="operation_strategy" name='operation_strategy[]' value="{$smarty.const.OPERATION_STRATEGY_GD}" {if in_array($smarty.const.OPERATION_STRATEGY_GD,$sms_info.operation_strategy_keys )}checked{/if}/>广东区域所有学校
+				<input type="checkbox" class="operation_strategy" name='operation_strategy[]' value="{$smarty.const.OPERATION_STRATEGY_LN}" {if in_array($smarty.const.OPERATION_STRATEGY_LN,$sms_info.operation_strategy_keys )}checked{/if}/>辽宁区域所有学校
+				<input type="checkbox" class="operation_strategy" name='operation_strategy[]' value="{$smarty.const.OPERATION_STRATEGY_CQ}" {if in_array($smarty.const.OPERATION_STRATEGY_CQ,$sms_info.operation_strategy_keys )}checked{/if}/>重庆区域所有学校
+			</td>
+		</tr>
+		<tr>
+			<td height="30" style="padding-left: 30px;">发送范围:</td>
+			<td style="text-align: left;">
+			<input id="parents" name="recipient_type[]" type="checkbox" value="2" {if $sms_info!=""}{if in_array(2,$sms_info.send_range_keys)}checked{/if}{else}checked{/if}>发送给家长</input>
+			<input id="teacher" name="recipient_type[]" type="checkbox" value="1" {if in_array(1,$sms_info.send_range_keys)}checked{/if}> 发送给老师</input></td>
+		</tr>
+		<tr>
+			<td height="30" style="padding-left: 30px;">正文内容:</td>
+			<td style="text-align: left;"><textarea id="smscontent"
+				name="smscontent" cols="100" rows="20" onchange="countnum();"
+				onkeydown="countnum();" onkeyup="countnum();">{$sms_info.content}</textarea></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td style="height: 32px;">已输入<span id="numcount" style="color: red;">0</span>字</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input type="checkbox" id="set_time" />启用定时发送设置
+				<br/>
+				<p id="show_set_time" style="display:none;"></p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td height="30">
+				<p style="float:left;"><a href="javascript:check();" class="jxqd" >发送</a></p><p style="float:left; padding:10px 0px 0px 20px;font-size:14px;"><a href="/Smssend/Smsmultiple/getSmslist">短信管理</a></p>
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" value="{$sms_info.id}" name="send_id"/>
+	<input type="hidden" value="{$this_time}" name="this_time"/>
+</form>
+<input type="hidden" value="{$sms_info.date_ymd}" id="date_ymd"/>
+<input type="hidden" value="{$sms_info.date_h}" id="date_h"/>
+<input type="hidden" value="{$sms_info.date_i}" id="date_i"/>
+<div id="popDiv" class="mydiv" style="display:none;">
+	<span><font>短信发送提示：</font></span>
+	<p>短信息正在发送中，请稍后....</p>
+</div>
+
+<div id="bg" class="bg" style="display:none;"></div>
+
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+</body>
+</html>

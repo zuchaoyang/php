@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>用户信息修改</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/js/page/user.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+
+</head>
+
+<body>
+<form name="zdzh" id="zdzh" method="post" action="/Adminbase/Body/modifyUserInfo_do">
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">用户信息修改</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"><table width="100%" border="0" style="margin-top:20px;">
+   <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">账号：</td>
+    <td height="92%" bgcolor="#f0f8ff">
+    <input type="hidden" id="user_account" name="client_account" value="{$account}"/>
+    	{$userlist.wms_account}
+    </td>
+  </tr>
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">姓名：</td>
+    <td height="92%" bgcolor="#f0f8ff"><input type="text" id="cn" name="client_name" value="{$userlist.wms_name}" class="h_text"/><span id="client_name"></span></td>
+  </tr>
+  <tr>
+    <td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">邮箱：</td>
+    <td height="92%" bgcolor="#f0f8ff"><input type="text" id="yx" name="client_email" value="{$userlist.wms_email}" class="h_text"/><span id="client_email"></span></td>
+  </tr>
+  <tr>
+  	<td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">原密码：</td>
+  	<td height="92%" bgcolor="#f0f8ff"><input type="password" id="old_client_pwd" name="old_client_pwd" class="h_text"/></td>
+  </tr>
+  <tr>
+  	<td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">新密码：</td>
+  	<td height="92%" bgcolor="#f0f8ff"><input type="password" id="client_pwd" name="client_pwd" class="h_text"/></td>
+  </tr>
+  <tr>
+  	<td width="8%" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">确认密码：</td>
+  	<td height="92%" bgcolor="#f0f8ff"><input type="password" id="re_client_pwd" name="re_client_pwd" class="h_text"/></td>
+  </tr>
+  <tr>
+    <td width="8%" height="45" align="right" bgcolor="#f0f8ff" style="padding-left:10px;">&nbsp;</td>
+    <td width="92%" height="60" bgcolor="#f0f8ff"><input type="button" value="确认修改" id="sqsubmit" class="f_btn"/>
+    <input type="hidden" name="sq_flag" value="{$sq_flag}"/></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</form>
+
+<script type="text/javascript">
+var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+</script>
+</body>
+</html>

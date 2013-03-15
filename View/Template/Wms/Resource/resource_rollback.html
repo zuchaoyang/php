@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>资源回滚</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<div class="pllr">
+  <h3>资源回滚</h3>
+</div>    
+ <table width="92%" border="0" cellspacing="1" cellpadding="0" class="zyxg_main">
+  <tr>
+    <td colspan="5">
+    	<form action="/Wms/Resource/Resourcemanage/resource_rollback" method="post">
+     		<p>
+     		Excel导入ID：<input type="text" class="text" name="excel_id" value="{$excel_id}"/>
+     		<input type="submit" value="开始检索" class="pldr" />
+     		</p>
+    	</form>
+    </td>
+  </tr>
+  {if !empty($excel_datas_arr)}
+  <tr>
+    <td align="center">序号</td>
+    <td align="center">ExcelID</td>
+    <td align="center">Excel名称</td>
+    <td align="center">状态</td>
+    <td align="center">操作</td>
+  </tr>
+  {foreach from=$excel_datas_arr item=excel_datas}
+   <tr>
+    <td align="center">{$excel_datas.show_index}</td>
+    <td align="center">
+    	<a href="javascript:void(0);">{$excel_datas.excel_id}</a>
+    </td>
+    <td align="center">{$excel_datas.excel_name}</td>
+    <td align="center">{$excel_datas.state_msg}</td>
+    <td align="center">
+    	{if $excel_datas.can_rollback}
+    	<a href="/Wms/Resource/Resourcemanage/rollback/excel_id/{$excel_datas.excel_id}/md5_key/{$excel_datas.md5_key}">回滚</a>
+    	{else}
+    	<span>已回滚</span>
+    	{/if}
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+  	<td colspan="5" align="center">暂时没有相应的记录!</td>
+  </tr>
+  {/if}
+</table>
+</body>
+</html>

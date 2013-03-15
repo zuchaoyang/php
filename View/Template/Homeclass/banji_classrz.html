@@ -1,0 +1,66 @@
+{include file="Public/banji_header.html"}
+<div class="class_space_main">
+
+<div class="class_space_banner">
+
+<div class="class_space_banner_name">
+				<h2>{$tpl_school_Name}</h2>
+				<b>{$tpl_gradeclass_Name}</b>
+</div>
+</div><!--class_space_banner end-->
+
+
+<div class="class_space_row">
+
+	<!--class_space_row_left start-->
+		{include file="Public/banji_left.html"}
+	<!--class_space_row_left end-->
+
+<div class="class_space_row_right">
+<div class="space_dongtai">
+<h2>班级日志</h2>
+
+
+	{if !empty($mylog_list)}
+			{foreach from=$mylog_list item=vo}
+			<div class="class_diary_k">
+			    <div class='class_diary_kleft'>
+				<br>
+				<a href="/Homeuser/Index/spacehome/spaceid/{$vo.add_account}"  target='_blank'>
+				<img src="{$vo.headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width=60 height=60/></a>
+				<br>{$vo.client_name}
+				</div>
+				<div class="class_diary_kight">
+				
+					<h2><span>发布时间：{$vo.upd_date}&nbsp;&nbsp;&nbsp;</span>{$vo.log_name}</h2>
+					<div class='wordwrap' style="word-break:break-all;width:560px"><p>{$vo.log_contentall}</p></div>
+					<div class="sub_diary_tlb">
+					<div class="sub_diary_tlb_left">
+					<a href="/Homeuser/Index/spacelogview/spaceid/{$vo.add_account}/log_id/{$vo.log_id}" target='_blank'>阅读全文</a>(<span>{$vo.read_count}</span>)
+					&nbsp;&nbsp;
+					<a href="/Homeuser/Index/spacelogview/spaceid/{$vo.add_account}/log_id/{$vo.log_id}"  target='_blank'>评论(<span>{$vo.plun_count}</span>)</a>
+					</div>
+					
+					</div>
+
+				</div>
+			</div>
+			{/foreach}
+			{$pageinfohtml}
+		{else}
+		<div class="bignotip">
+		 <p><span></span><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/blank.png" class="arr_left"> 班级里还没有人发布日志。
+		</div>
+	{/if}
+
+</div>
+<div class="kong"></div>
+</div><!--class_space_row end-->
+
+</div><!--class_space_main end-->
+
+</div><!--class_space_box end-->
+{include file="Public/banji_footer.html"}
+
+</body>
+</html>

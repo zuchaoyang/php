@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东-同步资源</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/common.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/js/resource_synchroresource.js"></script>
+
+{literal}
+<script type="text/javascript">
+	function showfestival(id,arr_str){
+		var url = "/Thirdapp/Showresource/sectionlist/nav_str/"+arr_str;
+		$.ajax({
+			type:"GET",
+			url:url,
+			dataType:"html",
+			success:function(data){
+			$("#f"+id).html(data);
+				show(id);
+			}
+		});
+	}
+	
+	$(function (){
+		$("#search").click(function (){
+			if(!$("#search_val").val()) {
+				alert("请输入您要搜索的标题！");
+				return false;
+			}else{
+				var myform = $("#searchform"); 
+				myform.submit();
+			}
+		});
+
+		$("#page_submit").click(function(){
+			var val = $("#to_page").val() - 0;
+			var total_page = $("#total_page").val() - 0;
+			if(!/^\d+$/.test(val)) {
+				alert("跳转页数必须是正整数！");
+			}else if( 0 > val || val > total_page){
+				alert("范围不合法！");
+			}else{
+				$("#page_form").submit();
+				$("#to_page").attr('disabled',false);
+			}
+		});
+	})
+	
+    function show(id){
+	    var section = $(".unit");
+	    for(var i=0; i<section.length; i++){
+			section[i].style.display="none";
+		}
+        document.getElementById(id).style.display="block";
+	}
+
+	function hide(id){
+		var section = $(".unit");
+	    for(var i=0; i<section.length; i++){
+			section[i].style.display="none";
+		}
+		document.getElementById(id).style.display="none";
+	}
+	
+	var p_a={
+		show:function(id){
+			var objA = document.getElementById(id+"_a");
+			var objDiv = document.getElementById(id);
+			
+			var Sys = {};
+			var ua = navigator.userAgent.toLowerCase();
+			var s;
+			s = (ua.match(/msie ([\d.]+)/))?ua.match(/msie ([\d.]+)/):0;
+				if(s[1] == '6.0') {
+					objDiv.style.top = objA.offsetTop-2 + "px";
+					objDiv.style.left = objA.offsetLeft-531 + "px";
+				}else{
+					objDiv.style.top = objA.offsetTop-1 + "px";
+					objDiv.style.left = objA.offsetLeft-522 + "px";
+				}
+			objA.className = "zycenter_xq_a";
+			objDiv.style.display = "block";
+		},hide:function(id){
+			var objA = document.getElementById(id+"_a");
+			var objDiv = document.getElementById(id);
+			objA.className = "";
+			objDiv.style.display = "none";
+		}
+	};
+
+	function shownav(id){
+		if("" == id) {
+			var id_num = 0;
+		}else{
+			var id_num = id;
+		}	
+		$("#column_"+id_num).addClass("sylm");
+	}
+</script>
+{/literal}
+
+</head>
+
+<body onload="shownav('{$checked_nav.column_id}');">
+<input type="hidden" id="total_page" value="{$totalpage}"/>
+ <div>
+   <iframe src="http://www.unikaixin.com/header.html" width="100%" height="155" scrolling="No" frameborder="0"></iframe>
+ </div>
+ 
+ 
+ <div class="gd_nav_list">
+   <p></p>
+   <ul><a href="/Thirdapp/Showresource/synchroresource" class="gd_tbzy">同步资源</a><a href="/Thirdapp/Showresource/qualityresource" class="gd_jpzy">精品资源</a><a href="/Thirdapp/Showresource/qualityschool1" class="gd_jpwx">精品网校</a><a href="/Thirdapp/Audiobooks/getAudiobooksByType" class="gd_ysds">有声读书</a></ul>
+ </div>
+ 
+ <div class="gz_big_bj">
+ <div class="gz_content">
+   <!--main star-->
+   <div class="gz_main">
+    	<div class="main" style="margin-left:15px;">
+       <div class="re_right">
+      <form id="searchform" method="post" action="/Thirdapp/Showresource/searchresource" target="_blank">
+	      <p class="re_top_left" style="width:150px; float:left;"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/tb1.gif" width="31" height="31" />同步资源</p>
+	      <p class="re_top_right">
+	      	<input type="text" id="search_val" name="resource_name" class="text" />
+	      	<input type="button" id="search" class="search" />
+	      </p>
+	      <input type="hidden" name="product_id" value="{$checked_nav.product_id}" />
+      </form>
+      <div class="clean" style="height:10px;"></div>
+      <!--main-->
+      <div class="main" style="width:750px;">
+        <p class="main_top"></p>
+        <div class="main_center">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+            <tr>
+              <td width="90"><span class="grade">年级</span></td>
+              <td><p>
+              {foreach from=$nav_list.grade_list item=val}
+              	{if $val.grade_id == $checked_nav.grade_id}
+              		<a style="color:#008CC1; font-weight:bold;" href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$val.grade_id}">{$val.grade_name}</a>
+              	{else}
+              		<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$val.grade_id}">{$val.grade_name}</a>
+              	{/if}
+              {/foreach}
+              </p>
+              </td>
+            </tr>
+          </table>
+           {if !empty($nav_list.subject_list)}
+	          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+	            <tr>
+	              <td width="90"><span class="km">科目</span></td>
+	              <td><p>
+	              {foreach from=$nav_list.subject_list item=val}
+	              {if $val.subject_id == $checked_nav.subject_id}
+	              	<a style="color:#008CC1; font-weight:bold;" href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$val.subject_id}">{$val.subject_name}</a>
+	              {else}
+	              	<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$val.subject_id}">{$val.subject_name}</a>
+	              {/if}
+	              {/foreach}
+	              </p></td>
+	            </tr>
+	          </table>
+          {/if}
+          {if !empty($nav_list.version_list)}
+	          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tr>
+	              <td width="90"><span class="km">版本</span></td>
+	              <td><p>
+					{foreach from=$nav_list.version_list item=val}
+					{if $val.version_id == $checked_nav.version_id}
+						<a style="color:#008CC1; font-weight:bold;" href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$val.version_id}_''">{$val.version_name}</a>
+					{else}
+						<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$val.version_id}_''">{$val.version_name}</a>
+					{/if}
+	              {/foreach}
+					</p></td>
+	            </tr>
+	          </table>
+          {/if}
+        <div class="clean"></div>
+        </div>
+        <p class="main_bottom"></p>
+        <div class="clean"></div>
+      </div>
+      <!--main end-->
+      <!--koowleadge_point-->
+      {if !empty($nav_list.chapter_list)}
+      <div class="koowleadge_point">
+        <p class="know_top"></p>
+	        <div class="know_center">
+	          <h3>
+	          	<span style="float:left;display:inline-block;">知识点</span>
+	          	<img id="img_show" src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/ss.gif" style="margin-bottom:-8px;float:right;cursor:pointer;" title="收起"/>
+	          </h3>
+	          <div class="know_center_unit" style="overflow:hidden;">
+	          {foreach from=$nav_list.chapter_list item=val}
+              <ul class="unit_font" style="z-index:{$val.z_index};">
+               <li>
+               {if $val.chapter_id == $checked_nav.chapter_id}
+               		<a id="selected_chapter" style="border:white solid 1px; display:inline-block;width:160px;line-height:25px;height:30px;color:#008CC1; font-weight:bold;" href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$val.chapter_id}" title="{$val.chapter_name}">{$val.short_chapter_name}</a>
+               {else}
+               		<a style="border:white solid 1px; display:inline-block;width:160px;line-height:25px;height:30px;" href="//Thirdapp/Showresource/Resource/Resource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$val.chapter_id}" title="{$val.chapter_name}">{$val.short_chapter_name}</a>
+               {/if}
+               	
+               <span title="点击展开节" style="cursor:pointer; height:22px; display:inline-block; outline:none;"  onclick="showfestival('koko_'+{$val.chapter_id},'{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$val.chapter_id}');"> <img style=" margin-bottom:-8px;" src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/zk.gif"/> </span>
+               </li>
+               		<ul class="unit" id="koko_{$val.chapter_id}" onmouseover="show('koko_'+{$val.chapter_id});" onmouseout="hide('koko_'+{$val.chapter_id});">
+	                 <li id="fkoko_{$val.chapter_id}">
+	                 </li>
+	                </ul>
+	           </ul>
+	          {/foreach}
+	          <div class="clean"></div>
+          	</div>
+	          <div class="clean"></div>
+	        </div>
+        <p class="know_bottom"></p>
+        <div class="clean"></div>
+      </div>
+      {/if}
+      <!--koowleadge_point end-->
+      <!--column-->
+      <div class="column">
+        <p class="subnav">
+	        <a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}" id="column_0">所有栏目</a>
+	        {foreach from=$nav_list.column_list item=val}
+	        	<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$val.column_id}"  id="column_{$val.column_id}">{$val.column_name}</a>
+	        {/foreach}
+        </p>
+        <p class="zytop"></p>
+        <div class="zycenter">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          {if !empty($resource)}
+              <tr class="title">
+                <td width="240">标题</td>
+            	<td width="100">年级</td>
+                <td width="100">科目</td>
+                <td width="120">版本</td>
+                <td width="75" align="center">详情</td>
+                <td>操作</td>
+              </tr>
+	              {foreach from=$resource item=val}
+	              <tr>
+	                <td height="47px;" width="320px;" style="word-break: break-all; text-align:left;"><span style="color:#eb0b4b; font-weight:bold;">[{$val.file_type_name}]</span>&nbsp;{$val.short_title}</td>
+	                <td>{$val.grade_name}</td>
+	                <td>{$val.subject_name}</td>
+	                <td>{$val.version_name}</td>
+	                <td class="xq"><a href="#" id="tcc{$val.resource_id}_a" onmouseover="p_a.show('tcc'+{$val.resource_id})" onmouseout="p_a.hide('tcc'+{$val.resource_id})">详情</a>
+	                </td>
+	                <div style="width:500px;" class="details" id="tcc{$val.resource_id}">
+	                     <p class="tcc_font" ><span>[{$val.file_type_name}]</span>&nbsp;{$val.title}<br />
+	                        <span>[年级]</span>&nbsp;{$val.title}<br />
+	                        <span>[科目]</span>&nbsp;{$val.subject_name}<br />
+	                        <span>[版本]</span>&nbsp;{$val.version_name}<br />
+	                        <span>[章]</span>&nbsp;{$val.chapter_name}<br />
+	                        <span>[节]</span>&nbsp;{$val.section_name}<br />
+	                        {if !empty($val.description)}
+	                        <span>[资源介绍]</span>&nbsp;{$val.description} <br />
+	                        {/if}                    </p>
+	                        {if !empty($val.thumb_img)}
+	                        <p class="tcc_img"><img src="{$val.thumb_img}" width="110" height="84"  /> </p>
+	                        {/if}
+	                        <div class="clean"></div>
+	                </div>
+	                   <div class="details" id="tcc1" onmouseover="p_a.show('tcc1')" onmouseout="p_a.hide('tcc1')">
+                   </div>
+	                   
+	                <td><a href="{$val.file_path}" target="_blank" class="blue-btn">{$val.show_btn}</a></td>
+	              </tr>
+	              {/foreach}
+              {else}
+              	<tr class="title">
+                	<td height="47px;" colspan="6">暂无资源</td>
+              	</tr>
+              {/if}
+          </table>
+        </div>
+        <p class="zybottom"></p>
+      </div>
+      <!--column end-->
+      {if !empty($resource)}
+      			<div class="fenye">
+	                	<p class="dangqian">{if $flag == "true"}
+	                		最后一页
+	                	{else}
+	                		当前{$page}/{$totalpage}页
+	                	{/if}&nbsp;&nbsp;&nbsp;&nbsp;
+	                	{if 1 == $page}
+	                		上一页
+	                	{else}
+	                		<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}/page/{$page-1}">上一页</a>
+	                	{/if}
+	                	&nbsp;&nbsp;&nbsp;&nbsp;
+	                	{if 'true' == $flag}
+	                		下一页
+	                	{else}
+	                		<a href="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}/page/{$page+1}">下一页</a>
+	                	{/if}
+	                	</p>
+	                	<form id="page_form" action="/Thirdapp/Showresource/synchroresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}" method="get">
+	                		<input type="hidden" value="{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}" name="screening"/>
+	                		<input type="text" name="page" id="to_page" class="fenye_text" style="width:30px; height:20px;"/>
+	                		<input type="submit" value="跳转" id="page_submit"/>
+	                	</form>
+	                	{if !empty($totalpage)}<span style="padding:4px 0px 0px 30px;">总记录：{$totalrows}</span>{/if}
+                	</div>
+                	{/if}
+    </div>
+   </div>
+     <div class="clean"></div>
+   </div>
+   <!--main end-->
+   <div class="clean"></div>
+ </div>
+ </div>
+ 
+ <div style="text-align:center;">
+ 	<iframe src="http://www.unikaixin.com/footer.html" width="960" height="125" scrolling="No" frameborder="0"></iframe>
+ </div>
+</body>
+</html>

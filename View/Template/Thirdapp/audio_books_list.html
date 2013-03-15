@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东-同步资源</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/common.css" type="text/css" />
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/book_list.css" type="text/css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+
+{literal}
+<script type="text/javascript">
+function settab(url,title) {
+	$('#player *').remove();
+	var mp3html = '<EMBED src=' + url + ' width=400 height=70 type=audio/x-pn-realaudio-plugin autostart="true" controls="IMAGEWINDOW,ControlPanel,StatusBar" console="Clip1"></EMBED>';
+	$("#title").html(title);
+	$("#player").html(mp3html);
+	
+}
+
+$(function(){
+	var title = $("#title_name").val();
+	var url = $("#url").val();
+	settab(url,title);
+});
+
+
+</script>
+{/literal}
+</head>
+
+<body>
+ 
+ <div>
+   <iframe src="http://www.unikaixin.com/header.html" width="100%" height="155" scrolling="No" frameborder="0"></iframe>
+ </div>
+ 
+ <div class="gd_nav_list">
+ <input type="hidden" id="title_name" value="{$title}"/>
+ <input type="hidden" id="url" value="{$url}"/>
+   <p></p> 
+   <ul><a href="/Thirdapp/Showresource/synchroresource" class="gd_tbzy">同步资源</a><a href="/Thirdapp/Showresource/qualityresource" class="gd_jpzy">精品资源</a><a href="/Thirdapp/Showresource/qualityschool1" class="gd_jpwx">精品网校</a><a href="/Thirdapp/Audiobooks/getAudiobooksByType" class="gd_ysds">有声读书</a></ul>
+ </div>
+ 
+ <div class="gz_big_bj">
+ <div class="gz_content">
+   <!--main star-->
+   <div class="gz_main">
+     <div class="book_list_main">
+      <p><span></span>当前位置：首页>>&nbsp;在线听书>>&nbsp;{$typename}</p>
+      <div class="clean"></div>
+      <div class="booklist_left">
+        <h4>正在播放：<span id="title"></span></h4>
+        <p class="audio" id="player"></p>
+        <h3><span></span>{$typename}</h3>
+        <ul>
+        	{foreach from=$audiobookslist item=audiolist}
+        		 <li><a href="javascript:;" class="listen_icon" onclick="settab('{$audiolist.url}','{$audiolist.title}');"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/ysds_list/icon_listen.gif" /></a><a href="javascript:;" class="list_neir" onclick="settab('{$audiolist.url}','{$audiolist.title}');">{$audiolist.title}</a><a href="#" class="weizhi">{if $audiolist.author == ''}未知{else}{$audiolist.author}{/if}</a></li>
+        	{/foreach}
+        </ul>
+        <p class="booklist_fenye">
+        	当前第{$page}页
+        {if $page ==1}	
+        	<a href="#">上一页</a>
+        {else}
+        	<a href="/Thirdapp/Audiobooks/getAudiobooksByTypeid/page/{$page-1}/typeid/{$typeid}" class="pageup">上一页</a>
+        	
+        {/if}
+        
+        {if $flag == 'end'}
+        	<a href="#">下一页</a>
+        {else}
+        	<a href="/Thirdapp/Audiobooks/getAudiobooksByTypeid/page/{$page+1}/typeid/{$typeid}" class="pageup">下一页</a>
+        {/if}
+        </p>
+      </div>
+      <div class="booklist_right">
+        <dl>
+          <dt><img src="{$pic_url}" width=166 heigth=205/></dt>
+          <dd>Album&nbsp;cover</dd>
+        </dl>
+      </div>
+      <div class="clean"></div>
+     </div>
+     <div class="clean"></div>
+   </div>
+   <!--main end-->
+   <div class="clean"></div>
+ </div>
+ </div>
+ 
+ <div style="text-align:center;">
+ 	<iframe src="http://www.unikaixin.com/footer.html" width="960" height="125" scrolling="No" frameborder="0"></iframe>
+ </div>
+</body>
+</html>

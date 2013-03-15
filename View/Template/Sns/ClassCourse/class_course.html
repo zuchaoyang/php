@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>课程表</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassCourse/list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassCourse/skin.js"></script>
+</head>
+<body>
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+    <!--nav star-->
+	{insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <!--publish_main star-->
+     <div class="publish_main">
+       <div class="course_top">
+         <h3>选择模板:</h3>
+         <p id='skin_show'>
+         {foreach from=$skin_list item=skin}
+         <a href="javascript:;"><img id="{$skin.skin_id}" name="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassCourse/list/{$skin.url}" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassCourse/list/{$skin.small_img}"></a>
+        {/foreach} 
+         </p>
+       </div>
+       <div id="skin_div" style="background:url('{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassCourse/list/{if $user_course_skin}{$user_course_skin.url}{else}course_bj1.jpg{/if}') no-repeat scroll 0 0 transparent;" class="course_main" >
+         <div class="course_main_left">
+           <p>上午</p>
+           <p class="after_p">下午</p>
+         </div>
+         <div class="course_main_right course_main_right_a">
+         {foreach from=$am_course_list item=am_course_arr key=which_course}
+          <ul>
+           {foreach from=$am_course_arr item=am_course}
+           <li><span>{$am_course.name}</span></li>
+           {/foreach}
+          </ul>
+		 {/foreach}
+
+          <div class="noon_main"></div>
+          {foreach from=$pm_course_list item=pm_course_arr key=which_course}
+          <ul>
+           {foreach from=$pm_course_arr item=pm_course}
+           <li><span>{$pm_course.name}</span></li>
+           {/foreach}
+          </ul>
+		 {/foreach}
+         </div>
+       </div>
+       <div class="clear"></div>
+     </div>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+<!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+</body>
+</html>

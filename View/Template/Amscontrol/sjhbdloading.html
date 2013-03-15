@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>正在导入</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js" ></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js" ></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/team_add.js"></script>
+
+</head>
+<body style="padding-top:30px; _width:98%">
+<div id="popDiv" class="xzkc" style="display:none;">
+
+<p class="amstitle"><a href="javascript:setTeam.close();">关闭窗口</a></p>
+<div style="height:280px; overflow:auto;">
+<table cellpadding="0" cellspacing="1" class="stu_choose" id="student_list" >
+	<tr>
+    	<th>姓名</th><th>选择</th>
+    </tr>
+    <tbody id="setTeamTable">
+    </tbody>
+</table>
+</div>
+<a href="javascript:setTeam.ok();"  class="amsqd" style="margin-left:60px;">确定选择</a>
+
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">手机号批量绑定</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt STYLE1">手机号批量绑定</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" bgcolor="#fbf6f7" class="tdpadding">正在导入，请等待...</td>
+  </tr>
+</table>
+<!-- 当前所在班级的班级id，调用js时传入 -->
+<input type="hidden" id="class_code" value="1" />
+</body>
+</html>

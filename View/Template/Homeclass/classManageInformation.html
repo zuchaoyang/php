@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级管理_学生管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/tab/tab.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/tab/jquery.idTabs.min.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="sub_right">
+<div class="sub_class">
+<div class="class_work">
+<ul>
+<li id="work1"><a href="/Homeclass/Class/clamemberlist/class_code/{$class_code}" class="current_btn">学生管理</a></li>
+</ul>
+</div><!--sub_class_gg end-->
+
+<div id=usual1 class=usual> 
+	<ul> 
+		<li><A class=selected href="#tab1">基本资料</A></li>
+		<li><A href="#tab2">联系方式</A></li>
+		<li><A href="#tab3">家长情况</A></li>
+		<li><A href="#tab4">扩展资料</A></li>
+	</ul>
+	<div id="tab1">
+
+  <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" style="border-bottom:1px solid #d6e5f1">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30">基本资料</td>
+      </tr>
+    </table>
+  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="1">
+
+    <tr>
+      <td width="100" height="30">姓名：</td>
+      <td height="30" align="left">{$person_info.client_name}</td>
+    </tr>
+    <tr>
+      <td height="30">性别：</td>
+      <td height="30" align="left">
+	  {if $person_info.client_sex==0}
+	  	女
+	  {elseif $person_info.client_sex==1}
+	  	男
+		{else}
+			--
+	  {/if}
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">生日：</td>
+      <td height="30" align="left">{$person_info.client_birthday}</td>
+    </tr>
+    <tr>
+      <td height="30">生肖：</td>
+      <td height="30" align="left">{$person_info.client_zodiac_name}</td>
+    </tr>
+    <tr>
+      <td height="30">星座：</td>
+      <td height="30" align="left">{$person_info.client_constellation_name}</td>
+    </tr>
+    <tr>
+      <td height="30">血型：</td>
+      <td height="30" align="left">{$person_info.client_blood_type_name}</td>
+    </tr>
+    <tr>
+      <td height="30">学校：</td>
+      <td height="30" align="left">{$school_name}</td>
+    </tr>
+    <tr>
+      <td height="30">所在年级：</td>
+      <td height="30" align="left">{$grade_id_name}</td>
+    </tr>
+    <tr>
+      <td height="30">所在班级</td>
+      <td height="30" align="left">{$class_name}</td>
+    </tr>
+  </table>
+	
+	
+	</DIV>
+	<div id="tab2">
+
+	  <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" style="border-bottom:1px solid #d6e5f1" id="#tbl2">
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="30">联系方式</td>
+    </tr>
+  </table>
+  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="1" >
+    <tr>
+      <td width="100" height="30">通讯地址：</td>
+      <td align="left">{$person_info.client_address}</td>
+    </tr>
+    <tr>
+      <td height="30">电子邮箱：</td>
+      <td align="left">{$person_info.client_email}</td>
+    </tr>
+    <tr>
+      <td height="30">手机：</td>
+      <td align="left">{$person_info.client_phone}</td>
+    </tr>
+  </table> 
+
+	
+	</div>
+	<div id="tab3">
+
+  <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" style="border-bottom:1px solid #d6e5f1" id="#tbl3">
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="30">家长情况</td>
+    </tr>
+  </table>
+  
+{foreach from=$familyarrData  item=family}
+  
+  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="1">
+    <tr>
+      <td width="100" height="30">
+	      {if $selectedarr.family_type}
+    	{foreach from=$selectedarr.family_type.datas key=key item=relationtype}
+	    	{if $key == $family.family_type}
+	    		{$relationtype}：
+	    	{/if}
+    	{/foreach}
+    {/if}
+
+	  </td>
+      <td align="left">{$family.client_name}({$family.family_account})</td>
+    </tr>
+    <tr>
+      <td height="30">电子邮箱：</td>
+      <td align="left">{$family.family_email}</td>
+    </tr>
+    <tr>
+      <td height="30">手    机：</td>
+      <td align="left">{$family.client_phone}</td>
+    </tr>
+    <tr>
+      <td height="30">从事行业：</td>
+      <td align="left">&nbsp;{$family.client_trade}</td>
+    </tr>
+    <tr>
+      <td height="30">单位名称：</td>
+      <td align="left">&nbsp;{$family.job_address_name}</td>
+    </tr>
+  </table>
+  <br />
+  {/foreach}
+	
+	
+	</div>
+	<div id="tab4">
+	
+  <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" style="border-bottom:1px solid #d6e5f1" id='#tbl4'>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="30">扩展资料</td>
+    </tr>
+  </table>
+  <table width="80%" border="0" align="center" cellpadding="5" cellspacing="1">
+    <tr>
+      <td width="100" height="30">性格描述：</td>
+      <td align="left">
+	  {foreach from=$temperament item=val}
+	  	{$val.name}
+	  {/foreach}
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">兴趣爱好：</td>
+      <td align="left">
+		{foreach from=$clienthobby item=val}
+	  	{$val.name}
+	  {/foreach}
+  
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">我是班上的：</td>
+      <td align="left">	
+	  {foreach from=$studentjob item=val}
+	  	{$val.name}
+	  {/foreach}
+</td>
+    </tr>
+    <tr>
+      <td height="30">最爱的老师：</td>
+      <td align="left">
+	 {foreach from=$like_teacher item=val}
+	  	{$val.name}
+	  {/foreach}
+
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">喜欢的课程：</td>
+      <td align="left">
+	  {foreach from=$like_subject item=val7}
+	  	{$val7.name}
+	  {/foreach}
+ 
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">喜欢的游戏：</td>
+      <td align="left">	 
+	  {foreach from=$like_game item=val}
+	  	{$val.name}
+	  {/foreach}
+</td>
+    </tr>
+    <tr>
+      <td height="30">喜欢的动漫：</td>
+      <td align="left">
+	  	  {foreach from=$like_cartoon item=val}
+	  	{$val.name}
+	  {/foreach}
+
+	  </td>
+    </tr>
+    <tr>
+      <td height="30">喜欢的运动：</td>
+      <td align="left">
+	  	  	  {foreach from=$like_movement item=val}
+	  	{$val.name}
+	  {/foreach}
+
+	  </td>
+    </tr>
+  </table>
+
+	
+	</div>
+</div>
+<SCRIPT type=text/javascript> $("#usual1 ul").idTabs(); </SCRIPT>
+
+
+  </div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>后台首页</title>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+
+
+{literal}
+<style>
+	body{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/topbg.gif) repeat-x top;}
+	.head ul{ display:block; width:650px; height:28px; padding-left:260px;}
+	.head ul li{ width:107px; height:28px; float:left;}
+	.head ul li a:hover{color:#ffd038;background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/menubg.gif) no-repeat; }
+	
+	.head ul li a{ display:block; height:28px; line-height:30px; vertical-align:middle; text-align:center; text-decoration:none; color:#fffbdc;}
+	.head li a.m1{padding-left:20px;}
+	.head li a.m2{padding-left:20px;background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/menubg.gif) no-repeat;}
+	.head li img{float:left; border:none; margin-top:6px;}
+	.head li { background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/inline.gif) no-repeat right center; }
+	.mtotle{ margin-right:30px; margin-top:15px;}
+	.mtotle a,.mtotle a:visited{ display:block; width:31px; height:20px; padding-top:32px; color:#319dfa; text-align:center; line-height:20px; vertical-align:middle;}
+	.mtotle a.t1,.mtotle a.t1:visited{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/jc_off.gif) no-repeat top;}
+	.mtotle a.t1:hover{ color:#fad031; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/jc_on.gif) no-repeat top;}
+	.mtotle a.t2,.mtotle a.t2:visited{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/out_off.gif) no-repeat top;}
+	.mtotle a.t2:hover{ color:#fad031; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/out_on.gif) no-repeat top;}
+	.mtotle a.t3,.mtotle a.t3:visited{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/help_off.gif) no-repeat top;}
+	.mtotle a.t3:hover{ color:#fad031; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/help_on.gif) no-repeat top;}
+</style>
+{/literal}
+
+</head>
+
+<body onload="setleftframe('JC')">
+<form id="topform">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="head">
+  <tr>
+    <td width="51%" height="104" valign="bottom" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/logo.gif) no-repeat left;">
+    	<ul>
+        	<li><a href="javascript:setleftframe('JC');" id="JC" class="m2"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/micon1.gif"/>基础信息</a></li>
+        	<li><a href="javascript:setleftframe('HY')"  id="HY" class="m1"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/micon2.gif"/>会员管理</a></li>
+        	<li><a href="javascript:setleftframe('ZZ')"  id="ZZ" class="m1"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/micon3.gif"/>学校班级</a></li>
+        	<li><a href="javascript:setleftframe('HD')"  id="HD" class="m1"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/micon4.gif"/>活动管理</a></li>
+        	<li><a href="javascript:setleftframe('YY')"  id="YY" class="m1"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/micon5.gif"/>应用管理</a></li>
+        </ul>
+    </td>
+    <td width="49%" align="right">
+        <table width="70%" border="0" cellspacing="0" cellpadding="0" class="mtotle">
+          <tr>
+          	<td width="49%"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/iconr.gif" align="middle"/>您好：<font color="#FFFFFF">{$adminuser}</font> ，欢迎使用WMW！</td>
+            <td width="7%"><a href="#" class="t1">教程</a></td>
+            <td width="7%"><a href="/Adminlogin/Login/loginout/app_name/wms" class="t2">退出</a></td>
+            <td width="7%"><a href="#" class="t3">帮助</a></td>
+          </tr>
+        </table>
+        <input type="hidden" id="user_account" value="{$adminuser}" />
+    </td>
+  </tr>
+</table>
+</form>
+
+{literal}
+<script type="text/javascript">
+
+	function setleftframe(type){
+		document.getElementById("JC").className="m1";
+		document.getElementById("HY").className="m1";
+		document.getElementById("ZZ").className="m1";
+		document.getElementById("HD").className="m1";
+		document.getElementById("YY").className="m1";
+		document.getElementById(type).className="m2"; 
+		
+		document.forms[0].target="leftFrame";
+	    document.forms[0].action="/Adminbase/Body/leftinfo/func_type/"+type;
+	    document.forms[0].submit();
+	}
+
+</script>
+{/literal}
+</body>
+
+</html>

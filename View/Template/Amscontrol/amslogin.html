@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我们网_后台登陆页</title>
+<meta name="description" content="我们网_最大的未成年人成长社区,学生,老师,家长互通平台,未成年人成长社区,教育资源平台">
+<meta name="Keywords" content="我们网,我们,我们网资源,资源,教育资源,我们网社区,我们网登录,我们网帐号,未成年人成长社区">
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/ams_login.js"></script>
+<!-- <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/sso.js"></script> -->
+ 
+{literal}
+<style >
+	*{margin:0px; padding:0px;}
+	body{background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/ams_login_bj.gif) repeat-x; font-size:12px;}
+</style>
+
+<script type="text/javascript">
+	if (top.location != self.location) {
+		    top.location = self.location; //跳出框架
+	}
+</script>
+{/literal}
+
+</head>
+
+<body onload="winLoad();">
+   <div class="ams_big">
+      <div class="ams_cotent_i"></div>
+      <div class="ams_cotent_er">
+      	<span style="color:red;">{$message}</span>
+        <form id="iform" name="iform" action="/Adminlogin/Login/loginin/app_name/ams" method="post" onkeypress="Share.sbf.keypress('submit_a', event);">
+         <span id="error_login" style="color:red; size:20px;"></span>
+         <p style="padding-top:20px;">用户名：<input id="pUserId" type="text" name="uid" class="kctx" maxlength="30" tabindex="1"/></p>
+         <p style="text-indent:12px;">密码：<input id="pPwdId" type="password" name=passwd class="kctx" maxlength="20" tabindex="2"/></p>
+         <p style="padding-left:48px;"> <a id="submit_a" style="cursor:pointer;" onclick="pSubmit();" class="ams_dl">登录</a>
+         </p>
+        </form>
+      </div>
+      <div class="ams_cotent_san">
+        <p>{$smarty.const.COPYRIGHT}</p>
+      </div>
+   </div>
+</body>
+</html>
+
+

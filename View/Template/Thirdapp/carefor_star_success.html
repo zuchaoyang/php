@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>关爱之星-成功</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/star.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="right">
+  <div class="star_main success_main">
+    <p>您的手机号{$parent_phone}已经成功办理关爱之星业务，初始密码为手机号后6位，如果您已经在联通营业厅开通该业务，请点击登录，并尽快修改密码。如果您还没有在联通营业厅开通业务，请您携带协议及身份证件到营业厅开通“关爱之星-0元”业务后，点击登录。感谢您的使用！</p>
+    <p class="star_btn"><a href="{$gazx_login_url}" class="green_btn" target="_blank">登录</a></p>
+  </div>
+</div><!--right end-->
+
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end-->  
+</body>
+</html>

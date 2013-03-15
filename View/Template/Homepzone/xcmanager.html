@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我的相册_相册管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/slAlbum.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqyphoto.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/photo/jquery.carouFredSel-5.5.0-packed.js"></script>
+
+</head>
+
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="sub_right">
+
+	<div class="sub_diary">
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di1"></i><a href='/Homepzone/Pzonephoto/photoindex/class_code/{$class_code}'>我的相册</a></li>
+			</ul>
+		</div>
+         <input type="button" value="上传照片" class="inputbg2" onclick="javascript:upphoto('{$xcid}','{$class_code}');"/>
+		<input type="button" value="新建相册" class="inputbg2" onclick="javascript:JcreateAllbum('{$account}','GR','{$class_code}');"/>	 
+
+	</div><!--sub_diary end-->
+<span class="blank20"></span>
+<table width="99%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr><td>
+
+<form action="" method="post" id="formphoto">
+<input type="hidden" id="xcfm" name="xcfm" value=""/>
+<input type="hidden" id="delphoto" name="delphoto" value=""/>
+<input type="hidden" id="delphoto_str" name="delphoto_str" value=""/>
+<input type="hidden" id="movephoto" name="movephoto" value=""/>
+<input type="hidden" id="hxcid" name="hxcid" value="{$xcid}"/>
+<input type="hidden" id="hclass_code" name="hclass_code" value="{$class_code}"/>
+<input type="hidden" id="haccount" name="haccount" value="{$account}"/>
+
+
+  <div class="wdxcgl_main">
+      <div id="photoimg" class="wdxcgl_main_left">
+		<div id="photoslist" style='width:auto;height:auto;'>
+			{if $account==$friendaccount}
+				 <div class="xcgl_left_pl">
+			
+				 <input type="checkbox" id="xcqx" style=" margin-right:8px;" onclick="xcselectall('c');"/>
+				 <a href='javascript:void(0);' onclick="xcselectall('a');">【全选】</a>
+				 <input type="button" class="inputbg2"  name="" value="设为封面"  onclick="javascript:setxcfm();"/>
+				  <input type="button" value="移动" class="inputbg2" onclick="javascript:movephotos();">
+				 <select name='selxcid' id='selxcid' class='input_txt2'>
+					<option value=''>-选择目标相册-</option>
+					 {foreach from=$xiangce_list item=xc}
+					 	{if $xcid != $xc.album_id}
+						<option value='{$xc.album_id}'>{$xc.album_name}</option>
+						{/if}
+					{/foreach}
+				 </select>
+				 <input type="button" class="inputbg2"  name="" value="删除照片" onclick="javascript:deletexcphoto();"/>
+				  </div>
+				  <Hr size=1>
+			{/if}
+          
+		   <div style="float:left;width:550px;">
+		   {if !empty($photoinfo)}
+				<div class="poto_list">
+				{foreach from=$photoinfo item=pi}
+					<dl>
+						<dt>
+						{if $xcinfo.album_imgname==$pi.photo_min_url}
+						<cite><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/feng.gif" width="30" height="21" /></cite>
+						{/if}
+						<a class="album-list-img" href="javascript:void(0)" onclick="javascript:showphotosdeatial('{$pi.photo_id}');" title="照片"><img src="{$pi.photo_min_urlall}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a>
+						</dt>
+						<dd>
+						<span class="album-title">
+							<input name="xcphoto" type="checkbox" value="{$pi.photo_min_url}"/> 评论{$pi.plunnums}
+							<input name="xcphotoid" type="hidden" value="{$pi.photo_id}"/>
+							<input name="xcphotobig" id="xcphotobig_{$pi.photo_id}" type="hidden" value="{$pi.photo_url}"/>
+							<input name="bigphotosh" id="bigphotosh_{$pi.photo_id}" type="hidden" value="{$pi.photo_urlall}"/>
+						
+						<input name="bigphotosname" id="bigphotosname_{$pi.photo_id}" type="hidden" value="{$pi.photo_name}"/>
+						<input name="bigphotoscontent" id="bigphotoscontent_{$pi.photo_id}" type="hidden" value="{$pi.photo_explain}"/>
+						</span>
+						</dd>
+					</dl>
+				{/foreach}
+				</div>
+			{/if}
+		</div>
+
+		
+	
+
+      </div>
+      <div style="clear:both; height:1px; overflow:hidden;"></div>
+
+		<div id="photoslisdeatial" style='width:auto;height:auto;'>
+			<table width="97%" border="0" align="center" cellpadding="3" cellspacing="1">
+			  <tr>
+				<td height="25">
+				<a href="/Homepzone/Pzonephoto/photoindex/user_account/{$account}">我的相册</a> > 
+				<a href="/Homepzone/Pzonephoto/xcmanager/user_account/{$account}/xcid/{$xcinfo.album_id}">{$xcinfo.album_name}</a> > 相片浏览	</td>
+			  </tr>
+			  <tr><td height="40"></td></tr>
+			  <tr bgcolor="#f2f2f2">
+				<td height="100">
+	
+				<div class="list_carousel">
+				<ul id="foo2">
+				{foreach from=$photoinfo item=pis}
+				<li>
+				<a href='javascript:void(0);'><img width="70px" height="70px" src="{$pis.photo_min_urlall}" border=0 style='cursor:hand;' onclick="javascript:showphotosdeatial('{$pis.photo_id}');"/></a>
+				</li>
+				{/foreach}
+				</ul>
+				<div class="clearfix"></div>
+				<a id="prev2" class="prev" href="#">&lt;</a>
+				<a id="next2" class="next" href="#">&gt;</a>
+				<!-- <div id="pager2" class="pager"></div> -->
+				</div>
+				</td>
+			  </tr>
+				<tr><td height="25" align="center">&nbsp;</td></tr>
+
+
+				  <tr>
+					<td height="25" align="center">&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td height="25" align="center" id="spanbigphotos">
+					</td>
+				  </tr>
+				
+				  <tr>
+					<td height="40" bgcolor="#f2f2f2" align="center">
+					<span style='margin-right:20px;'>
+					<!--onclick="mod_exName_ajax(this, '{$account}');"-->
+					<input type="button" value="编辑名称描述" class="inpusublong" onclick="javascript:Jmodfilephotos('{$account}');"/>
+					</span>
+					</td>
+					</tr>
+				  <tr>
+
+				  <tr><td height="35" align="center">照片名称：<span id="photoname"></span></td></tr>
+				  <tr style='line-height:22px;font-size:14px;color:#666'>
+					<td height="25" align="left">&nbsp;<div class='wordwrap' style="word-break:break-all;width:500px;"><span id="photoexplain"></span></div>
+					<input type='hidden' name='bigphotoid' id='bigphotoid'>
+					</td>
+					</tr>
+					<tr><td height="25">&nbsp;</td></tr>
+
+				</table>
+
+
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			  <tr>
+				<td>
+				<table id="disphotopluns" width="96%" border="0" cellspacing="0" cellpadding="0" style="float:left;" class="xppl_asx">
+				</table>
+					<table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="xppl_asx" style="float:left;">
+					 
+					  <tr>
+					  <td valign="top">
+				<!--begin input_msgK-->
+				<div class='input_msgK'>
+					<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');" maxlength="200"></textarea></div>
+
+					<div class="funBox">
+						<div class="insertFun">
+							<div id="showface" style="display:none;"></div>
+							<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+							<div class="uploadPic">
+								<input type="hidden" name="pic" id="pic" value="" />  
+								<input type="hidden" name="mid" id="mid" value="" />
+								<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+							</div>
+						</div>
+						<div class="sendFun">
+							<input type='hidden' name='pldelphoto' id='pldelphoto' value=''>
+							<input type="button" style="cursor:pointer;" value="发表评论" class="inputbg2" onclick="btnplun('{$account}','{$friendaccount}');"/>
+							<span class="countTxt">还能输入<em>140</em>字</span>
+							<span class='blank20'></span>
+						</div>
+						
+					</div>
+				</div>
+				<!--end input_msgK-->
+					  
+					  </td>
+					  </tr>
+				<tr><td>&nbsp;</td></tr>
+
+				</table>
+
+				</td>
+			  </tr>
+			</table>
+
+		{literal}
+		<script type="text/javascript">
+			getphotopluncontent();
+		</script>
+		{/literal}
+
+			</div>
+
+
+</div>
+
+         
+      <div class="wdxcgl_main_right">
+	  
+	    <table width="100%" border="0" cellpadding="3" cellspacing="1">
+          <tr>
+            <td height="30" class="tag_title">相册信息：</td>
+            </tr>
+          <tr>
+            <td height="30" align="center"><img src="{$xcinfo.album_imgfm}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/no_photo_f.jpg'" /></td>
+            </tr>
+          <tr>
+            <td height="30">相册名称：{$xcinfo.album_name}</td>
+            </tr>
+          <tr>
+            <td height="30">相册描述：</td>
+            </tr>
+          <tr>
+            <td height="30"><div class='wordwrap' style="word-break:break-all">{$xcinfo.album_explain}</div></td>
+          </tr>
+          <tr>
+            <td height="30">相册内共&nbsp;{$photocount}&nbsp;张照片</td>
+            </tr>
+          <tr>
+            <td height="30">创建于：{$xcinfo.add_date}</td>
+            </tr>
+          <tr>
+            <td height="30">更新于：{$xcinfo.upd_date}</td>
+            </tr>
+			{if $xcinfo.album_create_type!=2}
+			  <tr>
+				<td height="30">
+					<input type="button" value="编辑相册" class="inputbg2" onclick="javascript:JmodfileAllbum('{$account}','{$xcinfo.album_id}');"/>
+					<input type="button" value="删除相册" class="inputbg2" onclick="javascript:Jqy_deleteBtn('操作动作：您确认删除-{$xcinfo.album_name}-相册吗','相册删除','/Homepzone/Pzonephoto/deletexc/','xcid/{$xcinfo.album_id}/class_code/{$class_code}','400','100');"/>
+				</td>
+			  </tr>
+			<tr>
+            <td height="30">
+
+				{if $client_type==1}
+				{if $sharcmd==0}
+				<input type="button" name="pushalbumbtn" id='pushalbumbtn' value="{$shareTagValue}"  class="inpusublong" onclick="javascript:plushalbum('{$xcinfo.album_id}','0');" />
+				{else}
+				<input type="button" name="pushalbumbtn" id='pushalbumbtn' value="{$shareTagValue}"  class="inpusublong" onclick="javascript:plushalbumToclass('{$xcinfo.album_id}','1');" />
+
+				{/if}
+
+				<div id='classAlbumShare_box' style='display:none'>
+				请选择您要操作的班级<br><hr>
+				{foreach from=$myclasslistnew item=voclass}
+					<input type='checkbox' id='teacher_push_class' name="teacher_push_class[]" value='{$voclass.class_code}' {$voclass.classcodechk}>{$voclass.class_name}<br>
+				{/foreach}
+				<br><input type='button' name='btnsumshare' id='btnsumshare' value='确认操作' class='inpusublong' onclick="javascript:tearchsharealbum({$xcinfo.album_id})">
+				</div>
+
+				{elseif $client_type==0}
+				<input type="button" name="pushalbumbtn" id='pushalbumbtn' value="{$shareTagValue}"  class="inpusublong" onclick="javascript:plushalbum('{$xcinfo.album_id}','{$sharcmd}');" />
+				{/if}
+              
+			  </td>
+            </tr>
+		{/if}
+        </table>
+      </div>
+  </div>
+  </form>
+
+</td>
+</tr>
+</table>
+</div>
+<div id="move_photo_ajax" style="display:none;">
+<div class="title">移动图片到指定相册</div>
+<table width="100%" border="0" cellpadding="4" cellspacing="1">
+{foreach from=$xiangce_list item=xc}
+<tr>
+<td height='25'><a href="#" onclick="javascript:tomovephoto('{$xc.album_id}','{$account}','{$xcid}')">{$xc.album_name}</a></td>
+</tr>
+{/foreach}
+</table>
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+
+</body>
+</html>

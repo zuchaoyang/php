@@ -1,0 +1,134 @@
+{insert name="space_header"}
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/log/log.js"></script>
+<span class='blank10'></span>
+
+<div style="display:"></div>
+<div class='b_main'>
+<div class='block_left' id="Left">
+	<div class='UserBaseMsgK'>
+			<div class='UserBaseImg'>
+			<img src="{$user_head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/head_upload_100.jpg'" id="avatar" />
+
+			</div>
+			<div class='UserBaseList'>
+				<ul>
+					<li><h4><span class="s_username">{$space_school_name}</span>&nbsp;<span class="s_nickname">{$space_client_name}</span></h4></li>
+					<li><a href="http://{$space_url}" title="{$space_client_name}的主页"><span style='font-family:Courier New'>{$space_url}</span></a></li>
+					<li>
+					<a href=/Homeuser/Index/spacetalk/spaceid/{$space_current_user}>新鲜事<span class="number">({$DataRows})</span>条</a>&nbsp;&nbsp;
+					<span class="splist_line">|</span>&nbsp;&nbsp; 
+					<a href="/Homeuser/Index/friend/spaceid/{$space_current_user}">好友<span class="number">({$friendNums})</span>人</a>
+					</li>
+				  <li> 
+				  
+					{if !empty($space_Login_user)}
+						{if $space_current_user!=$space_Login_user && $flag=='true'}
+						<input type="button" value="加为好友" id="btnaddfriend" class="btn_yellow" onclick="javascript:toAddfriend();">
+						{/if}
+					{/if}
+						
+				  </li>
+
+				</ul>
+			</div>
+		</div>
+
+		
+<table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" 
+{if !empty($log_info.contentbg)}
+   	background="{$upload_latterbg}{$log_info.contentbg}"
+{/if}
+>
+
+ <tr>
+   <td height="25" colspan="3" valign="bottom"><span style='font-size:18px;'>{$log_info.log_name}</span>></td>
+ </tr>
+
+ <tr>
+   <td height="25" colspan="3" valign="bottom" align='right'>&nbsp;发布日期：{$log_info.add_date}<hr size=1/></td>
+ </tr>
+ <tr>
+   <td height="25" colspan="3" valign="bottom" align='left'>
+   <div class='wordwrap' style="word-break:break-all;width:640px"><span class="log_contentCss">{$log_info.log_contentall}</span></div></td>
+ </tr>
+</table>
+
+<div class='UserTalkbg'><span class="UserTalkNav">阅读({$log_info.read_count})&nbsp;&nbsp;|&nbsp;&nbsp;评论({$count})	 </span><span class="howsay">评论</span></div>
+
+
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
+   <tr><td style="border-bottom:1px solid #dddddd;"></td></tr>
+   {if $count==0}
+   <tr>
+    <td height="50" align="center"><p>暂无评论</p></td>
+   </tr>
+  {else}
+  {foreach from=$plun_list item=log_plun}
+   <tr>
+     <td>
+	    <table width="100%" border="0" align="left" cellpadding="3" cellspacing="1">
+          <tr>
+            <td width="100" rowspan="2">&nbsp;<img src="{$log_plun.plunheadimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width="60px" height="60px"/></td>
+            <td align="left" valign="top"><b><span style="color:#0000FF">{$log_plun.client_name}</span></b>&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-size:12px;color:#666666;">{$log_plun.add_date_sec}</font></td>
+          </tr>
+          <tr>
+           <td valign="top" align="left">{$log_plun.plun_content}</td>
+          </tr>
+        </table>
+     </td>
+   </tr>
+   <tr>
+	 <td><div style="border-bottom:1px dashed #dddddd;"></div></td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+	  {/foreach}
+	{/if}
+</table>
+<form action='/Homeclass/Class/addplun' method='post' onsubmit='return logplunadd();'>
+  <table width="98%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px;">
+    <tr>
+	  <td width="10%" valign="top"><img src="{$head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width="60px" height="60px"/></td>
+	  <td width="90%" colspan="2">
+		  <div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');"></textarea></div>
+		  <div class="funBox">
+			<div class="insertFun">
+			  <div id="showface" style="display:none;"></div>
+			  <div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+			  <div class="uploadPic">
+			    <input type="hidden" name="pic" id="pic" value="" />  
+				<input type="hidden" name="mid" id="mid" value="" />
+				<input type="hidden" name="log_id" id="log_id" value="{$log_id}" />
+				<input type="hidden" name="spaceid" value="{$spaceid}" />
+				<input type="hidden" name="type" value="space" />
+				<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+			  </div>
+			</div>
+			<div class="sendFun">
+		      <span class="countTxt">还能输入<em>140</em>字</span>
+		      <span class='blank20'></span>
+			</div> 
+		  </div>
+      </td>
+	</tr>
+    <tr>
+	  <td width="10%">&nbsp;</td>
+	  <td width="90%" align="left"><input type="submit" value="发表评论"/></td>
+    </tr>
+  </table>
+</form>
+</div>
+
+
+<div class='block_right' id="Right">
+	<h5>{$space_client_name}的个人资料</h5>
+	<ul class='user-info2'>
+	
+		<li>所在班级：{$tpl_gradeclass_Name}</li>
+		<li>星座: {$space_constellation_nam}</li>
+		<li>生日: {$space_client_birthday}</li>
+		<li>血型: {$space_blood_type_name}</li>
+	</ul>
+	{include file="Public/space_menu.html"}
+</div>
+</div>
+{include file="Public/talkjs.html"}

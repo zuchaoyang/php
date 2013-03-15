@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>粘贴处理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/js/page/plcl3.js"></script>
+
+{literal}
+<style >
+	<!--
+	html,body {height:100%; margin:0px; font-size:12px;}
+	.mydiv {
+	background-color: #fff;
+	border: 5px solid #E0E0E0;
+	text-align: center;
+	padding-top:40px;
+	z-index:999;
+	width: 300px;
+	height: 120px;
+	left:50%;
+	top:50%;
+	margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+	margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+	margin-top:0px;
+	position:fixed!important;/* FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+	}
+	.mydiv p{color:#AE0000;line-height: 40px;font-weight: bold; font-size:20px;}
+	.bg,.popIframe {
+	background-color: #666; display:none;
+	width: 100%;
+	height: 100%;
+	left:0;
+	top:0;/*FF IE7*/
+	filter:alpha(opacity=50);/*IE*/
+	opacity:0.5;/*FF*/
+	z-index:1;
+	position:fixed!important;/*FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+	}
+	.popIframe {
+	filter:alpha(opacity=0);/*IE*/
+	opacity:0;/*FF*/
+	}
+	-->
+</style>
+
+<script type="text/javascript">
+	function commit (){
+		$("#nameinfo").submit();
+	}
+
+	function showDiv(){
+		document.getElementById('popDiv').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
+
+	function closeDiv(){
+		document.getElementById('popDiv').style.display='none';
+		document.getElementById('bg').style.display='none';
+		document.getElementById('popIframe').style.display='none';
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<a href="/" class="bjwha">返回首页</a>
+<div id="popDiv" class="mydiv" style="display:none;"><p>正在生成账号，请稍后...</p></div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+<div id="pShowData">
+    <table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+    <tr>
+    <tr>
+    <td height="10" colspan="5"><a href="/HomeClass/Uidimport/show_uid_import/class_code/{$classCode}/grade_id/{$gradeid}" class="bjwha">返回账号导入页面</a></td>
+  </tr>
+	  <td height="27" colspan="2" class="line">
+	    <a href="/Homeclass/Classmanage/classManager/class_code/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}" class="bjgk">班级概况</a>
+	    <a href="/Homeclass/Classmanage/showClassClient/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}/stop_flag/0" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/sns_ams/images/zhgla2.gif) no-repeat; color:#000000;" class="zhgl">班级成员账号管理</a>
+	  </tr>
+      <tr>
+        <td height="10" colspan="5">&nbsp;</td>
+      </tr>
+        <tr>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" bgcolor="#fbf6f7">
+            <table width="95%" border="0" align="left" cellspacing="1">
+              <tr><td colspan="8" style="color:red; font-weight:bold; line-height:24px;" align="left">失败信息</td></tr>
+              <tr>
+                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_01"><strong>学生账号</strong></td>
+                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_01"><strong>导入失败原因</strong></td>
+              </tr>
+              {foreach from=$err key=key item=val}
+	              <tr>
+	                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_01"><strong>{$key}</strong></td>
+	                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_01"><strong>{$val}</strong></td>
+	              </tr>
+              {/foreach}
+              <tbody id="studShow_table">
+                
+              </tbody>
+            </table>
+        </td>
+      </tr>
+    </table>
+</div>
+</body>
+</html>

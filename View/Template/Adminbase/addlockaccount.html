@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>添加锁定账号</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+
+</head>
+
+<body>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">添加锁定账号</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff">
+    <form name="form" id="form_add"  method="post" action="/Adminbase/Body/saveNewLockAccount">
+    <table width="100%" border="0" style="margin-bottom:20px;" bgcolor="#f0f8ff">
+	  <tr>
+	    <td width="6%" height="25" align="right">账号：</td>
+	    <td width="20%">
+	        <input type="text" name="lock_account" id="lock_account" class="h_text" /></td>
+	    <td width="8%">
+	        <input type="button" value="添加" name="btn_add"  id="btn_add"  class="sh_btn" style="cursor:pointer;" />    </td>
+	   	<td width="64%">
+	        <input type="button" value="返回" name="btn_back" id="btn_back" class="sh_btn"  style="cursor:pointer;"/>    </td>
+	  </tr>
+	  <tr>
+	  <td width="6%" height="25" align="right">&nbsp;</td>
+	  <td colspan="4"><span id="tip_show" style="color:red;"></span></td>
+	  </tr>
+	</table>
+	</form>
+</td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<script type="text/javascript">
+	var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+{literal}
+
+	var LockAccountObj = function (){}
+	var remind_msg = {
+			'lock_account' : "请输入要锁定的账号"
+	};
+	var error_msg = {
+			'lock_account' : '账号格式不正确'
+	};
+ 
+	LockAccountObj.prototype.reminder = function reminder(id){
+		$("#"+id).html('<img src="'+IMG_SERVER+'__PUBLIC__/images/error.gif" class="img_align" />');
+		$("#tip_show").html(remind_msg[id]);
+	}
+	
+	LockAccountObj.prototype.errorer = function errorer(id){
+		$("#"+id).html('<img src="'+IMG_SERVER+'__PUBLIC__/images/error.gif" class="img_align" />');
+		$("#tip_show").html(error_msg[id]);
+	}
+	
+	LockAccountObj.prototype.ok = function ok(id){
+		$("#tip_show").html("");
+	}
+	
+	LockAccountObj.prototype.back = function back() {
+		window.location.href = "/Adminbase/Body/accountBlock";	
+	}
+	
+	LockAccountObj.prototype.check = function check() {
+		this.lock_account = $("#lock_account").val();
+		
+		if(this.lock_account == "") {
+			this.reminder("lock_account");
+			return false;
+		}else {
+			var reg = /^\d{3,20}$/;
+			if(!reg.test(this.lock_account)) {
+				this.errorer("lock_account");
+				return false;	
+			} else {
+				this.ok("lock_account");
+				return true ;
+			} 
+		}
+	}
+	
+	$(function (){
+		var lockAccount = new LockAccountObj();
+
+		$("#lock_account").blur(function () {
+		    lockAccount.check();
+		});
+		$("#btn_add").click(function () {
+			if(lockAccount.check()) {
+				$("#form_add").submit();
+			}
+		});
+		
+		$("#btn_back").click(function () {
+			lockAccount.back();
+		});
+		
+	})
+	{/literal}
+</script>
+
+</body>
+</html>

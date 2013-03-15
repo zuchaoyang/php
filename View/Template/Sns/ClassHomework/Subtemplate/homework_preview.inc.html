@@ -1,0 +1,62 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/ext/homework_preview.js"></script>
+<!--发布预览-->
+<div id="preview_div" class="preview_release" style="display:none;">
+  <h1>班级作业>作业预览</h1>
+  <h2>科目：<span id="subject_name"></span></h2>
+  <h2 class="sub_date">交作业日期：<span id="end_time" class="f_red"></span></h2>
+  <!--tcc_work_main star-->
+  <div class="tcc_work_main">
+    <h5 class="tcc_title">作业内容</h5>
+    <p>
+      <span id="content"></span>
+     &nbsp;&nbsp;<a href="javascript:;">附件下载：<span id="upload_file_name"></span></a>
+    </p>
+  </div>
+  <!--tcc_work_main end-->
+  <h2>作业接收人</h2>
+  <!--tcc_work_main star-->
+  <div id="accepters_list">
+	  <div class="tcc_work_main tcc_workmain_mb10 clone" style="display:none;">
+	    <h5 id="class_name" class="tcc_title tcc_title_normal"></h5>
+	    <div class="tcc_workmain_tab">
+	      <table id="student_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+	      <tr>
+	        <td>孙慧慧</td>
+	        <td>孔令冲</td>
+	        <td>孔福宁</td>
+	        <td>郝云龙</td>
+	        <td>赫樱花</td>
+	        <td>孔令冲</td>
+	        <td>赫樱花</td>
+	        <td>孔令冲</td>
+	      </tr>
+	    </table>
+	    </div>
+	  </div>
+	  <!--tcc_work_main end-->
+  </div>
+  <!--tcc_work_main end-->
+  <div class="tcc_workmain_btn">
+    <dl>
+     <dt>
+      <a href="javascript:;" class="f14" title="发布作业">
+	      <span class="btn_left"></span>
+	      <span id="pub_btn" class="btn_right">发布作业</span>
+      </a>
+      <div class="clear"></div>
+     </dt> 
+    </dl>
+    <dl>
+     <dt>
+      <a href="javascript:;" class="f14" title="发布作业+短信">
+	      <span class="btn_left"></span>
+	      <span id="pub_with_sms_btn" class="btn_right">发布作业+短信</span>
+      </a>
+      <div class="clear"></div>
+     </dt>
+     <dd class="f12 f_orange">作业同时发送到家长手机上</dd> 
+    </dl>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--recieve_tcc end-->

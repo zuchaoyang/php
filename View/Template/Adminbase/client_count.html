@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>用户统计</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Address.js"></script>
+
+{literal}
+<script type="text/javascript">
+	$(function() {//定义函数 
+		$('.tj_tab tbody').hover( 
+		  function(){ 
+			$(this).addClass("tr_on"); 
+			$(this).removeClass("tr_off"); 
+		  }, 
+		  function(){ 
+			$(this).addClass("tr_off"); 
+			$(this).removeClass("tr_on"); 
+		  } 
+		); 
+	}); 
+
+	function changepage(type){
+		if(type == 1){
+			var myform = $("#uppage");
+		}else if(type == 2){
+			var myform = $("#nextpage");
+		}
+		myform.submit();
+	}
+
+</script>
+{/literal}
+</head>
+
+<body style="padding-top:10px; _width:98%">
+
+<table width="92%" border="0" cellspacing="1" cellpadding="0" class="tj_main">
+  <tr height="30" bgcolor="#c2daee">
+    <td colspan="3"><h3>注册用户总计：{$user_count.total_people_count}</h3></td>
+    <td colspan="2"><h3>绑定手机用户总计：{$phone_count.total_phone_count}</h3></td>
+  </tr>
+  <tr height="30" bgcolor="#f0f8ff">
+    <td width="80">老师：{$user_count.teacher_count}</td>
+    <td width="80">学生：{$user_count.student_count}</td>
+    <td width="80">家长：{$user_count.parents_count}</td>
+    <td width="80">老用户：{$phone_count.phone_old_count}</td>
+    <td width="80">新用户：{$phone_count.phone_new_count}</td>
+    
+  </tr>
+</table>
+
+<div class="tj_title"><h3>&nbsp;</h3></div>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  	<td width="140"><h3>&nbsp;&nbsp;区域用户情况统计&nbsp;</h3></td>
+    <td class="xzqy">
+	    <form action="/Adminbase/Userstatistics/getschoolusernum" method="post">
+	    	<div>
+			    <div id="show_area" style="float:left;">
+			    	<input type="hidden" id="init_area_id" value="{$area_id}"/>
+			    </div>
+				<div style="float:left;margin-left:5px;" >
+				<input style="height:20px;" name="school_name" id="schoolAddress_Content" type="text" value="{$school_name}" class="wbk" /><span class="xhao"></span><span id="schoolAddress_Content_err" style="color:Red;"></span>
+				<input type="submit" value="查找" class="qd_btn" />
+				</div>
+			</div>
+			{foreach from = $user_count item=val key=key}
+		   		<input type="hidden" name="user_count[{$key}]" value="{$val}"/>
+		   	{/foreach}
+		   	{foreach from = $phone_count item=val key=key}
+		   		<input type="hidden" name="phone_count[{$key}]" value="{$val}"/>
+		   	{/foreach}
+		</form>
+    </td>
+  </tr>
+  {if !empty($area_schoolInfos)}
+  <tr>
+    <td colspan="2">
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="qy_main">
+		  <tr height="30" bgcolor="#c2daee">
+		    <td colspan="3"><h3>区域注册用户总计：{$area_user_count.total_people_count}</h3></td>
+		    <td colspan="2"><h3>区域绑定手机用户总计：{$area_phone_count.total_phone_count}</h3></td>
+		  </tr>
+		  <tr height="30" bgcolor="#f0f8ff">
+		    <td width="80">老师：{$area_user_count.teacher_count}</td>
+		    <td width="80">学生：{$area_user_count.student_count}</td>
+		    <td width="80">家长：{$area_user_count.parents_count}</td>
+		    <td width="80">老用户：{$area_phone_count.old_phone_count}</td>
+		    <td width="80">新用户：{$area_phone_count.new_phone_count}</td>
+		    
+		  </tr>
+		</table>
+     </td>   
+   </tr>
+   <tr>
+   	<td colspan="2">    
+        <table id="mytable" width="100%" border="0" cellspacing="1" cellpadding="0" class="tj_tab">
+		  <tr>
+		    <th width="120">省</th>
+		    <th width="80">市</th>
+		    <th width="80">区/县</th>
+		    <th width="400">学校</th>
+		    <th width="80">用户数</th>
+		    <th width="80">老师</th>
+		    <th>学生</th>
+		    <th>家长</th>
+		    <th>手机绑定数</th>
+		    <th>老用户</th>
+		    <th>新用户</th>
+		  </tr>
+		  {foreach from=$area_schoolInfos item=val}
+		  <tr onmouseover="this.className='bj_color'" onmouseout="this.className=''">
+		    <td>{$val.province}</td>
+		    <td>{$val.city}</td>
+		    <td>{$val.county}</td>
+		    <td style="text-algin:center;">{$val.school_name}</td>
+		    <td>{if $val.people_total_count}{$val.people_total_count}{else}0{/if}</td>
+		    <td>{if $val.teacher_count}{$val.teacher_count}{else}0{/if}</td>
+		    <td>{if $val.student_count}{$val.student_count}{else}0{/if}</td>
+		    <td>{if $val.parents_count}{$val.parents_count}{else}0{/if}</td>
+		    <td>{if $val.total_phone_count}{$val.total_phone_count}{else}0{/if}</td>
+		    <td>{if $val.old_phone_count}{$val.old_phone_count}{else}0{/if}</td>
+		    <td>{if $val.new_phone_count}{$val.new_phone_count}{else}0{/if}</td>
+		  </tr>
+		  {/foreach}
+		  <tr>
+			  	<td colspan="11">
+				当前第{$page}页 
+				{if $page<2}
+					上一页
+				{else}
+					<a href="javascript:changepage(1);">上一页</a>
+				{/if}
+				{if $no_next}
+					下一页
+				{else}
+					<a href="javascript:changepage(2);">下一页</a>
+				{/if}
+				</td>
+			</tr>
+		  {else}
+		  <tr>
+		  <td colspan="11">暂无数据</td>
+		  </tr>
+		  {/if}
+		</table>
+    </td>
+  </tr>
+</table>
+
+<form id="uppage" action="/Adminbase/Userstatistics/getschoolusernum" method="post">
+	<input type="hidden" name="school_name" value="{$school_name}"/>
+	<input type="hidden" name="area_id" value="{$area_id}"/>
+	<input type="hidden" name="page" value="{$page-1}"/>
+	{foreach from = $area_user_count item=val key=key}
+   		<input type="hidden" name="area_user_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $area_phone_count item=val key=key}
+   		<input type="hidden" name="area_phone_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $user_count item=val key=key}
+   		<input type="hidden" name="user_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $phone_count item=val key=key}
+   		<input type="hidden" name="phone_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+</form>
+<form id="nextpage" action="/Adminbase/Userstatistics/getschoolusernum" method="post">
+	<input type="hidden" name="school_name" value="{$school_name}"/>
+	<input type="hidden" name="area_id" value="{$area_id}"/>
+	<input type="hidden" name="page" value="{$page+1}"/>
+	{foreach from = $area_user_count item=val key=key}
+   		<input type="hidden" name="area_user_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $area_phone_count item=val key=key}
+   		<input type="hidden" name="area_phone_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $user_count item=val key=key}
+   		<input type="hidden" name="user_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+   	{foreach from = $phone_count item=val key=key}
+   		<input type="hidden" name="phone_count[{$key}]" value="{$val}"/>
+   	{/foreach}
+</form>
+</body>
+</html>

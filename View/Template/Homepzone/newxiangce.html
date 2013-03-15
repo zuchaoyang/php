@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>新建立相册</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+
+{literal}
+<style >
+	<!--
+	body {
+		margin-left: 0px;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+	}
+	-->
+</style>
+{/literal}
+
+</head>
+<body>
+<div class="title" style='line-height:40px;height:40px;font-size:14px;'>相册名称及描述</div>
+<table width="400" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+<form action="/Homepzone/Pzonephoto/savexc/user_account/{$account}" method="post" id="formxc" onsubmit="return checkinfo_XC();">
+  <tr>
+    <td width="20%" height="30" align="center" bgcolor="#f2f2f2">相册名称：</td>
+    <td bgcolor="#FFFFFF">
+	<input type="hidden" id="xcid" name="xcid" value="{$xcinfo.album_id}" />
+     &nbsp;<input type="text" id="xm" name="xcname" value="{$xcinfo.album_name}" maxlength="8" >
+         <font id="fgkqx"></font>	</td>
+  </tr>
+  <tr>
+    <td width="20%" rowspan="2" align="center" bgcolor="#f2f2f2">相册描述：</td>
+    <td bgcolor="#FFFFFF">&nbsp;<textarea name="xcms" id="xcms" cols="35" rows="4" class="inputextarea" onfocus="pupLimit('set');" onblur="pupLimit('del');">{$xcinfo.album_explain}</textarea></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">&nbsp;<strong><span class="pcountTxt">还能输入<em>60</em>字</span></strong></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" align="center" bgcolor="#f2f2f2">
+		<input type="submit"  value="确认保存"  class="inputbg2"/>
+		<input type='hidden' name='album_type' value='{$album_type}'>
+		<input type='hidden' name='class_code' value='{$class_code}'>    </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

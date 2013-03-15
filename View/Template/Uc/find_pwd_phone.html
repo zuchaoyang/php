@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>手机找回密码</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/find_pwd_phone.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/find_pwd_phone.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="uc_header"}
+<!--top end-->
+
+<div class="tip">
+  <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">您正在通过手机号找回密码...</span></p>
+</div>
+<div class="container">
+<div class="main">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+      <div class="sub_nav">
+        <ul>
+          <span class="sub_nav_first_end">1，输入账号</span>
+          <span class="sub_nav_end">2，选择找回方式</span>
+          <span class="sub_nav_current">3，安全验证</span>
+          <span class="sub_nav_center">4，重置密码</span>
+          <span class="sub_nav_right">5，完成</span>
+          
+        </ul>
+        <div class="clear"></div>
+      </div> 
+      <h4 class="font_cotent">验证手机号</h4>
+      <form method="post" action ="/Uc/Findpwd/findpwdByPhone" id="find_phone">
+      <table border="0" cellpadding="0" cellspacing="0" class="find_pwd_tab">
+          <tr>
+            <th class="font_cotent font_huise">手机号：</th>
+            <td class="font_huise">{$user_binding_list.sort_phone}</td>
+          </tr>
+          <tr>
+            <th class="font_cotent font_huise">确认手机号：</th>
+            <td height="40" class="font_gray font_normal">
+            <input type="text"  name="phone" id="phone" class="text text_lengh" maxlength="11"/>
+            <input type="button" name="sendScode" id="sendScode"  value="获取验证码" class="btn_05_w font_cotent" />
+            <span id="phoneTip"></span>
+            </td>
+        </tr>
+
+          <tr>
+            <th class="font_cotent font_huise">手机验证码：</th>
+            <td>
+            <input type="text" name="scode" id="scode" class="text text_lengh" maxlength="6" />
+            <span id="scodeTip"></span>
+            </td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td class="font_main font_gray"><span id="sendScode_span" ></span></td>
+          </tr>
+          <tr>
+            <th class="font_cotent font_huise">&nbsp;</th>
+            <td>
+            <input type="hidden" name="username"   id="username"   value="{$username}"/>
+            <input type="button" name="submit_btn" id="submit_btn" value="下一步" class="btn_2_word"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" name="go_back"    id="go_back"    value="返回"   class="btn_2_word" />
+            </td>
+          </tr>
+        </table>
+	</form>
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+
+ {insert name="uc_footer"}
+</body>
+</html>

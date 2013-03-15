@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学生账号预览</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/oldstudent.js"></script>
+
+</head>
+<body onload="oldStudentPreview();" style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >><a href="#" class="amswz">学生账号导入-预览</a></td>
+  </tr>
+</table>
+
+<form action="/Amscontrol/Oldaccountimport/oldStudentExportAccount/school_id/{$school_id}/grade_id/{$grade_id}/class_code/{$class_code}" method="post" id="form_export">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  {insert name="amscontrol_menu" uid=$uid school_id=$school_id grade_id=$grade_id class_code=$class_code mod="Classclientmanage"}
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">从Excel中导入数据：{$total_nums}条{if $fail_nums}(其中{$fail_nums}条数据存在错误!){/if}</td>
+  </tr>
+  <tr>
+   <td bgcolor="#fbf6f7">
+     <table width="30%" border="1" align="left" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse; margin:0px;">
+  <tr>
+    <td height="30" align="center" bgcolor="#CCCCCC">序号</td>
+    <td align="center" bgcolor="#CCCCCC">学生姓名</td>
+    <td align="center" bgcolor="#CCCCCC">学生账号</td>
+  </tr>
+  {foreach from=$student_datas item=student}
+  <tr>
+    <td height="30" align="center">{$student.index_id}</td>
+    <td align="center">{$student.client_name}</td>
+    <td align="center">{$student.client_account}</td>
+  </tr>
+  {/foreach}
+  
+  {if !empty($page_list)}
+	<tr>
+		<td align="center" height="30" colspan="3">
+			{if $page_list.pre_page}
+				<a href="{$page_list.pre_page}">上一页</a>
+			{else}
+				<label>上一页</label>
+			{/if}
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			{if $page_list.next_page}
+				<a href="{$page_list.next_page}">下一页</a>
+			{else}
+				<label>下一页</label>
+			{/if}
+		</td>
+	</tr>
+  {/if}
+</table>
+   </td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">提示：请仔细核对您录入的老师姓名和数量</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">
+    	<input type="button" value="确认提交，生成账号" class="qrtj" id="submit_botton"/>
+    	<input type="button" value="返回" class="back" id="back"/>
+    </td>
+  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+</table>
+<input type="hidden" name="pFileName" value="{$pFileName}"/>
+<input type="hidden" name="md5_key" value="{$md5_key}"/>
+</form>
+    
+</body>
+</html>

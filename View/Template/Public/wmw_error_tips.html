@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>错误提示</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_css/wmw_tips.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/wmw_tips.js"></script>
+
+</head>
+
+<body>
+<div class="container" >
+<div class="content_frame_01" >
+	<div class="content_frame_01_top" ></div>
+    <div class="content_frame_01_con">
+    	<table cellpadding="0" cellspacing="0" class="common_tip"> 
+        	<tr>
+            	<td width="70"><span class="error_icon"></span></td>
+                <td>        
+                	{$message}<a href="{$backurl}" class="cg_link_blue" id="back_url">点击这里跳转</a> <br />
+                    <p class="xttz">系统将在<a href="javascript:;" class="font_red"> <span id="showtime">{$timeout}</span>秒</a> 后自动跳转</p>
+                </td>
+            </tr>
+        </table>    
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+</body>
+</html>

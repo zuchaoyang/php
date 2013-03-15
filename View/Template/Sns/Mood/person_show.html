@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>个人说说详情页</title>
+<link rel="stylesheet" type="text/css" charset="utf-8" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Mood/show.css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Mood/person_mood_show.js"></script>
+
+</head>
+<body>
+
+<!--per_tip star-->
+<div class="per_tip">
+ <div class="pertip_main">
+  <dl>
+    <dt>
+	  <a href="#">
+	     <img width="24" height="24" src="{$user.client_headimg_url}">
+	  </a>
+    </dt>
+  </dl>
+  <a href="#">
+	  <span>{$user.client_name}</span>
+	  <span class="icon_white_sjx"></span>
+  </a>
+  <div class="clear"></div>
+ </div> 
+</div>
+<!--per_tip end-->
+
+<!--content star-->
+<div class="content pt20" >
+  <!--mood_main star-->
+  <div class="mood_main">
+    <ul>
+      <li><a href="javascript:;" class="main_nav_a1 mr6" title=""></a></li>
+    </ul>
+    <div id="mood_div" class="say_main">
+    <!--personal_active star-->
+      <div class="personal_active">
+         <div class="per_active_l">
+           <dl>
+             <dt>
+             	<img width="76" height="76" src="{$mood_info.user_info.client_headimg_url}" />
+             </dt>
+            </dl>
+         </div>
+         <!--per_active_r star-->
+         <div class="per_active_r">
+           <p class="per_right_top">
+             <a href="#" class="fc_288c00">{$mood_info.user_info.client_name}</a>
+           </p>
+           <!--per_right_center star-->
+           <div class="per_right_center">
+             <p>
+              	{$mood_info.content}
+              	{if $mood_info.img_url}
+              		<img src="{$mood_info.img_url}"/>
+              	{/if}
+             </p>
+             <div class="per_release_time">
+              <p class="per_p_width">发布时间：{$mood_info.add_time_format}</p>
+              <p>
+	              <a id="delete_mood_a" href="javascript:;" class="fc_288c00">删除</a>
+	              <a id="comment_mood_a" href="javascript:;" class="fc_288c00">评论{if $mood_info.comments}({$mood_info.comments}){/if}</a>
+              </p>
+             </div>
+             <!--comment_pl_tab star-->
+             <div id="send_1st_mood_div" class="comment_pl_tab" style="display:none;">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2">
+                    	<textarea class="pl_textarea"></textarea>
+                    </td>
+                  </tr>
+               </table>
+             </div>
+             <!--comment_pl_tab end-->
+            
+           </div>
+           <!--per_right_center end-->
+           <p class="per_right_bottom"></p>
+         </div>
+         
+         <div class="clear"></div>
+          <div id="comment_list_div" class="plxq" >
+         	<!--per_active_r end-->
+           <div class="clear"></div>
+         </div>
+         <div class="clear"></div>
+       </div>
+       <!--personal_active end-->
+       </div>
+       
+       </div>
+       <!--mood_main end-->
+     <div class="clear"></div> 
+</div>
+<!--content end-->
+{include file="Sns/Mood/Subtemplate/mood_comment.html"}
+{include file="Sns/Mood/Subtemplate/pop_div.html"}
+
+<input type="hidden" id="client_account" value="{$client_account}"/>
+<input type="hidden" id="mood_id" value="{$mood_info.mood_id}"/>
+</body>
+</html>

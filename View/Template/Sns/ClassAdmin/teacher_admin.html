@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>老师维护</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassAdmin/teacher_admin.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassAdmin/class_teacher_manage.js"></script>
+
+
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4>
+	    <a href="/Sns/ClassAdmin/Index/index/class_code/{$class_code}" class="f14" title="">
+		    <span class="btn_left"></span>
+		    <span class="btn_right">返回班级管理</span>
+	    </a>
+    </h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+     <div class="publish_main">
+       <p class="blog_title">
+         	老师信息维护
+       </p>
+       <div class="list_admin_left">
+         <h3><a>选择科目</a><a>选择任课老师</a></h3>
+         <div class="admin_left_main" id="subject_list">
+           <ul>
+           {if !empty($subject_list)}
+            {foreach from=$subject_list item=val}
+            <li><a id="subject_id_{$val.subject_id}" href="javascript:;">{$val.subject_name}</a></li>
+            {/foreach}
+            {/if}
+           </ul>
+           <p><a></a></p>
+           <div class="admin_left_tab">
+             <table id="teacher_list" width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr style="display:none;">
+                <td>
+                	<input type="radio" name="teacher_info"/>
+                </td>
+                <td class="td_img">
+                	<img style="width:60px; height:60px;" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassAdmin/teacher_admin/icon_pic01.jpg">
+                </td>
+                <td></td>
+              </tr>
+            </table>
+           </div>
+           <div class="clear"></div>
+         </div>
+       </div>
+       <div class="list_admin_center">
+         <a href="javascript:;" class="f14" title="">
+	         <span class="btn_left"></span>
+	         <span class="btn_right" id="add_teacher">添加</span>
+         </a>
+       </div>
+       <!--list_admin_right star-->
+       <div class="list_admin_right">
+         <h3>职务详情</h3>
+         <div class="admin_right_tab">
+           <table id="teacher_select_list" width="100%" border="0" cellspacing="0" cellpadding="0" class="big_tab">
+           	<tr style="display:none;">
+               <td class="border_none"></td>
+               <td></td>
+               <td>
+               	<a href="javascript:;" id="class_teacher_{$val.subject_id}_{$val.client_account}" class="f_main_green">删除</a>
+               </td>
+             </tr>
+             <tr>
+               <td colspan="3" class="tr_bj">
+                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                   <tr>
+                    <th>科目</th>
+                    <th>任课老师</th>
+                    <th>操作</th>
+                   </tr>
+                 </table>
+               </td>
+             </tr>
+              {if !empty($class_teacher_list)}
+	              {foreach from=$class_teacher_list item=val}
+		              <tr>
+		                <td id="selected_subject_{$val.subject_id}" class="border_none">{$val.subject_name}</td>
+		                <td>{$val.client_name}</td>
+		                <td>
+		                	<a href="javascript:;" id="class_teacher_{$val.subject_id}_{$val.client_account}" class="f_main_green">删除</a>
+		                </td>
+		              </tr>
+	              {/foreach}
+              {/if}
+            </table>
+            <p>
+	            <a href="javascript:;" class="f14" title="">
+		            <span class="btn_left"></span>
+		            <span id="to_change_teacher" class="btn_right">确定</span>
+	            </a>
+            </p>
+         </div>
+       </div>
+       <!--list_admin_right end-->
+       <div class="clear"></div>
+     </div>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+	<!--弹出层 star-->
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="del_teacher_tip" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_question"></span></dt>
+      </dl>
+      <p>您确定要删除语文科目吗？</p>
+      <div class="clear"></div>
+     </div>
+      <p class="msg_center_btn"><input type="button" class="qd_btn"><input type="button" class="qx_btn" value="取消"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="teacher_selected_repeat" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_warn"></span></dt>
+      </dl>
+      <p>语文课老师已存在&nbsp;请重新选择</p>
+      <div class="clear"></div>
+     </div>
+      <p class="msg_center_btn"><input type="button" class="qd_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+<!--弹出层 end-->
+
+{include file="Public/sns_footer.html"}
+</body>
+</html>

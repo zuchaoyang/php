@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人日程列表列表</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/oa_left.js"></script>
+</head>
+
+<body>
+
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+	<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+	<h4 class="middle_title">个人记事 <span>日程安排</span></h4>
+	<!--zzy_list-->
+	{if $schedule_list == ""}
+		没有日程记录
+	{else}
+		{foreach from=$schedule_list item=val}
+	        <div class="zzy_list">
+	          <h4><span class="h4_zuo3">{$val.schedule_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+	          <p style="display:block; clear:both;width:500px;word-wrap:break-word;word-break:break-all;">
+	            	{$val.short_schedule_message}
+	          </p>
+	          <h4><span class="h4_zuo4"><a href="/Oa/Schedulemanage/show_modifySchedule_info/schedule_id/{$val.schedule_id}" class="a_green2">查看详情</a><a href="#">{if $val.is_expiration_time== 1}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>{/if}{if $val.is_deadline_hours}<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a>{/if}</span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+	        </div>
+	    {/foreach}
+     <!--zzy_list end-->
+		当前页{$page} 
+		{if $page == 1}
+			上一页
+		{else}
+			<a href="/Oa/Expireremind/getScheduleByRemindTime/page/{$page-1}">上一页</a>
+		{/if}
+		{if $flag == 'true'}
+			下一页
+		{else}
+			<a href="/Oa/Expireremind/getScheduleByRemindTime/page/{$page+1}">下一页</a>
+		{/if}
+	{/if}
+</div>
+    <!--middle end-->
+    
+    <!--right-->
+<div class="index_right">
+
+	<!--布置给我的工作-->
+	<div class="bzgz"> 
+    	<a href="#" class="gz_num">5</a> 
+        <a href="#">&nbsp;&nbsp;布置给我的工作</a>
+    </div>
+    
+    <!--日历-->
+    <div class="rigt_rl">
+    	<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/rl.gif" />
+    </div>
+    
+    <!--搜索-->
+    <div class="right_serch">
+    	<input name="" type="text" /> <a href="#">搜索</a>
+    </div>
+    <div class=" clear"></div>
+    <!--日程分类-->
+    <div class="right_fl">
+    	<h4>日程分类</h4><a href="javascript:showDiv()" class="flgl">分类管理</a>
+        <div class="clear"></div>
+        <ul> 
+            <li><a href="#">所有分类<span>(120)</span></a></li>
+            <li><a href="#">默认分类<span> (0)</span></a></li>
+            <li><a href="#">局里工作<span> (2)</span></a></li>
+            <li><a href="#">学校工作<span> (65)</span></a></li>
+            <li><a href="#">重要通知<span> (25)</span></a></li>
+            <li><a href="#">校务公开<span> (5)</span></a></li>
+            <li><a href="#">个人记事<span> (20)</span></a></li>
+            <li><a href="#">其他<span>(0)</span></a></li>
+            <li><a href="#">自定义分类<span>(10)</span></a></li>
+        </ul>    
+    </div>
+<!--日程归档-->
+    <div class="right_fl">
+    	<h4>日程归档</h4>
+        <div class="clear"></div>
+        <ul> 
+            <li><a href="#">2012年<span>(120)</span></a></li>
+            <li><a href="#">1月  2月  3月  4月   5月</a></li>
+            <li><a href="#">2011年<span>(2)</span></a></li>
+            <li><a href="#">2010年<span>(65)</span></a></li>
+            <li><a href="#">2009年<span>(25)</span></a></li>
+            <li><a href="#">2008年<span>(5)</span></a></li>
+
+        </ul>    
+    </div>
+    
+    <!--标签分类-->
+    <div class="right_fl">
+    	<h4>标签分类</h4>
+        <div class="clear"></div>
+        <ul> 
+            <li><a href="#">紧急重要<span>(120)</span></a></li>
+            <li><a href="#">领导交办<span>(0)</span></a></li>
+            <li><a href="#">期末工作<span>(2)</span></a></li>
+            <li><a href="#">紧急重要<span>(65)</span></a></li>
+            <li><a href="#">领导交办<span>(25)</span></a></li>
+            <li><a href="#">期末工作<span>(5)</span></a></li>
+            <li><a href="#">......  </a></li>
+            <li> <a href="#"> 点击显示所有标签 </a> </li>
+        </ul>    
+    </div>
+
+</div>    
+    
+    <!--right end-->
+    
+    
+    
+    
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

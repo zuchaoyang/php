@@ -1,0 +1,24 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/exam_draft.js"></script>
+ <!--读取草稿 star-->
+ <div id="exam_draft_div" style="display:none;" class="edit_comment" >
+   <h1 class="tcc_title">读取草稿<span class="f12">(您上次编辑的成绩未发布，您可以读取以下草稿继续编辑并发布)</span></h1>
+   <div class="read_darft_main">
+     <p class="f13 f_main_green">请选择一篇草稿(点击标题即读取)</p>
+     <table id="exam_draft_tab" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th>考试名称</th>
+        <th>保存时间</th>
+        <th>操作</th>
+      </tr>
+      <!-- 页面填充的时候用于clone的元素 -->
+      <tr class="clone" style="display:none;">
+        <td><a class="choice_a" href="javascript:;"></a></td>
+        <td></td>
+        <td><a class="delete_a" href="javascript:;">删除</a></td>
+      </tr>
+    </table>
+   </div><!-- todo 分页先不加 没有给分页样式
+   	<a id="pre_page_btn" href="javascript:;">上一页</a>
+	<a id="next_page_btn" href="javascript:;">下一页</a>
+ --></div>
+ <!--读取草稿 end-->

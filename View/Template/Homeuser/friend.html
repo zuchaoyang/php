@@ -1,0 +1,121 @@
+{insert name="space_header"}
+<span class='blank10'></span>
+<div class='b_main'>
+<div class='block_left' id="Left">
+
+		<div class='UserBaseMsgK'>
+			<div class='UserBaseImg'>
+			<img src="{$user_head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" id="avatar" />
+			</div>
+			<div class='UserBaseList'>
+				<ul>
+					<li><h4><span class="s_username">{$space_school_name}</span></h4></li>
+					<li><h4><span class="s_nickname">{$space_client_name}</span></h4></li>
+					<li><a href="http://{$space_url}" title="{$space_client_name}的主页"><span style='font-family:Courier New'>{$space_url}</span></a></li>
+					<li>
+					<a href=/Homeuser/Index/spacetalk/spaceid/{$space_current_user}>新鲜事<span class="number">({$DataRows})</span>条</a>&nbsp;&nbsp;
+					<span class="splist_line">|</span>&nbsp;&nbsp; 
+					<a href="/Homeuser/Index/friend/spaceid/{$space_current_user}">好友<span class="number">({$friendNums})</span>人</a>
+					</li>
+				  <li> 
+					{if !empty($space_Login_user)}
+						{if $space_current_user!=$space_Login_user}
+						<!--addFriendBox(this, '{$space_current_user}','{$space_current_type}');-->
+						<input type="button" value="加为好友" id="btnaddfriend" class="btn_yellow" onclick="javascript:toAddfriend();">
+						{/if}
+					{/if}
+				  </li>
+
+				</ul>
+			</div>
+		</div>
+
+	<div class='UserTalkbg'><span class="howsay">{$space_client_name}的好友&nbsp;({$num})</span></div>
+	{if !empty($friend_info)}
+	<table width="640" border="0">
+	  <tr>
+		  {foreach from=$friend_info item=vo name=nums}
+			<td align="left" width="100">
+				<table width="100%" border="0">
+				  <tr>
+					<td align="center"><img src="{$vo.client_headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width="100" height="100" border="0" onclick="showlatterlist(300,260,{$vo.friend_account},'学生','studentpaper{$vo.friend_account}','student')"  id='studentpaper{$vo.friend_account}'  alt='点击浏览资料' class='headimgK' /></td>
+				  </tr>
+				  <tr>
+					<td align="center">{$vo.client_name}</td>
+				  </tr>
+			  </table>
+			</td>
+			{if $smarty.foreach.nums.iteration % 5 == 0}
+			</tr>
+			<tr>
+			{/if}
+		{/foreach}
+	{else}
+		<br />目前您没有好友
+	{/if}
+	  </tr>
+	</table>
+  </div>
+
+
+	<div class='block_right' id="Right">
+		<h5>{$space_client_name}的个人资料</h5>
+		<ul class='user-info2'>
+		
+			<li>所在班级：{$tpl_gradeclass_Name}</li>
+			<li>星座: {$space_constellation_nam}</li>
+			<li>生日: {$space_client_birthday}</li>
+			<li>血型: {$space_blood_type_name}</li>
+		</ul>
+		
+		<span class='blank10'></span>
+		{include file="Public/space_menu.html"}
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+
+{literal} 
+	function aa(){
+		$('#downList_div').hide();
+	}
+	
+	function showlatterlist(_width,_height,_account,_tag,objId,clienttype){
+		var lastModified="Sat,1 Jan 2005 00:00:00 GMT";
+		var nowTime=new Date().getTime();
+		var url="/Homeclass/Class/getclientmessage/account/"+_account+'/type/'+clienttype;
+		$.get(url,{time:nowTime},function(data){
+		//alert(data);
+			var boxHeader='<div id="downList_Title"><span><img src="'+IMG_SERVER+'/Public/images/new/close_it.gif"/>关闭</span>'+_tag+'</div>';
+			var _html;
+			_html="<span class='blank10'></span>"+data+"";
+			html_DownList(objId,boxHeader,_html,_width,_height);
+			$("#downList_div").show();
+			$("#downList_Title").click(function(){
+				$('#downList_div').hide();
+			});
+		});
+	}
+	
+	function html_DownList(objID,Title,Body,_width,_height){
+	    var Pos=$.getPos(document.getElementById(objID));
+		Pos.y=Pos.y+$('#'+objID).height()-70;
+		Pos.x=Pos.x-_width+340;	
+	
+	    if($('#downList_div').length==0){
+	        $('body').append('<div id="downList_div"></div>');
+	    }
+	    $('#downList_div').html(Title+Body);
+	    $('#downList_div').width(_width).height(_height);
+	    $('#downList_div').css({
+	        top:Pos.y,left:Pos.x
+	    });
+	}
+
+</script>
+{/literal}
+
+{include file="Public/talkjs.html"}

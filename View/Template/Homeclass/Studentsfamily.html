@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_成员</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+</head>
+
+<div class="class_student_t">
+	<div class="class_student_img"><img src="{$student_headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></div>
+	<div class="class_student_name">
+	<span class="tag_title">{$student_client_name}的家长</span>
+	</div>
+</div>
+<div style="width:560px; float:left;heigth:400px;">
+{foreach from=$familyarrData  item=family}
+
+<div class="class_fmShowK">
+	<div class="class_fmShowK_t">
+	{$student_client_name}的
+	{if $selectedarr.family_type}
+    	{foreach from=$selectedarr.family_type.datas key=key item=relationtype}
+	    	{if $key == $family.family_type}{$relationtype}{/if}
+    	{/foreach}
+    {/if}
+	</div>
+	<div class="class_fmShowK_C" >
+		<table width="262" border="0" cellpadding="3" cellspacing="1" height="180">
+		  <tr>
+			<td width="100" rowspan="3" align="center">
+			<Img src="{$family.account_headpic_path}" width=80 height=80 onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'">			</td>
+			<td>姓名：{$family.client_name}{$family.client_account}</td>
+		  </tr>
+		  <tr>
+			<td>区域：{$family.client_address}</td>
+		  </tr>
+		  <tr>
+			<td>星座：
+			{foreach from=$client_clientconstellation key=key item=blood}
+			{if $family.client_constellation == $key}
+					{$blood}
+			{/if}
+			{/foreach}
+
+		</td>
+		  </tr>
+		  <tr>
+			<td colspan="2">&nbsp;&nbsp;从事行业：{$family.client_trade}</td>
+		  </tr>
+		  <tr>
+			<td colspan="2">&nbsp;&nbsp;单位名称：{$family.job_address_name}</td>
+		  </tr>
+		  <tr>
+			<td colspan="2" align="center">
+				<input type="submit" name="Submit" value="+ 好友" class="inputbg2" onclick="javascript:tofriendAddlist('{$family.client_account}','0');" {$client_typeUser}/>
+				<input type="submit" name="Submit2" value="访问空间" onclick="javascript:window.open('/Homeuser/Index/spacehome/spaceid/{$family.client_account}');" class="inputbg2" /></td>
+		  </tr>
+	  </table>
+	</div>
+</div>
+{/foreach}
+{include file="Public/talkjs.html"}
+
+</div>
+</body>
+</html>

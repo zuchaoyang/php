@@ -1,0 +1,32 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/ext/homework_recieve.js"></script>
+<!--recieve_tcc star-->
+<!--添加作业接收人-->
+<div id="pop_div" class="recieve_tcc" style="display:none;">
+  <input type="hidden" id="title" value="添加作业接收人"/>
+  {if false}
+  <h1 class="f14">添加作业接收人<a id="close_pop_div_a" href="javascript:;" class="close"></a></h1>
+  {/if}
+  <select id="class_list_select">
+  	<option value="-1">选择班级</option>
+  </select>
+  <div class="tcc_main">
+    <h2 class="f14" id="class_name"></h2>
+    <div class="tcc_main_nr">
+     	<table id="pop_student_list_tab" width="100%" border="0" cellspacing="0" cellpadding="0">
+          <!-- 用于页面数据的克隆 -->
+          <tr class="clone" style="display:none;">
+            <td><img class="img"></td>
+            <td class="user_name"></td>
+            <td><input class="chkbox" type="checkbox" class="checkbox"></td>
+            <td><span class="chk_txt">选择</span></td>
+          </tr>
+        </table>
+    </div>
+    <h2 class="f14 tcc_main_qd">
+    	<input id="check_all_btn" type="checkbox" class="checkbox" /><span>全选</span>
+    	<input id="sure_btn" type="button" value="确定" class="green_btn">
+      <div class="clear"></div>
+    </h2>
+  </div>
+  <div class="clear"></div>
+</div>

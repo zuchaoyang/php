@@ -1,0 +1,90 @@
+<!--一级评论 star-->
+<div id="comment_1st_unit_div" class="mb10 comment_1st_unit_selector" style="display:none;">
+     {literal}
+     <dl>
+       <dt>
+       	<img width="40" height="40" src="{comment.client_headimg_url}">
+       </dt>
+     </dl>
+     <!--tcc_single star-->
+     <div class="tcc_single">
+        <div class="tcc_single_tab">
+		  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		   <tr>
+			   <td>
+			   	<a class="fc_288c00" href="javascript:;">{comment.client_name}:</a>
+			   </td>
+			   <td>
+			   	<p>{comment.content}（{comment.add_time_diff}）</p>
+			   </td>
+			   <td>
+			   		<a class="fc_288c00 comment_1st_delete_selector" href="javascript:;">删除</a>
+			   </td>
+			   <td>
+			   	    <a class="fc_288c00 ml10 comment_1st_reply_selector" href="javascript:;">回复</a>
+			   </td>
+		  </tr>
+		 </table>
+		</div>
+        <!--tcc_reply star-->
+		<div class="tcc_reply reply_2nd_selector" style="display:none;">
+		  <p class="tcc_reply_top"></p>
+		  <!--tcc_reply_main star-->
+		  <div class="tcc_reply_main">
+		   <div class="reply_tab">
+		   <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		     <tr>
+		       <td colspan="3">
+		       	<textarea id="reply_2nd_conent" class="reply_text reply_2nd_content_selector" name="content"></textarea>
+		       </td>
+		     </tr>
+		   </table>
+		   <input type="hidden" name="feed_id" value="{comment.feed_id}"/>
+		   <input type="hidden" name="up_id" value="{comment.comment_id}"/>
+		   </div>
+		   <div class="clear"></div>
+		 </div>
+		 <!--tcc_reply_main end-->
+		</div>
+		<!--tcc_reply end-->
+
+	   <div id="second_comment_list">
+	   
+       </div>
+       
+       <!-- reply_2nd_simple -->
+       <div class="reply_2nd_simple_div_selector">
+		  <p>
+		  	<input type="text" class="er_comment_text reply_2nd_simple_selector" value="我也说一句">
+		  </p>
+		  <!--tcc_reply_main star-->
+		  <div class="tcc_reply_main simple_reply_div_selector" style="display:none;">
+		   <div class="reply_tab">
+		   <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		     <tr>
+		       <td colspan="3">
+		       	<textarea id="reply_2nd_conent" class="reply_text reply_2nd_simple_content_selector" name="content"></textarea>
+		       </td>
+		     </tr>
+		   </table>
+		   <input type="hidden" name="feed_id" value="{comment.feed_id}"/>
+		   <input type="hidden" name="up_id" value="{comment.comment_id}"/>
+		   </div>
+		   <div class="clear"></div>
+		 </div>
+		 <!--tcc_reply_main end-->
+	   </div>
+	   
+       {if comment.remain_nums}
+       <div>
+		  <p class="click_see">后面还有{comment.remain_nums}条评论回复<a class="f12 f_red ml10" href="/Sns/Feed/List">点击查看&gt;&gt;</a></p>
+	   </div>
+	   {/if}
+	</div>
+	<!--tcc_single end-->
+	<div class="clear"></div>
+	
+	<input type="hidden" id="comment_id" value="{comment.comment_id}"/>
+	{/literal}
+ </div>
+<!--一级评论  end-->

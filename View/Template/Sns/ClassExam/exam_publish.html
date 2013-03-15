@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>发布成绩</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassExam/publish.css" type="text/css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/my_py.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/sys_py.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/py_input.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/exam_publish.js"></script>
+
+</head>
+<body>
+<!-- 头部start -->
+{insert name="sns_header" uid = $uid}
+<!-- 头部end -->
+
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <ul>
+     <li>
+     	<a href="/Sns/ClassExam/Publish/index/class_code/{$class_code}" class="main_nav_a1 f16" title="发布成绩">发布成绩</a>
+     	<a href="/Sns/ClassExam/Exam/index/class_code/{$class_code}" class="main_nav_a2 f16" title="已发布成绩">已发布成绩</a>
+     </li>
+    </ul>
+    <!--publish_main star-->
+      <div class="publish_main">
+        <form id="exam_form" method="post" action="/Sns/ClassExam/Publish/Publish">
+	        <div class="release_guide">
+	          <p class="top_title">成绩发布向导</p>
+	          <p><span class="num1"></span>
+	          <span>填写考试信息</span><span class="icon_jt"></span><span class="num1 num2"></span>
+	          <span>录入学生成绩</span><span class="icon_jt"></span><span class="num1 num3"></span>
+	          <span>发布预览成绩</span><span class="icon_jt"></span><span class="num1 num4"></span>
+	          <span>完成</span>
+	          </p>
+	          <div class="clear"></div>
+	        </div>
+	        <h3 class="main_title">填写考试信息</h3>
+	        <!--fill_info star-->
+	        <div id="show_exam_div"  class="fill_info">
+	          <p id="class_name">{$class_name}</p>
+	          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	          <tr>
+	            <th>科目：</th>
+	            <td>
+	            <select name="subject_id" id="subject_id">
+	            	{if $subject_list}
+						{foreach from=$subject_list item=subject }
+				 	    	<option  value="{$subject.subject_id}" {if $exam_info.subject_id == $subject.subject_id}selected{/if} >
+				 	    	{$subject.subject_name}{if $subject.teacher_name}({$subject.teacher_name}){/if}
+				 	    	</option>
+						{/foreach}
+					{else}
+						<option value="">暂无科目</option>
+					{/if}
+	            </select>
+	            </td>
+	            <th>考试名称：</th>
+	            <td><input type="text" name="exam_name" id="exam_name" value="{$exam_info.exam_name}" maxlength="10" class="text120"></td>
+	            <th>考试日期：</th>
+	            <td><input type="text" name="exam_time" id="exam_time"  value="{$exam_info.exam_time}" {literal} onclick="WdatePicker({el:'exam_time',isShowClear:false})" {/literal} readonly="readonly" class="text120"></td>
+	          </tr>
+	          <tr>
+	            <th>满分设定：</th>
+	            <td><input type="text" name="exam_well" id="exam_well" value="{if $exam_info.exam_well}{$exam_info.exam_well}{else}100{/if}" class="text120"></td>
+	            <th>优秀分数设定：</th>
+	            <td><input type="text" name="exam_good" id="exam_good" value="{if $exam_info.exam_good}{$exam_info.exam_good}{else}90{/if}" class="text120"></td>
+	            <th>及格分数设定：</th>
+	            <td><input type="text" name="exam_bad" id="exam_bad" value="{if $exam_info.exam_bad}{$exam_info.exam_bad}{else}60{/if}" class="text120"></td>
+	          </tr>
+	        </table>
+	        </div>
+	        <!--fill_info end-->
+	        <input type="hidden" name="class_code" id="class_code" value="{$class_code}"/>
+        </form>
+        
+        <form id="upload_excel_tpl_form" method="post" action="/Sns/ClassExam/Publish/uploadExcelTemplateAjax" enctype="multipart/form-data">
+	        <!--exam_list star-->
+	        <div class="exam_list">
+	          <span class="pic01">成绩列表</span>
+	          <p class="main_width">
+	                             成绩导入
+	           <input id="excel_template_file" name="excel_template_file" class="text_browse" type="file">
+	           
+	           <input type="button" id="import_btn" value="导入成绩" class="word4_btn">
+	           <a href="/Sns/ClassExam/Publish/downExamExcelTemplate/class_code/{$class_code}" id="down_tpl_a" class="f_main_green">成绩模板下载</a>
+	          </p>
+	          <p class="align_right"><a href="javascript:;" id="extract_draft_a" class="f_main_green">读取草稿</a></p>
+	        </div>
+	        <!--exam_list end-->
+	        <input type="hidden" name="class_code" value="{$class_code}"/>
+        </form>
+        
+        <!--list_main star-->
+        <div class="list_main">
+        <table id="student_list_tab" width="100%" border="0" cellspacing="1" cellpadding="0">
+          <tr>
+            <th class="boder_left">序号</th>
+            <th>姓名</th>
+            <th>成绩</th>
+            <th>评语</th>
+          </tr>
+          <tr class="clone" style="display:none;">
+            <td class="boder_left"></td>
+            <td></td>
+            <td><input type="text" maxlength="4" class="text100"></td>
+            <td class="align_left">
+            <input type="text" maxlength="80" class="text_comment"/>
+            <a href="javascript:;" class="icon_write"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassExam/publish/icon_write.gif" alt="系统评语库"/></a>
+            <a href="javascript:;" class="icon_hide"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassExam/publish/icon_hide.gif" alt="我收藏的评语库"/></a>
+            </td>
+          </tr>
+          {foreach from=$student_list item=student}
+          <tr id="tr_{$student.client_account}">
+            <td class="boder_left">{$student.num_id}</td>
+            <td>{$student.client_name}</td>
+            <td><input type="text" value="{if $student.is_join == 1}{$student.exam_score}{/if}" maxlength="4" class="text100"></td>
+            <td class="align_left">
+	            <input type="text" id="py_id_{$student.num_id}" value="{$student.score_py}" maxlength="80" class="text_comment"/>
+				<a href="javascript:;" id="syspy_img_{$student.num_id}" class="icon_write" title="系统评语库">
+				<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassExam/publish/icon_write.gif" alt="系统评语库"/>
+				</a><a href="javascript:;" id="mypy_img_{$student.num_id}" class="icon_hide" title="我收藏的评语库">
+	            <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassExam/publish/icon_hide.gif" alt="我收藏的评语库"/>
+	            </a>
+            </td>
+          </tr>
+          {/foreach}
+        </table>
+        <p class="f12 f_orange align_left">注：成绩为空表示未添加</p>
+        </div>
+        <!--list_main end-->
+        <!--list_main_btn star-->
+        <div class="list_main_btn">
+          <dl>
+            <dt><a href="javascript:;"  id="pub_draft_btn" class="f14" title=""><span class="btn_left"></span>
+            <span  class="btn_right">保存草稿</span></a></dt>
+          </dl>
+          <dl>
+            <dt><a href="javascript:;" id="pub_preview_btn" class="f14" title=""><span class="btn_left"></span>
+            <span class="btn_right">预览发布</span></a></dt>
+          </dl>
+        </div>
+        <!--list_main_btn end-->
+    </div>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div>
+</div>
+<!--cotent end-->
+
+<!-- 引入弹层模板 -->
+{include file="Sns/ClassExam/Subtemplate/exam_preview.inc.html"}
+
+{include file="Sns/ClassExam/Subtemplate/exam_draft.inc.html"}
+<!-- 引入弹层模板 end-->
+<!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>已发布作业</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassHomework/list.css" type="text/css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/published.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <ul>
+     {if $access_list.is_show_fbzy}<a href="/Sns/ClassHomework/Publish/index/class_code/{$class_code}" class="main_nav_a2 f16" title="">发布作业</a>{/if}<a href="/Sns/ClassHomework/Published/index/class_code/{$class_code}" id="msg_homework_list" class="main_nav_a1 f16" title="">已发布作业</a>
+    </ul>
+    <!--list_main star-->
+    <div class="list_main">
+    
+        <div id="search_div" class="subject">
+         <p>科目：
+	          <select class="select" name="subject_id" id="subject_id">
+	          	<option value="0">全部</option>
+	          	{foreach from=$subject_infos item=subject}
+	          		<option value="{$subject.subject_id}" {if $subject_id == $subject.subject_id}selected{/if}>{$subject.subject_name}</option>
+	          	{/foreach}
+	          </select>
+	          <select class="select" name="search_type" id="search_type">
+		          <option value="FBZY" {if $timetype == 'FBZY'}selected{/if}>交作业日期</option>
+		          <option value="JZY"  {if $timetype == 'JZY'}selected{/if}>发布作业时间</option>
+	          </select>
+         	 从&nbsp;<input type="text" class="text" name="startdate" id="start_time">至&nbsp;<input type="text" class="text" name="enddate" id="end_time">
+         </p>
+	     <a id="search_a" href="javascript:;" class="f14" title="">
+          	<span class="btn_left"></span>
+          	<span class="btn_right" >查询</span>
+	     </a>
+          <!-- <p class="msg"><span class="error"></span>出错</p> -->
+          <div class="clear"></div>
+        </div>
+        <h3 class="f14">已发布作业</h3>
+        <div class="clear"></div>
+        <div id="homework_list_div">
+        	
+        </div>
+        
+        <input type='hidden' id="current_page" value="0"/>
+        <p class="see_homework"><span><a id="more_a" href="javascript:;">查看更多班级作业</a></span></p>
+    </div>
+    <!--list_main end-->
+    <div class="clear"></div>
+      <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+   <div class="clear"></div>
+</div>
+<!--content end-->
+{include file="Sns/ClassHomework/Subtemplate/homework_list_unit.inc.html"}
+{include file="Public/sns_footer.html"}
+<input id="class_code" type="hidden" value="{$class_code}"/>
+<input id="client_type" type="hidden" value="{$user.client_type}"/>
+</body>
+</html>

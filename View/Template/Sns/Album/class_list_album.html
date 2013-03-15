@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>班级相册</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_list_album.css" type="text/css" charset="utf-8">
+
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_album_list.js"></script>
+
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+     {insert name="sns_nav" class_code = $class_code}
+     <!--nav end-->
+    <h4></h4>
+    <!--publish_main star-->
+    <div class="publish_main">
+      <p class="upload_main_top">
+       <a href="/Sns/Album/Class/uplaodPhoto/class_code/{$class_code}" class="f14" title="上传照片"><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
+       <a href="#" class="f14 ml20" id="create_album_btn" title="创建相册"><span class="btn_left"></span><span class="btn_right">创建相册</span></a>
+      </p>
+      <div class="clear"></div>
+      <div id="dl_list">
+      {literal}
+      <dl class="clone_selector" style="display:none;">
+       <dt>
+	       <a href="/Sns/Album/Classphoto/photolist/album_id/{album_id}/class_code/{class_code}/client_account/{add_account}">
+	       	<img src="{album_img_path}" alt="{album_name}"/>
+	       </a>
+       </dt>
+       <dd><p class="album_name_selector">{album_name}</p></dd>
+       <dd>创建人：<span class="client_name">{client_name}</span></dd>
+       <dd id="photo_num_dd"><span id="photo_num_span">{photo_num}</span>张</dd>
+       <dd class="hide_main" style="display:none;">
+	       <a class="edit_a_selector f12 f_green" href="javascript:;">编辑</a>
+	       <a class="delete_a_selector f12 f_main_green" href="javascript:;">删除</a>
+       </dd>
+      </dl>
+      {/literal}
+      <div id="insert_pos_div">
+	      <div class="clear"></div>
+	      <p class="see_homework">
+	      	<span>
+	      		<a id="more_a" href="javascript:;">查看更多</a>
+	      	</span>
+	      </p>
+      </div>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    
+  </div>
+  <!--main end-->
+  
+  <div class="clear"></div> 
+  </div>
+  <div class="main_bottom" ></div>
+<!--content end-->
+
+<!-- start引入弹层模板 -->
+{include file="Sns/Album/Subtemplate/class_create_album.inc.html"}
+{include file="Sns/Album/Subtemplate/class_edit_album.inc.html"}
+{include file="Sns/Album/Subtemplate/class_del_album.inc.html"}
+<!-- end引入弹层模板 -->
+
+  <input type="hidden" id="is_edit" value="{$is_edit}"/>
+  <input type="hidden" id="class_code" value="{$class_code}"/>
+  <input type="hidden" id="client_account" value="{$client_account}"/>
+  <input type="hidden" id="no_photo_img" value="{$no_photo_img}"/>
+  
+  <input id="img_server" type="hidden" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
+ <!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+</body>
+</html>

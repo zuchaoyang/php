@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>发号规则设置</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+	.padleft{ margin-top:25px;}
+	.padleft td{ padding-left:8px;}
+</style>
+{/literal}
+
+</head>
+
+<body>
+<form name="form" action="/Adminbase/Body/updAccountRule" method="get">
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">发号规则设置</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff">
+    <table width="100%" border="0" style="margin-top:20px;margin-bottom:30px;">
+  <tr>
+    <td width="95" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:25px;">可发账号总数：</td>
+    <td width="108" height="35" bgcolor="#f0f8ff">{$current_used_rule.use_count}</td>
+    <td height="35" bgcolor="#f0f8ff">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="95" height="35" align="right" bgcolor="#f0f8ff" style="padding-left:25px;">当前启用位数：</td>
+    <td width="108" height="35" bgcolor="#f0f8ff">{$current_used_rule.account_length}</td>
+    <td height="35" bgcolor="#f0f8ff">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="35" align="right" bgcolor="#f0f8ff" style="padding-left:25px;">发号位数设置：</td>
+    <td height="35" bgcolor="#f0f8ff">
+    <select name="account_length_set" class="f_select" style="width:65px;height:22px;line-height:22px;">
+    {foreach from=$all_rule_length  item=length}
+    	{if $length == $current_used_rule.account_length}
+	      <option value="{$length}" selected="selected">{$length}</option>
+	    {else}
+	       <option value="{$length}">{$length}</option>
+	    {/if}	
+	{/foreach}      
+    </select></td>
+    <td height="35" bgcolor="#f0f8ff">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="95" height="55" bgcolor="#f0f8ff" style="padding-left:10px;">&nbsp;</td>
+    <td width="108" bgcolor="#f0f8ff" height="55"><input type="submit" value="确定" class="f_btn" /></td>
+    <td height="55" bgcolor="#f0f8ff">&nbsp;</td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

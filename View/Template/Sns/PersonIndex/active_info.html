@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>个人活跃值详情</title>
+<link rel="stylesheet" href="__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="__PUBLIC__/sns/css/PersonIndex/active_info.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+
+</head>
+<body>
+{insert name="sns_header"}
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $current_uid}
+<!--per_tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+       <ul>
+        <li><a href="javascript:;" class="main_nav_a1 mr6">活跃值</a><a href="/Sns/PersonIndex/Active/showActiveRule" target="_blank" class="main_nav_a2">活跃值规则</a></li>
+       </ul> 
+    <div class="active_main">
+      <h3>{$client_name}</h3>
+      <div class="per_value">
+         <p class="value_left"></p>
+         <div class="value_center">
+           <p>活跃值：<span class="f_main_green">{$active_num}</span></p><p class="pl10">今日已获得<span class="f_main_green">{$today_value}</span>活跃值</p>
+         </div>
+         <p class="value_right"></p>
+      </div>
+    
+      <h3>什么是活跃值？</h3>
+      <p>活跃值是用户使用我们网活跃情况的象征，活跃值越高，代表越活跃。</p>
+      <h3>如何获得活跃值？</h3>
+      <p>活跃值根据用户每天活动的足迹确定，只要用户登录我们网使用各项功能，即可获得活跃值。</p>
+      <h3>活跃值有什么作用？</h3>
+      <p>活跃值反映了用户在我们网的活跃度，同时也决定着用户在我们网的排名。</p>
+      <p>（1）可以提升自己在班级成员排名。</p>
+      <p>（2）可以提升自己在圈圈活跃成员的排名。</p>
+      <p>（3）可以提升班级在班级广场的综合排名。</p>
+     <h3>活跃值详情</h3>
+     <table width="100%" border="0" cellspacing="1" cellpadding="0">
+      <tr>
+        <th>每日操作</th>
+        <th>获得活跃值</th>
+        <th>每日上限（活跃值）</th>
+        <th>今日已获得活跃值</th>
+      </tr>
+      {foreach from=$active_log_list item=val}
+      <tr>
+        <td>{$val.message}</td>
+        <td>+{$val.add_value}</td>
+        <td>{$val.day_limit}</td>
+        <td>{$val.value}</td>
+      </tr>
+      {/foreach}
+    </table>
+    <p class="f12 f_red mt10">说明：查看学习资源，每日最多增长5点活跃值，需要查看5个不同资源，而且需要和当前年级匹配的资源。</p>
+    </div>   
+  </div>
+  <!--main end-->
+<div class="clear"></div> 
+</div>
+<!--content end-->
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

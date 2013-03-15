@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_公告</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/thickbox.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/thickbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="sub_right">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级公告</span></div>
+
+<div class="sub_class">
+<div class="sub_class_gg">
+<ul>
+<li id="class_g"><a href='/Homeclass/Myclass/Announcement/class_code/{$class_code}'>班级所有公告</a></li>
+<li id="class_g1"><a href='/Homeclass/Myclass/publishggao/class_code/{$class_code}'>发布新公告</a></li>
+</ul>
+</div>
+
+</div>
+<!--sub_class end-->
+<table width="765" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" >
+ {if !empty($classnoticelist)}
+  {foreach from=$classnoticelist item=ggao}
+  <tr bgcolor="#FFFFFF" style="line-height:24px;">
+	<td height="50"><div style="color:#666666; font-size:14px; text-indent:1em;">
+	{if $ggao.sendMessage==on}<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/iotel.jpg'>{/if}
+	<a href='/Homeclass/Class/AnnouncementView/class_code/{$class_code}/newsid/{$ggao.news_id}'>{if $ggao.news_title != ''}{$ggao.news_title}{else}{$ggao.news_content}{/if}</a>
+	</div></td>
+	<td width="25%" align="center"><span style="color:#666666">{$ggao.add_date}</span></td>
+  </tr>
+  <tr><td><div style='border-bottom:1px solid #dddddd;'></div></td></tr>
+  {/foreach}
+{else}
+	<tr>
+		<td colspan='2' align="center" bgcolor="#FFFFFF" height='30'>&nbsp;暂无公告</td>
+	</tr>
+{/if}
+ 
+</table>
+{$pageinfohtml}
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

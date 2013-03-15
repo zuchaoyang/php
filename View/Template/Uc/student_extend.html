@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学生扩展资料</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/student_extend.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Address.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/student_extend.js"></script>
+</head>
+
+<body>
+
+{insert name="uc_header"}
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+       {include file="Uc/uc_left.html"}
+	   <form method="post" action="/Uc/Userinfos/modifyUserstudent" id="student_extend_form">
+       <div class="main_right">
+         <h4>我的家庭</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="family_pic">
+              <tr>
+                {foreach from=$family_info item=val key=key}
+                <td>
+                 <dl>
+                  <dt {if $val.family_type == 'child'} class="my" {elseif $val.family_type == 'father'} class="father" {elseif $val.family_type == 'mother'} class="mother" {/if}>{if $val.headimg != ''}<img src="{$val.headimg}" height="81" width="81"/>{/if}</dt>
+                  <dd class="font_green">{$val.client_name}</dd>
+                 </dl>
+                </td>
+                <td>&nbsp;</td>
+                {if $key%3==1}
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                {/if}
+                {/foreach}
+              </tr>
+            </table>
+          <p class="font_cotent txdz">
+          	<label>通讯地址:</label>
+          	<span id="show_area">
+          		<input type="hidden" id="init_area_id" value="{$userinfo.area_id}"/>
+          	</span><br/>
+          	<input type="text" class="text_add" value="{$userinfo.client_address}" id= "client_address" name="client_address" maxlength="50"/>
+          	<span id="client_addressTip" class="font_red font_normal"></span>
+          </p>
+         <h4>我的学校</h4>
+          <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab">
+              <tr>
+                <th>学校：</th>
+                <td>{$userinfo.school_name}</td>
+              </tr>
+              <tr>
+                <th>所在年级：</th>
+                <td>{$userinfo.grade_name}</td>
+              </tr>
+              <tr>
+                <th>所在班级：</th>
+                <td>{$userinfo.class_name}</td>
+              </tr>
+         </table>
+         <h4>我的性格</h4>
+            <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+              {foreach from=$characters item=character name="characters_loop"}
+              	<td><input name="client_character[]" type="checkbox" value="{$character.id}" {if $character.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$character.name}</td>
+              	{if $smarty.foreach.characters_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+              {/foreach}
+              </tr>
+            </table>
+         <h4>我的兴趣</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+              {foreach from=$interests item=interest name="interests_loop"}
+              	<td><input name="client_interest[]" type="checkbox" value="{$interest.id}" {if $interest.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$interest.name}</td>
+              	{if $smarty.foreach.interests_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+              {/foreach}
+              </tr>
+         </table>
+         <h4>我是班上的</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+              {foreach from=$class_roles item=role name="roles_loop"}
+              	<td><input name="client_classrole[]" type="checkbox" value="{$role.id}" {if $role.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$role.name}</td>
+              	{if $smarty.foreach.roles_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+              {/foreach}
+              </tr>
+         </table>
+         <h4>最爱的老师</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list tab_list2">
+              <tr>
+                {foreach from=$like_teachers item=teacher name="like_teachers_loop"}
+	              	<td><input name="like_teacher[]" type="checkbox" value="{$teacher.id}" {if $teacher.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$teacher.name}</td>
+	              	{if $smarty.foreach.like_teachers_loop.iteration % 6 == 0}
+	              		</tr><tr>
+	              	{/if}
+                {/foreach}
+              </tr>
+         </table>
+            <h4>最爱的课程</h4>
+           	<table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+                <tr>
+                {foreach from=$like_subjects item=subject name="like_subjects_loop"}
+              		<td><input name="like_subject[]" type="checkbox" value="{$subject.id}" {if $subject.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$subject.name}</td>
+              		{if $smarty.foreach.like_subjects_loop.iteration % 6 == 0}
+              		</tr><tr>
+              		{/if}
+                {/foreach}
+                </tr>
+         	</table>
+            <h4>喜欢的动漫</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+                {foreach from=$cartoons item=cartoon name="cartoons_loop"}
+              	<td><input name="like_cartoon[]" type="checkbox" value="{$cartoon.id}" {if $cartoon.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$cartoon.name}</td>
+              	{if $smarty.foreach.cartoons_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+                {/foreach}
+              </tr>
+           </table>
+            <h4>喜欢的游戏</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+                {foreach from=$games item=game name="games_loop"}
+              	<td><input name="like_game[]" type="checkbox" value="{$game.id}" {if $game.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$game.name}</td>
+              	{if $smarty.foreach.games_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+                {/foreach}
+              </tr>
+           </table>
+            <h4>喜欢的运动</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab tab_list">
+              <tr>
+                {foreach from=$sports item=sport name="sports_loop"}
+              	<td><input name="like_movement[]" type="checkbox" value="{$sport.id}" {if $sport.checked}checked="checked"{/if}/>&nbsp;&nbsp;{$sport.name}</td>
+              	{if $smarty.foreach.sports_loop.iteration % 6 == 0}
+              		</tr><tr>
+              	{/if}
+                {/foreach}
+              </tr>
+         </table>
+         <p class="save"><input type="submit" value="都完善好了，保存" id="save" class="lightblue_btn" /></p>
+       </div>
+       </form>
+       
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <div class="main_bottom" ></div>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

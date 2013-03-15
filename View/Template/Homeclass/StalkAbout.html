@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我的新鲜事</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/xxs/xxs.js"></script>
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+<div class="sub_right">
+<!--<div class="sub_rt">有朋友评论，点击查看</div>-->
+<div class="m_bjdt2">
+	<h2>有什么新鲜事快点告诉大家吧！</h2>
+	<div class='input_msgK2'>
+		<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');"></textarea></div>
+
+
+		<div class="funBox">
+			<div class="insertFun">
+				<div id="showface" style="display:none;"></div>
+				<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+				
+				<div class="uploadPic">
+					<input type="hidden" name="pic" id="pic" value="" />  
+					<input type="hidden" name="mid" id="mid" value="" />
+					<span class="ico_pic"></span><a href="#" class="fun_txt" title="照片" onclick="return photoUpload();">照片</a>
+					<span class="loading" style="display:none;">上传中</span>
+					<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+				</div>
+			</div>
+
+			<div class="sendFun">
+			<INPUT class="sendBtn btnHasStr" title="快捷键 Ctrl+Enter" tabIndex=2 onclick="msgSend('sTalk');" value="发表说说" type=button>
+				<!--<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_fb.jpg" width="85" height="30" onclick="msgSend();" style='cursor:hand;'/>-->
+				<span class="countTxt">还能输入<em>140</em>字</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id='content'></div>
+{if !empty($Talk_ContentList)}
+{foreach from=$Talk_ContentList item=TalkData}
+<div class="sub_m_message">
+	<div class="sub_m_message_l">
+		<img src="{$TalkData.account_headpic_path}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" width=60 height=60  />
+	</div>
+	<div class="sub_m_message_r">
+		<h3><span>{$TalkData.add_datetime}</span>{$TalkData.client_name}</h3>
+		<div class="sub_m_message_r_t"></div>
+		<div class="sub_m_message_rt"></div>
+		<div class="sub_m_message_rt1">
+			<p>{$TalkData.sign_content}
+		</div>
+		<div class="sub_m_message_rm">
+			<span><a href="#" title="删除" onclick="return deleteSay('{$TalkData.sign_id}','home');" ><font color='#889DB6'>删除</font></a></span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" title="评论" onclick="return commentXXX(this, {$TalkData.sign_id},'{$TalkData.add_account}','sTalk');" ><font color='#889DB6'>发表评论</font></a>&nbsp;&nbsp;&nbsp;<a href="#" class='link1' title="查看评论"  onclick="return listcomment(this, {$TalkData.sign_id});">评论</a>(<span id="pcount_{$TalkData.sign_id}">{$TalkData.comment_nums}</span>)↓
+			<div id="plist_{$TalkData.sign_id}" class="plist" style='display:none'></div>
+		</div>
+		
+	</div>
+
+<div class="kong"></div>
+</div>
+<!--sub_m_message end-->
+{/foreach}
+{/if}
+
+<div id='idpycontent'></div>
+<input type='hidden' name='spaceid' id='spaceid' value='{$spaceid_account}'>
+<input type='hidden' name='nextLlimit' id='nextLlimit' value='{$nextLlimit}'>
+<div class="sub_m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlistXXX();">点击加载更多动态</a></div>
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/wmw_facelist.html"}
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

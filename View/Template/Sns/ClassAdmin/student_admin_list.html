@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>学生维护</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassAdmin/student_admin_list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassAdmin/student_list.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4>
+	  <a href="/Sns/ClassAdmin/Index/index/class_code/{$class_code}" class="f14" title="">
+		<span class="btn_left"></span>
+		<span class="btn_right">返回班级管理</span>
+	  </a>
+    </h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+     <div class="publish_main">
+       <p class="stu_list_top">
+        <a href="/Sns/ClassAdmin/StudentImport/studentCreateAccount/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">姓名生成账号</span></a>
+        <a href="/Sns/ClassAdmin/StudentImport/studentImportAccount/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">已有账号导入</span></a>
+        <a href="/Sns/ClassAdmin/StudentSort/index/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">学生排序</span></a>
+       </p>
+       <div class="stu_list_main">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th class="border_left">序号</th>
+            <th>学生姓名</th>
+            <th>职务</th>
+            <th>学生账号</th>
+            <th>家长账号（1）</th>
+            <th>家长账号（2）</th>
+            <th>操作</th>
+          </tr>
+          {if !empty($student_list)}
+          {foreach from=$student_list item=student name=student_list_loop}
+          <tr>
+            <td class="border_left">{$smarty.foreach.student_list_loop.iteration}</td>
+            <td>{$student.client_name}</td>
+            <td>{$student.client_class_role_name}</td>
+            <td>{$student.client_account}</td>
+            <td>{$student.family_list.1.client_account}</td>
+            <td>{$student.family_list.2.client_account}</td>
+            <td>
+            	<a href="javascript:;" class="mr10 edit_selector">编辑</a>|<a href="javascript:;" class="ml10 remove_selector">移出班级</a>
+            	<input class="client_class_role_selector" type="hidden" value="{$student.client_class_role}" />
+            </td>
+          </tr>
+          {/foreach}
+          {else}
+          	<tr>
+          		<td class="border_left" colspan="7">暂时没有学生信息</td>
+          	</tr>
+          {/if}
+        </table>
+        <p class="stu_list_bottom">
+        	<a id="down_excel_a" href="/Sns/ClassAdmin/StudentList/exportStudentsExcel/class_code/{$class_code}" class="f14" title="">
+	        	<span class="btn_left"></span>
+	        	<span class="btn_right">输出excel</span>
+        	</a>
+        </p>
+        </div>
+       <div class="clear"></div>
+     </div>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+<!--弹出层 star-->
+<!--提示信息弹出层 star-->
+  <div id="student_delete_div" class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_question"></span></dt>
+      </dl>
+      {literal}
+      <p id="prompt_p">确定移出:{client_name}({client_account})吗?</p>
+      {/literal}
+      <div class="clear"></div>
+     </div>
+      <p class="msg_center_btn">
+	      <input id="sure_delete_btn" type="button" class="qd_btn">
+	      <input id="cancel_delete_btn" type="button" class="qx_btn" value="取消">
+      </p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+ <!--编辑学生信息 star-->
+ <div id="student_edit_div" class="edit_comment" style="display:none;">
+   <h1 class="tcc_title">编辑学生信息</h1>
+   <div class="edit_comment_tab">
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <th class="border_left">学生姓名</th>
+        <th>学生职务</th>
+      </tr>
+      <tr>
+        <td class="border_left">
+        	<input id="client_name"/>
+        </td>
+        <td>
+	        <select id="client_class_role_select" class="select_width">
+	        	{foreach from=$classleader_list item=classleader key=client_class_role}
+	        		<option value="{$client_class_role}">{$classleader}</option>
+	        	{/foreach}
+	        </select>
+        </td>
+      </tr>
+    </table>
+   </div>
+   <div class="msg_btn">
+     <p>
+	     <input id="sure_btn" type="button" value="确定"  class="green_btn">
+	     <input id="cancel_btn" type="button" value="取消" class="qx_btn">
+     </p>
+   </div>
+ </div>
+ <!--编辑学生信息 end-->
+<!--弹出层 end-->
+ <input id="class_code" type="hidden" value="{$class_code}"/>
+ {include file="Public/sns_footer.html"}
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>发布作业</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassHomework/publish.css" type="text/css">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/my97datepicker/WdatePicker.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/ui/css/jquery-ui-min.css"  />
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/ui/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/publish.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <ul>
+     <li>
+	     {if $access_list.is_show_fbzy}<a href="/Sns/ClassHomework/Publish/index/class_code/{$class_code}" class="main_nav_a1 f16" title="">发布作业</a>{/if}
+	     <a href="/Sns/ClassHomework/Published/index/class_code/{$class_code}" class="main_nav_a2 f16" id="homework" title="">已发布作业</a>
+     </li>
+    </ul>
+    <!--publish_main star-->
+    <form method="post" action="/Sns/ClassHomework/Publish/write_homework" enctype="multipart/form-data">
+    <div id="publish_main" class="publish_main">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>科目：</th>
+            <td>
+            {foreach from=$subject_infos item=subject}
+            	<input type="radio" name="subject_id" id="subject_id_{$subject.subject_id}" value="{$subject.subject_id}">&nbsp;
+            	<span id="subject_name_{$subject.subject_id}">{$subject.subject_name}</span>
+            	<span class="pr20"></span>
+            {/foreach}
+            </td>
+          </tr>
+          <tr>
+            <th>交作业日期：</th>
+            <td>
+				<input id="end_time" type="text" class="date_text" name="homeworkdate">
+	            <a id="end_time_img" href="javascript:;" class="icon_date"></a>
+			</td>
+          </tr>
+          <tr>
+            <th valign="top">作业内容：</th>
+            <td>
+             <p><textarea name="content" id="content" style="width:750px;height:200px;margin:0px;padding:0px;display:block; margin-bottom:10px;"></textarea></p>
+             <p class="f12 f_gray align">您还可以输入<span id="content_counter" class="f_red">180</span>字</p>
+            </td>
+          </tr>
+          <tr>
+            <th valign="top">上传附件：</th>
+            <td>
+               <input type="file" class="liulan_text" name="file_name" id="file_name">
+              <p class="f12 f_orange">注：附件大小不能超过8M</p>
+            </td>
+          </tr>
+          <tr>
+            <th valign="top">作业接收人：</th>
+            <td>
+             <p>
+             	<a id="add_accept_btn" href="javascript:;" class="f14" title="添加作业接受人">
+             		<span class="btn_left"></span>
+             		<span class="btn_right">添加作业接收人</span>
+             	</a>
+               <div class="clear"></div>
+             </p>
+             <div id="review_list_div">
+	             <div class="work_receive clone" style="display:none;">
+	               <h3 class="f14" id="class_name"></h3>
+	               <p class="edit">
+		               <a id="edit_a" href="javascript:;" class="f_main_green">编辑</a>
+		               <a id="delete_a" href="javascript:;" class="f_main_green">删除</a>
+	               </p>
+	               <div class="clear"></div>
+	               <div class="work_receive_main">
+	                 <table id="student_list_tab" width="100%" border="0" cellspacing="0" cellpadding="0"></table>
+	               </div>
+	             </div>
+             </div>
+            </td>
+          </tr>
+          <tr>
+           <th></th>
+           <td>
+             <p class="release">
+              <a id="preview_btn" href="javascript:;" class="f14" title="预览发布">
+	              <span class="btn_left"></span>
+	              <span class="btn_right">预览发布</span>
+              </a>
+              <div class="clear"></div>
+             </p>
+           </td>
+          </tr>
+        </table>
+    </div>
+    </form>
+    <!--publish_main end-->
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div>
+</div>
+<!--content end--> 
+
+{include file="Sns/ClassHomework/Subtemplate/homework_preview.inc.html"}
+{include file="Sns/ClassHomework/Subtemplate/homework_recieve.inc.html"}
+{include file="Public/sns_footer.html"}
+</body>
+</html>

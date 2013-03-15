@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>账号锁定不发</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+
+</head>
+
+<body>
+ <form id="form_search" name="form_search"  action="/Adminbase/Body/accountblock" method="get">
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">账号锁定不发</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"><table width="100%" border="0" style="margin-bottom:20px;">
+	  <tr style="padding-top:10px;">
+	    <td width="10%" height="25" bgcolor="#f0f8ff" style="padding-left:25px;">账号位数：</td>
+	    <td width="10%" height="25" bgcolor="#f0f8ff">
+	      <select name="account_length" id="account_length" class="f_select" onchange="javascript:searchByLength();" style="width:65px;height:22px;line-height:22px;">
+	      			   <option value="0" >请选择</option>
+	              {foreach from = $all_rules item = rule_info}
+		              {if $rule_info.account_length == $account_length}
+		              	<option value="{$rule_info.account_length}" selected>{$rule_info.account_length}</option>
+		              {else}
+		              	<option value="{$rule_info.account_length}">{$rule_info.account_length}</option>
+		              {/if}
+	              {/foreach}
+	        </select>    </td>
+	    <td width="6%" height="25" align="right" bgcolor="#f0f8ff">账号：</td>
+	    <td width="10%" height="25" bgcolor="#f0f8ff">
+	        <input type="text" id="lock_id" name="lock_account" class="h_text" />    </td>
+	    <td width="10%" height="25" bgcolor="#f0f8ff">
+	        <input name="btnsearch" type="submit" value="搜索" class="sh_btn" style="margin-left:4px;" />
+	        </td>
+	    <td width="54%" height="25" bgcolor="#f0f8ff">
+	        <input name="btnadd" type="button" value="添加" onclick="javascript:add();" class="sh_btn" style="margin-left:4px;" />    </td>
+	  </tr>
+   <tr>
+    <td height="25" colspan="6" bgcolor="#f0f8ff" style="padding-left:25px;">
+        <table width="53%" border="0" align="left" cellpadding="0" cellspacing="1" bgcolor="#dfdcdc" >
+  <tr>
+    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">序号</td>
+    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">锁定账号</td>
+    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">添加时间</td>
+    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">添加人</td>
+    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">操作</td>
+  </tr>
+  {foreach from = $account_list item = info name=shownum}
+	  <tr>
+	    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$smarty.foreach.shownum.iteration}</td>
+	    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$info.lock_account}</td>
+	    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$info.add_date}</td>
+	    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$info.add_account}</td>
+	    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF"><a href="javascript:dellock_account('{$info.lock_account}');">删除</a></td>
+	  </tr>
+  {/foreach}
+
+  {if $account_list == ''}
+	  <tr>
+	    <td height="25" colspan="6" align="center" valign="middle" bgcolor="#FFFFFF">无内容</td>
+	  </tr>
+  {/if}
+</table>
+
+    </td>
+  </tr>
+  <tr>
+    <td height="60" colspan="6" bgcolor="#f0f8ff" style="padding-left:25px;">
+    	当前第_{$page}_页 &nbsp;&nbsp;
+    	{if $page==1}
+    		上一页
+    	{else}
+    		<a href="/Adminbase/Body/accountblock/page/{$page-1}/account_length/{$account_length}/lock_account/{$lock_account}">上一页</a>
+    	{/if}
+    	{if $is_last_page}
+    		下一页
+    	{else}
+			<a href="/Adminbase/Body/accountblock/page/{$page+1}/account_length/{$account_length}/lock_account/{$lock_account}">下一页</a>
+		{/if}    			
+    </td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+</form>
+
+{literal}
+<script type="text/javascript">
+/*
+	function lock_void(){
+		document.getElementById('lock_id').value="";
+	}
+	
+	function search(){
+		var account_length = document.getElementById("account_length").value;
+		var lock_id = document.getElementById('lock_id').value;
+		var strget = "/account_length/"+account_length;
+	
+		if(lock_id != ""){
+			strget = strget + "/lock_id/"+lock_id;
+		}
+		window.location.href="/Adminbase/Body/searchlock"+strget;
+	}
+	
+	
+	
+	
+*/
+function dellock_account(lock_account){
+	if(confirm("您确定要删除该账号吗?")){
+		window.location.href="/Adminbase/Body/deletelock/lock_account/"+lock_account;
+	}
+}
+function add(){
+	window.location.href="__URL__/addlock";
+}
+	function searchByLength() {
+		$("#form_search").submit();
+	}
+</script>
+{/literal}
+</body>
+</html>

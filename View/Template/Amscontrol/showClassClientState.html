@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>账号管理详细页</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+{literal}
+<style>
+	.bt{background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">班级管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt">
+	    <a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+	    <a href="/amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="zhgl" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;">班级成员账号管理</a>
+	    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">中队设置</a>
+	    <a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">小队设置</a>
+    </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="5">&nbsp;</td>
+  </tr>
+    <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;"><table width="45%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center"><a href="/amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd" style="float:right;">返回</a></td>
+      </tr>
+    </table></td>
+  </tr>
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>学生账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">学生姓名：</td>
+    <td height="30" bgcolor="#FFFFFF">{$childName}</td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">账号：</td>
+    <td height="30" bgcolor="#FFFFFF" class="zhtd">{$childAccount}<font>{$childStopFlag}</font></td>
+    </tr>
+</table></td>
+    </tr>
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7">&nbsp;</td>
+    </tr>
+  
+ {if $parentAccountStatus_1.mark == 1}
+  <tr>
+    <td colspan="5" bgcolor="#fbf6f7" style="padding-bottom:10px;"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">家长办理凭证号1：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_1.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#FFFFFF" class="zhtd"><font style="padding-left:0px;">{$parentAccountStatus_1.stop_flag_message}</font></td>
+  </tr>
+</table></td>
+  </tr>
+{/if}
+
+
+ {if $parentAccountStatus_1.mark == 2 or $parentAccountStatus_1.mark == 4}
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">家长办理凭证号1：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_1.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#FFFFFF" class="zhtd"><font style="padding-left:0px;">{$parentAccountStatus_1.business_enable_message}</font></td>
+    </tr>
+</table></td>
+  </tr>
+  {/if}
+  
+    
+{if $parentAccountStatus_1.mark == 3}
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">账号（手机号）：</td>
+    <td height="30" bgcolor="#FFFFFF" class="zhtd">{$parentAccountStatus_1.client_phone}<font>{$parentAccountStatus_1.stop_flag_message}</font></td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">家长办理凭证号1：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_1.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">开通日期：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_1.phone_create_time}</td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">账号状态：</td>
+    <td height="30" bgcolor="#FFFFFF" class="zhtd"><font>{$parentAccountStatus_1.phone_status_message}</font></td>
+    </tr>
+</table></td>
+    </tr>
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7">&nbsp;</td>
+    </tr>
+{/if}
+{if $parentAccountStatus_2.mark == 1}
+  <tr>
+    <td colspan="5" bgcolor="#fbf6f7" style="padding-bottom:10px;"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">家长办理凭证号2：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_2.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#FFFFFF" class="zhtd"><font style="padding-left:0px;">{$parentAccountStatus_2.stop_flag_message}</font></td>
+  </tr>
+</table></td>
+  </tr>
+{/if}
+
+
+   {if $parentAccountStatus_2.mark == 2  or $parentAccountStatus_2.mark == 4}
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">家长办理凭证号2：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_2.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#FFFFFF" class="zhtd"><font style="padding-left:0px;">{$parentAccountStatus_2.business_enable_message}</font></td>
+    </tr>
+</table></td>
+  </tr>
+  {/if}
+
+{if $parentAccountStatus_2.mark == 3}
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7"><table width="45%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" class="gltable">
+  <tr>
+    <td height="30" colspan="2" align="left" bgcolor="#CCCCCC"><strong>家长账号情况</strong></td>
+    </tr>
+  <tr>
+    <td width="104" height="30" bgcolor="#FFFFFF">账号（手机号）：</td>
+    <td height="30" bgcolor="#FFFFFF" class="zhtd">{$parentAccountStatus_2.client_phone}<font>{$parentAccountStatus_2.stop_flag_message}</font></td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">家长办理凭证号2：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_2.client_account}</td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">开通日期：</td>
+    <td height="30" bgcolor="#FFFFFF">{$parentAccountStatus_2.phone_create_time}</td>
+    </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">账号状态：{$parentAccountStatus_2.phone_status_message}</td>
+    <td height="30" bgcolor="#FFFFFF" class="zhtd"><font>{$parentAccountStatus_2.phone_status_message}</font></td>
+    </tr>
+</table></td>
+    </tr>
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7">&nbsp;</td>
+    </tr>
+{/if}
+
+    <tr>
+      <td colspan="5" bgcolor="#fbf6f7">&nbsp;</td>
+    </tr>
+  
+</table>
+
+</body>
+</html>

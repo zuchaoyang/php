@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>增加角色</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+{literal}
+<script type="text/javascript">
+	var AddRoleObj = function (){}
+	var empty_check_info = {"role_name": "*请输入角色名称"}
+    var format_check_info = {"role_name": "*角色名称为2-10位汉字"}
+		
+	AddRoleObj.prototype.remind = function remind(msg) {
+		$("#remind").html(msg);
+	}
+
+	AddRoleObj.prototype.check = function check() {
+		this.role_name = $("#role_name").val();
+				
+		if(this.role_name == ""){
+			this.remind( empty_check_info["role_name"]);
+			return false;
+		}else if(! /^[\u4E00-\u9FA5]{2,10}$/.test(this.role_name)){
+			this.remind(format_check_info["role_name"]);
+			return false;
+		}
+		this.remind("");
+		return true;
+	}
+	
+	$(function (){
+		addRole = new AddRoleObj();
+		$("#role_name").blur(function (){
+			addRole.check();
+		});
+		
+		$("#form_add").submit(function (){
+			var rs = addRole.check();
+			return rs;
+		});
+	})
+</script>
+<style>
+	*{margin:0px; padding:0px;}
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+
+<script type="text/javascript">
+	
+</script>
+{/literal}
+
+</head>
+
+<body>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">增加角色</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"> 
+    <form name="form_add" id="form_add" action="/Adminuser/Power/saveRole" method="get">
+      <table width="530" border="0" align="left" cellpadding="0" cellspacing="0" class="yycx_cx" style="margin-top:20px;" >
+      <tr>
+            <td height="35" style="padding-left:25px;">角色名称：</td>
+            <td height="35" width="300"><input type="text" name="role_name" id="role_name" class="h_text" id="addrole" /><span style="color:red;" id="remind"></span></td>
+            <td height="35"><input type="submit" value="增加" class="sh_btn" id="btn_add" /></td>
+       </tr>
+      </table>
+    </form>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

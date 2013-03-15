@@ -1,0 +1,184 @@
+﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>基地账号管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+<script type="text/javascript">
+	var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+	
+{literal}
+	$(document).ready(function(){
+		var spanShow = {};
+		spanShow.REMIND_MSG = {old_pwd_err:"请输入原密码",new_pwd:"请输入新密码",new_pwd_check:"请输入确认密码"};
+		spanShow.ERROR_MSG = {old_pwd_err:"请输入原密码",new_pwd:"密码只能是6-20个字母及数字",new_pwd_check:"两次密码不一致",base_email_err:"邮箱格式不正确"};
+		spanShow.REG_MSG = {new_pwd:/[0-9a-zA-Z]{6,20}$/,new_pwd_check:/[0-9a-zA-Z]{6,20}$/,base_email:/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/};
+		spanShow.erroring = function(obj){
+			$("#"+obj).css("color","#ff6600").html('<img src="'+IMG_SERVER+'__PUBLIC__/images/error.gif" class="img_align" />'+spanShow.ERROR_MSG[obj]);
+		};
+		spanShow.remaining = function(obj){
+			$("#"+obj).css("color","#FF0000").html(spanShow.REMIND_MSG[obj]);
+		};
+		spanShow.pass = function(obj){
+			$("#"+obj).html('<img src="'+IMG_SERVER+'__PUBLIC__/images/ok.jpg" class="img_align" />');
+			
+		};
+		spanShow.check = function(name,value){
+			if(value == '') return;
+			
+			if(name =='new_pwd_check'){
+				if($("#input_new_pwd").val()==value){
+					spanShow.pass(name);
+				}else{
+					spanShow.erroring(name);
+				}
+			}else{
+				if(spanShow.REG_MSG[name] != undefined){
+					if(spanShow.REG_MSG[name].test(value)){
+						spanShow.pass(name);
+					}else{
+						spanShow.erroring(name);
+					}
+				}
+			}
+		};
+		spanShow.checkinfo = function(){
+			var checkflag = true;
+			var spanId = ["new_pwd","new_pwd_check"];
+			var inputId = ["input_new_pwd","input_check_pwd"];
+			for(var i=0; i<spanId.length; i++){
+				if(!spanShow.REG_MSG[spanId[i]].test($("#"+inputId[i]).val())){
+					spanShow.erroring(spanId[i]);
+					checkflag = false;
+				}
+			}
+			if(($("#input_new_pwd").val()!="") && ($("#input_old_pwd").val()=="")){
+				spanShow.erroring("old_pwd_err");
+				checkflag = false;	
+		    }
+			if($("#input_new_pwd").val() != $("#input_check_pwd").val()){
+				spanShow.erroring("new_pwd_check");
+				checkflag = false;
+			}
+			return checkflag;
+		};
+		
+		spanShow.checkEmail = function(){
+			var checkflag = true;
+			if($("#base_email").val() != ""){//验证邮箱
+				if(!spanShow.REG_MSG["base_email"].test($("#base_email").val())){
+					spanShow.erroring("base_email_err");
+					checkflag = false;
+				}
+			}
+			return checkflag;
+		};
+		$(".input1").focus(function(){
+			$(this).removeClass("input1_focus").addClass("input1_focus");
+			spanShow.remaining($(this).attr("name"));
+		});
+		$(".input1").blur(function(){
+			$(this).toggleClass("input1_focus");
+			spanShow.check($(this).attr("name"),$(this).val());
+		});	
+		
+		$("#ModifyAccount").click(function(){
+		   if(spanShow.checkEmail()){	 
+		   if(($("#input_old_pwd").val()!= "") ||($("#input_new_pwd").val()!= "")){
+				if(spanShow.checkinfo()){
+					document.forms[0].action="/Basecontrol/Baseaccountmanage/ModifyAccount";
+					document.forms[0].submit();
+				}
+		    }else{
+		    	document.forms[0].action="/Basecontrol/Baseaccountmanage/ModifyAccount";
+				document.forms[0].submit();
+			}
+		   }
+		});
+	});
+
+</script>
+{/literal}
+</head>
+ 
+<body style="padding-top:30px; _width:98%">
+
+
+  <div class="Contentbox">
+    <div id="con_one_1"  class="hover" >
+    </div>
+</div>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseAccountInfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">基地账号管理</font></td>
+  </tr>
+</table>
+
+<form  method="post" enctype="multipart/form-data" >
+<div id="pSchoolReqeust">
+    <table width="92%" border="0" cellspacing="0" cellpadding="0">                                                       
+      <tr>
+        <td height="27" class="bt">基地账号管理</td>
+      </tr>
+    </table>
+    <table width="92%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px; font-weight:bold;">基地账号信息</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">基地账号：</td>
+                <td bgcolor="f0f0f0"> {$baseAccountInfo.base_account}</td>
+              </tr>
+  		      <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">基地名称：</td>
+                <td bgcolor="f0f0f0"><input id="base_name" name="base_name" type="text" class="wbk" value="{$baseAccountInfo.base_name}"/><span id="principal_err" style="color:Red;"></span></td>
+              </tr>
+               
+
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">基地邮箱：</td>
+                <td bgcolor="f0f0f0"><input id="base_email"  name="base_email" type="text" class="wbk"  value="{$baseAccountInfo.base_email}"/><span id="base_email_err" style="color:red; font-size:12px;"></span></td>
+              </tr>
+
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px; font-weight:bold;">修改基地密码</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">原密码：</td>
+                <td bgcolor="f0f0f0"> <input  type="password"  id="input_old_pwd" name="input_old_pwd" class="wbk" /><span id="old_pwd_err" style="color:Red;"></span></td>
+              </tr>
+  		      <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">新密码：</td>
+                <td bgcolor="f0f0f0"> <input type="password"  id="input_new_pwd" name="new_pwd" class="wbk" /><span id="new_pwd" style="color:red; font-size:12px;"></span></td>
+              </tr>
+  		      <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">确认密码：</td>
+                <td bgcolor="f0f0f0"> <input type="password"  id="input_check_pwd"  name="new_pwd_check"  class="wbk" /><span id="new_pwd_check" style="color:red; font-size:12px;"></span></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      
+      <tr><td><input type="button" id ="ModifyAccount" class="sqgl_czmm"  value="确认修改"> </input></td></tr>
+ </table>
+</div>
+</form> 
+
+</body>
+</html>

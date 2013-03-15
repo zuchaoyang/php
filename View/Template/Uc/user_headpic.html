@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学生-修改头像</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/user_headpic.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/user_headpic.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+       
+        {include file="Uc/uc_left.html"}
+       <div class="main_right">
+         <h4>修改头像</h4>
+         <dl>
+           <img src="{$photonameurl}" id="pUserLogo" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/uc/images/user_headpic/head_pic.jpg'" />
+           <dd>头像说明：</dd>
+           <dd>1、必须为您本人近期拍摄的清晰、正面、免冠生活照</dd>
+           <dd>2、照片大小不超过2M</dd>
+           <dd>
+           <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="{$smarty.const.IMG_SERVER}__PUBLIC__/plugin/swflash.cab#version=10,0,0,0" id="uploadSwf" width="352" height="354" align="middle">
+				<param name="allowScriptAccess" value="sameDomain" />
+				<param name="movie" value="/Public/local/flash/uploadHeadImg.swf" />
+				<param name="FlashVars" value="url=/Uc/Uploadphoto/modifyHeadPhoto&dh=jsUpdateUserLogo" />
+				<param name="quality" value="high" />
+				<param name="bgcolor" value="#ffffff" />
+				<embed src="/Public/local/flash/uploadHeadImg.swf" FlashVars="url=/Uc/Uploadphoto/modifyHeadPhoto&dh=jsUpdateUserLogo"  quality="high" bgcolor="#ffffff" width="352" height="354" swLiveConnect=true id="yuploadSwf" name="uploadSwf" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer_cn" />
+			</object>
+			</dd>
+           <div class="clear"></div>
+         </dl>
+       </div>
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

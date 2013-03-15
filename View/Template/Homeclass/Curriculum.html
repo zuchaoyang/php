@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>课程表</title> 
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/curriculum/ModalDialog.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/curriculum/postion.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/curriculum.js"></script>
+
+</head>
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="sub_right">
+<div class="sub_diary">
+<div class="sub_diaryl">
+<ul>
+<li><i class="di1"></i><a href='#' onClick="javascript:return divTplShow('888',{$class_code});">更换模板</a><span id="show888"></span></li>
+{if $client_type==1}
+<li><i class="di1"></i><span id='followTestBtn'><a href='javascript:void(0);' onClick="javascript:classKcb_box();">调整课节</a></span></li>
+{/if}
+</ul>
+</div>
+</div>
+<form action="/Homeclass/Curriculum/save/class_code/{$class_code}" method="post" name="form1" id="form1">
+
+<div style=" margin:10px auto 10px auto; width:750px;height:625px;" align="center">
+<!--startprint-->
+
+<div style="background:url('{$curricumlumbg}')" id="PicSelect" class="curriculmTable">
+<div class='curriculmData'>
+<div class="cur_content_left">
+<ul>{$AMcontent}</ul>
+</div>
+<div class="cur_content_right">
+<div class="aline">
+<span class='blank2'></span>
+
+<ul id='ulam'>
+{foreach from=$classcontent item=classL key=class name=rownumber}
+{if $client_type==1}
+<li onclick="javascript:return divShow('{$smarty.foreach.rownumber.iteration}','am');"><span id='am{$smarty.foreach.rownumber.iteration}'>{$classL}</span>
+<input type='hidden' name='clspan[]' id="clspan{$smarty.foreach.rownumber.iteration}" value="{$classL}"></li> 
+{else}
+<li>{$classL}</span>
+{/if}
+{/foreach}
+
+</ul>
+</div>
+</div>
+</div>	
+
+<div class='curriculmMid'>午休~，吃完饭别乱跑啊，否则会肚子疼的</div>
+<div class='curriculmData1'>
+
+<div class="cur_content_left">
+<ul >{$PMcontent}</ul>
+</div>
+<div class="cur_content_right">
+<div class="aline">
+<span class='blank2'></span>
+<ul id="ulpm">
+{foreach from=$classcontent2 item=classL2 key=class name=rownumber}
+{if $client_type==1}
+<li onclick="javascript:return divShow('{$smarty.foreach.rownumber.iteration}','pm');"><span id='pm{$smarty.foreach.rownumber.iteration}'>{$classL2}</span>
+<input type='hidden' name='rgspan[]' id="rgspan{$smarty.foreach.rownumber.iteration}" value="{$classL2}"></li> 
+{else}
+<li>{$classL2}</span>
+{/if}
+{/foreach}
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<span class='blank2'></span>
+{if $client_type==1}
+<div style="text-align:center; height:40px; padding:10px 0 10px 0;">
+<input name="button" type="submit"  value="保存课程表" style="cursor:pointer" class="inputbg2" />&nbsp;</div>
+{/if}
+
+</div>
+</form>
+
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+
+<div id="downList_div2">
+	<div id="downList_Title2"><span style="cursor:pointer">关闭</span>选择模板</div>
+	<ul class='city-list2' id="tempShow">
+	  
+      </ul>
+</div>
+
+<div  id="classKcb_box" style="display:none">
+<table width=100% cellpadding="4" cellspacing="3" >
+  <tr >
+    <td height="30" colspan='5' style="border-bottom:1px dashed #cccccc;">&nbsp;<span class="tag_title">调整课节数(提示：最少四节哦！)</span></td>
+  </tr>
+<tr>
+<td width="89" height="35">上午课程：</td>
+<td width="167" height="35">
+<input type="button" name="button" id="button" value="-" onclick="javascript:classNumsSetup('am','less','{$class_code}');" style="width:30px;height:30px;">
+<span id="shangwu">{$AMclassnum}&nbsp;</span>节
+<input type="button" name="button2" id="button2" value="+" onclick="javascript:classNumsSetup('am','add','{$class_code}');" style="width:30px;height:30px;">
+</td>
+</tr>
+<tr>
+<td height="35">下午课程</td>
+<td><input type="button" name="button3" id="button3" value="-" onclick="javascript:classNumsSetup('pm','less','{$class_code}');" style="width:30px;height:30px;">
+<span id="xiawu">{$PMclsssnum}&nbsp;</span>节
+<input type="button" name="button4" id="button4" value="+" onclick="javascript:classNumsSetup('pm','add','{$class_code}');" style="width:30px;height:30px;"></td>
+</tr>
+</table>
+</div>
+
+
+<span class='blank10'></span>
+
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

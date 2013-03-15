@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>账号查询</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+
+<script type="text/javascript">
+	function search(){
+		var name = document.getElementById("client_name").value;
+		var client_account =document.getElementById("client_account").value;
+		if(client_account == '' && name == ''){
+			alert('账号和名字不能同时为空！');
+		}else {
+			document.forms[0].action="/Adminuser/Usermanage/account_search";
+			document.forms[0].submit();
+		}
+		
+	}
+</script>
+{/literal}
+
+</head>
+
+<body>
+ <form method="post" id="formsearch" action="#">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="27" class="bt">账号管理</td>
+  </tr>
+	<tr>
+		<td bgcolor="#f0f8ff" style="padding-left:25px;">
+		    <table width="50%" border="0" >
+			  <tr style="padding-top:10px;">
+			    <td width="80" height="25"  bgcolor="#f0f8ff" >账号/手机号：</td>
+			    <td height="25" bgcolor="#f0f8ff"><input type="text" name="client_account" class="h_text" id ="client_account" value="{$useraccount}"/><span id="aaa"></span></td>
+			    <td bgcolor="#f0f8ff">会员姓名：</td>
+			    <td bgcolor="#f0f8ff"><input type="text" name="client_name" id="client_name" class="h_text"  value="{$username}" /></td>
+			    <td height="25"  bgcolor="#f0f8ff">
+			        <input name="btn" type="button" value="搜索" class="sh_btn" onclick="search();" />
+			    </td>
+			  </tr>
+			</table>
+	</td>
+  </tr>
+  
+   <tr>
+				  <td height="25" colspan="8" bgcolor="#f0f8ff" style="padding-left:25px;">
+	        <table width="72%" border="0" align="left" cellpadding="0" cellspacing="1" bgcolor="#dfdcdc" >
+			  <tr>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">序号</td>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">会员账号</td>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">绑定手机</td>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">会员类型</td>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">会员姓名</td>
+			    <td align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd">申请时间</td>
+			    <td height="30" align="center" valign="middle" bordercolor="#CCCCCC" bgcolor="#d6ebfd" colspan="3" >操作</td>
+			  </tr>
+			  {if $account_list != ''}
+			 	{foreach from=$account_list item=val}
+				  <tr>
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$val.id}</td>
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$val.client_account}</td>
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$val.phone_id}</td>
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF" >{if $val.client_type == 1}老师{elseif $val.client_type == 0}学生{else}家长{/if}</td>
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF">{$val.client_name}</td>
+				    <td align="center" valign="middle" bgcolor="#FFFFFF">{$val.add_time}</td>
+				    
+				    <td height="25" align="center" valign="middle" bgcolor="#FFFFFF"><a href="/Adminuser/Usermanage/account_detail/client_account/{$val.client_account}">进入</a></td>
+				  	
+			 		</tr>
+			  	{/foreach}
+			 		
+			</table>
+		</td>
+	</tr>
+	<tr>
+	 <table width="60%" border="0" align="left">
+		   <td colspan='6' align='center'>
+		   	当前第{$page}页
+		   		  {if $page == 1}
+		  	  	 	 	上一页
+			  	  {else}
+					  <a href='/Adminuser/Usermanage/account_search/page/{$page-1}?client_name={$username}'>上一页</a>
+				   {/if}
+				   {if $flag == 'true'}
+					 	下一页
+			  	   {else}
+			  	 	 <a href='/Adminuser/Usermanage/account_search/page/{$page+1}?client_name={$username}'>下一页</a>
+			  	   {/if}
+		   </td>
+		</table>
+	</tr>
+	{else}
+		<tr>
+			<td colspan=7 align="center";>暂无数据</td>
+		</tr>
+	{/if}
+</table>
+</form>
+</body>
+</html>

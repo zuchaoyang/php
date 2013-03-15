@@ -1,0 +1,99 @@
+{insert name="space_header"}
+<span class='blank10'></span>
+<div class='b_main'>
+<div class='block_left' id="Left">
+		<div class='UserBaseMsgK'>
+			<div class='UserBaseImg'>
+			<img src="{$user_head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/head_upload_100.jpg'" id="avatar" />
+
+			</div>
+			<div class='UserBaseList'>
+				<ul>
+					<li><h4><span class="s_username">{$space_school_name}</span></h4></li>
+					<li><h4><span class="s_nickname">{$space_client_name}</span></h4></li>
+					<li><a href="http://{$space_url}" title="{$space_client_name}的主页" target='_blank'><span style='font-family:Courier New'>{$space_url}</span></a></li>
+					<li>
+					<a href="/Homeuser/Index/spacetalk/spaceid/{$space_current_user}">新鲜事<span class="number">({$DataRows})</span>条</a>&nbsp;&nbsp;
+					<span class="splist_line">|</span>&nbsp;&nbsp; 
+					<a href="/Homeuser/Index/friend/spaceid/{$space_current_user}">好友<span class="number">({$friendNums})</span>人</a>
+					</li>
+					<li> 
+					{if !empty($space_Login_user)}
+						{if $space_current_user!=$space_Login_user && $flag=='true'}
+						<input type="button" value="加为好友" id="btnaddfriend" class="btn_yellow" onclick="javascript:toAddfriend();">
+						{/if}
+					{/if}
+				</li>
+
+				</ul>
+			</div>
+		</div>
+		
+		<div class='UserTalkbg'><span class="UserTalkNav"><strong>全部</strong> </span><span class="howsay">{$space_client_name}的新鲜事</span></div>
+		
+		<div id="content"></div>
+
+
+		{if !empty($Talk_ContentList)}
+			{foreach from=$Talk_ContentList item=TalkData}
+			<div class="m_message">
+				<div class="m_message_l">
+					<a href='/Homeuser/Index/spacehome/spaceid/{$TalkData.add_account}' title='访问Ta的空间' target='_blank'><img src="{$TalkData.account_headpic_path}" width="60" height="60" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a> 
+				</div>
+				<div class="m_message_r">
+					<h3><strong>
+					{$TalkData.client_name}
+					{$TalkData.add_datetime}：刚刚发布了新鲜事</strong>
+					</h3>
+					<div class="m_message_rt">
+						<p><div class='wordwrap'>{$TalkData.sign_content}</div>
+						</p>
+						<div class="m_message_rm">
+							{if $falg_delete==1}
+							<span><a href="#" title="删除" onclick="return deleteSay('{$TalkData.sign_id}','space');" ><font color='#889DB6'>删除</font></a></span>
+							{/if}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							{if !empty($curr_account)}
+							<a href="#" title="评论" onclick="return commentXXX(this, {$TalkData.sign_id},'{$TalkData.add_account}');" ><font color='#889DB6'>发表评论</font></a>
+							&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" class='link1' title="查看评论"  onclick="return listcomment(this, {$TalkData.sign_id});">评论</a>(<span id="pcount_{$TalkData.sign_id}">{$TalkData.comment_nums}</span>)↓
+							{else}
+							<a href="javascript:void(0);" title="评论" onclick="javascript:needtoLogTip('请登录后发表评论内容');" ><font color='#889DB6'>发表评论</font></a>
+							&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" class='link1' title="查看评论"  onclick="javascript:needtoLogTip('请登录后查看评论内容');">评论</a>(<span id="pcount_{$TalkData.sign_id}">{$TalkData.comment_nums}</span>)↓
+							{/if}
+							
+							<div id="plist_{$TalkData.sign_id}" class="plist" style='display:none'></div>
+						</div>
+					</div>
+				</div>
+				<div class="kong"></div>
+			</div>
+			{/foreach}
+
+
+			<div id='idpycontent'></div>
+			<input type='hidden' name='spaceid' id='spaceid' value='{$spaceid_account}'>
+			<input type='hidden' name='nextLlimit' id='nextLlimit' value='{$nextLlimit}'>
+
+		<div class="m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlistotherXXX();">点击加载更多动态</a></div>
+		{/if}	
+		
+		</div>
+
+	<div class='block_right' id="Right">
+		<h5>{$space_client_name}的个人资料</h5>
+		<ul class='user-info2'>
+		
+			<li>所在班级：{$tpl_gradeclass_Name}</li>
+			<li>星座: {$space_constellation_nam}</li>
+			<li>生日: {$space_client_birthday}</li>
+			<li>血型: {$space_blood_type_name}</li>
+		</ul>
+		
+		<span class='blank10'></span>
+		{include file="Public/space_menu.html"}
+
+	</div>
+
+	</div>
+{include file="Public/wmw_facelist.html"}
+{include file="Public/talkjs.html"}

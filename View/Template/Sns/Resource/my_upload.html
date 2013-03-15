@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>同步资源</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/resource/upload_style.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/sns/resource/my_upload_resource.js"></script>
+</head>
+
+<body onload="shownav('{$checked_nav.column_id}');">
+<input type="hidden" id="total_page" value="{$totalpage}"/>
+<div class="box">
+<div class="nav">
+<!--  <iframe width="100%" height="76" scrolling="no" frameborder="0" src="../head.html" style="display:block;"></iframe> -->
+{insert name="publicHeader" class_code = $class_code}
+
+
+  <div class="cotent">
+  <div class="re_left">
+    {insert name="account_left" class_code = $class_code}
+  </div>
+	
+	<div class="upload_right">
+   <p class="resource_title">
+    <span class="up_icon"></span><span class="font_normal"><a href="/Sns/Resource/Resource/synchroresource">同步资源</a></span>
+   </p>
+   <form method="post" id="form_search" action="/Sns/Resource/Resource/my_upload_resource_list">
+	   <div class="up_ss_text">
+	   		<input type="text" class="up_input_text" name="search_name" value="{$search_name}"/>
+	   		<input type="hidden" name="resource_status" value="{$resource_status}"/>
+	   </div>
+	   <input type="button" class="up_search" id="search_button"/>
+	   <a href="/Sns/Resource/Resource/upload_resource" class="sctbzy"></a>
+   </form>
+   <div class="clean"></div>
+   <div class="resource_tab my_upload_tab">
+	<form method="post" id="resource_form" action="/Sns/Resource/Resource/delete_resource">
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">
+		    <tr>
+		      <td colspan="2" class="upload_h4">我上传的所有资源</td>
+		    </tr>
+		    <tr>
+				<td colspan="2" class="up_sh_btn">
+					<input type="button" value="未审核" id="nav_0"/>
+					<input type="button" value="通过" id="nav_1"/>
+					<input type="button" value="未通过" id="nav_-1"/>
+					<input type="hidden" value="{$resource_status}" id="resource_status"/>
+				</td>
+			</tr>
+			<tr>
+		      <td colspan="2" class="up_td my_td">
+			      <span>本页操作</span>
+			      <input type="button" value="全选" class="my_up_btn" id="all_button"/>
+			      <input type="button" value="清空选定" class="my_word4_btn" id="no_all_button"/>
+			      <input type="button" value="删除" class="my_up_btn" id="delete_button"/>
+		      </td>
+		    </tr>
+		    {if !empty($resource_list)}
+		    {foreach from=$resource_list item=resource}
+		    <tr>
+		      <th><input type="checkbox" name="delete_resources[]" value="{$resource.resource_id}_{$resource.md5_key}"/></th>
+		      <td>
+		        <div class="my_upload_main">
+		          <span class="up_icon01"></span><h4>{$resource.title}</h4><span class="up_my_nr">格式：{$resource.file_type_name}&nbsp;&nbsp;大小：{$resource.file_size}</span>
+		          <div class="clean"></div>
+		            <p style="word-wrap:break-word;word-break:break-all;width:680px;">资源简介：{if empty($resource.description)}暂无{else}{$resource.description}{/if}</p>
+		           	<p>年级：{$resource.grade_name}{if $resource.resource_status != -2}<a href="{$resource.file_path}" class="blue-btn" target="__blank;">{$resource.show_btn}</a>{/if}</p>
+		           	<p>科目：{$resource.subject_name}</p>
+		           	<p>版本：{$resource.version_name}</p>
+		           	<p>章&nbsp;&nbsp;：{$resource.chapter_name}</p>
+		           	<p>节&nbsp;&nbsp;：{$resource.section_name}</p>
+		          	<p>分类：{$resource.column_name}</p>
+		           	<p>发布时间：{$resource.add_time}&nbsp;
+		          </p>
+		          {if $resource.resource_status == -1}
+			          <div class="unpass">
+			            <p>未通过原因：{$resource.refuse_reason}</p>
+			            <p>系统未通过</p>
+			          </div>
+			      {elseif $resource.resource_status == -2}
+			      	<div class="unpass">
+			            <p>未通过原因：{$resource.refuse_reason}</p>
+			            <p>系统已删除</p>
+			          </div>
+		          {/if}
+		        </div>
+		      </td>
+		    </tr>
+		    {/foreach}
+		    {else}
+		    <tr>
+		    	<td colspan="8" style="text-align:center;">
+		    		<span>暂时没有资源</span>
+		    	</td>
+		    </tr>
+		    {/if}
+		    <tr>
+		      <td colspan="2" class="up_td my_td"></td>
+		    </tr>
+		    <tr>
+		      <td colspan="2" class="up_td">
+			      <p class="up_fenye"><<&nbsp;&nbsp;总共{$total_page}页&nbsp;当前第{$page}页&nbsp;
+			      {if $page_list.pre_page}
+			      	<a href="{$page_list.pre_page}">上一页</a>
+			      {else}
+			      	<span>上一页</span>
+			      {/if}
+			      
+			      {if $page_list.next_page}
+			      	<a href="{$page_list.next_page}">下一页</a>
+			      {else}
+			      	<span>下一页</span>
+			      {/if}
+			      &nbsp;&nbsp;>>
+			      </p>
+		      </td>
+		    </tr>
+		</table>
+	</form>
+   </div>
+</div>
+	
+
+    <div class="clean"></div>
+  </div>
+<!-- <iframe width="100%" scrolling="no" frameborder="0" src="footer.html"></iframe> -->
+{include file="Public/footer.html"}
+</div>
+</div>
+<input type="hidden" id="img_server" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
+</body>
+</html>

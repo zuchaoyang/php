@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级日志</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/Pzonelog.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class='sub_class_title'>{$tpl_gradeclass_Name}-班级日志</div>
+
+<div class="sub_right">
+	<div class="sub_diary">
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di4"></i><a href="/Homeclass/Class/classJournal/class_code/{$class_code}">日志列表</a></li>
+			</ul>
+		</div>
+	</div><!--sub_diary end-->
+<span class="blank20"></span>
+
+<div class="sub_diary_tclass">
+	
+		{if !empty($mylog_list)}
+			{foreach from=$mylog_list item=vo}
+			<div class="class_diary_k">
+			    <div class='class_diary_kleft'>
+				<br>
+				<a href="/Homeuser/Index/spacehome/spaceid/{$vo.add_account}" target='_blank'>
+				<img src="{$vo.headimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/avatar_small.jpg'" width=60 height=60/></a>
+				<br>{$vo.client_name}
+				</div>
+				<div class="class_diary_kight">
+					
+					<h2><span>发布时间：{$vo.upd_date}&nbsp;&nbsp;&nbsp;</span>{$vo.log_name}</h2>
+					<p>{$vo.log_contentall}</p>
+					<div class="sub_diary_tlb">
+					<div class="sub_diary_tlb_left">
+					<a href="/Homeclass/Class/classJournalview/class_code/{$class_code}/log_id/{$vo.log_id}">阅读全文</a>(<span>{$vo.read_count}</span>)
+					&nbsp;&nbsp;
+					<a href="/Homeclass/Class/classJournalview/class_code/{$class_code}/log_id/{$vo.log_id}">评论(<span>{$vo.plun_count}</span>)</a>
+					</div>
+					
+					</div>
+
+				</div>
+			</div>
+			{/foreach}
+			
+			{$pageinfohtml}
+		{else}
+		<div class="bignotip">
+		 <p><span></span><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/blank.png" class="arr_left"> 班级里还没有人发布日志。日记本记录你的生活点滴，留下你的成长足迹。
+		 <img src="images/blank.png" class="arr_right"><br><br><a href='/Homepzone/Pzonelog/writelog/class_code/{$class_code}'>【写一篇日记分享到班级吧】</a></p>
+		</div>
+	{/if}
+
+	
+	<!--sub_diary_tl end-->
+</div>
+<!--sub_diary_t end-->
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

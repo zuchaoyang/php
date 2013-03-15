@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>关爱之星</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/star.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="right">
+  <div class="star_main">
+    <h4>关爱之星-介绍</h4>
+    <p class="first_words">【关爱之星】产品是北京久其移动商务科技有限公司基于基础通信网络和位置服务平台（LBS），以普通手机为定位终端，面向有儿童的家庭推出的一项关爱产品</p>
+    <p><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_xing.gif" />只要您和您的孩子都有联通手机，只要经过孩子的授权，您就可以通过手机客户端和互联网随时查询孩子的位置，同时，你还可以设置两个时间点，系统将会定时以短信的方式告知您孩子的位置</p>
+    <p><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_xing.gif" />此外，您还可以为您的孩子指定1-3个安全区域,系统将会在每天的9：00-17:00之间，每间隔2个小时就自动获取一次您孩子的位置，当孩子离开或进入您指定的安全区域时，系统将会以短信方式通知您，以防孩子走失</p>
+    <!--star_pic-->
+    <div class="star_pic">
+      <div class="star_pic_left">
+        <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_img1.jpg" width="66" height="79"/>
+        <p>关爱之星业务办理说明</p>
+        <p class="star_pic_a"><a href="/Thirdapp/Gazxregistinfo/viewflow" target="_blank">点击查看</a></p>
+      </div>
+      <div class="star_pic_left">
+        <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_img2.jpg" width="66" height="79"/>
+        <p>关爱之星用户服务协议</p>
+        <p class="star_pic_a"><a href="/Thirdapp/Gazxregistinfo/viewagreement" target="_blank">点击查看</a></p>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--star_pic end-->
+    <p class="star_btn">
+    {if $handle == true}
+    <a href="/Thirdapp/Gazxregistinfo/handle" class="green_btn">办理</a>
+    {/if}
+    <a href="{$gazx_login_url}" target="_blank" class="orange_btn">登录</a>
+    </p>
+    
+  </div>
+  
+</div><!--right end-->
+
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end-->  
+</body>
+</html>

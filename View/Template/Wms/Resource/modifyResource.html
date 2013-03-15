@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<title>资源修改</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/js/resource/resource_modify.js"></script>
+</head>
+
+<body style="padding-top:30px; _width:98%">
+	<div class="pllr">
+	  <h3 class="bt">资源修改</h3>
+	</div>
+	<input type="hidden" name="product_id_checked"  id="product_id_checked" value="{$product_id_checked}" />
+	<form method="post" action="/Wms/Resource/Resourcemodify/searchResource"> 
+		<table width="92%" border="0" cellspacing="1" cellpadding="0" class="zyxg_main">
+		  <tr>
+		    <td colspan="6">
+		     <p>资源类型：<input type="radio" value="1" name="product_id" checked="checked"/>&nbsp;同步资源<input type="radio" value="2" name="product_id" />&nbsp;精品资源<input type="radio" value="3" name="product_id" />&nbsp;精品网校</p>
+		    </td>
+		   </tr>
+		   <tr>
+		    <td colspan="6"> 
+		     <p>资源检索：<input type="text" name="partTitle" id="partTitle" class="text"  value="{$partTitle}" /> 
+		     <input type="button" id="submit_btn" class="pldr"  value="开始检索" /></p>
+		    </td>
+		  </tr>
+		</table>
+	</form>
+	
+	<table width="92%" border="0" cellspacing="1" cellpadding="0" class="zyxg_main">
+	  <tr>
+	    <td align="center">序号</td>
+	    <td align="center">标题</td>
+	    <td align="center">年级</td>
+	    <td align="center">科目</td>
+	    <td align="center">版本</td>
+	    <td align="center">操作</td>
+	  </tr>
+	  {foreach from=$resource_list item=info key=resource_id}
+	  <tr id="rid_{$resource_id}" >
+	    <td align="center">{$info.num_id}</td>
+	    <td align="center"><a id="show_resource_{$resource_id}" href="javascript:;">{$info.title_highlight}</a></td>
+	    <td align="center">{$info.grade_name}</td>
+	    <td align="center">{$info.subject_name}</td>
+	    <td align="center">{$info.version_name}</td>
+	    <td align="center">
+	    	<a href="javascript:;" id="delete_resource_{$resource_id}">删除</a>
+	    	<input id="title_{$resource_id}" type="hidden" value="{$info.title}"/>
+	    	<input id="md5_key_{$resource_id}" type="hidden" value="{$info.md5_key}"/>
+	    </td>
+	  </tr>
+	  {foreachelse}
+	  <tr>
+	    <td colspan="6" style="text-align:center">
+	    	<p style="color:red">没有匹配的结果</p>
+	    </td>
+	  </tr>
+	  {/foreach}
+	  <tr>
+	  	<td colspan="6" align="center">总记录{$total_nums}条, 当前第{$page}页,共{$total_pages}页 &nbsp; &nbsp; &nbsp; 
+			{if $has_pre}
+				<a id="pre_page" href="javascript:;">上一页</a>
+			{else}
+				上一页
+			{/if}
+			&nbsp; &nbsp;
+			{if $has_next}
+				<a id="next_page" href="javascript:;">下一页</a>
+			{else}
+				已到最后一页
+			{/if} 
+			&nbsp;&nbsp;<input type="text" name='jumpto' id='jumpto' style="width:30px" /> 
+			&nbsp;<input type="button" id="jumpto_btn" value="跳转" />
+		</td>
+	  </tr>
+	</table>
+	<input type="hidden" id="product_id" value="{$product_id}"></input>
+	<input type="hidden" id="page" name="page" value="{$page}"></input>
+	
+	<!--弹出层-->
+	<div id="popDiv" class="zyxg_tcc" style="display:none; width:340px">
+	  <p class="close"><a href="javascript:;" id="close_div_a">关闭窗口</a></p>
+	  <p id="title">标题：&nbsp; <span></span></p>
+	  <p id="grade_name">年级：&nbsp; <span></span></p>
+	  <p id="subject_name">科目：&nbsp; <span></span></p>
+	  <p id="version_name">版本： &nbsp;<span></span></p>
+	  <p id="file_type_name">类型：&nbsp;<span></span></p>
+	  <p id="chapter_name">章&nbsp;&nbsp;： <span></span></p>
+	  <p id="section_name">节&nbsp;&nbsp;： <span></span></p>
+	  <p id="thumb_img">缩略图:<img src="{$info.thumb_img}" height="150px"></img></p>
+	</div>
+	<div id="bg" class="bg" style="display:none;"></div>
+	<iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
+	<!--弹出层 end-->
+</body>
+</html>

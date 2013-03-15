@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级成绩_我的成绩</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/demo.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	function showpycontent(num){
+		var objcont = $("#hpycontent"+num).val();
+		var dialog = art.dialog({
+			follow: document.getElementById('followTestBtn'+num),
+			title: '老师给的评语',
+			content: objcont
+		});
+	}
+
+	function commit_class_list(){
+		var selvar = document.getElementById("class_id").value;
+		var fom = document.getElementById("searchsubmit");
+		
+		fom.action="/Homeclass/Class/cjtmanage/class_code/"+selvar;
+		fom.submit();
+	}
+
+	function hidedetails(orderid){
+		$("#details"+orderid).hide();
+	}
+
+	function showdetails(thisObj,orderid){
+		var d = $(thisObj);
+		var pos = d.offset();
+		var t = pos.top + d.height() - 30; // 弹出框的上边位置
+	
+		var l = pos.left + d.width() - 450;  // 弹出框的左边位置
+		//alert(l);
+		$("#details"+orderid).css({ "top": t, "left": l }).show();
+		$("#details"+orderid).show();
+	}
+</script>
+{/literal}
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class="sub_class">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级成绩</span></div>
+<div class="class_work">
+<ul>
+<li id="work1"><a href="/Homeclass/Class/achievement/class_code/{$class_code}" >我的成绩</a></li>
+<li id="work2"><a href="/Homeclass/Class/achievementdaw/class_code/{$class_code}" >成绩曲线</a></li>
+</ul>
+</div><!--sub_class_gg end-->
+
+ <table width="760" border="0" align="center" cellspacing="0" bordercolor="#d8e4f0" style='margin-top:20px;border:1px solid #A6C1DD' >
+   <form id="searchsubmit" name="form" action="/Homeclass/Class/achievement" method="post">
+
+	 <tr>
+        <td  height="35" align="left" bgcolor="#effdff">
+   		&nbsp;&nbsp;科目：
+        <select name="subject_id" style="width:120px;" id="selsubject"  >
+		<option value=''>-科目-</option>
+	    {foreach from=$subjectinfolist item=subject}
+	    	{if $subject.subject_id == $subject_id}
+				<option value={$subject.subject_id} selected="selected">{$subject.subject_name}</option>
+			{else}
+				<option value={$subject.subject_id}>{$subject.subject_name}</option>
+			{/if}
+		{/foreach}          
+        </select>
+        考试名称：
+      	<input type="text" size=10 name="exam_name" id="test_name" maxlength="10" value="{$exam_name}" class="cjt_text"/>
+        
+		 <span>考试时间：</span>
+      	<input type="text"  class="cjt_text" name="exam_date" id="test_date"  {literal}onclick="WdatePicker({el:'test_date'})"{/literal} value="{$exam_date}" readonly="readonly" style="width:100px;"/>
+      	到
+			<input type="text"  class="cjt_text" name="end_exam_date" id="end_exam_date"  {literal}onclick="WdatePicker({el:'end_exam_date'})"{/literal} value="{$end_exam_date}" readonly="readonly" style="width:100px;"/>
+      	
+      	<input type="submit" value="查找" class="inputbg2" onclick="javascript:;"/>
+      	<input type="hidden" name="school_id" id="schoolid" value="{$school_id}"/>
+    	<input type="hidden" name="class_code" id="gradecode" value="{$class_code}"/>
+		</td>
+</tr>
+	</form>
+
+ </table>
+
+    <table width="760" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#d8e4f0" style='margin-top:20px;'>
+      <tr>
+        <td height="35" align="center" bgcolor="#effdff">序号</td>
+        <td height="35" align="center" bgcolor="#effdff">考试名称</td>
+        <td height="35" align="center" bgcolor="#effdff">科目</td>
+		<td height="35" align="center" bgcolor="#effdff">年级</td>
+        <td height="35" align="center" bgcolor="#effdff">考试时间</td>
+        <td align="center" bgcolor="#effdff">成绩</td>
+      </tr>
+      {if $examinfolist != ''}
+      {foreach from=$examinfolist item=examinfo name=num}
+	      <tr bgcolor="#FFFFFF">
+	        <td height="30" align="center">{$examinfo.id}</td>
+	        <td height="30" align="center">{$examinfo.exam_name}</td>
+	        <td height="30" align="center">{$examinfo.subject_name}</td>
+			<td height="30" align="center">一年级</td>
+
+	        <td height="30" align="center">{$examinfo.exam_date}</td>
+	        <td  height="30" align="center">{$examinfo.exam_score}&nbsp;
+			{if !empty($examinfo.score_py)}
+			<input type='hidden' name='hpycontent{$smarty.foreach.num.iteration}' id='hpycontent{$smarty.foreach.num.iteration}' value='{$examinfo.score_py}'>
+			<a href="javascript:showpycontent('{$smarty.foreach.num.iteration}');"><img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/pingyu.jpg' name='followTestBtn' id='followTestBtn{$smarty.foreach.num.iteration}'></a>
+			{/if}
+			</td>
+	      </tr>
+      {/foreach}
+      {else}
+        <tr>
+         <td colspan="5">
+          <div class="class_code_tishi">
+        	<B>请选择您要查询的科目或考试名称或考试时间或班级列表，点击查找查询您想要的数据!</B>
+          </div>
+         </td>
+        </tr> 
+         
+      
+      {/if}
+    </table>
+
+{$pageinfohtml}
+
+</div>
+<!--sub_class end-->
+
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+
+
+
+
+<div class="footer">
+<p>{$smarty.const.COPYRIGHT}</p>
+</div><!-- footer end-->
+
+{literal}
+<script type="text/javascript">
+	function srsubmit(page){
+		var formObj = document.getElementById('searchsubmit');
+		formObj.action = '/Homeclass/Class/achievement/pageno/'+page;
+		formObj.submit();
+	}
+	function findtestinfo(){
+	
+		var ccid = document.getElementById("gradecode").value;
+		var class_code = document.getElementById("class_id").value;
+		var searchform = document.getElementById("searchsubmit");
+		searchform.action="/Homeclass/Class/findexaminfo/class_code/ccid/class_code/"+class_code;
+		searchform.submit();
+	}
+
+	function deltestinfo(testid){
+		
+		if(confirm("您确定要删除该考试信息吗？")){
+			document.forms[0].action="/Homeclass/Class/delexaminfo/exam_id/"+testid;
+			document.forms[0].submit();
+		}
+	}
+
+	function updtestinfo(testid,class_code,sid){
+
+		document.forms[0].action="/Homeclass/Class/findstuscore/exam_id/"+testid+"/class_code/"+class_code+"/school_id/"+sid;
+		document.forms[0].submit();
+	}
+
+	function testdetailinfo(testid){
+		document.forms[0].action="/Homeclass/Class/examdetailinfo/exam_id/"+testid;
+		document.forms[0].submit();
+	}
+	
+</script>
+{/literal}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

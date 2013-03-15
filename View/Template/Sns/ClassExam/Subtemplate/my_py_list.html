@@ -1,0 +1,45 @@
+ <!--我收藏的评语 star-->
+ <div class="edit_comment comment_library">
+   <h1 class="tcc_title">我收藏的评语</h1>
+   <div class="library_main">
+     <div id="py_type_div" class="library_left">
+     <ul>
+      <li>
+      	<a class="py_type" id="0" href="javascript:;" class="library_a" title="">全部</a>
+      </li>
+      {foreach from=$py_type_list key=py_type_id item=py_type_name}
+      <li>
+      	<a class="py_type" id="{$py_type_id}" href="javascript:;" title="">{$py_type_name}</a>
+      </li>
+      {/foreach}
+     </ul>
+     </div>
+     <div id="py_att_div" class="library_right">
+       <div class="library_right_top">
+       <ul>
+        {foreach from=$py_att_list key=py_att_id item=py_att_name}
+         <li>
+         	<a class="py_att" id="{$py_att_id}" href="javascript:;" title="">{$py_att_name}</a>
+         </li>
+         {/foreach}
+       </ul>
+       </div>
+       <div class="library_right_commmet right_comment_width">
+         <div class="comment_p">
+           <p>评语</p><span>操作</span>
+         </div>
+         <ul id="my_py_list_ul">
+          <li class="clone" style="display:none;">
+	          <span class="width_logn">
+	          	<a class="py_content" title=""></a>
+	          </span>
+	          <a class="select_py" href="javascript:;">选中</a>
+	          <a class="delete_py" href="javascript:;">删除</a>
+          </li>
+         </ul>
+       </div>
+     </div>
+     <div class="clear"></div>
+   </div>
+ </div>
+ <!--我收藏的评语 end-->

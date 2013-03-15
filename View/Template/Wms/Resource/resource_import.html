@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>批量录入</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/css/sqsh.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wms/js/resource/resource_manage.js"></script>
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/wms/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">admin</font> ，欢迎使用wmsWM616管理系统！您现在的位置是：<a href="javascript:void(0);" class="wmswz">首页</a> >> <a href="javascript:void(0);" class="wmswz">资源管理</a> >> <a href="javascript:void(0);" class="wmswz">批量录入</a></td>
+  </tr>
+</table>
+
+<div class="pllr">
+	<h3>批量录入</h3>
+ </div>
+    <table width="92%" class="zyxg_main">
+     <tr>
+      <td>
+      	<form method="post" action="/Wms/Resource/Resourcemanage/import" enctype="multipart/form-data">
+       	<p>
+	        <span>资源类型：</span>
+	        <input type="radio" value="1" name="product_id" />&nbsp;同步资源
+	        <input type="radio" value="3" name="product_id" />&nbsp;精品资源
+	        <input type="radio" value="2" name="product_id" />&nbsp;精品网校
+        </p>
+        <p>
+        	<span>填写excel名称：</span>
+        	<input type="text" class="text" name="excel_name" id="excel_name"/>
+        </p>
+        <p>
+        	<span>填写excel导入：</span>
+        	<input type="file" class="text" name="excel_filename" id="excel_filename"/>
+        	<input type="button" value="批量导入" id="button_import" class="pldr" />
+        </p>
+        </form>
+        <br />
+        {if !empty($excel_id)}
+        <form action="/Wms/Resource/Resourcemanage/export" method="post">
+        <p class="red">
+	        <span>ExcelID号为{$excel_id}，请您妥善保管</span>
+	        <br />
+	        <span>成功导入{$sucess_nums}条资源，失败{$fail_nums}条资源</span>
+	        <input type="submit" value="导出失败资源" class="pldr" {if !$fail_file_exists}disabled="disabled" style="color:#ccc;cursor:default;"{/if}/>
+	        <textarea name="file_attrs" style="display:none;">{$file_attrs}</textarea>
+        </p>
+        </form>
+        {/if}
+      </td>
+     </tr>
+  </table>
+
+</body>
+</html>

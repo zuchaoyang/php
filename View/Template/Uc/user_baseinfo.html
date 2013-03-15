@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学生基本资料</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/user_baseinfo.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/thickbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js" defer="defer"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/user_baseinfo.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+
+
+</head>
+
+<body>
+{insert name="uc_header"}
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+     
+       {include file="Uc/uc_left.html"}
+       
+       <form method="post" action="/Uc/Userinfos/modifyUserBaseInfo">
+	       <div class="main_right">
+	         <h4>基本资料</h4>
+	         <div class="user_info_main">
+	          <table cellpadding="0" cellspacing="0">
+	          <tr>
+	            <td>姓名：</td>
+	            <td>{if $userinfo.client_type == $smarty.const.CLIENT_TYPE_FAMILY} <input type="text" name="client_name" value="{$userinfo.client_name}" id="client_name" class="text" maxlength="20"/><span id="client_nameTip"></span>{else} {$userinfo.client_name} {/if}</td>
+	          </tr>
+	          <tr>
+	            <td>性别：</td>
+	            <td>
+	            	<a id="sex_boy" href="javascript:;" class="boy" ></a><a id="sex_girl" href="javascript:;" class="girl"></a>
+	            	<input id="client_sex" type="hidden" name="client_sex" value="{$userinfo.client_sex}"/>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>生日：</td>
+	            <td>
+	            	<input id="birthday" name="client_birthday" type="text" class="text" value="{$userinfo.client_birthday}"/>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>生肖：</td>
+	            <td>
+		            <span class="Zodiac" id="psx" title="{$userinfo.client_zodiac_name}"></span>
+		            <input type="hidden" id="psx_inp" value="{$userinfo.client_zodiac}" name="client_zodiac"/>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>星座：</td>
+	            <td>
+		            <span class="star" id="pAstro" title="{$userinfo.client_constellation_name}"></span>
+		            <input type="hidden" id="pAstro_inp" value="{$userinfo.client_constellation}" name="client_constellation"/>
+	            </td>
+	          </tr>
+	          <tr>
+	            <td>血型：</td>
+	            <td>
+		            <select name="client_blood_type">
+		            {foreach from=$blood_type key=id item=blood}
+		            {if $userinfo.client_blood_type == $id}
+			        	<option value="{$id}" selected>{$blood}</option>
+			        {else}
+			        	<option value="{$id}">{$blood}</option>
+			        {/if}	
+			        {/foreach}
+		            </select>
+	            </td>
+	          </tr>
+	        </table>
+	         </div>
+	         <p class="save"><input type="button" value="都完善好了，保存" class="lightblue_btn" id="base_save_btn"/></p>
+	       </div>
+       </form>
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>公告_发布新公告</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	function gform(){
+		var content = document.getElementById("ggao_content").value;
+		var news_title= document.getElementById("news_title").value;
+		if(content==''){
+			document.getElementById("showspan").innerHTML='内容不能为空';
+	    }else if(content.length>200){
+	    	document.getElementById("showspan").innerHTML='内容不能超过200字';
+	    }else if(news_title==''){
+	    	document.getElementById("showspan").innerHTML='标题不能为空';
+	    }else{
+	        var sub2 = document.getElementById('sub2');
+	        document.forms[0].action="__URL__/saveggao";
+			document.forms[0].submit();
+	        sub2.disabled=true;
+	        return false;
+	    }
+		
+	}
+	
+	function checkempty(){
+		if(document.getElementById("ggao_content").value!=''){
+			document.getElementById("showspan").innerHTML='';
+		}
+	}
+	
+	function num(){
+		if(document.getElementById("showspan").innerHTML != ""){
+	  	  document.getElementById("showspan").innerHTML="";
+	    }
+		var content = document.getElementById("ggao_content").value;
+		document.getElementById("num").innerHTML=content.length;
+	}
+
+</script>
+{/literal}
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级公告</span></div>
+
+<div class="sub_class">
+
+<div class="sub_class_fb">
+  <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <form name="ggaoform" id="ggaoform" method="post" action="">
+    <tr>
+      <td height="45" align="right" valign="middle" class="class_fb_text">&nbsp;</td>
+      <td height="60" align="left" valign="middle" class="class_fb_text2">提示：公告一旦发布不能修改或者删除</td>
+    </tr>
+    <tr>
+      <td width="16%" height="45" align="right" valign="middle" class="class_fb_text">公告标题：</td>
+      <td width="84%" height="45" align="left" valign="middle" class="class_fb_text">
+	  <input name="news_title" id="news_title" type="hidden" class='input_txt2' value="{$news_title}" size='40' /> <div class='wordwrap' style="word-break:break-all">{$news_title}</a></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top" class="class_fb_text">公告内容：</td>
+      <td class="class_fb_text" >
+	  <div class='wordwrap' style="word-break:break-all;width:560px">{$news_content}</div>
+	  <input name="ggao_content" id="ggao_content" type="hidden" class='input_txt2' value="{$news_content}" size='40' />	
+	  </td>
+    </tr>
+
+	{if $x_sendMessage=="on"}
+    <tr>
+      <td height="30">&nbsp;</td>
+      <td height="30" align="left" valign="middle">
+         <input type="hidden" name="sendMessage" id="sendMessage"  value="{$x_sendMessage}" />
+		 <font style="color:red;font-size:12px;">&nbsp;同时发送到全班家长的手机上</font></p>
+          <input type="hidden" name="schoolid" value="{$school_id}"/>
+          <input type="hidden" name="operationStrategy" value="{$operationStrategy}"/>	 </td>
+    </tr>
+	{/if}
+    <tr>
+      <td height="50" colspan="2" align="center">
+	    <input type="button" name="Submit" value="返回修改" class="inputbg2"   onclick="javascript:window.history.back(-1);"/>&nbsp;&nbsp;&nbsp;
+	    <input type="button" name="Submit2" id="sub2" value="确认发布公告" class="inpusublong" onclick="javascript:gform();" />
+	    <input type='hidden' name='class_code' value='{$class_code}'>      </tr>
+	  </form>
+  </table>
+</div>
+<!--sub_class_fb end-->
+
+</div>
+<!--sub_class end-->
+
+
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

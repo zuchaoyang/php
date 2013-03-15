@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>布置工作-已发布的工作</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+ 
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+ 
+</head>
+
+<body>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <ul>
+          <li><a href="/Oa/Task/pushTask" style="text-decoration:none;" class="a_limegreen">发布新工作</a>&nbsp;&nbsp;<a href="/Oa/Task/taskListFromMe" style="text-decoration:none;" class="a_green" >已发布的工作</a></li>
+        </ul>
+        <!--button end-->
+        <h4 class="border_line">已发布的工作</h4>
+        <p class="a_tab"><a href="/Oa/Task/taskListFromMe/page/1" {if $task_type == ''} class="a_blue2" {/if} style="text-decoration:none;">全部工作</a>
+        {foreach from=$type_list item=typeinfo}
+         <a href="/Oa/Task/taskListFromMe/page/1/task_type/{$typeinfo.type_id}" {if $task_type == $typeinfo.type_id} class="a_blue2" {/if} style="text-decoration:none;">{$typeinfo.type_name}</a>
+         {/foreach}
+         </p>
+	{if $task_list == ""}
+	 <div class="yfb_main">
+		暂无内容
+     </div>
+	{else}	
+      {foreach from=$task_list name=task_id item=info}
+        <div class="yfb_main">
+          <h4><span class="h4_zuo">{$info.task_title}</span><span class="h4_you">发布类型：{$info.task_type_str}</span></h4>
+          <div style="display:block; clear:both;width:520px;word-wrap:break-word;word-break:break-all;"><p style="line-height:22px;">{$info.task_content_part}</p></div>
+          <h4><span class="h4_zuo2"><a href="/Oa/Task/taskDetail/task_id/{$info.task_id}" style="text-decoration:none;" class="a_green2">查看详情</a> &nbsp;
+          	 {if $info.expiration_time}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" style="margin-top:8px;" />{/if}
+          	 {if $info.need_sms_remind}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif"  style="margin-top:8px;" />{/if}
+          	 {if $info.need_sms_push}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif"  style="margin-top:8px;" />{/if}
+          	 {if $info.need_reply}<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif"   style="margin-top:8px;" />{/if}
+          	</span><span class="h4_you2">发布时间：{$info.upd_date}</span></h4>
+        </div>
+       {/foreach}
+       <table width="45%" border="0" cellspacing="0" cellpadding="0" align="right" class="fenye">
+         <tr>
+         <td>当前第_{$page}_页</td>
+          <td>{if $page != 1}<a href="/Oa/Task/taskListFromMe/page/1/task_type/{$task_type}">首页</a>{else}首页{/if}</td>{$first_flag}
+          <td>{if $page != 1}<a href="/Oa/Task/taskListFromMe/page/{$page-1}/task_type/{$task_type}">上一页</a>{else}上一页{/if}</td>
+          <td>
+           {if empty($end_flag)}<a href="/Oa/Task/taskListFromMe/page/{$page+1}/task_type/{$task_type}">下一页</a>{else}已到最后一页{/if} 	
+	     </td>
+          <td>
+          <!--  
+           <form action="" method="get">
+	        <input type="text" name="page" style="width:40px; height:18px; line-height:18px; padding-left:4px;"></input>
+	        <input type="hidden" name="task_type" value="{$task_type}"></input>
+	        <input type="submit" value="跳转"></input>
+	       </form>
+          -->
+          </td>        
+         </tr>
+       </table>
+        {/if}  
+      </div>
+    <!--you end-->   
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->   
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_成员</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/postion.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+	<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级成员</span></div>
+	
+	<div class='classmeo'>
+		<div class='classmeoLeft'>
+			<div class='classmeoLeft_tag'>班主任：</div>
+			<div class='classmeoLeft_ImgK'>
+				<div class='classmeoLeft_ImgKI'><img src='{$teacher_class_role_img}' onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'" onclick="showlatterlist(300,300,{$tpl_headteacher_account},'老师','paperMore','teacher')"  id='paperMore' style='cursor:pointer;'></div>
+				<div class='classmeoLeft_ImgKT'>{$teacher_class_role_name}</div>
+			</div>
+
+		</div>
+
+		<div class='classmeoRight'>
+			<div class='classmeoRightRows1'>所在年级：{$tpl_grade_id_name} &nbsp;&nbsp;&nbsp;已注册学生人数：{$studentcountnums}人</div>
+			<div class='classmeoRightRows1'>班级名称：{$tpl_gradeclass_Name} &nbsp;&nbsp;&nbsp;已注册家长人数：{$familycountnums}人</div>
+		</div>
+	</div>
+
+	<div class='classTeachers'>
+		<div class='classTeachers_tag'>任课老师</div>
+		<div class='classTeachers_list'>
+          {foreach from=$teacherlist key=uid item=teacher}
+			<div class='classTeachers_ImgK'>
+				<div class='classTeachersL_tag'>{$teacher.subject_info.subject_name}</div>
+				<div class='classTeachers_ImgKI'>
+					    {if $teacher.client_headimg_url}
+	                  		<img src="{$teacher.client_headimg_url}" border="0" width="100" height="100" onclick="showlatterlist(300,300,{$uid},'老师','studentpaper{$uid}','teacher')"  id='studentpaper{$uid}' style='cursor:pointer;'/>
+	                  	{else}
+	                  		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pic.jpg" border="0" width="100" height="100" onclick="showlatterlist(300,300,{$uid},'老师','studentpaper{$uid}','teacher')"  id='studentpaper{$uid}' style='cursor:pointer;'/>
+	                  	{/if}
+				</div>
+				<div class='classTeachers_ImgKT'>{$teacher.client_name}</div>
+			</div>	
+		 {/foreach}
+		</div>
+		
+	</div>
+
+
+	<div class='class_fm'>
+			<div class='class_fm_tag'>学生/家长</div>
+			{foreach from=$studentlist key=client_account item=student}
+			<div class='class_fm_ImgK'>
+				<div class='class_fm_ImgKI'>
+					
+	               {if !empty($student.client_headimg_url)}
+	               		<img src="{$student.client_headimg_url}" border="0" width="100" height="100" onclick="showlatterlist(300,300,{$client_account},'学生','studentpaper{$client_account}','student')"  id='studentpaper{$client_account}' style='cursor:pointer;' alt='点击浏览资料'/>
+	               {else}
+	               		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pic.jpg" border="0" width="100" height="100" onmouseover="showlatterlist(300,300,{$client_account},'学生','studentpaper','student')"  id='studentpaper{$client_account}' style='cursor:pointer;'  alt='点击浏览资料'></img> 
+	               {/if} 
+
+				</div>
+				<div class='class_fm_ImgKT'>{$student.client_name}</div>
+				<div class='class_fm_ImgKT'>
+				<!--onclick="showlatterlist(650,300,{$student.client_account},'学生','btnviewfm{$student.client_account}','Family')"-->
+				{if !empty($student.family_account)}
+				 <a href="javascript:contactfamily('{$student.client_account}');">联系家长</a>
+				{/if}
+				</div>
+			</div>	
+			{/foreach}
+	</div>
+	<span class='blank20'></span>
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+
+<script type="text/javascript">
+var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+{literal}
+
+	function aa(){
+		$('#downList_div').hide();
+	}
+	
+	function showlatterlist(_width,_height,_account,_tag,objId,clienttype){
+		var lastModified="Sat,1 Jan 2005 00:00:00 GMT";
+		var nowTime=new Date().getTime();
+		var url="/Homeclass/Class/getclientmessage/account/"+_account+'/type/'+clienttype;
+		$.get(url,{time:nowTime},function(data){
+		//alert(data);
+			var boxHeader='<div id="downList_Title"><span><img src="'+IMG_SERVER+'/Public/images/new/close_it.gif"/>关闭</span>'+_tag+'</div>';
+			var _html;
+			_html="<span class='blank10'></span>"+data+"";
+			html_DownList(objId,boxHeader,_html,_width,_height);
+			$("#downList_div").show();
+			$("#downList_Title").click(function(){
+				$('#downList_div').hide();
+			});
+		});
+	}
+
+	function html_DownList(objID,Title,Body,_width,_height){
+	    var Pos=$.getPos(document.getElementById(objID));
+		Pos.y=Pos.y+$('#'+objID).height()-30;
+		Pos.x=Pos.x-_width+100;	
+	
+	    if($('#downList_div').length==0){
+	        $('body').append('<div id="downList_div"></div>');
+	    }
+	    $('#downList_div').html(Title+Body);
+	    $('#downList_div').width(_width).height(_height);
+	    $('#downList_div').css({
+	        top:Pos.y,left:Pos.x
+	    });
+		//.fadeIn("slow")
+	}
+
+</script>
+{/literal}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

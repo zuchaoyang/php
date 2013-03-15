@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>粘贴处理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/plcl2.js"></script>
+
+{literal}
+<style >
+	<!--
+	html,body {height:100%; margin:0px; font-size:12px;}
+	.mydiv {
+	background-color: #fff;
+	border: 5px solid #E0E0E0;
+	text-align: center;
+	padding-top:40px;
+	z-index:999;
+	width: 300px;
+	height: 120px;
+	left:50%;
+	top:50%;
+	margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+	margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+	margin-top:0px;
+	position:fixed!important;/* FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+	}
+	.mydiv p{color:#AE0000;line-height: 40px;font-weight: bold; font-size:20px;}
+	.bg,.popIframe {
+	background-color: #666; display:none;
+	width: 100%;
+	height: 100%;
+	left:0;
+	top:0;/*FF IE7*/
+	filter:alpha(opacity=50);/*IE*/
+	opacity:0.5;/*FF*/
+	z-index:1;
+	position:fixed!important;/*FF IE7*/
+	position:absolute;/*IE6*/
+	_top:       expression(eval(document.compatMode &&
+	            document.compatMode=='CSS1Compat') ?
+	            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+	            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+	}
+	.popIframe {
+	filter:alpha(opacity=0);/*IE*/
+	opacity:0;/*FF*/
+	}
+	-->
+</style>
+
+<script type="text/javascript">
+	function commit (){
+		$("#nameinfo").submit();
+	}
+
+	function showDiv(){
+		document.getElementById('popDiv').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
+
+	function closeDiv(){
+		document.getElementById('popDiv').style.display='none';
+		document.getElementById('bg').style.display='none';
+		document.getElementById('popIframe').style.display='none';
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+
+<div id="popDiv" class="mydiv" style="display:none;"><p>正在生成账号，请稍后...</p></div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">批量处理</a></td>
+  </tr>
+</table>
+<div id="pInputData">
+<form id="nameinfo" action="__URL__/addLotsStu/cid/{$classCode}/uid/{$uid}/gradeid/{$gradeid}/schoolid/{$schoolid}" method="post">
+<input type="hidden" name="isbetch" value="betch"/>
+<table width="92%" border="0" cellspacing="0" cellpadding="1" bgcolor="#FFFFFF" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="line">
+    <a href="/Amscontrol/Amsclasslist/classManager/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}" class="bjgk">班级概况</a>
+    <a href="/Amscontrol/Classclientmanage/showClassClient/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}/stop_flag/0" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;" class="zhgl">班级成员账号管理</a>
+    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">中队设置</a>
+    <a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">小队设置</a></td>
+  </tr>
+  <tr>    <td height="10" colspan="2">&nbsp;</td>  </tr>
+  <tr>    <td height="10"  colspan="2"><a href="/Amscontrol/Classclientmanage/goToLotsAdd/schoolid/{$schoolid}/cid/{$classCode}/uid/{$uid}/gradeid/{$gradeid}" class="ztlr">手工录入</a> <a href="#" class="sglr" >粘贴录入</a> <a href="/Amscontrol/Classclientmanage/showClassClient/classCode/{$classCode}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$uid}/stop_flag/0" class="bjwha">返回上一级</a></td>  </tr>
+  <tr>    <td  bgcolor="#fbf6f7" width="200">
+  				<table border="0" align="left" cellspacing="0" id="student_table">
+                  <tr id="student_table_0"><td width="50%" height="30"  align="left" bgcolor="#CCCCCC"> <strong>批量录入账号</strong> </td></tr>
+                  <tr id="student_table_1"><td align="left" bgcolor="#dfdbdb" style=" padding:10px;"> <textarea name="name" id="textarea" cols="30" rows="25"></textarea> </td></tr>
+                </table>    
+   		 </td>
+         <td align="left" bgcolor="#fbf6f7" valign="middle" style="color:red;">请输入学生姓名，每行一个学生，支持粘贴复制</td>
+  </tr>
+  <tr><!-- 2012-02-20 update -->
+    <td colspan="5" bgcolor="#fbf6f7" style="padding:10px;"><a href="javascript:confirmData2();" class="amsqx" style="margin-right:25px;">确认提交</a></td>
+  </tr>
+</table>
+</form>
+</div>
+<!-- 2012-02-20 update -->
+<div id="pShowData" style="display:none;">
+    <table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+    <tr>
+    <td height="10" colspan="5"><a href="zhgl.html" class="bjwha">返回上一级</a></td>
+  </tr>
+      <tr>
+        <td height="27" colspan="5" class="bt STYLE1">批量处理</td>
+      </tr>
+      <tr>
+        <td height="10" colspan="5">&nbsp;</td>
+      </tr>
+        <tr>
+      </tr>
+      <tr>
+        <td colspan="5" align="center" bgcolor="#fbf6f7">
+            <table width="95%" border="0" align="left" cellspacing="1">
+              <tr><td colspan="8" style="color:red; font-weight:bold; line-height:24px;" align="left">提示：请仔细核对您录入的学生姓名和数量</td></tr>
+              <tr>
+                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_01"><strong>序号</strong></td>
+                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_01"><strong>学生姓名</strong></td>
+                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_02"><strong>序号</strong></td>
+                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_02"><strong>学生姓名</strong></td>
+                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_03"><strong>序号</strong></td>
+                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_03"><strong>学生姓名</strong></td>
+                <td width="5%" height="30" align="center" bgcolor="#CCCCCC" id="xh_04"><strong>序号</strong></td>
+                <td width="20%" height="30" align="center" bgcolor="#CCCCCC" id="xm_04"><strong>学生姓名</strong></td>
+              </tr>
+              <tbody id="studShow_table">
+                
+              </tbody>
+            </table>
+        </td>
+      </tr>
+      <tr>
+         <td height="60" bgcolor="#fbf6f7"><a href="javascript:showDiv();javascript:commit();" class="amsqd" style=" width:120px; background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/amsqd_btn1.gif) no-repeat;">确认提交，生成账号</a><a href="javascript:backFun();" class="amsqx">修改</a></td>
+      </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!--class_space_row_left start-->
+<div class="class_space_row_left">
+	<div class="class_space_row_lt">
+		<h2><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/class_space_lh.jpg" width="260" height="30" /></h2>
+		<div class="class_space_row_lm">
+			<div class="class_space_row_lm_l"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/class_space_pic.jpg" width="117" height="117" /></div>
+			<div class="class_space_row_lm_r">
+				<ul>
+				<li>班 主 任：<span>{$class_headteacher}</span></li>
+				<li>所在年级：<strong>{$tpl_grade_id_name}</strong></li>
+				<li>班级名称：{$tpl_gradeclass_Name}</li>
+				<li>已注册学生人数：<font>{$classMemberNums}</font>人</li>
+				<li>已注册家长人数：<span>{$classFamilyNums}</span>人</li>
+				</ul>
+			</div>
+		</div>
+	</div><!--class_space_row_lt end-->
+
+	<div class="class_space_row_lb">
+		<ul>
+			<li><i class="space_1"></i><a href='/Homeclass/Classspace/index/class_code/{$class_code}'>首页</a></li>
+			<li><i class="space_2"></i><a href='/Homeclass/Classspace/classsDynamic/class_code/{$class_code}'>班级动态</a></li>
+			<li><i class="space_3"></i><a href='/Homeclass/Classspace/classStudents/class_code/{$class_code}'>班级成员</a></li>
+			<li><i class="space_4"></i><a href='/Homeclass/Classspace/classrz/class_code/{$class_code}'>班级日志</a></li>
+			<li><i class="space_5"></i><a href='/Homeclass/Classspace/classAlbumbj/class_code/{$class_code}'>班级相册</a></li>
+		</ul>
+	</div><!--class_space_row_lb end-->
+
+</div>
+<!--class_space_row_left end-->

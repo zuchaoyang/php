@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>事件列表</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+	<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+	<h4 class="middle_title">{$taginfo.tag_name}</h4>
+	<!--zzy_list-->
+	 {if $taskinfo != ''}
+	  {foreach from=$taskinfo item=val name=task}
+        <div class="zzy_list">
+          <h4>
+            <span class="h4_zuo3">{$val.task_title}</span>
+            <span class="h4_you">发布类型：{$val.task_type_name}</span>
+            <a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a>
+          </h4>
+            <div style="word-wrap:break-word;word-break:break-all;-moz-binding: url('{$smarty.const.IMG_SERVER}__PUBLIC__/css/wordwrap.xml#wordwrap');overflow: hidden;"><p style="line-height:22px;">{$val.sub_task_content}</p></div>
+          <h4>
+          <span class="h4_zuo4">
+            <a href="/Oa/Task/taskDetail/task_id/{$val.task_id}" style="text-decoration:none;" class="a_green2">查看详情</a>
+            {if $val.expiration_time != 0}
+            <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>
+            {/if}
+            {if $val.need_sms_remind != 0}
+            <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif"/></a>
+            {/if}
+            {if $val.need_sms_push != 0}
+            <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif" /></a>
+            {/if}
+            {if $val.need_reply == 1}
+            <a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif" /></a>
+              {if $val.task_reply_con == 2}
+                <a href="#" class="font_hong">未回复</a>
+              {elseif $val.task_reply_con == 1}
+              	<a href="#" class="font_lan">已回复</a>
+              {/if}
+            {/if}
+           </span>
+           <span class="h4_you2">发布时间：{$val.add_date}</span>
+          </h4>
+        </div>
+      {/foreach}
+      {if $person != ''}
+      <p class="fenye">
+       	  <span style="text-decoration:none;">当前第_{$currentpage}_页</span>
+       	  <a href="/Oa/Labelclass/persontagtasklist/tag_id/{$taginfo.tag_id}/page/1" class="blue2">首页</a>
+       	  {if $currentpage==1}<span style="text-decoration:none;">上一页</span>{else}<a href="/Oa/Labelclass/persontagtasklist/tag_id/{$taginfo.tag_id}/page/{$prepage}">上一页</a>{/if}
+		  {if $currentpage==$endpage}<span style="text-decoration:none;">最后一页</span>{else}<a href="/Oa/Labelclass/persontagtasklist/tag_id/{$taginfo.tag_id}/page/{$endpage}">下一页</a>{/if}
+	   </p>
+      {else}
+       <p class="fenye">
+       	  <span style="text-decoration:none;">当前第_{$currentpage}_页</span>
+       	  <a href="/Oa/Labelclass/tagtasklist/tag_id/{$taginfo.tag_id}/page/1" class="blue2">首页</a>
+       	  {if $currentpage==1}<span style="text-decoration:none;">上一页</span>{else}<a href="/Oa/Labelclass/tagtasklist/tag_id/{$taginfo.tag_id}/page/{$prepage}">上一页</a>{/if}
+		  {if $currentpage==$endpage}<span style="text-decoration:none;">最后一页</span>{else}<a href="/Oa/Labelclass/tagtasklist/tag_id/{$taginfo.tag_id}/page/{$endpage}">下一页</a>{/if}
+	   </p>
+	   {/if}
+     {else}
+     	<div class="zzy_list" align="center">
+         <a href="#" class="font_hong">{if $no != ''}{$no}{else}无内容{/if}</a>
+        </div>
+     {/if}
+     <!--zzy_list end-->
+</div>
+    <!--middle end-->
+    
+    <!--right-->
+{insert name="oa_right" uid=$uid}
+    <!--right end-->
+    
+    
+    <div class="clear"></div>
+    
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{insert name="space_header"}
+<span class='blank10'></span>
+<div class='b_main'>
+<div class='block_left' id="Left">
+		<div class='UserBaseMsgK'>
+			<div class='UserBaseImg'>
+			<img src="{$user_head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/head_upload_100.jpg'" id="avatar" />
+
+			</div>
+			<div class='UserBaseList'>
+				<ul>
+					<li><h4><span class="s_username">{$space_school_name}</span></h4></li>
+					<li><h4><span class="s_nickname">{$space_client_name}</span></h4></li>
+					<li><a href="http://{$space_url}" title="{$space_client_name}的主页"><span style='font-family:Courier New'>{$space_url}</span></a></li>
+					<li>
+					<a href=/Homeuser/Index/spacetalk/spaceid/{$space_current_user}>新鲜事<span class="number">({$DataRows})</span>条</a>&nbsp;&nbsp;
+					<span class="splist_line">|</span>&nbsp;&nbsp; 
+					<a href="/Homeuser/Index/friend/spaceid/{$space_current_user}">好友<span class="number">({$friendNums})</span>人</a>
+					</li>
+				  <li> 
+				  
+					{if !empty($space_Login_user)}
+						{if $space_current_user!=$space_Login_user && $flag=='true'}
+						<input type="button" value="加为好友" id="btnaddfriend" class="btn_yellow" onclick="javascript:toAddfriend();">
+						{/if}
+					{/if}
+						
+				  </li>
+
+				</ul>
+			</div>
+		</div>
+		
+		<div class='UserTalkbg'><span class="UserTalkNav"><strong><a href='/Homeuser/Index/spacelogindex/spaceid/{$log_account}'>全部</a></strong> </span><span class="howsay">{$space_client_name}的个人日志</span></div>
+		{if !empty($mylog_list)}
+		{foreach from=$mylog_list item=vo}
+		<div class="sub_diary_tlt">
+			<h2><span>发布时间：{$vo.upd_date}&nbsp;&nbsp;&nbsp;日记分类：<a href="/Homeuser/Index/spacelogindex/spaceid/{$log_account}/logtype/{$vo.log_type}" >{$vo.logtype_name}</a></span>{$vo.log_name}</h2>
+			<p>{$vo.log_contentall}</p>
+			<div class="sub_diary_tlb">
+				<a href="/Homeuser/Index/spacelogview/spaceid/{$log_account}/log_id/{$vo.log_id}" target='_blank'>阅读全文</a>（<span>{$vo.read_count}</span>）&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="/Homeuser/Index/spacelogview/spaceid/{$log_account}/log_id/{$vo.log_id}" target='_blank'>评论（<span>{$vo.plun_count}</span>）</a>
+			</div>
+		</div>
+		{/foreach}
+		<div class='divpageinfo'>{$pageinfohtml}</div>
+		{else}
+			<p align='center'>{$space_client_name}还没有发布任何日记</p>
+		{/if}
+	</div>
+
+
+	<div class='block_right' id="Right">
+		<h5>{$space_client_name}的个人资料</h5>
+		<ul class='user-info2'>
+		
+			<li>所在班级：{$tpl_gradeclass_Name}</li>
+			<li>星座: {$space_constellation_nam}</li>
+			<li>生日: {$space_client_birthday}</li>
+			<li>血型: {$space_blood_type_name}</li>
+		</ul>
+		<span class='blank10'></span>
+		{include file="Public/space_menu.html"}
+
+	</div>
+{include file="Public/talkjs.html"}
+	</div>

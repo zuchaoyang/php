@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>left</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+{literal}
+<style>
+	body{ background:#f4f4f4;}
+	.left{ width:186px;}
+	.left h4{ margin-bottom:10px;}
+	.main{ width:163px; height:26px; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/mbg1.gif) no-repeat; margin:3px 0px 3px 8px; line-height:26px; vertical-align:middle; padding-left:8px; color:#000; font-weight:bold; cursor:pointer;}
+	
+	dl a,dl a:visited{ line-height:24px; color:#0073d5}
+	dl a:hover{ color:#F60}
+	dt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/dticon.gif) no-repeat 22px center; padding-left:32px; line-height:24px;color:#666;}
+	dd{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/basemanage/images/ddicon.gif) no-repeat 30px center; padding-left:43px;}
+</style>
+
+<script type="text/javascript">
+	function aa(page) {
+		  window.open(page,"mainFrame");
+	}
+</script>
+{/literal}
+
+</head>
+
+<body>
+<div class="left">
+<h4><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/images/lefttop1.gif" width="187" height="32" /></h4>
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >学校开通申请</div> 
+<div id="child1"> 
+	<dl>
+    	<dt><a href="#" onclick="javascript:aa('/Basecontrol/Index/appSchoolProcess');" style="color:#333333;">开通申请</a></dt>
+        <dt><a href="#" onclick="javascript:aa('/Basecontrol/Applyschool/getSchool');" style="color:#333333;">申请管理</a></dt>
+        <dt><a href="#" onclick="javascript:aa('/Basecontrol/Baseaccountmanage/showBaseAccountInfo')" style="color:#333333;">基地账号管理</a></dt>
+        <dt><a href="#" onclick="javascript:aa('/Basecontrol/Phonebinding/index')" style="color:#333333;">手机号批量绑定</a></dt>
+        <!--<dd><a href="#" onclick="javascript:aa('申请提交反馈.html');">申请提交反馈</a></dd>
+        <dd><a href="#" onclick="javascript:aa('确认申请资料.html');">确认申请资料</a></dd>-->
+    </dl>
+</div> 
+</div>
+</body>
+</html>

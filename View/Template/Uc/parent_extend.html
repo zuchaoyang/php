@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>家长-扩展资料</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/parent_extend.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Address.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/parent_extend.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+     
+        {include file="Uc/uc_left.html"}
+        
+      <form method="post" action="/Uc/Userinfos/modifyUserparent" id="parent_extend_form">
+       <div class="main_right">
+         <h4>我的家庭</h4>
+         <table border="0" cellspacing="0" cellpadding="0" class="family_pic">
+	         <tr>
+	           {foreach from=$family_info item=val key=key}
+                <td>
+                 <dl>
+                  <dt {if $val.family_type == 'child'} class="my" {elseif $val.family_type == 'login_father'} class="father_solid" {elseif $val.family_type == 'father'} class="father" {elseif $val.family_type == 'login_mother'} class="mother_solid" {elseif $val.family_type == 'mother'} class="mother" {/if}>{if $val.headimg != ''}<img src="{$val.headimg}" height="81" width="81"/>{/if}</dt>
+                  <dd class="font_green">{$val.client_name}{$val.name}</dd>
+                 </dl>
+                </td>
+                <td>&nbsp;</td>
+                {if $key%3==1}
+                </tr>
+                <tr>
+                <td>&nbsp;</td>
+                {/if}
+                {/foreach}
+                </tr>
+            </table>
+            
+         
+         <div class="font_cotent txdz">
+         	<span>&nbsp;通讯地址:</span>
+         	<span id="show_area"><input type="hidden" id="init_area_id" value="{$user.area_id}"/></span><br />
+         	&nbsp;<input type="text" class="text_add" value="{$user.client_address}" id="client_address" name="client_address" maxlength="50"/>
+         	<span class="font_red font_normal" id="client_addressTip"></span>
+         </div>
+         
+         <h4>我的工作</h4>
+          <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab">
+              <tr>
+                <th>从事行业：</th>
+                <td>
+                <select name="client_trade">
+	                {foreach from=$client_trade key=id item=trade}
+	                	<option {if $user.client_trade == $id}selected="selected"{/if} value="{$id}">{$trade}</option>
+	                {/foreach}
+                </select></td>
+              </tr>
+              <tr>
+                <th>单位名称：</th>
+                <td><input type="text" class="text_add2" value="{$user.job_address_name}" name="job_address_name" maxlength="50" id="job_address"/><span class="font_red font_normal" id="job_addressTip"></span></td>
+              </tr>
+         </table>
+         <h4>孩子的学校</h4>
+          <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab">
+              <tr>
+                <th>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;校：</th>
+                <td>{$userinfo.school_name}</td>
+              </tr>
+              <tr>
+                <th>所在年级：</th>
+                <td>{$userinfo.grade_id_name}</td>
+              </tr>
+              <tr>
+                <th>所在班级：</th>
+                <td>{$userinfo.class_name}</td>
+              </tr>
+         </table>
+         <p class="save"><input type="button" value="都完善好了，保存" class="lightblue_btn" id="save"/></p>
+       </div>
+       </form>
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ 	{insert name="uc_footer"}
+</body>
+</html>

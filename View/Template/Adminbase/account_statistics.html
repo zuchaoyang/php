@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>已发账号统计</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+
+</head>
+
+<body>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">已发账号统计</td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"><table width="100%" border="0" style="padding-bottom:10px;">
+   <tr>
+    <td bgcolor="#f0f8ff" style="padding-left:25px;">
+        <table width="80%" border="1" align="left" cellpadding="0" cellspacing="1" bgcolor="#dfdcdc">
+  <tr >
+    <td height="30" align="center" valign="middle" bgcolor="#d6ebfd">是否使用</td>
+    <td align="center" valign="middle" bgcolor="#d6ebfd">账号位数</td>
+    <td align="center" valign="middle" bgcolor="#d6ebfd">可发数量</td>
+    <td align="center" valign="middle" bgcolor="#d6ebfd">已发数量</td>
+    <td align="center" valign="middle" bgcolor="#d6ebfd">锁定数量</td>
+    <td align="center" valign="middle" bgcolor="#d6ebfd">未发数量</td>
+    </tr>
+    {foreach from = $count_list key=account_length item = info}
+	  	<tr>
+	    <td height="30" align="center" valign="middle" bgcolor="#FFFFFF">
+	    
+	    {if $info.use_flag == 1}
+	    	<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/ok.jpg' />
+	    {else}
+	   		<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/error.gif' />
+	    {/if}
+	    
+	    </td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF">{$info.account_length}</td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF">{$info.use_count}</td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF">{$info.count_used}</td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF">{$info.count_locked}</td>
+	    <td align="center" valign="middle" bgcolor="#FFFFFF"><span class="STYLE2">{$info.count_available}</span></td>
+	    </tr>
+    {/foreach}
+</table>    </td>
+  </tr>
+</table>
+
+</td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

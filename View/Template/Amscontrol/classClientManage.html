@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级成员账号管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+
+<script type="text/javascript">
+	function lslist(page){
+		window.open(page);
+	}
+
+	function showDiv(user_name,child_account){
+		document.getElementById('name').value = $("#pUpName_"+child_account).text();//user_name;
+		document.getElementById('child_account').value = child_account;
+		document.getElementById('popDiv').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
+	
+	function closeDiv(){
+		document.getElementById('popDiv').style.display='none';
+		document.getElementById('bg').style.display='none';
+		document.getElementById('popIframe').style.display='none';
+	}
+
+	//   判断学生姓名是否合法(允许中英文 + 空格，不允许特殊字符。长度限制30个字符)
+	function validateStudentName(name)
+	{
+	    var val=Share.strProcess.trimLR(name);
+	    var len=val.length;
+	    if(len > 0)
+	    {
+	        if(len<2 || len>30)
+	            return false;
+	        var s=Share.regexProcess;
+	        if(!s.isUserName_2(val))
+	            return false;
+	    }
+	    return true;
+	}
+
+	function upMethod(){
+		var name = Share.strProcess.trimLR($("#name").val());
+		if(name.length <=0)
+		{
+			alert("请输入姓名");
+			$("#name").focus();
+			return ;
+		}
+		if(!validateStudentName(name)){
+			alert("姓名输入有误");	
+			$("#name").focus();
+			return ;
+		}
+		var child_account = Share.strProcess.trimLR($("#child_account").val());
+		//var da = "user_name="+name+"&child_account="+child_account;
+		var da={};
+		da.user_name=name;
+		da.child_account=child_account;
+		$.ajax({
+			type:'POST',
+			data:da, //可传递的数据。
+			url:'/amscontrol/Classclientmanage/update_name',
+			success:function(data)
+			{
+			   if(data){
+				   alert("修改成功！");
+				//window.location.reload();
+				   $("#pUpName_"+child_account).text(name);
+				}else{
+					alert("修改失败！");
+					//window.location.reload();
+				}
+			   closeDiv();
+			}
+		});
+	}
+
+
+
+
+	function aaa(id){
+		if(confirm("确定移出此账号吗？")){
+			var url = "/Amscontrol/Classclientmanage/remove_client/uid/"+id;
+			$.ajax({
+				type:'GET',
+				url:url,
+				success:function(data)
+				{
+				   if(data){
+					   alert("移出成功！");
+						window.location.reload();
+					}else{
+						alert("移出失败！");
+						window.location.reload();
+					}
+				}
+			});
+		}
+	}
+
+</script>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+ <div id="popDiv" class="xzkc" style="display:none;">
+    <P class="student_name">学生姓名：<input type="text" name="user_name" id="name" /></P>
+    <p><a href="javascript:upMethod();" id="bindingBtn" class="bindingBtn">确定</a><a href="javascript:closeDiv()" class="bindingBtn">取消</a></p>
+	<input type="hidden" name="child_account" id="child_account"/>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+ 
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">班级成员账号管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt">
+	    <a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+	    <a href="/amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/0" class="zhgl" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;">班级成员账号管理</a>
+	    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">中队设置</a>
+		<a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">小队设置</a>
+    </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="5">&nbsp;</td>
+  </tr>
+  
+    <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;">
+    <a href="/Amscontrol/Classclientmanage/goToLotsAdd/uid/{$uid}/cid/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd">姓名生成账号</a>
+    <!-- 手机号绑定
+     {if $operationStrategy!=1}
+    	<form method="post" action="/Amscontrol/classclientmanage/addParentBPhone/stop_flag/0">
+    		<input type="hidden" value={$classCode} name="classCode"></input>
+    		<input type="hidden" value={$gradeid} name="gradeid"></input>
+    		<input type="hidden" value={$schoolid} name="schoolid"></input>
+    		<input type="hidden" value={$uid} name="uid"></input>
+    		<input type="submit" value="手机号绑定" class="bindingBtn"> </input>
+    	</form> 
+    {/if}
+     -->
+    <a href="/Amscontrol/Uidimport/show_uid_import/class_code/{$classCode}/school_id/{$schoolid}/uid/{$uid}/grade_id/{$gradeid}" class="amsqd">已有账号导入</a>
+    {if $smarty.const.IS_SET_OLDACCOUNT_IMPORT == 1}<a href="/Amscontrol/Oldaccountimport/oldStudentUploadExcel/uid/{$uid}/cid/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd">学生账号导入</a>{/if}	
+    </td>
+
+  </tr>
+  
+  <tr>
+    <td colspan="5" align="center" bgcolor="#fbf6f7">
+    <form id="form" action="/amscontrol/Classclientmanage/showClassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}/excel/excel" method="post">
+        <table width="100%" border="0" cellspacing="1">
+  <tr>
+    <td width="5%" height="30" align="center" bgcolor="#CCCCCC"><strong>序号</strong></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>学生姓名</strong><input type="hidden" name="title[]" value="学生姓名"></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>学生账号</strong><input type="hidden" name="title[]" value="学生账号"></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>家长账号</strong><input type="hidden" name="title[]" value="家长办理凭证号1"></td>
+    <td align="center" bgcolor="#CCCCCC"><strong>家长账号</strong><input type="hidden" name="title[]" value="家长办理凭证号2"></td>
+    <td height="30" align="center" bgcolor="#CCCCCC" colspan=2><strong>操作</strong></td>
+  </tr>
+  {foreach from = $uidarr item=parentsList key=childAccount name=shownum}
+  <tr>
+    <td height="30" align="center" bgcolor="#dfdbdb">{$smarty.foreach.shownum.iteration}</td>
+    <td height="30" align="center" bgcolor="#dfdbdb"><a href="javascript:showDiv('{$uidarr.$childAccount.child_name}','{$childAccount}')" id="pUpName_{$childAccount}">{if trim($uidarr.$childAccount.child_name)==""}<span style="color:red;">无名</span>{else}{$uidarr.$childAccount.child_name}{/if}</a></td>
+    <td height="30" align="center" bgcolor="#dfdbdb"><font class="yjh">{$childAccount} </font></td>
+    {if $uidarr == "" }
+   	<td align="center" bgcolor="#dfdbdb"><font class="wjh">暂无</font></td>
+	<td align="center" bgcolor="#dfdbdb"><font class="wjh">暂无</font></td>
+ 	{else}
+	<td height="30" align="center" bgcolor="#dfdbdb"><font class="yjh">{$uidarr.$childAccount.0}</font></td>
+	<td height="30" align="center" bgcolor="#dfdbdb"><font class="yjh">{$uidarr.$childAccount.1}</font></td>
+	
+    {/if}	
+    <td height="30" align="center" bgcolor="#dfdbdb"><a href="/Amscontrol/Classclientmanage/showClassClientState/uid/{$uid}/cid/{$classCode}/gid/{$gradeid}/sid/{$schoolid}/cac/{$childAccount}/stp/{$uidarr.$childAccount.stop_flag}" style="color:blue;">查看</a></td>
+    
+    <td height="30" align="center" bgcolor="#dfdbdb"><a href="#" id="{$childAccount},{$uidarr.$childAccount.0},{$uidarr.$childAccount.1}" style="color:blue;" onclick="aaa({$childAccount});" >移出班级</a></td>
+  </tr>
+  
+  {foreachelse}
+	<tr>
+     <td colspan='6' align='center' style='font-size:15px; color:red;  line-height:3;'>没有记录</td>
+     </tr> 
+     {/foreach}
+</table>
+</form>
+    </td>
+  </tr>
+  <tr>
+     <td height="60" bgcolor="#fbf6f7"><a href="#" onclick="lslist('/amscontrol/Classclientmanage/showClassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}/stamp/stamp')" class="amsqx" style="margin-right:25px;">打印</a><a href="#" onclick="javascript:document.forms['form'].submit();" class="amsqx">输出excel</a></td>
+  </tr>
+</table>
+
+</body>
+</html>

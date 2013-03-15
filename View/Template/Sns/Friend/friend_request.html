@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>好友请求</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Friend/friend_request.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Friend/friend_request.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+
+<!--per_tip star-->
+ {include file="Public/sns_person_space_header.html"}
+<!--per_tip end--> 
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <ul class="mian_title">
+     <li><a href="/Sns/Friend/Manage/friend_request" class="main_nav_a1 f16" title="">好友请求</a></li>
+    </ul>
+    <!--per_main star-->
+    <div class="per_main">
+      <!--per_main_tab star-->
+      <div id="friend_list_div">
+      {literal}
+      <div class="per_main_tab clone" style="display:none;">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="photo_width"><img src="{user.client_headimg_url}" class="photo_width60"></td>
+            <td >
+              <a href="#" class="f_main_green" id="client_name_p">{user.client_name}</a>
+            </td>
+            <td>向你发送好友申请</td>
+            <td class="td_width"></td>
+            <td class="align_right"><input type="button" value="确定" class="qd_btn mr10" id="quding_btn"><input type="button" value="忽略" class="qx_btn" id="ignore_btn"></td>
+          </tr>
+        </table>
+        <input type="hidden" value="{user.client_account}" id="friend_account_id"/>
+        <input type="hidden" value="{user.req_id}" id="req_id"/>
+        </div>
+        {/literal}
+        </div>
+        <!--more_active star-->
+         <div class="more_active">
+           <a href="javascript:;" id="load_more_a">加载更多</a>
+         </div>
+       <!--more_active end-->
+        <!--per_main_tab end-->
+      <div class="clear"></div>
+    </div>
+    <!--per_main end-->
+  </div>  
+  <!--main end-->
+<div class="clear"></div> 
+</div>
+<!--content end-->
+<!--弹出层 star-->
+ <!--同意好友请求 star-->
+ <div class="tcc_request" id="agree_div">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><span class="icon_right"></span></td>
+        <td id="msg_td"></td>
+      </tr>
+    </table>
+ </div>
+ <!--同意好友请求 end-->
+ 
+<!--弹出层 end-->
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

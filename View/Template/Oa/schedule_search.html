@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>搜索结果</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/schedule.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+	<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+	<h4 c class="middle_title">搜索结果 <span>日程安排</span></h4>
+    <table cellpadding="0" cellspacing="0" class="ss_list" id="searche_content">
+    {if $mSchedule_list == ""}
+    	<th colspan="2">没有搜索结果...</th>
+    {else}
+	    {foreach from=$mSchedule_list item=val}
+	    	<tr>
+	        	<th><a href="javascript:showinfo({$val.schedule_id});">{$val.schedule_title}</a></th>
+	            <td>上次编辑时间：{$val.upd_time}</td>
+	        </tr>
+	        <form id="myform_{$val.schedule_id}" action="/Oa/Schedulemanage/serarchshowScheduleinfo" method="post">
+	        	<input type="hidden" name="schedule_id" value="{$val.schedule_id}"/>
+	        	<input type="hidden" name="schedule_name" value="{$schedule_name}"/>
+	        </form>
+	    {/foreach}
+    {/if}
+    </table>
+    {if empty($is_end_page) && !empty($mSchedule_list)}
+    	<span id="show_more_search" style="margin-left:50%;">更多</span>
+    {/if}
+    
+    	<input type="hidden" id="schedule_name_json" name="schedule_name" value="{$schedule_name}"/>
+    	<input type="hidden" id="page_json" name="page" value="2"/>
+</div>
+    <!--middle end-->
+    
+    <!--right-->{insert name="oa_right" uid=$uid}
+    
+    <!--right end-->
+    
+    
+    <div class="clear"></div>
+    
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

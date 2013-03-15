@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我的日记草稿箱</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/Pzonelog.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+	<div class="sub_diary">
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di1"></i><a href='/Homepzone/Pzonelog/mylogindex/class_code/{$class_code}'>我的日记</a></li>
+				<li><i class="di2"></i><a href='/Homepzone/Pzonelog/logDraft/class_code/{$class_code}'>草稿箱</a></li>
+			</ul>
+		</div>
+		<div class="sub_diaryr">
+			<ul>
+				<li><i class="di3"></i><a href='/Homepzone/Pzonelog/writelog/log_account/{$log_account}/class_code/{$class_code}'>写日记</a></li>
+				<li><i class="di4"></i><a href="/Homepzone/Pzonelog/manage_log_type/log_account/{$log_account}/class_code/{$class_code}" style="float:right; margin-right:10px;">分类管理</a></li>
+			</ul>
+		</div>
+	</div><!--sub_diary end-->
+<span class="blank20"></span>
+{if !empty($mylog_list)}
+		<table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+          <tr bgcolor="#f2f2f2">
+            <td height="25" align="center">标题</td>
+            <td width="20%" height="25" align="center">最后操作时间 </td>
+            <td width="5%" align="center">类型</td>
+            <td width="25%" height="25" align="center">管理</td>
+          </tr>
+		  {foreach from=$mylog_list item=vo}
+          <tr bgcolor="#FFFFFF">
+            <td height="30">&nbsp;&nbsp;{$vo.log_name}</td>
+            <td height="30" align="center">{$vo.upd_date}</td>
+            <td align="center">草稿</td>
+            <td height="30" align="center">
+              <input name="button" type="button" class='inputbg1' onclick="javascript:window.location='/Homepzone/Pzonelog/writelog/logid/{$vo.log_id}/log_account/{$log_account}/draft/draft';"  value="编辑" />
+              <input name="button2" type="button" class='inputbg1' onclick="javascript:dellog('{$vo.log_id}','0');"  value="删除" />            </td>
+          </tr>
+		  {/foreach}
+      </table>
+	  {else}
+		<span class="blank20"></span>
+				<p align="center">您的草稿箱是空的</p>
+		<span class="blank20"></span>
+	  
+	{/if}
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/footer.html"}
+
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

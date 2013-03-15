@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>编辑部门</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/css/weebox/weebox.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/css/tree/tree.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/oa_department.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/jquery.simple.tree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/bgiframe.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/plugin/weebox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/common/js/dialogtree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dialogtree/demo.js"></script>
+
+{literal}
+<script type="text/javascript">
+	function reloadTree(dpt_id) {
+		window.parent.window.document.getElementById('hoho').contentWindow.reloadTree(dpt_id);
+	}
+	
+	function deldepartment(dpt_id){
+		if(confirm("确定要删除本部门吗？")){
+			var url = "/Amscontrol/Oadepartment/deldepartment/dpt_id/"+dpt_id; 
+			$.ajax({
+			    type: "get",//使用get方法访问后台
+			    dataType: "json",//返回json格式的数据
+			    url:url,//要访问的后台地址
+			    success: function(msg){//msg为返回的数据，在这里做数据绑定
+					if(msg.errorcode == -1){
+						//alert("共有子部门"+msg.data.count+"分别是："+msg.data.name);
+						alert("本部门下有子部门，必须删除子部门才能将该部门删除！");
+					}else if(msg.errorcode == -2){
+						alert(msg.message);
+					}else if(msg.errorcode == 1){
+						alert(msg.message);
+						//window.location="/Amscontrol/Oadepartment/modifyDepartment/school_id/{$school_id}";
+						reloadTree();
+					}
+				}
+			});
+		 }
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellpadding="0" cellspacing="0" class="padleft">
+  <tr>
+    <td height="27"class="bt STYLE1">位置：{$dptinfos.dpt_name}</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25" bgcolor="#fbf6f7" style="padding:10px;" ><a href="/Amscontrol/Oadepartment/departmentMemberssort/dpt_id/{$dptinfos.dpt_id}" class="amsqd">人员排序</a><a href="#" class="amsqd" onclick="deldepartment('{$dptinfos.dpt_id}');">删除部门</a></td>
+  </tr>
+ <tr>
+   <td bgcolor="#fbf6f7" style="padding:0px;">
+   <form method="post" id="dpt_form" action="/Amscontrol/Oadepartment/modifyDepartment/dpt_id/{$dpt_id}" enctype="multipart/form-data">
+    <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="bjbm_tab" >
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7">部门排序号：</td>
+       <td bgcolor="#fbf6f7"><input type="text" class="text" value="{$dptinfos.sort_id}" name="sort_id" id="sort_id"/></td>
+ 	  </tr>
+	  <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7">部门名称：</td>
+       <td bgcolor="#fbf6f7"><input type="text" class="text" value="{$dptinfos.dpt_name}" name="dpt_name" id="dpt_name"/></td>
+      </tr>
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7">电话：</td>
+       <td bgcolor="#fbf6f7"><input type="text" class="text" value="{$dptinfos.dpt_phone}" name="dpt_phone" id="dpt_phone"/></td>
+      </tr>
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7">上级部门：</td>
+       <td bgcolor="#fbf6f7">
+       		<input type="text" class="text" value="{$dptinfos.up_name}" id="up_dptname" readonly='readonly'/>
+       		<input type="hidden" id="up_id" name="up_id" value="{$dptinfos.up_id}"/>
+    		<input type="hidden" id="school_id" value="{$school_id}"/>
+    		<input type="button" value="选择上级部门" class="amsqx_bt" id="showUpDpt"/>
+       </td>
+      </tr>
+      <tr>
+       <td width="72" bgcolor="#fbf6f7">部门职能：</td>
+       <td bgcolor="#fbf6f7" style="padding:4px 8px;"><textarea cols="40" rows="4" name="dpt_description" id="dpt_description">{$dptinfos.dpt_description}</textarea></td>
+      </tr>
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7">部门照片：</td>
+       <td bgcolor="#fbf6f7" style="padding:6px">
+	       <input type="hidden" value="{$dptinfos.dpt_photo}" name="pic_name"/>
+	       {if $dptinfos.dpt_photo == ''}
+	 			暂无部门图片
+	 	   {else}
+	 		<img src="{$dptinfos.dpt_photo_small_url}" alt="暂无部门图片" onerror="imgnotfind(this);"/>
+	       {/if}
+       </td>
+      </tr>
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7"></td>
+       <td bgcolor="#fbf6f7"><input type="file" class="text" name="dpt_photo" value="{$dptinfos.dpt_photo}" id="dpt_photo"/></td>
+      </tr>
+      <tr>
+       <td width="72" height="30" bgcolor="#fbf6f7"></td>
+       <td bgcolor="#fbf6f7"><input type="submit" value="保存" class="bc" /></td>
+      </tr>
+    </table>
+    <input type="hidden" id="ignore_dpt_photo" value="1"/>
+    </form>
+   </td>
+ </tr> 
+</table>
+</body>
+</html>

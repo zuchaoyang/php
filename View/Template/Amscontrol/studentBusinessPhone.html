@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级成员账号管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.js"></script>
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+
+<script type="text/javascript">
+	function default_phone_type(){
+		/*var phone_type_radios =  $(":radio");
+		phone_type_radios.each(function(){
+				   if($(this).val()==1){
+				    $(this).attr("checked",true);
+				   }    
+				  });
+			*/			
+	}
+	
+	function checkPhone(){
+		var phoneRe = "/^(1[358]\d{9})$/";
+		var phoneList = document.getElementsByName('businesPhone[]');
+		var phoneList1 = document.getElementsByName('businesPhone1[]');
+		var clientAccount  = document.getElementsByName('client_account[]');
+	 
+		var clientNameList = document.getElementsByName('client_name[]');
+		 
+		for(i=0; i<phoneList.length; i++){
+			if(phoneList[i].value != ""){
+				if(!/^(1[358]\d{9})$/.test(phoneList[i].value)){
+					document.getElementById("error_news").innerHTML = "*家长【"+clientAccount[i].value+"】的手机号格式不正确!";
+					return false;
+				}
+			}
+		}
+		document.forms[0].submit();
+	}
+	
+</script>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%" onload="javascript:default_phone_type();">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">手机号码绑定</a></td>
+  </tr>
+</table>
+<form id="form" action="/amscontrol/Classclientmanage/bindingParentPhone" method="post">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt"><a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+    <a href="/amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="zhgl" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/zhgla2.gif) no-repeat; color:#000000;">班级成员账号管理</a></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="5">&nbsp;</td>
+  </tr>
+    <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;">
+    	<a href="__URL__/goToLotsAdd/uid/{$uid}/cid/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd">批量录入</a>
+    	{if $operationStrategy!=1}<a class="amsqd" href="#">手机号绑定</a>{/if}
+    	<a class="amsqd" href="__URL__/dj_account/uid/{$uid}/cid/{$classCode}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/2">冻结账号</a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center" bgcolor="#fbf6f7">
+    
+        <table width="100%" border="0" cellspacing="1">
+  <tr>
+    <td width="5%" height="30" align="center" bgcolor="#CCCCCC"><strong>序号</strong></td>
+    <td width="80"  height="30" align="center" bgcolor="#CCCCCC"><strong>学生姓名</strong><input type="hidden" name="title[]" value="学生姓名"></td>
+    <td width="80" height="30" align="center" bgcolor="#CCCCCC"><strong>学生账号</strong><input type="hidden" name="title[]" value="学生账号"></td>
+    <td height="30" align="center" bgcolor="#CCCCCC"><strong>家长办理凭证号1</strong><input type="hidden" name="title[]" value="家长办理凭证号1"></td>
+    <td width="150" height="30" align="center" bgcolor="#CCCCCC"><strong>手机号</strong></td>
+    <td width="110" height="30" align="center" bgcolor="#CCCCCC"><strong>手机号类型</strong></td>
+    <td align="center" bgcolor="#CCCCCC"><strong>家长办理凭证号2</strong><input type="hidden" name="title[]" value="家长办理凭证号2"></td>
+    <td width="150" height="30" align="center" bgcolor="#CCCCCC"><strong>手机号</strong></td>
+     <td width="110" height="30" align="center" bgcolor="#CCCCCC"><strong>手机号类型</strong></td>
+  </tr>
+  {if $familyRelations != ""}
+  {foreach from = $familyRelations item=parentsList key=childAccount name=shownum}
+  <tr>
+    <td height="30" align="center" bgcolor="#dfdbdb">{$smarty.foreach.shownum.iteration}</td>
+    <td height="30" align="center" bgcolor="#dfdbdb">{$parentsList.child_name}</td>
+    <td height="30" align="center" bgcolor="#dfdbdb"><font class="yjh">{$childAccount} </font></td>
+    {if $parentsList == "" }
+   	<td align="center" bgcolor="#dfdbdb"><font class="wjh">暂无</font></td>
+	<td align="center" bgcolor="#dfdbdb"><font class="wjh">暂无</font></td>
+ 	{else}
+	{foreach from=$parentsList item=parents key=parentAccount name=parentnum}
+	{if $smarty.foreach.parentnum.iteration lte 2}
+	<input type="hidden" name="client_account[]" value="{$parentAccount}"></input>
+	<td height="30" align="center" bgcolor="#dfdbdb"><font class="yjh">{$parentAccount}</font></td>
+	<td height="30" align="center" bgcolor="#dfdbdb">{if $existPhoneList.$parentAccount.flag}<input disabled=true; readOnly=true; type="text" class="text" name="businesPhone[]" value="{$existPhoneList.$parentAccount.phone_id}"/>{else}<input type="text" class="text" name="businesPhone[]" value="{$existPhoneList.$parentAccount.phone_id}"/>{/if}</td>
+	<td height="30" align="center" bgcolor="#dfdbdb"><input name="phone_type_{$parentAccount}"  type="radio" value="1"  {if $existPhoneList.$parentAccount.phone_type == 1} checked="checked" {/if}/> 旧<input name="phone_type_{$parentAccount}" type="radio" value="2" {if $existPhoneList.$parentAccount.phone_type == 2} checked="checked" {/if}/> 新</td>
+	<input type="hidden" class="text" name="primaryPhone[]" value="{$existPhoneList.$parentAccount.phone_id}"/>
+	<input type="hidden" class="text" name="businesPhone1[]" value="{$existPhoneList.$parentAccount.phone_id}"/>
+	<input type="hidden" class="text" name="primary_phone_types[]" value="{$existPhoneList.$parentAccount.phone_type}"/>
+	
+	{/if}
+    {/foreach}
+    {/if}	
+  </tr>
+  {/foreach}
+	{else}
+	<tr>
+     <td colspan='6' align='center' style='font-size:15px; color:red;  line-height:3;'>没有记录</td>
+     </tr> 
+	
+	{/if}
+</table>
+    </td>
+  </tr>
+  <tr>
+  <td height="60" bgcolor="#fbf6f7"><a href="#" onclick="javascript:checkPhone();" class="amsqx" style="margin-right:25px;" >绑定</a>
+  <div id="error_news" style="color:red;"></div>
+  </td>
+  </tr>
+</table>
+<input type="hidden" name="schoolid" value="{$schoolid}"></input>
+<input type="hidden" name="classCode" value="{$classCode}"></input>
+<input type="hidden" name="uid" value="{$uid}"></input>
+<input type="hidden" name="gradeid" value="{$gradeid}"></input>
+
+ 
+</form> 
+</body>
+</html>
+  
+  

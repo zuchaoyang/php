@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>成绩_班级成绩管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/cjl.0.1.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+<script type="text/javascript">	
+	var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+	
+{literal}
+	function checkinfo_cj(){	
+		
+		var testname = document.getElementById("exam_name").value;
+		var testdate = document.getElementById("exam_date").value;
+		var stuname = document.getElementsByName("client_name[]");
+		var stuscore = document.getElementsByName("exam_score[]");
+		var stuspy = document.getElementsByName("score_py[]");
+		var nocj = document.getElementsByName("nocj[]");
+		var exam_well = document.getElementById("exam_well").value;
+		var testgood = document.getElementById("exam_good").value;
+		var testbad = document.getElementById("exam_bad").value;
+		var subject_name = document.getElementById("subject_id").value;
+		
+		if(subject_name == "") {
+			document.getElementById("error_news").innerHTML = "科目不能为空！";
+			return false;
+		}
+		
+		if(testname == ""){
+			document.getElementById("error_news").innerHTML = "考试名称不能为空";
+			return false;
+		}
+		
+		if(!/^[\u4E00-\u9FA5]+$/.test(testname)){
+			document.getElementById("error_news").innerHTML = "考试名称必须是汉字";
+			return false;
+		}
+	
+		if(testdate == ""){
+			document.getElementById("error_news").innerHTML = "考试时间不能为空";
+			return false;
+		}
+		
+		
+		if(exam_well == ""){
+			document.getElementById("error_news").innerHTML = "满分不能为空";
+			return false;
+		}
+		if(!/^\d{1,3}(\.\d{1})?$/.test(exam_well)){
+			document.getElementById("error_news").innerHTML = "满分必须是有效数字";
+			return false;
+		}
+	
+		if(testgood == ""){
+			document.getElementById("error_news").innerHTML = "优秀率不能为空";
+			return false;
+		}
+	
+		if(!/^\d{1,3}(\.\d{1})?$/.test(testgood)){
+			document.getElementById("error_news").innerHTML = "优秀率必须是有效数字";
+			return false;
+		}
+		
+		if(testbad == ""){
+			document.getElementById("error_news").innerHTML = "及格率不能为空";
+			return false;
+		}
+	
+		if(!/^\d{1,3}(\.\d{1})?$/.test(testbad)){
+			document.getElementById("error_news").innerHTML = "及格率必须是有效数字";
+			return false;
+		} 
+
+		if(eval(testgood) < eval(testbad)){
+			alert('优秀分数不能小于及格分数');
+			return false;
+		}
+		
+		if(stuname.length > 0){
+			for(var i=0; i<stuname.length; i++){
+				if(!nocj[i].checked){
+					if(stuscore[i].value == ""){
+						document.getElementById("error_news").innerHTML = "【"+stuname[i].value+"】的成绩不能为空";
+						return false;
+					}
+					
+					if(!/^[0-9]+(.[0-9]{1})?$/.test(stuscore[i].value)){
+						document.getElementById("error_news").innerHTML = "【"+stuname[i].value+"】的成绩必须是数字,小数为一位";
+						return false;
+					}
+				}
+			}
+			for(var i=0; i<stuscore.length; i++){
+				if(!nocj[i].checked){
+					if(eval(stuscore[i].value) > eval(exam_well)){
+						alert("【"+stuname[i].value+"】的成绩不能比满分高");
+						return false;
+					}
+					if(eval(stuscore[i].value) < eval(0)){
+						alert("【"+stuname[i].value+"】的成绩不能小于零");
+						return false;
+					}
+				}
+			}
+			var n = 0;
+			for(var i=0; i<stuname.length; i++){
+				if(nocj[i].checked){
+					n = i+1;
+					document.getElementById("nocj"+n).value="no";
+				}else{
+					n = i+1;
+					document.getElementById("nocj"+n).checked=true;
+					document.getElementById("nocj"+n).value="yes";
+				}
+			}
+		}else{
+			return false;
+		}
+		
+		return true;
+	}
+	function commit(){
+		var selval = document.getElementById("class_id");
+		var fom = document.getElementById("fom");
+		fom.action="/Homeclass/Class/cjtpublish/class_code/"+selval.value;
+		fom.submit();
+	}
+	
+	function setchkpy(){
+		var introwscount = $("#rowscount").val();
+		var objChkId = document.getElementById("chkpy");
+	
+		if (typeof(eval(objChkId)) == "object") {	
+			if (objChkId != null){
+				if(objChkId.checked==true){
+					document.getElementById("pltdtag").style.display = '';
+					for(i=1;i<=introwscount;i++){
+						document.getElementById("pltdtagput"+i).style.display = '';
+					}
+				}else{
+					document.getElementById("pltdtag").style.display = 'none';
+					for(i=1;i<=introwscount;i++){
+						document.getElementById("pltdtagput"+i).style.display = 'none';
+					}
+				}
+			}
+		}
+	}
+
+	function choosepy(pyid){
+		document.getElementById("py_id").value = "py_id_"+pyid;
+		ab.show();
+	}
+
+	function set_py(pycontent){
+		document.getElementById(document.getElementById("py_id").value).value = pycontent;
+		ab.close();
+	}
+
+
+	function writescore(objaction){  
+		if(checkinfo_cj()){ 
+			document.forms[0].action="/Homeclass/Class/writestuscore/subtype/"+objaction;
+			document.forms[0].submit();
+		}
+	}
+	
+</script>
+{/literal}
+
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class="sub_class">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级成绩</span></div>
+<div class="class_work">
+<ul>
+<li id="work1"><a href="/Homeclass/Class/cjtmanage/class_code/{$class_code}" class="cjtmenu1">成绩管理</a></li>
+<li id="work2"><a href="/Homeclass/Class/cjtpublish/class_code/{$class_code}" class="cjtmenu2">成绩发布</a></li>
+</ul>
+</div><!--sub_class_gg end-->
+
+<div class='cjk2'>
+<div class='cjt1'>
+<form name="form" action="" method="post" id="fom">
+
+	<table width="99%" height="60" border="0" align="center" cellpadding="5" cellspacing="10" style="border-bottom:1px solid #dddddd; background:#efefef;">
+
+	  <tr>
+		<td height="40" align="right">
+			班级：&nbsp;</td>
+		<td height="40"><select name="select" id="class_id" class="cjt_select" onchange="commit();">
+			   {foreach from=$myclasslist item=class_list}
+				   {if $class_code == $class_list.class_code}
+					  <option value="{$class_list.class_code}" selected="selected">{$class_list.class_name}</option>
+					{else}
+					  <option value="{$class_list.class_code}">{$class_list.class_name}</option>
+				   {/if}
+			   {/foreach}
+		</select>    </td>
+		<td height="40">科目：&nbsp;</td>
+		<td height="40"><select name="subject_id" id="subject_id" class="cjt_select">
+		{if $subjectinfolist != ''}
+					{foreach from=$subjectinfolist item=teacherinfo }
+						 
+		  <option  value="{$teacherinfo.subject_id}" {if $teacherinfo.subject_id == $examinfolist.subject_id} selected="selected" {/if} >{$teacherinfo.subject_name}</option>
+		  
+					 {/foreach}
+		{else}
+		<option value="">暂无科目</option>
+		{/if}	
+		</select>    </td>
+		<td height="40">考试名称：&nbsp;</td>
+		<td height="40"><input type="text" name="exam_name" id="exam_name" class="cjt_text"  style="width:100px;" value="{$examinfolist.exam_name}" maxlength="10" /></td>
+		<td height="40">考试时间：&nbsp;
+		  <input type="text" class="cjt_text" value="{$examinfolist.exam_date}"  style="width:100px;" name="exam_date" id="exam_date" {literal} onclick="WdatePicker({el:'exam_date',isShowClear:false})" {/literal} readonly="readonly"/></td>
+	  </tr>
+	  <tr height='35'>
+		<td align="right">满分：</td>
+		<td><input name="exam_well" type="text" class="cjt_text" id="exam_well" style="width:100px;" value="{$examinfolist.exam_well}"/>	</td>
+		<td>优秀：&nbsp;</td>
+		<td><input type="text" class="cjt_text" name="exam_good" value="{$examinfolist.exam_good}" id="exam_good" style="width:100px;"/></td>
+		<td>及格：</td>
+		<td><input type="text" class="cjt_text" name="exam_bad" value="{$examinfolist.exam_bad}" id="exam_bad" style="width:100px;"/></td>
+		<td>&nbsp;</td>
+	  </tr>
+	  <tr height='35'>
+	    <td align="right">&nbsp;</td>
+	    <td colspan="4">&nbsp; <span id="error_news" style="color:red;width:220px;text-align:left;font-size:14px;"></span></td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    </tr>
+	</table>
+	<table width="760" border="0" align="center" cellpadding="10" cellspacing="10" style="margin-top:30px;">
+	<tr>
+	<td><input name="chkpy" type="checkbox" id="chkpy" value="checkbox" onclick="return setchkpy();" />
+	&nbsp;<span class="title14color1">启用评语大师</span></td>
+	</tr>
+	</table>
+
+	<table border="1" cellspacing="0" bordercolor="#d8e4f0" style='margin-top:30px;'>
+	  <tr>
+		<td width="80" height="35" align="center" bgcolor="#effdff">学号</td>
+		<td width="80" height="35" align="center" bgcolor="#effdff">未参加</td>
+		<td width="110" height="35" align="center" bgcolor="#effdff">姓名</td>
+		<td width="70" height="35" align="center" bgcolor="#effdff">成绩</td>
+		<td width="640" height="35" align="center" bgcolor="#effdff" style='display:none' id='pltdtag'>评语</td>
+	  </tr>
+	  {foreach from=$studentlist item=studentinfo key=client_account name=rownumber}
+		  <tr {if $smarty.foreach.rownumber.iteration % 2 ==0} bgcolor='#efefef' {/if}>
+			<td height="30" align="center">{if $examinfo.num != 0}{$examinfo.num}{else}{$smarty.foreach.rownumber.iteration}{/if}</td>
+			<td align="center"><input type="checkbox" {if $studentinfo.exam_score == '-1'}checked{/if} id="nocj{$smarty.foreach.rownumber.iteration}" name="nocj[]"/></td>
+			<td height="30" align="center">{$studentinfo.client_name}
+				<input type="hidden" name="client_name[]" value="{$studentinfo.client_name}"/>
+				<input type="hidden" name="client_account[]" value="{$studentinfo.client_account}"/>
+			</td>
+			<td width="70" height="30" align="center"><input type="text"  class="scoretext" maxlength="4"
+			{if $studentinfo.exam_score!=-1}
+				value="{$studentinfo.exam_score}"
+			{/if}
+		 name="exam_score[]" /></td>
+			<td width="620" height="30" align="center" style='display:none' id='pltdtagput{$smarty.foreach.rownumber.iteration}'>
+			<input type="text"  value="{$studentinfo.score_py}"   name="score_py[]" id="py_id_{$smarty.foreach.rownumber.iteration}" maxlength="120" size=80
+			{if $smarty.foreach.rownumber.iteration % 2 ==0}
+				class="pytext2"
+			{else}
+				class="pytext"
+			{/if}
+			onclick="javascript:pyinputinfo('{$smarty.foreach.rownumber.iteration}');"/>
+			<a href="javascript:openpycomment('{$smarty.foreach.rownumber.iteration}');"><img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/jzy_xtb1.jpg' title="系统评语库"></a>
+			<a href="javascript:openmypycomment('{$smarty.foreach.rownumber.iteration}');"><img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/tubiao.jpg' title="我的评语库"></a>
+			</td>
+	
+		  </tr>
+		{/foreach}
+		<input type="hidden" name="rowscount" id='rowscount' value="{$smarty.foreach.rownumber.iteration}" />
+	</table>
+	<table width="760" border="0" align="center" cellpadding="5" cellspacing="1">
+	  <tr>
+		<td height="50" align="center">
+
+
+		<input type="button" value="暂时保存" class="inputbg2" onclick="javascript:writescore('1');"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="立即发布" class="inputbg2" onclick="javascript:writescore('0');"/>	
+		{if $operationStrategy != 1}
+		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sendMessage" checked id="sendMessage" value="on">同时发送到全班家长的手机上
+		{/if}
+		</td>
+	  </tr>
+	</table>
+
+    <input type="hidden" name="school_id" id="schoolid" value="{$school_id}"/>
+    <input type="hidden" name="class_code" id="gradecode" value="{$class_code}"/>
+    <input type="hidden" name="exam_id" id="test_id" value="{$exam_id}"/>
+    <input type="hidden" name="py_id" id="py_id" value=""/>
+    <input type="hidden" name="operationStrategy" id="schoolid" value="{$operationStrategy}"/>
+
+		
+</div>
+
+</div> 
+</form>
+
+</div>
+<!--sub_class end-->
+
+
+{include file="Public/wmw_pyinput.html"}
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+<div class="footer">
+<p>{$smarty.const.COPYRIGHT}</p>
+</div><!-- footer end-->
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>日程安排-综合</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+{literal}
+<script type="text/javascript">
+function chaxun(fl){
+	var date1 = document.getElementById('date1').value;
+	var date2 = document.getElementById('date2').value;
+	var form = document.getElementById('form');
+	if(date1 == ""){
+		alert('起始日期不能为空！');
+		return false;
+	}else if(date2!=""){
+		if(date1 > date2){
+			alert('起始日期不能大于结束日期');
+			return false;
+		}
+	}
+	form.action="/Oa/Expireremind/ScheduleManage/fl/"+fl;
+	form.submit();
+}
+function fenye(fl,page){
+	var from_fen = document.getElementById('form_fen');
+	from_fen.action="/Oa/Expireremind/ScheduleManage/page/"+page+"/fl/"+fl;
+	from_fen.submit();
+	
+}
+</script>
+{/literal}
+</head>
+
+<body>
+
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+{insert name="oa_left" uid=$uid}
+<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+	<h4 class="middle_rc">日程安排</h4>
+    <div class="rc_bg">
+    	<a href="#">查看日历</a> <br />
+        <a href="/Oa/Schedulemanage/showaddSchedule">新建事件</a> <br />
+      <p>默认第一个日期则是按日期查看本天事件，两个日期是时间段查询</p> 
+      <form method="post" name="form" id="form" action="#">
+        <p>
+         起始日期：<input type="text" class="rc_text" name="q_date" id="date1" value="{$q_date}" {literal} onfocus="WdatePicker({isShowClear:false,readOnly:true})"{/literal}/>
+         结束日期：<input type="text" class="rc_text" name="h_date" id="date2" value="{$h_date}" {literal} onfocus="WdatePicker({isShowClear:true,readOnly:false})"{/literal}/>
+         {if $fl == 'schedule'}
+         	<input type="button" value="查询日程" class="green_btn" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/l_green_btn.gif);" onclick="chaxun('schedule');"/>
+         {else}
+        	 <input type="button" value="查询日程" class="green_btn" onclick="chaxun('schedule');"/>
+         {/if}
+         {if $fl == 'task'}
+         	<input type="button" value="查询工作" class="green_btn" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/l_green_btn.gif);" onclick="chaxun('task');"/>
+         {else}
+         	<input type="button" value="查询工作" class="green_btn" onclick="chaxun('task');"/>
+         {/if}
+        </p> 
+      </form>
+    </div>
+	<!--zzy_list-->
+	{if !empty($Infos)}
+		{if $fl == "task"}
+			{foreach from=$Infos item=val}
+		        <div class="zzy_list">
+		          <h4><span class="h4_zuo3">{$val.task_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+		          <p style="display:block;line-height:22px;clear:both;width:520px;word-wrap:break-word;word-break:break-all;">
+		            {$val.task_content}
+		          </p>
+		          <h4><span class="h4_zuo4"><a href="/Oa/Task/taskDetail/task_id/{$val.task_id}" style="text-decoration:none;" style="text-decoration:none;" class="a_green2">查看详情</a>
+		          {if !empty($val.expiration_time)}
+		          	<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>
+		          {/if}
+		          
+		          {if $val.need_sms_remind == 1}
+		           <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif"/></a>
+		          {/if}
+		          
+		          {if $val.need_sms_push == 1}
+		           <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif" /></a>
+		          {/if}
+		       
+		          {if $val.need_reply == 1}
+		          	<a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif" /></a>
+		          {/if}
+		          
+		          <a href="#" {if $val.is_reply == "未回复"}class="font_hong"{else}class="font_lan"{/if}>{$val.is_reply}</a></span>
+		          <span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+		        </div>
+	        {/foreach}
+        {else}
+	        	{foreach from=$Infos item=val}
+			        <div class="zzy_list">
+			          <h4><span class="h4_zuo3">{$val.schedule_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+			          <p style="display:block; clear:both;width:520px;word-wrap:break-word;word-break:break-all;">
+			            {$val.schedule_message}
+			          </p>
+			          <h4><span class="h4_zuo4"><a href="/Oa/Schedulemanage/showScheduleinfo/schedule_id/{$val.schedule_id}" style="text-decoration:none;" class="a_green2">查看详情</a>
+			          {if !empty($val.expiration_time)}
+			          	<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>
+			          	{if !empty($val.deadline_hours)}
+			          		<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a>
+			          	{/if}
+			          {/if}
+			         </span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+			        </div>
+		        {/foreach}
+        {/if}
+     <!--zzy_list end-->
+   <form method="post" name="form_fen" id="form_fen" action="">
+	    <input type="hidden" name="q_date" value="{$q_date}" id="q_date"/>
+	    <input type="hidden" name="h_date" value="{$h_date}" id="h_date"/> 
+		    <p class="fenye fenye2">
+		    	当前第_{$page}_页
+		    	<a href="javascript:;" onclick="fenye('{$fl}','1')">首页</a>
+		    	{if $page == 1}
+		    		第一页
+		    	{else}
+		    		<a href="javascript:;" onclick="fenye('{$fl}','{$page-1}');">上一页</a>
+		    	{/if}
+		    	{if $flag == true}
+		    		已到最后一页
+		    	{else}
+		    		<a href="javascript:;" onclick="fenye('{$fl}','{$page+1}');">下一页</a>
+		    	{/if}
+		    </p>
+		</form>
+    {else}
+    	 <div class="zzy_list" align="center">
+          <p>
+           	暂无数据
+          </p>
+        </div>
+    {/if}
+</div>
+    <!--middle end-->
+    
+    <!--right-->
+{insert name="oa_right" uid=$uid}
+    
+    <!--right end-->
+    
+    
+    
+    <div class="clear"></div>
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

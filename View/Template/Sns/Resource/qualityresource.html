@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>精品资源</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<script type="text/javascript">
+	$(function (){
+		$("#search").click(function (){
+			if(!$("#search_val").val()) {
+				alert("请输入您要搜索的标题！");
+				return false;
+			}else{
+				var myform = $("#searchform"); 
+				myform.submit();
+			}
+		});
+
+		$("#page_submit").click(function(){
+			var val = $("#to_page").val() - 0;
+			var total_page = $("#total_page").val() - 0;
+			if(!/^\d+$/.test(val)) {
+				alert("跳转页数必须是正整数！");
+			}else if( 0 > val || val > total_page){
+				alert("范围不合法！");
+			}else{
+				$("#page_form").submit();
+				$("#to_page").attr('disabled',false);
+			}
+		});
+	})
+	
+	function show(id){
+	    var section = $(".unit");
+	    for(var i=0; i<section.length; i++){
+			section[i].style.display="none";
+		}
+	    document.getElementById(id).style.display="block";
+	}
+</script>
+{/literal}
+</head>
+
+<body>
+  <div class="box">
+  <div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+  <div class="cotent">
+ 
+     <div class="re_left">
+    {insert name="account_left" class_code = $class_code}
+</div>
+
+    <div class="re_right">
+      <p class="re_top_left"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/tb1.gif" width="31" height="31" />精品资源</p>
+      <form id="searchform" method="post" action="/Sns/Resource/Resource/searchresource" target="_blank">
+      <input type="hidden" name="product_id" value="{$checked_nav.product_id}"></input>
+      <p class="re_top_right"><input type="text" id="search_val" name="resource_name" class="text" />
+      <input type="button" id="search" class="search" />
+      </p></form>
+      <div class="clean" style="height:10px;"></div>
+      <!--main-->
+      <div class="main">
+        <p class="main_top"></p>
+        <div class="main_center">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+            <tr>
+              <td width="90"><span class="grade">年级</span></td>
+              <td><p>
+              	{foreach from=$nav_list.grade_list item=val}
+              	{if $val.grade_id == $checked_nav.grade_id}
+              		<a style="color:#008CC1; font-weight:bold;" href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$val.grade_id}">{$val.grade_name}</a>
+              	{else}
+              		<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$val.grade_id}">{$val.grade_name}</a>
+              	{/if}
+              {/foreach}
+              </p></td>
+              </tr>
+          </table>
+          {if !empty($nav_list.subject_list)}
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+            <tr>
+              <td width="90"><span class="km">科目</span></td>
+              <td><p>
+              	{foreach from=$nav_list.subject_list item=val}
+              	{if $val.subject_id == $checked_nav.subject_id}
+	              	<a style="color:#008CC1; font-weight:bold;" href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$val.subject_id}">{$val.subject_name}</a>
+	              {else}
+	              	<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$val.subject_id}">{$val.subject_name}</a>
+	              {/if}
+              {/foreach}
+              </p></td>
+            </tr>
+          </table>
+          {/if}
+          {if !empty($nav_list.version_list)}
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+            <tr>
+              <td width="90"><span class="km">版本</span></td>
+              <td><p>
+              	{foreach from=$nav_list.version_list item=val}
+					{if $val.version_id == $checked_nav.version_id}
+						<a style="color:#008CC1; font-weight:bold;" href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$val.version_id}">{$val.version_name}</a>
+					{else}
+						<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$val.version_id}">{$val.version_name}</a>
+					{/if}
+	              {/foreach}
+              </p></td>
+            </tr>
+          </table>
+          {/if}
+          {if !empty($nav_list.term_list)}
+          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
+            <tr>
+              <td width="90"><span class="km">学期</span></td>
+              <td><p>
+					{foreach from=$nav_list.term_list item=val}
+              {if $val.term_id == $checked_nav.term_id}
+              <a style="color:#008CC1; font-weight:bold;" href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$val.term_id}">{$val.term_name}</a>
+              {else}
+              <a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$val.term_id}">{$val.term_name}</a>
+              {/if}
+              {/foreach}
+				</p></td>
+            </tr>
+          </table>
+          {/if}
+        <div class="clean"></div>
+        </div>
+        <p class="main_bottom"></p>
+      </div>
+      <!--main end-->
+      <!--koowleadge_point
+      {if !empty($nav_list.chapter_list)}
+			<div class="koowleadge_point">
+			<p class="know_top"></p>
+			<div class="know_center">
+			<h3>知识点</h3>
+			<div class="know_center_unit">
+			{foreach from=$nav_list.chapter_list item=val}
+              <ul class="unit_font" style="z-index:{$val.z_index};">
+               <li>
+               {if $val.chapter_id == $checked_nav.section_id}
+               		<a style="color:#008CC1; font-weight:bold;" href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.chapter_id}_{$val.attr_id}" title="{$val.attr_name}">{$val.short_attr_name}</a>
+               {else}
+               		<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.chapter_id}_{$val.attr_id}" title="{$val.attr_name}">{$val.short_attr_name}</a>
+               {/if}
+               </li>
+	          </ul>
+	          {/foreach}
+			<div class="clean"></div>
+			</div>
+			<div class="clean"></div>
+			</div>
+			<p class="know_bottom"></p>
+			<div class="clean"></div>
+			</div>
+			{/if}
+			koowleadge_point end--> 
+      <!--column-->
+      <div class="column">
+        <p class="zytop"></p>
+        <div class="zycenter">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          {if !empty($resource)}
+              <tr class="title">
+                <td>标题</td>
+                <td>年级</td>
+                <td>科目</td>
+                <td>版本</td>
+                <td>操作</td>
+              </tr>
+             {foreach from=$resource item=val}
+              <tr>
+                <td height="47px;" width="320px;" style="word-break: break-all; text-align:left;"><span style="color:#eb0b4b; font-weight:bold;">[{$val.file_type_name}]</span>&nbsp;{$val.short_title}</td>
+                <td>{$val.grade_name}</td>
+                <td>{$val.subject_name}</td>
+                <td>{$val.version_name}</td>
+                <td><a href="{$val.file_path}" target="_blank" class="blue-btn" style="text-decoration: none;" >{$val.show_btn}</a></td>
+              </tr>
+              {/foreach}
+              {else}
+          	<tr class="title">
+                	<td height="47px;" colspan="6">暂无资源</td>
+           	</tr>
+          {/if}
+          </table>
+        </div>
+        <p class="zybottom"></p>
+      </div>
+      <!--column end-->
+      {if !empty($resource)}
+      			<div class="fenye">
+      			<p class="dangqian">
+	                		当前{$page}/{$totalpage}页
+	                	&nbsp;&nbsp;&nbsp;&nbsp;
+	                	{if 1 == $page}
+	                		上一页
+	                	{else}
+	                		<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}/page/{$page-1}">上一页</a>
+	                	{/if}
+	                	&nbsp;&nbsp;&nbsp;&nbsp;
+	                	{if 'true' == $flag}
+	                		下一页
+	                	{else}
+	                		<a href="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}/page/{$page+1}">下一页</a>
+	                	{/if}
+	                	</p>
+	                	<form id="page_form" action="/Sns/Resource/Resource/qualityresource/screening/{$checked_nav.product_id}_{$checked_nav.grade_id}_{$checked_nav.subject_id}_{$checked_nav.version_id}_{$checked_nav.term_id}_{$checked_nav.chapter_id}_{$checked_nav.section_id}_{$checked_nav.column_id}" method="get">
+	                		<input type="text" id="to_page" name="page" class="fenye_text"/>
+	                		<input type="button" id="page_submit" value="跳转"  class="fenye_btn"/>
+	                	</form>
+	                	{if !empty($totalpage)}<span style="padding:4px 0px 0px 30px;">总记录：{$totalrows}</span>{/if}
+                	</div>
+                	{/if}
+    </div>
+    <div class="clean"></div>
+    </div>
+      {include file="Public/footer.html"}
+      </div>
+  </div>
+</body>
+</html>

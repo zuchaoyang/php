@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>部门导航</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxcommon.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxtree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/ext/dhtmlxtree_json.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/oa_department.js"></script>
+
+</head>
+
+<body>
+{insert name="oa_header" uid=$uid}
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    <!--you-->
+      <div class="you">
+        <h4 class="border_line">部门导航</h4>
+        <div class="bmdh_left" id="doctree_box">
+          {$school_info.school_name}
+        </div>
+        <div class="bmdh_right">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="68" height="30">部门名称：</td>
+            <td id="g_dpt_name">校长办公室</td>
+          </tr>
+          <tr>
+            <td height="30">电&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+            <td id="g_dpt_phone">010-56254215</td>
+          </tr>
+          <tr>
+            <td height="30">部门职能：</td>
+            <td id="g_dpt_description">辅助校长进行工作</td>
+          </tr>
+          <tr>
+            <th valign="top">部门照片：</th>
+            <th><div id="g_dpt_photo"></div></th>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0" class="bmdh_tab" id="g_dpt_member_list">
+          <tr>
+            <th height="30">姓名</th>
+            <th>职务</th>
+            <th>账号</th>
+            <th>手机号</th>
+          </tr>
+        </table>
+
+        </div>
+        <div class="clear"></div>
+      </div>
+      
+    <!--you end-->   
+   
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->   
+  <input type="hidden" id="school_id" value="{$school_id}"/>
+</body>
+</html>

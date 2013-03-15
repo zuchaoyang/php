@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>OA部门菜单树</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxcommon.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/dhtmlxtree.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/dhtmlxtree/codebase/ext/dhtmlxtree_json.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/oa_department_menu_tree.js"></script>
+
+{literal}
+<style>
+	body{ background:#fbf6f7;}
+</style>
+
+<script type="text/javascript">
+	//重新加载树
+	function reloadTree(id) {
+		objTree.reloadTree(id);
+	}
+</script>
+{/literal}
+
+</head>
+<body>
+	<input type="hidden" id="school_id" name="school_id" value="{$school_id}"/>
+	<input type="hidden" id="open_url" value="{$open_url}" />
+	<input type="hidden" id="img_path" value="{$smarty.const.IMG_SERVER}__PUBLIC__/"/>
+	
+	<div class="left">
+		<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >部门管理</div> 
+		<p style="padding:5px;">{$school_name}</p>
+		<div id="child1">
+			<div id="doctree_box" style="width: 226px; height: 100%; "></div>
+		    <div style="display:none;">
+		    	<form action="" method="get" target="showDptFrame" id="goto_form">
+		    	</form>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

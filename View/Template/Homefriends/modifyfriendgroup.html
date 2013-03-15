@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>社交_我们网</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+
+</head>
+<body>
+<table width="100%" border="0" cellpadding="5" cellspacing="1">
+<form action='/Homefriends/Friendsmanage/modifyfriendgroupdo' method='post'>
+  <tr>
+    <td><div class="title"><span class="tag_title">修改好友分组名称</span></div></td>
+  </tr>
+  <tr >
+    <td style="border-bottom:1px solid #dddddd;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center"><input type="text" id="group_name" name="group_name" maxlength="20" value='{$group_name}' class="input_txt2"/>
+      <input type='hidden' name='group_id' value='{$group_id}' />
+      <input name="submit" type="submit" class='inputbg2' value="保存"></td>
+  </tr>
+  </form>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!--personal_active star-->
+<div id="feed_unit_blog" class="personal_active feed_unit_selector" style="display:none;">
+  {literal}
+  <div class="per_active_l">
+   <dl>
+    <dt>
+    	<img src="{feed.client_headimg_url}">
+    </dt>
+   </dl>
+  </div>
+  <!--per_active_r star-->
+  <div class="per_active_r">
+    <p class="per_right_top">
+    	<span class="fc_288c00">{feed.client_name}</span>
+    </p>
+    <div class="per_right_center">
+      <h6>{feed.title}</h6>
+      {if feed.img_url}
+      <dl>
+        <dt>
+        	<img height="181" src="{feed.img_url}">
+        </dt>
+      </dl>
+      {/if}
+      <p>
+         {feed.feed_content}
+         {if feed.src_url}
+         <a class="fc_288c00 ml10" href="{feed.src_url}">(阅读全文)</a>
+         {/if}
+      </p>
+      <div class="per_release_time">
+       <p class="per_p_width">发布时间：{feed.add_time_format}</p>
+       <p>
+	       <a class="fc_288c00 feed_delete_selector" href="javascript:;">删除</a>
+	       {if false}
+	       <a class="fc_288c00 feed_share_selector" href="javascript:;">分享(12)</a>
+	       {/if}
+	       <a class="fc_288c00 feed_comment_selector" href="javascript:;">评论{if feed.comment_nums > 0}({feed.comment_nums}){/if}</a>
+       </p>
+      </div>
+    </div>
+    <p class="per_right_bottom"></p>
+  </div>
+  {/literal}
+  <!--per_active_r end-->
+  <div class="clear"></div>
+</div>
+<!--personal_active end-->

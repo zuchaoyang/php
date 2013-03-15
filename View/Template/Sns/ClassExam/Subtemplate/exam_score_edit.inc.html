@@ -1,0 +1,57 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/my_py.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/sys_py.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/exam_score_edit.js"></script>
+
+<!--编辑 star-->
+<div id="exam_score_edit_div" class="tcc_main_edit" style="display:none;">
+  <!--list_main star-->
+      <div class="list_main">
+      <h1 class="tcc_title_comment">编辑成绩</h1>
+      <table id="exam_score_edit_tab" width="100%" border="0" cellspacing="1" cellpadding="0">
+        <tr>
+          <th class="boder_left">姓名</th>
+          <th>成绩</th>
+          <th>评语</th>
+        </tr>
+        <tr>
+          <td id="client_name" class="boder_left"></td>
+          <td>
+          	<input id="exam_score" type="text" class="text100">
+          </td>
+          <td class="align_left">
+           <input id="score_py" class="text_comment" title="" />
+           <a id="syspy_img" href="javascript:;" class="icon_write" title="系统评语库"></a>
+           <a id="mypy_img" href="javascript:;" class="icon_hide" title="个人评语库"></a>
+          </td>
+        </tr>
+      </table>
+      <p class="f12 f_orange"></p>
+      </div>
+      <!--list_main end-->
+      <!--list_main_btn star-->
+      <div class="list_main_btn">
+        <dl>
+          <dt>
+          	<a id="pub_a" href="javascript:;" class="f14" title="">
+           	<span class="btn_left"></span>
+           	<span class="btn_right">仅发布成绩</span>
+          	</a>
+          </dt>
+        </dl>
+        <dl>
+          <dt>
+          	<a id="pub_with_sms_a" href="javascript:;" class="f14" title="">
+           	<span class="btn_left"></span>
+           	<span class="btn_right">发布成绩+短信</span>
+          	</a>
+          </dt>
+          <div class="clear"></div>
+          <dd class="f12 f_orange">同时发送到全班家长的手机上</dd>
+        </dl>
+      </div>
+      <!--list_main_btn end-->
+    <div class="clear"></div>
+    <input id="score_id" name="score_id" type="hidden" />
+ <input id="secret_key" name="secret_key" type="hidden" />
+</div>
+<!--编辑 end-->

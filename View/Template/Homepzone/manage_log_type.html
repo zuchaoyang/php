@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>我的日记_分类管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/Pzonelog.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/xxs/xxs.js"></script>
+
+</head>
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+<div class="sub_diary">
+<div class="sub_diaryl">
+<ul>
+	<li><i class="di1"></i><a href='/Homepzone/Pzonelog/mylogindex/class_code/{$class_code}'>我的日记</a></li>
+	<li><i class="di2"></i><a href='/Homepzone/Pzonelog/logDraft/class_code/{$class_code}'>草稿箱</a></li>
+</ul>
+</div>
+<div class="sub_diaryr">
+<ul>
+<li><i class="di3"></i><a href='/Homepzone/Pzonelog/writelog/log_account/{$log_account}/class_code/{$class_code}'>写日记</a></li>
+<li><i class="di4"></i><a href="/Homepzone/Pzonelog/manage_log_type/log_account/{$log_account}/class_code/{$class_code}" style="float:right; margin-right:10px;">分类管理</a></li>
+</ul>
+</div>
+</div><!--sub_diary end-->
+ <span class="blank20"></span>
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#dddddd">
+  <tr bgcolor="#efefef">
+    <td height="25"> 　　分类名称</td>
+    <td width="30%" align="center">日记数</td>
+    <td width="30%" align="center">操作</td>
+  </tr>
+  {foreach from=$log_type key=key item=vo}
+  <tr bgcolor="#FFFFFF">
+    <td height="40">
+	<div id="a{$vo.logtype_id}"><span>&nbsp;&nbsp;&nbsp;<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/file.png'>&nbsp;{$vo.logtype_name}</span></div>
+	<div id="{$vo.logtype_id}" style="display:none;">
+	<form method="post" action="/Homepzone/Pzonelog/update_logtype_do/log_account/{$log_account}">
+	<input type="text" class='input_txt2' name="logtype_name" value="{$vo.logtype_name}" maxlength="10"/>
+	<input type="hidden" name="logtype_id" value="{$vo.logtype_id}">&nbsp;&nbsp;
+	<input style="cursor:pointer;" type="submit"  value="保存"  class="inpucancel"/>&nbsp;&nbsp;
+	<input style="cursor:pointer;" type="button" onclick="nosave('{$vo.logtype_id}')" value="取消" class="inpucancel"/></form>
+	</div>	
+	</td>
+   <td height="40" align="center">共有{if $log_count[$key] == 0}0{else}{$log_count[$key]}{/if} 篇日记</td>
+    <td height="40" align="center">
+	 {if $vo.log_create_type!=$LOG_SYS_CREATE}
+	 <input type="button"  value="编辑" onclick="javascript:editor('{$vo.logtype_id}');" class='inputbg2'>
+	&nbsp;&nbsp;
+	<input type="button"  value="删除" onclick="javascript:del('{$vo.logtype_id}','{$log_account}');" class='inputbg2'>
+	{/if}
+	</td>
+  </tr>
+  {/foreach}
+</table>
+	  
+<table width="90%" border="0" align="center" cellpadding="5" cellspacing="1">
+<form action="" method="post" name="formlog">
+ <tr>
+   <td height="60" valign="bottom">添加新的分类名称：
+	 <input style="width:150px;" type="text" name="type_name" class='input_txt2' maxlength="10" id="add_type"/>&nbsp;&nbsp;
+	 <input name="button" type="button" class="inpusub" style="cursor:pointer;" onclick="add_do('{$log_account}');" value="保存分类"/>	 &nbsp;&nbsp;<span id="tips" style="font-size:12px;color:red;"></span></td>
+ </tr>
+ </form>
+</table>
+
+
+
+ 
+<div class="sub_diary_b"><p><b>温馨提示：</b><br />
+点"编辑"按钮可修改日志分类名称，点击保存按钮即可生效。
+请您注意，分类名称长度不超过10个字符。
+若删除日志分类，则该分类下的所有日志将自动迁移到"系统个人日志"分类下。</p>
+</div>
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{literal}
+<script type="text/javascript">
+	function del(id,log_account){
+	if(confirm("确定删除吗？")){
+		window.location.href="/Homepzone/Pzonelog/del_log_type/logtype_id/"+id+"/log_account/"+log_account;
+		}
+	}
+	function editor(id){
+		$("#a"+id).hide();
+		$("#"+id).show();
+	}
+	function nosave(id){
+		$("#a"+id).show();
+		$("#"+id).hide();
+	}
+	function save(id){
+		var str="form"+id;
+		document.form[str].submit();
+	}
+
+
+	function add_do(log_account){
+		if($("#add_type").val().replace(/(^\s*)|(\s*$)/g, "")==""){
+			$("#add_type").focus();
+			$("#tips").html("&nbsp;分类名称不能为空,最多为10个字符");
+		}else{
+			document.formlog.action="/Homepzone/Pzonelog/add_log_type/log_account/"+log_account+"/backurl/log_type";
+			document.formlog.submit();
+			
+		}
+	}
+
+
+	function changeloglist(){
+		window.location.href="/Homepzone/Pzonelog/mylogindex/log_account/{$log_account}";
+	}
+</script>
+{/literal}
+{include file="Public/footer.html"}
+
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

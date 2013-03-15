@@ -1,0 +1,95 @@
+{insert name="space_header"}
+<span class='blank10'></span>
+<div class='b_main'>
+	<div class='block_left' id="Left">
+		<!--begin input_msgK-->
+		<div class='input_msgK'>
+			<div class='input_msgK_tag'>您有什么新鲜事要和大家说说？</div>
+			<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');"></textarea></div>
+
+			<div class="funBox">
+				<div class="insertFun">
+					<div id="showface" style="display:none;"></div>
+					<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+					<div class="uploadPic">
+						<input type="hidden" name="pic" id="pic" value="" />  
+						<input type="hidden" name="mid" id="mid" value="" />
+						<span class="ico_pic"></span><a href="#" class="fun_txt" title="照片" onclick="return photoUpload();">照片</a>
+						<span class="loading" style="display:none;">上传中</span>
+						<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+					</div>
+				</div>
+				<div class="sendFun">
+					<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_fb.jpg" width="85" height="30" onclick="msgSend('spacehome');" style='cursor:hand;'/>
+					<span class="countTxt">还能输入<em>140</em>字</span>
+				</div>
+			</div>
+		</div>
+		<!--end input_msgK-->
+
+		<div class='UserTalkbg'><span class="UserTalkNav"><strong>全部</strong> </span><span class="howsay">最新动态</span></div>
+		
+		<div id="content"></div>
+		{if !empty($arrInfoData)}
+			{foreach from=$arrInfoData item=val}
+
+			<div class="m_message">
+				<div class="m_message_l">
+					<a href='/Homeuser/Index/spacehome/spaceid/{$val.client_account}' title='访问Ta的空间' target='_blank'><img src="{$val.client_headimg_url}" width="60" height="60" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a> 
+				</div>
+				<div class="m_message_r">
+					<h3 style="padding-left:10px;"><strong>
+					{$val.client_name}<br/>
+					<div class='wordwrap' style="word-break:break-all;width:560px">
+					{$val.feed_title}：<br/>{if $val.feed_url != ''}<a href="{$val.feed_url}">{/if}{$val.feed_name}{if $val.feed_url != ''}</a>{/if}
+					</div>
+					</strong>
+					</h3>
+					<div class="m_message_rt">
+					<p>
+						{$val.feed_upd_time}
+						{if $val.res_type == $smarty.const.PERSON_FEED_TALK || $val.res_type == $smarty.const.PERSON_FEED_LOG}
+						评论(<span id="pcount_{$val.res_id}">{$val.CommentNums}</span>)↓
+						{/if}
+					</p>
+					</div>
+			
+				</div>
+				
+				<div class="kong"></div>
+			</div>
+			{/foreach}
+		{/if}
+			<div id='idpycontent'></div>
+			<input type='hidden' name='datacount' id='nextLlimit' value='{$nextLlimit}'>
+			<input type='hidden' name='lastid' id='account' value='{$account}'>
+
+		<div class="m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlistXXXspace();">点击加载更多动态</a></div>
+
+	</div>
+
+		
+	<div class='block_right' id="Right">
+		<div id="my-info">
+			<div id="my-photo">
+				<img src="{$user_head_img}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/space/head_upload_100.jpg'" id="avatar" />
+			<br>
+		</div>
+		<ul class="my-score">
+			<li style="font-size:14px;font-weight:bold;"></li>
+			<li><a href="/Homeuser/Index/spacetalk/spaceid/{$space_current_user}"><font color='#111111'>我的新鲜事</font>(<span class="number">{$DataRows}</span>)</a></li>
+			<li><a href="/Homeuser/Index/friend/spaceid/{$space_current_user}"><font color='#111111'>我的好友</font>(<span class="number">{$friendNums}</span>)</a></li>
+
+			<li><a href="/Homeusernews/News/zxnews" title="好友请求" ><font color='#111111'>好友请求</font><span class="number" id="friendRequestNum">{$friendqqNum}</span></a></li>
+		</ul>
+		<span class='blank10'></span>
+
+		{include file="Public/space_menu.html"}
+
+	</div>
+
+
+</div>
+{include file="Public/talkjs.html"}
+
+</div>

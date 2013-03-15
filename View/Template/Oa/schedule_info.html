@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>日程管理-详细日程内容</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/index.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/schedule.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+<!--弹出层-->
+<div id="popDiv1" class="mydiv1" style="display:none;">
+ <p>
+  移动分类：<span id="schedule_type_info"></span>
+ </p>
+ <p class="no_line"><a href="#" id="change_type" class="qd_btn">确定提交</a><a href="#" id="exit_btn" class="qd_btn">取消</a></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <h4 class="border_line">已安排的日程</h4>
+        <!--button end-->
+        <h4 class="rcap_title">{$Schedule_info.schedule_title}</h4>
+        <ul class="font_gray">发布人：{$publish_name}</ul>
+        <div  class="light_blue" style="display:block;line-height:22px;clear:both;width:700px;word-wrap:break-word;word-break:break-all; width:720px;">
+         	{$Schedule_info.schedule_message}
+        </div>
+        <p class="blue_bj"><span class="font_blue">日程发布日期：{$Schedule_info.add_time}</span><span class="font_red">日程到期日期：{if !empty($Schedule_info.expiration_time)}{$Schedule_info.expiration_time} 23:59:59{else}无{/if}</span></p>
+        <ul class="rcap_btn">
+        	<a href="/Oa/Schedulemanage/show_modifySchedule_info/schedule_id/{$Schedule_info.schedule_id}" style="text-decoration:none;" class="rcap_bj">编辑</a>
+        	<a href="#" class="rcap_xgfl" style="text-decoration:none;" id="modifyscheduletype">修改分类</a>
+        	<a href="#" class="rcap_xgfl" style="text-decoration:none;" id="returen_list">返回列表</a>
+        	<a href="#" id="delschedule" style="text-decoration:none;" class="rcap_sc">删除</a></ul>
+        <ul class="font_gray">本次编辑时间：{$Schedule_info.now_time}</ul>
+         <div class="clear"></div>
+        </div>
+        <form id="re_list_form" action="/Oa/Schedulemanage/searchScheduleinfo" method="post">
+	        <input type="hidden" name="schedule_name" value="{$schedule_name}"/>
+        </form>
+        <!--隐藏层 end-->
+      <input type="hidden" id="schedule_id" value="{$schedule_id}"/>
+      <input type="hidden" id="schedule_old_type" value="{$Schedule_info.type_id+0}"/>
+    <!--you end-->   
+  
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->   
+
+</body>
+</html>

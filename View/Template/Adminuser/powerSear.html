@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>权限查询</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<style>
+	*{margin:0px; padding:0px;}
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+	.STYLE1 {color: #0033CC}
+	label{cursor:pointer;}
+</style>
+
+<script type="text/javascript">
+	function clear1(){
+		$("#accountid").val("");
+	}
+	
+	function clear2(){
+		
+		$("#typeid").val("");
+		$("#nameid").val("");
+	}
+	
+	function checkForm(){
+		document.forms[0].submit();
+	}
+</script>
+{/literal}
+
+</head>
+
+<body>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">权限查询</td>
+  </tr>
+  
+  <tr>
+    <td align="left" bgcolor="#f0f8ff">
+    <form name="searForm" method="post" action="__URL__/powerSearch">
+      <table width="840" border="0" align="left" cellpadding="0" cellspacing="0" class="yycx_cx" >
+  		<tr>	
+          <td height="40" align="left" style="padding-left:25px;">会员账号：</td>
+          <td height="40"><input type="text" name="client_account" id="accountid" value="{$client_account}" onfocus="clear2()" class="h_text"/></td>
+          <td width="85" height="40" align="right" valign="middle">会员姓名：</td>
+          <td height="40"><input type="text" name="client_name" id="nameid" value="{$client_name}" onfocus="clear1()" class="h_text" /></td>
+          <td width="120" height="40" ><input type="button" value="搜索" style="cursor:pointer;" onclick="checkForm()" class="sh_btn" /></td>
+        </tr>
+      </table>
+    </form>    
+    </td>
+  </tr>
+  
+  <tr>
+     <td bgcolor="#f0f8ff">
+        <table width="700" border="0" cellpadding="0" cellspacing="1" bgcolor="#dfdcdc" class="yycx_xh" style="margin-left:20px;" >
+       
+        <tr>
+          <td height="30" align="center" bgcolor="#d6ebfd">序号</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">会员账号</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">会员姓名</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">会员邮箱</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">操作</td>
+        </tr>
+         {foreach from=$accountinfo item="list"}
+        <tr>
+          <td height="25" align="center" bgcolor="#FFFFFF">{$list.id}</td>
+          <td height="25" align="center" bgcolor="#FFFFFF">{$list.wms_account}</td>
+          <td height="25" align="center" bgcolor="#FFFFFF">{$list.wms_name}</td>
+          <td height="25" align="center" bgcolor="#FFFFFF">{$list.wms_email}</td>
+          <td height="25" align="center" bgcolor="#FFFFFF"><label><a href="__URL__/powerUpd/account/{$list.wms_account}">修改权限</a></label></td>
+        </tr>
+        {/foreach}
+        {if $accountinfo == ''}
+        <tr>
+        	<td height="50" align="center" colspan="6">无内容</td>
+        </tr>
+        {/if}
+      </table>    </td>
+  </tr>
+  {if $accountinfo != ''}
+  <tr>
+    <td height="60" align="left" bgcolor="#f0f8ff" style="padding-bottom:30px; padding-left:25px;"><a href="{$page.pre}">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$page.next}">下一页</a></td>
+  </tr>
+  {/if}
+</table>
+
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>激活页面</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/user_activation.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/password_strength/password_strength.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/user_activation.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+<div class="tip">
+   <p class="font_main">
+   	   {if $client_type == 0}
+   	   <span class="font_darkblue">{$user.client_name}</span><label>同学</label>
+   	   {elseif $client_type == 1}
+   	   <span class="font_darkblue">{$user.client_name}</span><label>老师</label>
+   	   {elseif $client_type == 2}
+   	   <span class="font_darkblue">{$child.client_name}</span><label>的家长</label><span class="font_darkblue">{$user.client_name}</span>
+   	   {/if}
+	   <span>（{$user.client_account}）</span>&nbsp;&nbsp;
+	   <span class="font_olive">为了您的账号安全，请修改初始密码</span>
+   </p>
+ </div>
+<div class="container">
+	<div class="content_frame_01">
+		<div class="content_frame_01_top"></div>
+		<form id="activate_form" method="post" action="/Uc/Activate/activateUser">
+		    <div class="content_frame_01_con">
+		    	<h4 class="c_f_01_c_title">账号激活</h4>
+		        <table  cellpadding="0" cellspacing="0" border="0" class="pwd_table">
+		        	<tr>
+		            	<th>输入新密码：</th>
+		                <td> <input id="password" name="password" type="password" class="sryx" maxlength="20"/><span id="passwordTip"></span> </td>
+		            </tr>
+		            <tr>
+		            	<th></th>
+		                <td>
+			                <p id="level_0" class="pwd_wu"></p>
+			                <p id="level_1" class="pwd_ruo display_none"></p>
+			                <p id="level_2" class="pwd_zhong display_none"></p>
+			                <p id="level_3" class="pwd_qiang display_none"></p>
+		                </td>
+		            </tr>
+		            <tr>
+		            	<th>确认新密码：</th>
+		                <td> <input id="password_sure" name="password_sure" type="password" class="sryx" maxlength="20"/><span id="password_sureTip"></span> </td>
+		            </tr>
+		            <tr>
+		            	<th></th>
+		                <td><input id="submit_btn" type="button" value="激活" class="btn_2_word"/></td>
+		            </tr>
+		        </table>
+		    </div>
+		    <input type="hidden" name="callback" value="{$callback}"/>
+	    </form>
+	    <div class="content_frame_01_bottom"></div>
+	</div>
+</div>
+{insert name="uc_footer"}
+</body>
+</html>

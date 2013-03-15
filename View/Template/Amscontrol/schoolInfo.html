@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学校信息</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">学校信息</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt STYLE1">学校信息</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>学校基本资料：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">学校名称：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_name}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">学校地址：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_address}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">邮政编码：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.post_code}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">建校年月：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_create_date}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">学校类别：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_type}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">学制类型：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.grade_type}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">资源优势：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.resource_advantage}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_master}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">联系方式：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.contact_person}</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>师生情况：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">班级数量：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.class_num}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">教师人数：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.teacher_num}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">学生人数：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.student_num}</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>学校网络负责人：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.net_manager}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">联系方式：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.net_manager_phone}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7">邮箱设置：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.net_manager_email}</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>校园门户网站申请：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" align="left" bgcolor="#fbf6f7">原校园网址：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_url_old}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">新网址申请：</td>
+    <td height="30" bgcolor="#fbf6f7">{$schoolInfo.school_url_new}</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC"><strong>已注册情况统计：</strong></td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">班级：</td>
+    <td height="30" bgcolor="#fbf6f7">{$classNum}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">老师：</td>
+    <td height="30" bgcolor="#fbf6f7">{$teacherNum}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">学生：</td>
+    <td height="30" bgcolor="#fbf6f7">{$studentNum}</td>
+  </tr>
+  <tr>
+    <td width="72" height="30" bgcolor="#fbf6f7">家长：</td>
+    <td height="30" bgcolor="#fbf6f7">{$parentNum}</td>
+  </tr>
+</table>
+<!-- <h4 class="dcxx"><span>导出班级成员信息</span> <a href="/Amscontrol/Schoolinfo/echoxml/schoolId/{$schoolInfo.school_id}" class="scexcle">输出Excle</a></h4> -->
+</body>
+</html>

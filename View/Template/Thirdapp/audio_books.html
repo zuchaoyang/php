@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>广东-同步资源</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/common.css" type="text/css" />
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/book.css" type="text/css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+{literal}
+<script type="text/javascript">
+	function settab(url,title,pic_url) {
+		var mp3html ='<OBJECT id="mPlayer1" classid="CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6" width="400" height="70" type="application/x-oleobject"><PARAM NAME="URL" VALUE="'+url+'"></PARAM><PARAM NAME="rate" VALUE="1"><PARAM NAME="balance" VALUE="0"><PARAM NAME="currentPosition" VALUE="0"><PARAM NAME="defaultFrame" VALUE=""><PARAM NAME="playCount" VALUE="100"><PARAM NAME="autoStart" VALUE="-1"><PARAM NAME="currentMarker" VALUE="0"><PARAM NAME="invokeURLs" VALUE="-1"><PARAM NAME="baseURL" VALUE=""><PARAM NAME="volume" VALUE="100"><PARAM NAME="mute" VALUE="0"><PARAM NAME="uiMode" VALUE="full"><PARAM NAME="stretchToFit" VALUE="0"><PARAM NAME="windowlessVideo" VALUE="0"><PARAM NAME="enabled" VALUE="-1"><PARAM NAME="enableContextMenu" VALUE="0"><PARAM NAME="fullScreen" VALUE="0"><PARAM NAME="SAMIStyle" VALUE=""><PARAM NAME="SAMILang" VALUE=""><PARAM NAME="SAMIFilename" VALUE=""><PARAM NAME="captioningID" VALUE=""></OBJECT>';
+		$("#ass").html(mp3html);
+	}
+</script>
+{/literal}
+</head>
+
+<body>
+ <div>
+  	<iframe src="http://www.unikaixin.com/header.html" width="100%" height="155" scrolling="No" frameborder="0"></iframe>
+ </div>
+ 
+ <div class="gd_nav_list">
+   <p></p>
+   <ul><a href="/Thirdapp/Showresource/synchroresource" class="gd_tbzy">同步资源</a><a href="/Thirdapp/Showresource/qualityresource" class="gd_jpzy">精品资源</a><a href="/Thirdapp/Showresource/qualityschool1" class="gd_jpwx">精品网校</a><a href="/Thirdapp/Audiobooks/getAudiobooksByType" class="gd_ysds">有声读书</a></ul>
+ </div>
+ 
+  <div class="gz_big_bj">
+ <div class="gz_content">
+   <!--main star-->
+   <div class="gz_main">
+     <h4></h4>
+     {foreach from=$audiobookslistarr item=audiobooks}
+	     <dl>
+	       <dt><a href="/Thirdapp/Audiobooks/getAudiobooksByTypeid/typeid/{$audiobooks.category_id}"><img src="{$audiobooks.pic_url}" width="152" height="192"/></a></dt>
+	       <dd>{$audiobooks.category}</dd>
+	     </dl>
+     {/foreach}
+     <div class="clean"></div>
+   </div>
+   <!--main end-->
+   <div class="clean"></div>
+ </div>
+ </div>
+ 
+ <div style="text-align:center;">
+ 	<iframe src="http://www.unikaixin.com/footer.html" width="960" height="125" scrolling="No" frameborder="0"></iframe>
+ </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>资源属性维护</title>
+<link rel="stylesheet" href="__PUBLIC__/wms/css/common.css"  />
+<link rel="stylesheet" href="__PUBLIC__/wms/css/sqsh.css" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/wms/js/page/resource_attribute_mana.js"></script>
+</head>
+
+<body>
+<!--弹出层-->
+<div id="popDiv" class="zyxg_tcc sczy_tcc" style="display:none;">
+  <a href="javascript:;" class="close_icon"></a>
+  <p><input id="modify1_name" type="text" /></p>
+  <p><input type="button" value="修改" class="qd_btn" /><input type="button" value="取消" class="pldr" onclick="javascript:;)" /></p>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+
+<!--弹出层-->
+<div id="popDiv1" class="zyxg_tcc sczy_tcc" style="display:none;">
+  <a href="javascript:;" class="close_icon"></a>
+  <p><input id="add1_name" type="text" /></p>
+  <p><input type="button" value="添加" class="qd_btn" /><input type="button" value="取消" class="pldr" onclick="javascript:;" /></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+
+<!--弹出层-->
+<div id="popDiv2" class="zyxg_tcc sczy_tcc" style="display:none;">
+  <a href="javascript:;" class="close_icon"></a>
+  <p><select id="add_select">
+  	<option value="0">--请选择--</option>
+  	<option value="1">同步资源</option>
+  	<option value="2">精品资源</option>
+  	<option value="3">精品网校</option>
+  </select></p>
+  <p><input id="add2_name" type="text" /></p>
+  <p><input type="button" value="添加" class="qd_btn" /><input type="button" value="取消" class="pldr" onclick="javascript:;" /></p>
+</div>
+<div id="bg2" class="bg" style="display:none;"></div>
+<iframe id='popIframe2' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+
+<!--弹出层-->
+<div id="popDiv3" class="zyxg_tcc sczy_tcc" style="display:none;">
+  <a href="javascript:;" class="close_icon"></a>
+  <p><select id="modify_select">
+  	<option value="0">--请选择--</option>
+  	<option value="1">同步资源</option>
+  	<option value="2">精品资源</option>
+  	<option value="3">精品网校</option>
+  </select></p>
+  <p><input id="modify2_name" type="text" /><input type="hidden" id="modify_id"/></p>
+  <p><input type="button" value="修改" class="qd_btn" /><input type="button" value="取消" class="pldr" onclick="javascript:;" /></p>
+</div>
+<div id="bg3" class="bg" style="display:none;"></div>
+<iframe id='popIframe3' class='popIframe' frameborder='0' ></iframe>
+<!--弹出层 end-->
+
+<div class="sczy_title" id="nav_main">
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="subnav">
+    	<a id="nav_1" href="/Wms/Resource/Resourceattributemanage/show_list/option_str/1_4" class="urse">年级</a>
+    	<a id="nav_2" href="/Wms/Resource/Resourceattributemanage/show_list/option_str/2_4">科目</a>
+    	<a id="nav_3" href="/Wms/Resource/Resourceattributemanage/show_list/option_str/3_4">版本</a>
+    	<a id="nav_4" href="/Wms/Resource/Resourceattributemanage/show_list/option_str/4_4">学期</a>
+    	<a id="nav_5" href="/Wms/Resource/Resourceattributemanage/show_list/option_str/5_4">栏目</a>
+   	</td>
+  </tr>
+</table>
+<input type="hidden" value="{$type}" id="type_id"/>
+</div>
+
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="zyxg_main" id="nav_1_1">
+  <tr>
+    <td colspan="3"><input type="button" id="1_1" value="添加" class="pldr" onclick="javascript:;" /></td>
+  </tr>
+  {foreach from=$list item=val}
+  <tr>
+  <input type="hidden" id="modify_{$val.grade_id}_id" value="{$val.grade_id}"/>
+    <td width="200" align="center" id="modify_{$val.grade_id}_name">{$val.grade_name}</td>
+    <td width="200" align="center"><a class="delete" href="javascript:;" id="{$val.grade_id}">删除</a>&nbsp;&nbsp;<a class="modify1" id="modify_{$val.grade_id}" href="javascript:;">修改</a></td>
+    <td></td>
+  </tr>
+  {/foreach}
+</table>
+<div class="kemu_tab" id="nav_2_1">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="zyxg_main">
+  <tr>
+    <td colspan="3"><input type="button" id="2_1" value="添加" class="pldr" onclick="javascript:;" /></td>
+  </tr>
+  {foreach from=$list item=val}
+  <tr>
+  <input type="hidden" id="modify_{$val.subject_id}_id" value="{$val.subject_id}"/>
+    <td width="200" align="center" id="modify_{$val.subject_id}_name">{$val.subject_name}</td>
+    <td width="200" align="center"><a class="delete" href="javascript:;" id="{$val.subject_id}">删除</a>&nbsp;&nbsp;<a class="modify1" id="modify_{$val.subject_id}" href="javascript:;">修改</a></td>
+    <td></td>
+  </tr>
+  {/foreach}
+</table>
+</div>
+
+<div class="banben_tab"  id="nav_3_1">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="zyxg_main">
+  <tr>
+    <td colspan="3"><input type="button" id="3_1" value="添加" class="pldr" onclick="javascript:;" /></td>
+  </tr>
+  {foreach from=$list item=val}
+  <tr>
+  <input type="hidden" id="modify_{$val.version_id}_id" value="{$val.version_id}"/>
+    <td width="200" align="center" id="modify_{$val.version_id}_name">{$val.version_name}</td>
+    <td width="200" align="center"><a class="delete" href="javascript:;" id="{$val.version_id}">删除</a>&nbsp;&nbsp;<a class="modify1" id="modify_{$val.version_id}" href="javascript:;">修改</a></td>
+    <td></td>
+  </tr>
+  {/foreach}
+</table>
+</div>
+
+<div class="xueqi_tab" id="nav_4_1">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="zyxg_main">
+  <tr>
+    <td colspan="3"><input type="button" id="4_1" value="添加" class="pldr" onclick="javascript:;" /></td>
+  </tr>
+  {foreach from=$list item=val}
+  <tr>
+  <input type="hidden" id="modify_{$val.term_id}_id" value="{$val.term_id}"/>
+    <td width="200" align="center" id="modify_{$val.term_id}_name">{$val.term_name}</td>
+    <td width="200" align="center"><a class="delete" href="javascript:;" id="{$val.term_id}">删除</a>&nbsp;&nbsp;<a class="modify1" id="modify_{$val.term_id}" href="javascript:;">修改</a></td>
+    <td></td>
+  </tr>
+  {/foreach}
+</table>
+</div>
+
+<div class="lanmu_tab" id="nav_5_1">
+<table width="92%" border="0" cellpadding="0" cellspacing="1" class="zyxg_main">
+  <tr>
+    <td colspan="3"><input type="button" id="5_1" value="添加" class="pldr" onclick="javascript:;)" /></td>
+  </tr>
+ {foreach from=$list item=val}
+  <tr>
+    <input type="hidden" id="modify_{$val.column_id}_id" value="{$val.column_id}"/>
+  	<input type="hidden" id="modify_{$val.column_id}_select" value="{$val.product_id}"/>
+    <td width="200" align="center" id="modify_{$val.column_id}_name">{$val.column_name}</td>
+    <td width="200" align="center"><a class="delete" href="javascript:;" id="{$val.column_id}">删除</a>&nbsp;&nbsp;<a class="modify2" id="modify_{$val.column_id}" href="javascript:;">修改</a></td>
+    <td></td>
+  </tr>
+  {/foreach}
+</table>
+
+</div>
+</body>
+</html>

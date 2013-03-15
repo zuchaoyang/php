@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqyphoto.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+<form action='#' method='post'>
+<div class="title">编辑照片名称和描述</div>
+<input type="text" id="photoname" name="photoname" maxlength="20" value='{$photo_name}' style="width:220px; height:23px;"/>
+<textarea id="photoexplain" name="photoexplain" cols="35" rows="4">{$photo_explain}</textarea>
+<input type='hidden' name='photoid' id='photoid' value='{$photoid}'> 
+<input type="button" value="保存" class='inputbg2' onclick="javascript:JSupdatephotoexplain();"  />
+</form>

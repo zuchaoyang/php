@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>班级相册-普通照片</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_list_photo_n.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_photo_list.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+{insert name="sns_class_header" class_code = $class_code}
+  <!--<div class="tip">
+   <div class="tip_main">
+    <p class="f13 f_green">丰台区芳群园第一小学</p><p><a href="#" class="f13 f_green">一年二班<span class="icon_01"></span></a></p><span class="icon_02"></span><p class="f13 f_green">班主任：李老师</p>
+    <div class="clear"></div>
+   </div> 
+  </div>
+--><!--tip end--> 
+<!-- 相册详情弹层 star -->
+<div class="list_photo_right" id="xcxq_div" style="display:none;">
+   <p>相册名称：<font class="album_name">{$album_list.album_name}</font></p>
+   <dl>
+     <dt>
+     	<a href="#">
+     	<img id="album_img" src="{$album_list.album_img_path}" title="相册封面">
+     	</a>
+     </dt>
+   </dl>
+   <p><span>作者：</span><font>{$album_list.client_name}</font></p>
+   <p><span>创建：</span><font>{$album_list.add_date}</font></p>
+   <p><span>更新：</span><font class="upd_date">{$album_list.upd_date}</font></p>
+   <p><span>数量：</span>共<font class="photo_count">{$album_list.photo_num}</font>张</p>
+   <p><span>权限：</span><font class="grant_name">{$album_list.grant_name}</font></p>
+   <p><span>描述：</span><font class="album_explain">{$album_list.album_explain}</font></p>
+   <p class="is_edit"><span><a id="upd_album_btn" href="javascript:;" class="mr10">编辑</a></span><font><a id="del_album_btn" href="#">删除</a></font></p>
+ 	
+</div>
+
+<!-- 相册详情弹层  end-->
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4><a href="/Sns/Album/Class/albumlist/class_code/{$class_code}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+    <div class="publish_main">
+      <h3>班级相册>{$album_list.album_name}</h3>
+      <!--list_photo_main star-->
+      <div class="list_photo_main">
+        <div class="list_photo_left">
+          <p class="photo_left_top">
+           <a href="/Sns/Album/Class/uplaodPhoto/class_code/{$class_code}/album_id/{$album_id}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
+           <a href="/Sns/Album/Classphoto/photoPlist/class_code/{$class_code}/album_id/{$album_id}/client_account/{$client_account}" class="up_photo" title="">瀑布流</a>
+           <a href="#" class="xcxq_zk f_green"><span>相册详情</span><span id="icon_img" class="icon_down"></span></a>
+          </p>
+          <div class="clear"></div>
+          {literal}
+          <dl class="clone_selector" style="display:none">
+            <dt><a href="/Sns/Album/Classphoto/photo/album_id/{album_id}/photo_id/{photo_id}/class_code/{class_code}/client_account/{client_account}"><img src="{small_img}"></a></dt>
+            <!--float_main star-->
+            <div class="float_main" style="display:none;">
+              <div class="float_main_p">
+               <!--<span class="pr30">
+               	<a class="set_album_img" href="javascript:;">设为封面</a>
+               </span>
+               <span class="pr30"><a class="del_photo" href="javascript:;">删除</a></span>
+               <span class="pr30"><a class="move_pic" href="javascript:;">移动到</a></span>
+               --><p>
+               <span class="pr30"><a class="comments" href="javascript:;">评论(<span class=pl_count>{comments}</span>)</a></span>
+               </p>
+              </div>
+            </div>
+            <!--float_main end-->
+            <dd><div class="edit_photo_name" ><a href="javascript:;" title="点击修改名称"><span class="dd_width photo_name">{name}</span></a></div></dd>
+          </dl>
+          {/literal}
+          <div class="insert_pos_div clear"></div>
+          <p class="see_homework"><span><a id="more_a" href="javascript:;">查看更多</a></span></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--list_photo_main end-->
+      <div class="clear"></div>
+    </div>
+    <!--publish_main end-->
+    <div class="clear" ></div>
+    <div class="main_bottom" ></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+<!-- start引入弹层模板 -->
+{include file="Sns/Album/Subtemplate/class_edit_album.inc.html"}
+{include file="Sns/Album/Subtemplate/class_del_album.inc.html"}
+<!-- end引入弹层模板 -->
+
+<!--弹出层 star-->
+ <!--评论照片 star-->
+{include file="Sns/Album/Subtemplate/comment_photo.inc.html"}
+ <!--评论照片 end-->
+
+ <!--移动照片 star-->
+ <div id="move_photo_div" class="move_photo" style="display:none;">
+   <p>
+   </p>
+ </div>
+  <div id="qd_move" style="display:none;">
+    <p>你确定要移动相片到〈相册名称〉</p>
+    <p><input class="btn_qd" type="button" value="确定"/> <input class="btn_qx" type="button" value="取消"/></p>
+  </div>
+ <!--移动照片 end-->
+ 
+ <!--设置封面成功 star-->
+  <div class="success_main" style="display:none;">
+    <p><span class="icon_success"></span>设置相册封面成功</p>
+  </div>
+ <!--设置封面成功 end-->
+ 
+  <!--提示信息弹出层-->
+  <div id="photo_del_album_div" class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+      <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_question"></span></dt>
+      </dl>
+      <p class="f12">是否要删除选中的照片？<br /><span>其它地方使用此相册的相片也将删除！</span></p>
+      <div class="clear"></div>
+      </div>
+      
+      <p class="msg_center_btn"><input type="button" class="qd_btn"><input type="button" class="qx_btn" value="取消"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+ <!--提示信息弹出层-->
+ 
+ <!--弹出层 end-->
+<input id="is_edit" type="hidden" value="{$is_edit}"/>
+<input id="album_id" type="hidden" value="{$album_id}">
+<input id="class_code" type="hidden" value="{$class_code}">
+<input id="client_account" type="hidden" value="{$client_account}">
+<input id="login_account" type="hidden" value="{$login_account}"/>
+<input id="photo_num" type="hidden" value="{$album_list.photo_num}"/>
+<input id="img_server" type="hidden" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
+<!-- 尾部start -->
+{include file="Public/sns_footer.html"}
+<!-- 尾部end -->
+</body>
+</html>
+
+
+

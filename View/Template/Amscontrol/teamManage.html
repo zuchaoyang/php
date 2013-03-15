@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>小队管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >><a href="/Amscontrol/Amsteam/teamManage/class_code/{$class_code}" class="amswz">小队管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt">
+    <a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+	<a href="/Amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/0" class="zhgl" >班级成员账号管理</a>
+    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/0" class="bjgk">中队设置</a>
+    <a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/bjgka2.gif) no-repeat; color:#000000;">小队管理</a>
+    </td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25" colspan="5" bgcolor="#fbf6f7" style="padding:10px;"><a href="/Amscontrol/Amsteam/addTeam/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="amsqd">设置小队</a></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center" bgcolor="#fbf6f7">
+      <table width="100%" border="0" cellspacing="1">
+	     <tr>
+		    <td height="30" align="center" bgcolor="#CCCCCC"><strong>小队名称</strong></td>
+		    <td width="5%" height="30" align="center" bgcolor="#CCCCCC"><strong>人数</strong></td>
+		    <td height="30" align="center" bgcolor="#CCCCCC"><strong>队长</strong></td>
+		    <td height="30" align="center" bgcolor="#CCCCCC"><strong>副队长</strong></td>
+		    <td align="center" bgcolor="#CCCCCC"><strong>成员</strong></td>
+		    <td width="10%" height="30" align="center" bgcolor="#CCCCCC"><strong>操作</strong></td>
+		 </tr>
+      	{foreach from=$teamlist item=team}
+      	<tr>
+      		<td height="30" align="center" bgcolor="#CCCCCC"><strong>{$team.team_name}</strong></td>
+		    <td width="5%" height="30" align="center" bgcolor="#CCCCCC"><strong>{$team.total_members}</strong></td>
+		    <td height="30" align="center" bgcolor="#CCCCCC"><strong>{$team.member_list.head_team}</strong></td>
+		    <td height="30" align="center" bgcolor="#CCCCCC"><strong>{$team.member_list.team_assistant}</strong></td>
+		    <td align="center" bgcolor="#CCCCCC"><strong>{$team.member_list.name_list}</strong></td>
+		    <td height="30" align="center" bgcolor="#dfdbdb">
+		    	<a href="/Amscontrol/Amsteam/dismissTeam/team_id/{$team.team_id}/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}">解散</a>
+		    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a href="/Amscontrol/Amsteam/modifyTeam/team_id/{$team.team_id}/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}">修改</a>
+		    </td>
+      	</tr>
+      	{/foreach}
+	 </table>
+	</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{insert name="space_header"}
+<span class='blank10'></span>
+<div class='b_main'>
+<div class='block_left' id="Left">
+		<!--begin input_msgK-->
+		<div class='input_msgK' style="background:#A2FFFF">
+			<div class='input_msgK_tag2'>来都来了，说点什么呗？</div>
+			<div class='input_msgK_ctrl'><textarea name='msgcontent' cols="25" class='editTextarea' id="msgcontent" onfocus="upLimit('set');" onblur="upLimit('del');"></textarea><input type="hidden" name="spaceid_account" value="{$spaceid_account}" id="spaceid_account" />
+			</div>
+
+			<div class="funBox">
+				<div class="insertFun">
+					<div id="showface" style="display:none;"></div>
+					<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+					<div class="uploadPic">
+						<input type="hidden" name="pic" id="pic" value="" />  
+						<input type="hidden" name="mid" id="mid" value="" />
+						<!--<span class="ico_pic"></span><a href="#" class="fun_txt" title="照片" onclick="return photoUpload();">照片</a>-->
+						<span class="loading" style="display:none;">上传中</span>
+						<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+					</div>
+				</div>
+				<div class="sendFun">
+					<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_fb.jpg" width="85" height="30" onclick="ajaxguestbook({$spaceid_account});" style='cursor:pointer;'/>
+					<span class="countTxt">还能输入<em>140</em>字</span>
+				</div>
+			</div>
+		</div>
+		<!--end input_msgK-->
+
+
+		<div class='UserTalkbg'><span class="howsay">{$space_client_name}的留言板</span></div>
+		<span class="blank20"></span>
+		<div id='contentbooknew'></div>
+		<div id="content">
+		{if $guestbook_info != ''}
+		{foreach from=$guestbook_info item=val}
+
+		<table width="640" border="0" align="center" cellpadding="5" cellspacing="2">
+		  <tr>
+			<td width="5%" rowspan="2"><Img  width="60" height="60"src="{$val.plunheadimg}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></td>
+			<td align='left'>{$val.client_name}&nbsp;&nbsp;发布时间：{$val.add_date}</span>{$val.log_name}</td>
+			<td align="right"></td>
+		  </tr>
+		  <tr  style='line-height:22px;'>
+			<td colspan="3" align="left"><div class='wordwrap' style="white-space:normal;word-break:break-all;width:560px;">{$val.guestbook_content}</div></td>
+			
+		  </tr>
+			<tr  style='line-height:22px;'>
+			<td colspan="3" align="right">
+			{if $spaceid_glaccount==$spaceid_account}
+			  <a href="javascript:void(0);" onclick="javascript:spaceGuesthf('{$val.guestbook_id}','{$val.add_account}');" id='followTestBtn' >【回复】</a>
+			  &nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' onclick="javascript:spaceGuestDel('{$val.guestbook_id}','{$val.add_account}');">【删除】</a>
+			  {/if}
+			</td>
+
+		  </tr>
+		  {if $val.hfkey != ''}
+		    {foreach from=$val.hfkey item=val1}
+				<tr  style='line-height:22px;text-align:left;'><td colspan='3' align='center'> 
+					<table width="90%" border="0" cellpadding="0" cellspacing="1"  style="border-bottom:1px solid #dddddd;">
+						  <tr>
+							<td width="100" rowspan="2" align="center">
+							<Img  width="60" height="60"src="{$val1.plunheadimg2}" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/>
+							</td>
+							<td align="left">{$val1.client_name}&nbsp;&nbsp;发布时间：{$val1.add_date}</td>
+						  </tr>
+						  <tr>
+							<td align="left">{$val1.guestbook_content}</td>
+						  </tr>
+					</table>
+				
+				
+				
+				</td></tr>
+			{/foreach}
+		  {/if}
+		</table>
+		<div class='divline'></div>
+		{/foreach}
+		{/if}
+	
+		{$pageinfohtml}
+	</div>
+  </div>
+
+
+	<div class='block_right' id="Right">
+		<h5>{$space_client_name}的个人资料</h5>
+		<ul class='user-info2'>
+		
+			<li>所在班级：{$tpl_gradeclass_Name}</li>
+			<li>星座: {$space_constellation_nam}</li>
+			<li>生日: {$space_client_birthday}</li>
+			<li>血型: {$space_blood_type_name}</li>
+		</ul>
+		
+		<span class='blank10'></span>
+		{include file="Public/space_menu.html"}
+
+	</div>
+
+	</div>
+	{literal}
+	<script type="text/javascript">
+        md.toString();  	 
+	</script>
+	{/literal} 
+{include file="Public/talkjs.html"}

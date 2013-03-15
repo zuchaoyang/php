@@ -1,0 +1,357 @@
+﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>开通申请 进入</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/page/ktlc_enter.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/AddressCls.js"></script>
+
+</head>
+
+<body style="padding-top:30px; _width:98%" onload="winLoad();">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">开通申请 进入</font></td>
+  </tr>
+</table>
+
+<form action="/Basecontrol/Applyschool/addSchoolInfo" method="post" enctype="multipart/form-data" >
+ 
+<div id="pSchoolReqeust">
+    <table width="92%" border="0" cellspacing="0" cellpadding="0">                                                       
+      <tr>
+        <td height="27" class="bt">学校开通申请 — 开通申请 进入</td>
+      </tr>
+    </table>
+
+    <table width="92%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px; font-weight:bold;">学校基本资料：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校名称：</td>
+                <td bgcolor="f0f0f0"><input id="schoolName" name="schoolName" type="text" class="wbk" /><span class="xhao">*</span><span id="schoolName_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校地址：</td>
+                <td bgcolor="f0f0f0"> 
+                <select name="address_1" class="pulldown_menu" id="address_1">
+                	<option value="-1">请选择省</option><option value="1">省</option></select>
+    			<select name="select" class="pulldown_menu" id="address_2">
+   					<option value="-1">请选择市</option><option value="1">请</option></select>
+    			<select name="select" class="pulldown_menu" id="address_3">
+    				<option value="-1">请选择县/区</option><option value="1">选</option></select>
+   				<input type="hidden" name="init_area_id" id="init_area_id" value=""/>
+				<input type="hidden" name="area_id" id="area_id" value=""/>
+				<input  name="schoolAddress_Content" id="schoolAddress_Content" type="text" value="" class="wbk" /><span class="xhao"></span><span id="schoolAddress_Content_err" style="color:Red;"></span>
+		</td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">邮政编码：</td>
+                <td bgcolor="f0f0f0"><input id="zipCode"  name="zipCode" type="text" class="wbk" /><span class="xhao">*</span><span id="zipCode_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;"  onclick="WdatePicker()"  >建校年月：</td>
+                <td bgcolor="f0f0f0">
+                <input id="createSchoolDate" name="createSchoolDate" type="text" class="wbk"  onClick="WdatePicker()" /><span class="xhao">*</span><span id="createSchoolDate_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校类别：</td>
+                <td bgcolor="f0f0f0">
+	                <select id="schoolType" name="schoolType" style="margin-right:10px;">
+	                  {foreach from=$schooltype key=type item=name}
+	                  <option value="{$type}">{$name}</option>
+	                  {/foreach}
+	                </select>
+                </td>
+              </tr>
+              
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学制类型：</td>
+                <td bgcolor="f0f0f0">
+	                <select id="gradeType" name="gradeType" style="margin-right:10px;">
+	                  {foreach from=$gradetype key=type item=name}
+	                  <option value="{$type}">{$name}</option>
+	                  {/foreach}
+	                </select>
+                </td>
+              </tr>
+              
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">资源优势：</td>
+                <td bgcolor="f0f0f0">
+                  <select id="schoolGrade" name="schoolGrade" style="margin-right:10px;">
+                    {foreach from=$resources key=key item=value}
+                    <option value="{$key}">{$value}</option>
+                    {/foreach}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</td>
+                <td bgcolor="f0f0f0"><input id="principal" name="principal" type="text" class="wbk" /><span class="xhao">*</span><span id="principal_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">联系方式：</td>
+                <td bgcolor="f0f0f0"><input id="contact"  name="contact" type="text" class="wbk" /><span class="xhao">*</span><span id="contact_err" style="color:Red;"></span></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">师生情况：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">班级数量：</td>
+                <td bgcolor="f0f0f0"><input id="classNum" name="classNum" type="text" class="wbk" /><span class="xhao">*</span><span id="classNum_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">教师人数：</td>
+                <td bgcolor="f0f0f0"><input id="teachNum"  name="teachNum"  type="text" class="wbk" /><span class="xhao">*</span><span id="teachNum_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学生人数：</td>
+                <td bgcolor="f0f0f0"><input id="studentNum"  name="studentNum" type="text" class="wbk" /><span class="xhao">*</span><span id="studentNum_err" style="color:Red;"></span></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">学校网络负责人：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+                <td bgcolor="f0f0f0"><input id="personInCharge"  name="personInCharge" type="text" class="wbk" /><span class="xhao">*</span><span id="personInCharge_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">联系方式：</td>
+                <td bgcolor="f0f0f0"><input id="PICcontact" name="PICcontact" type="text" class="wbk" /><span class="xhao">*</span><span id="PICcontact_err" style="color:Red;"></span></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">邮箱设置：</td>
+                <td bgcolor="f0f0f0"><input id="setMail"  name="setMail" type="text" class="wbk" /><span class="xhao">*</span><span id="setMail_err" style="color:Red;"></span></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">校园门户网站申请：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">原校园网站：</td>
+                <td bgcolor="f0f0f0"><input id="oldWebUrl" name="oldWebUrl" type="text" class="wbk" /><span class="xhao"></span><span id="oldWebUrl_err" style="color:Red;">&nbsp;&nbsp;</span>(原网址为空时，系统默认为：www.wmw.cn)</td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">新网址申请：</td>
+
+                <td bgcolor="f0f0f0"><input id="newWebUrl" name="newWebUrl" type="text" class="wbk" onchange="dataProcess.onchange();" onfocus="dataProcess.onfocus();" onblur="dataProcess.onblur();"/>&nbsp;&nbsp;.wmw.cn<input id="validate_but" type="button" value="检测" class="qxan" style="margin-left:10px;" onclick="dataProcess.validateUrl();"/><img alt="loading" id="validateLoading_img" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/images/gif1.gif" width="25"  height="25"  style="display:none; position:absolute; margin-left:10px;"/><span id="newWebUrl_err" style="color:red;size:15px;"></span></td>
+
+              </tr>
+
+            </table>
+        </td>
+      </tr>
+      
+        <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">请上传《教育信息化公共服务平台申请表》扫描件：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+                <td bgcolor="f0f0f0">
+                    <input type="file" id="scanFile" name="scanFile" class="wbk" style="margin-right:10px; width:200px;" /><span class="xhao">*</span><span id="scanFile_err" style="color:Red;"></span>
+                </td>
+              </tr>
+              <tr>
+                <td height="35" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+                <td bgcolor="f0f0f0"><a href="#" onclick="confirmData()" class="sqgl_czmm">提交申请</a></td>
+              </tr>
+              <tr>
+                <td height="30" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+                <td bgcolor="f0f0f0"></td>
+              </tr>
+
+            </table>
+        </td>
+      </tr>  
+     
+    </table>
+</div>
+<!-- modify- style="display:none;"  -->
+<div id="pConfirmRequest" style="display:none;" >
+    <table width="92%" border="0" cellspacing="0" cellpadding="0" >
+      <tr>
+        <td height="27" class="bt">学校开通申请 — 确认申请资料</td>
+      </tr>
+    </table>
+
+    <table width="92%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px; font-weight:bold;">学校基本资料：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校名称：</td>
+        <td bgcolor="f0f0f0" id="schoolName_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校地址：</td>
+        <td bgcolor="f0f0f0" id="schoolAddress_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">邮政编码：</td>
+        <td bgcolor="f0f0f0" id="zipCode_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">建校年月：</td>
+        <td bgcolor="f0f0f0" id="createSchoolDate_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学校类别：</td>
+        <td bgcolor="f0f0f0" id="schoolType_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学制类型：</td>
+        <td bgcolor="f0f0f0" id="gradeType_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">资源优势：</td>
+        <td bgcolor="f0f0f0" id="schoolGrade_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</td>
+        <td bgcolor="f0f0f0" id="principal_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">联系方式：</td>
+        <td bgcolor="f0f0f0" id="contact_2">&nbsp;</td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">师生情况：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">班级数量：</td>
+        <td bgcolor="f0f0f0" id="classNum_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">教师人数：</td>
+        <td bgcolor="f0f0f0" id="teachNum_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">学生人数：</td>
+        <td bgcolor="f0f0f0" id="studentNum_2">&nbsp;</td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">学校网络负责人：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</td>
+        <td bgcolor="f0f0f0" id="personInCharge_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">联系方式：</td>
+        <td bgcolor="f0f0f0" id="PICcontact_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">邮箱设置：</td>
+        <td bgcolor="f0f0f0" id="setMail_2">&nbsp;</td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+      
+        <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">校园门户网站申请：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;">原校园网址：</td>
+        <td bgcolor="f0f0f0" id="oldWebUrl_2">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="f0f0f0" style="padding-left:10px;">新网址申请：</td>
+        <td bgcolor="f0f0f0" id="newWebUrl_2"  name="newWebUrl_2">&nbsp;</td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+      
+      <tr>
+        <td height="30" colspan="2" bgcolor="bcbcbc" style="padding-left:10px;font-weight:bold;">请上传《教育信息化公共服务平台申请表》扫描件：</td>
+      </tr>
+      <tr>
+        <td height="30" colspan="2" bgcolor="f0f0f0">
+           <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+        <td bgcolor="f0f0f0">已上传</td>
+      </tr>
+      <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+        <td bgcolor="f0f0f0">
+        	 <input type="submit" name="submit" value="确认无误，提交申请" style="cursor:pointer" class="dqd"></input> 
+        	<a href="javascript:backFun();" class="dqx">修改申请资料</a></td>
+      </tr>
+        <tr>
+        <td width="72" height="30" bgcolor="f0f0f0" style="padding-left:10px;"></td>
+        <td bgcolor="f0f0f0"></td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+        
+     
+    </table>
+</div>
+</form> 
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

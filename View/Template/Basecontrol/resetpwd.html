@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>管理员账号管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/page/sqgl.js"></script>
+
+{literal}
+<script type="text/javascript">
+	function showDiv(){
+		{/literal}
+		document.getElementById('schoolname').innerHTML='{$schoolInfo.school_name}';
+		pageTable.resetPwd('{$schoolInfo.school_id}','{$schoolInfo.net_manager_account}');
+		{literal}
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<div id="popDiv" class="mydiv" style="display:none;">
+<p style=" background:#CCC; padding-left:10px; font-weight:bold;">重置密码<span style="padding-left:100px;"><a href="javascript:pageTable.closePwd();">关闭</a></span></p>
+<p style="padding-left:10px; padding-top:10px;">是否确认重置<span id="schoolname" style="color:red;"></span>管理员密码？</p>
+<p class="czmm gly_a" style="padding-left:10px; padding-top:30px;"><a href="javascript:pageTable.okPwd();" class="blue_a">确定</a><a href="javascript:pageTable.closePwd();" class="gray_a" style="color:#000;">取消</a></p>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">申请管理-管理员账号管理</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">您当前所在的位置：{$schoolInfo.school_name}</td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding-left:10px;" class="line">
+      <a href="/Basecontrol/Applyschool/getSchoolInfo/sid/{$schoolInfo.school_id}" class="a_bj2">学校基本信息</a>
+      <a href="/Basecontrol/Applyschool/resetPwd/sid/{$schoolInfo.school_id}" class="a_bj1">管理员账号管理</a>
+      <a href="/Basecontrol/Applyschool/phonebinding/sid/{$schoolInfo.school_id}" class="a_bj2">手机号绑定</a>
+      <a href="/Basecontrol/Applyschool/schooltj/sid/{$schoolInfo.school_id}" class="a_bj2">学校用户统计</a>   
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="20%" align="left" cellpadding="0" cellspacing="0" style="border:1px #ccc solid; padding:10px 0px;">
+      <tr>
+        <td height="30" style="padding-left:10px;">管理员账号：{$schoolInfo.net_manager_account}</td>
+      </tr>
+      <tr>
+        <td height="30" bgcolor="#FFFFFF"><input type="button" value="重置密码" class="blue_btn" onclick="showDiv();"/> </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

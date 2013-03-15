@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>WMW首页</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/xxs/xxs.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+</head>
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+<div class="middle">
+	<div class="m_site"><a href="http://zuoye.wmw.cn/" target="__blank;"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_msite.gif" width="583" height="80" /></a></div>
+	<div class="m_gg">
+		<div class="m_ggl">
+			<div class='m_ggl_title'><div class='wordwrap' style="word-break:break-all">{$news_title}</div></div>
+			<div class='m_ggl_content'><div class='wordwrap' style="word-break:break-all">{$news_content}</div></div>
+			<div class='m_ggl_time'>{$add_date}</div>
+			<div class='m_ggl_label'>.....<a href='/Homeclass/Class/Announcement/class_code/{$class_code}'>历史公告</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$add_account_name}</div>
+		</div>
+		<div class="m_ggr">
+			<h2><i class="gg"></i>班级作业</h2>
+			<div class="m_ggrt">
+				<ul>
+				{if !empty($homeworklist)}
+				{foreach from=$homeworklist item=homework}
+					<li><a href='/Homeclass/Class/hoemworkview/class_code/{$class_code}/workid/{$homework.news_id}'>{$homework.subject_name}：{$homework.expiration_date}&nbsp;交</a></li>
+				{/foreach}
+				{/if}
+				</ul>
+				<ul><li><a href='/Homeclass/Class/showStudentwork/class_code/{$class_code}'>...更多作业</a></li></ul>
+
+			</div>
+		</div>
+	</div>
+	<!--m_gg end-->
+
+
+
+<div class="m_bjdt">
+	<h2>班级动态</h2>
+	<span class='blank20'></span>
+	<div class='input_msgK'>
+		<div class='input_msgK_ctrl'><textarea id="msgcontent" name='msgcontent' class='editTextarea' onfocus="upLimit('set');" onblur="upLimit('del');"></textarea></div>
+		<div class="funBox">
+			<div class="insertFun">
+				<div id="showface" style="display:none;"></div>
+				<div class="insertFace"><span class="ico_face"></span><a class="fun_txt" href="#" title="表情" onclick="return faceList();">表情</a></div>
+				
+				<div class="uploadPic">
+					<input type="hidden" name="pic" id="pic" value="" />  
+					<input type="hidden" name="mid" id="mid" value="" />
+					<span class="ico_pic"></span><a href="#" class="fun_txt" title="照片" onclick="return photoUpload();">照片</a>
+					<span class="loading" style="display:none;">上传中</span>
+					<span class="filename" style="display:none;"></span><img class="close" src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/close.jpg" alt="删除" style="display:none;" />
+				</div>
+			</div>
+
+			<div class="sendFun">
+				<INPUT class="sendBtn btnHasStr" title="快捷键 Ctrl+Enter" tabIndex=2 onclick="msgSend('sTalkBJ');" value="发表说说" type=button>
+				<span class="countTxt">还能输入<em>140</em>字</span>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div id='content'></div>
+	{if !empty($Talk_ContentList)}
+		{foreach from=$Talk_ContentList item=val}
+		<div class="m_message">
+			<div class="m_message_l">
+				<a href='/Homeuser/Index/spacehome/spaceid/{$val.client_account}' title='访问Ta的空间' target='_blank'><img src="{$val.client_headimg_url}" width="60" height="60" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a> 
+			</div>
+			<div class="m_message_r">
+				<h3 style="padding-left:10px;"><strong>
+				{$val.client_name}<br/>
+				{$val.feed_title}：<br/>{if $val.feed_url != ''}<a href="{$val.feed_url}">{/if}<div class='wordwrap' style="word-break:break-all">{$val.feed_name}</div>{if $val.feed_url != ''}</a>{/if}
+				</strong>
+				</h3>
+				<div class="m_message_rt">
+				<p>
+					{$val.feed_upd_time}
+				</p>
+				</div>
+		
+			</div>
+			<div class="kong"></div>
+		</div>
+		<!--m_message end-->
+		{/foreach}
+
+
+		<div id='idpycontent'></div>
+		<input type='hidden' name='nextLlimit' id='nextLlimit' value='{$nextLlimit}'>
+		<input type='hidden' name='class_code' id='class_code' value='{$class_code}'>
+		<div class="m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlist();">点击加载更多动态</a></div>
+
+	{/if}
+
+
+
+
+</div>
+
+<!--m_bjdt end-->
+
+
+
+
+</div><!--middle end-->
+
+
+<div class="right">
+<div class="rt"><script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/time.js"></script></div>
+<div class="rb">
+<ul>
+<li><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_r1.jpg" width="181" height="66" /></li>
+<li><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_r2.jpg" width="181" height="62" /></li>
+<li><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_r3.jpg" width="181" height="62" /></li>
+<li><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_r4.jpg" width="181" height="62" /></li>
+<li><a href="/View/Template/Public/list_win/list_win.html" target="__blank;"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/index_r5.jpg" width="181" height="62" /></a></li>
+</ul>
+</div>
+</div><!--right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end-->
+
+
+</body>
+</html>

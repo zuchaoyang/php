@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>新增班级信息</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/xzbjxx.js"></script>
+
+{literal}
+<script type="text/javascript">
+	var errInfo=0;//php赋值错误信息
+	switch(errInfo){
+	    case -1:
+	        alert("班级名称太长");
+	        break;
+	    case -2:
+	        alert("系统繁忙");
+	        break;
+	}
+</script>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<form id="form1" action='/Amscontrol/Amsclasslist/saveAdd' method='post'>
+<div id="popDiv1" class="xzkc" style="display:none;">
+     <p class="amstitle"><font>修改班级科目及任课老师</font><a id="popDiv1_cls01" href="javascript:winUpd.close();">关闭</a></p>
+     <p><span>课程名称：</span><select id="popDiv1_course" onchange="winUpd.ajax(this.value);">
+     <option value="-1">--请选择--</option>
+     {foreach from=$subjectInfo item=val key=key}
+         <option value={$key}>{$val}</option>
+     {/foreach} 
+     </select></p>
+     <p><span>任课老师：</span><select id="popDiv1_teacher"><option value="-1">--请选择--</option></select></p>
+     <p><a href="javascript:winUpd.ok();" id="popDiv1_ok" class="amsqd">确定</a><a id="popDiv1_cls02" href="javascript:winUpd.close();" class="amsqx">取消</a></p>
+</div>
+<div id="bg1" class="bg" style="display:none;"><div style="float:left; background:#666666;"></div></div>
+<iframe id='popIframe1' class='popIframe' frameborder='0' ></iframe>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">新增班级信息</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="6" class="bt STYLE1">新增班级信息</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="6">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="70" align="right" bgcolor="#fbf6f7" class="tdpadding">班主任：</td>
+    <td width="70" align="left" bgcolor="#fbf6f7"  class="tdpadding"><select name="headteacher">
+    {foreach from=$teacherInfo item=val key=key}
+      <option value={$key}>{$val.username}</option>
+    {/foreach}
+    </select>    </td>
+    <td width="70" height="30" align="right" bgcolor="#fbf6f7" class="tdpadding">所在年级：</td>
+    <td width="70" align="left" bgcolor="#fbf6f7" class="tdpadding"><select name="gradeid">
+    {foreach from=$gradeList item=gradename key=gradeId}
+      <option value={$gradeId}>{$gradename}</option>
+    {/foreach}
+    </select></td>
+    <td width="70" align="right" bgcolor="#fbf6f7" class="tdpadding">班级名称：</td>
+    <td align="left" bgcolor="#fbf6f7" class="tdpadding">
+        <input type="text" name="className" class="kctx" id="className" onfocus="judgeHtml.focus('className','st');" onblur="judgeHtml.blur('className','st');"/><span id="className_err" style="color:red;size:15px;"></span>
+    </td>
+  </tr>
+    <tr>
+    <td height="0" colspan="6" align="left" bgcolor="#fbf6f7" class="tdpadding"><strong>设置班级科目及任课老师：</strong></td>
+  </tr>
+  <tr>
+    <td height="25" colspan="6" bgcolor="#fbf6f7" style=" padding:0px 10px;"><table width="55%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;">
+      <tr>
+        <td height="30" colspan="5" align="center"><table width="100%" border="0">
+          <tr>
+            <td width="70" align="center">课程设置：</td>
+            <td width="60"><select id="classSel" onchange="ClassSel.ajax(this.value);">
+            <option value="-1">--请选择--</option>
+            {foreach from=$subjectInfo item=val key=key}
+            	<option value={$key}>{$val}</option>
+            {/foreach} 
+            </select></td>
+            <td width="70">任课老师：</td>
+            <td width="70"><select id="teachSel"><option value="-1">--请选择--</option></select></td>
+            <td><a href="javascript:classTable.add();" id="addCourseDut" class="amsqx" style="float:left; ">添加</a> </td>
+          </tr>
+        </table></td>
+        </tr>
+      <tr>
+        <td height="30" align="center"><strong>科目</strong></td>
+          <td height="30" align="center"><strong>任课老师</strong></td>
+          <td height="30" colspan="3" align="center"><strong>操作</strong></td>
+        </tr>
+      <tbody id="pageCourseTbody">
+            
+      </tbody>
+      <tfoot id="pageCourseTfoot">
+        <tr><td colspan="5" height="30" align="center">请添加学科</td></tr>
+      </tfoot>
+    </table>
+    <input type="hidden" name='teacherinfo' id="json_input" value=""/>
+        <!-- php页面传值用的 -->
+    <input type="hidden" name='schoolid' id="schoolid" value="{$schoolid}"/>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" colspan="6" align="left" bgcolor="#fbf6f7" class="tdpadding" ><a href="javascript:pageSubmit();"  class="amsqd" style="margin-right:25px;">保存班级信息</a></td>
+  </tr>
+</table>
+</body>
+</form>
+</html>

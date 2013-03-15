@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>{if $product_id == 1}同步资源{elseif  $product_id == 2}精品网校{elseif  $product_id == 3}精品资源{/if}</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<script type="text/javascript">
+    function show(x){
+	    if(x==1){document.getElementById("koko").style.display="block"}
+		if(x==2){document.getElementById("koko").style.display="none"}
+		if(x==3){document.getElementById("tcc1").style.display="block"}
+		if(x==4){document.getElementById("tcc1").style.display="none"}
+	}
+
+	function commit_up(){
+		$("#search_up").submit();
+	}
+
+	function commit_next(){
+		$("#search_next").submit();
+	}
+
+    $(function (){
+		$("#search").click(function (){
+			if(!$("#search_val").val()) {
+				alert("请输入您要搜索的标题！");
+				return false;
+			}else{
+				var myform = $("#searchform"); 
+				myform.submit();
+			}
+		});
+	})
+	
+	var p_a={
+		show:function(id){
+			var objA = document.getElementById(id+"_a");
+			var objDiv = document.getElementById(id);
+			objDiv.style.top = objA.offsetTop - 1  + "px";
+			objDiv.style.left = objA.offsetLeft-472 + "px";
+			objA.className = "zycenter_xq_a";
+			objDiv.style.display = "block";
+		},hide:function(id){
+			var objA = document.getElementById(id+"_a");
+			var objDiv = document.getElementById(id);
+			objA.className = "";
+			objDiv.style.display = "none";
+		}
+	};
+
+    function shownav(id){
+		if("" == id) {
+			var id_num = 0;
+		}else{
+			var id_num = id;
+		}	
+		$("#column_"+id_num).addClass("sylm");
+	}
+
+	$(function(){
+		$("#page_submit").click(function(){
+			var val = $("#to_page").val() - 0;
+			var total_page = $("#total_page").val() - 0;
+			if(!/^\d+$/.test(val)) {
+				alert("跳转页数必须是数字！");
+			}else if( 0 > val || val > total_page){
+				alert("范围不合法！");
+			}else{
+				$("#page_form").submit();
+				$("#to_page").attr('disabled',false);
+			}
+		});
+	});
+</script>
+{/literal}
+</head>
+
+<body>
+<input type="hidden" id="total_page" value="{$totalpage}"/>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+  <div class="cotent">
+<div class="re_left">
+    {insert name="account_left" class_code = $class_code}
+</div>
+
+    <div class="re_right">
+      <p class="re_top_left"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/tb1.gif" width="31" height="31" />{if $product_id == 1}<a href="/Sns/Resource/Resource/synchroresource">同步资源</a>{elseif  $product_id == 2}<a href="/Sns/Resource/Resource/qualityschool">精品网校</a>{elseif  $product_id == 3}<a href="/Sns/Resource/Resource/qualityresource">精品资源</a>{/if}</p>
+      <form id="searchform" method="post" action="/Sns/Resource/Resource/searchresource">
+      <input type="hidden" name="product_id" value="{$product_id}"></input>
+      <p class="re_top_right"><input type="text" id="search_val" name="resource_name" value="{$resource_name}" class="text" />
+
+      <input type="button" id="search" class="search" />
+      </p></form>
+      <div class="clean" style="height:10px;"></div>
+      <!--main-->
+      <!--main end-->
+      <!--koowleadge_point-->
+      <!--koowleadge_point end-->
+      <!--column-->
+      <div class="column">
+        <!-- <p class="subnav">
+	        <a href="/Resource/Showresource/synchroresource/screening/{$attr_flag.product_id}_{$attr_flag.grade_id}_{$attr_flag.subject_id}_{$attr_flag.version_id}_{$attr_flag.chapter_id}_{$attr_flag.section_id}_{$attr_flag.attr_id}" id="column_0">所有栏目</a>
+	        {foreach from=$column_type item=val}
+	        	<a href="/Resource/Showresource/getresourceByName/column_type/{$val.attr_id}"  id="column_1">{$val.attr_name}</a>
+	        {/foreach}
+        </p> 
+        <form id="column_type" action="#" method="post">
+	     	<input type="hidden" name="column_type" value="{$column_type}"/>
+	     	<input type="hidden" name="resource_name" value="{$resource_name}"/>
+	     	<input type="hidden" name="product_id" value="{$product_id}"/>
+	    </form>-->
+        <p class="zytop"></p>
+        <div class="zycenter">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          {if !empty($resource_info)}
+              <tr class="title">
+                <td>标题</td>
+                <td>年级</td>
+                <td>科目</td>
+                <td>版本</td>
+                {if $product_id == 1}
+                <td>详情</td>
+                {/if}
+                <td>操作</td>
+              </tr>
+              {foreach from=$resource_info item=val}
+	              <tr>
+	                <td height="46" width="320px;" style="word-break: break-all; text-align:left;"><span style="color:#eb0b4b; font-weight:bold;">[{$val.file_type_name}]</span>&nbsp;{$val.short_title}</td>
+	                <td>{$val.grade_name}</td>
+	                <td>{$val.subject_name}</td>
+	                <td>{$val.version_name}</td>
+	                {if $product_id == 1}
+	                <td class="xq"><a href="#" id="tcc{$val.resource_id}_a" onmouseover="p_a.show('tcc'+{$val.resource_id})" onmouseout="p_a.hide('tcc'+{$val.resource_id})">详情</a>
+	                </td>
+	                <div class="details" id="tcc{$val.resource_id}">
+	                     <p class="tcc_font" ><span>[{$val.file_type_name}]</span>&nbsp;{$val.short_title}<br />
+	                        <span>[年级]</span>&nbsp;{$val.grade_name}<br />
+	                        <span>[科目]</span>&nbsp;{$val.subject_name}<br />
+	                        <span>[版本]</span>&nbsp;{$val.version_name}<br />
+	                        <span>[章]</span>&nbsp;{$val.chapter_name}<br />
+	                        <span>[节]</span>&nbsp;{$val.section_name}<br />
+	                        {if !empty($val.description)}
+	                        <span>[资源介绍]</span>&nbsp;{$val.description} <br />
+	                        {/if}                    </p>
+	                        {if !empty($val.thumb_img)}
+	                        <p class="tcc_img"><img src="{$val.thumb_img}" width="110" height="84"  /> </p>
+	                        {/if}
+	                        <div class="clean"></div>
+	                   </div>
+	                   
+                   </div>
+	                   {/if}
+	                <td><a href="{$val.file_path}" target="_blank" class="blue-btn">{$val.show_btn}</a></td>
+	              </tr>
+	              {/foreach}
+	              
+              {else}
+              	<tr class="title">
+              		{if $product_id == 1}
+                		<td class="title" height="46" colspan="6">没有符合条件的资源</td>
+                	{else}
+                		<td class="title" height="46" colspan="5">没有符合条件的资源</td>
+                	{/if}
+              	</tr>
+              {/if}
+          </table>
+         
+        </div>
+        <p class="zybottom"></p>
+      </div>
+      
+      <!--column end-->
+      {if !empty($resource_info)}
+       <div class="fenye">
+       	<p class="dangqian">
+                		当前{$page}/{$totalpage}页
+					
+                	{if 1 == $page}
+                		上一页
+                	{else}
+                		<a href="javascript:; javascript:commit_up();">上一页</a>
+                	{/if}
+                	&nbsp;&nbsp;&nbsp;&nbsp;
+                	{if 'true' == $is_end_page}
+                		下一页
+                	{else}
+                		<a href="javascript:; javascript:commit_next();">下一页</a>
+                	{/if}</p>
+                	
+                	<form id="search_up" action="/Sns/Resource/Resource/searchresource" method="post">
+                				<input type="hidden" name="page" value="{$page-1}"/>
+                				<input type="hidden" name="resource_name" value="{$resource_name}"/>
+                				<input type="hidden" name="product_id" value="{$product_id}"/>
+                			</form>
+                			<form id="search_next" action="/Sns/Resource/Resource/searchresource" method="post">
+                				<input type="hidden" name="page" value="{$page+1}"/>
+                				<input type="hidden" name="resource_name" value="{$resource_name}"/>
+                				<input type="hidden" name="product_id" value="{$product_id}"/>
+                			</form>
+                			
+                		<form  id="page_form" action="/Sns/Resource/Resource/searchresource" method="post">
+                				<input type="hidden" name="resource_name" value="{$resource_name}"/>
+                				<input type="hidden" name="product_id" value="{$product_id}"/>
+		                		<input type="text" id="to_page" name="page" class="fenye_text"/>
+		                		<input type="button" id="page_submit" value="跳转" class="fenye_btn"/>
+                		</form>
+                		{if !empty($totalpage)}<span style="padding:4px 0px 0px 30px;">总记录：{$totalrow}</span>{/if}
+                </div>
+                {/if}
+    </div>
+    <div class="clean"></div>
+  </div>
+{include file="Public/footer.html"}
+</div>
+</div>
+</body>
+</html>

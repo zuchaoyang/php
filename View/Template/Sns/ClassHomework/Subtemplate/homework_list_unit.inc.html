@@ -1,0 +1,130 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/ext/homework_list_unit.js"></script>
+<!-- 老师 -->
+<div id="clone_teacher" class="work_main" style="display:none;">
+  <dl>
+    <dd id="subject_name"></dd>
+  </dl>
+  <div class="work_main_right">
+    <p>
+      <span id="end_time" class="pr10">交作业日期：%s</span>
+      <span id="status" class="pr20">状态：%s</span>
+      <span id="accepters" class="pr30">接收人：%s<a href="javascript:;"><span class="icon_pic01 show_receipt_btn_selector"></span></a></span>
+      <span class="pr40">查看作业详情<a class="show_detail_a_selector" href="javascript:;"><span class="icon_up"></span></a></span>
+      <span class="pl30">
+      	<a class="delete_a_selector" href="javascript:;">删除</a>
+      </span>  
+    <div class="clear"></div>
+    </p>
+    <div id="homework_detail"></div>
+    <p class="listmain_bottom">
+    
+      <span id="sended_img" class="list_pr10"><a><span class="icon_email"></span></a></span>
+      <span id="sended_des" class="list_pl20 f_lightgray">已发短信</span>
+      
+      <span id="send_img" class="list_pr10"><a><span class="icon_send"></span></a></span>
+      <span id="send_des" class="list_pl20">
+      	<a class="f_lightgray send_msg_a_selector" href="javascript:;">发送短信</a>
+      </span>
+      
+      <span id="add_time" class="f_lightgray">发布时间：%s</span>
+      <span id="client_name" class="pl30 f_lightgray">发布人：%s</span>
+      <div class="clear"></div>          
+    </p>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<!-- 学生 -->
+<div id="clone_student" class="work_main" style="display:none;">
+	<dl>
+	  <dd>语文</dd>
+	</dl>
+	<div class="work_main_right">
+	  <p>
+	    <span id="end_time" class="pr10">交作业日期：%s</span>
+	    <span id="status" class="pr20">状态：%s</span>
+	    <span class="pr40">查看作业详情<a class="show_detail_a_selector" href="javascript:;"><span class="icon_up"></span></a></span>
+	    <a href="javascript:;" title="">
+	       <span class="btn_left"></span>
+	       <span class="btn_right i_know_btn_selector">老师，我知道了</span>
+	    </a>
+	  <div class="clear"></div>          
+	  </p>
+	  <div id="homework_detail"></div>
+	  <p class="listmain_bottom">
+	    <span id="add_time" class="f_lightgray">发布时间：%s</span>
+	    <span id="client_name" class="pl30 f_lightgray">发布人：%s</span>  
+	  <div class="clear"></div>          
+	  </p>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div id="clone_family" class="work_main" style="display:none;">
+  <dl>
+    <dd>语文</dd>
+  </dl>
+  <div class="work_main_right">
+    <p>
+      <span id="end_time" class="pr10">交作业日期：%s</span>
+      <span id="status" class="pr20">状态：%s</span>
+      <span class="pr40">查看作业详情<a class="show_detail_a_selector" href="javascript:;"><span class="icon_up"></span></a></span>
+    <div class="clear"></div>          
+    </p>
+    <div id="homework_detail"></div>
+    <p class="listmain_bottom">
+      <span id="add_time" class="f_lightgray">发布时间：%s</span>
+      <span id="client_name" class="pl30 f_lightgray">发布人：%s</span>  
+    <div class="clear"></div>          
+    </p>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<!--tcc star-->
+<!--作业内容弹出层-->
+<div id="show_homework" class="tcc_work_main" style="display:none;">
+  <h1>作业内容</h1>
+  <p style="overflow:auto;">
+    <span id="show_homework_content"></span>
+    <a id='downloadfile' href="javascript:;">
+    	<span id="downfile"></span>
+    </a>
+  </p>
+  <div class="clear"></div>
+</div>
+
+<!--提示信息弹出层-->
+<div id="show_delete_div" class="tcc_msg" style="display:none;">
+  <p class="tcc_msg_top"></p>
+  <div class="tcc_msg_center">
+    <span class="icon_question"></span>&nbsp;<span class="f12">作业删除后将不能恢复了，确定删除该作业吗？</span>
+    <p>
+	    <input id="sure_btn" type="button" class="qd_btn">
+	    <input id="cancel_btn" type="button" class="qx_btn" value="取消">
+    </p>
+  </div>
+  <p class="tcc_msg_bottom"></p>
+</div>
+
+<!--查阅回执名单弹出层-->
+<div id="homework_reply" class="tcc_refer_to" style="display:none;">
+	<input type="hidden" value="0" id="is_hidden_id" />
+  <p class="refer_to_top"></p>
+  <div class="refer_to_main" id="accpect_content">
+    <h1>查阅回执名单</h1>
+    <h2 class="f14 f_green" >已回执人（<span id="viewed_num"></span>人）</h2>
+    <div class="refer_to_people" id="viewed">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      
+      </table>
+    </div>
+    <h2 class="f14 f_orange" >未回执人（<span id="no_view_num"></span>人）</h2>
+    <div class="refer_to_people" id="no_view">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        
+      </table>
+    </div>
+  </div>
+</div>
+<!--tcc end-->

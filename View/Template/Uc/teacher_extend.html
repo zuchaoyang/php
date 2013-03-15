@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>老师-扩展资料</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/teacher_extend.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/teacher_extend.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+        {include file="Uc/uc_left.html"}
+        
+      <form method="post" action="#" id="teacher_ext">
+       <div class="main_right">
+         <h4>我的任课</h4>
+           <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab">
+              <tr>
+                <th>科目：</th>
+                <td><span class="teach_km">{if $userinfo.subject_names == ''}暂不任课{else}{$userinfo.subject_names}{/if}</span></td>
+              </tr>
+              <tr>
+                <th>班级：</th>
+                <td><span class="teach_km">{$userinfo.class_names}</span></td>
+              </tr>
+            </table>
+         <h4>我的学校</h4>
+         
+          <table border="0" cellspacing="0" cellpadding="0" class="stu_extend_tab">
+              <tr>
+                <th>所在学校：</th>
+                <td>{$userinfo.school_name}</td>
+              </tr>
+              <tr>
+                <th>执教年月：</th>
+                <td><input type="text" class="text" value="{$userinfo.teach_time}" name="teach_time" {literal} onfocus="WdatePicker({skin:'default',dateFmt:'yyyy-MM'})" {/literal}/></td>
+              </tr>
+              <tr>
+                <th>职称：</th>
+                <td>
+                <select name="client_title">
+                {foreach from=$client_title key=id item=title}
+                	<option value="{$id}"  {if $id==$userinfo.client_title}selected="selected"{/if}>{$title}</option>
+                {/foreach}
+                </select>
+                </td>
+              </tr>
+              <tr>
+                <th>职务：</th>
+                <td>
+                <select name="client_job">
+                {foreach from=$teacherjob key=id item=job}
+                	<option value="{$id}"  {if $id==$userinfo.client_job}selected="selected"{/if}>{$job}</option>
+                {/foreach}
+                </select>
+                </td>
+              </tr>
+            </table>
+         <p class="save"><input type="button" value="都完善好了，保存" class="lightblue_btn" id="save"/></p>
+       </div>
+       </form>
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

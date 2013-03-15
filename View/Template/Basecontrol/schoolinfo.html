@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>学校基本信息</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/js/page/schoolscan.js"></script>
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">申请管理-学校基本信息</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">您当前所在的位置：{$schoolInfo.school_name}</td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding-left:10px;" class="line">
+      <a href="/Basecontrol/Applyschool/getSchoolInfo/sid/{$schoolInfo.school_id}" class="a_bj1">学校基本信息</a>
+      <a {if $flag != 'no'}href="/Basecontrol/Applyschool/resetPwd/sid/{$schoolInfo.school_id}"{else}style="cursor:default;color:#666666;text-decoration:none;"{/if}class="a_bj2">管理员账号管理</a>
+      <a {if $flag != 'no'}href="/Basecontrol/Applyschool/phonebinding/sid/{$schoolInfo.school_id}"{else}style="cursor:default;color:#666666;text-decoration:none;"{/if}class="a_bj2">手机号绑定</a>
+      <a {if $flag != 'no'}href="/Basecontrol/Applyschool/schooltj/sid/{$schoolInfo.school_id}"{else}style="cursor:default;color:#666666;text-decoration:none;"{/if}class="a_bj2">学校用户统计</a>    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="60%" border="0" align="left" cellpadding="0" cellspacing="1" class="xxjbxx_tab">
+  <tr>
+    <th colspan="4">学校基本资料：</th>
+    </tr>
+  <tr>
+    <td width="15%">学校名称：</td>
+    <td width="45%">{$schoolInfo.school_name}</td>
+    <td>扫描件：</td>
+    <td width="25%"><a href="#" onclick="javascript:showScanPic('{$schoolInfo.school_scan}');">查看</a></td>
+  </tr>
+  <tr>
+    <td>学校地址：</td>
+    <td>{$schoolInfo.school_address}</td>
+    <td>提交日期：</td>
+    <td>{$schoolInfo.add_date}</td>
+  </tr>
+  <tr>
+    <td>邮政编码：</td>
+    <td colspan="3">{$schoolInfo.post_code}</td>
+    </tr>
+  <tr>
+    <td>建校年月：</td>
+    <td colspan="3">{$schoolInfo.school_create_date}</td>
+    </tr>
+  <tr>
+    <td>学校类别：</td>
+    <td colspan="3">{$schoolInfo.school_type}</td>
+  </tr>
+  <tr>
+    <td>学制类型：</td>
+    <td colspan="3">{$schoolInfo.grade_type}</td>
+  </tr>
+  <tr>
+    <td>资源优势：</td>
+    <td colspan="3">{$schoolInfo.resource_advantage}</td>
+    </tr>
+  <tr>
+    <td>校长：</td>
+    <td colspan="3">{$schoolInfo.school_master}</td>
+    </tr>
+  <tr>
+    <td>联系方式：</td>
+    <td colspan="3">{$schoolInfo.contact_person}</td>
+    </tr>
+  <tr>
+    <th colspan="4">师生情况：</th>
+    </tr>
+  <tr>
+    <td>班级数量：</td>
+    <td colspan="3">{$schoolInfo.class_num}</td>
+    </tr>
+  <tr>
+    <td>教师人数：</td>
+    <td colspan="3">{$schoolInfo.teacher_num}</td>
+    </tr>
+  <tr>
+    <td>学生人数：</td>
+    <td colspan="3">{$schoolInfo.student_num}</td>
+    </tr>
+  <tr>
+    <th colspan="4">学校网络负责人：</th>
+    </tr>
+  <tr>
+    <td>姓名：</td>
+    <td colspan="3">{$schoolInfo.net_manager}</td>
+    </tr>
+  <tr>
+    <td>联系方式：</td>
+    <td colspan="3">{$schoolInfo.net_manager_phone}</td>
+    </tr>
+  <tr>
+    <td>邮箱设置：</td>
+    <td colspan="3">{$schoolInfo.net_manager_email}</td>
+    </tr>
+  <tr>
+    <th colspan="4">校园门户网站申请：</th>
+    </tr>
+  <tr>
+    <td>原校园网站：</td>
+    <td colspan="3">{$schoolInfo.school_url_old}</td>
+    </tr>
+  <tr>
+    <td>新网站申请：</td>
+    <td colspan="3">{$schoolInfo.school_url_new}</td>
+    </tr>
+</table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

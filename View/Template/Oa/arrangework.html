@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>布置工作-已发布的工作</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+</head>
+
+<body>
+<!--top-->
+	<div class="top_tip_bg">
+    	<div class="top_tip">
+            <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/wmw_logo.gif" />
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">校园门户</a></li>
+                <li><a href="#">雏鹰争章</a></li>
+                <li><a href="#">乐优导航</a></li>
+            </ul>
+            <div class="message_other">
+            	<a href="#" class="grzl">个人资料</a>
+                <span>欢迎您！ 王大福 校长</span>
+                <a href="#" class="exit">退出</a>            
+            </div>
+        </div>
+    </div>
+<!--top end-->
+
+<!--logo-->
+<div class="logo_top"> 
+	<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/logo.gif"  class="pt_logo"/>
+    <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/sch_logo.gif"  class="sch_logo"/>
+</div>
+<!--logo end-->
+
+<!--main-->    
+<div class="index_mian2">
+	<!--left-->
+<div class="index_left">
+	<!--日历-->
+    <table cellpadding="0" cellspacing="0" class="rili">
+    	<tr>
+        	<td class="xingqi">周一</td>
+            <td rowspan="2" class="nyr">2012年5月5日</td>
+        </tr>
+        <tr>
+        	<td class="riqi">05</td>
+        </tr>
+    </table>
+    <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/photo.gif" class="photo" />
+    <a href="#" class="bm_name">教务处</a>
+    <div class="clear"></div>
+    <a href="#" class="xscy">显示部门成员</a>
+    <div class="clear"></div>
+    
+    <!--导航列表-->
+    <ul class="nav_list">
+    	<li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon01.gif" />日程安排</li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon02.gif" /><a href="/Oa/Expireremind/arrangework/school_id/393">布置工作</a></li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon03.gif" /><a href="/Oa/Expireremind/getTaskInfosByType/type/1/school_id/393">局里工作</a></li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon04.gif" /><a href="/Oa/Expireremind/getTaskInfosByType/type/2/school_id/393">学校工作</a></li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon05.gif" /><a href="/Oa/Expireremind/getTaskInfosByType/type/3/school_id/393">重要通知</a></li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon06.gif" /><a href="/Oa/Expireremind/getTaskInfosByType/type/4/school_id/393">校务公开</a></li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon07.gif" />班级导航</li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon08.gif" />部门导航</li>
+        <li> <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon09.gif" />标签分类</li>
+    </ul>
+</div>
+    <!--left end-->
+    
+    <!--you-->
+      <div class="you">
+        <!--button-->
+        <ul>
+          <a href="#" class="a_green">发布新工作</a><a href="#" class="a_limegreen">已发布的工作</a>
+        </ul>
+        <!--button end-->
+        <h4 class="border_line">已发布的工作</h4>
+        <p class="a_tab"><a href="/Oa/Expireremind/arrangework/school_id/{$school_id}" class="a_blue2">全部工作</a><a href="/Oa/Expireremind/arrangework/type/1/school_id/{$school_id}">局里工作</a><a href="/Oa/Expireremind/arrangework/type/2/school_id/{$school_id}">学校工作</a><a href="/Oa/Expireremind/arrangework/type/3/school_id/{$school_id}">重要通知</a><a href="/Oa/Expireremind/arrangework/type/4/school_id/{$school_id}">校务公开</a></p>
+        <!--yfb_main-->
+      {if $TaskInfos != ''}
+	        {foreach from=$TaskInfos item=val}
+	        <div class="yfb_main">
+	          <h4><span class="h4_zuo">{$val.task_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+	          <p >
+	            	{$val.task_content}
+	          </p>
+	          <h4><span class="h4_zuo2"><a href="/Oa/Expireremind/arrangeworkdetail/task_id/{$val.task_id}" class="a_green2">查看详情</a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a><a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif" /></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif" /></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a></span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+	        </div>
+	        {/foreach}
+	        <!--yfb_main end-->
+	        <p class="fenye">
+	        <a href="#">当前第{$page}页</a>
+	        {if $page <= 1}
+	        	<a href="#">上一页</a>
+	        {else}
+	        	{if $type != ''}
+	        		<a href="/Oa/Expireremind/arrangework/page/{$page-1}/type/{$type}/school_id/{$school_id}">上一页</a>
+	        	{else}
+	        		<a href="/Oa/Expireremind/arrangework/page/{$page-1}">上一页</a>
+	        	{/if}
+	        {/if}
+	        
+	        {if $flag == true}
+	        	<a href="#">下一页</a>
+	        {else}
+	        	{if $type != ''}
+	        		<a href="/Oa/Expireremind/arrangework/page/{$page+1}/type/{$type}school_id/{$school_id}">下一页</a>
+	        	{else}
+	        		<a href="/Oa/Expireremind/arrangework/page/{$page+1}">下一页</a>
+	        	{/if}
+	        {/if}
+	        </p>
+	      </div>
+     {else}
+      <div class="yfb_main" align="center">
+     	<p >暂无数据</p>
+      </div>
+     {/if}
+    <!--you end-->   
+  
+   <div class="clear"></div> 
+ </div>  
+ 
+ <!--main end-->   
+
+</body>
+</html>

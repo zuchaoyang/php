@@ -1,0 +1,52 @@
+<!--list_comment_people star-->
+<div id="comment_1st_unit" class="list_comment_people comment_1st_unit_selector" style="display:none;">
+  {literal}
+  <dl>
+    <dt><a href="#" title={comment.client_name}><img src="{comment.client_head_img}"></a></dt>
+  </dl>
+  <div class="list_comment_main">
+    <p >
+     <a href="javascript:;" class="mr10" >{comment.client_name}</a>{comment.content}<br />
+     <span >{comment.add_date}</span>
+     <a href="javascript:;" class=" reply_1st_selector" >回复</a>
+     &nbsp;&nbsp;
+     <span id="is_edit_del">
+     <a href="javascript:;" class=" del_1st_comment">删除</a>
+     </span>
+     <textarea class="photo_comments" style="display:none;width:300px;height:30px;"></textarea>
+    </p>
+    <div id="comment_2nd_list_div">
+    
+    </div>
+  </div>
+  <input type="hidden" name="comment_id" value="{comment.comment_id}"/>
+  <input type="hidden" name="photo_id" value="{comment.photo_id}"/>
+  <div class="clear"></div>
+  {/literal}
+</div>
+<!--list_comment_people end-->
+
+<!--list_people star-->
+<div id="comment_2nd_unit" class="list_people comment_2nd_unit_selector" style="display:none;">
+  {literal}
+  <dl>
+    <dt><img src="{child_comment.client_head_img}"></dt>
+  </dl>
+  <div class="people_comment" id="people_comment">
+   <p>
+     <a href="javascript:;" class="mr10">{child_comment.client_name}</a>
+     {child_comment.content}
+     <br />
+     <span>{child_comment.add_date}</span>
+     <span id="is_edit_del">
+     	<a href="javascript:;" class=" del_2nd_comment">删除</a>
+     </span>
+   </p>
+ </div>
+ <div class="clear"></div>
+ <input type="hidden" name="child_comment_id" value="{child_comment.comment_id}"/>
+ <input type="hidden" name="child_photo_id" value="{child_comment.photo_id}"/>
+ 
+ {/literal}
+</div>
+<!--list_people end-->

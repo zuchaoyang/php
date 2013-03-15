@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>成绩查看</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.alerts.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	function delpyfunction(intid){
+		art.dialog.confirm('你确定要删除这条评语吗？', function () {
+			
+			exURL = "/Homeclass/Myclass/mypydelete/pyid/"+intid + '?' +  Date.parse(new Date());
+			$.ajax({
+				type: "GET",
+				url: exURL,
+				success: function(msg){
+					if(msg=="suucess"){
+						art.dialog.tips('评语已被删除');
+					}else{
+						art.dialog.tips('执行错误、请重试');
+					}
+			    }
+			});
+
+			var win = art.dialog.open.origin;//来源页面
+			// 如果父页面重载或者关闭其子对话框全部会关闭
+			win.location.reload();
+
+			
+		}, function () {
+			art.dialog.tips('操作已被取消');
+		});
+	
+	}
+	
+	function exam_score_daw(objid){
+		//var val = $("#py_id_"+objid).val();
+		//art.dialog.data('test', val);
+		art.dialog.open('/Homeclass/Class/examscoredaw/examid/'+objid);
+	}
+
+</script>
+{/literal}
+</head>
+
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级成绩</span></div>
+
+<div class="class_work2">
+	<ul>
+		<li id="work1"><a href="/Homeclass/Class/cjtmanage/class_code/{$class_code}" class="cjtmenu1">成绩管理</a></li>
+		<li id="work2"><a href="/Homeclass/Class/cjtpublish/class_code/{$class_code}" class="cjtmenu2">成绩发布</a></li>
+	</ul>
+</div><!--sub_class_gg end-->
+
+
+<div class="sub_class">
+
+<!--commenm end-->
+
+<div class="commenb">
+<form name="form" action="" method="post">
+<div class="total">
+  <div class="cjt1" id="cjt1">
+    <div class="cj_gk">
+      <table width="760" height="80" border="0" align="center" cellpadding="5" cellspacing="5">
+        <tr>
+          <td align="center">
+		  <span class="tag_title"><b>课程名称</b>：{$subject_name}&nbsp;&nbsp;&nbsp;&nbsp;
+		  <b>考试名称</b>：{$examinfolist.exam_name}&nbsp;&nbsp;&nbsp;&nbsp;
+		  <b>考试时间</b>：{$examinfolist.exam_date}</span>	  &nbsp; &nbsp; &nbsp;
+		  <input type="button" name="Submit" value="返回" class="inputbg2" onclick="window.location='/Homeclass/Class/cjtmanage/class_code/{$class_code}'" /></td>
+        </tr>
+      </table>
+      <table width="760" border="1" align="center" cellspacing="0" bordercolor="#d8e4f0" style="border-collapse:collapse;" >
+  <tr bgcolor="#E0DBFB">
+    <td align="center"><strong>参加人数</strong></td>
+    <td align="center"><strong>满分</strong></td>
+    <td height="30" align="center"><strong>平均分</strong></td>
+    <td height="30" align="center"><strong>优秀率/人数</strong></td>
+    <td height="30" align="center"><strong>及格率/人数</strong></td>
+    <td height="30" align="center"><strong>最高分</strong></td>
+    <td height="30" align="center"><strong>最低分</strong></td>
+  </tr>
+  <tr>
+    <td align="center">{$statlist.ks_totalnums}</td>
+    <td align="center">{$examinfolist.exam_well}</td>
+    <td height="30" align="center">{$statlist.ave_score}</td>
+    <td height="30" align="center">{$statlist.yx_rate}%&nbsp;<strong>/</strong>&nbsp;{$statlist.yx_nums}人</td>
+    <td height="30" align="center">{$statlist.jg_rate}%&nbsp;<strong>/</strong>&nbsp;{$statlist.jg_nums}人</td>
+    <td height="30" align="center">{$statlist.hscore}</td>
+    <td height="30" align="center">{$statlist.lscore}</td>
+  </tr>
+</table>
+
+    </div>
+    <table width="760" height="80" border="0" align="center" cellpadding="5" cellspacing="5">
+      <tr>
+        <td align="right">
+        {if empty($is_show_daw)}
+        	<input name="Input" type="button"  value="分段统计" class="inputbg21"/>
+        {else}
+        	<input name="Input" type="button"  value="分段统计" class="inputbg2" onclick="javascript:exam_score_daw('{$exam_id}');"/>
+        {/if}
+          
+        </td>
+      </tr>
+    </table>
+	<form name="f1" id="f1" action="" method="post">
+    <table width="760" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#d8e4f0" style=" margin:0px 0px 45px 0px;" id="tblSort" sortCol="-1">
+	<THEAD>
+      <tr>
+
+	<th onClick="sortTable('tblSort',0);" width="85" height="35" align="center" bgcolor="#effdff" style="cursor:pointer">学号↓</th>
+	<th onClick="sortTable('tblSort',1);"  width="80" height="35" align="center" bgcolor="#effdff" style="cursor:pointer">姓名↓</th>
+	<th onClick="sortTable('tblSort',2);" width="60" align="center" bgcolor="#effdff" style="cursor:pointer">性别↓</th>
+	<th onClick="sortTable('tblSort',3,'int');" width="60" height="35" align="center" bgcolor="#effdff" style="cursor:pointer">成绩↓</th>
+	<th onClick="sortTable('tblSort',4);" height="35" align="center" bgcolor="#effdff" style="cursor:pointer">评语↓</th>
+      </tr>
+	  </THEAD> 
+	  <tbody>
+      {foreach from=$studentlist item=examinfo name=shownum}
+	      <tr>
+	        <td width="85" height="30" align="center" bgcolor="#FFFFFF">{$examinfo.num}</td>
+	        <td height="30" align="center" bgcolor="#FFFFFF">{$examinfo.client_name}</td>
+	        <td align="center" bgcolor="#FFFFFF">{$examinfo.client_sex}</td>
+	        <td height="30" align="center" bgcolor="#FFFFFF">
+			{if $examinfo.exam_score==-1}
+				未参加
+			{else}
+				{$examinfo.exam_score}
+			{/if}
+			</td>
+	        <td height="30" bgcolor="#FFFFFF">&nbsp;&nbsp;<div class='wordwrap' style="word-break:break-all;width:480px;">{$examinfo.score_py}</div></td>
+	      </tr>
+      {/foreach}
+	   </tbody>
+    </table>
+	</form>
+    <input type="hidden" value={$class_code} id="class_code"></input>
+  </div>
+
+</div>
+</form>
+{literal}
+<script type="text/javascript">
+	function backtestmanage(){
+		var class_code = document.getElementById('class_code').value;
+		window.location.href="/Homeclass/Class/cjtmanage/class_code/"+class_code;	
+	}
+</script>
+{/literal}
+
+
+</div>
+</div>
+
+<!--commenb end-->
+
+
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+{include file="Public/talkjs.html"}
+{include file="Public/footer.html"}
+
+{literal}
+<script type="text/javascript">
+	var k=0;
+	function sortTable(sTableId,iCol,sDataType)
+	{
+	    var oTable=document.getElementById(sTableId);//获取表格的ID 
+	    var oTbody=oTable.tBodies[0]; //获取表格的tbody
+	    var colDataRows=oTbody.rows; //获取tbody里的所有行的引用
+	
+	    var aTRs=new Array(); //定义aTRs数组用于存放tbody里的行
+	    for(var i=0;i<colDataRows.length;i++)  //依次把所有行放如aTRs数组
+	    {
+	        aTRs.push(colDataRows[i]);
+	    }
+	    /**//***********************************************************************
+	    sortCol属性是额外给table添加的属性，用于作顺反两种顺序排序时的判断，区分
+	    首次排序和后面的有序反转
+	    ************************************************************************/
+	    if(oTable.sortCol==iCol)  //非首次排序
+	    {
+	        aTRs.reverse();
+	    }
+	    else    //首次排序
+	    {
+	        if(k%2==0)  //升序
+	        {
+	            aTRs.sort(generateCompareTRs(iCol,sDataType));
+	        }
+	        else if(k%2==1) //降序
+	        {
+	            aTRs.sort(generateCompareTRs1(iCol,sDataType));
+	        }
+	    }
+	
+	    var oFragment=document.createDocumentFragment();    //创建文档碎片
+	    for(var i=0;i<aTRs.length;i++)   //把排序过的aTRs数组成员依次添加到文档碎片
+	    {
+	        oFragment.appendChild(aTRs[i]);
+	    }
+	    oTbody.appendChild(oFragment);  //把文档碎片添加到tbody,完成排序后的显示更新 
+	    oTable.sortCol=iCol;    //把当前列号赋值给sortCol,以此来区分首次排序和非首次排序,//sortCol的默认值为-1
+	};
+	
+	//比较函数，用于两项之间的排序
+	//升序
+	function generateCompareTRs(iCol,sDataType)
+	{
+	    return   function compareTRs(oTR1,oTR2)
+	    {
+	        var vValue1=convert(oTR1.cells[iCol].firstChild.nodeValue,sDataType);
+	        var vValue2=convert(oTR2.cells[iCol].firstChild.nodeValue,sDataType);
+	        if(vValue1<vValue2)
+	        {
+	            return -1;
+	        }
+	        else if(vValue1>vValue2)
+	        {
+	            return 1;
+	        }
+	        else
+	        {
+	            return 0;
+	        }
+	    };
+	};
+	
+	//降序
+	function generateCompareTRs1(iCol,sDataType)
+	{
+	    return   function compareTRs(oTR1,oTR2)
+	    {
+	        var vValue1=convert(oTR1.cells[iCol].firstChild.nodeValue,sDataType);
+	        var vValue2=convert(oTR2.cells[iCol].firstChild.nodeValue,sDataType);
+	        if(vValue1>vValue2)
+	        {
+	            return -1;
+	        }
+	        else if(vValue1<vValue2)
+	        {
+	            return 1;
+	        }
+	        else
+	        {
+	            return 0;
+	        }
+	    };
+	};
+	
+	//数据类型转换函数
+	function convert(sValue,sDataType)
+	{
+	    switch(sDataType)
+	    {
+	        case "int":return parseInt(sValue);
+	        case "float": return parseFloat(sValue);
+	        case "date":return new Date(Date.parse(sValue));
+	        default:return sValue.toString();
+	    }
+	};
+
+</script>
+{/literal}
+
+</div><!--nav end-->
+</div><!--box end-->
+
+</body>
+</html>

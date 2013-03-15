@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>wms左侧菜单</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+
+{literal}
+<style>
+	body{ background:#f0f8ff;}
+	.left{ width:186px;}
+	.left h4{ margin-bottom:10px;}
+	.main{ width:163px; height:26px; background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/mbg.gif) no-repeat; margin:3px 0px 3px 8px; line-height:26px; vertical-align:middle; padding-left:8px; color:#0067be; font-weight:bold; cursor:pointer;}
+	
+	dl a,dl a:visited{ line-height:24px; color:#0073d5}
+	dl a:hover{ color:#F60}
+	dt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/dticon.gif) no-repeat 22px center; padding-left:32px; line-height:24px;color:#7095b5}
+	dd{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/ddicon.gif) no-repeat 30px center; padding-left:43px;}
+</style>
+
+ <script type="text/javascript">
+	function bodyContent(list){
+		document.forms[0].target="bodyFrame";
+	    document.forms[0].action=list;
+	    document.forms[0].submit();
+	}
+
+</script>
+{/literal}
+
+</head>
+
+<body>
+<form id="leftform"> 
+<div class="left">
+<h4><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/images/lefttop.gif" width="187" height="32" /></h4>
+
+{if $typelist[0].func_type == 'JC'}
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >基础信息</div>
+{elseif $typelist[0].func_type == 'HY'}
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >会员管理</div>
+{elseif $typelist[0].func_type == 'ZZ'}
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >学校班级</div>
+{elseif $typelist[0].func_type == 'HD'}
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >活动管理</div>
+{elseif $typelist[0].func_type == 'YY'}
+<div class="main" onclick="document.getElementById('child1').style.display=(document.getElementById('child1').style.display =='none')?'':'none'" >应用管理</div>
+{/if}
+
+<div id="child1">
+<dl>
+  {foreach from = $typelist item=val}
+    {if $val.super_func_code == 'NOLINK'}
+      <dt>{$val.func_name}</dt>
+    {else}
+      <dd>
+	      <a href="javascript:bodyContent('{$val.func_url}');">{$val.func_name}</a>
+      </dd>
+    {/if}
+  {/foreach}
+ </dl>
+</div>
+</div>
+ </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

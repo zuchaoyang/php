@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>事件列表-日程归档</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+
+
+<!--top-->
+	{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--logo-->
+<!--logo end-->
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+    <ul><a href="/Oa/Index/getScheduleOrTaskByDate/type/1/datestr/{$datestr}{if !empty($month)}/month/{$month}{/if}" {if $type == 1}class="a_green"{else} class="a_limegreen2"{/if} style="text-decoration:none;">工作</a><a href="/Oa/Index/getScheduleOrTaskByDate/type/0/datestr/{$datestr}{if !empty($month)}/month/{$month}{/if}" {if $type == 0}class="a_green"{else} class="a_limegreen2"{/if} style="text-decoration:none;">日程</a></ul>
+    {if !empty($new_list)}
+	    {if $type == ""}
+	    	{foreach from=$new_list item=val}
+			<!--zzy_list-->
+		        <div class="zzy_list">
+		          <h4><span class="h4_zuo3">{$val.schedule_title}</span><span class="h4_you">日程分类：{$val.type_name.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+		          <p style="display:block; clear:both;width:520px;word-wrap:break-word;word-break:break-all;">
+		            	{$val.schedule_message}
+		          </p>
+		          <h4><span class="h4_zuo4"><a href="/Oa/Schedulemanage/showScheduleinfo/schedule_id/{$val.schedule_id}" style="text-decoration:none;" class="a_green2">查看详情</a>{if $val.expiration_time != ""}<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>{/if}{if $val.deadline_hours != 0}<a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a>{/if}</span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+		        </div>
+		     <!--zzy_list end-->
+	     	{/foreach}
+		{else if $type==1}
+			{foreach from=$new_list item=val}
+			<!--zzy_list-->
+		        <div class="zzy_list">
+		          <h4><span class="h4_zuo3">{$val.task_title}</span><span class="h4_you">工作分类：{$val.type_name.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+		          <p style="display:block; clear:both;width:520px;word-wrap:break-word;word-break:break-all;">
+		            	{$val.task_content}
+		          </p>
+		          <h4><span class="h4_zuo4"><a href="/Oa/Task/taskDetail/task_id/{$val.task_id}" style="text-decoration:none;" class="a_green2">查看详情</a>{if !empty($val.expiration_time)}<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" /></a>{/if}{if !empty($val.need_reply)}<a href="#" class="xinfeng"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon12.gif" /></a>{/if}{if $val.need_sms_push != 0}<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon13.gif" /></a>{/if}{if $val.need_sms_remind}<a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a>{/if}{if $val.replied_status == 2}<a href="#" class="font_hong">未回复</a>{/if}{if $val.replied_status == 1}<a href="#" class="font_lan">已回复</a>{/if}</span><span class="h4_you2">发布时间：{$val.add_time}</span></h4>
+		        </div>
+		     <!--zzy_list end-->
+	     	{/foreach}
+		{/if}
+		
+		<table width="45%" border="0" cellspacing="0" cellpadding="0" align="right" class="fenye">
+         <tr>
+         <td>当前第_{$page}_页</td>
+          <td><a href="/Oa/Index/getScheduleOrTaskByDate/page/1/type/{$type+0}/datestr/{$datestr}{if !empty($month)}/month/{$month}{/if}">首页</a></td>
+          <td>{if $page != 1}<a href="/Oa/Index/getScheduleOrTaskByDate/page/{$page-1}/type/{$type+0}/datestr/{$datestr}{if !empty($month)}/month/{$month}{/if}">上一页</a>{else}上一页{/if}</td>
+          <td>
+           {if empty($is_end_page)}<a href="/Oa/Index/getScheduleOrTaskByDate/page/{$page+1}/type/{$type+0}/datestr/{$datestr}{if !empty($month)}/month/{$month}{/if}">下一页</a>{else}已到最后一页{/if} 	
+	     </td>
+         </tr>
+       </table>
+	{else}
+		没有内容....
+	{/if}
+	</div>
+    <!--middle end-->
+    
+    <!--right-->
+{insert name="oa_right" uid=$uid}
+    <!--right end-->
+    
+    
+    
+  <div class="clear"></div>  
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

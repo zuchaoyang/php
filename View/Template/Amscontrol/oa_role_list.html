@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>角色权限管理</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Share_mini.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/page/kcsz.js"></script>
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">集中办公平台设置</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" class="bt STYLE1">集中办公平台设置</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+  <!-- 添加id和方法_2011-08-09_02_star -->
+    <tr>
+    <td height="25" bgcolor="#fbf6f7" style="padding:10px;">
+    	<a href="/Amscontrol/Oarole/roleList" class="amsqd">角色与权限管理</a> 
+        <a href="/Amscontrol/Oarole/schoolLogo" class="amsqd">相关设置</a>
+    </td>
+  </tr>
+  <tr bgcolor="#fbf6f7">
+  	<td>
+    	<div >
+        	<a href="/Amscontrol/Oarole/roleDetail/act_flag/add" class="amsqx_bt01" > 新增角色</a>
+    	</div>
+        <table cellpadding="0" cellspacing="1" class="jsgl">
+        	<tr>
+            	<th>角色名</th>
+                <th>类别</th>
+                <th>操作</th>
+            </tr>
+            {if $roleSystemList!=""}
+            {foreach from=$roleSystemList key=role_id item=info}
+            <tr>
+            	<td>{$info.role_name}</td>
+                <td>系统</td>
+                <td class="font_center"> <a href="/Amscontrol/Oarole/roleDetail/act_flag/justshow/role_id/{$role_id}">查看</a></td>
+            </tr>
+            {/foreach}
+            {/if}
+            {if $roleList != ""}
+            {foreach from=$roleList key=role_id item=info}
+            <tr>
+            	<td>{$info.role_name}</td>
+                <td>自定义</td>
+                <td class="font_center"> <a href="/Amscontrol/Oarole/roleDetail/act_flag/modify/role_id/{$role_id}">修改</a> <a href="/Amscontrol/Oarole/deleteRole/role_id/{$role_id}" onclick="return confirm('确定删除该角色？');">删除</a></td>
+            </tr>
+            {/foreach}
+            {/if}
+        </table>
+    <div class="clear"></div> 
+    </td>
+  
+  </tr>
+
+</table>
+
+</body>
+</html>

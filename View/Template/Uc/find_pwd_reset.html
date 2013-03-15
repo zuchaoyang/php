@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>修改密码</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/find_pwd_reset.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/password_strength/password_strength.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/find_pwd_reset.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="uc_header" }
+<!--top end-->
+
+<!--main-->
+<div class="tip">
+  <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;&nbsp;<span class="font_olive">您正在重置密码...</span></p>
+</div>
+<div class="container">
+<div class="main">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+      <div class="sub_nav">
+        <ul>
+          <span class="sub_nav_first_end">1，输入账号</span>
+          <span class="sub_nav_end">2，选择找回方式</span>
+          <span class="sub_nav_end">3，安全验证</span>
+          <span class="sub_nav_current">4，重置密码</span>
+          <span class="sub_nav_right">5，完成</span>
+        </ul>
+        <div class="clear"></div>
+      </div> 
+      <h4 class="font_cotent">重置密码</h4>
+      <form method="post" action ="/Uc/Findpwd/upPwdByPhoneAndEmail" id="find_modify">
+      <table border="0" cellpadding="0" cellspacing="0" class="find_pwd_tab">
+          <tr>
+            <th class="font_cotent font_huise">输入新密码：</th>
+            <td class="font_red"><input type="password" class="text_long"  name="new_pwd" id="new_pwd" maxlength="20"/><br/>
+            </td>
+            <td>&nbsp;<span id="new_pwdTip"></span></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td>
+	            <p id="level_0" class="pwd_wu"></p>
+				<p id="level_3" class="pwd_qiang display_none"></p>
+				<p id="level_2" class="pwd_zhong display_none"></p>
+				<p id="level_1" class="pwd_ruo display_none"></p>
+			</td>
+          </tr>
+          <tr>
+            <th class="font_cotent font_huise">确认新密码：</th>
+            <td height="40" class="font_gray font_normal"><input type="password" name="re_enter" id="re_enter" class="text_long" maxlength="20"/></td>
+            <td>&nbsp;<span id="re_enterTip"></span></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><input type="hidden" name="tokey" id="tokey" value="{$tokey}"/>
+                <input type="button" name="submit_btn" id="submit_btn" value="提交" class="btn_2_word"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" name="go_back"    id="go_back"    value="返回"   class="btn_2_word" />
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+ 		</form> 
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+
+
+<!--main end-->
+
+<!--footer -->
+{insert name="uc_footer"}
+<!--footer end-->
+
+
+</body>
+</html>
+
+

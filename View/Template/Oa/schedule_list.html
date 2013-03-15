@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>个人日程列表列表</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/css/style.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/js.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/my97datepicker/WdatePicker.js"></script>
+
+</head>
+
+<body>
+
+
+<!--top-->
+{insert name="oa_header" uid=$uid}
+<!--top end-->
+
+<!--main-->    
+<div class="index_mian">
+	<!--left-->
+	{insert name="oa_left" uid=$uid}
+	<!--left end-->
+    
+    <!--middle-->
+<div class="index_middle">
+	<h4 class="middle_title">个人记事 <span>日程安排</span></h4>
+	<!--zzy_list-->
+	{if $schedule_list != ''}
+		{foreach from=$schedule_list item=val}
+	        <div class="zzy_list">
+	          <h4><span class="h4_zuo3">{$val.schedule_title}</span><span class="h4_you">日程分类：{$val.type_name}</span><a href="#" class="more"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/pic01.gif" /></a></h4>
+	          <p style="display:block;line-height:22px; clear:both;width:500px;word-wrap:break-word;word-break:break-all;">
+	            	{$val.short_schedule_message}
+	          </p>
+	          <h4>
+	          <span class="h4_zuo4">
+	          <a href="/Oa/Schedulemanage/showScheduleinfo/schedule_id/{$val.schedule_id}" style="text-decoration:none;" class="a_green2">查看详情</a>
+	          {if $val.is_expiration_time== 1}
+	          <a href="#">
+	          <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon11.gif" />
+	          </a>
+	          {/if}
+	          {if $val.is_deadline_hours}
+	          <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon14.gif" /></a>
+	          {/if}
+	          </span>
+	          <span class="h4_you2">发布时间：{$val.add_time}</span>
+	          </h4>
+	        </div>
+	    {/foreach}
+     <!--zzy_list end-->
+     <p class="fenye">
+     {if $shedule!=""}
+     	当前第_{$page}_页
+	        	<a href="Schedeule_list_info">首页</a>
+	        {if $page <= 1}
+	        	上一页
+	        {else}
+	        	<a href="Schedeule_list_info/page/{$page-1}">上一页</a>
+	        {/if}
+	        
+	        {if $is_end_page == true}
+	        	已到最后一页
+	        {else}
+	        	<a href="Schedeule_list_info/page/{$page+1}">下一页</a>
+	        {/if}
+	        
+     {else}
+     	当前第_{$page}_页
+	        	<a href="getScheduleByRemindTime">首页</a>
+	        {if $page <= 1}
+	        	上一页
+	        {else}
+	        	<a href="getScheduleByRemindTime/page/{$page-1}">上一页</a>
+	        {/if}
+	        
+	        {if $flag == true}
+	        	已到最后一页
+	        {else}
+	        	<a href="getScheduleByRemindTime/page/{$page+1}">下一页</a>
+	        {/if}
+	        
+     {/if}
+	        </p>
+	 {else}
+	 	<div class="yfb_main" align="center">
+      		<p>暂无数据</p>
+      	<div/>
+	 {/if} 
+</div>
+    <!--middle end-->
+    
+ {insert name="oa_right" uid=$uid}
+    
+    <!--right end-->
+    
+    <div class="clear"></div>
+    
+    
+ </div>  
+ <!--main end-->   
+
+</body>
+</html>

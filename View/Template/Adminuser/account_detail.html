@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>详细账号页面</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+	td {empty-cells:show;}
+</style>
+
+<script type="text/javascript">
+	function closedetail(){
+		document.forms[0].action="/Adminuser/Usermanage/account_search";
+		document.forms[0].submit();
+	}
+	
+	function reset_pwd(client_account){
+		document.forms[0].action="/Adminuser/Usermanage/pwd_reset/client_account/"+client_account;
+		document.forms[0].submit();
+	}
+	
+	function account_stop(client_account) {
+			document.forms[0].action="/Adminuser/Usermanage/account_stop/client_account/"+client_account;
+			document.forms[0].submit();
+	}
+
+	function chanage_account(client_account) {
+		document.forms[0].action="/Adminuser/Usermanage/account_detail/client_account/"+client_account;
+		document.forms[0].submit();
+	}
+	
+	function account_start(client_account) {
+		document.forms[0].action="/Adminuser/Usermanage/account_start/client_account/"+client_account;
+		document.forms[0].submit();
+	}
+</script>
+{/literal}
+
+</head>
+<body>
+<form method="post" action="" id="formdetail">
+	<table width="92%" border="1" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td height="27" class="bt" colspan="3">账号详细页面</td>
+	  </tr>
+	  <tr>
+	  	{foreach from=$user_list item=user name="user_loop"}
+	    <td bgcolor="#f0f8ff" valign="top">
+		    <table width="100%" border="1"  style="margin-top:10px; margin-bottom:30px;" bgcolor="#f0f8ff">
+		     <tr >
+			    <td height="55" align="left" colspan="2" >&nbsp;&nbsp;
+			    {if $smarty.foreach.user_loop.iteration == 1}
+			    	{if $user.status == $smarty.const.CLIENT_STOP_FLAG_FOREVER}
+				    	<input type="button" value="解冻" name="btnclose" class="f_btn"   onclick="javacript:account_start('{$user.client_account}');"/>
+				    {else}
+				    	{if $user.status != $smarty.const.CLIENT_STOP_FLAG}
+				    		<input type="button" value="冻结账号" name="btnclose" class="f_btn"   onclick="javacript:account_stop('{$user.client_account}');"/>
+				    	{/if}
+				    {/if}
+				    <input type="button" value="重置密码" name="btnclose" class="f_btn"   onclick="javacript:reset_pwd('{$user.client_account}');"/>
+				    <input type="button" value="返回" name="btnclose" class="f_btn"   onclick="javacript:closedetail();"/>
+			    {else}
+			    	<input type="button" value="进入" name="btnclose" class="f_btn"   onclick="javacript:chanage_account('{$user.client_account}');"/>
+			    {/if}
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="8%" height="35" align="right">账号类型：</td>
+			    <td width="30%">&nbsp;{$user.client_type_name}</td>
+			  </tr>
+			  
+			  <tr>
+				<td height="35" align="right" >我们网账号：</td>
+				<td>&nbsp;{$user.client_account}</td>
+			  </tr>
+			  
+			  <tr>
+			  	<td height="35" align="right">绑定手机号：</td>
+			  	<td>&nbsp;{$user.phone_id}</td>
+			  </tr>
+			  
+			  <tr>
+			  	<td height="35" align="right">账号状态：</td>
+			    <td >&nbsp;{$user.stop_flag_message}</td>
+			  </tr>
+			   <tr>
+			  	<td height="35" align="right">账号激活时间</td>
+			  	<td>&nbsp;{$user.active_date}</td>
+			  </tr>
+			  
+			  <tr>
+			  	<td height="35" align="right">最后登录时间</td>
+			  	<td>&nbsp;{$user.lastlogin_date}</td>
+			  </tr>
+			  
+			  <tr>
+			    <td height="35" align="right">姓名：</td>
+			    <td>&nbsp;{$user.client_name}</td>
+			  </tr>
+			  
+			   <tr>
+				  <td height="35" align="right">性别：</td>
+				  <td>&nbsp;{$user.client_sex_name}</td>
+			   </tr>
+			  
+			  <tr>
+			    <td height="35" align="right">生日：</td>
+			    <td>&nbsp;{$user.client_birthday}</td>
+			  </tr>
+			  
+			  <tr>
+			    <td height="35" align="right">电子邮箱：</td>
+			    <td>&nbsp;{$user.client_email}</td>
+			  </tr>
+		
+			  <tr>
+			    <td height="35" align="right">联系电话：</td>
+			    <td>&nbsp;{$user.client_phone}</td>
+			  </tr>
+		
+			  <tr>
+			    <td height="35" align="right">学校：</td>
+			    <td>&nbsp;{$user.school_name}</td>
+			  </tr>
+			  
+			  <tr>
+			    <td height="35" align="right">班级：</td>
+			    <td>&nbsp;{$user.class_name}</td>
+			  </tr>
+			  
+			  <tr>
+			    <td height="35" align="right">地址：</td>
+			    <td>&nbsp;{$user.area_id_name}{$user.client_address}</td>
+			  </tr>
+			
+			  {if $user.client_type == 2}
+			  <tr>
+			    <td height="35" align="right">行业：</td>
+			    <td>&nbsp;{$user.client_trade_name}</td>
+			  </tr>
+			  <tr>
+			    <td height="35" align="right">单位名称：</td>
+			    <td>&nbsp;{$user.job_address_name}</td>
+			  </tr>
+			  {/if}
+			  {if $client_type ==1}
+			  <tr>
+			    <td height="35" align="right">职称：</td>
+			    <td>&nbsp;{$user.client_title_name}</td>
+			  </tr>
+			  <tr>
+			    <td height="35" align="right">职务：</td>
+			    <td>&nbsp;{$user.client_job_name}</td>
+			  </tr>
+			  {/if}
+			  
+			</table>
+	    </td>
+	    {/foreach}
+	 </tr>
+	</table>
+</form>
+</body>
+</html>

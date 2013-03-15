@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级_公告</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/class.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+<div class='classTitle'>{$tpl_school_Name} {$tpl_gradeclass_Name}<span class='class_tag'>班级公告</span></div>
+
+<div class="sub_class">
+	<div class="sub_class_gg">
+		<ul>
+			{if $client_type==0 || $client_type==2}
+			<li id="class_g"><a href='/Homeclass/Class/Announcement'>班级所有公告</a></li>
+			{else}
+			<li id="class_g"><a href='/Homeclass/Myclass/Announcement/class_code/{$class_code}'>班级所有公告</a></li>
+			{/if}
+			{if $client_type==1}
+			<li id="class_g1"><a href='/Homeclass/Myclass/publishggao/class_code/{$class_code}'>发布新公告</a></li>
+			{/if}
+		</ul>
+	</div>
+</div>
+
+<br />
+<br />
+<table width="765" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" >
+ {if !empty($mNewsInfolist)}
+ 
+  <tr bgcolor="#FFFFFF" style="line-height:24px;">
+	<td height="50"><div style="color:#666666; font-size:14px; text-indent:1em;">
+	{if $mNewsInfolist.sendMessage==on}<img src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/new/iotel.jpg'>{/if}
+	<div class='wordwrap' style="word-break:break-all">{if $mNewsInfolist.news_title != ''}{$mNewsInfolist.news_title}{else}{$mNewsInfolist.news_content}{/if}</div>
+	</div></td>
+	<td height="50" align="center">
+	{if $client_type==0 || $client_type==2}
+	<input type="button" name="Submit" value="返回" class="inputbg2"  onclick="javascript:window.location='/Homeclass/Class/Announcement';"/>
+	{else}
+	<input type="button" name="Submit" value="返回" class="inputbg2"  onclick="javascript:window.location='/Homeclass/Myclass/Announcement/class_code/{$class_code}';"/>
+	{/if}
+	</td>
+  </tr>
+  <tr><td><div style='border-bottom:1px solid #dddddd;'></div></td></tr>
+	<tr>
+	  <td colspan='2' align="center" bgcolor="#FFFFFF" height='30' style="line-height:22px; text-align:left">&nbsp;</td>
+	  </tr>
+	<tr>
+	  <td colspan='2' align="center" bgcolor="#FFFFFF" height='30' style="line-height:22px; text-align:left">
+	  <table width="90%" border="0" align="center" cellpadding="5" cellspacing="5" bgcolor="#efefef" style="font-size:14px;">
+        <tr>
+          <td>&nbsp;<div class='wordwrap' style="word-break:break-all;width:560px;">{$mNewsInfolist.news_content}</div></td>
+        </tr>
+        <tr>
+          <td align="right">&nbsp;{$addClientInfo}
+		<span style="color:#666666">{$mNewsInfolist.add_date}</span>		  </td>
+        </tr>
+      </table></td>
+	  </tr>
+{/if}
+</table>
+					
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/footer.html"}
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+</html>

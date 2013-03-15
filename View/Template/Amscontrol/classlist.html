@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>班级列表</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+{literal}
+<script>
+function updategrade(secret_key,uid,class_code){
+		con = "正在毕业中...";
+
+		var dialog = parent.art.dialog({
+		    content: con,
+		    lock: true,
+		    cancel: false,
+		});
+
+
+		$.ajax({
+			type:'get',
+			url : '/Api/Upgrade/index',
+			dataType:'json',
+			data:{
+				'secret_key':secret_key,
+				'uid':uid,
+				'class_code':class_code
+			},
+			success:function(json) {
+				dialog.content(json.info).time(3);
+				if(json.status > 0){
+					$('#tr_'+class_code).remove();
+				}
+			}
+		});
+
+		
+		/*
+		$.ajax({
+			type: 'POST',
+			url: '/Amscontrol/Amsclasslist/updateGrade',
+			data: {schoolId:schoolid,gradeId:gradeid,class_code:class_code},
+			dataType:'json',
+			success: function (data) {
+	        	//dialog.content(data);
+	    	}
+		});
+
+	art.dialog({
+	    lock: true,
+	    background: '#600', // 背景色
+	    opacity: 0.87,	// 透明度
+	    content: '中断用户在对话框以外的交互，展示重要操作与消息',
+	    icon: 'error',
+	    ok: function () {
+	        art.dialog({content: '再来一个锁屏', lock: true});
+	        return false;
+	    },
+	    cancel: true
+	});
+*/
+}
+</script>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">班级列表</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt STYLE1">班级列表</td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+    <tr>
+    <td height="25" colspan="2" bgcolor="#fbf6f7" style="padding:10px;"><a href="/Amscontrol/Amsclasslist/addClass/schoolid/{$schoolid}" class="amsqd">新增班级信息</a></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC" style="padding-left:10px;"><strong>班级信息列表：</strong></td>
+  </tr>
+  <tr>
+    <td width="6%" height="35" bgcolor="#fbf6f7" style="padding-top:10px;">&nbsp;</td>
+    <td width="94%" height="35" align="left" bgcolor="#fbf6f7" style="padding-top:10px;"><h3 style="float: left; font-size:14px; margin-right:25px;">{$gradeName}</h3> 
+      <font style="color:#FF0000;">已注册：{$totalClasses}班级</font></td>
+  </tr>
+  <tr>
+    <td height="25" colspan="2" bgcolor="#fbf6f7">
+    <table width="50%" border="1" align="left" cellspacing="0" bordercolor="#CCCCCC" style="border-collapse:collapse;">
+      <tr>
+        <td height="30" align="center" bgcolor="#CCCCCC"><strong>班级名称</strong></td>
+        <td height="30" align="center" bgcolor="#CCCCCC"><strong>班主任</strong></td>
+        <td height="30" align="center" bgcolor="#CCCCCC"><strong>班主任账号</strong></td>
+        <td width="210" align="center" bgcolor="#CCCCCC"><strong>科目</strong></td>
+        <td height="30" align="center" bgcolor="#CCCCCC"><strong>操作</strong></td>
+        <td height="30" align="center" bgcolor="#CCCCCC"><strong>是否毕业</strong></td>
+      </tr>
+      {if $classInfo != ""}
+      {foreach from=$classInfo item=key}
+      <tr id="tr_{$key.class_code}">
+        <td height="30" align="center">{$key.class_name}</td>
+        <td height="30" align="center">{$key.headTercherName}</td>
+        <td height="30" align="center">{$key.client_account}</td>
+        <td height="30" align="center">{$key.subname}</td>
+        <td height="30" align="center"><a href="/Amscontrol/Amsclasslist/classManager/classCode/{$key.class_code}/gradeid/{$key.grade_id}/uid/{$key.client_account}/schoolid/{$schoolid}" class="zjxk">班级管理</a></td>
+        <td height="30" align="center">{if $key.is_up}<a href="javascript:;" onclick="updategrade('{$key.secret_key}','{$uid}','{$key.class_code}');">毕业</a>{else}不毕业{/if}</td>
+      </tr>
+      {/foreach}
+      	  {else}
+		<tr>
+	     <td colspan='3' align='center' style='font-size:15px; color:red;  line-height:3;'>没有记录</td>
+	     </tr> 
+		
+		{/if}
+    </table>
+    </td>
+  </tr>
+    <tr>
+    <td height="25" bgcolor="#fbf6f7"></td>
+    <td height="30" bgcolor="#fbf6f7">&nbsp;</td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>密码设置反馈</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/css/bms system.css"  />
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" class="cotent_top">您好：<font color="#FF0000">{$baseinfo.base_name}</font> ，欢迎使用BMS管理系统！您所在的位置：<font color="#FF0000">密码重置反馈</font></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">密码重置反馈</td>
+  </tr>
+</table>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td bgcolor="f0f0f0">
+      <table width="50%" border="0" align="left" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="200" align="center">
+    <div style="line-height:24px;">
+      您好，{$schoolName}的校园管理员密码已重置，新密码已发送到<br />
+      {$email}<br />
+      如有问题，请拨打客服电话：{$smarty.const.WMW_CS_PHONE}<br />
+     <a href="/Basecontrol/Applyschool/getSchool" style="display:block; width:85px; height:24px; line-height:24px; background:url({$smarty.const.IMG_SERVER}__PUBLIC__/basemanage/images/anniu.gif) no-repeat; border:none; color:#fff;">确定</a>    
+    </div>
+    </td>
+  </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

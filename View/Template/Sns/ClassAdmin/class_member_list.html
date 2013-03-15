@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>班级管理</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassAdmin/list.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassAdmin/class_member_list.js"></script>
+
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <ul><li><a href="#" class="main_nav_a1" title="">班级管理</a></li></ul> 
+    <!--publish_main star-->
+     <div class="publish_main">
+       <div id="class_info_div" class="class_name">
+         	<p id="class_name_p">班级名称：{$class_info.class_name}</p><a href="javascript:;" class="icon_modify"></a><a href="javascript:;">修改</a>
+       </div>
+       <!--class_admin star-->
+       <div id="class_admin_list_div" class="class_admin">
+          <p><span>管理员（{$class_admin_nums}人）</span></p>
+          <div class="class_admin_main">
+          	{foreach from=$class_admin_list item=class_admin}
+            <dl class="ancestor_selector">
+              <dt>
+              	<a href="javascript:;">
+              		{if $class_admin.client_headimg_url}
+              		<img src="{$class_admin.client_headimg_url}">
+              		{else}
+              		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassAdmin/list/img01.jpg">
+              		{/if}
+              	</a>
+              </dt>
+               <!--float_main star-->
+               <div class="admin_float float_div_selector" style="display:none;">
+                 <div class="admin_float_p">
+                   <a class="cancel_admin_a_selector" href="javascript:;">取消</a>
+                 </div>
+                 <input class="client_account_selector" type="hidden" value="{$class_admin.client_account}"/>
+                </div>
+               <!--float_main end-->
+              <dd>{$class_admin.client_name}</dd>
+              <dd>管理员</dd>
+            </dl>
+            {/foreach}
+            <div class="clear"></div>
+          </div>
+       </div>
+       <!--class_admin end-->
+       <!--class_t_admin star-->
+       <div id="teacher_list_div" class="class_t_admin">
+          <p><span>班级老师（{$teacher_nums}人）</span><a href="/Sns/ClassAdmin/Teacher/index/class_code/{$class_code}">老师信息维护</a></p>
+          <div class="class_admin_main">
+          	{if $headteacher}
+            <div class="single_bj_main">
+              <dl>
+               <dt>
+               	<a href="javascript:;">
+               		{if $headteacher.client_headimg_url}
+              		<img src="{$headteacher.client_headimg_url}">
+              		{else}
+              		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassAdmin/list/img01.jpg">
+              		{/if}
+               	</a>
+               </dt>
+               <dd>{$headteacher.client_name}</dd>
+              </dl>
+              <p>{$headteacher.subject_name}</p>
+            </div>
+            {/if}
+            {foreach from=$teacher_list item=teacher}
+            <div class="single_main ancestor_selector">
+              <dl>
+               <dt>
+                <a href="javascript:;">
+               		{if $teacher.client_headimg_url}
+              		<img src="{$teacher.client_headimg_url}">
+              		{else}
+              		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassAdmin/list/img01.jpg">
+              		{/if}
+               	</a>
+               </dt>
+               {if !$teacher.is_admin}
+                <!--float_main star-->
+                 <div class="float_main float_div_selector" style="display:none;">
+                   <div class="float_main_p">
+                     <a class="set_class_admin_selector_a" href="javascript:;">设置为管理员</a>                   
+                   </div>
+                   <input class="client_account_selector" type="hidden" value="{$teacher.client_account}"/>
+                  </div>
+                 <!--float_main end-->
+               {/if}
+               <dd>{$teacher.client_name}</dd>
+              </dl>
+              <p>{$teacher.subject_name}</p>
+            </div>
+            {/foreach}
+            <div class="clear"></div>
+          </div>
+       </div>
+       <!--class_t_admin end-->
+       <!--class_t_admin star-->
+       <div id="student_list_div" class="class_t_admin">
+          <p><span>班级学生（{$student_nums}人）</span><a href="/Sns/ClassAdmin/StudentList/index/class_code/{$class_code}">学生信息维护</a></p>
+          <div class="class_admin_main">
+            {foreach from=$student_list item=student}
+            <div class="single_main ancestor_selector">
+              <dl>
+               <dt>
+	               <a href="javascript:;">
+	               		{if $student.client_headimg_url}
+	              		<img src="{$student.client_headimg_url}">
+	              		{else}
+	              		<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassAdmin/list/img01.jpg">
+	              		{/if}
+	               </a>
+               </dt>
+               
+               {if !$student.is_admin}
+               <!--float_main star-->
+                 <div class="float_main float_div_selector" style="display:none;">
+                   <div class="float_main_p">
+                     <a class="set_class_admin_selector_a" href="javascript:;">设置为管理员</a>                  
+                   </div>
+                   <input class="client_account_selector" type="hidden" value="{$student.client_account}"/>
+                  </div>
+               <!--float_main end-->
+               {/if}
+               <dd>{$student.client_name}</dd>
+              </dl>
+              <p>{$student.client_class_role_name}</p>
+            </div>
+            {/foreach}
+            <div class="clear"></div>
+          </div>
+       </div>
+       <!--class_t_admin end-->
+       <div class="clear"></div>
+     </div>
+    <!--publish_main end-->
+    
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+<!--弹出层 star-->
+ <!--班级名称修改 star-->
+ <div id="edit_class_div" class="edit_comment" style="display:none;">
+   <h1 class="tcc_title">班级名称修改</h1>
+   <div class="edit_comment_tab">
+     <p>班级名称：<input id="class_name" type="text" class="text_wbk"></p>
+   </div>
+   <div class="msg_btn">
+     <p>
+	     <input id="sure_btn" type="button" value="确定"  class="green_btn">
+	     <input id="cancel_btn" type="button" value="取消" class="qx_btn">
+     </p>
+   </div>
+ </div>
+ <!--班级名称修改 end-->
+<!--弹出层 end-->
+
+ <input id="class_code" type="hidden" value="{$class_code}"/>
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

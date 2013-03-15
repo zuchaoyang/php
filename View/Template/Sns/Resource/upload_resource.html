@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>同步资源</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/upload_style.css" />
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/ui/css/jquery-ui-min.css"  />
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_flash/swfupload/css/default.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/ui/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_flash/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_flash/swfupload/js/swfupload.queue.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_flash/swfupload/js/fileprogress.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_flash/swfupload/js/handlers.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/resource/upload_resource.js"></script>
+</head>
+
+<body onload="shownav('{$checked_nav.column_id}');">
+<input type="hidden" id="total_page" value="{$totalpage}"/>
+<div class="box">
+<div class="nav">
+<!--  <iframe width="100%" height="76" scrolling="no" frameborder="0" src="../head.html" style="display:block;"></iframe> -->
+{insert name="publicHeader" class_code = $class_code}
+
+
+  <div class="cotent">
+  <div class="re_left">
+    {insert name="account_left" class_code = $class_code}
+  </div>
+	 <!--upload_right start-->
+ <div class="upload_right">
+   <p class="resource_title">
+    <span class="up_icon"></span><span class="font_normal"><a href="/Sns/Resource/Resource/synchroresource">同步资源</a></span> 
+   </p>
+   <div class="clean"></div>
+	<form method="post" action="/Sns/Resource/Resource/upload_resource_do" id="upload_form">
+	<div class="resource_tab">
+		<table width="100%" border="0" cellspacing="1" cellpadding="0">
+		    <tr>
+		      <td colspan="2" class="upload_h4" style="padding:5px 0 0 5px;">
+		     	<span>上传资源</span>
+		     	<a href="javascript:;" id="my_resource" style="float:right;display:inline-block; margin-right:10px;">我的资源</a>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>年级</th>
+		      <td>
+		      	<select id="grade_id" name="grade_id">
+		      		<option selected>-请选择年级-</option>
+		      		 {foreach from=$grade_list item=grade}
+						<option value="{$grade.grade_id}">{$grade.grade_name}</option>
+					{/foreach}
+		      	</select>
+		      	<span id="grade_idTip"></span>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>科目</th>
+		      <td>
+			      <select id="subject_id" name="subject_id">
+					    <option>-请选择科目-</option>
+					</select>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>版本</th>
+		      <td>
+			      <select id="version_id" name="version_id">
+					<option>-请选择版本-</option>
+				  </select>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>章</th>
+		      <td>
+		      	<select id="chapter_id" name="chapter_id">
+					      	<option>-请选择章-</option>
+				</select>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>节</th>
+		      <td>
+		      	<select id="section_id" name="section_id">
+					   <option>-请选择节-</option>
+				</select>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>资源名称</th>
+		      <td>
+			      <input id="title" name="title" type="text" class="input_wbk" />
+				  <span id="titleTip"></span>
+			  </td>
+		    </tr>
+		  
+		    <tr>
+		      <th>分类</th>
+		      <td>
+		      	<select id="column_id" name="column_id">
+					{foreach from=$column_list item=column}
+		      			<option value="{$column.column_id}">{$column.column_name}</option>
+		      		{/foreach}
+				</select>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>资源介绍</th>
+		      <td><textarea id="description" name="description" cols="60" rows="6" class="input_line"></textarea>
+				      	<span id="descriptionTip"></span>
+			  </td>
+		    </tr>
+		    <tr>
+		      <th>添加附件</th>
+		      <td>
+				 <input type="text" id="upload_file_text" readonly="readonly" size="50" class="input_wbk"/>
+				 <span>文件大小不能超过200M</span>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th></th>
+		      <td class="td_btn_align">
+			      <input id="submit_btn" type="button" value="保存" class="up_blue_btn" />
+			      <input id="quxiao_btn" type="button" value="取消" class="up_blue_btn" />
+		      </td>
+		    </tr>
+		</table>
+		<input type="hidden" value="{$resource_type}" id="resource_type"/>
+		</div>
+		</form>
+	  <input type="hidden" id="img_server" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
+	  <input type="hidden" id="uid" value="{$uid}"/>
+	  <input type="hidden" id="secret_key" value="{$secret_key}"/>
+	</div>
+	<!--upload_right end-->
+    <div class="clean"></div>
+  </div>
+<!-- <iframe width="100%" scrolling="no" frameborder="0" src="footer.html"></iframe> -->
+{include file="Public/footer.html"}
+</div>
+</div>
+<!-- 资源文件上传 -->
+<div class="upload_tcc" id="upload_file_div" style="display:none;">
+	<div style="width:520px;">
+	   <div id="divMovieContainer" style="width:180px; height:18px; border: solid 1px #7FAAFF;background-color: #C5D9FF; padding:2px; float:left;">
+			<span id="spanButtonPlaceHolder"></span>
+	   </div>
+	   <div style="float:left; margin-left:5px;display:none;">
+	   	<input id="start_upload_btn" type="button" value="开始上传" class='inpusub' />
+	   </div>
+	   <div class="clean"></div>
+	   <div class="fieldset flash" id="fsUploadProgress" style="margin-top:20px;">
+		<span class="legend">上传队列</span>
+	   </div>
+	   <div style="margin-top:100px;">
+	  	<span></span>
+		<input id="start_upload" type="button" value="开始上传" class="up_blue_btn" />
+		<input id="cancel_upload" type="button" value="取消上传" class="up_blue_btn" />
+	   </div>
+    </div>
+ </div>
+
+<input type="hidden" id="img_server" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
+<input type="hidden" id="allow_upload_types" value="{$allow_upload_types}"/>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>相册照片上传</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/local/flash/swfupload/default.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery-textarea.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/xxs/xxs.js"></script>
+<script type="text/javascript" src="__PUBLIC__/local/flash/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/local/flash/swfupload/swfupload.queue.js"></script>
+<script type="text/javascript" src="__PUBLIC__/local/flash/swfupload/fileprogress.js"></script>
+<script type="text/javascript" src="__PUBLIC__/local/flash/swfupload/handlers.js"></script>
+<script type="text/javascript" src="__PUBLIC__/local/flash/swfupload/pictip.js"></script>
+
+<script type="text/javascript">
+var IMG_SERVER = '{$smarty.const.IMG_SERVER}';
+
+{literal}
+
+		var swfu;
+		window.onload = function() 
+		{
+			var settings = 
+			{
+				flash_url : "__PUBLIC__/local/flash/swfupload/swfupload.swf",
+				upload_url: "/Homepzone/Pzonephoto/uploadApplication",
+				post_params: {"PHPSESSID" : document.getElementById("account").value, "xcid" : document.getElementById("xiangce").value, "upd":"upd"},
+				file_size_limit : "8 MB",
+				file_types : "*.jpg;*.gif;*.png",
+				file_types_description : "图像或者flash文件",
+				file_upload_limit : 100,
+				file_queue_limit : 10,
+				custom_settings : {
+					progressTarget : "fsUploadProgress",
+					cancelButtonId : "btnCancel"
+				},
+				debug: false,
+
+				// Button settings
+				//button_image_url: "images/btn1.gif",	//Relative to the Flash file
+				button_image_url : "__PUBLIC__/local/flash/swfupload/SmallSpyGlassWithTransperancy_17x18.png",
+				button_placeholder_id: "spanButtonPlaceHolder",
+				button_width: 200,
+				button_height: 18,
+				button_text : '<span class="button">请选择要上传的图片 <span class="buttonSmall"></span></span>',
+				button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
+				button_text_top_padding: 0,
+				button_text_left_padding: 18,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+				button_cursor: SWFUpload.CURSOR.HAND,
+
+				file_queued_handler : fileQueued,
+				file_queue_error_handler : fileQueueError,
+				file_dialog_complete_handler : fileDialogComplete,
+				upload_start_handler : uploadStart,
+				upload_progress_handler : uploadProgress,
+				upload_error_handler : uploadError,
+				upload_success_handler : uploadSuccess,
+				upload_complete_handler : uploadComplete,
+				queue_complete_handler : queueComplete	// Queue plugin event
+			};
+
+			swfu = new SWFUpload(settings);
+	     };
+	</script>
+{/literal}
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+
+
+		<div class="sub_diaryl">
+			<ul>
+				<li><i class="di1"></i><a href='/Homepzone/Pzonephoto/photoindex/class_code/{$class_code}'>我的相册</a></li>
+			</ul>
+		</div>
+  <table width="95%" border="0" align="center" cellpadding="3" cellspacing="1">
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+	 <div class="message">照片上传提示！单个文件最大8M</div>
+
+	  </td>
+    </tr>
+	<tr><td>
+		<div id="thumbnailsdefault"><img src='__PUBLIC__/local/flash/swfupload/images/default.jpg'></div>
+
+	</td></tr>
+	<form id="form1" action="#" method="post" enctype="multipart/form-data">
+    <tr>
+      <td>
+		<div class="message">
+		<select id="xiangce" name="xiangce" class='inputextarea'>
+		
+		{foreach from=$xiangce_list item=xc}
+			{if $xcid==$xc.album_id}
+			<option value="{$xc.album_id}" selected="selected">{$xc.album_name}</option>
+			{else}
+			<option value="{$xc.album_id}">{$xc.album_name}</option>
+			{/if}
+		{/foreach}
+		</select>
+		</div>
+		
+			<div style="width: 180px; height: 18px; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;float:left;">
+				<span id="spanButtonPlaceHolder"></span>
+			</div>
+			<div>
+			&nbsp;&nbsp;<input id="btnUpload" type="button" value="开始上传" onclick="swfu.startUpload();"  class='inpusub' />
+			<!--	<input id="btnCancel" type="button" value="取消上传" onclick="swfu.cancelQueue();"  class='inputbg2' />-->
+			</div>	
+			
+			<div id='divstaut'>
+				<div class="fieldset flash" id="fsUploadProgress">
+					<span class="legend">上传队列</span>
+				</div>
+				<div id="imglist"></div>
+			</div>
+			
+		
+		<div class="message_stau">
+		上传状态：<span id="divStatus" class="status">已经上传文件数量0</span>
+		</div>
+		</div>
+	</td>
+    </tr>
+   <tr>
+      <td>
+        <!--<input type="button" name="Submit" value="发布照片信息" class='inpusub' onclick="javascript:subphotoupdate();"/>-->
+		<input type='hidden' name='hiddenKey' id='hiddenKey'>
+		<input type='hidden' name='account' id='account' value="{$account}">
+		
+		<input type='hidden' name='whereurl' id='whereurl' value='GR'>
+		<input type='hidden' name='class_code' id='class_code' value='{$class_code}'>
+     </td>
+    </tr>
+
+	</form>
+  </table>
+
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/footer.html"}
+<div class="center">
+	<div id="AutoPostPrompt" align="left">
+	<center>正在上传照片请等待完成.....</center>
+	</div>
+</div>
+
+</div><!--nav end-->
+</div><!--box end-->
+</body>
+
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>设置小队</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/Share_mini.js" ></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/team_add.js"></script>
+
+{literal}
+<style>
+	.bt_a{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+{/literal}
+
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<div id="popDiv" class="xzkc" style="display:none;">
+<p class="amstitle"><a href="javascript:setTeam.close();">关闭窗口</a></p>
+<div style="height:280px; overflow:auto;">
+<table cellpadding="0" cellspacing="1" class="stu_choose" id="student_list">
+	<tr>
+    	<th>姓名</th>
+    	<th>选择</th>
+    </tr>
+    <tbody id="setTeamTable">
+    </tbody>
+</table>
+</div>
+<a href="javascript:setTeam.ok();"  class="amsqd" style="margin-left:60px;">确定选择</a>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+
+<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="/Amscontrol/Amsteam/addTeam/class_code/{$class_code}" class="amswz">设置小队</a></td>
+  </tr>
+</table>
+
+<table width="92%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt bt_a">
+    <a href="/Amscontrol/Amsclasslist/classManager/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" >班级概况</a>
+	<a href="/Amscontrol/Classclientmanage/showclassClient/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/0" class="zhgl" >班级成员账号管理</a>
+    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$uid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}/stop_flag/0" class="bjgk">中队设置</a>
+    <a href="/Amscontrol/Amsteam/teamManage/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/bjgka2.gif) no-repeat; color:#000000;">小队管理</a>
+    </td>
+  </tr>
+</table>
+
+<form id="form_add_team" method="post" action="/Amscontrol/Amsteam/savaTeam/uid/{$uid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}">
+	<input type="hidden" id="class_code" name="class_code" value="{$class_code}" />
+	<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+	  <tr>
+	    <td height="27" colspan="2" class="bt STYLE1">设置小队</td>
+	  </tr>
+	  <tr>
+	    <td height="10" colspan="2">&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td width="70" align="right" bgcolor="#fbf6f7" class="tdpadding">小队名称：</td>
+	    <td align="left" bgcolor="#fbf6f7" class="tdpadding">
+	        <input type="text" name="team_name" id="team_name" class="kctx" onblur="check_name();"/>
+	        <span id="team_name_err" style="color:red;size:15px;"></span>
+	        <input type="hidden" name="passed" id="passed"/>
+	    </td>
+	  </tr>
+	   <tr bgcolor="#fbf6f7">
+	  	<td width="70" align="right">小队成员：</td>
+	    <td height="35"><input name="" type="button" value="选择小队成员"  checked="checked" onclick="setTeam.open();"/></td>  
+	  </tr>
+	  <tr bgcolor="#fbf6f7" align="left">
+	  	<td></td>
+	    <td>
+	    	<table cellpadding="0" cellspacing="1" class="rylb" id="teamTable">
+	        	<tr>
+	                <td height="30" align="center" bgcolor="#dfdbdb" colspan="5">请选择小队成员</td>
+	              </tr>
+	        </table>
+	    </td>
+	  </tr>
+	  <tr bgcolor="#fbf6f7">
+	  	<td width="70" align="right">小队长：</td>
+	    <td height="35"><select name="team_head" id="team_head"> <option value='-1'>请选择</option>  </select><span id="team_head_err" style="color:red;size:15px;"></span></td>
+	  
+	  </tr>
+	  <tr bgcolor="#fbf6f7">
+	  	<td width="70" align="right">副队长：</td>
+	    <td height="35"><select name="team_head_assistant" id="team_head_assistant"> <option value='-1'>请选择</option>  </select><span id="team_head_assistant_err" style="color:red;size:15px;"></span> </td>
+	  </tr>
+	  
+	  <tr>
+	    <td height="30" colspan="2" align="left" bgcolor="#fbf6f7" class="tdpadding" >
+	    	<a href="javascript:pageSubmit();" class="amsqd" style="margin-right:25px;">保存</a>
+	    	<a href="javascript:window.history.back(-1);" class="amsqd" style="margin-right:25px;">取消</a>
+	    </td>
+	  </tr>
+	</table>
+</form>
+</body>
+</html>

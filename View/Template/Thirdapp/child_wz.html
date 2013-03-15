@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>孩子位置</title>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/css/star.css"  />
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+	<div class="right">
+		<div class="star_main">
+		    <h4 >孩子位置</h4>
+		    <p class="first_words">&nbsp;</p>
+		    <!--star_pic-->
+		    <div >
+		      <div class="star_pic_left">
+		        <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_img3.jpg" width="83" height="78"/>
+		        <p>关爱之星</p>
+		        <p class="star_pic_a"><a href="/Thirdapp/Gazxregistinfo/index">了解详细</a></p>
+		      </div>
+		      <div class="star_pic_left">
+		        <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/thirdapp/images/star_img4.jpg" width="83" height="78"/>
+		        <p>关爱宝</p>
+		        <p class="star_pic_a"><a disabled>了解详细</a></p>
+		      </div>
+		      <div class="clear"></div>
+		    </div>
+		    <!--star_pic end-->
+		    <p class="star_btn">&nbsp;</p>
+		</div>
+	</div>
+<div class="kong"></div>
+</div>
+{include file="Public/footer.html"}
+</div><!--nav end-->
+</div><!--box end--> 
+</body>
+
+</html>

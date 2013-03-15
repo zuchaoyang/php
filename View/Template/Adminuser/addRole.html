@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>角色统计</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/common.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/admin/css/cotent.css" />
+
+{literal}
+<style>
+	*{margin:0px; padding:0px;}
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/admin/images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+	table{ margin:10px 10px}
+</style>
+{/literal}
+</head>
+
+<body>
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="27" class="bt">增加角色</td>
+  </tr>
+  
+  <tr>
+    <td align="left" bgcolor="#f0f8ff"> 
+    <form name="form" action="__URL__/searRole" method="post">
+      <table width="430" border="0" align="left" cellpadding="0" cellspacing="0" class="yycx_cx" style="margin-top:20px;" >
+      <tr>
+          <td height="35" colspan="4" align="right"><input type="button" value="添加角色" onclick="javascript:location.href='__URL__/addNewRole'"class="sh_btn" />&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+      </table>
+    </form>
+    </td>
+  </tr>
+  
+  <tr>
+     <td bgcolor="#f0f8ff">
+        <table width="400" border="0" cellpadding="0" cellspacing="1" bgcolor="#dfdcdc" class="yycx_xh" style="margin-left:25px;" >
+        <tr>
+          <td height="30" align="center" bgcolor="#d6ebfd">序号</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">角色</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">添加时间</td>
+          <td height="30" align="center" bgcolor="#d6ebfd">添加人数</td>
+        </tr>
+
+       {foreach from = $role_list item = info name=num}
+	        <tr>
+	          <td height="25" align="center" bgcolor="#FFFFFF">{$smarty.foreach.num.iteration}</td>
+	          <td height="25" align="center" bgcolor="#FFFFFF">{$info.role_name}</td>
+	          <td height="25" align="center" bgcolor="#FFFFFF">{$info.add_date}</td>
+	          <td height="25" align="center" bgcolor="#FFFFFF">{$info.count_user}</td>
+	        </tr>
+       {/foreach}
+       
+      </table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td bgcolor="#f0f8ff" style="padding-left:25px; padding-top:20px; padding-bottom:40px;">
+    	当前第_{$page}_页 &nbsp; &nbsp;
+    	{if $page <=1}
+    		上一页
+    	{else} 
+    	<a href="/Adminuser/Power/addRole/page/{$page-1}">上一页</a>
+    	{/if}
+    	{if $is_last}
+    		下一页
+    	{else}
+    	<a href="/Adminuser/Power/addRole/page/{$page+1}"> 下一页</a>
+    	{/if}
+   </td>
+  </tr>
+</table>
+
+
+<table width="92%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

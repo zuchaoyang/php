@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>班级信息</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+{literal}
+<style>
+	.bt{ background:url({/literal}{$smarty.const.IMG_SERVER}{literal}__PUBLIC__/amsmanage/images/repeatbg.gif) bottom repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+</style>
+{/literal}
+</head>
+
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >>  <a href="#" class="amswz">班级管理</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="padleft">
+  <tr>
+    <td height="27" colspan="2" class="bt">
+    <a href="/Amscontrol/Amsclasslist/classManager/classCode/{$class_code}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$headerTeacherUid}" class="bjgk" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/bjgka2.gif) no-repeat; color:#000000;">班级概况</a>
+    <a href="/Amscontrol/Classclientmanage/showClassClient/classCode/{$class_code}/schoolid/{$schoolid}/gradeid/{$gradeid}/uid/{$headerTeacherUid}/stop_flag/0" class="zhgl">班级成员账号管理</a>
+    <a href="/Amscontrol/Amssquadron/showSquadron/uid/{$headerTeacherUid}/classCode/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">中队设置</a>
+    <a href="/Amscontrol/Amsteam/teamManage/uid/{$headerTeacherUid}/class_code/{$class_code}/gradeid/{$gradeid}/schoolid/{$schoolid}" class="bjgk">小队设置</a></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25" colspan="2"><a href="/Amscontrol/Amsclasslist/vindicateSchoolClassInfo/schoolid/{$schoolid}/classcode/{$class_code}/gradeid/{$gradeid}/uid/{$headerTeacherUid}" class="bjwha">班级信息维护</a></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC" style="padding-left:10px;"><strong>班级信息：</strong></td>
+  </tr>
+  <tr>
+    <td width="90" height="30" bgcolor="#fbf6f7" style="padding-left:10px;">所在年级：</td>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$grade_name}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">班级名称：</td>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$class_name}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">班主任：</td>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$headerteacherName}</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC" style="padding-left:10px;"><strong>任课老师情况：</strong></td>
+  </tr>
+  {foreach from=$teacherInfom item=val}
+	  <tr>
+	    <td width="90" height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$val.subjectName}：</td>
+	    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$val.teacherName}</td>
+	  </tr>
+  {/foreach}
+  <tr>
+    <td height="30" colspan="2" bgcolor="#CCCCCC" style="padding-left:10px;"><strong>班级注册情况：</strong></td>
+  </tr>
+  <tr>
+    <td width="90" height="30" bgcolor="#fbf6f7" style="padding-left:10px;">学生：</td>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$stunum}</td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">家长：</td>
+    <td height="30" bgcolor="#fbf6f7" style="padding-left:10px;">{$parentnum}</td>
+  </tr>
+</table>
+
+</body>
+</html>

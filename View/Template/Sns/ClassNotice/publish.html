@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>发布公告</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/ClassNotice/publish.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassNotice/publish.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--tip star-->
+   {insert name="sns_class_header" class_code = $class_code}
+<!--tip end--> 
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+     <!--nav star-->
+    {insert name="sns_nav" class_code = $class_code}
+    <!--nav end-->
+    <h4></h4>
+    <ul>
+     <li>{if $access_list.is_show_fbgg}<a href="/Sns/ClassNotice/Publish/index/class_code/{$class_code}" class="main_nav_a1 f16" title="">发布公告</a>{/if}<a href="/Sns/ClassNotice/Published/index/class_code/{$class_code}" class="main_nav_a2 f16" title="">已发布公告</a></li>
+    </ul>
+    <!--publish_main star-->
+     <div class="publish_main">
+	     <form method="post" id="form_notice" action="/Sns/ClassNotice/Publish/write_notice/class_code/{$class_code}">
+	        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	          <tr>
+	            <th>公告标题：</th>
+	            <td><input id="notice_title" type="text" class="text_title" maxlength=16 name="notice_title"></td>
+	          </tr>
+	          <tr>
+	            <th valign="top">公告内容：</th>
+	            <td>
+					<textarea name="content" id="content" style="width:750px;height:200px;margin:0px;padding:0px;display:block; margin-bottom:10px;"></textarea>
+				</td>
+	          </tr>
+	          <tr>
+	            <th></th>
+	            <td class="f12 f_a0a0a0">您还可以输入<span id="content_counter" class="f_red">180</span>字</td>
+	          </tr>
+	          <tr>
+	            <th></th>
+	            <td><p class="release"><a href="#" title="" id="preview_btn"><span class="btn_left"></span><span class="btn_right">预览发布</span></a></p></td>
+	          </tr>
+	        </table>
+	     </form>
+     </div>
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+
+<!--发布预览 star-->
+<div id="preview_div" class="preview_release" style="display:none;">
+  <h1>班级公告&gt;公告预览</h1>
+  <div class="see_tab">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+     <th>公告标题：</th>
+     <td id="notice_title"></td>
+    </tr>
+    <tr>
+     <th class="align_top">公告内容：</th>
+     <td>
+     	<p id="content"></p>
+     </td>
+    </tr>
+  </table>
+ </div>
+  <div class="tcc_workmain_btn">
+    <dl>
+     <dt>
+      <a id="pub_a" href="javascript:;" class="f14" title=""><span class="btn_left"></span><span class="btn_right">发布公告</span></a>
+      <span class="clear"></span>
+     </dt> 
+    </dl>
+    <dl>
+     <dt>
+      <a id="pub_with_msg_a" href="javascript:;" class="f14" title=""><span class="btn_left"></span><span class="btn_right">发布公告+短信</span></a>
+      <span class="clear"></span>
+     </dt>
+     <dd class="f12 f_orange">作业同时发送到家长手机上</dd> 
+    </dl>
+    <div class="clear"></div>
+  </div>
+</div>
+<!--发布预览 end-->
+{include file="Public/sns_footer.html"}
+</body>
+</html>
+
+
+

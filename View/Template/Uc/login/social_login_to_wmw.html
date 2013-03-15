@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>QQ号登录我们网</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/social_login_to_wmw.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/login/uc_login.css"/>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery_plugins/jquery.md5.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/login/uc_login.js"></script>
+</head>
+
+<body>
+  <div class="qq_cotent">
+    <div class="top">
+     <p></p>
+    </div>
+    <h4><span>我们网账号</span>与QQ号互联，一键通行更轻松</h4>
+    <dl>
+      <dt></dt>
+    </dl>
+    <div class="login_main">
+      <div id="errorMessage" class="red_tip">&nbsp;</div>
+      <p><span>我们网账号：</span><input type="text" class="wb_text" id="username" name="username" maxlength="60" /></p>
+      <p><span>我们网密码：</span><input type="password" class="wb_text" id="password" name="password" maxlength="20" /></p>
+       <div id="captcha" style="display:none">
+	       <p class="yzm_style"><img alt="验证码" id="img_captcha" src=""></p> <a href="javascript:;" id="change_captcha" class="yzm_hh">换一张</a>
+	       <div class="clear"></div>
+	       <div class="yzm_text_bg"><input type="text" class="yzm_text" id="captcha_input_code" name="captcha_input_code" value="" maxlength="20"/></div>
+       </div>      
+      <p><span></span><input id="login_btn" type="button" value="登&nbsp;&nbsp;录" class="blue_btn" /></p>
+       <input type="hidden" id="client_id" name="client_id" value="{$client_id}"></input>
+       <input type="hidden" id="client_secret" name="client_secret" value="{$client_secret}"></input>
+       <input type="hidden" id="callback" name="callback" value="{$callback}"></input>   
+       
+       
+       <input type="hidden" id="social_account" name="social_account" value="{$social_account}"></input>
+       <input type="hidden" id="social_type" name="social_type" value="{$social_type}"></input>          
+       <input type="hidden" id="access_token" name="access_token" value="{$access_token}"></input>
+    </div>
+    <div class="clear"></div>
+  </div>
+</body>
+
+</html>

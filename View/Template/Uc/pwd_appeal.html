@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>用户申诉</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/pwd_appeal.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/Address.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/pwd_appeal.js"></script>
+
+</head>
+
+<body>
+{insert name="uc_header"}
+<div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;&nbsp;<span class="font_olive">您正在进行申诉...</span></p>
+ </div>
+ <div class="container">
+<div class="content_frame_01">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+    	<h4 class="c_f_01_c_title">填写申诉信息 </h4><span class="font_red font_title">工作日（周一至周五）早8:30至17：30，请直接拨打400-616-0300，快速解决问题</span>
+    	
+    	<form id="appeal" name="appeal" action="/Uc/Findpwd/addAppeal" method="post">
+	        <table  cellpadding="0" cellspacing="0" border="0" class="ss_table">
+	        	<tr>
+	            	<th><span class="font_red">*</span> 姓名：</th>
+	                <td><input id="username" name="username" type="text" class="sryx" maxlength="20"/><span id="usernameTip"></span></td>
+	            </tr>
+	            <tr>
+	            	<th> 账号：</th>
+	                <td> <input id="uid" name="uid"  type="text" class="sryx" maxlength="20"/><span id="uidTip"></span></td>
+	            </tr>
+	            <tr>
+	            	<th><span class="font_red">*</span> 联系电话：</th>
+	                <td><input id="phone" name="phone"  type="text" class="sryx" maxlength="11"/><span id="phoneTip"></span></td>
+	            </tr>
+	            <tr>
+	            	<th>邮箱：</th>
+	                <td> <input id="email" name="email"  type="text" class="sryx" maxlength="60"/><span id="emailTip"></span></td>
+	            </tr>
+	            <tr>
+	            	<th><span class="font_red">*</span> 所在学校：</th>
+	                <td style="line-height:30px;"><div id="show_area_div"><input id="school_name" name="school_name"  type="text" class="sryx" maxlength="60"/><input type="hidden" id="init_area_id" value="{$user.area_id}"/></div><div style="float:left;"><span id="school_nameTip"></span></div></td>
+	            </tr>
+	            <tr>
+	            	<th><span class="font_red">*</span> 所在班级：</th>
+	                <td><input id="class_name" name="class_name" type="text" class="sryx" maxlength="20"/><span id="class_nameTip"></span></td>
+	            </tr>
+	            <tr>
+	            	<th><span class="font_red">*</span> 问题描述：</th>
+	                <td>
+	                	<textarea id="problem_description" name="problem_description" cols="" rows=""></textarea><br />
+	                    <span id="problem_descriptionTip" class="font_gray font_normal">请您详细描述您的问题，时间，具体现象，需要我们做什么等。</span>                    
+	                </td>
+	            </tr>
+	            <tr>
+	            	<th></th>
+	                <td><input id="commit_appeal" name="commit_appeal" type="button" value="确定" class="btn_2_word"/></td>
+	            
+	            </tr>
+	        </table>    
+    	</form>
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+    {insert name="uc_footer"}
+</body>
+</html>

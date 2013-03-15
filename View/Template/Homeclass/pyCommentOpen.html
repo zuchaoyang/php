@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>系统评语库</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/comment.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jqy-lib.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog/plugins/iframeTools.source.js"></script>
+
+
+{literal}
+<style >
+	<!--
+	body {
+		margin-left: 0px;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+	}
+	-->
+</style>
+
+<script type="text/javascript">
+
+	function getpyContentData(pytypeid){
+		url_g = "/Homeclass/Myclass/showpyContentData/url/cj/pytype/"+pytypeid + '?' +  Date.parse(new Date());
+		$.ajax({
+			type: "GET",
+			url: url_g,
+			success: function(msg){
+				$("#idpycontent").html(msg);
+		   }
+		});
+	}
+
+	function getpyContentpyatt(pytypeatt){
+		url_g = "/Homeclass/Myclass/showpybytypeatt/url/cj/pytypeatt/"+pytypeatt + '?' +  Date.parse(new Date());
+		$.ajax({
+			type: "GET",
+			url: url_g,
+			success: function(msg){
+				$("#idpycontent").html(msg);
+		   }
+		});
+	}
+
+	// 关闭并返回数据到主页面
+	function copyText(msg){
+	
+		var origin = artDialog.open.origin;
+		var aValue = msg;
+		var rt = document.getElementById('backid').value;
+		var input = origin.document.getElementById('py_id_'+rt);
+		input.value = aValue;
+		input.select();
+		art.dialog.close();
+	}
+
+	function scpy(pyid){
+		var titlemsg;
+		var titlemsgcontent;
+		var dialog = art.dialog({
+	    title: '收藏我的评语',
+	    content: '您确认要收藏此评语吗？',
+	    icon: 'succeed',
+	    follow: document.getElementById('btn2'),
+			ok: function(){
+				url_g = "/Homeclass/Myclass/scpyContentData/pyid/"+pyid + '?' +  Date.parse(new Date());
+				$.ajax({
+					type: "GET",
+					url: url_g,
+					success: function(msg){
+						if(msg=="moreerror"){
+							dialog.title("操作失败").content("您的评语库已满，最多收藏30个").lock().time(3);return false;
+						}else if(msg=="fail"){
+							dialog.title("操作失败").content("收藏失败").lock().time(3);return false;
+						}else if(msg=="suucess"){
+							dialog.title("操作成功").content("已经收到您的评语库").lock().time(1);return false;
+						}
+				    }
+				});
+				//alert($("#ajaxstate").val());
+				return false;
+			}
+	
+		});
+	}
+
+	jQuery(document).ready(function () {			
+		jQuery("#top_rb_menu ul li").click(function () {
+			jQuery("#top_rb_menu ul li").attr("class","normal")
+			jQuery(this).attr("class","active")
+			jQuery(this).attr("c","active")
+		});
+		jQuery(".tab-nav").click(function(){
+			jQuery(".tab-nav").removeClass("hover");
+			jQuery("#"+jQuery(this).attr("id")).addClass("hover");
+			getpyContentData(jQuery(this).attr("id"));
+		});
+		jQuery(".tab-right").click(function(){
+			jQuery(".tab-right").removeClass("hover_t");
+			jQuery("#"+jQuery(this).attr("id")).addClass("hover_t");
+			getpyContentpyatt(jQuery(this).attr("id"));
+			
+		})
+		
+	});
+</script>
+{/literal}
+
+</head>
+
+
+<body style="overflow-x: hidden; overflow-y: auto;">
+<table width="760" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+	
+		<div class="comment">评语大师</div>
+
+	<div class="commenb">
+		<div class="commenbl">
+			<ul>
+				<li id="cmd-all" class="tab-nav hover"><a>全部</a></li>
+				{foreach from=$arrpytype item=votype key=key name=rownumber}
+
+				<li id="{$smarty.foreach.rownumber.iteration}" class="tab-nav"><a>{$votype.name}</a></li>
+				{/foreach}
+
+			</ul>
+		</div>
+
+		<div class="commenbr">
+			<div class="commenbrt">
+				<ul>
+					<li id="0" class="tab-right hover_t"><a>优秀</a></li>
+					<li id="1" class="tab-right"><a>良好</a></li>
+					<li id="2" class="tab-right"><a>还需努力</a></li>
+				</ul>
+			</div>
+	
+
+				<div id='idpycontent' style='bakcground:#efefef;width:600px;height:500px;'>
+				{literal}
+				<script type="text/javascript">getpyContentpyatt(0);</script>
+				{/literal}
+				</div>
+<input type="hidden" name="backid" id="backid" value="{$rowsid}" />
+		</div>
+
+	<!--commenb end-->
+	
+	
+	</td>
+  </tr>
+</table>
+
+
+
+
+
+</body>
+</html>

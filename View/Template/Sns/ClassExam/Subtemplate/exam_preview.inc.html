@@ -1,0 +1,52 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassExam/ext/exam_preview.js"></script>
+ <!--成绩预览 star-->
+ <div class="preview_release" id="exam_preview_div" style="display:none;">
+   <div class="publish_main preview_release_main">
+        <h3 class="main_title mar0">班级成绩>成绩预览</h3>
+        <div id="exam_preview_tab" class="fill_info fill_info_tcc">
+          <p id="class_name"></p>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th>科目：<span id="subject_name"></span></th>
+            <th>考试名称：<span id="exam_name"></span></th>
+            <th>考试日期：<span id="exam_time"></span></th>
+          </tr>
+          <tr>
+            <th class="width60">满分设定：<span id="exam_well"></span></th>
+            <th>优秀分数设定：<span id="exam_good"></span></th>
+            <th>及格分数设定：<span id="exam_bad"></span></th>
+          </tr>
+        </table>
+        </div>
+        
+        <div class="list_main">
+        <table id="score_preview_tab" width="100%" border="0" cellspacing="1" cellpadding="0">
+          <tr>
+            <th class="boder_left">序号</th>
+            <th>姓名</th>
+            <th>成绩</th>
+            <th>评语</th>
+          </tr>
+          <!-- 页面填充的时候用于clone的元素 -->
+          <tr  class="clone" style="display:none;">
+            <td class="boder_left"></td>
+            <td></td>
+            <td></td>
+            <td class="align_left"></td>
+          </tr>
+        </table>
+        </div>
+        <div class="list_main_btn tcclist_main_btn">
+          <dl>
+            <dt><a href="javascript:;"  id="pub_exam"class="f14" title=""><span class="btn_left"></span><span class="btn_right">发布成绩</span></a></dt>
+          </dl>
+          <dl>
+            <dt><a href="javascript:;" id="pub_exam_with_msg" class="f14" title=""><span class="btn_left"></span><span  class="btn_right">发布成绩+短信</span></a></dt>
+            <div class="clear"></div>
+            <dd class="f12 f_orange">同时发送到全班家长的手机上</dd>
+          </dl>
+          <div class="clear"></div>
+        </div>
+    </div>
+ </div>
+ <!--成绩预览 end-->

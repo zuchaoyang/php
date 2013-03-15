@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>查看资源</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/list.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<script type="text/javascript"> 
+	function show_content(file_url){
+		$("#c_iframe").attr("src", file_url);
+	}
+</script>
+{/literal}
+</head>
+
+<body>
+<!--top-->
+<div id="top">
+  <div class="top-main-s">
+     <p style="text-align:right; float:right;">当前位置：{$product_name}&nbsp;>>&nbsp;&nbsp;{$r_info.grade_name}&nbsp;-&nbsp;{$r_info.subject_name}&nbsp;-&nbsp;{$r_info.version_name}</p>
+    <div class="clean"></div>
+  </div>
+  <div class="clean"></div>
+</div>
+<!--top end-->
+
+<!--导航-->
+<div id="cotent-s">
+  <div class="banner-s"></div>
+  <div class="clean"></div>
+  <div class="nav-s">
+    <ul>
+	    {foreach from=$r_info.class name=key item=info }
+	     <li><a href="#" onclick="javascript:show_content('{$info.file_url}');"  >{$info.learn_type}</a></li>
+	     {/foreach}
+         <!-- <li><a href="#" class="study">自主学习</a></li>
+         <li><a href="#">反馈跟踪</a></li>
+         <li><a href="#">能力延伸</a></li>
+         <li><a href="#">知识拓展</a></li>
+         <li><a href="#">情景字典</a></li>
+          -->
+    </ul>
+    <div class="clean"></div>
+  </div>  
+  <!--内容-->
+ <!-- <div class="content_hb"> -->
+ 
+  <iframe id="c_iframe" name="c_iframe" name="c_iframe" width="670"  height="1000" scrolling=auto frameborder="1" src="{$r_info.class.0.file_url}"></iframe> 
+  {literal}
+  <script type="text/javascript"> 
+<!-- 
+	var winWidth = 0; 
+	var winHeight = 0; 
+	function findDimensions() //函数：获取尺寸 
+	{ 
+		//获取窗口宽度 
+		if (window.innerWidth) 
+		winWidth = window.innerWidth; 
+		else if ((document.body) && (document.body.clientWidth)) 
+		winWidth = document.body.clientWidth; 
+		//获取窗口高度 
+		if (window.innerHeight) 
+		winHeight = window.innerHeight; 
+		else if ((document.body) && (document.body.clientHeight)) 
+		winHeight = document.body.clientHeight; 
+		//通过深入Document内部对body进行检测，获取窗口大小 
+		if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) 
+		{ 
+		winHeight = document.documentElement.clientHeight; 
+		winWidth = document.documentElement.clientWidth; 
+		} 
+		//结果输出至两个文本框 
+		document.getElementById("c_iframe").height=(winHeight-185)+"px";
+	
+	} 
+	findDimensions(); 
+	//调用函数，获取数值 
+	window.onresize=findDimensions;
+//--> 
+</script> 
+{/literal}
+</div>
+</body>
+</html>

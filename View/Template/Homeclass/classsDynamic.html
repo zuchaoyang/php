@@ -1,0 +1,69 @@
+{include file="Public/banji_header.html"}
+<div class="class_space_main">
+
+<div class="class_space_banner">
+
+<div class="class_space_banner_name">
+				<h2>{$tpl_school_Name}</h2>
+				<b>{$tpl_gradeclass_Name}</b>
+</div>
+</div><!--class_space_banner end-->
+
+
+<div class="class_space_row">
+
+	<!--class_space_row_left start-->
+		{include file="Public/banji_left.html"}
+	<!--class_space_row_left end-->
+
+<div class="class_space_row_right">
+<div class="space_dongtai">
+<h2>班级动态</h2>
+{if !empty($Talk_ContentList)}
+{foreach from=$Talk_ContentList item=val}
+<div class="m_message">
+	<div class="m_message_l">
+		<a href='/Homeuser/Index/spacehome/spaceid/{$val.client_account}' title='访问Ta的空间' target='_blank'><img src="{$val.client_headimg_url}" width="60" height="60" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/images/head_pics.jpg'"/></a> 
+	</div>
+	<div class="m_message_r">
+		<h3 style="padding-left:10px;"><strong>
+		{$val.client_name}<br/>
+		{$val.feed_title}：<br/>{if $val.feed_url != ''}<a href="{$val.feed_url}">{/if}{$val.feed_name}{if $val.feed_url != ''}</a>{/if}
+		</strong>
+		</h3>
+		<div class="m_message_rt">
+		<p>
+			{$val.feed_upd_time}
+			{if $val.res_type == $smarty.const.CLASS_FEED_TALK || $val.res_type == $smarty.const.CLASS_FEED_LOG || $val.res_type == $smarty.const.CLASS_FEED_ALBUM}
+			评论(<span id="pcount_{$val.res_id}">{$val.CommentNums}</span>)↓
+			{/if}
+		</p>
+		</div>
+
+	</div>
+	<div class="kong"></div>
+</div>
+<!--m_message end-->
+{/foreach}
+{/if}
+<div id='idpycontent'></div>
+<input type='hidden' name='nextLlimit' id='nextLlimit' value='{$nextLlimit}'>
+<input type='hidden' name='class_code' id='class_code' value='{$class_code}'>
+<div class="m_more"><a href="javascript:void(0)" id="loadlist_key" onclick="showlist();">点击加载更多动态</a></div>
+
+</div>
+<div class="kong"></div>
+</div><!--class_space_row end-->
+
+
+
+</div><!--class_space_main end-->
+
+
+
+
+</div><!--class_space_box end-->
+{include file="Public/banji_footer.html"}
+
+</body>
+</html>

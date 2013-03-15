@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>家长-联系方式</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_user_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/user_contact.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/css/validator.css" />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidator.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/formvalidator/js/formValidatorRegex.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/user_contact.js"></script>
+
+
+</head>
+
+<body>
+{insert name="uc_header"}
+
+ <div class="tip">
+   <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;<span class="font_olive">请完善您的个人信息</span></p>
+ </div>
+ <div class="container">
+   <div class="main">
+     <p class="main_top"></p>
+     <!--main_center star-->
+     <div class="main_center">
+        {include file="Uc/uc_left.html"}
+       <div class="main_right">
+         <h4>联系方式</h4>
+         <div class="user_cotact_main">
+          <table border="0" cellspacing="0" cellpadding="0">
+          {if $userinfo.phone_id != ''}
+	           {if $userinfo.client_type != $smarty.const.CLIENT_TYPE_STUDENT}
+		           <tr>
+		             <td>手机号：</td>
+		             <td><span class="font_red font_normal">{$userinfo.phone_id}</span></td>
+		           </tr>
+	           {/if}
+           {else}
+           		<tr>没有设置手机号</tr>
+           {/if}
+           <tr>
+             <td>&nbsp;</td>
+             <td class="font_normal font_gray">手机号可以用于登录、找回密码和接收短信</td>
+           </tr>
+           <tr>
+            <th colspan="2"></th> 
+           </tr>
+           <form id="user_contact" method="post" action="/Uc/Userinfos/modify_contact">
+	           <tr>
+	             <td>联系电话：</td>
+	             <td>
+	             <input type="text" class="text" value="{$userinfo.client_phone}" name="client_phone" id="phone_id" maxlength="11"/>
+	             <input type="button" value="保存" class="btn_2_word" id="save"/><span class="err_msg" id="phone_idTip"></span></td>
+	             <input type="hidden" value="{$userinfo.client_phone}" id="sub_phone"/>
+	           </tr>
+           </form>
+            <tr>
+            <th colspan="2"></th> 
+           </tr>
+           <tr>
+             <td>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</td>
+             <td><span class="font_red font_normal">{$userinfo.client_email}</span>&nbsp;&nbsp;&nbsp;{if $user.client_email == ''}<a href="/Uc/Accountset/index" class="font_darkblue">设置邮箱</a>{else}<a href="/Uc/Accountset/modifyEmailone" class="font_darkblue">修改邮箱</a>{/if}</td>
+           </tr>
+           <tr>
+             <td>&nbsp;</td>
+             <td class="font_normal font_gray">邮箱可以用于登录和找回密码</td>
+           </tr>
+           <tr>
+             <td>&nbsp;</td>
+             <td class="font_cotent"></td>
+           </tr>
+         </table>
+         </div>
+         <p class="save"></p>
+       </div>
+       <div class="clear"></div>
+     </div>
+     <!--main_center end-->
+     <p class="main_bottom"></p>
+   </div>
+ </div>
+ {insert name="uc_footer"}
+</body>
+</html>

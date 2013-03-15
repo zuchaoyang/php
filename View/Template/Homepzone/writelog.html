@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>我的日记_写日记</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/diary.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/wdbj.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/thickbox/postion.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/log/log.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/common.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/tool.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/talk/jquery.form.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+<div class="nav">
+{insert name="publicHeader" class_code = $class_code}
+<div class="main">
+{insert name="account_left" class_code = $class_code}
+
+
+<div class="sub_right">
+
+<div class="sub_diary">
+<div class="sub_diaryl">
+<ul>
+				<li><i class="di1"></i><a href='/Homepzone/Pzonelog/mylogindex/class_code/{$class_code}'>我的日记</a></li>
+				<li><i class="di2"></i><a href='/Homepzone/Pzonelog/logDraft/class_code/{$class_code}'>草稿箱</a></li>
+</ul>
+</div>
+<div class="sub_diaryr">
+<ul>
+				<li><i class="di3"></i><a href='/Homepzone/Pzonelog/writelog/log_account/{$log_account}/class_code/{$class_code}'>写日记</a></li>
+				<li><i class="di4"></i><a href="/Homepzone/Pzonelog/manage_log_type/log_account/{$log_account}/class_code/{$class_code}" style="float:right; margin-right:10px;">分类管理</a></li>
+</ul>
+</div>
+</div><!--sub_diary end-->
+<span class="blank20"></span>
+<div class="sub_diary_t" >
+
+<form method="post" id="form" name="formWritLog" action='/Homepzone/Pzonelog/writelog_do{$draft}' onsubmit='return logwritechk();'>
+<div id="paper" style="width:756px;height:50px">
+	<div id="papers" style="width:380px;height:50px;float:right;">
+		<span class="lable-paper">信纸</span>
+		<div class="pagers">
+		</div>
+		<input type="button" class='btnMore' id="paperdel" name='paperdel' value="移除信纸" onclick="hiddlatterlist('')">	
+		<input type="button" class='btnMore' id="paperMore" name='paperMore' value="展开" onclick="showlatterlist(700,250)">
+
+	</div>
+</div>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#DDDDDD">
+  <tr bgcolor="#efefef">
+    <td height="25" colspan="2" valign="middle"><span class="tag_title">请在这里输入日志标题：</span></td>
+  </tr>
+  <tr>
+    <td height="40" colspan="2" valign="middle" bgcolor="#FFFFFF">
+	<input name="title" type="text" class="txtcss1" id="log_nametitle"  value="{$log_list.log_name}" size="80" maxlength="50">
+   <span id="checktitle" style="font-size:12px;color:red;"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" bgcolor="#FFFFFF">
+	<!-- del<div id="ContentWin" style="width:750px;height:500px;margin:0px;padding:0px;">
+	<iframe allowTransparency="true" src="{$smarty.const.IMG_SERVER}__PUBLIC__/zoneEditor/Edit.html?I=content&B=ContentBg" frameBorder="0" marginHeight="0" marginWidth="0" scrolling="no" style="height:516px;width:100%" id='HtmlEditor' name="HtmlEditor"  ></iframe>
+	</div>
+	<input name="ContentBg" type=hidden value='{$log_list.contentbg}'>
+	<input name="ContentBgall" type=hidden value='{$log_list.contentbgurl}'>
+	<textarea name="content" id='content' style="display:none">{$log_list.log_content}</textarea> -->
+	
+	
+	{literal}
+	<script type="text/javascript">
+	$(pageInit);
+	function pageInit()
+	{
+		var bj = document.getElementById("ContentBg").value;
+		document.getElementById('content').style.background = "url("+bj+")";
+		$.extend(xheditor.settings,{shortcuts:{'ctrl+enter':submitForm}});
+		$('#content').xheditor({skin:'vista',tools:'Separator,BtnBr,Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,SelectAll,Removeformat,Align,List,Outdent,Indent,Link,Unlink,Emot'});
+	}
+	function submitForm(){$('#form').submit();}
+	</script>
+	{/literal}
+	<textarea name="content" id='content' style="width:750px;height:500px;margin:0px;padding:0px;">{$log_list.log_content}</textarea>
+	<input name="ContentBg"  id="ContentBg" type="hidden" value='{$log_list.contentbg}'/>
+	
+	<span class="blank20"></span>	</td>
+  </tr>
+
+  <tr bgcolor="#efefef">
+    <td height="35" valign="middle" bgcolor="#F2F2F2">
+	&nbsp;&nbsp;&nbsp;分类：
+	<select name="log_type" >
+	{foreach from=$type_list item=tl}
+		{if $tl.logtype_id==$log_list.log_type}
+		   <option value="{$tl.logtype_id}" selected="selected">{$tl.logtype_name}</option>
+	  {else}   
+		   <option value="{$tl.logtype_id}" >{$tl.logtype_name}</option>
+	   {/if}
+	{/foreach}
+   </select>
+  </tr>
+  <tr bgcolor="#efefef">
+    <td colspan="2" valign="middle" bgcolor="#FFFFFF">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr bgcolor="#efefef">
+          <td height="40" align="center" valign="middle" bgcolor="#FFFFFF">
+		  </td>
+          <td valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
+          <td valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+        <tr bgcolor="#efefef">
+    <td valign="middle" bgcolor="#FFFFFF">
+		{if $flag==0}
+			{if $log_list.log_status==0}
+			&nbsp;<input type="submit"  value="发布日记"  class='inpusub'  name='btnSaveId' >&nbsp;
+			<input type='hidden' name='logaction' id='logaction' value=1>
+			{else}
+			&nbsp;<input type="submit"  value="保存修改"  class='inpusub'  name='btnSaveId'>&nbsp;
+			{/if}
+		{else}
+		&nbsp;<input type="submit"  value="发布日记"  class='inpusub' name='btnSaveId'>&nbsp;	
+			<input type='hidden' name='logaction' id='logaction' value=1>
+		{/if}
+		<input type="hidden" name="savetype" id="savetype" />
+		<input type="button"  value="取消" onclick="javascript:window.location='/Homepzone/Pzonelog/mylogindex/class_code/{$class_code}'" class='inputbg2'>
+		
+	</td>
+    <td valign="middle" bgcolor="#FFFFFF">
+	{if $client_type==1}
+		<span class="STYLE1"><input type="checkbox" name="push_class" id="push_class" value="on" {if $push_class==1} checked {/if}  onclick="javascript:showChkclass();"/>您可以分享日志到以下班级</span><br>
+		<div id='chkClass' {if $push_class!=1} style='display:none'{/if}>
+		{foreach from=$myclasslistnew item=voclass}
+			<input type='checkbox'  name='teacher_push_class[]' value='{$voclass.class_code}' {$voclass.classcodechk}>{$voclass.class_name}<br>
+		{/foreach}
+		</div>
+	{else}
+		<input type="checkbox" name="push_class" value="on" {if $push_class==1} checked {/if} />&nbsp;&nbsp;<span class="STYLE1">分享到班级日志上</span>		   
+
+	{/if}
+	</td>
+    <td valign="middle" bgcolor="#FFFFFF">&nbsp;
+	{if empty($logid) || $log_list.log_status==0}
+	&nbsp;<input type="submit"  value="保存为草稿" class='inpusublong' name='btnlogDraftSaveId'>	
+	{/if}
+	<input type="hidden" value="{$logid}" name="logid" />
+	<input type="hidden" value="{$logtype}" name="logtype" />
+	<input type="hidden" value="{$class_code}" name="class_code" />
+	
+	</td>
+  </tr>
+        <tr bgcolor="#efefef">
+          <td valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
+          <td valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
+          <td valign="middle" bgcolor="#FFFFFF">&nbsp;</td>
+        </tr>
+    </table></td>
+    </tr>
+</table>
+</form>
+
+</div>
+<!--sub_diary_t end-->
+
+</div>
+<!--sub_right end-->
+<div class="kong"></div>
+</div><!--main end-->
+
+{include file="Public/footer.html"}
+
+
+</div><!--nav end-->
+</div><!--box end-->
+
+</body>
+</html>

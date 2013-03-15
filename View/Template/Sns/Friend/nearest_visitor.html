@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>最近访客</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Friend/nearest_visitor.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Friend/nearest_visitor.js"></script>
+</head>
+<body>
+{insert name="sns_header"}
+<!--per_tip star-->
+  {include file="Public/sns_person_space_header.html"}
+<!--per_tip end--> 
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+  <div class="main">
+    <ul class="mian_title">
+     <li><a href="#" class="main_nav_a1 f16" title="">最近访客</a></li>
+     <li class="li_align_right">共<span class="f_orange">{$total_count}</span>位访客，今日<span class="f_orange">{$total_count_day}</span>位访客</li>
+    </ul>
+    <!--per_main star-->
+    <div class="per_main">
+      <!--per_main_tab star-->
+      <div id="friend_list_div">
+      {literal}
+      <div class="per_main_tab clone"  style="display:none;">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td ><img src="{user.client_headimg_url}" class="photo_width"></td>
+            <td>
+              <p><a href="#" class="f_main_green">{user.client_name}</a></p>
+              <p>{if user.client_sex == 1}男{else}女{/if}</p>
+              <p>{if user.is_friend == 1}<a href="javascript:;" class="add_friend mr10">已是好友</a>{else if user.is_friend == 2}<a href="javascript:;" class="add_friend mr10">已发送</a>{else}<a href="javascript:;" id="add_friend" class="add_friend mr10">加好友</a>{/if}</p>
+            </td>
+            <td class="td_width"><input type="hidden" id="vistior_id" value="{user.id}"/></td>
+            
+            <td class="align_right"><a href="javascript:;" id="del_vistior_btn" class="f_gray">删除</a><br/>{user.timeline}</td>
+          </tr>
+        </table>
+        </div>
+         {/literal}
+        </div>
+         <!--more_active star-->
+         <div class="more_active">
+           <a href="javascript:;" id="load_more_a">加载更多</a>
+         </div>
+       <!--more_active end-->
+        <!--per_main_tab end-->
+      <div class="clear"></div>
+      
+    </div>
+    <!--per_main end-->
+  </div>  
+  <!--main end-->
+<div class="clear"></div> 
+</div>
+<!--content end-->
+<!--弹出层 star-->
+ <!--添加好友 star-->
+  <div class="edit_comment" id="add_friend_div">
+   <h1 class="tcc_title">添加<span id="friend_name_span"></span>好友<a href="#" class="close_icon"></a></h1>
+   <div class="edit_comment_tab" id="add_content_div">
+     <h2>附加信息</h2>
+     <textarea class="textarea" maxlength="140" id="content"></textarea>
+     <p>你还能输入<span class="f_orange" id="f_orange_id">140</span>字。</p>
+    </div>
+   <div class="msg_btn">
+     <p><input type="button" value="确定" id="queding_btn" class="green_btn"><input type="button"  id="quxiao_btn" value="取消" class="qx_btn"></p>
+   </div>
+ </div>
+ <!--添加好友 end-->
+ <!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="msg_div">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_right"></span></dt>
+      </dl>
+      <p>
+       <span class="pt6">您的好友添加请求已经发送成功，正在等待对方确认。</span>
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="msg_center_btn"><input type="button" class="orange_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+<!--弹出层 end-->
+</body>
+</html>
+
+
+

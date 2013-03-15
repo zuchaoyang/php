@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+ 
+<title>人员排序</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+
+{literal}
+<script type="text/javascript">
+
+	function modify(dptmb_id,dpt_id){
+		var btn = document.getElementById("btn_"+dptmb_id);
+		var name = document.getElementById("name_"+dptmb_id);
+		var name_1 = document.getElementById("name_1_"+dptmb_id);
+		var sort_id = document.getElementById('name_'+dptmb_id).value;
+		if(btn.innerHTML == "修改"){
+			name.style.display='block';
+			name_1.style.display="none";
+			btn.innerHTML = "保存";
+		} else {
+			if(isNaN(parseInt(sort_id)) || parseInt(sort_id) < 0) {
+				alert('排序号必须是正整数!');
+				return false;
+			}
+			window.location.href="/Amscontrol/Oadepartment/modifyDepartmentMembers/dptmb_id/"+dptmb_id+"/dpt_id/"+dpt_id+"/sort_id/"+sort_id;
+		}
+	}
+
+</script>
+{/literal}
+
+</head>
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft" style="margin-bottom:20px;">
+  <tr>
+    <td height="27"class="bt STYLE1">人员排序-{$dpart_name}</td>
+  </tr>
+  <tr>
+    <td height="25" bgcolor="#fbf6f7"  style="padding:10px;"><a href="/Amscontrol/Oadepartment/modify/dpt_id/{$dpt_id}" class="amsqd">返回</a></td>
+  </tr>
+  <tr>
+   <td bgcolor="#fbf6f7">
+     <table width="50%" border="1" align="left" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" class="glry_tab" style="border-collapse:collapse; margin:0px;">
+  <tr>
+    <td height="30" align="center" bgcolor="#CCCCCC">序号</td>
+    <td align="center" bgcolor="#CCCCCC">老师姓名</td>
+    <td align="center" bgcolor="#CCCCCC">老师账号</td>
+    <td align="center" bgcolor="#CCCCCC">排序号</td>
+    <td align="center" bgcolor="#CCCCCC">操作</td>
+  </tr>
+  {if $membersinfos != ''}
+  <form method="post" action="#" id="form">
+  {foreach from=$membersinfos item=val}
+  <tr>
+    <td height="30" align="center">{$val.num}</td>
+    <td align="center">{$val.client_name}</td>
+    <td align="center">{$val.client_account}</td>
+    <td align="center">
+    	<input maxlength="4" style="width:30px;display:none;" type="text" value="{$val.sort_id}" name="sort_id" id="name_{$val.dptmb_id}"/>
+    	<span id="name_1_{$val.dptmb_id}" style="display:block;">{$val.sort_id}</span>
+    </td>
+    <td align="center">
+    	<a href="javascript:;" onclick="modify('{$val.dptmb_id}','{$val.dpt_id}');" id="btn_{$val.dptmb_id}">修改</a>
+    </td>
+  </tr>
+  {/foreach}
+  </form>
+</table>
+
+   </td>
+  </tr>
+  <tr>
+   <td bgcolor="#fbf6f7">
+    <form action="/Amscontrol/Oadepartment/departmentMemberssort" method="get">
+    <p class="gl_fenye">
+    	<span style="float:left;">当前第{$page}页</span>
+    {if $page < 1}
+    	<a href="#" style="float:left;">上一页</a>
+    {else}
+    <a href="/Amscontrol/Oadepartment/departmentMemberssort/dpt_id/{$dpt_id}/page/{$page-1}" style="float:left;">上一页</a>
+    {/if}
+    {if $page==$totalpage}
+   		<a href="#" style="float:left;">下一页</a>
+    {else}
+     	<a href="/Amscontrol/Oadepartment/departmentMemberssort/dpt_id/{$dpt_id}/page/{$page+1}" style="float:left;">下一页</a>
+    {/if}
+    
+    	<input type="hidden" name="dpt_id" value="{$dpt_id}"/ style="float:left;">
+    	<input type="text" style="width:25px;" name="page"/ style="float:left;">
+    	<input type="submit" value="跳转"/ style="float:left;">
+   
+    	<span style="float:left;">共{$totalpage}页</span>
+    </p> </form>
+   </td>
+  </tr>
+  {else}
+  	<tr ><td colspan="5" align="center" height="30">暂无数据</td></tr>
+  {/if}
+</table>
+ 
+</body>
+</html>

@@ -1,0 +1,21 @@
+*{margin:0px; padding:0px;}
+body{background:#4b88c1; font:14px "宋体";}
+
+
+.big{background:url(../images/top02.jpg) center 0 no-repeat; height:306px;}
+.list_main{width:980px; margin:0 auto; background:#fff; padding:20px 10px 10px; }
+	.list_main h3{font:20px "黑体"; text-align:center; color:#cc0000;}
+	.list_main p{ font:14px "宋体"; color:#333; text-indent:28px; line-height:22px; padding-top:10px;}
+	
+	.list_main table{text-align:center;}
+		.list_main_tab{background:#999; width:50%; margin:0 auto;}
+		.list_main_tab th{width:100px; background:#fff; font-weight:normal; color:#c00;}
+		.list_main_tab td{height:30px; text-align:center; color:#c00; background:#fff;}
+	
+	.win_line{height:1px; background:#FF0000; overflow:hidden; margin:10px 0px;}
+	
+	.list_main h4{font:16x "黑体"; text-align:center; font-size:14px; line-height:30px; color:#c00;}
+	
+	.list_main_tab2{background:#999;}
+		.list_main_tab2 th{background:#9cf; height:30px;}
+		.list_main_tab2 td{background:#fff; height:25px;}

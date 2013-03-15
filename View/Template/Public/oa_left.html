@@ -1,0 +1,113 @@
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/js/oa_left.js"></script>
+
+<div class="index_left">
+	<!--日历-->
+     <table cellpadding="0" cellspacing="0" class="rili">
+    	<tr>
+        	<td class="xingqi">{$week_day}</td>
+            <td rowspan="2" class="nyr">{$date}</td>
+        </tr>
+        <tr>
+        	<td class="riqi">{$day}</td>
+        </tr>
+    </table>
+    <img id="dpt_photo_for_left" onerror="this.src='{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/photo1.gif';" class="photo"/>
+    {if $multi}
+    	<select id="dpt_list_for_left" style="width:100px; margin:5px 0;">
+    	{foreach from=$dpt_list item=dpt}
+			<option id="id_{$dpt.dpt_id}" value="{$dpt.dpt_id}">{$dpt.dpt_name}</option>
+    	{/foreach}
+    	</select>
+    {else}
+    	{foreach from=$dpt_list item=dpt}
+ 		<a href="javascript:;" class="bm_name">{$dpt.dpt_name}</a>
+ 		<input type="hidden" id="dpt_list_for_left" value="{$dpt.dpt_id}"/>
+ 		{/foreach}
+	{/if}
+	{foreach from=$dpt_list item=dpt}
+		<input type="hidden" id="dpt_photo_small_url_{$dpt.dpt_id}" value="{$dpt.dpt_photo_small_url}"/>
+	{/foreach}
+    <div class="clear"></div>
+
+    <div style="width:100%; position:relative;">
+	    <a href="javascript:;" class="xscy" style="text-decoration:none;" id="show_dpt_member">显示部门成员</a>
+	    <!--tcc4-->
+	    <div class="tcc4" id="show_dpt_member_div">
+	      <p id="show_dpt_member_p">
+		  </p>
+	    </div>
+    </div>
+    <!--tcc4 end-->
+    
+	<div class="bzgz"> 
+    	<a href="/Oa/Expireremind/arrangeworkself" style="text-decoration:none;" class="gz_num">{$no_viewed_nums+0}</a> 
+        <a href="/Oa/Expireremind/arrangeworkself" style="text-decoration:none; text-align:left;">&nbsp;&nbsp;布置给我的工作</a>
+    </div>
+
+    <div class="clear"></div>
+    
+    <!--搜索-->
+    <div class="right_serch">
+    	<input type="hidden" name="datetimestr" id="datetimestr"/>
+	    <form id="searchebytimeandname" action="#" method="post">
+	    	<input id="schedule_name" name="schedule_name" type="text" /> 
+	    	<a href="#" style="text-decoration:none;" id="schedule_search">搜索</a>
+	   	</form>
+    </div>
+    
+    <div class="clear"></div>
+    
+    
+    
+    <!--导航列表-->
+    <ul class="nav_list">
+    	<li> 
+        	<a href="#" class="nav_z"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon06.gif" style="text-decoration:none;" />我的事务</a>
+        	<ul class="nav_ej">
+            	<li><a href="/Oa/Index/getScheduleOrTask">所有分类<span>({$statistics_list.task_type.total_nums+$statistics_list.schedule_type.total_nums})</span></a></li>
+	            {foreach from=$statistics_list.task_type.type item=val}
+	            	<li><a href="/Oa/Index/getScheduleOrTaskbyType/type/1/show_type/{$val.type_id}">·{$val.type_name}<span> ({$val.nums+0})</span></a></li>
+	            {/foreach}
+	            
+	            {foreach from=$statistics_list.schedule_type.type item=val}
+	            	{if $val.type_id == '0'}
+	            	<li><a href="/Oa/Index/getSchedule_listWithoutsys/type/0/show_type/{$val.type_id}">·{$val.type_name}<span> ({$val.nums+0})</span></a></li>
+	            	{else}
+	            	<li><a href="/Oa/Index/getScheduleOrTaskbyType/type/0/show_type/{$val.type_id}">·{$val.type_name}<span> ({$val.nums+0})</span></a></li>
+	            	{/if}
+	            	
+	            {/foreach}
+            </ul>
+        </li>
+        <li>
+        	<a href="#" class="nav_z"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon04.gif" style="text-decoration:none;" />公共事务</a>
+            <ul class="nav_ej">
+            	<li><a href="javascript:{if $show_access_arr.1} openHref('/Oa/Expireremind/getTaskInfosByType/type/1') {/if}; "> 
+					·局里工作
+					</a>
+		        </li>
+		        <li><a href="javascript:{if $show_access_arr.2} openHref('/Oa/Expireremind/getTaskInfosByType/type/2') {/if};"> 
+		        	·学校工作
+		        	</a>
+		        </li>
+		        <li><a href="javascript:{if $show_access_arr.3} openHref('/Oa/Expireremind/getTaskInfosByType/type/3') {/if}; "> 
+		        	·重要通知
+		        	</a>
+		        </li>
+		        <li><a href="javascript:{if $show_access_arr.4} openHref('/Oa/Expireremind/getTaskInfosByType/type/4') {/if}; "> 
+		        	·校务公开
+		        	</a>
+		        </li>
+            </ul>
+        </li>
+        <li><a href="javascript:openHref('/Oa/Expireremind/ScheduleManage');" class="nav_z" style="text-decoration:none;"> 
+	    	<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon01.gif" />
+	    	日程安排
+	    	</a></li>
+	    	<li><a href="{if $show_access_arr.0} javascript:openHref('/Oa/Task/taskListFromMe'); {/if}" class="nav_z" style="text-decoration:none;">
+        	<img src="{$smarty.const.IMG_SERVER}__PUBLIC__/oa/images/icon02.gif" />
+        	布置工作
+        	</a></li>
+    </ul>
+</div>
+<!--left end-->

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>找回密码提示</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/uc_common.css"/>
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/css/find_pwd_tips.css"/>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/uc/js/find_pwd_tips.js"></script>
+
+</head>
+
+<body>
+<!--top-->
+{insert name="uc_header" }
+<!--top end-->
+
+<!--main-->
+<div class="tip">
+  <p class="font_main"><span class="font_darkblue">温馨提示：</span>&nbsp;&nbsp;<span class="font_olive">密码修改提示...</span></p>
+</div>
+<div class="container">
+<div class="main">
+	<div class="content_frame_01_top"></div>
+    <div class="content_frame_01_con">
+      <div class="sub_nav">
+        <ul>
+          <span class="sub_nav_first_end">1，输入账号</span>
+          <span class="sub_nav_end">2，选择找回方式</span>
+          <span class="sub_nav_end">3，安全验证</span>
+          <span class="sub_nav_end">4，重置密码</span>
+          <span class="sub_nav_right_begin">5，完成</span>
+          
+        </ul>
+        <div class="clear"></div>
+      </div> 
+      <p><span class="font_darkblue">
+     	  恭喜您，密码设置成功！请使用我们网账号：<span class="font_red">{$username}</span> 进行登录
+     	 </span>
+       </p>
+      <p>
+       <span class="font_gray font_normal">系统将在&nbsp;
+       <span id="showtime" class="font_red">5</span>
+       &nbsp;秒&nbsp;后自动跳转到我们网首页</span>
+      </p>
+    </div>
+    <div class="content_frame_01_bottom"></div>
+</div>
+</div>
+
+
+<!--main end-->
+
+<!--footer -->
+ {insert name="uc_footer"}
+<!--footer end-->
+
+
+</body>
+</html>

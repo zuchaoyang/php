@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>private msg list</title>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/PrivateMsg/"></script>
+</head>
+<body>
+	{foreach from=$private_list item=val}
+		{$val.content}
+		<br/>
+		{$val.send_name}
+		<br/>
+		<img src="{$val.send_url}"></img>
+		<br/>
+		<img src="{$val.to_url}"></img>
+		<br/>
+		{$val.to_name}
+		<br/>
+	{/foreach}
+</body>
+</html>

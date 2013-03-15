@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+<title>老师账号导入</title>
+
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/common.css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/css/xxgl.css"  />
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/js/jquery.js"></script>
+
+{literal}
+<script type="text/javascript">
+	function check(){
+		var file_excel = $("#file_excel").val();
+		var file_obj = $('#file_excel');
+		var reg = /.+?\.xls(x?)$/;
+		if(!reg.exec(file_obj.val())) {
+			alert("请选择Excel文件进行上传!");
+			file_obj.val("");
+			return false;
+		}
+		return true;
+	}
+</script>
+{/literal}
+
+</head>
+<body style="padding-top:30px; _width:98%">
+<table width="92%" border="0" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td height="20" valign="middle" style="background:url({$smarty.const.IMG_SERVER}__PUBLIC__/amsmanage/images/iconr.gif) no-repeat 8px center; padding-left:28px;">您好：<font color="#FF0000">{$username}</font> ，欢迎使用AMS账号管理系统！ 您现在的位置：<a href="#" class="amswz">学校管理</a>  >><a href="#" class="amswz">老师账号导入-浏览</a></td>
+  </tr>
+</table>
+<table width="92%" border="0" cellspacing="0" cellpadding="0" class="padleft">
+  <tr>
+    <td height="27"class="bt">老师管理</td>
+  </tr>
+  <tr>
+    <td height="10">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="25" bgcolor="#fbf6f7"  style="padding-top:10px;">
+		<a href="javascript:addWinFun.open();" class="amsqd">增加老师信息</a>
+        {if $operationStrategy!=1}<a class="amsqd" href="/Amscontrol/Amsteacher/addTeacherBPhone/schoolid/{$schoolid}">手机号绑定</a>{/if}
+        {if $smarty.const.IS_SET_OLDACCOUNT_IMPORT == 1}<a class="amsqd" href="/Amscontrol/Oldaccountimport/showimportaccount/schoolid/{$schoolid}">老师账号导入</a>{/if}
+	</td>
+  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+  <form onsubmit="return check();" action="/Amscontrol/Oldaccountimport/teacherUploadExcelFile" method="post"  enctype="multipart/form-data">
+	  <tr>
+	    <td height="30" bgcolor="#fbf6f7">
+	      	请上传老校园门户的文件：<input type="file" id="file_excel" name="file_excel" class="text" />
+	      	<input type="hidden" name="schoolid" value="{$schoolid}"></input>
+	    </td>
+	  </tr>
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"><input id="upload_excel_submit" type="submit" value="上&nbsp;传"/></td>
+  </tr>
+  </form>
+
+  <tr>
+   <td height="10" bgcolor="#fbf6f7"></td>
+  </tr>
+</table>
+    
+</body>
+</html>
