@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* CSS Document */
+.pt20{padding-top:20px;}
+.mood_main{width:938px; margin:0 auto; border:1px #e5e5e5 solid; font:14px "微软雅黑"; padding:10px; background:#fff;}
+		.align_right{text-align:right;}
+		.green_btn{background:url(../../images/Mood/show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
+				
+	.say_tab ul{height:36px;}
+		.main_nav_a1{background:url(../../images/Mood/show/a_bj.jpg) 0 0 no-repeat; width:112px; height:36px; display:block; overflow:hidden;}
+	
+	
+	.say_main{border:1px #6db500 solid; background:url(../../images/Mood/show/cotent_bj.gif) repeat; padding:10px;}
+	
+	.personal_active{width:748px; padding:0px 0px 0px 2px; margin-top:10px;}
+		.per_active_l{width:76px; float:left; margin-right:7px;}
+			.per_active_l dl{text-align:center;}
+				.per_active_l dl dt img{width:76px; height:76px;}
+			
+		.per_active_r{width:665px; float:left;}		
+			.per_right_top{background:url(../../images/Mood/show/per_top_bj.jpg) 0 0 no-repeat; height:30px; padding:8px 0px 0px 30px;}	
+			
+			.per_right_center{background:url(../../images/Mood/show/per_center_bj.jpg) repeat-y; margin-left:15px; padding:0px 15px; width:620px;}
+				.per_right_center p{line-height:22px; color:#464646;}
+					.ml10{margin-left:10px; display:inline-block;}
+				.per_release_time{padding:10px 0px 0px; height:30px;}
+					.per_release_time p{float:left; height:30px; text-align:right; line-height:20px; width:220px;}
+					.per_release_time .per_p_width{width:400px; display:inline-block; color:#777; text-align:left; font:12px "微软雅黑";}
+					.per_release_time a{font:14px "宋体"; display:inline-block; margin-left:15px;}
+					.fc_288c00{color:#288c00;}
+					
+				.comment_pl_tab{width:620px; margin-bottom:10px;}	
+					.pl_textarea{width:618px; border:1px #ccc solid; height:40px;}
+					
+				.border_line{ padding:10px 0px 0px;}
+				.plxq{ margin-left:100px;}
+				
+				.list_comment{width:620px; margin:0px 0px 10px;}
+					.list_comment dl{width:40px; margin-right:10px; float:left;}
+					.list_comment_right{float:left;}
+						.mr10{margin-right:10px;}
+						.list_comment_right p span{color:#777;}
+
+					.reply{padding:10px 0px 0px; width:400px;}	
+						.reply_textarea{width:400px; height:40px; border:1px #ccc solid;}
+						.icon_reply_face{background:url(../../images/Mood/show/tcc_icon_face.gif) 0 0 no-repeat; width:16px; height:16px; display:inline-block;}
+						.pt10{padding-top:10px;}
+				.list_comment_ej{width:620px; margin:0px 0px 0px 50px;}
+					.list_comment_ej dl{width:40px; margin-right:10px; float:left;}
+
+						
+				.say_input{width:620px;}
+					.say_text{width:538px; height:20px; line-height:20px; border:1px #ccc solid;}
+						
+					
+		
+			
+			.per_right_bottom{background:url(../../images/Mood/show/per_bottom_bj.jpg) 15px 0 no-repeat; height:10px; overflow:hidden;}
+
+	.more_active{text-align:center; margin-top:10px; border:1px #ccc dashed; background:#ebebeb; padding:10px 0px;}	
+		.more_active a{background:url(../../images/Mood/show/icon_more.jpg) right center no-repeat; display:inline-block; padding-right:10px; color:#5f9400; font:14px "宋体";}	
+
+
+
+
+
+
+/*弹出层*/	
+
+
+
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/Mood/show/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/Mood/show/tcc_msg_center.gif) 0 0 repeat-y; padding:10px 20px;}
+	    .msg_center_main{width:270px;}
+	    	.msg_center_main dl{float:left; margin-right:8px;}
+			.msg_center_main p{float:left; font:normal 12px "宋体"; line-height:20px;}
+			.icon_question{background:url(../../images/Mood/show/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block; margin-right:8px;}
+			
+			.tcc_btn_right{text-align:right;}	
+			.qd_btn{background:url(../../images/Mood/show/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+		    .qx_btn{background:url(../../images/Mood/show/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer; color:#73797c; margin-left:10px;}
+			
+	.tcc_msg_bottom{background:url(../../images/Mood/show/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}		
+
+/*评论*/
+.tcc_comment{width:611px; background:#fff; font:14px "宋体";}
+	.tcc_comment_top{background:url(../../images/Mood/show/comment_top_bj.gif) 0 0 no-repeat; height:15px; overflow:hidden;}
+	
+	.tcc_comment_main{width:579x; background:#f3f3f3; border:1px #e6e6e6 solid; border-top:none; padding:15px;}
+		.comment_tab{margin-bottom:15px;}
+			.comment_tab table td{height:30px;}
+			.comment_text{width:576px; height:22px; border:1px #c6c6c6 solid;}
+			.comment_tab table td p{width:490px; text-align:right; padding-right:10px;}
+			.tcc_icon_face{background:url(../../images/Mood/show/tcc_icon_face.gif) 0 0 no-repeat; width:16px; height:16px; display:inline-block;}
+			.green_btn{background:url(../../images/Mood/show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer; color:#fff;}
+
+		.tcc_comment_main dl{float:left; width:40px; margin-right:10px;}
+		
+		.tcc_single{width:528px; float:left; padding-top:20px;}
+			.tcc_single_tab table p{width:380px; color:#747474;}
+			
+			.tcc_reply{width:511px; margin-left:17px;}
+				.tcc_reply_top{background:url(../../images/Mood/show/tcc_reply_bj.gif) 0 0 no-repeat; height:12px; overflow:hidden;}
+				
+				.tcc_reply_main{width:479px; border:1px #ddd solid; border-top:none; background:#fff; padding:15px;}
+					.reply_text{width:476px;height:22px; border:1px #c6c6c6 solid;}
+					.reply_tab{width:479px;}
+						.reply_tab td{height:30px;}
+						.reply_tab table td p{width:380px; text-align:right; padding-right:10px;}
+						
+					.agin_reply_main{padding-top:10px;}
+					
+					.agin_reply_main dl{width:40px; float:left; margin-right:10px;}
+					
+					.agin_reply{width:429px; float:left; padding-top:20px;} 
+						.agin_reply table p{width:300px; color:#747474;}	
+						
+			.er_comment_text{width:526px; border:1px #c6c6c6 solid;height:22px; color:#464646; margin:10px 0px;}
+			.mb10{margin-bottom:10px;}
+			.click_see{font:14px "微软雅黑"; color:#464646;}
+
+
+/*分享*/
+.tcc_share{width:611px; background:#fff; font:14px "宋体";}
+	.tcc_share_top{background:url(../../images/Mood/show/tcc_share_top.gif) 0 0 no-repeat; height:9px; overflow:hidden;}
+	.tcc_share_main{width:609px; border:1px #ccc solid;}
+		.tcc_share_main h1{font:14px "宋体"; padding:8px 10px; background:#f8f8f8; color:#666; height:16px; position:relative; border-bottom:1px #e9e9e9 solid;}
+		.icon_close{background:url(../../images/Common/sns_images/icon_close.gif) 0 0 no-repeat; width:9px; height:9px; display:inline-block; overflow:hidden; position:absolute; right:10px; top:10px;}
+		.share_comment{width:579px; padding:10px 15px;}
+			.share_textarea{width:577px; height:60px; border:1px #c8c8c8 solid;}
+			.share_comment table td{padding-top:10px; color:#666;}
+			.mr10{margin-right:6px;}
+			.td_btn_width{width:130px; text-align:right;}
+			.td_nr_width{width:169px; text-align:right; padding-right:10px;}
+			.td_share_class{width:135px;}
+		.share_main{width:557px; margin:10px 15px; background:#fbfbfb; border:1px #e9e9e9 solid; padding:10px;}
+			.share_main h2{font:14px "宋体"; color:#0756aa; height:30px; line-height:30px;}
+			.share_main p{line-height:24px;}	

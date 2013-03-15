@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+.rule_main{width:958px; margin:0 auto; font:14px "微软雅黑"; border-left:1px #ccc solid; border-right:1px #ccc solid; background:#fff; color:#464646;}
+	.rule_main ul{width:918px; padding:0px 20px; font:20px "微软雅黑"; height:60px; line-height:60px;}		
+		
+		
+	.rule_left{width:180px; margin-right:4px; float:left; padding:10px 0px 10px 20px; background:url(../../images/PersonIndex/active_rule/class_people_bj.gif) repeat;}
+		.rule_left h3{color:#317400; font:16px "微软雅黑"; height:35px; line-height:35px;}
+		.rule_left p a{color:#3a8a00;}
+	
+	.active_main{width:710px; padding:10px 20px; float:left; background:url(../../images/PersonIndex/active_rule/class_people_bj.gif) repeat;}		
+		.active_main h3{color:#317400; font:16px "微软雅黑"; height:35px; line-height:35px;}
+		.active_main p{ line-height:22px;}
+			
+		
+		.active_main table{background:#ccc;}
+			.active_main table th{height:35px; background:#f0f0f0;}
+			.active_main table td{background:#fff; text-align:center; height:30px;}
+			
+		.mt10{margin-top:10px;}	
+			
+/*弹出层*/
+.urse_tcc{width:90px;}	
+	.urse_tcc ul{background:#5eac25;}
+	.urse_tcc ul li a{display:inline-block; color:#fff; padding:8px 0px; width:90px; text-align:center; margin-bottom:1px;font:12px "微软雅黑";}
+	.urse_tcc ul li a:hover{background:#2b6800;}

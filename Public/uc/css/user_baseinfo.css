@@ -1,0 +1,15 @@
+@charset "utf-8";
+.user_info_main{margin:20px 0px 0px 10px;}
+  .user_info_main td{font:14px Arial, Helvetica, sans-serif; color:#666; line-height:38px;}
+  
+  .boy{background:url(../images/user_baseinfo/boy_gray.jpg) 0 0 no-repeat;width:70px;height:26px;display:inline-block; margin-right:10px; display:inline-block;}
+  .girl{background:url(../images/user_baseinfo/girl_blue.jpg) 0 0 no-repeat; width:70px; height:26px; display:inline-block;}
+  
+  .Zodiac{background:url(../images/user_baseinfo/icon01.jpg) 0 0 no-repeat; width:28px; height:28px; display:block;}
+  .star{background:url(../images/user_baseinfo/star_icon01.jpg) 0 0 no-repeat; display:block; width:50px; height:27px;}
+
+	 
+	 
+ 
+ 
+  

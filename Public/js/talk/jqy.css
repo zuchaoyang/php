@@ -1,0 +1,149 @@
+input,textarea{	
+	font-family:Arial;
+	}
+.popUp{
+	margin:0px auto;
+	width:100%;
+	}
+.popUp,.popUp input{
+	font-size:12px;
+	}
+.popUp a:visited ,.popUp a:visited {
+	color:#4e9700;
+	}
+.popUp a:hover{
+	color:#ff6600;
+	}
+.popUpTitle{
+	font-weight:bold;
+	padding:2px;
+	border-bottom:1px solid #7ec122;
+	background:#EAF7BC;
+	font-size:14px;
+	}
+.boxTitle{
+	background:url(icon/step1_red.gif) no-repeat left center;
+	padding:5px 0;
+	padding-left:20px;
+	font-weight:bold;
+	color:#ff6600;
+	border-bottom:1px solid #ccc;
+	margin-bottom:5px;
+	}
+.boxTitle2{
+	background:url(icon/step1_green.gif) no-repeat left center;
+	padding:5px 0;
+	padding-left:20px;
+	font-weight:bold;
+	color:#4e9700;
+	border-bottom:1px solid #ccc;
+	margin-bottom:5px;
+	}
+.popUpContent{
+	/*border:1px solid #7ec122;*/
+	background:#fff;
+	padding:0 0px;
+	hei/ght:300px;
+	margin-top:5px;
+	}
+.box{
+	width:100%;
+	padding-right:0px;
+	margin:0px;
+	padding:0px;
+	}
+.box2{
+	padding-left:0px;
+	heig/ht:500px;
+	}
+.checkResult{
+	padding-left:60px;
+	height:16px;
+	overflow:hidden;
+	vertical-align:middle;
+	}
+.checkResult span{
+	color:#fff;
+	background: #ff6600;
+	font-size:12px;
+	}
+body{
+	padding:0;
+	margin:0;
+	heig/ht:300px;
+	}
+
+.success{width:100%;margin-top:55px;}
+.success img{float:left;margin-left:30px!important;margin-left:15px;}
+.success div{float:left;margin:0px;padding:0px;margin-top:50px;font-size:14px;color:red;text-align:left;width:280px;}
+
+/*提示框样式代码*/
+
+
+	H1 {
+		font-size: 20px;
+		font-weight: normal;
+	}
+
+	H2 {
+		font-size: 16px;
+		font-weight: normal;
+	}
+
+	FIELDSET {
+		border: solid 1px #CCC;
+		-moz-border-radius: 16px;
+		-webkit-border-radius: 16px;
+		border-radius: 16px;
+		padding: 1em 2em;
+		margin: 1em 0em;
+	}
+
+	LEGEND {
+		color: #666;
+		font-size: 16px;
+		padding: 0em .5em;
+	}
+
+	PRE {
+		font-family: "Courier New", monospace;
+		font-size: 11px;
+		color: #666;
+		background: #F8F8F8;
+		padding: 1em;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		border-radius: 8px;
+	}
+
+	/*自定义弹出框样式style_1
+	*/
+	#popup_container.style_1 {
+		font-family: Georgia, serif;
+		color: #A4C6E2;
+		background: #005294;
+		border-color: #113F66;
+	}
+
+	#popup_container.style_1 #popup_title {
+		color: #FFF;
+		font-weight: normal;
+		text-align: left;
+		background: #76A5CC;
+		border: solid 1px #005294;
+		padding-left: 1em;
+	}
+
+	#popup_container.style_1 #popup_content {
+		background: none;
+	}
+
+	#popup_container.style_1 #popup_message {
+		padding-left: 0em;
+	}
+
+	#popup_container.style_1 INPUT[type='button'] {
+		border: outset 2px #76A5CC;
+		color: #A4C6E2;
+		background: #3778AE;
+	}

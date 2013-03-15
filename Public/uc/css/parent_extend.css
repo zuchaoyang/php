@@ -1,0 +1,18 @@
+@charset "utf-8";
+ .family_pic{ margin:10px 0px 0px 10px;}
+  .father_solid{ background:url(../images/parent_extend/pic01.jpg) 0 0 no-repeat; width:81px; height:81px; border:3px #53ae2b solid;}
+  .father{ background:url(../images/parent_extend/pic01.jpg) 0 0 no-repeat; width:81px; height:81px;}
+  .mother_solid{background:url(../images/parent_extend/pic02.jpg) 0 0 no-repeat; width:81px; height:81px;  border:3px #53ae2b solid;}
+  .mother{background:url(../images/parent_extend/pic02.jpg) 0 0 no-repeat; width:81px; height:81px;}
+  .my{ background:url(../images/parent_extend/pic03.jpg) 0 0 no-repeat; width:81px; height:81px;}
+  
+  .family_pic dl dd{text-align:center; font:14px Arial, Helvetica, sans-serif; color:#98a4b4; line-height:22px;}
+  .family_pic dl .font_green{color:#693;}
+  .txdz{padding:10px 0px 20px 6px; color:#6e6e6e;}
+  .select{margin-right:10px;border:1px #ddd solid;} 
+
+.stu_extend_tab{margin:15px 10px 20px; font:14px Arial, Helvetica, sans-serif; color:#6e6e6e;}
+  .stu_extend_tab th{text-align:right; width:76px; font:14px Arial, Helvetica, sans-serif; line-height:36px;}
+  .stu_extend_tab td{line-height:36px;}  
+
+

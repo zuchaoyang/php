@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<schools>
+
+<!--广州市-->
+		<school cparent="1901" level="2" code="190101" name="番禺执信中学" link = "http://zxzx.wmw.cn"/>
+		<school cparent="1901" level="1" code="190102" name="番禺执信小学" link = "http://zxxx.wmw.cn"/>
+		<school cparent="1901" level="2" code="190103" name="八一实验学校" link = "http://bysy.wmw.cn"/>
+		<school cparent="1901" level="2" code="190104" name="育才实验学校" link = "http://ycsy.wmw.cn"/>
+		<school cparent="1901" level="1" code="190105" name="番禺执信附小" link = "http://pyzxxx.wmw.cn"/>
+<!--江门市-->
+		<school cparent="1912" level="1" code="191201" name="江门市美景小学" link = "http://mjxx.wmw.cn"/>
+<!--佛山市-->
+		<school cparent="1913" level="2" code="191301" name="南海区西樵镇西樵中学" link = "http://xqzx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191302" name="南庄中心小学" link = "http://nzxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191303" name="禅城区南庄镇紫南小学" link = "http://znxx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191304" name="顺德顺峰中学" link = "http://sfzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191305" name="顺德容桂小学" link = "http://rgxx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191306" name="顺德岑松江夫人小学" link = "http://csjxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191307" name="顺德嘉信西山小学" link = "http://xsxx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191308" name="顺德伦教小学" link = "http://ljxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191309" name="顺德泰安小学" link = "http://taxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191310" name="禅城区玫瑰小学" link = "http://mgxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191311" name="顺德北海小学" link = "http://bhxx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191312" name="广东实验中学南海分校" link = "http://synh.wmw.cn"/>
+		<school cparent="1913" level="2" code="191313" name="禅城区南庄镇南庄中学" link = "http://nzzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191314" name="南海区里水镇和顺第一初级中学" link = "http://hscjzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191315" name="南海区里水镇高级中学" link = "http://szzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191316" name="第六中学" link = "http://dlzx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191317" name="第二十四小学" link = "http://essx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191318" name="城南小学" link = "http://cnxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191319" name="南海师范附属小学" link = "http://sffs.wmw.cn"/>
+		<school cparent="1913" level="1" code="191320" name="南海区里水镇中心小学" link = "http://szxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191321" name="惠景小学" link = "http://hjxx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191322" name="顺德容桂中学" link = "http://rgzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191323" name="南海执信高中" link = "http://nhzxgz.wmw.cn"/>
+		<school cparent="1913" level="2" code="191324" name="桂城中学小塘分校" link = "http://xtzx.wmw.cn"/>
+		<school cparent="1913" level="2" code="191325" name="南海执信中学" link = "http://nhzxzx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191326" name="桂江小学校" link = "http://gjxx.wmw.cn"/>
+		<school cparent="1913" level="1" code="191327" name="南庄中心小学" link = "http://nzxx.wmw.cn"/>
+<!--梅州市-->
+		<school cparent="1907" level="1" code="190701" name="小塘中心小学" link = "http://xtxx.wmw.cn"/>
+		<school cparent="1907" level="1" code="190702" name="梅州梅江区鸿都小学" link = "http://hdxx.wmw.cn"/>
+		<school cparent="1907" level="1" code="190703" name="梅州客都小学" link = "http://kdxx.wmw.cn"/>
+		<school cparent="1907" level="1" code="190704" name="梅州兴宁县练优小学" link = "http://lyxx.wmw.cn"/>
+<!--阳江市-->
+		<school cparent="1914" level="2" code="191401" name="阳东广雅中学" link = "http://gyzx.wmw.cn"/>
+		<school cparent="1914" level="1" code="191402" name="阳东广雅小学" link = "http://gyxx.wmw.cn"/>
+<!--韶关市-->
+		<school cparent="1905" level="1" code="190501" name="韶关南枫小学" link = "http://nfxx.wmw.cn"/>
+		<school cparent="1905" level="1" code="190502" name="韶关执信小学" link = "http://sgzx.wmw.cn"/>
+<!--中山市-->
+		<school cparent="1911" level="1" code="191101" name="中山火炬高技术产业开发区中心小学" link = "http://zxxxedu.wmw.cn"/>
+		<school cparent="1911" level="1" code="191102" name="杨仙逸体育路小学" link = "http://tiyulu.wmw.cn"/>
+<!--深圳市-->
+		<school cparent="1902" level="1" code="190201" name="宝安区塘尾万里学校" link = "http://wlxx.wmw.cn"/>
+		<school cparent="1902" level="2" code="190202" name="富源学校" link = "http://fyedu.wmw.cn"/>
+		<school cparent="1902" level="2" code="190203" name="龙岗区东升学校" link = "http://dszx.wmw.cn"/>
+		<school cparent="1902" level="1" code="190204" name="龙岗区东升学校" link = "http://dsgz.wmw.cn"/>
+		<school cparent="1902" level="1" code="190205" name="平山小学" link = "http://psxx.wmw.cn"/>
+<!--江门市-->
+		<school cparent="1912" level="1" code="191201" name="新会区平山小学" link = "http://psxx.wmw.cn"/>
+		<school cparent="1912" level="2" code="191202" name="江门市新会区会城创新初级中学" link = "http://cxzx.wmw.cn"/>
+<!--河源市-->
+		<school cparent="1906" level="2" code="190601" name="河源文昌中学" link = "http://hywc.wmw.cn"/>
+		<school cparent="1906" level="2" code="190602" name="第二中学校" link = "http://hydezx.wmw.cn"/>
+		<school cparent="1906" level="1" code="190603" name="汶川一小 " link = "http://wcyx.wmw.cn"/>
+<!--黄冈市-->
+		<school cparent="1709" level="2" code="170901" name="黄梅县实验中学" link = "http://hmsyzx.wmw.cn"/>
+		<school cparent="1709" level="2" code="170902" name="红安县实验中学" link = "http://hsxsyzx.wmw.cn"/>
+		<school cparent="1709" level="2" code="170903" name="芝麻山中学" link = "http://zmszx.wmw.cn"/>
+		<school cparent="1709" level="1" code="170904" name="黄冈市实验小学" link = "http://hgsx.wmw.cn"/>
+		<school cparent="1709" level="1" code="170905" name="英山县温泉小学" link = "http://yswqxx.wmw.cn"/>
+		<school cparent="1709" level="1" code="170906" name="黄梅县第三小学" link = "http://hmxsx.wmw.cn"/>
+<!--武穴市-->
+		<school cparent="1717" level="1" code="171701" name="武穴市实验小学" link = "http://wxsx.wmw.cn"/>
+		<school cparent="1717" level="1" code="171702" name="武穴市实验小学幼儿园 " link = "http://wxyey.wmw.cn"/>
+<!--张家界市-->
+		<school cparent="1808" level="1" code="180801" name="崇实小学" link = "http://csxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180802" name="索溪小学" link = "http://sxxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180803" name="澧源镇一完小" link = "http://lywx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180804" name="零阳镇一完小" link = "http://lyyx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180805" name="敦谊实验小学" link = "http://dyxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180806" name="天门小学" link = "http://tmxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180807" name="军地坪小学" link = "http://jdpxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180808" name="澧源镇二小" link = "http://lyex.wmw.cn"/>
+		<school cparent="1808" level="1" code="180809" name="金慈小学" link = "http://jcxx.wmw.cn"/>
+		<school cparent="1808" level="1" code="180810" name="张家界灃滨小学" link = "http://lbxx.wmw.cn"/>
+<!--长沙市-->
+		<school cparent="1801" level="1" code="180101" name="博才阳光实验小学" link = "http://bcyg.wmw.cn"/>
+		<school cparent="1801" level="1" code="180102" name="博才卓越小学" link = "http://bczy.wmw.cn"/>
+		<school cparent="1801" level="1" code="180103" name="长沙市天心区红卫小学" link = "http://hwxx.wmw.cn"/>
+<!--浏阳市-->
+		<school cparent="1815" level="1" code="181501" name="人民路小学" link = "http://ymlxx.wmw.cn"/>
+		<school cparent="1815" level="1" code="181502" name="浏阳市新文学校" link = "http://xinwenxx.wmw.cn"/>
+		<school cparent="1815" level="1" code="181503" name="浏阳市新文学校" link = "http://xinwenzx.wmw.cn"/>
+<!--湘潭市-->
+		<school cparent="1803" level="1" code="180301" name="岳塘区建设路学校" link = "http://jslxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180302" name="岳塘区湘钢一校" link = "http://xgyx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180303" name="雨湖区韶西逸夫学校 " link = "http://yfxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180304" name="雨湖区云塘学校" link = "http://ytxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180305" name="岳塘区育才学校 " link = "http://ycxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180306" name="雨湖区云塘学校" link = "http://ytxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180307" name="湘潭市湘纺小学 " link = "http://xfxx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180308" name="风车坪学校 小学" link = "http://yhfcp.wmw.cn"/>
+		<school cparent="1803" level="1" code="180309" name="风车坪学校 小学" link = "http://yhfcpzx.wmw.cn"/>
+		<school cparent="1803" level="1" code="180310" name="风车坪学校 小学" link = "http://yhfcpgz.wmw.cn"/>
+<!--常州市-->
+		<school cparent="1011" level="2" code="101101" name="田家炳中学" link = "http://tjbzx.wmw.cn"/>
+		<school cparent="1011" level="2" code="101102" name="翠竹中学" link = "http://czzx.wmw.cn"/>
+		<school cparent="1011" level="2" code="101103" name=" 北郊中学 " link = "http://bjzx.wmw.cn"/>
+		<school cparent="1011" level="1" code="101104" name="钟楼实验小学" link = "http://zlxy.wmw.cn"/>
+		<school cparent="1011" level="1" code="101105" name="百草园小学" link = "http://bcyxx.wmw.cn"/>
+		<school cparent="1011" level="1" code="101106" name="清凉小学" link = "http://qlxx.wmw.cn"/>
+		<school cparent="1011" level="1" code="101107" name="国英小学" link = "http://jsgyxx.wmw.cn"/>
+		<school cparent="1011" level="1" code="101108" name="翠竹新村小学" link = "http://xcxx.wmw.cn"/>
+		<school cparent="1011" level="1" code="101109" name="三井实验小学" link = "http://sjsy.wmw.cn"/>
+<!--葫芦岛市-->
+		<school cparent="0608" level="1" code="060801" name="葫芦岛龙港区实验小学" link = "http://hldsy.wmw.cn"/>
+		<school cparent="0608" level="1" code="060802" name="葫芦岛第二实验小学" link = "http://hldsyex.wmw.cn"/>
+<!--阜新市-->
+		<school cparent="0611" level="1" code="061101" name="阜新蒙古族自治县实验小学" link = "http://fmxsx.wmw.cn"/>
+<!--沈阳市-->
+		<school cparent="0601" level="1" code="060101" name="皇姑区昆山西路第二小学" link = "http://kun-2.wmw.cn"/>
+		<school cparent="0601" level="1" code="060102" name="铁西区宁官实验学校" link = "http://ngsy.wmw.cn"/>
+<!--锦州市-->
+		<school cparent="0607" level="1" code="060701" name="保二小学" link = "http://bexx.wmw.cn"/>
+<!--新民市-->
+		<school cparent="0615" level="1" code="061501" name="城区第一小学" link = "http://cqyx.wmw.cn"/>
+<!--呼和浩特市-->
+		<school cparent="0501" level="2" code="050101" name="内蒙古农业大学附属中学" link = "http://nmgndfx.wmw.cn"/>
+<!--银川市-->
+		<school cparent="2801" level="1" code="280101" name="西夏区第9小" link = "http://xx9x.wmw.cn"/>
+		<school cparent="2801" level="1" code="280102" name="西夏区14小" link = "http://xx14.wmw.cn"/>
+		<school cparent="2801" level="2" code="280103" name="第十八中学" link = "http://yc18.wmw.cn"/>
+<!--济南市-->
+		<school cparent="1501" level="1" code="150101" name="济南汇文实验学校（小学）" link = "http://hwsyxx.wmw.cn"/>
+		<school cparent="1501" level="2" code="150102" name="济南汇文实验学校（中学）" link = "http://hwsyzx.wmw.cn"/>
+<!--青岛市-->
+		<school cparent="1502" level="1" code="150201" name="青岛银海学校  中小" link = "http://qdyh.wmw.cn"/>
+<!--临汾市-->
+		<school cparent="1513" level="1" code="151301" name="临汾市南街小学 " link = "http://njxx.wmw.cn"/>
+<!--奎屯市-->
+		<school cparent="3115" level="1" code="311501" name="第四小学" link = "http://kt4x.wmw.cn"/>
+		<school cparent="3115" level="1" code="311502" name="新疆奎屯市第九小学校" link = "http://kt9x.wmw.cn"/>
+		<school cparent="3115" level="1" code="311503" name="奎屯市3小" link = "http://ktsx.wmw.cn"/>
+		<school cparent="3115" level="1" code="311504" name="奎屯市4小" link = "http://ktssx.wmw.cn"/>
+		<school cparent="3115" level="1" code="311505" name="奎屯市5小" link = "http://ktwx.wmw.cn"/>
+		<school cparent="3115" level="1" code="311506" name="奎屯市7小" link = "http://ktqx.wmw.cn"/>
+		<school cparent="3115" level="2" code="311507" name="奎屯市一中" link = "http://ktyz.wmw.cn"/>
+		<school cparent="3115" level="2" code="311508" name="新疆奎屯市第四小学" link = "http://kt4x.wmw.cn"/>
+<!--伊宁市-->
+		<school cparent="3116" level="1" code="311601" name="农四师第一中学" link = "http://nssyz.wmw.cn"/>
+		<school cparent="3116" level="2" code="311602" name="新疆伊宁市第九中学" link = "http://yn9z.wmw.cn"/>
+		<school cparent="3116" level="1" code="311603" name="伊宁1小" link = "http://ynyx.wmw.cn"/>
+		<school cparent="3116" level="1" code="311604" name="伊宁2小" link = "http://ynex.wmw.cn"/>
+		<school cparent="3116" level="1" code="311605" name="伊宁15小" link = "http://yn15.wmw.cn"/>
+		<school cparent="3116" level="1" code="311606" name="伊宁17小" link = "http://yn17.wmw.cn"/>
+		<school cparent="3116" level="1" code="311607" name="伊宁23小" link = "http://yn23.wmw.cn"/>
+		<school cparent="3116" level="1" code="311608" name="伊宁24小" link = "http://yn24.wmw.cn"/>
+		<school cparent="3116" level="1" code="311609" name="伊宁26小" link = "http://yn26.wmw.cn"/>
+		<school cparent="3116" level="1" code="311610" name="新疆伊犁英才学校" link = "http://ylycxx.wmw.cn"/>
+		<school cparent="3116" level="1" code="311611" name="新疆伊犁英才学校" link = "http://ylyczx.wmw.cn"/>
+		<school cparent="3116" level="1" code="311612" name="新疆伊犁英才学校" link = "http://ylycgz.wmw.cn"/>
+		<school cparent="3116" level="2" code="311613" name="伊宁市三中初中部" link = "http://ynsz.wmw.cn"/>
+		<school cparent="3116" level="2" code="311614" name="新疆伊宁市第九中学" link = "http://yn9z.wmw.cn"/>
+<!--乌鲁木齐市-->
+		<school cparent="3101" level="1" code="310101" name="乌鲁木齐第83小学" link = "http://ws83.wmw.cn"/>
+		<school cparent="3101" level="1" code="310102" name="新疆乌鲁木齐市第91小" link = "http://ws91.wmw.cn"/>
+		<school cparent="3101" level="2" code="310103" name="乌鲁木齐八一中学" link = "http://ws81zx.wmw.cn"/>
+		<school cparent="3101" level="2" code="310104" name="八一中学义教部" link = "http://ws81zx.wmw.cn"/>
+		<school cparent="3101" level="2" code="310105" name="乌鲁木齐八一中学   " link = "http://ws81gz.wmw.cn"/>
+		<school cparent="3101" level="2" code="310106" name="八一中学高中部" link = "http://ws81gz.wmw.cn"/>
+		<school cparent="3101" level="1" code="310107" name="乌市实验小学" link = "http://wssy.wmw.cn"/>
+		<school cparent="3101" level="1" code="310108" name="乌市第59小学" link = "http://ws59.wmw.cn"/>
+		<school cparent="3101" level="2" code="310109" name="乌鲁木齐市第101中学" link = "http://ws101.wmw.cn"/>
+		<school cparent="3101" level="2" code="310110" name="乌鲁木齐市第108中学" link = "http://ws108.wmw.cn"/>
+		<school cparent="3101" level="1" code="310111" name="乌鲁木齐市79小" link = "http://ws79.wmw.cn"/>
+		<school cparent="3101" level="1" code="310112" name="乌鲁木齐市42小学" link = "http://ws42.wmw.cn"/>
+		<school cparent="3101" level="1" code="310113" name="乌鲁木齐市15小" link = "http://ws15.wmw.cn"/>
+		<school cparent="3101" level="1" code="310114" name="乌鲁木齐市88小" link = "http://ws88.wmw.cn"/>
+		<school cparent="3101" level="1" code="310115" name="乌鲁木齐市72小" link = "http://ws72.wmw.cn"/>
+		<school cparent="3101" level="1" code="310116" name="乌鲁木齐市32小" link = "http://ws32.wmw.cn"/>
+		<school cparent="3101" level="1" code="310117" name="乌鲁木齐市13小" link = "http://ws13.wmw.cn"/>
+		<school cparent="3101" level="1" code="310118" name="乌鲁木齐市11小" link = "http://ws11.wmw.cn"/>
+		<school cparent="3101" level="1" code="310119" name="乌鲁木齐市80小" link = "http://ws80.wmw.cn"/>
+		<school cparent="3101" level="1" code="310120" name="新疆大学附属小学" link = "http://xjfsxx.wmw.cn"/>
+		<school cparent="3101" level="1" code="310121" name="乌鲁木齐市22小" link = "http://ws22.wmw.cn"/>
+		<school cparent="3101" level="1" code="310122" name="乌鲁木齐116小" link = "http://ws116.wmw.cn"/>
+		<school cparent="3101" level="1" code="310123" name="乌鲁木齐87小" link = "http://ws87.wmw.cn"/>
+		<school cparent="3101" level="1" code="310124" name="乌鲁木齐98小" link = "http://ws98xx.wmw.cn"/>
+		<school cparent="3101" level="2" code="310125" name="乌鲁木齐98中" link = "http://ws98zx.wmw.cn"/>
+		<school cparent="3101" level="1" code="310126" name="乌鲁木齐第九十二小学" link = "http://ws92.wmw.cn"/>
+		<school cparent="3101" level="1" code="310127" name="克拉玛依1小" link = "http://klmyyx.wmw.cn"/>
+		<school cparent="3101" level="1" code="310128" name="克拉玛依2小" link = "http://klmyex.wmw.cn"/>
+		<school cparent="3101" level="1" code="310129" name="克拉玛依7小" link = "http://klmyqx.wmw.cn"/>
+		<school cparent="3101" level="1" code="310130" name="克拉玛依8小" link = "http://klmybx.wmw.cn"/>
+		<school cparent="3101" level="1" code="310131" name="克拉玛依15小" link = "http://klmy15.wmw.cn"/>
+		<school cparent="3101" level="1" code="310132" name="克拉玛依18小" link = "http://klmy18.wmw.cn"/>
+		<school cparent="3101" level="1" code="310133" name="克拉玛依19小" link = "http://klmy19.wmw.cn"/>
+		<school cparent="3101" level="1" code="310134" name="2.和静县第一小学" link = "http://hjyx.wmw.cn"/>
+		<school cparent="3101" level="2" code="310135" name="乌鲁木齐市第102中学" link = "http://ws102.wmw.cn"/>
+		<school cparent="3101" level="2" code="310136" name="乌鲁木齐市第105中学" link = "http://ws105.wmw.cn"/>
+		<school cparent="3101" level="2" code="310137" name="乌鲁木齐八一中学校" link = "http://ws81zx.wmw.cn"/>
+		<school cparent="3101" level="2" code="310138" name="乌鲁木齐八一中学校" link = "http://ws81gz.wmw.cn"/>
+		<school cparent="3101" level="1" code="310139" name="新疆乌鲁木齐市第91小" link = "http://ws91.wmw.cn"/>
+<!--库尔勒-->
+		<school cparent="3117" level="1" code="311701" name="库尔勒华山小学" link = "http://hsxx.wmw.cn"/>
+		<school cparent="3117" level="2" code="311702" name="库尔勒华山中学" link = "http://hszx.wmw.cn"/>
+		<school cparent="3117" level="2" code="311703" name="库尔勒华山高中" link = "http://hsgz.wmw.cn"/>
+		<school cparent="3117" level="1" code="311704" name="库尔勒市第一小学" link = "http://kelyx.wmw.cn"/>
+		<school cparent="3117" level="1" code="311705" name="1.库尔勒市第四小学" link = "http://kelsx.wmw.cn"/>
+		<school cparent="3117" level="1" code="311706" name="3.尉犁县第一小学(Yuli)" link = "http://ylyx.wmw.cn"/>
+<!--阿克苏市-->
+		<school cparent="3111" level="2" code="311101" name="农一师二中" link = "http://nysez.wmw.cn"/>
+<!--阿勒泰-->
+		<school cparent="3106" level="1" code="310601" name="阿勒泰实验小学" link = "http://altxx.wmw.cn"/>
+<!--石河子市-->
+		<school cparent="3118" level="1" code="311801" name="石河子市1小" link = "http://shzyx.wmw.cn"/>
+		<school cparent="3118" level="1" code="311802" name="石河子市2小" link = "http://shzex.wmw.cn"/>
+		<school cparent="3118" level="1" code="311803" name="石河子市3小" link = "http://shzsx.wmw.cn"/>
+<!--昌吉市-->
+		<school cparent="3102" level="1" code="310201" name="昌吉州一小" link = "http://cjyx.wmw.cn"/>
+		<school cparent="3102" level="2" code="310202" name="昌吉州一中" link = "http://cjyz.wmw.cn"/>
+		<school cparent="3102" level="2" code="310203" name="昌吉州二中" link = "http://cjez.wmw.cn"/>
+		<school cparent="3102" level="1" code="310204" name="昌吉市1小" link = "http://cjsyx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310205" name="昌吉市2小" link = "http://cjex.wmw.cn"/>
+		<school cparent="3102" level="1" code="310206" name="昌吉市3小" link = "http://cjsx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310207" name="昌吉市5小" link = "http://cjwx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310208" name="昌吉市7小" link = "http://cjqx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310209" name="昌吉市8小" link = "http://cjbx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310210" name="昌吉市10小" link = "http://cj10.wmw.cn"/>
+		<school cparent="3102" level="1" code="310211" name="奇台县1小" link = "http://qtyx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310212" name="奇台县2小" link = "http://qtex.wmw.cn"/>
+		<school cparent="3102" level="1" code="310213" name="奇台县3小" link = "http://qtxsx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310214" name="奇台县4小" link = "http://qtsx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310215" name="吉木萨尔县1小" link = "http://jmseyx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310216" name="吉木萨尔县2小" link = "http://jmseex.wmw.cn"/>
+		<school cparent="3102" level="1" code="310217" name="吉木萨尔县3小" link = "http://jmsesx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310218" name="玛纳斯1小" link = "http://mnsyx.wmw.cn"/>
+		<school cparent="3102" level="1" code="310219" name="玛纳斯2小" link = "http://mnsex.wmw.cn"/>
+		<school cparent="3102" level="1" code="310220" name="玛纳斯3小" link = "http://mnssx.wmw.cn"/>
+<!--阜康市-->
+		<school cparent="3119" level="1" code="311901" name="阜康市1小" link = "http://fkyx.wmw.cn"/>
+		<school cparent="3119" level="1" code="311902" name="阜康市2小" link = "http://fkex.wmw.cn"/>
+		<school cparent="3119" level="1" code="311903" name="阜康市3小" link = "http://fksx.wmw.cn"/>
+<!--个旧市-->
+		<school cparent="2517" level="1" code="251701" name="个旧和平小学" link = "http://hpxx.wmw.cn"/>
+<!--红河州-->
+		<school cparent="2510" level="1" code="251001" name="红河州建水一小" link = "http://jsyx.wmw.cn"/>
+		<school cparent="2510" level="1" code="251002" name="云南红河弥阳一小" link = "http://mlmyyx.wmw.cn"/>
+<!--昆明市-->
+		<school cparent="2501" level="2" code="250101" name="第二中学" link = "http://dezx.wmw.cn"/>
+		<school cparent="2501" level="1" code="250102" name="红旗小学" link = "http://ynhqxx.wmw.cn"/>
+		<school cparent="2501" level="1" code="250103" name="昆明瑞和实验学校 小学 " link = "http://ynrhsy.wmw.cn"/>
+<!--贵阳市-->
+		<school cparent="2518" level="2" code="251801" name="小河区实验中学" link = "http://gyxhqsyzx.wmw.cn"/>
+		<school cparent="2518" level="1" code="251802" name="小河区第一小学校 " link = "http://xhyx.wmw.cn"/>
+		<school cparent="2518" level="1" code="251803" name="小河区第二实验学校 " link = "http://xhdesy.wmw.cn"/>
+		<school cparent="2518" level="1" code="251804" name="小河区第一实验学校 " link = "http://xhdysy.wmw.cn"/>
+		<school cparent="2518" level="1" code="251805" name="小河区第四小学校" link = "http://xhdsxx.wmw.cn"/>
+<!--涪陵城区-->
+		<school cparent="2201" level="1" code="220101" name="涪陵城区第六小学校" link = "http://fllx.wmw.cn"/>
+		<school cparent="2201" level="1" code="220102" name="涪陵区荔枝希望小学 " link = "http://flxw.wmw.cn"/>
+<!--石柱县-->
+		<school cparent="2202" level="1" code="220201" name="南宾小学校" link = "http://cqsznbxx.wmw.cn"/>
+<!--黔江区-->
+		<school cparent="2203" level="1" code="220301" name="黔江区实验小学校" link = "http://qjsy.wmw.cn"/>
+		<school cparent="2203" level="1" code="220302" name="黔江区人民小学校" link = "http://qjrm.wmw.cn"/>
+<!--瑞安市-->
+		<school cparent="2203" level="1" code="220303" name="瑞安市莘塍实验小学" link = "http://raxcsx.wmw.cn"/>
+
+
+</schools>

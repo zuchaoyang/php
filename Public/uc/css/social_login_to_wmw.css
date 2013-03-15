@@ -1,0 +1,16 @@
+.qq_cotent{width:450px; margin:0 auto;}
+  .top{background:url(../images/social_login_to_wmw/top_bj.gif) repeat-x; height:63px; padding:0px 70px;}
+  .top p{background:url(../images/social_login_to_wmw/qq_logo.gif) 0 1px no-repeat; width:124px; height:58px;}
+  
+.qq_cotent h4{font: normal 14px "宋体"; color:#333; padding:10px 80px;} 
+  .qq_cotent h4 span{color:#06c;} 
+
+.qq_cotent dl{padding:20px 80px;}  
+  .qq_cotent dl dt{background:url(../images/social_login_to_wmw/img01.gif) 0 0 no-repeat; width:283px; height:76px;}  
+
+.login_main{background:#dfeffa; padding:20px 60px 10px;}
+  .login_main p{margin-bottom:10px;}  
+  .login_main p span{font:14px "宋体"; color:#666; width:92px; display:inline-block;}
+  
+  .wb_text{width:198px; height:30px; border:1px #999 solid; line-height:30px; padding-left:2px;}
+  .blue_btn{background:url(../images/social_login_to_wmw/login_btn.gif) 0 0 no-repeat; width:112px; height:29px; border:none; color:#fff; cursor:pointer;}

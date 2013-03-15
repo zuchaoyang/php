@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+body{ font:14px "宋体";}
+*{margin:0px; padding:0px;}
+.clear{clear:both;}
+a{text-decoration:none;}
+a:hover{ text-decoration:underline;}
+ul{list-style:none;}
+.a_under_line{text-decoration:underline;}
+
+/*常规蓝色链接*/
+.cg_link_blue{ color:#0078cc; text-decoration:underline;}
+
+/*注释信息*/
+.zsxi_tip{ font:14px "宋体"; color:#999;}
+
+
+/*注释信息*/
+.tip{height:35px; background:#ffffe1;}
+  .tip p{width:953px; margin:0 auto; padding:11px 0px 0px;}
+
+/*用户信息主要内容框架*/   
+.container{ background:url(../images/uc_images/main_bj.gif) repeat-x;border-top:#ecf6ff solid 1px;}
+ .main{width:953px; margin:0 auto; padding-top:20px;}
+  .main_top{ background:url(../images/uc_images/main_top.gif) 0 0 no-repeat; height:12px; overflow:hidden;}
+  
+  .main_center{ background:url(../images/uc_images/main_center.gif) repeat-y; min-height:400px;}
+  
+  .main_bottom{ background:url(../images/uc_images/main_bottom.gif) 0 0 no-repeat; height:10px; overflow:hidden;}
+
+/*字体颜色+大小*/  
+.font_red{color:#FF0000;}
+.font_darkblue{color:#06c;}
+.font_olive{color:#660;}/*tip-color*/
+.font_gray{color:#999;}/*12px-color*/
+.font_huise{color:#666;}/*14px-color*/
+.font_blue{color:#09c;}/*main-color*/
+.font_normal{font:12px "宋体", Arial, Helvetica, sans-serif;}
+.font_main{font:13px "宋体",Arial, Helvetica, sans-serif;}
+.font_cotent{font:14px "宋体",Arial, Helvetica, sans-serif;}
+.font_title{font:16px "宋体",Arial, Helvetica, sans-serif;}
+
+/*btn*/
+.btn_05_w{background:url(../images/uc_images/btn_05_w.gif) 0 0 no-repeat; width:95px; height:22px; line-height:22px; color:#666; cursor:pointer; border:none; margin-left:10px;}
+.btn_07_w{background:url(../images/uc_images/btn_07_w.gif) 0 0 no-repeat; width:115px; height:22px; line-height:22px; color:#666; cursor:pointer; border:none;}
+
+/*文本*/ 
+.text{width:130px; height:22px; line-height:22px; border:1px #ddd solid; padding-left:2px;} 
+.text_long{width:250px; color:#b0b0b0; height:22px; line-height:22px; border:1px #ddd solid; padding-left:2px;} 
+.text_lengh{width:80px;}
+ 
+
+  
+/*通栏框架内容*/
+.content_frame_01{ width:953px; margin:20px auto; }
+.content_frame_01_top{ background:url(../images/uc_images/content_bg_top.gif) no-repeat; width:953px; height:22px;}
+.content_frame_01_con{ background:url(../images/uc_images/content_bg_middle.gif) repeat-y; width:913px; padding:0 20px; min-height:400px; }
+.content_frame_01_bottom{ background:url(../images/uc_images/content_bg_bottom.gif) no-repeat; width:953px; height:19px;}
+.c_f_01_c_title{ color:#6e6e6e;border-bottom: #a1a1a1 dashed 1px; font:14px/30px "宋体"; font-weight:bold;}
+.c_f_01_c_bottom{color:#999999;border-top: #a1a1a1 dashed 1px; font:12px/30px "宋体"; margin-top:50px;}
+
+
+/*按钮样式*/
+.btn_2_word{ background:url(../images/uc_images/btn_02_w.gif) 0 0 no-repeat; width:65px; height:27px; text-align:center; border:none; color:white; cursor:pointer;}/*2-3个字数的按钮*/
+
+/*显示隐藏样式*/
+.display_block{display:block;}
+.display_none{display:none;}

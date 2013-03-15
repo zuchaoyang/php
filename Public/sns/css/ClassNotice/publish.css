@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.f12{font:12px "宋体";}
+.f_a0a0a0{color:#a0a0a0;}
+.main h4{background:url(../../images/ClassNotice/publish/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px;}
+
+.main ul a{display:inline-block; width:112px; height:36px; text-align:center; line-height:36px; margin-right:4px;}
+.main_nav_a1{ background:url(../../images/ClassNotice/publish/main_nav_a1.jpg) 0 0 no-repeat; color:#fff; font:16px "微软雅黑"}
+.main_nav_a2{ background:url(../../images/ClassNotice/publish/main_nav_a2.jpg) 0 0 no-repeat; color:#444;font:16px "微软雅黑"}
+
+.publish_main{background:#fff; border-left:1px #6db500 solid;border-right:1px #6db500 solid; border-top:1px #6db500 solid; font-size:14px; font-family:"微软雅黑";  color:#464646; padding:30px;}
+	.publish_main table th{width:80px; height:30px; color:#4d4e4d;}
+	.text_title{width:300px; height:20px; line-height:20px; padding:0px 0px 0px 4px; border:1px #c7c7c7 solid; background:#fafafa; color:#464646;}
+	.release{height:30px;}
+	.release a{float:right;}
+
+
+
+/*发布预览*/			
+.preview_release{border:1px #6db500 solid; width:900px; padding:20px;font:14px "宋体";}
+	.preview_release h1{font:bold 14px "微软雅黑"; background:#deeec1; padding:8px 10px; color:#3c3c3c;}	
+	
+	.see_tab{width:600px; margin:0 auto; padding:20px 0px; color:#4d4e4d;}
+		.see_tab table th{width:80px; font:bold 14px "宋体"; height:30px;}
+		.see_tab table td p{font:14px "宋体"; line-height:22px;word-wrap:break-word;word-break:break-all; width:500px;}
+		.align_top{vertical-align:top; padding-top:4px;}
+
+	.tcc_workmain_btn{padding:30px 200px 0px;}
+		.tcc_workmain_btn dl{float:left; margin-right:100px;}	
+		.tcc_workmain_btn dl dd{line-height:25px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

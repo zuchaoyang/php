@@ -1,0 +1,7 @@
+.ss_table{margin-top:30px; margin-left:20px; padding-bottom:20px;}
+.ss_table input.sryx{ width:200px; border:#c8c8c8 solid 1px; height:20px;}
+.ss_table textarea{ width:460px;border:#c8c8c8 solid 1px; height:100px;}
+.ss_table th{ color:#6e6e6e; font:14px/30px "宋体"; text-align:right;vertical-align:top; padding:8px 0;}
+.ss_table td{ vertical-align:top; padding:8px 0;}
+.ss_table span{ line-height:24px;}
+.ss_table select{border:#c8c8c8 solid 1px;}

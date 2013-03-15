@@ -1,0 +1,23 @@
+body { color: rgb(102, 102, 102); }
+.W_textb, a.W_textb { color: rgb(153, 153, 153); cursor: default; }
+a.W_textb:hover { text-decoration: none; }
+.W_close_color { background-image: url('close_001.gif'); }
+.W_vline, .W_sline { color: rgb(221, 221, 221); }
+a:link, a:visited { color: rgb(0, 120, 182); }
+.s_main_l { background-position: 29px 0pt; }
+.star_main { background: url('../../images/school_map/maps/main_bg.png') repeat-x scroll 0% 0% rgb(255, 255, 255); }
+.s_main_l, .star_nav .search_btn, .star_nav .tab_con .nom, .star_nav .tab_con .cur, .star_nav .tab_con .t_arc, .mapwrap .search_bar .search_btn { background-image: url('../../images/school_map/maps/navbar_bg.png'); background-repeat: no-repeat; }
+.star_nav .nav_tab a, .star_nav .nav_barMain .a_link { color: rgb(129, 104, 43); }
+.star_nav .nav_barMain .child_link { color: rgb(6, 120, 181); }
+.weibo_secret a { color: rgb(129, 104, 43); }
+.hot_sort a { color: rgb(154, 134, 85); }
+.main_title span { background-image: url('../../images/school_map/maps/big_tit_bg.png'); background-repeat: no-repeat; }
+.star_userWall .wall_title, .hot_sort .tit { background-image: url('../../images/school_map/maps/star_titbar_bg.png'); background-repeat: no-repeat; }
+.hot_sort .tit { background-position: 0pt -31px; }
+.hot_sort .more a { color: rgb(154, 134, 85); }
+.star_footer { background: url('../../images/school_map/maps/footerbg.png') repeat-x scroll 0% 0% rgb(224, 216, 185); }
+.star_footer .global_footer { background: none repeat scroll 0% 0% transparent; }
+.star_footer .global_footer a { color: rgb(154, 134, 85); }
+.star_footer .global_footer .other_link { border-color: rgb(92, 92, 92); }
+.W_gotop { background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgb(255, 255, 255); }
+.W_gotop:hover { background-color: rgba(255, 255, 255, 0.8); }

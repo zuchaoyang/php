@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+.main h4{ background:url(../../images/ClassAdmin/student_admin_list/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px; width:920px;}
+	.main h4 a{float:right; margin-top:10px;}
+
+
+.publish_main{border:1px #6db500 solid; border-bottom:none; font:14px "微软雅黑"; color:#464646; width:958px; background:#fff;}
+	.blog_title{height:16px; background:#f5f5f5; padding:8px 10px; color:#3c3c3c;font:bold 14px "微软雅黑"; border-bottom:1px #e9e9e9 solid; width:938px;}
+	.stu_list_top{height:30px; padding:10px 20px;}
+		.stu_list_top a{float:left; margin-right:30px;}
+		
+	.stu_list_main{padding:10px 20px;}
+		.stu_list_main table{text-align:center;}
+			.stu_list_main table th{height:34px; background:#e3f2c6; border:1px #b6ce89 solid;border-left:none;}
+			.stu_list_main table td{text-align:center; height:30px; border-right:1px #b6ce89 solid; border-bottom:1px #b6ce89 solid;}
+				.stu_list_main table .border_left{ border-left:1px #b6ce89 solid;}
+				.stu_list_main table tr:hover{background:#eef7dd;} 
+			.stu_list_main table td a{color:#3a8a00; display:inline-block;}	
+				.mr10{margin-right:10px;}
+				.ml10{margin-left:10px;}
+	
+	.stu_list_bottom{padding:10px 0px 0px;}
+		.stu_list_bottom a{float:right;}
+	
+/*弹出层*/
+
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/ClassAdmin/student_admin_list/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/ClassAdmin/student_admin_list/tcc_msg_center.gif) 0 0 repeat-y; padding:20px;}
+	    .msg_center_main{width:270px;}
+	    	.msg_center_main dl{float:left; margin-right:8px; width:21px;}
+			.msg_center_main p{float:left;font:normal 12px "宋体"; line-height:20px; width:240px;}
+			
+			.icon_question{background:url(../../images/ClassAdmin/student_admin_list/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block;}
+		
+		.msg_center_btn{text-align:right; padding-top:10px;}
+			.qd_btn{background:url(../../images/ClassAdmin/student_admin_list/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+			.qx_btn{background:url(../../images/ClassAdmin/student_admin_list/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}
+	.tcc_msg_bottom{background:url(../../images/ClassAdmin/student_admin_list/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}		
+
+
+/*编辑学生信息*/
+.edit_comment{width:400px;border:1px #6db500 solid; background:#fff;}
+	.tcc_title{font:14px "微软雅黑"; background:#f8f8f8; border-bottom:1px #e9e9e9 solid; padding:0px 10px; height:33px; line-height:33px; width:380px; position:relative;}
+	    .close_icon{background:url(../../images/ClassAdmin/student_admin_list/icon_close.gif) 0 0 no-repeat;width:10px;height:9px;display:inline-block;position:absolute;right:10px;top:12px;overflow:hidden;}
+	  
+	.edit_comment_tab{padding:10px; font:14px "微软雅黑";}  
+		.edit_comment_tab table{text-align:center;}
+			.edit_comment_tab table th{height:34px; background:#e3f2c6; border:1px #b6ce89 solid;border-left:none;}
+			.edit_comment_tab table td{text-align:center; height:30px; border-right:1px #b6ce89 solid; border-bottom:1px #b6ce89 solid;}
+				.edit_comment_tab table .border_left{ border-left:1px #b6ce89 solid;}
+				.edit_comment_tab table tr:hover{background:#eef7dd;}
+				.tcc_text{width:140px; border:1px #ccc solid; height:20px; line-height:20px; padding-left:2px;}
+				.select_width{width:140px;}
+	
+	.msg_btn{padding:6px 10px 0px; height:30px; background:#f2f2f2;}	
+		.msg_btn p{text-align:right;}
+		.green_btn{background:url(../../images/ClassAdmin/student_admin_list/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/ClassAdmin/student_admin_list/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}		
+		

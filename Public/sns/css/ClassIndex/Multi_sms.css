@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+.main h4{ background:url(../../images/ClassIndex/Multi_sms/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px; width:920px;}
+	.main h4 a{float:right; margin-top:10px;}
+
+
+.publish_main{border:1px #6db500 solid; border-bottom:none; font:14px "微软雅黑";color:#464646; width:958px; background:#fff; padding-bottom:10px;}
+    .multi_title{height:16px; background:#f5f5f5; padding:8px 10px; color:#3c3c3c;font:bold 14px "微软雅黑"; border-bottom:1px #e9e9e9 solid; width:938px;}
+	.multi_top{background:url(../../images/ClassIndex/Multi_sms/pic01.gif) 0 0 no-repeat; height:37px; padding:90px 0px 0px 200px; width:758px;}
+		.multi_top a{color:#75b433; font:bold 14px "微软雅黑";}
+		.mr{margin-right:130px;}
+	
+	.multi_main{width:938px; padding:10px;}
+		.multi_main_left{width:280px; float:left;}
+			.multi_main_left h3{font:bold 14px "微软雅黑"; line-height:30px;}
+			.multi_textarea{width:280px; height:240px;}
+			.multi_msg{text-align:right; font:12px "宋体"; padding:10px 0px 0px;}
+			
+		.multi_main_center{width:300px; float:left; margin:0px 20px;}
+			.multi_main_center h3{font:bold 14px "微软雅黑"; line-height:30px;}
+			
+			.multi_cen_main{border:1px #ccc solid; padding:10px; width:278px;}
+				.multi_cenmain_tab{height:260px; overflow:auto;}
+					.multi_cenmain_tab table{width:260px;}
+						.multi_cenmain_tab table td{height:30px; padding-bottom:10px;}
+						.td_img{width:40px;}
+							.multi_cenmain_tab table td img{width:30px; height:30px;}
+						.td_check{width:30px;}
+						
+				.multi_cenmain_bottom{padding:10px 0px 0px 0px;}		
+					.qd_btn{background:url(../../images/ClassIndex/Multi_sms/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
+					.align_right{text-align:right;}
+			
+		.multi_main_right{width:300px; float:left;}
+			.multi_main_right h3{font:bold 14px "微软雅黑"; line-height:30px;}
+			
+			.multi_cenright_tab{height:260px; overflow:auto;}
+				.multi_cenright_tab table td{height:30px; line-height:30px; width:150px;}
+				.align_center{padding:10px 0px 0px; text-align:center;}
+
+	
+/*弹出层*/
+
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/ClassIndex/Multi_sms/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/ClassIndex/Multi_sms/tcc_msg_center.gif) 0 0 repeat-y; padding:10px;}
+	    .msg_center_main{width:300px;}
+	    	.msg_center_main dl{float:left; margin-right:8px; width:21px;}
+			.msg_center_main p{float:left;font:normal 12px "宋体"; line-height:20px;}
+			
+			.icon_warn{ background:url(../../images/Common/sns_images/icon_warn.gif) 0 0 no-repeat; width:21px; height:21px; display:inline-block;}
+		
+		
+	.tcc_msg_bottom{background:url(../../images/ClassIndex/Multi_sms/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}		
+
+

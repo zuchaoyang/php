@@ -1,0 +1,59 @@
+.head{background:#66b62c; height:90px;}
+
+.head_main{width:960px; margin:0 auto;}
+
+/*logo*/
+.logo{background:url(../../images/Common/sns_header/logo.gif) 0 0 no-repeat; width:188px; height:55px; float:left; margin:15px 0px;}
+
+/*头部导航*/
+.head_nav{float:left; padding:35px 0px 0px 0px; margin:0px 0px 0px 20px;}
+	.head_nav a{ font:20px "微软雅黑"; color:#fff; width:109px; height:34px; display:block; float:left;}
+	.a1{ background:url(../../images/Common/sns_header/a1_link.gif)}
+	.a2{background:url(../../images/Common/sns_header/a2_link.gif) 0 0 no-repeat;}
+	.a3{background:url(../../images/Common/sns_header/a3_link.gif) 0 0 no-repeat;}
+	.a4{background:url(../../images/Common/sns_header/a4_link.gif) 0 0 no-repeat;}
+	.a1:hover{background:url(../../images/Common/sns_header/a1_hover.gif) 0 0 no-repeat;}
+	.a2:hover{background:url(../../images/Common/sns_header/a2_hover.gif) 0 0 no-repeat;}
+	.a3:hover{background:url(../../images/Common/sns_header/a3_hover.gif) 0 0 no-repeat;}
+	.a4:hover{background:url(../../images/Common/sns_header/a4_hover.gif) 0 0 no-repeat;}
+
+	.a_1{background:url(../../images/Common/sns_header/a1_hover.gif) 0 0 no-repeat;}
+	.a_2{background:url(../../images/Common/sns_header/a2_hover.gif) 0 0 no-repeat;}
+	.a_3{background:url(../../images/Common/sns_header/a3_hover.gif) 0 0 no-repeat;}
+	.a_4{background:url(../../images/Common/sns_header/a4_hover.gif) 0 0 no-repeat;}
+
+/*用户信息*/         
+.urse_info{background:url(../../images/Common/sns_header/head_right_bj.gif) 0 0 no-repeat; width:190px; height:30px; float:right; margin-top:32px; padding:5px 10px;}
+	.urse_info a{color:#fff; display:inline-block; padding:2px 5px; height:25px; line-height:25px; float:left; width:90px;}
+	.urse_info .notice{width:70px;}
+	.urse_photo{display:inline-block; float:left; margin-right:5px;}
+	.urse_photo img{width:23px; height:23px; border:1px #f8df79 solid;}
+	.urse_name{display:inline-block; float:left;}
+	.icon_sjx_header{background:url(../../images/Common/sns_header/triangle.gif) 0 0 no-repeat; width:9px; height:5px; display:inline-block; float:left; margin:10px 0px 0px 5px;}
+	.line{background:url(../../images/Common/sns_header/line_white.gif) 0 9px no-repeat; height:18px; width:1px; display:inline-block; float:left; margin:0px 4px;}
+	.icon_circle{background:url(../../images/Common/sns_header/circle.gif) 0 0 no-repeat; width:13px; height:13px; display:inline-block; float:left; margin:4px 4px 0px 0px; text-align:center; line-height:13px;}
+	.urse_info a:hover{background:#2b6800;}
+	
+	
+/*弹出层*/	
+.urse_tcc{}	
+	.urse_tcc ul{background:#5eac25; border:#999 solid 2px;background-color:RGB(214,231,215);}
+	.urse_tcc ul li a{display:block; color:#fff; padding:8px 42px 8px 8px;  text-align:center; margin-bottom:1px;font:bold 12px "微软雅黑";color:#2b6800;}
+	.urse_tcc ul li a:hover{background:#2b6800;color:white;}
+.urse_tcc_02{}	
+	.urse_tcc_02 ul{background:#5eac25; border:#999 solid 2px;background-color:RGB(214,231,215);}
+	.urse_tcc_02 ul li a{display:block; color:#fff; padding:8px 5px 8px 8px;  text-align:center; margin-bottom:1px;font:bold 12px "微软雅黑";color:#2b6800;}
+	.urse_tcc_02 ul li a:hover{background:#2b6800;color:white;}
+	
+.info_tcc{width:120px;}
+	.info_tcc ul li a{text-align:left; padding-left:10px; }	
+		
+.news_tcc{width:142px; font:12px "宋体";}	
+	.news_tcc_top{background:url(../../images/Common/sns_header/news_top_bj.gif) 0 0 no-repeat; height:9px; overflow:hidden;}	
+	.news_tcc_main{border-left:1px #75b333 solid;border-right:1px #75b333 solid;border-bottom:1px #75b333 solid; padding:4px 6px 10px 10px; background:#fff;}
+		.news_tcc_main p{line-height:22px;}
+		.news_tcc_main p span{padding-right:10px;}
+		.news_tcc_main p a{margin-left:10px; display:inline-block;}
+		
+		.news_tcc_main ul{text-align:right;}
+		.news_close{background:url(../../images/Common/sns_header/icon_close.gif) 0 0 no-repeat; width:10px; height:9px; display:inline-block;}

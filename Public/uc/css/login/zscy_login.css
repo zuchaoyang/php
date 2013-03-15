@@ -1,0 +1,95 @@
+@charset "utf-8";
+*{margin:0px; padding:0px;}
+body{font:12px Arial, Helvetica, sans-serif;}
+a{text-decoration:none;}
+.clear{clear:both;}
+ul{list-style:none;}
+
+
+.Frame_bg{ background:url(../../images/login/zscy_login/bg_zt.jpg) 0 0 repeat-x;}
+.top_bg{ background:url(../../images/login/zscy_login/bg_01.jpg) 50% 0 no-repeat; height:441px; margin:0 auto; width:100%;}
+.zscy_login_content{ background:url(../../images/login/zscy_login/bg_02.jpg) 50% 0 no-repeat; height:575px; width:100%; width:1004px; margin:0 auto;}
+
+
+.z_l_c_left{ float:left; padding:53px 0 0 170px; }
+.jczhd{ background:url(../../images/login/zscy_login/jczhd.jpg) 0 0 no-repeat; width:279px; height:248px; display:block;}
+
+
+
+.z_l_c_right{ width:375px; padding-top:40px; padding-left:90px; float:left;}
+.zscy_login_zh{ background:url(../../images/login/zscy_login/zh.gif) 0 0 no-repeat; width:84px; height:44px; display:inline-block;float:left; }
+.z_l_input_bg{ background:url(../../images/login/zscy_login/text_bg.gif) 0 0 no-repeat;  width:182px; height:44px; border:none;float:left;outline:none;}
+
+.zscy_login_mm{ background:url(../../images/login/zscy_login/mm.gif) 0 0 no-repeat; width:84px; height:44px; display:inline-block;float:left;  }
+.z_l_input_bg2{ background:url(../../images/login/zscy_login/text_bg.gif) 0 0 no-repeat;  width:182px; height:44px; border:none;float:left; outline:none;}
+
+.zscy_login_yzm{ background:url(../../images/login/zscy_login/yzm.gif) 0 0 no-repeat; width:84px; height:44px; display:inline-block;float:left;  }
+.z_l_input_bg2{ background:url(../../images/login/zscy_login/text_bg.gif) 0 0 no-repeat; width:182px; height:44px; border:none;float:left; outline:none;}
+
+
+.dl_btn{ background:url(../../images/login/zscy_login/dl_btn.gif) 0 0 no-repeat; width:99px; height:39px; cursor:pointer; border:none; float:left; margin-left:4px;}
+.text_blue_wjmm{ color:#007cab; text-decoration:underline; font:14px/16px "宋体"; float:left; margin:20px 0px 0px 10px;}
+
+
+/*验证码样式*/
+.yzm_style02{margin:0 0 0 85px!important; margin:0 0 0 42px;  float:left;}
+.yzm_style02 img{ float:left;}
+.yzm_hh{color:#fff; margin:5px 0px 0px 10px; float:left;}
+.yzm_tc{ background:url(../../images/login/uc_login/default.png) 0 0 no-repeat; width:75px; height:28px; display:block;}
+
+/*首页出错提示2012.08.24更新*/
+.red_tip{color:#c20407;margin-left:70px;font-weight:bold;font-size:13px;}
+
+/*账号input样式修改20120904*/
+.yzm_main{width:275px;}
+
+.z_l_input_bg input{border:none; width:152px; height:20px; background:#fff; line-height:20px;margin:11px 0px 0px 10px;}
+.z_l_input_bg2 input{border:none; width:152px; height:20px; background:#fff; line-height:20px; margin:11px 0px 0px 10px;}
+.text_blue_wjmm2{float:left; margin-top:8px; margin-left:10px;color:#007cab; text-decoration:underline; font:14px/20px "宋体";}
+
+/*head*/
+#head_body{ width:100%; height:80px; background:#fffaee url(../../images/login/zscy_login/nav-bg.gif) 0 0 repeat-x;}
+#head_nav { width:960px;margin:0 auto; position:relative;}
+#head_nav ul li{ float:left;font:12px "宋体"; line-height:80px; background:url(../../images/login/zscy_login/line.gif) right 0 no-repeat; padding-right:5px;overflow:hidden;}
+#head_nav ul li.no_line{ background:none;}
+#head_nav ul li.head_logo{ background:url(../../images/login/zscy_login/logo.gif) 0 0 no-repeat; width:78px; height:80px; display:inline-block;}
+#head_nav ul li a{ height:80px; width:78px; display:inline-block; }
+.nav_home{background:url(../../images/login/zscy_login/home.gif) 0 0 no-repeat;}
+.nav_ghgl{ background:url(../../images/login/zscy_login/ghgl.gif) 0 0 no-repeat;}
+.nav_xgwj{ background:url(../../images/login/zscy_login/xgwj.gif) 0 0 no-repeat;}
+.nav_cybk{ background:url(../../images/login/zscy_login/cybk.gif) 0 0 no-repeat;}
+.nav_zzwb{ background:url(../../images/login/zscy_login/zzwb.gif) 0 0 no-repeat;}
+.nav_phb{ background:url(../../images/login/zscy_login/phb.gif) 0 0 no-repeat;}
+.nav_grt{ background:url(../../images/login/zscy_login/grt.gif) 0 0 no-repeat;}
+.nav_cywb{ background:url(../../images/login/zscy_login/cywb.gif) 0 0 no-repeat;}
+.nav_jzdg{ background:url(../../images/login/zscy_login/jzdg.gif) 0 0 no-repeat;}
+.nav_zxzz{ background:url(../../images/login/zscy_login/zxzz.gif) 0 0 no-repeat;}
+
+.flash_dh{position:absolute; top:36px; left:76px;}
+.flash_buy{position:absolute; left:720px;}
+
+/*footer*/
+#footer{ background:#fffaee url(../../images/login/zscy_login/foot_bg.gif) center 0 no-repeat; height:80px;width:100%; text-align:center; padding-top:70px;font:13px Arial, Helvetica, sans-serif; line-height:22px; color:#784b00;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

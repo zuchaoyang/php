@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+.main h4{ background:url(../../images/ClassCourse/list/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px;}
+
+
+.publish_main{border:1px #6db500 solid; border-bottom:none; font:14px "微软雅黑"; color:#464646; background:#fff;}
+	
+	.course_top{height:80px; padding:10px;}
+		.course_top h3{font:bold 14px "微软雅黑"; float:left; width:74px; line-height:25px; padding-top:20px;}
+		.course_top p{height:80px; overflow:auto;}
+			.course_top p a{float:left; margin-right:10px;}
+			.course_top p a img{width:76px; height:76px;}
+			
+	.course_main{ background:url(../../images/ClassCourse/list/course_bj1.jpg) 0 0 no-repeat; height:300px; padding:58px 0px 0px;}	
+		.course_main_left{width:120px; float:left;  padding:50px 0px 0px 70px;}
+			.course_main_left p{color:#fff; font:bold 20px "微软雅黑";}
+			.after_p{margin:130px 0px 0px;}
+		
+		.course_main_right{width:764px; float:left;}
+			.course_main_right ul{width:764px; clear:both; overflow:hidden;}
+				.course_main_right ul li{float:left; width:142px; height:26px; line-height: 26px;position:relative; padding:0px 3px 6px 0px; text-align:center;}
+					.course_main_right ul li a{display:inline-block;width:142px; height:25px; line-height:25px; color:#464646; text-align:center; float:left; text-decoration:none;}
+					.course_main_right ul li a:hover{color:#3a8a00;}
+					
+				.icoo_tcc{position:absolute; top:4px; right:10px; width:16px; height:16px;}
+					.course_main_right ul li .icoo_tcc a{ background:url(../../images/ClassCourse/list/del_icon.gif) 0 0 no-repeat; width:16px; height:16px; display:block; overflow:hidden;}
+			
+			.noon_main{width:764px; height:33px;}	
+				
+
+
+/*弹出层*/
+.course_tcc{width:400px; border:1px #6db500 solid; font:14px "宋体"; }
+	.course_tcc h1{height:30px; padding:0px 10px; font:14px "宋体"; background:#f5f5f5; line-height:30px; border-bottom:1px #e9e9e9 solid;}
+	
+	.course_tcc_tab{padding:10px;}
+		.course_tcc_tab table{border-top:1px #ebf7d4 solid;border-left:1px #ebf7d4 solid;}
+		.course_tcc_tab table td{height:30px; line-height:30px; text-align:center; border-bottom:1px #ebf7d4 solid;border-right:1px #ebf7d4 solid;}
+		.course_tcc_tab table td a{color:#464646; line-height:16px;}
+		.course_tcc_tab table td a:hover{color:#3a8a00; text-decoration:none;}
+		
+	.course_tcc p{padding:10px 0px 0px;}
+		.tcc_text{width:120px; height:22px; line-height:22px; padding-left:2px; border:1px #d3d3d3 solid; margin-left:4px;}	
+		.qd_btn{ background:url(../../images/ClassCourse/list/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; cursor:pointer; border:none; color:#fff; margin-left:10px;}
+
+
+
+
+
+
+
+
+

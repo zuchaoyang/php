@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+.bt{ background:url(../images/tipbg.gif) repeat-x; color:#d8edff; font-weight:bold; padding-left:10px;}
+table{ margin:10px auto;}
+.kjfs ul{ margin-left:30px}
+.kjfs li{ display:inline; width:80px;  padding:1px 18px;}
+.kjfs li a,.kjfs li a:visited{ color:#333}
+.kjfs li a:hover{ color:#F60; text-decoration:underline}
+.kjfs li.kj1{ background:url(../images/kj1.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj2{ background:url(../images/kj2.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj3{ background:url(../images/kj3.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj4{ background:url(../images/kj4.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj5{ background:url(../images/kj5.gif) no-repeat left center; padding-left:18px;}
+.padleft{ margin-top:25px;}
+.padleft td{ padding-left:8px;}
+.ck:hover{text-decoration:underline;}
+.jxsp{display:block; width:80px; height:24px; background:url(../images/wmabg.gif) no-repeat; margin:0 auto; line-height:24px; text-align:center; color:#000000;}
+.jxdx{ margin:5px 10px; float:left;*margin:1px 10px;}
+
+
+ .wordwrap
+{
+     word-wrap:break-word;
+     word-break:break-all;
+    -moz-binding: url('/Public/css/wordwrap.xml#wordwrap');
+     overflow: hidden;
+}

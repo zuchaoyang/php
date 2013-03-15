@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+/**body{ background:#eee url(../images/top.jpg) center 0 no-repeat; padding-top:80px; }**/
+.clear{ clear:both;}
+
+
+.zy_main{ width:960px; margin:20px auto; overflow:hidden; }
+
+.zy_btn_list li{ float:left; list-style:none; padding-right:10px; }
+.zy_btn_list li a{ color:#2281d3; font:13px "宋体"; background:url(../images/btn02-bg.gif) 0 0 no-repeat; display:inline-block; width:102px; height:30px; line-height:30px; text-align:center; text-decoration:none;}
+.zy_btn_list li a.current_btn{background:url(../images/btn01-bg.gif) 0 0 no-repeat; color:black;}
+.Outside_line{ border:#90cdea solid 1px; float:left; width:878px; padding:40px; background-color:white;}
+
+.Operation_table01 td{ font:14px "宋体"; line-height:26px; height:30px;}
+input.bzzy{ background:url(../images/btn03-bg.gif) 0 0 no-repeat; width:75px; height:23px; border:none; cursor:pointer;}
+.font_red{ color:red; font:13px "宋体";}
+
+
+.Operation_table02{ width:100%; background-color:#cdcdcd;}
+.Operation_table02 td,.Operation_table02 th{ background-color:#fff;text-align:center;padding:4px 5px; }
+.Operation_table02 th{ font:bold 13px "宋体"; line-height:30px;white-space:nowrap; }
+.Operation_table02 td{ font:13px "宋体";}
+.Operation_table02 .zy_content{ text-align:left;font:13px "宋体"; line-height:20px; max-width:310px;overflow:hidden; word-wrap:break-word; word-break:break-all}
+.Operation_table02 td a{ color:#0066CC; text-decoration:none;}
+.Operation_table02 td a:hover{ text-decoration:underline;}
+
+.search_condition ,.search_condition input{ font:13px "宋体"; padding-bottom:3px; margin:0;} 
+.zy_search{ background:url(../images/search.gif) 0 0 no-repeat; width:55px; height:23px; cursor:pointer; border:none;font:13px "宋体"; line-height:23px; margin:0; padding:0; }

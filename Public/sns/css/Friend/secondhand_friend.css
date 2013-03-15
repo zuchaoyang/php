@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+	.mian_title li a{display:inline-block; width:112px; height:36px; text-align:center; line-height:36px; margin-right:4px;}
+		.main_nav_a1{ background:url(../../images/Friend/secondhand_friend/main_nav_a1.jpg) 0 0 no-repeat; color:#fff; font:16px "微软雅黑"}
+		.main_nav_a2{ background:url(../../images/Friend/secondhand_friend/main_nav_a2.jpg) 0 0 no-repeat; color:#444;font:16px "微软雅黑"}
+	
+.per_main{background:#fff; border:1px #6db500 solid; font:14px "微软雅黑"; color:#464646; padding:15px 10px 10px;}	
+	.search_tab{width:500px;}
+		.text_wbk{width:200px; height:20px; line-height:20px; border:1px #ccc solid; padding-left:2px;}
+		.mr10{margin-right:10px;}
+		
+	.search_main{width:930px; padding-left:8px;}
+		.search_main_single{width:280px; background:#e3eaf7; padding:10px; float:left; margin:10px 10px 0px 0px;}
+			.search_main_single dl{float:left; width:60px; margin-right:10px;}
+			.friend_photo_width{ width:60px; height:60px;} 
+			
+		.search_single_right{float:left;}
+			.search_single_right p a{display:inline-block; font:13px "宋体"; color:#fff;}
+				.search_single_right p a:hover{text-decoration:none;}
+				.mr10{margin-right:10px;}
+				.pt10{padding-top:6px;}
+				.add_friend{background:url(../../images/Friend/secondhand_friend/add_friend.gif) 0 0 no-repeat; width:44px; height:17px; padding:6px 0px 0px 30px;}
+				.mail_btn{background:url(../../images/Friend/secondhand_friend/mail_btn.gif) 0 0 no-repeat; width:44px; height:17px; padding:6px 0px 0px 30px;}
+	
+				
+/*弹出层*/	
+
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/Friend/secondhand_friend/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/Friend/secondhand_friend/tcc_msg_center.gif) 0 0 repeat-y; padding:20px;}
+	    .msg_center_main dl{float:left; margin-right:8px;}
+		.msg_center_main p{font:bold 14px "宋体"; float:left; line-height:20px; width:240px;}
+		.msg_center_main p span{font:normal 12px "宋体";}
+		
+		.icon_right{background:url(../../images/Common/sns_images/icon_correct.gif) 0 0 no-repeat; width:21px; height:21px; display:inline-block;}
+		.icon_question{background:url(../../images/Friend/secondhand_friend/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block;}
+		.icon_warn{background:url(../../images/Common/sns_images/icon_warn.gif) 0 0 no-repeat; width:21px; height:21px; display:inline-block;}
+		.msg_center_main p .pt6{margin-top:6px; display:inline-block;}
+		
+		.msg_center_btn{text-align:right; padding-top:10px;}
+		
+		.orange_btn{ background:url(../../images/Friend/secondhand_friend/icon_orange.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+		
+		.qd_btn{background:url(../../images/Friend/secondhand_friend/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/Friend/secondhand_friend/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}
+	.tcc_msg_bottom{background:url(../../images/Friend/secondhand_friend/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+
+
+				
+/*添加分组*/
+.edit_comment{width:300px;border:1px #6db500 solid; background:#fff;}
+	.tcc_title{font:14px "微软雅黑"; background:#f8f8f8; border-bottom:1px #e9e9e9 solid; padding:0px 10px; height:33px; line-height:33px; width:280px; position:relative;}
+	    .close_icon{background:url(../../images/Friend/secondhand_friend/icon_close.gif) 0 0 no-repeat;width:10px;height:9px;display:inline-block;position:absolute;right:10px;top:12px;overflow:hidden;}
+	  
+	.edit_comment_tab{padding:10px; font:12px "宋体";}  
+		.edit_comment_tab h2{font:14px "微软雅黑"; color:#5a5a5a; padding-bottom:8px;}
+		.textarea{width:270px; height:60px; border:1px #e9e9e9 solid;}
+		.edit_comment_tab p{text-align:right; line-height:28px; color:#464646; padding-right:10px;}
+		 
+
+	
+	.msg_btn{padding:6px 10px 0px; height:30px; background:#f2f2f2;}	
+		.msg_btn p{text-align:right;}
+		.green_btn{background:url(../../images/Friend/secondhand_friend/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/Friend/secondhand_friend/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}			
+
+
+/*加载更多*/
+.more_active{ text-align:center; margin-top:10px; border:1px #ccc dashed; background:#f1f1f1; padding:10px 0px;}	
+	.more_active a{background:url(../../images/ClassIndex/icon_more.jpg) right center no-repeat; display:inline-block; padding-right:10px; color:#5f9400; font:14px "宋体";}	

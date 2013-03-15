@@ -1,0 +1,174 @@
+@charset "utf-8";
+/* CSS Document */
+.main h4{height:44px; margin:0px 10px 10px; width:920px;}
+	.main h4 a{float:right; margin-top:10px;}
+
+.publish_main{background:#fff; border:1px #6db500 solid;font:14px "微软雅黑";color:#464646; padding:20px 10px; overflow:hidden;}
+	
+	.publish_main_left{width:730px; float:left;}
+		.main_left_icon{float:left; width:45px; position:relative; height:400px;}
+			.icon_left{background:url(../../images/Album/class_photo_show/icon_left.gif) 0 0 no-repeat; width:43px; height:43px; display:block; position:absolute; top:300px; left:0px;}
+			.icon_right{background:url(../../images/Album/class_photo_show/icon_right.gif) 0 0 no-repeat; width:43px; height:43px; display:block; position:absolute; top:300px; left:0px;}
+		.single_pic{float:left; width:610px; margin:0px 10px;}
+		
+	.main_left_bottom{width:730px; height:70px; padding-top:10px;}
+		.main_bottom_icon{width:45px; float:left; margin:20px 0px 0px;}
+		.icon_zuo{background:url(../../images/Album/class_photo_show/icon_zuo.gif) 0 0 no-repeat; width:24px; height:30px; display:inline-block;}
+		
+		.more_photo_show{width:610px; float:left; margin:0px 10px;}
+			.more_photo_show img{margin-right:10px;}
+		
+		.icon_you{background:url(../../images/Album/class_photo_show/icon_you.gif) 0 0 no-repeat; width:24px; height:30px; display:inline-block;}
+	
+	.publish_main_right{width:188px; float:left;background:#eef6e0; padding:10px;}
+		.publish_main_right h3{font:bold 15px/25px "微软雅黑";}
+		.publish_main_right span{display:inline-block; width:72px; font:bold 13px/22px "宋体"}
+			.publish_main_right span a{color:#464646;}
+			.publish_main_right span a:hover{color:#3a8a00;}
+
+		.photo_info p{line-height:24px;}
+			.photo_info p span{display:inline-block; width:72px; text-align:right; font:bold 13px/22px "宋体"}
+			.photo_info p a{color:#464646;}
+			.photo_info p a:hover{color:#3a8a00;}
+
+
+
+			
+		.photo_name{width:188px;}
+			.photo_name table th{width:60px;font:12px/24px "宋体"; text-align:left;}
+
+			.text{width:180px; height:22px; border:1px #ccc solid; line-height:22px; padding-left:4px; float:left;}
+			.green_btn{background:url(../../images/Album/class_photo_show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff;border:none;cursor:pointer; float:left;margin-top:10px;}
+			.gray_btn{background:url(../../images/Album/class_photo_show/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none;cursor:pointer;color:#73797c;float:left; margin-top:10px; margin-left:10px;}
+				
+		.publish_main_right p{font:12px "宋体"; line-height:26px;}
+			.publish_main_right p a{color:#3a8a00; overflow:hidden;}
+			
+			.icon_say{background:url(../../images/Album/class_photo_show/icon_say.gif) 0 0 no-repeat; height:15px; display:inline-block; width:16px; margin:4px 6px 0px 0px; float:left;}
+			
+			.photo_show_comment{width:188px;}
+				.photo_show_comment table th{width:40px; vertical-align:top; padding-top:2px;}
+				.photo_show_comment p{line-height:18px;}
+				.f8e8e8e{color:#8e8e8e;}
+				.ml10{margin-left:10px; _display:inline-block; overflow:hidden;}
+				
+				.comment_main_hide{width:146px;}
+					.text_comment{width:142px; height:30px; padding-left:2px; border:1px #ccc solid;}
+					.comment_main_hide p{padding-top:4px; height:30px;}
+					.icon_face{background:url(../../images/Album/class_photo_show/icon_face.gif) 0 0 no-repeat; width:16px; height:16px; display:inline-block; float:left; margin-top:2px;}
+					.num_range{width:66px; display:inline-block; padding:6px 6px 0px 0px; float:left; text-align:right;}
+					.qd_word2_btn{background:url(../../images/Album/class_photo_show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer; float:left;}
+
+		
+
+/*弹出层*/
+			
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/Album/class_photo_show/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/Album/class_photo_show/tcc_msg_center.gif) 0 0 repeat-y; padding:20px;}
+	    .msg_center_main dl{float:left; margin-right:8px;}
+		.icon_question{background:url(../../images/Album/class_photo_show/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block;}
+		.msg_center_main p{font:bold 14px "宋体"; float:left; line-height:20px;}
+		.msg_center_main span{font:12px "宋体";}
+		.msg_main_btn{text-align:right; padding-top:10px;}
+		
+		.qd_btn{background:url(../../images/Album/class_photo_show/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/Album/class_photo_show/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}
+	.tcc_msg_bottom{background:url(../../images/Album/class_photo_show/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}	
+	
+	
+/*移动照片*/
+.move_photo{background:#fff; border:1px #6db500 solid; border-top:none; width:150px;}
+	.move_photo p{height:150px; overflow:auto; font:14px "宋体";}
+	.move_photo p a{display:block; width:120px; height:30px; line-height:30px; color:#464646; padding-left:10px;}	
+	.move_photo p a span{width:80px; display:inline-block;}	
+		.move_photo p a:hover{background:#deeec1; text-decoration:none;}	
+	
+	
+/*评论照片*/
+.edit_comment{width:200px;border:1px #6db500 solid; background:#fff; font:14px "微软雅黑"; padding-bottom:10px;}
+	.tcc_title{font:14px "微软雅黑"; padding:0px 10px; height:33px; line-height:33px; position:relative;}
+	    .close_icon{background:url(../../images/Album/class_photo_show/icon_close.gif) 0 0 no-repeat;width:10px;height:9px;display:inline-block;position:absolute;right:10px;top:12px;overflow:hidden;}
+	.edit_comment p{height:20px; padding-left:10px;}
+		.icon_refer{background:url(../../images/Album/class_photo_show/icon_refersh.gif) 0 0 no-repeat; width:18px; height:21px; display:inline-block; margin-right:10px; float:left;}
+		.edit_comment p a{color:#464646;}
+		.edit_comment p a:hover{color:#3a8a00;}
+
+
+.list_comment{width:800px;}
+			.list_textarea{width:600px; height:60px;}
+			.list_comment p{height:25px; width:600px; padding-top:10px;}
+		    	.icon_face{background:url(../../images/Album/class_photo_show/icon_face.gif) left center no-repeat; display:inline-block; float:left; width:40px; padding-left:20px; color:#3a8a00;}
+				.green_btn{background:url(../../images/Album/class_photo_show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; color:#fff; cursor:pointer; float:left;}
+				.list_comment p span{float:left; width:472px; display:inline-block; text-align:right; padding:4px 10px 0px 0px;}
+	.list_comment_people{padding:10px 0px 0px; width:898px;}
+		.list_comment_people dl{float:left; width:110px;}
+		.list_comment_people dl dt img{width:100px; height:100px;}
+		
+		.say_text{width:394px; height:20px; padding:0px 2px 0px; line-height:20px;}
+		
+		.list_comment_main{float:left; width:788px;}
+			.list_comment_main p a{color:#3a8a00;}
+			.list_comment_main p span{font:12px "微软雅黑"; color:#8c8c8c;}
+			.mr10{margin-right:10px;}
+			.ml10{margin-left:10px; display:inline-block;}
+			
+			.list_people{margin:10px 0px 0px 0px;}
+				.list_people dl{float:left; width:50px; padding-top:4px;}
+					.list_people dl dt img{width:36px; height:36px;}
+				.people_comment{float:left;}
+				
+	.more_active{width:898px; text-align:center; margin-top:10px; border:1px #ccc dashed; padding:10px 0px;}	
+		.more_active a{background:url(../../images/Album/class_photo_show/icon_more.jpg) right center no-repeat; display:inline-block; padding-right:10px; color:#5f9400; font:14px "宋体";}		
+	  
+
+/*图片滚动start*/
+#carousel{margin:30px auto 10px;width:935px;height:102px;overflow:hidden;}
+/* 按钮 */
+#carousel_btn_lastgroup,#carousel_btn_nextgroup{float:left;width:27px;height:74px;margin:14px 26px 14px 26px;display:inline;overflow:hidden;text-indent:-999px;}
+#carousel_btn_lastgroup a:link,#carousel_btn_lastgroup a:visited,#carousel_btn_lastgroup a:hover{display:block;width:27px;height:74px;background:url(../../images/Album/class_photo_show/button.gif) 0 0 no-repeat;overflow:hidden;}
+#carousel_btn_lastgroup a.dis:link,#carousel_btn_lastgroup a.dis:visited,#carousel_btn_lastgroup a.dis:hover{background-position:0 -148px;}
+#carousel_btn_nextgroup{float:right;margin:14px 15px 14px 14px;}
+#carousel_btn_nextgroup a:link,#carousel_btn_nextgroup a:visited,#carousel_btn_nextgroup a:hover{display:block;width:27px;height:74px;background:url(../../images/Album/class_photo_show/button.gif) 0 -74px no-repeat;overflow:hidden;}
+#carousel_btn_nextgroup a.dis:link,#carousel_btn_nextgroup a.dis:visited,#carousel_btn_nextgroup a.dis:hover{background-position:0 -222px;}
+/* 缩略图 */	
+#carousel_container{position:relative;z-index:2;float:left;width:780px;height:102px;overflow:auto;}
+#carousel_container ul{position:absolute;z-index:1;left:0;top:0;height:102px;overflow:hidden;margin:0;padding:0;}
+#carousel_container li{float:left;width:112px;height:102px;display:inline;}
+#carousel_container li a:link img,#carousel_container li a:visited img,#carousel_container li a:hover img{float:left;width:80px;height:80px;padding:10px;display:inline;margin:0 5px;border:1px solid #999;}
+#carousel_container li a.current:link img,#carousel_container li a.current:visited img,#carousel_container li a.current:hover img{opacity:.5;-moz-opacity:.5;filter:alpha(opacity=50);border:1px solid #369;}
+/* 大图片展示区域、图片介绍、loading阴影层、loading.gif */
+#carousel_photo_container{position:relative;z-index:1;margin:20px auto 0;width:930px;overflow:hidden;clear:both;text-align:center;}
+#script p#carousel_photo_intro{margin:0 auto 20px;width:600px;text-align:center;line-height:150%;text-align:center;overflow:hidden;font-size:12px; }
+#carousel_photo_shardow{position:absolute;z-index:4;left:0;top:0;width:100%;height:100%;background-color:#000;opacity:.5;-moz-opacity:.5;filter:alpha(opacity=50);}
+img#carousel_photo_loading{position:absolute;z-index:5;left:50%;top:50%;width:100px;height:100px;margin:-50px 0 0 -50px;}
+/* 上一张，下一张 */
+a.previous:link,a.previous:visited,a.previous:hover{position:absolute;z-index:3;top:0;left:0;text-indent:-999px;width:50%;height:100%;overflow:hidden;cursor:pointer;background-color:#FFF;opacity:.0;-moz-opacity:.0;filter:alpha(opacity=0);text-decoration:none;}
+/*../../images/Album/photo/last-photo.png*/
+a.previous:hover{background:transparent url(../../images/Album/class_photo_show/icon_left.gif) 0 50% no-repeat;opacity:.8;-moz-opacity:.8;filter:alpha(opacity=80);}
+a.next:link,a.next:visited,a.next:hover{position:absolute;z-index:3;top:0;right:0;text-indent:-999px;width:50%;height:100%;overflow:hidden;cursor:pointer;background-color:#FFF;opacity:.0;-moz-opacity:.0;filter:alpha(opacity=0);text-decoration:none;}
+/*../../images/Album/photo/next-photo.png*/
+a.next:hover{background:transparent url(../../images/Album/class_photo_show/icon_right.gif) 100% 50% no-repeat;opacity:.8;-moz-opacity:.8;filter:alpha(opacity=80);}
+a.dis:link,a.dis:visited,a.dis:hover{background-image:none;}
+.image{ text-align:center}
+.hidden{display:none;}
+.download_pic_w{ width:930px;}
+/*图片滚动end*/
+/*一流素材网收藏整理：www.16sucai.com*/
+
+
+.publish_main a.photo_info_tail{ float:right;font-weight:bold;margin-right:20px;}
+	  
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+				

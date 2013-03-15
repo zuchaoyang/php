@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{font:14px "宋体";}
+.clean{clear:both; height:1px; overflow:hidden;}
+input{margin:0px; padding:0px;}
+a{text-decoration:none;}
+
+.upload_right{width:730px; margin-left:6px; float:left;}
+	.resource_title{padding:0px; height:34px; _padding-bottom:0px; float:left; width:140px;}
+	   .up_icon{background:url(../images/tb1.gif) 0 0 no-repeat; width:31px; height:31px; display:inline-block; float:left;}
+	   .font_normal{font:bold 14px "宋体"; float:left; margin:8px 0px 0px 10px;}
+	   
+.resource_tab{margin:10px 0px 0px;color:#474747;}
+	.resource_tab table{border:1px #3399CC solid;}	   
+	  .upload_h4{height:30px; background:#ccecff; padding-left:20px;font:800 14px "宋体"; color:#0066cc;}
+	  .resource_tab table th{height:40px; padding-left:20px; width:62px; font:100 14px "宋体"; text-align:left;}
+	  .resource_tab table td{padding-top:6px;}
+	  .resource_tab select{color:#333;}
+	  .input_wbk{width:300px; height:20px; border:1px #CCC solid;}
+	  .input_line{width:400px; height:100px; border:1px #CCC solid;}
+	  .file_wbk{width:200px; height:20px; border:1px #CCC solid;}
+	  
+	  .td_btn_align{text-align:right;}
+	    .up_blue_btn{background:url(../images/up_blue_btn.gif) 0 0 no-repeat; width:70px; height:24px; border:none; color:#fff; cursor:pointer; margin-right:10px; font:14px "宋体";}
+	    .up_orange_btn{background:url(../images/up_word2_btn.gif) 0 0 no-repeat;}
+
+/*upload_success*/
+.up_ss_text{background:url(../images/up_input.gif) 0 0 no-repeat; width:329px; height:33px; padding-left:30px; float:left; margin-top:10px;}
+  .up_input_text{height:30px; margin:1px 0px; _height:25px; width:327px; _width:422px; border:0; line-height:30px;}
+.up_search{background:url(../images/up_ss_bj.gif) 0 0 no-repeat; height:33px; border:none; width:67px; float:left; cursor:pointer; margin-top:10px;}  
+
+.up_td{height:30px; text-align:center; padding-top:10px;}
+  .font_red{color:#f00;}
+  .up_word6_btn{background:url(../images/up_word6_btn.gif) 0 0 no-repeat; width:100px; height:24px; border:none; color:#fff; cursor:pointer; margin-right:10px;}
+  
+/*my_upload*/
+.my_upload_tab table th{width:30px;}
+.my_td{text-align:left; padding-left:10px;}
+
+.my_upload_main{background:#f1f1f1; margin:10px 10px 10px 0px; padding:10px 0px 10px 10px;}
+	.my_upload_main h4{font:bold 14px "宋体"; line-height:30px; color:#06c; float:left; width:400px;}
+	.up_my_nr{line-height:30px; font:14px "宋体";display:inline-block; margin-top:8px; }
+	.up_icon01{background:url(../images/icon01.gif) 0 0 no-repeat; width:24px; height:21px; display:inline-block; float:left; margin:2px 6px 0px 0px;}
+	.my_upload_main p{font:14px "宋体"; padding:6px 0px;}
+
+.unpass{width:600px; height:100px; border-top:1px #999 solid;}
+
+	.my_up_btn{background:url(../images/my_up_btn.gif) 0 0 no-repeat; width:47px; height:19px; border:none; cursor:pointer; color:#fff; margin-left:10px;}
+	.my_word4_btn{background:url(../images/my_word4_btn.gif) 0 0 no-repeat; width:62px; height:19px; border:none; cursor:pointer; color:#fff; margin-left:10px;}
+	
+	.up_fenye a{display:inline; width:60px; height:20px; line-height:20px; text-align:center; color:#06c;}
+	
+	
+.public_cotent{width:980px; margin:0 auto;}	
+  .public_left{width:220px; float:left;}
+
+
+.up_sh_btn{padding:10px 10px 0px;}	
+.word3_btn{background:url(../images/wmabg.gif) 0 0 no-repeat; width:80px; height:24px; border:none; color:#666; cursor:pointer; margin-right:10px;}
+.blue_word3_btn{background:url(../images/w_tj_btn.jpg) 0 0 no-repeat; width:75px; height:23px; border:none; color:#fff; cursor:pointer; margin-right:10px;}	
+
+.sctbzy{margin-top:10px;}
+
+.my_upload_main .blue-btn{background:url(../images/blue_btn.gif) 0 0 no-repeat; display:inline-block; width:68px; height:21px; font:13px "宋体"; padding:6px 0px 0px 30px; color:#fff;margin-left:10px;}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

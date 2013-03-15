@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+/*整体框架*/
+.maps_content{ padding-top:75px; width:980px; margin:0 auto;}
+
+/*左侧地区列表*/
+.Area_list{ background:url(../../images/school_map/maps/list_bg.gif) 0 0 no-repeat; width:105px; min-height:1005px; padding:15px 20px 15px 55px; float:left}
+.Area_name li{ border-bottom:#b0d5f1 dotted 1px;}
+.Area_name li a{ color:#4585ca; font:13px/30px "宋体"; display:block; text-align:center; text-decoration:none; outline:none; }
+
+/*右侧地图部分*/
+.map_style{margin-left:20px; float:left;}
+
+/*绿色底图*/
+.lsdt{ background:url(../../images/school_map/maps/footer_bgg.gif) 0 0 repeat-x; height:87px; margin-top:30px;}

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>自定义评语</title>
+<script type="text/javascript" src="/Public/js/jquery-1.5.2.js"></script>
+<script src="/Public/js/artDialog/artDialog.source.js?skin=default"></script>
+<script src="/Public/js/artDialog/plugins/iframeTools.source.js"></script>
+<script>
+function pupLimit(solute){
+	if(solute=="set"){
+		limitInterval = setInterval("plimitCheck()",10);
+	}else{
+		clearInterval(limitInterval);
+	}
+	
+	return false;
+}
+function plimitCheck(){
+	var areatext,length,limit,more;
+	areatext = $("#aInput").val();
+	length = $.trim(areatext).length;
+	limit = 60-length;
+	more = length-60;
+	if(more>0){
+		$(".pcountTxt").html("超出<b><font size=3 color=red>"+more+"</font></b>字无法进行保存");
+		return false;
+	}else{
+		$(".pcountTxt").html("还能输入<em>"+limit+"</em>字");
+		return true;
+	}
+}
+</script>
+</head>
+<body style="margin:0">
+<div style="width:400px; height:100px; padding:20px">
+<table width="100%" border="0" cellpadding="3" cellspacing="1">
+  <tr>
+    <td><textarea  name='aInput' cols="50" rows="6" id='aInput' onfocus="pupLimit('set');" onblur="pupLimit('del');" maxlength=60></textarea></td>
+  </tr>
+  <tr>
+    <td height="30" bgcolor="#FFFFFF">&nbsp;<strong><span class="pcountTxt">还能输入<em>60</em>字</span></strong></td>
+  </tr>
+
+  <tr>
+    <td align="center"><button id="exit">确认</button></td>
+  </tr>
+</table>
+</div>
+<script>
+    var request = 
+      { 
+        QueryString : function(val) 
+      { 
+      var uri = window.location.search; 
+      var re = new RegExp("" +val+ "=([^&?]*)", "ig"); 
+      return ((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null); 
+      } 
+    } 
+
+	var rt = request.QueryString("objid");
+	if (art.dialog.data('test')) {
+		document.getElementById('aInput').value = art.dialog.data('test');// 获取由主页面传递过来的数据
+	};
+
+// 关闭并返回数据到主页面
+document.getElementById('exit').onclick = function () {
+	var origin = artDialog.open.origin;
+	var aValue = document.getElementById('aInput').value;
+	if(aValue.length > 60){
+		alert('输入内容超出限制')
+		return false;
+	}
+
+	var input = origin.document.getElementById('py_id_'+rt);
+	input.value = aValue;
+	input.select();
+	art.dialog.close();
+};
+
+</script>
+</body>
+</html>

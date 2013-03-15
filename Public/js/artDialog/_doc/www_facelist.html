@@ -1,0 +1,86 @@
+	<script type="text/javascript" src="/Public/js/jquery-1.5.2.js"></script>
+	<script src="/Public/js/artDialog/artDialog.source.js?skin=idialog"></script>
+	<script src="/Public/js/artDialog/plugins/iframeTools.source.js"></script>
+	<style>
+	.facelist{bord/er-top:#DFE6F6 solid 1px;bor/der-left:#DFE6F6 solid 1px;}
+	.facelist ul li {float:left;width:28px;height:28px;border-bottom:#DFE6F6 solid 1px;border-right:#DFE6F6 solid 1px;}
+	.facelist ul li img{padding:2px;cursor:pointer;width:22px;height:22px;}
+	.close{width:446px;height:20px;clear:both;}
+	.close img{float:right;cursor:pointer;}
+	</style>
+	<script>
+		function setbq(obj){
+			var origin = artDialog.open.origin;
+			var aValue = obj;
+			var objold= origin.document.getElementById('pl').value;  
+			var input = origin.document.getElementById('pl');
+			input.value =  objold + aValue;
+			input.select();
+			art.dialog.close();
+
+		}
+	</script>
+	<div class="facelist" style="background-color:#fff;">
+		<ul>
+		<li><img src="/Public/images/face/0.gif" alt="惊讶" title="惊讶" onclick="javascript:setbq('/惊讶');"/></li>
+		<li><img src="/Public/images/face/1.gif" alt="撇嘴" title="撇嘴"  onclick="javascript:setbq('/撇嘴');" /></li>
+		<li><img src="/Public/images/face/2.gif" alt="色" title="色"  onclick="javascript:setbq('/色');" /></li>
+		<li><img src="/Public/images/face/3.gif" alt="发呆" title="发呆"  onclick="javascript:setbq('/发呆');" /></li>
+		<li><img src="/Public/images/face/4.gif" alt="得意" title="得意"  onclick="javascript:setbq('/得意');" /></li>
+		<li><img src="/Public/images/face/5.gif" alt="大哭" title="大哭"  onclick="javascript:setbq('/大哭');" /></li>
+		<li><img src="/Public/images/face/6.gif" alt="害羞" title="害羞"  onclick="javascript:setbq('/害羞');" /></li>
+		<li><img src="/Public/images/face/7.gif" alt="闭嘴" title="闭嘴"  onclick="javascript:setbq('/闭嘴');" /></li>
+		<li><img src="/Public/images/face/8.gif" alt="睡" title="睡"  onclick="javascript:setbq('/睡');" /></li>
+		<li><img src="/Public/images/face/9.gif" alt="流泪" title="流泪"  onclick="javascript:setbq('/流泪');" /></li>
+		<li><img src="/Public/images/face/10.gif" alt="尴尬" title="尴尬"  onclick="javascript:setbq('/尴尬');" /></li>
+		<li><img src="/Public/images/face/11.gif" alt="发怒" title="发怒"  onclick="javascript:setbq('/发怒');" /></li>
+		<li><img src="/Public/images/face/12.gif" alt="调皮" title="调皮"  onclick="javascript:setbq('/调皮');" /></li>
+		<li><img src="/Public/images/face/13.gif" alt="呲牙" title="呲牙"  onclick="javascript:setbq('/呲牙');" /></li>
+		<li><img src="/Public/images/face/14.gif" alt="微笑" title="微笑"  onclick="javascript:setbq('/微笑');" /></li>
+		<li><img src="/Public/images/face/15.gif" alt="难过" title="难过"  onclick="javascript:setbq('/难过');" /></li>
+		<li><img src="/Public/images/face/16.gif" alt="酷" title="酷"  onclick="javascript:setbq('/酷');" /></li>
+		<li><img src="/Public/images/face/17.gif" alt="冷汗" title="冷汗"  onclick="javascript:setbq('/冷汗');" /></li>
+		<li><img src="/Public/images/face/18.gif" alt="抓狂" title="抓狂"  onclick="javascript:setbq('/抓狂');" /></li>
+		<li><img src="/Public/images/face/19.gif" alt="吐" title="吐"  onclick="javascript:setbq('/吐');" /></li>
+		<li><img src="/Public/images/face/20.gif" alt="偷笑" title="偷笑"  onclick="javascript:setbq('/偷笑');" /></li>
+		<li><img src="/Public/images/face/21.gif" alt="可爱" title="可爱"  onclick="javascript:setbq('/可爱');" /></li>
+		<li><img src="/Public/images/face/22.gif" alt="白眼" title="白眼"  onclick="javascript:setbq('/白眼');" /></li>
+		<li><img src="/Public/images/face/23.gif" alt="傲慢" title="傲慢"  onclick="javascript:setbq('/傲慢');" /></li>
+		<li><img src="/Public/images/face/24.gif" alt="饥饿" title="饥饿"  onclick="javascript:setbq('/饥饿');" /></li>
+		<li><img src="/Public/images/face/25.gif" alt="困" title="困"  onclick="javascript:setbq('/困');" /></li>
+		<li><img src="/Public/images/face/26.gif" alt="惊恐" title="惊恐"  onclick="javascript:setbq('/惊恐');" /></li>
+		<li><img src="/Public/images/face/27.gif" alt="流汗" title="流汗"  onclick="javascript:setbq('/流汗');" /></li>
+		<li><img src="/Public/images/face/28.gif" alt="憨笑" title="憨笑"  onclick="javascript:setbq('/憨笑');" /></li>
+		<li><img src="/Public/images/face/29.gif" alt="大兵" title="大兵"  onclick="javascript:setbq('/大兵');" /></li>
+		<li><img src="/Public/images/face/30.gif" alt="奋斗" title="奋斗"  onclick="javascript:setbq('/奋斗');" /></li>
+		<li><img src="/Public/images/face/31.gif" alt="咒骂" title="咒骂"  onclick="javascript:setbq('/咒骂');" /></li>
+		<li><img src="/Public/images/face/32.gif" alt="疑问" title="疑问"  onclick="javascript:setbq('/疑问');" /></li>
+		<li><img src="/Public/images/face/33.gif" alt="嘘" title="嘘"  onclick="javascript:setbq('/嘘');" /></li>
+		<li><img src="/Public/images/face/34.gif" alt="晕" title="晕"  onclick="javascript:setbq('/晕');" /></li>
+		<li><img src="/Public/images/face/35.gif" alt="折磨" title="折磨"  onclick="javascript:setbq('/折磨');" /></li>
+		<li><img src="/Public/images/face/36.gif" alt="衰" title="衰"  onclick="javascript:setbq('/衰');" /></li>
+		<li><img src="/Public/images/face/37.gif" alt="骷髅" title="骷髅"  onclick="javascript:setbq('/骷髅');" /></li>
+		<li><img src="/Public/images/face/38.gif" alt="敲打" title="敲打"  onclick="javascript:setbq('/敲打');" /></li>
+		<li><img src="/Public/images/face/39.gif" alt="再见" title="再见"  onclick="javascript:setbq('/再见');" /></li>
+		<li><img src="/Public/images/face/40.gif" alt="擦汗" title="擦汗"  onclick="javascript:setbq('/擦汗');" /></li>
+		<li><img src="/Public/images/face/41.gif" alt="抠鼻" title="抠鼻"  onclick="javascript:setbq('/抠鼻');" /></li>
+		<li><img src="/Public/images/face/42.gif" alt="鼓掌" title="鼓掌"  onclick="javascript:setbq('/鼓掌');" /></li>
+		<li><img src="/Public/images/face/43.gif" alt="糗大了" title="糗大了"  onclick="javascript:setbq('/糗大了');" /></li>
+		<li><img src="/Public/images/face/44.gif" alt="坏笑" title="坏笑"  onclick="javascript:setbq('/坏笑');" /></li>
+		<li><img src="/Public/images/face/45.gif" alt="左哼哼" title="左哼哼"  onclick="javascript:setbq('/左哼哼');" /></li>
+		<li><img src="/Public/images/face/46.gif" alt="右哼哼" title="右哼哼"  onclick="javascript:setbq('/右哼哼');" /></li>
+		<li><img src="/Public/images/face/47.gif" alt="哈欠" title="哈欠"  onclick="javascript:setbq('/哈欠');" /></li>
+		<li><img src="/Public/images/face/48.gif" alt="鄙视" title="鄙视"  onclick="javascript:setbq('/鄙视');" /></li>
+		<li><img src="/Public/images/face/49.gif" alt="委屈" title="委屈"  onclick="javascript:setbq('/委屈');" /></li>
+		<li><img src="/Public/images/face/50.gif" alt="快哭了" title="快哭了"  onclick="javascript:setbq('/快哭了');" /></li>
+		<li><img src="/Public/images/face/51.gif" alt="阴险" title="阴险"  onclick="javascript:setbq('/阴险');" /></li>
+		<li><img src="/Public/images/face/52.gif" alt="亲亲" title="亲亲"  onclick="javascript:setbq('/亲亲');" /></li>
+		<li><img src="/Public/images/face/53.gif" alt="吓" title="吓"  onclick="javascript:setbq('/吓');" /></li>
+		<li><img src="/Public/images/face/54.gif" alt="可怜" title="可怜"  onclick="javascript:setbq('/可怜');" /></li>
+		<li><img src="/Public/images/face/55.gif" alt="菜刀" title="菜刀"  onclick="javascript:setbq('/菜刀');" /></li>
+		<li><img src="/Public/images/face/56.gif" alt="西瓜" title="西瓜"  onclick="javascript:setbq('/西瓜');" /></li>
+		<li><img src="/Public/images/face/57.gif" alt="啤酒" title="啤酒"  onclick="javascript:setbq('/啤酒');" /></li>
+		<li><img src="/Public/images/face/58.gif" alt="篮球" title="篮球"  onclick="javascript:setbq('/篮球');" /></li>
+		<li><img src="/Public/images/face/59.gif" alt="乒乓" title="乒乓"  onclick="javascript:setbq('/乒乓');" /></li>
+		</ul>
+	</div>

@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+.main{width:960px; font:14px "微软雅黑"; overflow:hidden;}
+.main ul{width:960px; height:36px;}		
+	.main ul li a{width:112px; display:inline-block; text-align:center; font:16px "微软雅黑"; height:36px; line-height:36px;}
+		.main_nav_a1{background:url(../../images/PersonIndex/active_info/main_nav_a1.jpg) 0 0 no-repeat; color:#fff;}
+		.main_nav_a2{color:#464646; margin-left:730px;}
+		.main ul li a:hover{text-decoration:none;}
+		.mr6{margin-right:6px;}
+		
+	.per_value{width:918px; height:40px; border-bottom:1px #ccc solid; padding-bottom:6px;}
+			.per_value p{float:left;}
+			.value_left{background:url(../../images/PersonIndex/active_info/left_bj_pic.jpg) 0 0 no-repeat; width:24px; height:40px;}
+			.value_center{background:url(../../images/PersonIndex/active_info/center_bj_pic.jpg) repeat-x; height:20px; float:left; padding:10px 0px;}
+				.value_bj{background:url(../../images/PersonIndex/active_info/icon_sz_bj.gif) 0 0 no-repeat; width:26px; height:20px; display:block; float:left; color:#fff; padding-left:25px;}
+					.value_bj:hover{text-decoration:none;}
+				.ml10{margin:0px 10px;}	
+				.pl10{padding-left:10px;}
+			.value_right{background:url(../../images/PersonIndex/active_info/right_bj_pic.jpg) 0 0 no-repeat; width:24px; height:40px;}
+			
+		
+	.active_main{width:918px; border:1px #419400 solid; padding:10px 20px; background:#fff; color:#464646; font:14px "微软雅黑";}		
+		.active_main h3{color:#317400; font:16px "微软雅黑"; height:35px; line-height:35px;}
+		.active_main p{ line-height:22px;}
+		
+		.active_main table{background:#ccc;}
+			.active_main table th{height:35px; background:#f0f0f0;}
+			.active_main table td{background:#fff; text-align:center; height:30px;}
+			
+		.mt10{margin-top:10px;}	
+			
+/*弹出层*/
+.urse_tcc{width:90px;}	
+	.urse_tcc ul{background:#5eac25;}
+	.urse_tcc ul li a{display:inline-block; color:#fff; padding:8px 0px; width:90px; text-align:center; margin-bottom:1px;font:12px "微软雅黑";}
+	.urse_tcc ul li a:hover{background:#2b6800;}

@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+body{font:12px "宋体";}
+.clear{ clear:both;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+
+#head{width:100%; border-top:5px #0b5ea0 solid;}
+.top{width:960px; margin:0 auto; height:84px;}
+  .top img{float:left; margin:20px 0px 0px 10px;}
+  .top span{float:right; padding:10px;}
+  .top span a{color:#666;}
+
+#cotent{width:100%; background:url(../images/login_bj.gif) repeat-x;}
+  .main{width:960px; margin:0 auto; padding-bottom:100px;}
+    .main img{display:block;}
+  .banner{width:958px; margin:0 auto; border-left:1px #0099cc solid; border-right:1px #0099cc solid; background:url(../images/login_sx.jpg) repeat-x;}
+    .banner img{margin:4px 10px; float:left; display:inline;}
+	.main_tab{float:left; width:257px; background:url(../images/login_tab.jpg) 0 0 no-repeat; margin-left:10px; height:258px; padding:10px;}
+	 .main_tab p{color:#fff; padding:4px 0px;}
+	 .text{width:200px; height:30px; line-height:30px; border:1px #0b5ea0 solid; padding-left:6px; color:#999;}
+	 .login_btn{background:url(../images/login_btn.gif) 0 0 no-repeat; width:70px; height:26px; line-height:26px; text-align:center; color:#fff; border:none; cursor:pointer;}
+	 .main_tab p span{margin-left:10px;}
+	 .main_tab p span a{color:#fff;}
+	 
+#footer{width:100%; background:url(../images/login_footer.jpg) center 0 no-repeat; height:38px; padding-top:50px;}
+  #footer p{width:960px; margin:0 auto; text-align:center; line-height:22px; color:#333;}	 
+  
+.zhmm_main{padding:10px 110px 0px; width:540px; margin:0 auto; background:#fff;}
+  .find_mm{background:url(../images/login_pbj.gif) bottom repeat-x; padding-left:2px; margin-bottom:10px;} 
+  .find_mm span{background:url(../images/login_abj.gif) 0 0 no-repeat; display:inline-block; width:85px; height:22px; line-height:22px; text-align:center; color:#333;}
+  .text2{width:120px; height:18px; line-height:18px; padding-left:4px;}
+  .font_red{color:#FF0000;}
+  .green_btn{background:url(../images/green_button.gif) 0 0 no-repeat; width:180px; height:24px;border:none; cursor:pointer; color:#fff; font:14px "宋体"; line-height:24px;}
+  .zhmm_main h3{font:14px "宋体"; color:#0099cc;}
+  .wb{width:540px; margin:0 auto; background:#FFF;padding:0px 110px;}
+  .text_area{width:500px; height:100px;}
+  
+ .fond_h4{font:14px "宋体"; text-align:center;line-height:30px; padding:10px 0px; } 
+ .font_red{color:#FF0000;}
+ .yxzh_main{text-align:center; line-height:24px; padding-top:10px;border-top:1px #0099FF solid;}
+ .font_h4{font:14px "宋体";}
+ .qd{padding:10px 42px;}
+ 
+ .zhfs{padding:20px 80px;border-bottom:1px #0099FF solid;border-top:1px #0099FF solid;}
+ .zhfs img{float:left; margin-right:10px;}
+ .zhfs p{line-height:22px;}
+.login_btn_loading{width:70px; height:26px; line-height:26px; background:url(../images/loading.gif) no-repeat; color:#fff; border:none; margin-right:10px; cursor:pointer;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+/*整体框架*/
+.maps_content{ padding-top:75px; width:980px; margin:0 auto;}
+
+/*左侧地区列表*/
+.Area_list{ background:url(../../images/school_map/maps/list_bg.gif) 0 0 no-repeat; width:105px; min-height:1005px; padding:15px 20px 15px 55px; float:left}
+.Area_name li{ border-bottom:#b0d5f1 dotted 1px;}
+.Area_name li a{ color:#4585ca; font:13px/30px "宋体"; display:block; text-align:center; text-decoration:none; outline:none; }
+
+/*右侧列表部分*/
+.content_right{margin-left:20px; float:left; width:778px; border:#99ceff solid 1px; padding-bottom:20px; background-color:#f5fcff;min-height:600px;}
+
+/*位置导航*/
+.title_area{ background:url(../../images/school_map/list/title_bg.gif) 0 0 repeat-x; font:13px/32px "宋体"; padding-left:40px;}
+.title_area a{ color:#1961a7; font:14px/32px "宋体"; font-weight:bold; text-decoration:none;}
+
+
+/*学校列表*/
+.school_name_list{ margin-left:40px; font:13px/30px "宋体"; color:#1961a7; margin-top:20px;}
+.school_name_list a{font:13px/30px "宋体"; color:#1961a7; text-decoration:none;}
+/*0913添加分页样式代码*/
+.school_name_fenye{margin-left:40px;font:13px/14px "宋体"; color:#333; margin-top:10px;}
+.school_name_fenye a{font:13px/14px "宋体"; color:#1961a7; text-decoration:none; margin-left:10px; display:inline-block;}
+.school_name_fenye .fenye_link{color:#666;}
+
+
+/*绿色底图*/
+.lsdt{ background:url(../../images/school_map/list/footer_bgg.gif) 0 0 repeat-x; height:87px; margin-top:30px;}

@@ -1,0 +1,59 @@
+.ie_update {
+	height: 87px;
+	background: url("../../images/school_map/maps/ie_update.png?id=1341302813656")
+		repeat-x;
+	margin: 0 0 20px;
+}
+
+.ie_update .detail {
+	background: url("../../images/school_map/maps/ie_update.png?id=1341302813656")
+		no-repeat 0 -82px;
+	height: 87px;
+	width: 735px;
+	margin: 0 auto;
+}
+
+.ie_update .detail .text {
+	padding: 15px 0 0 75px;
+	color: #917b50;
+	line-height: 18px;
+}
+
+.ie_update .detail .link {
+	padding: 8px 0 0 75px;
+}
+
+.ie_update .detail .link a {
+	color: #917b50;
+	background: url("../../images/school_map/maps/ie_update.png?id=1341302813656")
+		no-repeat;
+	padding: 0 0 0 19px;
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+}
+
+.ie_update .detail .link span {
+	color: #efe0b9;
+	margin: 0 9px;
+}
+
+.ie_update .detail .link .ie {
+	background-position: 0 -170px;
+}
+
+.ie_update .detail .link .ff {
+	background-position: 0 -196px;
+}
+
+.ie_update .detail .link .chrome {
+	background-position: 0 -218px;
+}
+
+.ie_update .detail .link .safe360 {
+	background-position: 0 -240px;
+}
+
+.ie_update .detail .link .sougo {
+	background-position: 0 -263px;
+}

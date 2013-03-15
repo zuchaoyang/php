@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+
+*,html,ul,li{ margin:0px; padding:0px; font-size:12px;}
+dl,dt,dd{ list-style:none;}
+ul,li{ list-style:none;}
+a{cursor:pointer;}
+a,a:visited{ text-decoration:none;}
+.qdan{width:85px; height:24px; background:url(../images/anniu.gif) no-repeat; border:none; color:#fff;}
+.qxan{width:85px; height:24px; background:url(../images/anniu2.gif) no-repeat; border:none; color:#000;cursor:pointer;}
+.wbk{width:140px; height:18px; line-height:18px;}
+.dqd{display:block;width:120px; height:24px; line-height:24px; background:url(../images/danniu.gif) no-repeat; border:none; float:left; color:#fff; text-align:center; margin-right:10px;}
+.dqx{display:block;width:120px; height:24px; line-height:24px; background:url(../images/danniu2.gif) no-repeat; color:#000; border:none; float:left;text-align:center; margin-right:10px;}
+.ktsq_qdan{width:85px; height:24px; background:url(../images/anniu.gif) no-repeat; border:none; color:#fff;display:block; float:left; line-height:24px; text-align:center; margin:0px;}
+.czmm a{display:block; width:85px; height:24px; line-height:24px;float:left; text-align:center; margin-right:10px; color:#fff;}
+.sqgl_czmm{cursor:pointer; display:block; width:85px; height:24px; background:url(../images/anniu.gif) no-repeat; border:none; color:#fff; line-height:24px; text-align:center;}
+
+.cotent_top{background:url(../images/iconr.gif) no-repeat 8px center; padding-left:28px;}
+
+td a{color:#ff0000;}
+a:hover{text-decoration:underline;}
+.bt{ background:url(../images/tipbg1.gif) repeat-x; color:#fff; font-weight:bold; padding-left:10px;}
+table{ margin:10px auto;}
+.kjfs ul{ margin-left:30px}
+.kjfs li{ display:inline; width:80px;  padding:1px 18px;}
+.kjfs li a,.kjfs li a:visited{ color:#333}
+.kjfs li a:hover{ color:#F60; text-decoration:underline}
+.kjfs li.kj1{ background:url(../images/kj1.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj2{ background:url(../images/kj2.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj3{ background:url(../images/kj3.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj4{ background:url(../images/kj4.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj5{ background:url(../images/kj5.gif) no-repeat left center; padding-left:18px;}
+.padleft{ margin-top:10px;}
+.padleft td{ padding-left:8px;}
+
+.head{margin:0px;}
+.head ul{ display:block; width:550px; height:28px; padding-left:260px;}
+.head ul li{ width:112px; height:28px; line-height:28px; float:left;}
+.head ul li.hover{ background:url(../images/menubg1.gif) no-repeat; }
+.head ul li a,.head ul li a:visited{ display:block; height:28px; line-height:30px; vertical-align:middle; text-align:center; text-decoration:none; color:#fffbdc;}
+.head ul li a:hover{ color:#ffd038}
+.head li a.m1{ background:url(../images/micon11.gif) no-repeat 8px 6px;padding-left:20px;}
+.head li a.m2{ background:url(../images/micon2.gif) no-repeat 15px center;padding-left:20px;}
+.head li a.m3{ background:url(../images/micon3.gif) no-repeat 17px center; padding-left:20px;}
+.head li a.m4{ background:url(../images/micon4.gif) no-repeat 15px center;padding-left:20px;}
+.head li a.m5{ background:url(../images/micon5.gif) no-repeat 15px center;}
+.head li { background:url(../images/inline.gif) no-repeat right center; }
+
+.mtotle{ margin-right:30px; margin-top:15px;}
+.mtotle a,.mtotle a:visited{ display:block; width:31px; height:20px; padding-top:32px; color:#319dfa; text-align:center; line-height:20px; vertical-align:middle;}
+.mtotle a.t1,.mtotle a.t1:visited{ background:url(../images/jc_off1.gif) no-repeat top; color:#FFF;}
+.mtotle a.t1:hover{ color:#fad031; background:url(../images/jc_on.gif) no-repeat top;}
+.mtotle a.t2,.mtotle a.t2:visited{ background:url(../images/help_off1.gif) no-repeat; color:#FFF;}
+.mtotle a.t2:hover{ color:#fad031; background:url(../images/help_on.gif) no-repeat top;}
+.mtotle a.t3,.mtotle a.t3:visited{ background:url(../images/out_off1.gif) no-repeat top; color:#FFF;}
+.mtotle a.t3:hover{ color:#fad031; background:url(../images/out_on.gif) no-repeat top;}
+
+
+
+/*弹出层样式*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

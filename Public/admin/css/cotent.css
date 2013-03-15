@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* 发号规则设置 */
+.f_btn{
+	width:75px;
+	height:23px;
+	line-height:23px;
+	background:url(../images/f_btn.gif) no-repeat;
+	color:#FFFFFF;
+	border:none;
+	cursor:pointer;
+	}
+/* 账号锁定不发 */
+.sh_btn{
+	width:75px;
+	height:23px;
+	line-height:23px;
+	background:url(../images/s_btn.jpg) no-repeat;
+	color:#000000;
+	border:none;
+	cursor:pointer;
+	}
+.fy_btn{
+	background:url(../images/ht_fbtn.jpg) no-repeat;
+	width:51px;
+	height:19px;
+	line-height:19px;
+	border:none;
+	cursor:pointer;
+	}
+.fdqy_btn{
+	width:85px;
+	height:19px;
+	line-height:19px;
+	background:url(../images/ht_dy_btn.jpg) no-repeat;
+	border:none;
+	cursor:pointer;
+	}
+a{
+text-decoration:none;
+color:#3366CC;
+}
+a:hover,a:active,a:visited{
+color:#0000FF;
+text-decoration:underline;
+}
+
+.h_text{
+width:140px;
+height:20px;
+line-height:20px;
+color:#000000;
+padding-left:8px;
+}
+
+.p_text{
+width:140px;
+height:20px;
+line-height:20px;
+color:#000000;
+padding-left:8px;
+}
+
+.total{
+	width:720px;
+	margin:10px 10px;
+	background:#FFFFFF;
+	overflow:hidden;
+}
+
+
+
+
+
+
+
+
+	

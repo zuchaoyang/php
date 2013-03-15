@@ -1,0 +1,8 @@
+@charset "utf-8";
+.pwd_table{  margin-top:30px;}
+.pwd_table input.sryx{ width:247px; border:#c8c8c8 solid 1px; height:20px;}
+.pwd_table input.yzm_btn{ width:110px; border:#cccccc solid 1px; background-color:#f4f4f4; margin:10px 0; height:25px; text-align:center;cursor:pointer; color:#656565;}
+.pwd_table input.sryzm{ width:80px;border:#c8c8c8 solid 1px;height:20px;}
+.pwd_table th{ color:#6e6e6e; font:14px/25px "宋体"; text-align:right; padding:8px 0; vertical-align:top;}
+.pwd_table td{vertical-align:top; padding:8px 0;}
+

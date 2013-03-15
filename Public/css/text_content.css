@@ -1,0 +1,34 @@
+
+.global-publisher-module .status-inputer textarea.status-content {
+    -moz-box-sizing: border-box;
+    border: 0 none;
+    display: inline-block;
+    font-size: 14px;
+    height: 32px;
+    line-height: 24px;
+    outline: 0 none;
+    padding: 3px 7px;
+    resize: none;
+    transition: height 0.1s ease-in 0s;
+    width: 97%;
+}
+.global-publisher-module .status-inputer textarea.inputing {
+    height: 78px;
+    margin-bottom: 28px;
+    resize: vertical;
+}
+.global-publisher-module .status-inputer .status-textarea {
+    background-color: #FFFFFF;
+}
+.global-publisher-module {
+    background-color: #FFFFFF;
+    border: 2px solid #ADB6C9;
+    margin-bottom: 10px;
+    position: relative;
+    width: 540px;
+}
+
+
+
+
+

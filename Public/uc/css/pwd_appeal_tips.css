@@ -1,0 +1,7 @@
+@charset "utf-8";
+.ssjg_tip{ background-color:#edf6f8; font:bold 14px/80px "宋体";color:#00ab28; text-align:center;}
+.kfdh{ color:#c80000; font:14px/30px "宋体"; line-height:60px; text-align:center;}
+.ssjg_table{ width:910px; background-color:#d9e8eb; color:#6e6e6e;}
+.ssjg_table caption{font:14px/40px "宋体"; text-align:left;}
+.ssjg_table td,.ssjg_table th{ background-color:white; font:14px/40px "宋体"; text-align:center;}
+.ssjg_table th{ font-weight:bold;}

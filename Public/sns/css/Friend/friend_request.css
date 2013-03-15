@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+	.mian_title li a{display:inline-block; width:112px; height:36px; text-align:center; line-height:36px; margin-right:4px;}
+		.main_nav_a1{ background:url(../../images/Friend/friend_request/main_nav_a1.jpg) 0 0 no-repeat; color:#fff; font:16px "微软雅黑"}
+	
+.per_main{background:#fff; border:1px #6db500 solid; font:14px "微软雅黑"; color:#464646; padding:15px 10px 10px;}	
+		.per_main_tab{width:938px; border-bottom:1px #ccc dashed; padding:0px 0px 10px; margin-bottom:10px;}
+			.photo_width{width:70px;}
+			.td_width{width:500px;}
+			.align_right{text-align:right;}
+			
+			.qd_btn{background:url(../../images/Friend/friend_request/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer; color:#fff;}
+			.qx_btn{background:url(../../images/Friend/friend_request/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:0px;cursor:pointer; text-align:center; color:#73797c;}
+			.mr10{margin-right:10px;}
+		
+	
+				
+/*弹出层*/	
+.tcc_request{border:1px #6db500 solid; background:#fff; font:14px "宋体"; width:200px; padding:10px; color:#666;}
+	.icon_right{background:url(../../images/Common/sns_images/icon_correct.gif) 0 0 no-repeat; width:21px; height:21px; display:inline-block;}
+	
+/*加载更多*/
+.more_active{ text-align:center; margin-top:10px; border:1px #ccc dashed; background:#f1f1f1; padding:10px 0px;}	
+	.more_active a{background:url(../../images/ClassIndex/icon_more.jpg) right center no-repeat; display:inline-block; padding-right:10px; color:#5f9400; font:14px "宋体";}	

@@ -1,0 +1,30 @@
+@charset "utf-8";
+*{margin:0px; padding:0px;}
+.clear{clear:both;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.cotent{background:url(../images/uc_index/cotent_bj.gif) repeat-x;}
+.main{width:980px; margin:0 auto;}
+ .main_left{background:url(../images/uc_index/cotent_left.gif) 0 0 no-repeat; width:546px; height:372px; float:left;}
+ .main_right{background:url(../images/uc_index/cotent_right.gif) 0 0 no-repeat; width:414px; height:292px; float:left; padding:80px 3px 0px 4px;}
+  .main_right h4{font:normal 16px Arial, Helvetica, sans-serif; padding-left:30px; margin-bottom:10px;} 
+  .main_right h4 span{color:#06c;}
+  .main_right p{padding-left:30px;}
+  .font_main{font:14px Arial, Helvetica, sans-serif;}
+  .font_cotent{font:13px Arial, Helvetica, sans-serif; color:#666;}
+  .font_normal{font:12px Arial, Helvetica, sans-serif; color:#0099cc;}
+  .font_red{color:#FF0000;}
+  .green_btn{background:url(../images/uc_index/a_btn.gif) 0 0 no-repeat; width:161px; height:33px; text-align:center; line-height:33px; color:#fff; border:none; cursor:pointer; margin-left:20px;}
+  
+  .main_right .gray_bj{background:#f4f4f4; margin:20px 0px 0px 0px; padding:8px 0px 8px 30px;}
+  .font_cotent_main{margin:10px 0px; height:32px;}
+  .font_cotent_main .iphone{background:url(../images/uc_index/icon01.gif) 0 0 no-repeat; width:32px; height:32px; display:block; float:left; margin:0px 6px 0px 0px;}
+  .font_cotent_main .email{background:url(../images/uc_index/icon02.gif) 0 0 no-repeat; width:32px; height:32px; display:block; float:left; margin:0px 6px 0px 0px;}
+  .font_cotent_main .font_normal{float:left; margin-top:10px;}
+  
+  /*0906添加qq样式*/
+  .qq_pic{background:url(../images/uc_index/icon03.gif) 0 0 no-repeat; width:32px;height:32px; display:block; float:left; margin:0px 6px 0px 0px;}
+  
+  .font_normal_a{float:right; margin:10px 10px 0px 0px; font:12px "宋体"; color:#0099cc;}
+  

@@ -1,0 +1,12 @@
+*{ margin:0; padding:0;}
+ul{ list-style:none;}
+a{outline:none;}
+.clear{ clear:both;}
+
+/*Ò³Ãæ±³¾°*/
+.sns_concent_bg01{ background:url(../images/sns_images/bg_all_line.jpg) #f6ffff 0 0 repeat-x;  width:100%;}
+.sns_concent_bg02{ background:url(../images/sns_images/bg_all.jpg) 50% 0 no-repeat;  width:100%;}
+
+/*ÆäËü*/
+
+

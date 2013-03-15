@@ -1,0 +1,21 @@
+﻿@charset "utf-8";
+*{margin:0px; padding:0px;}
+.clear{clear:both;}
+a{text-decoration:none;}
+
+
+#footer{background:#f7f7f7;}
+.copyright{width:953px; margin:0 auto; padding:10px;}
+ .copyright dl{float:left; margin-right:30px;}
+ .copyright dl dt{background:url(../images/uc_footer/logo.jpg) 0 0 no-repeat; width:210px; height:62px;}
+ .copyright p{line-height:20px;}
+ .footer_font_normal{font:12px Arial, Helvetica, sans-serif; color:#959595;}
+
+
+
+
+
+
+
+
+

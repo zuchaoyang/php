@@ -1,0 +1,8 @@
+@charset "utf-8";
+.sj_icon{ background:url(../images/set_account_index/icon01.gif) 0 0 no-repeat; width:32px; height:32px; display:inline-block;}
+.yx_icon{ background:url(../images/set_account_index/icon02.gif) 0 0 no-repeat; width:32px; height:32px; display:inline-block;}
+.line_bj{ border-top:#c8c8c8 dashed 1px; margin-top:20px; height:20px; }
+a{ color:#0161d1; text-decoration:underline; margin-left:50px;}
+
+/*0906添加qq样式*/
+.qq_icon{ background:url(../images/set_account_index/icon03.gif) 0 0 no-repeat; width:32px; height:32px; display:inline-block;}

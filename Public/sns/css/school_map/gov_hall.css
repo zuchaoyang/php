@@ -1,0 +1,208 @@
+.nav_barMain { font-size: 12px; }
+.nav_barMain .nav_aItem { position: relative; width: 100px; border-bottom: 1px dotted rgb(207, 197, 170); font-size: 0pt; z-index: 9; }
+.nav_barMain .nav_aItem .a_link { display: block; height: 34px; line-height: 34px; font-size: 14px; text-decoration: none; overflow: hidden; text-align: right; }
+.nav_barMain .a_link .nav_arr { margin: 0pt 4px 0pt 8px; }
+
+.nav_barMain .item_child { position: absolute; z-index: 999; top: 0pt; +top:-4pt;left: 100px; width: 300px; display: none; font-size: 12px; }
+
+.nav_barMain .item_child .ct_b { float: left; margin: 0pt 10px 10px 0pt; padding-right: 10px; border-right: 1px solid rgb(203, 203, 203); white-space: nowrap; }
+.nav_barMain .single_cat .a_link:hover { text-decoration: underline; }
+.nav_barMain .open_x .item_child { top: auto; bottom: -5px; }
+.nav_barMain .open_x .item_child, .nav_barMain .open_x .child_inner { border-radius: 4px 4px 4px 0pt; }
+a { cursor: pointer; }
+.main_con { width: 950px; margin: 0pt auto; }
+.s_main_l, .s_main_col_r, .s_main_col2_l, .s_main_col2_r { float: left; }
+.s_main_l { width: 180px; min-height: 830px; height: auto; margin-left: -30px; }
+.s_main_col_r { width: 800px; overflow: hidden; }
+.star_footer { clear: both; overflow: hidden; }
+.W_gotop { font-family: Arial; position: fixed; left: 50%; bottom: 100px; margin-left: 476px; width: 20px; line-height: 14px; border-radius: 3px 3px 3px 3px; padding: 5px 3px 0pt; display: block; text-align: center; }
+.W_gotop:hover { text-decoration: none; }
+.W_gotop .write_weibo { border-bottom: 1px solid rgb(222, 222, 222); padding: 5px 0pt 10px; }
+.W_gotop .write_weibo img { cursor: pointer; }
+.W_gotop span { display: block; padding: 9px 0pt 12px; }
+.W_gotop span em.sj { display: block; height: 8px; margin: 0pt 0pt 0pt 3px; font-size: 28px; overflow: hidden; text-align: left; }
+.W_gotop span em.fk { display: block; height: 5px; margin: -1px 0pt 2px 4px; font-size: 11px; overflow: hidden; text-align: left; }
+.W_gotop a:hover { text-decoration: none; }
+.get_v { display: inline-block; vertical-align: middle; background: url('../../images/school_map/maps/star_icon.png') no-repeat scroll 0pt -40px transparent; height: 25px; width: 99px; }
+.main_title { height: 30px; overflow: hidden; }
+.main_title span { display: block; height: 100%; overflow: hidden; line-height: 200px; }
+.main_title .main_title_3 { background-position: 0pt -93px; }
+.face_part { display: block; cursor: pointer; }
+.face_part .headpic { display: block; }
+.face_part .name { width: 50px; height: 21px; line-height: 21px; overflow: hidden; text-align: center; display: block; }
+.hot_sort .tit { text-align: right; height: 27px; line-height: 27px; margin: 0pt 0pt 15px; }
+.hot_sort h3 { float: left; padding-left: 15px; font-size: 14px; }
+.hot_sort .more { padding-right: 10px; }
+.hot_sort .face_name_list li { overflow: hidden; float: left; width: 50px; padding: 0pt 7px 12px 0pt; text-align: center; }
+.hot_sort .hot_main { margin-bottom: 18px; }
+.hot_sort .hot_main dt, .hot_sort .hot_main dd { float: left; }
+.hot_sort .hot_main dt { width: 50px; height: 50px; overflow: hidden; margin-right: 9px; }
+.hot_sort .hot_main dd { width: 160px; }
+.hot_sort .hot_main .hot_main_name, .hot_sort .hot_main .hot_main_sex { margin-bottom: 4px; }
+.hot_sort .hot_main .hot_main_name a { width: 150px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: block; }
+.hot_sort .hot_main .hot_main_sex img { vertical-align: bottom; }
+.hot_sort .hot_main .hot_main_num .W_vline { margin: 0pt 8px; }
+.hot_sort .hot_main .hot_main_num .main_num_name { color: rgb(0, 120, 182); margin-right: 5px; }
+.hot_sort_box { margin: 0pt 0pt 0pt -25px; }
+.hot_sort_box .hot_sort { float: left; padding: 0pt 25px; border-right: 1px solid rgb(222, 214, 190); margin-bottom: 20px; width: 222px; }
+.hot_sort_box .line_one { border-bottom: 1px dotted rgb(199, 187, 155); margin-bottom: 20px; }
+.hot_sort_box .face_name_list { width: 228px; }
+area {  }
+area {  }
+.mapwrap { width: 770px; height: 663px; z-index: 1; position: relative; }
+.map { position: absolute; left: 0pt; top: 0pt; width: 770px; height: 663px; background: url('../../images/school_map/maps/map_bg.png') no-repeat scroll 0pt 0pt transparent; z-index: 1; }
+.map-part { position: absolute; z-index: 2; font-size: 0pt; overflow: hidden; opacity: 0.35; }
+.map-part-xinjiang { left: 32px; top: 120px; }
+.map-part-xinjiang .map-part-in { background: url('../../images/school_map/maps/xinjiang.png') no-repeat scroll 0pt 0pt transparent; width: 280px; height: 214px; }
+.map-part-xizang { left: 63px; top: 309px; }
+.map-part-xizang .map-part-in { background: url('../../images/school_map/maps/xizang.png') no-repeat scroll 0pt 0pt transparent; width: 286px; height: 174px; }
+.map-part-gansu { left: 260px; top: 231px; }
+.map-part-gansu .map-part-in { background: url('../../images/school_map/maps/gansu.png') no-repeat scroll 0pt 0pt transparent; width: 198px; height: 171px; }
+.map-part-qinghai { left: 209px; top: 283px; }
+.map-part-qinghai .map-part-in { background: url('../../images/school_map/maps/qinghai.png') no-repeat scroll 0pt 0pt transparent; width: 177px; height: 129px; }
+.map-part-sichuan { left: 307px; top: 369px; }
+.map-part-sichuan .map-part-in { background: url('../../images/school_map/maps/sichuan.png') no-repeat scroll 0pt 0pt transparent; width: 154px; height: 136px; }
+.map-part-yunnan { left: 302px; top: 450px; }
+.map-part-yunnan .map-part-in { background: url('../../images/school_map/maps/yunnan.png') no-repeat scroll 0pt 0pt transparent; width: 126px; height: 131px; }
+.map-part-guangxi { left: 400px; top: 491px; }
+.map-part-guangxi .map-part-in { background: url('../../images/school_map/maps/guangxi.png') no-repeat scroll 0pt 0pt transparent; width: 112px; height: 87px; }
+.map-part-guizhou { left: 387px; top: 448px; }
+.map-part-guizhou .map-part-in { background: url('../../images/school_map/maps/guizhou.png') no-repeat scroll 0pt 0pt transparent; width: 87px; height: 76px; }
+.map-part-hunan { left: 462px; top: 432px; }
+.map-part-hunan .map-part-in { background: url('../../images/school_map/maps/hunan.png') no-repeat scroll 0pt 0pt transparent; width: 79px; height: 91px; }
+.map-part-chongqing { left: 416px; top: 402px; }
+.map-part-chongqing .map-part-in { background: url('../../images/school_map/maps/chongqing.png') no-repeat scroll 0pt 0pt transparent; width: 66px; height: 67px; }
+.map-part-hubei { left: 453px; top: 384px; }
+.map-part-hubei .map-part-in { background: url('../../images/school_map/maps/hubei.png') no-repeat scroll 0pt 0pt transparent; width: 109px; height: 70px; }
+.map-part-jiangxi { left: 526px; top: 429px; }
+.map-part-jiangxi .map-part-in { background: url('../../images/school_map/maps/jiangxi.png') no-repeat scroll 0pt 0pt transparent; width: 71px; height: 93px; }
+.map-part-shanxi { left: 414px; top: 285px; }
+.map-part-shanxi .map-part-in { background: url('../../images/school_map/maps/shanxi.png') no-repeat scroll 0pt 0pt transparent; width: 75px; height: 128px; }
+.map-part-henan { left: 477px; top: 331px; }
+.map-part-henan .map-part-in { background: url('../../images/school_map/maps/henan.png') no-repeat scroll 0pt 0pt transparent; width: 85px; height: 82px; }
+.map-part-anhui { left: 537px; top: 355px; }
+.map-part-anhui .map-part-in { background: url('../../images/school_map/maps/anhui.png') no-repeat scroll 0pt 0pt transparent; width: 70px; height: 85px; }
+.map-part-hebei { left: 510px; top: 228px; }
+.map-part-hebei .map-part-in { background: url('../../images/school_map/maps/hebei.png') no-repeat scroll 0pt 0pt transparent; width: 80px; height: 112px; }
+.map-part-neimenggu { left: 317px; top: 60px; }
+.map-part-neimenggu .map-part-in { background: url('../../images/school_map/maps/neimenggu.png') no-repeat scroll 0pt 0pt transparent; width: 306px; height: 262px; }
+.map-part-ningxia { left: 396px; top: 289px; }
+.map-part-ningxia .map-part-in { background: url('../../images/school_map/maps/ningxia.png') no-repeat scroll 0pt 0pt transparent; width: 45px; height: 71px; }
+.map-part-shanxi-up { left: 473px; top: 263px; }
+.map-part-shanxi-up .map-part-in { background: url('../../images/school_map/maps/shanxi-up.png') no-repeat scroll 0pt 0pt transparent; width: 52px; height: 106px; }
+.map-part-beijing { left: 531px; top: 255px; }
+.map-part-beijing .map-part-in { background: url('../../images/school_map/maps/beijing.png') no-repeat scroll 0pt 0pt transparent; width: 29px; height: 29px; }
+.map-part-tianjin { left: 548px; top: 265px; }
+.map-part-tianjin .map-part-in { background: url('../../images/school_map/maps/tianjin.png') no-repeat scroll 0pt 0pt transparent; width: 23px; height: 30px; }
+.map-part-heilongjiang { left: 563px; top: 54px; }
+.map-part-heilongjiang .map-part-in { background: url('../../images/school_map/maps/heilongjiang.png') no-repeat scroll 0pt 0pt transparent; width: 156px; height: 143px; }
+.map-part-jilin { left: 587px; top: 162px; }
+.map-part-jilin .map-part-in { background: url('../../images/school_map/maps/jilin.png') no-repeat scroll 0pt 0pt transparent; width: 119px; height: 83px; }
+.map-part-liaoning { left: 569px; top: 207px; }
+.map-part-liaoning .map-part-in { background: url('../../images/school_map/maps/liaoning.png') no-repeat scroll 0pt 0pt transparent; width: 86px; height: 82px; }
+.map-part-shandong { left: 534px; top: 298px; }
+.map-part-shandong .map-part-in { background: url('../../images/school_map/maps/shandong.png') no-repeat scroll 0pt 0pt transparent; width: 97px; height: 64px; }
+.map-part-jiangsu { left: 553px; top: 346px; }
+.map-part-jiangsu .map-part-in { background: url('../../images/school_map/maps/jiangsu.png') no-repeat scroll 0pt 0pt transparent; width: 84px; height: 66px; }
+.map-part-shanghai { left: 621px; top: 394px; }
+.map-part-shanghai .map-part-in { background: url('../../images/school_map/maps/shanghai.png') no-repeat scroll 0pt 0pt transparent; width: 19px; height: 18px; }
+.map-part-zhejiang { left: 587px; top: 407px; }
+.map-part-zhejiang .map-part-in { background: url('../../images/school_map/maps/zhejiang.png') no-repeat scroll 0pt 0pt transparent; width: 55px; height: 63px; }
+.map-part-fujian { left: 559px; top: 451px; }
+.map-part-fujian .map-part-in { background: url('../../images/school_map/maps/fujian.png') no-repeat scroll 0pt 0pt transparent; width: 66px; height: 80px; }
+.map-part-guangdong { left: 476px; top: 502px; }
+.map-part-guangdong .map-part-in { background: url('../../images/school_map/maps/guangdong.png') no-repeat scroll 0pt 0pt transparent; width: 113px; height: 91px; }
+.map-part-hainan { left: 461px; top: 590px; }
+.map-part-hainan .map-part-in { background: url('../../images/school_map/maps/hainan.png') no-repeat scroll 0pt 0pt transparent; width: 38px; height: 33px; }
+.map-part-taiwan { left: 625px; top: 493px; }
+.map-part-taiwan .map-part-in { background: url('../../images/school_map/maps/taiwan.png') no-repeat scroll 0pt 0pt transparent; width: 27px; height: 58px; }
+.maptips { position: absolute; z-index: 5; width: 233px; height: 71px; color: rgb(153, 153, 153); left: 293px; top: 66px; }
+.maptips-line { height: 20px; }
+.maptips-lv { float: left; width: 8px; line-height: 8px; height: 8px; padding: 6px 8px 6px 0pt; }
+.maptips-lv span { display: block; width: 8px; height: 8px; font-size: 0pt; }
+.maptips-lv1 span { background-color: rgb(255, 133, 0); }
+.maptips-lv2 span { background-color: rgb(255, 182, 103); }
+.maptips-lv3 span { background-color: rgb(255, 218, 178); }
+.maptips-txt { line-height: 20px; }
+.province { width: 770px; height: 663px; position: absolute; left: 0pt; top: 0pt; z-index: 3; background: url('../../images/school_map/maps/map-24.png') no-repeat scroll 0pt 0pt transparent; }
+.province-line { width: 770px; height: 663px; position: absolute; left: 0pt; top: 0pt; z-index: 2; background: url('../../images/school_map/maps/line-new-24.png') no-repeat scroll 0pt 0pt transparent; }
+.province { width: 770px; height: 663px; position: absolute; left: 0pt; top: 0pt; z-index: 3; background: url('../../images/school_map/maps/map-24_001.png') no-repeat scroll 0pt 0pt transparent; }
+.fakelayer { left: 0pt; top: 0pt; width: 770px; height: 663px; position: absolute; z-index: 4; border: medium none; }
+.popup { position: absolute; z-index: 5; width: 261px; left: 600px; font-size: 12px; display: none; }
+.popup p { line-height: 20px; }
+.popup a:link { color: rgb(102, 102, 102); text-decoration: none; }
+.popup a:visited { color: rgb(128, 0, 128); text-decoration: none; }
+.popup a:active, .popup a:hover, .popup a:focus { color: rgb(255, 0, 0); text-decoration: underline; }
+.popup-lt { position: absolute; left: 6px; top: 20px; font-size: 0pt; background: url('../../images/school_map/maps/popup-lt-bg_001.png') no-repeat scroll 0pt 0pt transparent; width: 19px; height: 17px; }
+.popup-rt { background: url("../../images/school_map/maps/popup-rt-bg.png") no-repeat scroll 0 0 transparent;font-size: 0;height: 17px;left: 256px;position: absolute;top: 20px;width: 19px;}
+.popup-tp { position: absolute; top: 0pt; left: 18px; width: 242px; height: 8px; font-size: 0pt; overflow: hidden; background: url('../../images/school_map/maps/popup-tp-bg_001.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-tpr { position: absolute; top: 0pt; left: 18px; width: 242px; height: 8px; font-size: 0pt; overflow: hidden; background: url('../../images/school_map/maps/popup-tpr-bg.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-in { position: absolute; top: 8px; left: 19px; width: 242px; overflow: hidden; }
+.popup-in-bg { position: absolute; left: 0pt; top: 0pt; z-index: 6; width: 242px; height: 1125px; font-size: 0pt; overflow: hidden; background: url('../../images/school_map/maps/popup-in-bg_001.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-inr-bg { position: absolute; left: 0pt; top: 0pt; z-index: 6; width: 242px; height: 1125px; font-size: 0pt; overflow: hidden; background: url('../../images/school_map/maps/popup-inr-bg.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-main { position: absolute; left: 0pt; top: 0pt; z-index: 7; width: 202px; padding: 5px 20px; }
+.popup-bt { position: absolute; z-index: 6; top: 1133px; left: 19px; font-size: 0pt; overflow: hidden; width: 242px; height: 8px; background: url('../../images/school_map/maps/popup-bt-bg_001.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-btr { position: absolute; z-index: 6; top: 1133px; left: 19px; font-size: 0pt; overflow: hidden; width: 242px; height: 8px; background: url('../../images/school_map/maps/popup-btr-bg.png') no-repeat scroll 0pt 0pt transparent; }
+.popup-1 { line-height: 30px; height: 30px; border-bottom: 1px solid rgb(235, 231, 223); }
+.popup-title { font-size: 16px; color: rgb(149, 56, 0); font-weight: bold; float: left; }
+.popup-2 { padding: 5px 0pt; border-bottom: 1px dotted rgb(235, 231, 223); }
+.popup-orange { color: rgb(190, 113, 3); }
+.popup li { padding: 0pt 0pt 0pt 10px; background: url('../../images/school_map/maps/point_01.png') no-repeat scroll 0pt 8px transparent; line-height: 20px; }
+.popup-3 { padding: 5px 0pt; }
+.mapwrap, .mapwrap * {  }
+a { cursor: pointer; }
+
+nav_barMain .nav_Open .a_outer,.nav_barMain .nav_Open .a_inner,.nav_barMain .nav_Open .a_link
+	{
+	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius: 4px 0 0 4px;
+	border-radius: 4px 0 0 4px;
+	padding-right: 5px;
+}
+
+.nav_barMain .nav_Open .a_outer,.nav_barMain .nav_Open .a_inner,.nav_barMain .nav_Open .item_child
+	{
+	padding: 4px;
+	background: url(../../images/school_map/maps/layer_bg.png?id=1319784760100) repeat;
+	display: block;
+}
+
+.nav_barMain .nav_Open .a_outer {
+	padding: 4px 0 4px 4px;
+	position: relative;
+	z-index: 99999999;
+	margin: -5px 0 -5px -5px;
+	zoom: 1;
+}
+
+.nav_barMain .nav_Open .a_inner {
+	border-width: 1px 0 1px 1px;
+	border-style: solid;
+	border-color: #b2b2b2;
+	background: #FFF;
+	margin-right: -5px;
+	padding: 0;
+	position: relative;
+	z-index: 99999999;
+	width: auto;
+	background: #fff;
+	zoom: 1;
+}
+
+.nav_barMain .nav_Open .item_child,.nav_barMain .nav_Open .child_inner {
+	-webkit-border-radius: 0 4px 4px 4px;
+	-moz-border-radius: 0 4px 4px 4px;
+	border-radius: 0 4px 4px 4px;
+}
+
+.nav_barMain .nav_Open .child_inner {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #b2b2b2;
+	background: #FFF;
+	padding: 18px 0 8px 23px;
+	min-height: 24px;
+	height: auto;
+	_height: 24px;
+	*padding-bottom: 18px;
+}

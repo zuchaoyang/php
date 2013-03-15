@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*密码强弱显示*/
+.pwd_ruo{ background:url(../images/modify_pwd/ruo_pwd.gif) 0 0 no-repeat; width:249px; height:16px; margin:5px 0;}
+.pwd_zhong{ background:url(../images/modify_pwd/zhong_pwd.gif) 0 0 no-repeat; width:249px; height:16px; margin:5px 0;}
+.pwd_qiang{ background:url(../images/modify_pwd/qiang_pwd.gif) 0 0 no-repeat; width:249px; height:16px; margin:5px 0;}
+.pwd_wu{ background:url(../images/modify_pwd/wu_pwd.gif) 0 0 no-repeat;  width:249px; height:16px; margin:5px 0;}
+
+
+
+.pwd_table{ margin-top:30px;}
+.pwd_table input.sryx{ width:247px; border:#c8c8c8 solid 1px; height:20px;}
+.pwd_table th{ color:#6e6e6e; font:14px/50px "宋体"; text-align:right;}

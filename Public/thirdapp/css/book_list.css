@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+.book_list_main{padding:10px;font:12px "宋体";}
+	.book_list_main p{font:12px "宋体"; margin-bottom:20px;}
+	.book_list_main p span{background:url(../images/ysds_list/icon01.gif) 0 0 no-repeat; width:12px; height:12px; display:inline-block; margin-right:6px;}
+
+.booklist_left{background:url(../images/ysds_list/left_nr_bj.gif) 0 0 no-repeat; width:442px; height:600px; float:left; padding:60px 70px 0px 60px;}
+	.booklist_left h4{font:bold 14px "宋体"; color:#ff9a02; padding:10px 0px 0px 30px;}
+	.audio{width:400px; margin:10px 0px 0px 30px; height:70px;}
+	
+	.booklist_left h3{font:bold 14px "宋体"; color:#ff9a02; margin:30px 0px 10px 0px; border-top:1px #d6bb91 solid;border-bottom:2px #d6bb91 solid; line-height:30px;}
+	  .booklist_left h3 span{background:url(../images/ysds_list/icon_xyq.gif) 0 0 no-repeat; width:12px; height:12px; display:block; float:left; margin:8px 2px 0px 2px;}
+	  
+		.booklist_left ul li{border-bottom:1px #ccc dashed; line-height:30px; width:442px; height:30px;}  
+		.booklist_left ul {list-style:none;}	
+		.booklist_left ul li a{color:#a66807; float:left;}
+		.booklist_left ul li .listen_icon{float:left; display:inline-block; margin:6px 2px 0px;}
+		.booklist_left ul li .list_neir{display:inline-block; width:380px; }
+		.booklist_left ul li .weizhi{display:inline-block;}
+		.booklist_fenye{ padding-top:10px; text-align:right; padding-right:10px;}
+		.booklist_fenye a{display:inline-block; margin-left:10px; color:#666;}
+		.booklist_fenye .pageup{color:#CC9933;}
+
+.booklist_right{background:url(../images/ysds_list/right_nr_bj.jpg) 0 3px no-repeat; width:193px; height:264px; float:left; }
+	.booklist_right dl{padding:20px 0px 0px 10px; width:166px; height:205px;}
+	.booklist_right dl dd{float:right; color:#d8d8d8; padding-top:10px;}

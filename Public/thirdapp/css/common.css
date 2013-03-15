@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{font:14px "宋体"; background:#fff;}
+a{text-decoration:none;}
+.clean{clear:both;}
+img{display:block;}
+a img{border:none;}
+
+
+.gd_nav_list{width:870px; margin:0 auto; height:32px; padding-left:90px; }
+	.gd_nav_list p{background:url(../images/common/tb_logo.gif) 0 0 no-repeat; width:169px; height:18px; margin:4px 0px 0px 0px; float:left;}
+	.gd_nav_list ul a{font:14px "宋体"; width:109px; height:28px; display:inline-block; color:#fff; text-align:center; line-height:26px; margin-left:30px;}
+	   .gd_tbzy{background:url(../images/common/tbzy_a_link.jpg) 0 0 no-repeat;}
+	   .gd_jpzy{background:url(../images/common/jpzy_a_link.jpg) 0 0 no-repeat;}
+	   .gd_jpwx{background:url(../images/common/jpwx_a_link.jpg) 0 0 no-repeat;}
+	   .gd_ysds{background:url(../images/common/ysds_a_link.jpg) 0 0 no-repeat;}
+	   .gd_tbzy:hover{background:url(../images/common/tbzy_a_hover.jpg) 0 0 no-repeat;}
+	   .gd_jpzy:hover{background:url(../images/common/jpzy_a_hover.jpg) 0 0 no-repeat;}
+	   .gd_jpwx:hover{background:url(../images/common/jpwx_a_hover.jpg) 0 0 no-repeat;}
+	   .gd_ysds:hover{background:url(../images/common/ysds_a_hover.jpg) 0 0 no-repeat;}
+
+.gz_content{width:960px; margin:0 auto; background:url(../images/common/content_bj.jpg) 0 0 no-repeat #b2e7f2; padding:1px 0px;}
+	.gz_main{width:790px; margin:0 auto; background:#fff;}
+
+
+/*2012.10.15添加样式*/
+.gz_big_bj{ background:url(../images/common/big_bj.jpg) repeat-x #b2e7f2;}

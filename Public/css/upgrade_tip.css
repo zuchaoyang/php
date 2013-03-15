@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+body{ background-color:#9fdfe9; }
+.w_t_bg{ background:url(../images/upgrade_tip/bg.gif) 50% 0 no-repeat; min-height:500px; width:100%; padding-top:160px;}
+.tip_content{ background:url(../images/upgrade_tip/gif01.gif) 0 0 no-repeat; padding-left:178px; padding-top:40px; min-height:152px; margin:0 auto; width:450px; color:red; font:16px/30px "宋体";}
+.loading_gif{ background:url(../images/upgrade_tip/ponit_gif.gif) 0 0 no-repeat; width:14px; height:16px;}

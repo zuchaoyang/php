@@ -1,0 +1,62 @@
+.main h4{background:url(../../images/ClassExam/list_admin/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px;}
+
+.main ul a{display:inline-block; width:112px; height:36px; text-align:center; line-height:36px; margin-right:4px;}
+.main_nav_a1{ background:url(../../images/ClassExam/list_admin/main_nav_a1.jpg) 0 0 no-repeat; color:#fff; font:16px "微软雅黑";}
+.main_nav_a2{background:url(../../images/ClassExam/list_admin/main_nav_a2.jpg) 0 0 no-repeat; color:#444; font:16px "微软雅黑";}
+
+
+.publish_main{border-left:1px #6db500 solid;border-right:1px #6db500 solid;border-top:1px #6db500 solid; font:14px "微软雅黑"; color:#464646; background:#fff; padding:20px 30px 10px;}
+
+.main_title{color:#3c3c3c; font:bold 14px "微软雅黑"; margin:10px 0px;}	
+	
+	.fill_info{background:#deeec1; padding:10px; margin-bottom:10px;}
+		.fill_info p{border-bottom:1px #abcd90 dashed; margin-bottom:10px; line-height:22px;}
+		.fill_info table td{height:30px; line-height:30px;}
+		.fill_info table th{font-weight:normal; text-align:right; height:30px; line-height:30px;}
+		    .text120{width:120px; height:20px; line-height:20px;}
+			.width_td{width:130px;}
+
+
+	.exam_list{margin:10px 0px 0px 0px; height:31px; line-height:31px;}
+			.pic01{background:url(../../images/ClassExam/list_admin/pic01.jpg) 0 0 no-repeat; width:110px; height:31px; color:#fff; display:block; line-height:31px; padding-left:20px;}
+	
+	
+	.list_main table{margin:0px; padding:0px;}
+		.list_main table th{background:#e3f2c6; height:34px; border:1px #b6ce89 solid; border-left:none;}
+		.list_main table td{border-right:1px #b6ce89 solid; border-bottom:1px #b6ce89 solid; text-align:center; height:30px;}
+		.list_main table .boder_left{border-left:1px #b6ce89 solid;}	
+			.list_main table .td_width{width:200px; text-align:left;}
+				.icon_email{background:url(../../images/ClassExam/list_admin/icon_emai.gif) 0 0 no-repeat; width:17px; height:13px; display:inline-block; float:left; margin:4px 8px 0px 70px;}
+				.icon_send{background:url(../../images/ClassExam/list_admin/icon_send.gif) 0 0 no-repeat; width:20px; height:13px; display:inline-block; float:left; margin:4px 6px 0px 70px;}
+				.icon_reissue{background:url(../../images/ClassExam/list_admin/icon_reissue.gif) 0 0 no-repeat; width:20px; height:14px; display:inline-block; float:left; margin:4px 6px 0px 70px;}
+				.list_main table td a{margin-left:4px;color:#787878; display:inline-block;}
+				.list_main table td a:hover{color:#3a8a00;}
+				
+				.send_info_btn{width:66px; height:20px; line-height:20px; border:1px #3a8a00 solid; display:inline-block; text-align:center; color:#464646; cursor:pointer;}
+				
+				.list_main table tr:hover{background:#eef7dd;}
+				
+			.list_main p{font:14px "微软雅黑"; text-align:right; padding:10px 0px 0px 0px;}	
+				.list_main p a{display:inline-block; width:60px; height:20px; background:#f2f2f2; border:#CCC 1px solid; text-align:center; color:#464646; margin-left:10px;}
+				
+
+/*弹出层*/
+
+/*提示信息*/	   
+.tcc_msg{width:310px; color:#666; background:#fff;}
+	.tcc_msg_top{background:url(../../images/ClassExam/list_admin/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
+	.tcc_msg_center{background:url(../../images/ClassExam/list_admin/tcc_msg_center.gif) 0 0 repeat-y; padding:20px;}
+		.tcc_msg_center span{font:12px "宋体";}
+		.tcc_msg_center p{text-align:right; padding-top:10px;}
+		.icon_question{background:url(../../images/ClassExam/list_admin/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block;}
+		.qd_btn{background:url(../../images/ClassExam/list_admin/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/ClassExam/list_admin/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}
+	.tcc_msg_bottom{background:url(../../images/ClassExam/list_admin/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}	
+
+
+/*保存成功*/
+.success{background:url(../../images/ClassExam/list_admin/success_pic.jpg) 0 0 no-repeat; width:146px; height:52px;}
+	.success p{font:18px "微软雅黑"; padding:14px 0px 0px 50px; color:#3a8a00;}
+
+
+

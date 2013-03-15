@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+.clear{clear:both;}
+.star_main{width:686px; margin:10px 0px 0px 10px; background:url(../images/star_bj1.gif) 0 0 no-repeat; padding:20px; font:14px "宋体";}
+  .star_main h4{font:18px "黑体"; border-bottom:1px #ccc solid; width:686px; padding:10px 0px; color:#cc0000; margin-bottom:10px;}
+  .star_main p{line-height:20px; padding:0px 10px; color:#3b3b3b;}
+  .first_words{text-indent:24px;}
+  .star_main p img{margin-right:6px;}
+.star_pic{border-bottom:2px #a2e0eb solid;border-top:2px #a2e0eb solid; padding:20px; margin:10px 0px;}  
+.star_pic_left{background:url(../images/star_pic.gif) 0 0 no-repeat; height:88px; float:left; width:310px; margin-right:10px;}
+ .star_pic_left .star_pic_a{ text-align:right; padding-right:40px;}
+ .star_pic_left img{float:left; margin:4px 10px 0px 10px;}
+ .star_pic_left p{font:bold 18px "宋体"; color:#006699; padding-top:10px;}
+ .star_pic_left p a{background:url(../images/star_abj.gif) 0 0 no-repeat; display:inline-block; width:96px; height:30px; font:14px "宋体"; line-height:30px;color:#333; text-align:left; padding-left:20px;}
+ 
+ .star_main .star_btn{padding:0px;}
+ .star_btn a{display:inline-block; width:86px; height:27px; line-height:27px; text-align:center; color:#fff; margin-top:10px;}
+ .green_btn{background:url(../images/star_green_btn.gif) 0 0 no-repeat; margin-right:10px;}
+ .orange_btn{background:url(../images/star_orange_btn.gif) 0 0 no-repeat;}
+
+/*star_list*/
+.star_main .star_list{ padding-left:30px;}
+.font_blue{color:#006699; line-height:30px;}
+.star_main .star_qianming{padding-top:40px; text-align:right;}
+
+.star_main table td{height:30px;}
+.star_main table th{width:98px; text-align:left; font-weight:normal;}
+.close_btn a{display:inline-block; width:84px; height:26px; line-height:26px; text-align:center; color:#333;}
+.blue_btn{background:url(../images/star_blue_btn.gif) 0 0 no-repeat;}
+.gray_btn{background:url(../images/star_gray_btn.gif) 0 0 no-repeat;}
+
+
+.success_main{padding-top:50px;}
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+.gz_main h4{background:url(../images/ysds/ysds_h4_bj.gif) 10px 10px no-repeat; height:54px;}
+
+.gz_main dl{width:152px; text-align:center; float:left; margin:20px 0px 0px 30px; display:inline;}
+	.pic01{background:url(../images/ysds/ysds_img01.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic02{background:url(../images/ysds/ysds_img02.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic03{background:url(../images/ysds/ysds_img03.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic04{background:url(../images/ysds/ysds_img04.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic05{background:url(../images/ysds/ysds_img05.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic06{background:url(../images/ysds/ysds_img06.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic07{background:url(../images/ysds/ysds_img07.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.pic08{background:url(../images/ysds/ysds_img08.jpg) 0 0 no-repeat; width:152px; height:192px;}
+	.gz_main dl dt{width:152px; height:192px;}
+	.gz_main dl dd{font:14px "宋体"; height:22px; line-height:22px;}

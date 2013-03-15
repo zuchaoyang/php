@@ -1,0 +1,783 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+body{
+	font-size:12px;
+	color:#333333;
+	text-align:left;
+}
+ul{list-style:none;}
+.clear{ width:100%; height:1px; clear:both;}
+.total{
+	width:640px;
+	margin:0 auto;
+	background:#FFFFFF;
+	overflow:hidden;
+	
+}
+.nav{
+	width:960px;
+    height:71px;
+	margin:0 auto;
+}
+.nav_left{
+	float:left;
+	width:160px;
+	height:71px;
+}
+.nav_right{
+	float:left;
+	width:790px;
+	height:46px;
+	background:url(../images/w_nav_right.jpg) no-repeat;
+	padding:25px 0px 0px 10px;
+	line-height:46px;
+}
+
+.nav_right ul{
+	float:left;
+	width:455px;
+	height:41px;
+	display:block;
+}
+
+.nav_right li{
+	display:block;
+	text-align:center;
+	float:left;
+	width:75px;
+	background:url(../images/li_bg.jpg) right center no-repeat;
+}
+
+.nav_right li a{
+	color:#FFFFFF;
+	font-size:14px;
+	text-decoration:none;
+}
+.nav_right p{
+	float:left;
+	display:block;
+	width:400px;
+	height:36px;
+	padding:5px 0px 0px 40px;
+}
+.nav_right p a{
+	color:#c3f8ff;
+	text-decoration:none;
+	float:left;
+	margin-right:10px;
+}
+.nav_right p a:hover{
+	color:#0000CC;
+	text-decoration:underline;
+}
+.wrap{
+	width:100%;
+	height:5px;
+	clear:both;
+}
+/*登录页*/
+.LoginBox{
+	width:625px;
+	height:auto;
+	background:#FFFFFF;
+}
+.Login_t{
+	width:622px;
+	height:16px;
+	background:url(../images/Login_t.gif) no-repeat;
+}
+
+.Login_m{
+	font-size:14px;
+	width:507px;
+	padding:30px 60px;
+	background:url(../images/Login_m.gif) repeat-y;
+}
+
+.Login_m1{
+	font-size:14px;
+	width:507px;
+	padding:30px 60px;
+	background:url(../images/Login_m.gif) repeat-y;
+}
+
+.Login_m1 p{
+	height:30px;
+	line-height:30px;
+	margin-bottom:10px;
+	font-size:14px;
+} 
+.Login_m1 p span {
+	height:30px;
+	float:left;
+	display:block;
+	margin-top:2px;
+}
+.Login_b{
+	width:622px;
+	height:16px;
+	background:url(../images/Login_b.gif) no-repeat;
+}
+/*登录页*/
+.roundedbox{
+	width:622px;
+	background:#FFFFFF;
+	border:1px solid #CCCCCC;
+	padding-bottom:10px;
+	/*margin:50px auto;*/
+}
+.roundedbox_pre{
+	margin:30px auto;
+}
+
+.roundedbox_sign_t{
+	width:622px;
+	height:16px;
+	background:url(../images/Login_t.gif) no-repeat;
+}
+.roundedbox_t{
+	width:622px;
+	height:38px;
+	background:url(../images/bt_bg.jpg) no-repeat;
+}
+.roundedbox_t h3{
+	color:#247aca;
+	line-height:38px;
+	font-size:14px;
+	margin-left:20px;
+}
+.roundedbox_m{
+	width:527px;
+	padding:20px 40px;
+	
+}
+.roundedbox_m_pre{
+	width:562px;
+	padding:30px;
+	
+}
+.roundedbox_m h2{
+	font-size:14px;
+}
+.roundedbox_m p{
+	line-height:24px;
+}
+.roundedbox_signup{
+	width:250px;
+	height:280px;
+	float:left;
+	margin-right:25px;
+	padding-top:20px;
+	border-right:1px solid #DDDDDD;
+}
+.roundedbox_signup_pre{
+	margin-right:0px;
+}
+#register{
+	display:block;
+	width:185px;
+	text-indent:-9999px;
+	margin:20px 0;
+	height:29px;
+	background:url(../images/Registration_btn.gif) no-repeat;
+}
+.roundedbox_signin{
+	width:268px;
+	height:280px;
+	float:right;
+	padding-top:20px;
+}
+.roundedbox_signin form{
+	margin-top: 20px;
+}
+.roundedbox_signin form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+.roundedbox_signin form label{
+    display: block;
+    float: none;
+    text-align: left;
+}
+.roundedbox_signin form .input1{
+	width:181px;
+	height: 20px;
+    line-height: 20px;
+    padding: 3px 4px;
+	border:none;
+	background:url(../images/Login_search.gif) no-repeat;
+}
+.roundedbox_password{
+	font-family:Tahoma, Geneva, sans-serif;
+}
+#input_check{
+    font-size: 12px;
+    vertical-align: middle;
+}
+.formbutton{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    letter-spacing: 0.3em;
+    padding:0 15px;
+	border:none;
+	background:url(../images/Login_btn.gif) no-repeat;
+}
+#resetpass {
+    margin-left: 20px;
+	color: #0066CC;
+	text-decoration:none;
+}
+#resetpass:hover {
+	text-decoration:underline;
+}
+.roundedbox_b{
+	width:627px;
+	height:16px;
+	clear:both;
+}
+/*修改密码*/
+.roundedbox_changepassword h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin: 10px 0 20px 0;
+	width:640px;
+}
+.roundedbox_changepassword form{
+	margin: 20px;
+    width:460px;
+}
+.roundedbox_changepassword form p{
+    line-height: 25px;
+    margin: 10px 30px;
+}
+.roundedbox_changepassword form a{
+	margin-left: 10px;
+	color: #0066CC;
+	text-decoration:none;
+}
+.roundedbox_changepassword form a:hover{
+	text-decoration:underline;
+}
+.roundedbox_changepassword form label{
+    display: block;
+    float: none;
+    text-align: left;
+}
+.roundedbox_changepassword form .input1{
+	width:181px;
+	height: 20px;
+    line-height: 20px;
+    padding: 3px 4px;
+	border:none;
+	background:url(../images/Login_search.gif) no-repeat;
+	
+}
+.formchange{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	background:url(../images/Login_btn.gif) no-repeat;
+}
+.roundedbox_passwordprotection {
+	border-top: 1px solid #ccc;
+	width:640px;
+	text-align:center;
+	font-weight:normal;
+}
+.roundedbox_passwordprotection a{
+	font-size:12px;
+	line-height:24px;
+	color: #0066CC;
+	text-decoration:none;
+}
+.roundedbox_passwordprotection a:hover{
+	text-decoration:underline;
+}
+/*密保重设密码*/
+.roundedbox_changepassword h3{
+	font-weight:normal;
+}
+.formchangepassword_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    letter-spacing: 0.3em;
+    padding:0 15px;
+	border:none;
+	background:url(../images/Login_btn.gif) no-repeat;
+}
+/*生日修改*/
+.roundedbox_birthdaychange h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin:0 0 20px 0;
+	width:640px;
+}
+.roundedbox_birthdaychange{
+	width:268px;
+	float:left;
+	display:inline;
+	padding-top:20px;
+}
+.roundedbox_birthdaychange form{
+	margin-left: 20px;
+    width: 300px;
+}
+.roundedbox_birthdaychange form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+.roundedbox_birthdaychange form label{
+    text-align: left;
+	width:70px;
+}
+.roundedbox_birthdaychange form .input1{
+	width:181px;
+	height: 20px;
+    line-height: 20px;
+    padding: 3px 4px;
+	border:none;
+	background:url(../images/Login_search.gif) no-repeat;
+}
+.formbirthdaychange_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	background:url(../images/Login_btn.gif) no-repeat;
+}
+/*学校修改*/
+.roundedbox_changeschool h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin:0 0 20px 0;
+	width:640px;
+}
+.roundedbox_changeschool{
+	width:268px;
+	float:left;
+	display:inline;
+	padding-top:20px;
+}
+.roundedbox_changeschool form{
+    width: 640px;
+}
+.roundedbox_changeschool form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+.roundedbox_changeschool form label{
+    text-align: left;
+}
+.roundedbox_changeschool form select{
+	margin-right:20px;
+	width:80px;
+}
+.formsearchschool_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	margin-left:15px;
+	background:url(../images/Login_btn.gif) no-repeat;
+}
+.roundedbox_changeschool table{
+	background:#a0cfe1;
+}
+
+.mydetails{ width:100%; padding:20px 0px 0px 30px;}
+/*完善信息页 修改密保 注册功能*/
+
+#xm,#mm,#qrmm,#yx,#sjh,#txdz,#hy,#zw,#client_birthday{
+	width:181px;
+	height:24px;
+	line-height:24px;
+	border:none;
+	background:url(../images/Login_search.gif) no-repeat;
+	}
+
+#yzm{
+	width:80px;
+	height:24px;
+	line-height:24px;
+	border:none;
+	background:url(../images/Login_search1.gif) no-repeat;
+	}
+	
+#wty,#wte,#day,#dae{
+	height:24px;
+	line-height:24px;
+	width:181px;
+	border:none;
+	background:url(../images/Login_search.gif) no-repeat;
+	}
+#qdan,#sqzh,#qd{
+	width:75px;
+	height:23px;
+	background:url(../images/Login_btn.gif) no-repeat;
+	border:none;
+	color:#FFF;
+	cursor:pointer;
+	}	
+#sqqx,#qxqx{ 
+	width:144px;
+	height:23px;
+	color:#333;
+	}		
+.main a{
+	color:#0156b5;
+	text-decoration:none;
+	}
+.size {
+	font-size: 14px;
+}
+.footer{
+	width:960px;
+	height:60px;
+	margin:0 auto;
+	background:url(../images/footer_pbg.jpg) repeat-x;
+	line-height:60px;
+	color:#c5eeff;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px; 
+
+}
+	
+	
+	
+#Tab1{
+width:640px;
+margin:0px;
+padding:0px;
+margin:20px 20px;;
+float:left;
+overflow:hidden;}
+
+.Menubox {
+width:640px;
+margin:0px;
+height:28px;
+line-height:28px;
+border-bottom:1px solid #d6e5f1;
+position:relative;
+float:left;
+font:normal 14px Arial, Helvetica, sans-serif;
+
+}
+.Menubox ul{
+margin:0px;
+padding:0px;
+height:28px;
+position:absolute;
+bottom:-1px;
+}
+.Menubox li{
+float:left;
+display:block;
+cursor:pointer;
+width:105px;
+text-align:center;
+color:#626262;
+background:#effdff;
+margin-left:5px;
+display:inline;
+border:1px solid #d6e5f1;
+height:26px;
+line-height:26px;
+vertical-align:middle;
+}
+.Menubox li a{ text-decoration:none; color:#626262;}
+.Menubox li.hover{
+padding:0px;
+background:#fff;
+width:116px;
+border-left:1px solid #d6e5f1;
+border-top:1px solid #d6e5f1;
+border-right:1px solid #d6e5f1;
+border-bottom:none;
+color:#003c7a;
+font-weight:bold;
+height:27px;
+_height:27px;
+line-height:27px;
+}
+.Contentbox{
+clear:both;
+margin-top:0px;
+border-top:none;
+text-align:left;
+padding:20px 0px;
+}
+
+
+.roundedbox_title span{ display:block;}
+.roundedbox_title .title{ float:left;}
+.roundedbox_title .close{ float:right; width:27px; margin:5px 15px 0px 0px; cursor:pointer; display:inline;}
+.wm_tk{width:550px; height:100px; overflow:scroll; overflow-x:hidden; border:1px solid #dbe7ed; background-color:#EBEBE4;}
+
+/*发布班级公告*/
+.ggao_Box{
+	width:625px;
+	height:auto;
+	background:#FFFFFF;
+}
+.ggao_t{
+	width:622px;
+	height:16px;
+	background:url(../images/Login_t.gif) no-repeat;
+}
+
+.ggao_m{
+	font-size:14px;
+	height:300px;
+	width:507px;
+	padding:30px 60px;
+	background:url(../images/Login_m.gif) repeat-y;
+}
+.ggao_b{
+	width:622px;
+	height:16px;
+	background:url(../images/Login_b.gif) no-repeat;
+}
+
+.cj_btn{ height:30px;padding-left:250px;}
+.cj_btn a{ background:url(../images/w_tj_btn.jpg) no-repeat; width:75px; height:23px; display:block; color:#FFFFFF; text-align:center; text-decoration:none; line-height:23px;}
+.cj_bj_h3{ font-size:14px;}
+.cj_bj_p{ display:block; height:35px; margin-top:10px;}
+
+
+/*成绩通--开始*/	
+.cjt_nav{ width:900px; padding:15px 30px 0px 30px; height:28px;}	
+.cjt_nav a{ display:block;width:118px; float:left; margin-right:5px; height:28px; line-height:28px; text-align:center; font-size:12px;  text-decoration:none; color:#626262;}	
+.cjt1{ width:870px;  background:url(../images/cjt2_bg.jpg) no-repeat; margin:0px 20px; padding-top:25px; position:relative;}
+.cjt1 p{width:870px; padding-bottom:15px; height:26px;}
+.cjt1 p a{ display:block; width:115px; height:23px; background:url(../images/cjta_bg.jpg) no-repeat; line-height:23px; color:#FFFFFF; text-align:center; text-decoration:none; float:left; margin-right:10px;}
+.cjt1 table{ border-collapse:collapse;clear:both; margin-bottom:15px;}
+.cjt1 p font{padding-left:5px; color:#FF0000; font-size:12px;}
+.cjt1 p span{ display:block; float:left; padding-top:7px; width:65px; text-align:right;  font-weight:bold;}
+.cjt_text{  height:20px; line-height:20px; border:1px solid #7f9db9; float:left; margin-right:4px;}
+.cjt_select{ float:left; height:25px; line-height:25px; margin-right:4px;}
+.xz_py{ width:68px; height:27px; background:url(../images/fs_bg.jpg) no-repeat; border:none; margin-left:15px; cursor:pointer;}
+.pytext{width:520px;height:20px; line-height:20px;}
+.scoretext{width:50px;height:20px; line-height:20px;}
+.cjt_a{ text-decoration:none; margin:0px 10px;}
+.cjt_a:hover{ text-decoration:underline;}
+.cjtmenu1{background:url(../images/cjt_title1.jpg) no-repeat;}
+.cjtmenu2{background:url(../images/cjt_title2.jpg) no-repeat;}
+.cjt1 font{ float:left; padding-top:4px;}
+.cj_gk{ width:870px; height:150px;}
+.cj_gk h3{ display:block; width:870px; height:28px; border-bottom:1px solid #d6e5f1;}
+.cj_gk h3 span{ width:118px; height:28px; background:url(../images/cjt_title2.jpg) no-repeat; display:block; text-align:center; line-height:28px; color:#999999; font-weight:bold; color:#626262;font-size:14px; }
+.cj_gk p{ padding:10px 0px 0px 0px; height:30px; display:block;}
+.cj_gk p span{padding-top:4px; color:#999999;}
+
+.class_code_tishi{width:870px; text-align:center; height:40px; line-height:40px; color:#ff6600; font-size:14px;}
+
+.lightbox{width:300px;background:#FFFFFF;border:5px solid #ccc;line-height:20px;left:50%;
+    top:50%;
+    margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+    margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+    margin-top:0px;
+    position:fixed!important;/* FF IE7*/
+    position:absolute;/*IE6*/
+    _top:       expression(eval(document.compatMode &&
+    document.compatMode=='CSS1Compat') ?
+    documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+    document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/}
+.dt{background:#f4f4f4;padding:5px; display:block; height:25px;cursor:move;}
+.dt font{ font-size:14px; font-weight:bold; float:left; line-height:25px;}
+.idBoxClose{cursor:pointer; float:right; margin-right:10px; background:url(../images/fs_bg.jpg) no-repeat; display:block; width:68px; height:27px; border:none;}
+.lightbox ul{ padding:20px; margin:0;display:block;}
+.lightbox li{line-height:24px;}
+.lightbox li a{color:#333333;text-decoration:none;}
+.lightbox li a:hover{color:#0166D0;text-decoration:underline;}
+/*成绩通--结束*/	
+/*班级换肤*/
+.bjhf{width:960px;margin:0 auto;background:#FFFFFF;overflow:hidden;}
+.wmw_bjhf{width:960px; margin:0 auto;}
+.wmw_bjhf_ggt{width:940px; height:22px; margin:0 auto; margin-top:10px; padding-top:60px; padding-left:10px;}
+
+.bjhf_main{width:950px; margin:0 auto; padding-bottom:30px; padding-left:10px;}
+
+.bjhf_main dl{width:224px; height:180px; float:left; background:#0156a6; float:left; margin-right:10px; margin-bottom:10px;}
+.bjhf_main dl dt{width:223px; height:153px; padding-left:1px; padding-top:1px;}
+.bjhf_main dl dt img{display:inline;}
+.bjhf_main dl dd{width:223px; height:25px; line-height:25px; color:#fff; padding-left:1px; font-weight:bold;}
+.bjhf_main dl dd a{width:50px;text-decoration:none; color:#fff;font-weight:normal;}
+.bjhf_main dl dd span{padding-left:100px;}
+.bjhf_main dl dd a:hover{text-decoration:underline;}
+
+
+
+/*激活部分的样式代码  20110803 anlicheng$*/
+body{
+	font-size:12px;
+	color:#333333;
+	text-align:left;
+	background:#EEEEEE;
+	position:relative;
+}
+ul{list-style:none;}
+.clear{ width:100%; height:1px; clear:both;}
+.total{
+	width:680px;
+	margin:0 auto;
+	back/ground:#efefef;
+	overflow:hidden;
+	float:left;
+}
+.nav{
+	width:960px;
+    height:71px;
+	margin:0 auto;
+}
+.nav_left{
+	float:left;
+	width:160px;
+	height:71px;
+}
+.nav_right{
+	float:left;
+	width:500px;
+	height:46px;
+	background:url(../images/w_nav_right.jpg) no-repeat;
+	padding:25px 0px 0px 0px;
+	line-height:46px;
+}
+.nav_right li{
+	display:block;
+	text-align:center;
+	float:left;
+	width:75px;
+	background:url(../images/li_bg.jpg) right center no-repeat;
+}
+.nav_right ul{
+	float:left;
+	width:600px;
+	height:41px;
+	display:block;
+}
+.nav_right li a{
+	/*color:#FFFFFF;*/
+	color:#333333;
+	font-size:14px;
+	text-decoration:none;
+}
+.nav_right p{
+	float:left;
+	display:block;
+	width:160px;
+	height:36px;
+	padding:5px 0px 0px 0px;
+}
+.nav_right p a{
+	/*color:#c3f8ff;*/
+	color:#333333;
+	text-decoration:none;
+	float:left;
+	margin-right:10px;
+}
+.nav_right p a:hover{
+	color:#0000CC;
+	text-decoration:underline;
+}
+.sou_text{
+	background:url(../images/sou_text_bg.jpg) no-repeat;
+	width:145px;
+	height:24px;
+	border:none;
+	float:left;
+	margin-top:5px;
+	line-height:24px;
+	color:#999999;
+}
+.wrap{
+	width:100%;
+	height:5px;
+	background:url(../images/wrap_bg.jpg) repeat-x;
+	clear:both;
+}
+.footer{
+	width:960px;
+	height:75px;
+	color:#333333;
+	text-align:center;
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	padding-top: 15px;
+	padding-bottom: 2px;
+	background-color: #94ecfa;
+	background-image: url(../images/footer_pbg.jpg);
+	background-repeat: repeat-x;
+	}
+
+
+
+.teach_cotent{width:750px; margin:0 auto; padding-bottom:20px;}
+.tea_cot_top{padding-top:10px; height:20px; color:#028cd5; font-weight:bold; font-size:14px;}
+.teach_biaoge td{padding-left:10px;}
+h3{font-size:14px;}
+.pulldown_menu{margin-right:10px;}
+.wbk{width:160px; height:18px; line-height:18px; color:#666;}
+.teach_qdan{width:144px; height:23px; background:url(../images/Login_btn1.gif) no-repeat; border:none; color:#fff;}
+
+
+.font_color {
+	font-size: 12px;
+	font-style: normal;
+	line-height: 1.5;
+	font-weight: normal;
+	color: #666;
+}
+.font2_color{color:#0078e6;}
+
+/*个人资料 扩展资料css*/
+*{margin:0;padding:0;}
+a{text-decoration:none;}
+a img{border:none;}
+.zhsz_grzl{width:750px; margin:0 auto; padding-bottom:30px; padding-top:10px; color:#666;}
+.grzl_bg{margin-top:10px; border-bottom:1px #eee solid;}
+h3{font-size:14px; line-height:24px; color:#000;}
+.pulldown_menu{margin-right:10px;}
+.wbk{width:160px; height:18px; line-height:18px; color:#666;}
+.zhsz_grzl p{padding-top:10px;}
+.zhsz_grzl_tp{width:300px; float:left; margin-right:10px; padding-top:30px;}
+.zhsz_grzl_tp img{float:left; margin-right:10px;}
+.zhsz_grzl_zi{width:434px; float:left; padding-top:20px;}
+.zhsz_grzl_zi p a{display:block; background:url(../images/cjta_bg.jpg) no-repeat; width:115px; height:23px; text-align:center; line-height:23px; color:#fff; font-size:12px;}
+.zhsz_grzl_zi p{line-height:26px;}
+
+.zhsz_grzl_yssz{margin-top:20px;}
+.grzl_qdan{background:url(../images/cjta_bg.jpg) no-repeat; width:115px; height:23px; line-height:23px; border:none; color:#FFF; margin-left:10px;}
+.grzl_qdan2{background:url(../images/cjta_bg2.jpg) no-repeat; width:115px; height:23px; line-height:23px; border:none; margin-left:10px; font-size:12px;}
+
+.font-color{ color:#000; padding-left:10px;}
+.grzl_btn{width:75px; height:23px; background:url(../images/w_tj_btn.jpg) no-repeat; border:none; line-height:23px; color:#fff;}
+
+
+
+

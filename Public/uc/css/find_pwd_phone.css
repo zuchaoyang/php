@@ -1,0 +1,35 @@
+@charset "utf-8";
+.sub_nav{padding:20px 0px 30px 0px;}
+/*导航条*/
+.sub_nav ul span{display:block;  height:28px; float:left; text-align:center; line-height:28px;}
+.sub_nav_first_begin{background:url(../images/find_pwd_index/green_left.gif) 0 0 no-repeat; width:180px; font-weight:bold; color:#fff;}
+.sub_nav_first_end{background:url(../images/find_pwd_index/lightgreen_left.gif) 0 0 no-repeat; width:180px; color:#fff;color:#999;}
+
+.sub_nav_current{background:url(../images/find_pwd_index/green_center.gif) 0 0 no-repeat; width:176px; font-weight:bold; color:#fff;}
+.sub_nav_end{background:url(../images/find_pwd_index/lightgreen_center.gif) 0 0 no-repeat; width:176px;color:#999;}
+
+.sub_nav_right_begin{background:url(../images/find_pwd_index/green_right.gif) 0 0 no-repeat; width:180px;}
+ .sub_nav_center{background:url(../images/find_pwd_index/gray_center.gif) 0 0 no-repeat; width:176px; color:#999;}
+ .sub_nav_right{background:url(../images/find_pwd_index/gray_right.gif) 0 0 no-repeat; width:180px; color:#999;}
+ 
+.content_frame_01_con h4{color:#6e6e6e; font-weight:bold; border-bottom:1px #a1a1a1 dashed; line-height:28px; width:886px; padding-left:2px;} 
+
+.find_pwd_tab{ margin-top:30px;} 
+  .find_pwd_tab th{width:130px; text-align:right;}
+  .find_pwd_tab td{height:34px; line-height:16px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

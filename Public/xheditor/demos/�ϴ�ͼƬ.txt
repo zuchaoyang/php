@@ -1,0 +1,3 @@
+{upLinkUrl:"/Homeclass/Jsuploadimg/index",upLinkExt:"zip,rar,txt",upImgUrl:"/Homeclass/Jsuploadimg/index",upImgExt:"jpg,jpeg,gif,png",upFlashUrl:"/Homeclass/Jsuploadimg/index",upFlashExt:"swf",upMediaUrl:"/Homeclass/Jsuploadimg/index",upMediaExt:"avi"}
+
+所有工具tools:'Separator,BtnBr,Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,SelectAll,Removeformat,Align,List,Outdent,Indent,Link,Unlink,Img,Flash,Media,Emot,Table,Cut,Copy,Paste,Pastetext,Separator,Source,Print,Fullscreen,About'}

@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+.clear{ clear:both;}
+.bt{ background:url(../images/tipbg.gif) repeat-x; color:#fff; font-weight:bold; padding-left:10px;}
+.line{background:url(../images/repeatbg.gif) repeat-x bottom;}
+table{ margin:10px auto;}
+.kjfs ul{ margin-left:30px}
+.kjfs li{ display:inline; width:80px;  padding:1px 18px;}
+.kjfs li a,.kjfs li a:visited{ color:#333}
+.kjfs li a:hover{ color:#F60; text-decoration:underline}
+.kjfs li.kj1{ background:url(../images/kj1.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj2{ background:url(../images/kj2.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj3{ background:url(../images/kj3.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj4{ background:url(../images/kj4.gif) no-repeat left center; padding-left:18px;}
+.kjfs li.kj5{ background:url(../images/kj5.gif) no-repeat left center; padding-left:18px;}
+.padleft{ margin-top:25px;}
+.padleft td{ padding-left:8px;}
+.STYLE1 {color: #FFFFFF}
+
+.amsqd{ width:100px; height:24px; line-height:24px; text-align:center; color:#FFF; background:url(../images/amsqd_btn.gif) no-repeat; display:block; float:left; margin-right:15px;}/*a_btn_red*/
+.amsqx{ width:85px; height:24px; line-height:24px; text-align:center; color:#333; background:url(../images/amsqx_btn.gif) no-repeat; display:block; float:left;}/*a_btn_gray*/
+.zjxk{ text-decoration:underline;}
+.kctx{ width:140px; height:20px; padding-left:10px; line-height:20px; border:1px solid #7f9db9;}
+.text{width:150px; height:20px; line-height:20px; border:1px solid #7f9db9; margin:0px; padding:0px; padding-left:6px;}
+.amsqx_bt{width:85px; height:24px; line-height:24px; text-align:center; color:#333; background:url(../images/amsqx_btn.gif) no-repeat; border:none; cursor:pointer; margin-left:10px;}
+
+.zh{width:95px; height:24px; line-height:24px; text-align:center; color:#333; background:url(../images/amsfh_btn.jpg) no-repeat; border:none; cursor:pointer;}/*gray_btn_long*/
+.back{width:100px; height:24px; line-height:24px; text-align:center; color:#333; background:url(../images/amsqx_btn.gif) no-repeat; border:none; cursor:pointer;}/*gray_btn*/
+.qrtj{ width:120px; background:url(../images/amsqd_btn1.gif) no-repeat;height:24px; line-height:24px; text-align:center; color:#fff;border:none; margin-right:10px; cursor:pointer;}/*red_btn_long*/
+.bc{width:100px; height:24px; line-height:24px; text-align:center; color:#FFF; background:url(../images/amsqd_btn.gif) no-repeat; border:none; cursor:pointer;}/*red_btn*/
+
+
+/*集中办公平台设置*/
+.jsgl{ width:500px; font:12px "宋体"; line-height:26px; float:left; background-color:#CCCCCC;}
+.jsgl td{ background-color:white;}
+.jsgl td.font_center{ text-align:center;}
+.jsgl td a{ text-decoration:underline;}
+
+
+.amsqx_bt01{width:85px; height:24px; line-height:24px; text-align:center; color:#333; background:url(../images/amsqx_btn.gif) no-repeat; border:none; cursor:pointer;  display:inline-block;}
+
+
+.qxgl{width:400px; font:12px "宋体"; line-height:35px; float:left; background-color:#CCCCCC;}
+.qxgl td{ background-color:white;}
+.qxgl td a img{ border:none;}
+
+
+
+
+
+

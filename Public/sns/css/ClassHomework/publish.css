@@ -1,0 +1,83 @@
+.f12{font:12px "宋体";}
+.f14{font:14px "微软雅黑";}
+.main h4{background:url(../../images/ClassHomework/publish/h4_bj1.jpg) 0 0 no-repeat; height:44px; margin:10px;}
+ 
+.main ul a{display:inline-block; width:112px; height:36px; text-align:center; line-height:36px; margin-right:4px;}
+.main_nav_a1{background:url(../../images/ClassHomework/publish/main_nav_a1.jpg) 0 0 no-repeat; color:#fff; font:16px "微软雅黑";}
+.main_nav_a2{background:url(../../images/ClassHomework/publish/main_nav_a2.jpg) 0 0 no-repeat; color:#444; font:16px "微软雅黑";}
+
+.publish_main{border-left:1px #6db500 solid;border-right:1px #6db500 solid;border-top:1px #6db500 solid; font:14px "微软雅黑"; color:#464646; background:#fff; padding:30px;}
+	.publish_main table th{text-align:right; font-weight:normal; width:90px; height:36px;}
+	.publish_main .pr20{padding-right:20px;}
+	.publish_main p{line-height:22px;}
+	.align{text-align:left;}
+	
+	.work_receive{border:1px #ccc solid; margin-top:10px; padding:10px;}
+		.work_receive h3{font:14px "微软雅黑"; float:left;}
+		.work_receive .edit{text-align:right;}
+			.work_receive .edit a{margin-right:10px;}
+	    .work_receive_main table td{height:25px;}		
+			
+.icon_date{background:url(../../images/ClassHomework/publish/icon_date.jpg) 0 0 no-repeat; width:14px; height:16px; display:inline-block; float:left; margin:4px 0px 0px 10px;}
+
+.liulan_text{width:600px; height:20px; border:1px #ccc solid; cursor:pointer;}
+
+.release{padding:20px 320px;}
+
+/*弹出层*/
+.recieve_tcc{width:290px; border:1px #75b333 solid;}
+	.recieve_tcc h1{font-weight:normal; background:#ededed; padding:6px 10px; position:relative; border-bottom:1px #c7d6b6 solid;}
+	  .close{background:url(../../images/Common/sns_images/icon_close.gif) 0 0 no-repeat; width:9px; height:9px; display:inline-block; position:absolute; top:8px; right:6px; overflow:hidden;}
+	.recieve_tcc select{width:160px; margin:10px;}  
+	
+	.tcc_main{width:268px; border:1px #c0d893 solid; margin:0px 0px 10px 10px; color:#464646;}
+		.tcc_main h2{ background:#deeec1; text-align:center; padding:4px 0px;}
+		.tcc_main_nr{overflow:auto; height:240px; padding:10px;}
+		.tcc_main_nr table td{padding-bottom:10px; font:14px "宋体"} 
+		
+			.tcc_main .tcc_main_qd{text-align:left; padding:4px 10px 4px 10px; height:24px;}
+			.tcc_main_qd .checkbox{float:left; margin:4px 0px 0px!important;margin:0px;}
+			.tcc_main_qd span{float:left;}
+			.green_btn{background:url(../../images/ClassHomework/publish/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer; float:right;}
+			
+			
+/*发布预览*/			
+.preview_release{border:1px #6db500 solid; width:900px; padding:20px;font:14px "宋体";}
+	.preview_release h1{font:bold 14px "宋体"; background:#deeec1; padding:8px 10px; color:#3c3c3c;}	
+	.preview_release h2{font:14px "宋体"; padding:15px 10px 10px; color:#4d4e4d;}	
+	.preview_release .sub_date{padding:0px 0px 10px 10px;}
+	   .pl30{padding-left:30px;}
+	.tcc_work_main{border:1px #e9e9e9 solid; font:14px "宋体"; color:#666; margin-bottom:30px;}
+		.tcc_title{font:bold 14px "宋体"; background:#f5f5f5; padding:8px 10px; border-bottom:1px #e9e9e9 solid;}
+		.tcc_work_main p{line-height:22px; padding:10px 0px 10px 10px;} 
+	    .tcc_work_main p a{color:#288c00;}  
+	.tcc_workmain_tab{ padding:10px 20px; color:#464646;} 	
+	     .tcc_workmain_tab table td{height:25px;}
+		 .tcc_title_normal{font-weight:normal;}
+		 .tcc_workmain_mb10{margin-bottom:10px;}
+	.tcc_workmain_btn{padding:30px 200px 0px;}
+		.tcc_workmain_btn dl{float:left; margin-right:100px;}	
+		.tcc_workmain_btn dl dd{line-height:25px;} 
+			
+			
+			
+.urse_tcc{width:90px;}	
+	.urse_tcc ul{background:#5eac25;}
+	.urse_tcc ul li a{display:inline-block; color:#fff; padding:4px 0px; width:90px; text-align:center; margin-bottom:1px; font:12px "微软雅黑"; text-decoration:none;}
+	.urse_tcc ul li a:hover{background:#2b6800; text-decoration:none;}			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

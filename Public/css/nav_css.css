@@ -1,0 +1,401 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+body{
+	font-size:12px;
+	color:#333333;
+	text-align:left;
+}
+ul{list-style:none;}
+.total{
+	width:960px;
+	margin:0 auto;
+}
+.nav{
+	width:960px;
+    height:71px;
+	margin:0 auto;
+}
+.nav_left{
+	float:left;
+	width:160px;
+	height:71px;
+}
+.nav_right{
+	float:left;
+	width:790px;
+	height:41px;
+	background:url("../images/w_nav_right.jpg") no-repeat;
+	padding:30px 0px 0px 10px;
+	line-height:41px;
+}
+.nav_right li{
+	display:block;
+	text-align:center;
+	float:left;
+	width:75px;
+	background:url(/Public/images/li_bg.jpg) right center no-repeat;
+}
+.nav_right ul{
+	float:left;
+	width:375px;
+	height:41px;
+	display:block;
+}
+.nav_right li a{
+	color:#FFFFFF;
+	font-size:14px;
+	text-decoration:none;
+}
+.nav_right p{
+	float:left;
+	display:block;
+	width:290px;
+	height:36px;
+	padding:5px 0px 0px 125px;
+}
+.nav_right p a{
+	color:#c3f8ff;
+	text-decoration:none;
+	float:left;
+	margin-right:10px;
+}
+.nav_right p a:hover{
+	color:#0000CC;
+	text-decoration:underline;
+}
+.sou_text{
+	background:url(/Public/images/sou_text_bg.jpg) no-repeat;
+	width:145px;
+	height:24px;
+	border:none;
+	float:left;
+	margin-top:5px;
+	line-height:24px;
+	color:#999999;
+}
+.wrap{
+	width:100%;
+	height:5px;
+	background:url(/Public/images/wrap_bg.jpg) repeat-x;
+	clear:both;
+}
+/*登录页*/
+.LoginBox{
+	width:627px;
+	height:344px;
+	margin:50px auto;
+}
+.Login_t{
+	width:627px;
+	height:16px;
+	background:url(/Public/images/Login_t.gif) no-repeat;
+}
+.Login_m{
+	width:507px;
+	padding:20px 60px;
+	background:url(/Public/images/Login_m.gif) repeat-y;
+}
+.Login_b{
+	width:627px;
+	height:16px;
+	background:url(/Public/images/Login_b.gif) no-repeat;
+}
+/*登录页*/
+#roundedbox{
+	width:627px;
+	height:auto;
+	margin:50px auto;
+}
+#roundedbox_sign_t{
+	width:627px;
+	height:16px;
+	background:url(/Public/images/Login_t.gif) no-repeat;
+}
+#roundedbox_t{
+	width:627px;
+	height:38px;
+	background:url(/Public/images/bt_bg.jpg) no-repeat;
+}
+#roundedbox_t h3{
+	color:#247aca;
+	line-height:38px;
+	font-size:14px;
+	margin-left:20px;
+}
+#roundedbox_m{
+	width:507px;
+	height:280px;
+	padding:20px 60px;
+	background:url(/Public/images/Login_m.gif) repeat-y;
+}
+#roundedbox_m h2{
+	font-size:14px;
+}
+#roundedbox_m p{
+	line-height:24px;
+}
+#roundedbox_signup{
+	width:250px;
+	height:280px;
+	float:left;
+	display:inline;
+	margin-right:25px;
+	padding-top:20px;
+	border-right:1px solid #DDDDDD;
+}
+#register{
+	display:block;
+	width:185px;
+	text-indent:-9999px;
+	margin:20px 0;
+	height:29px;
+	background:url(/Public/images/Registration_btn.gif) no-repeat;
+}
+#roundedbox_signin{
+	width:218px;
+	height:280px;
+	float:left;
+	display:inline;
+	padding-top:20px;
+}
+#roundedbox_signin form{
+	margin-top: 20px;
+    width: 190px;
+}
+#roundedbox_signin form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+#roundedbox_signin form label{
+    display: block;
+    float: none;
+    text-align: left;
+}
+#roundedbox_signin form .input1{
+	width:181px;
+	height: 20px;
+    line-height: 20px;
+    padding: 3px 4px;
+	border:none;
+	background:url(/Public/images/Login_search.gif) no-repeat;
+}
+#roundedbox_password{
+	font-family:Tahoma, Geneva, sans-serif;
+}
+#input_check{
+    font-size: 12px;
+    vertical-align: middle;
+}
+.formbutton{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    letter-spacing: 0.3em;
+    padding:0 15px;
+	border:none;
+	background:url(/Public/images/Login_btn.gif) no-repeat;
+}
+#resetpass {
+    margin-left: 20px;
+	color: #0066CC;
+	text-decoration:none;
+}
+#resetpass:hover {
+	text-decoration:underline;
+}
+#roundedbox_b{
+	width:627px;
+	height:16px;
+	clear:both;
+	background:url(/Public/images/Login_b.gif) no-repeat;
+}
+/*修改密码*/
+#roundedbox_changepassword h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin: 10px 0 20px 0;
+	width:500px;
+}
+#roundedbox_changepassword form{
+	margin: 20px;
+    width:460px;
+}
+#roundedbox_changepassword form p{
+    line-height: 30px;
+    margin: 10px 30px;
+}
+#roundedbox_changepassword form a{
+	margin-left: 10px;
+	color: #0066CC;
+	text-decoration:none;
+}
+#roundedbox_changepassword form a:hover{
+	text-decoration:underline;
+}
+#roundedbox_changepassword form label{
+    display: block;
+    float: none;
+    text-align: left;
+}
+#roundedbox_changepassword form .input1{
+	width:181px;
+	height: 20px;
+    line-height: 20px;
+    padding: 3px 4px;
+	border:none;
+	background:url(/Public/images/Login_search.gif) no-repeat;
+}
+.formchange{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	background:url(/Public/images/Login_btn.gif) no-repeat;
+}
+.roundedbox_passwordprotection {
+	border-top: 1px solid #ccc;
+	width:500px;
+	text-align:center;
+	font-weight:normal;
+}
+.roundedbox_passwordprotection a{
+	font-size:12px;
+	line-height:24px;
+	color: #0066CC;
+	text-decoration:none;
+}
+.roundedbox_passwordprotection a:hover{
+	text-decoration:underline;
+}
+/*密保重设密码*/
+#roundedbox_changepassword h3{
+	font-weight:normal;
+}
+.formchangepassword_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    letter-spacing: 0.3em;
+    padding:0 15px;
+	border:none;
+	background:url(/Public/images/Login_btn.gif) no-repeat;
+}
+/*生日修改*/
+#roundedbox_birthdaychange h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin:0 0 20px 0;
+	width:500px;
+}
+#roundedbox_birthdaychange{
+	width:268px;
+	height:250px;
+	float:left;
+	display:inline;
+	padding-top:20px;
+}
+#roundedbox_birthdaychange form{
+	margin-left: 20px;
+    width: 300px;
+}
+#roundedbox_birthdaychange form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+#roundedbox_birthdaychange form label{
+    text-align: left;
+	width:70px;
+}
+#roundedbox_birthdaychange form .input1{
+	width:181px;
+	height: 22px;
+    line-height: 22px;
+    padding: 3px 4px;
+	border:none;
+	background:url(/Public/images/Login_search.gif) no-repeat;
+}
+.formbirthdaychange_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	background:url(/Public/images/Login_btn.gif) no-repeat;
+}
+/*学校修改*/
+#roundedbox_changeschool h2{
+	border-bottom: 1px solid #ccc;
+    color: #444;
+    font-size: 16px;
+    line-height: 200%;
+    margin:0 0 20px 0;
+	width:500px;
+}
+#roundedbox_changeschool{
+	width:268px;
+	height:250px;
+	float:left;
+	display:inline;
+	padding-top:20px;
+}
+#roundedbox_changeschool form{
+    width: 500px;
+}
+#roundedbox_changeschool form p{
+    line-height: 25px;
+    margin: 10px 0;
+}
+#roundedbox_changeschool form label{
+    text-align: left;
+}
+#roundedbox_changeschool form select{
+	margin-right:20px;
+	width:80px;
+}
+.formsearchschool_btn{
+	width:75px;
+	height:23px;
+	color: #FFFFFF;
+    cursor: pointer;
+    padding:0 15px;
+	border:none;
+	margin-left:15px;
+	background:url(/Public/images/Login_btn.gif) no-repeat;
+}
+#roundedbox_changeschool table{
+	width:100%;
+}
+#roundedbox_changeschool table tr{}
+#roundedbox_changeschool table th{
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	padding:2px 4px;
+}
+#roundedbox_changeschool table td{
+	height:22px;
+	line-height:18px;
+	padding:2px 4px;
+	background:#fff;
+}
+
+
+
+.copyright{
+	width:960px;
+	margin:0 auto;
+	height:80px;
+	text-align:center;
+	padding-top:20px;
+	border-top:1px #bce5f3 solid;
+	}

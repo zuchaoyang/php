@@ -1,0 +1,107 @@
+.global_header .W_arr_d { height: 3px; width: 5px; margin: -2px 0pt 0pt 3px; display: inline-block; vertical-align: middle; overflow: hidden; }
+.global_header .W_arr_d em { display: block; background: none repeat scroll 0% 0% rgb(193, 193, 193); height: 1px; overflow: hidden; }
+.global_header .W_arr_d em.b2 { margin: 0pt 1px; }
+.global_header .W_arr_d em.b3 { margin: 0pt 2px; width: 1px; }
+.global_header { z-index: 9998; height: 35px; width: 100%; background: url('../../images/school_map/maps/global_nav_bg.png') repeat-x scroll 0% 0% transparent; position: fixed; left: 0pt; top: 0pt; }
+.global_header .header a.link { color: rgb(193, 193, 193); text-decoration: none; }
+.global_header .header { width: 950px; margin: 0pt auto; position: relative; }
+.global_header .logo { width: 190px; height: 34px; position: absolute; margin: 0pt 0pt 0pt -27px; background: url('../../images/school_map/maps/logo_update.png') no-repeat scroll 0% 0% transparent; left: 0pt; }
+.global_header .logo:hover { background-position: 0pt -34px; }
+.global_header .logo a { width: 160px; height: 34px; display: block; cursor: pointer; position: absolute; left: 20px; top: 0pt; z-index: 1000; }
+.global_header .logo a:hover {  }
+.global_header .list { float: left; display: inline; font-size: 14px; margin: 0pt 0pt 0pt 163px; }
+.global_header .list li, .global_header .search, .global_header .message, .global_header .person, .global_header .letter { float: left; position: relative; display: inline; z-index: 9998; }
+.global_header .list li { padding: 0pt 0pt 0pt 2px; }
+.global_header .list li a.link { display: inline-block; height: 16px; line-height: 16px; padding: 9px 10px 8px; outline: medium none; }
+.global_header .list li a.link:hover { background: url('../../images/school_map/maps/hover_bg.png') repeat scroll 0% 0% transparent; cursor: pointer; }
+.global_header .right { float: right; }
+.global_header .search { margin: 4px 0pt 0pt 10px; background: url('../../images/school_map/maps/sprite_bg.png') no-repeat scroll 0pt -60px transparent; width: 200px; height: 25px; }
+.global_header .search_current, .global_header .search:hover { background-position: 0pt -85px; }
+.global_header .search .input { float: left; color: rgb(147, 147, 147); background: none repeat scroll 0% 0% transparent; border: 0pt none; width: 156px; height: 22px; line-height: 22px; margin: 2px 0pt 0pt; padding: 0px 5px 0pt 10px; }
+.global_header .search .btn { float: left; margin: 1px 2px 0pt 0pt; width: 27px; height: 23px; border: 0pt none; cursor: pointer; background: none repeat scroll 0% 0% transparent; }
+.global_header .search .btn:hover { background: url('../../images/school_map/maps/sprite_bg.png') no-repeat scroll 0pt -110px transparent; }
+.global_header .person { height: 27px; }
+.global_header .person li { float: right; display: inline; position: relative; vertical-align: middle; }
+.global_header .person li a.link { display: inline-block; padding: 9px 9px 8px; height: 16px; line-height: 16px; outline: medium none; }
+.global_header .person li a.link:hover { background: url('../../images/school_map/maps/hover_bg.png') repeat scroll 0% 0% transparent; }
+.global_header .layer_topmenu_list { overflow: hidden; width: 130px; position: absolute; top: 33px; right: 0px; z-index: 9998; background: url('../../images/school_map/maps/layer_bg_001.png') repeat scroll 0% 0% transparent; color: rgb(255, 255, 255); border: 1px solid rgb(121, 121, 121); padding: 2px 1px 4px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); }
+.global_header .layer_topmenu_list .person_infos { margin: 8px 4px 0pt; padding: 0pt 0pt 0pt 4px; overflow: hidden; }
+.global_header .layer_topmenu_list .person_infos dt, .global_header .layer_topmenu_list .person_infos dd { float: left; }
+.global_header .layer_topmenu_list .person_infos dd { width: 75px; line-height: 16px; margin: 0pt 0pt 0pt 5px; word-wrap: break-word; color: rgb(89, 89, 89); }
+.global_header .layer_topmenu_list .person_infos dd a { font-size: 12px; width: 75px; color: rgb(89, 89, 89); word-wrap: break-word; }
+.global_header .layer_topmenu_list ul { padding: 3px 0pt 0pt; margin: 0pt 4px; clear: both; overflow: hidden; }
+.global_header .layer_topmenu_list ul li { position: static; float: none; margin: 0pt; padding: 0pt; display: block; }
+.global_header .layer_topmenu_list ul li a { font-size: 12px; color: rgb(89, 89, 89); padding: 7px 10px; background: none repeat scroll 0% 0% transparent; display: block; }
+.global_header .layer_topmenu_list ul li img { vertical-align: middle; margin: 0pt 5px 0pt 0pt; }
+.global_header .layer_topmenu_list ul li a:hover, .global_header .layer_topmenu_list ul li.cur a, .global_header .layer_topmenu_list ul li.cur a:hover, .global_header .layer_topmenu_list ul li a:hover, .global_header .layer_topmenu_list ul li.cur a { background: none repeat scroll 0% 0% rgb(232, 233, 234); text-decoration: none; }
+.global_header .layer_topmenu_list ul li.line { background: none repeat scroll 0% 0% rgb(224, 224, 224); padding: 0pt; margin: 2px 0pt; height: 1px; line-height: 0px; overflow: hidden; font-size: 0px; }
+.global_header .layer_topmenu_list_yy { width: 240px; font-size: 12px; }
+.global_header .layer_topmenu_list_yy .func { overflow: hidden; font-size: 12px; line-height: 14px; color: rgb(89, 89, 89); padding: 6px 5px 9px; margin: 0pt 4px; }
+.global_header .layer_topmenu_list_yy .func span { float: right; font-size: 12px; background: none repeat scroll 0% 0% transparent; }
+.global_header .layer_topmenu_list_yy .func a.more { background: none repeat scroll 0% 0% transparent; color: rgb(0, 120, 182); padding: 0pt; }
+.global_header .layer_topmenu_list_yy .func_up { background: url('../../images/school_map/maps/layer_title_bg.png') repeat-x scroll 0% 0% transparent; padding: 10px 5px 5px; }
+.layer_message_box { width: 190px; position: absolute; z-index: 9999; padding: 6px 1px; line-height: 17px; border: 1px solid rgb(121, 121, 121); border-radius: 3px 3px 3px 3px; right: 100px; top: 33px; background: url('../../images/school_map/maps/layer_bg_001.png') repeat scroll 0% 0% transparent; }
+.global_header .layer_message_box ul { margin: 0pt 4px; }
+.layer_message_box .W_close_color { background: url('close.gif') no-repeat scroll 0pt -11px transparent; width: 11px; height: 11px; position: absolute; top: 5px; right: 5px; display: inline-block; overflow: hidden; }
+.layer_message_box .W_close_color:hover { background-position: 0pt 0pt; }
+.ico_account, .ico_template, .ico_versionchoice, .ico_credits, .ico_toolset, .ico_exit { display: inline-block; height: 16px; width: 16px; }
+.ico_account, .ico_template, .ico_versionchoice, .ico_toolset, .ico_hao, .ico_exit, .ico_member16 { background: url('../../images/school_map/maps/ico_sidebar.png') no-repeat scroll 0% 0% transparent; display: inline-block; height: 16px; width: 16px; }
+.ico_account { background-position: 0pt -899px; }
+.ico_template { background-position: 0pt -149px; }
+.ico_versionchoice { background-position: 0pt -850px; }
+.ico_credits { background: url('../../images/school_map/maps/ico.png') no-repeat scroll 0pt -2446px transparent; }
+.ico_toolset { background-position: 0pt -924px; }
+.ico_hao { background-position: 0pt -1100px; }
+.ico_exit { background-position: 0pt -949px; }
+.ico_member16 { background-position: 0pt -1225px; }
+.global_header .layer_topmenu_list_app { width: 383px; }
+.W_layer_suggest { border-right: 1px solid rgb(121, 121, 121); border-width: 0pt 1px 1px; border-style: none solid solid; border-color: -moz-use-text-color rgb(121, 121, 121) rgb(121, 121, 121); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-image: none; background: url('../../images/school_map/maps/layer_bg_001.png') repeat scroll 0% 0% transparent; color: rgb(102, 102, 102); position: absolute; overflow: hidden; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; z-index: 9998; min-width: 197px; }
+.W_layer { position: absolute; border-radius: 4px 4px 4px 4px; z-index: 9999; color: rgb(102, 102, 102); }
+.W_layer .bg { padding: 4px; border-radius: 4px 4px 4px 4px; background: url('../../images/school_map/maps/layer_bg.png') repeat scroll 0% 0% transparent; }
+.W_layer .content { position: relative; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 3px 3px 3px 3px; }
+.W_layer .btn { text-align: right; padding: 15px 0pt 0pt; }
+.W_layer .btn a { margin: 0pt 0pt 0pt 10px; }
+.W_layer a, .W_layer .W_linka a, .W_layer a.W_linka { color: rgb(0, 120, 182); }
+.W_layer a { text-decoration: none; }
+.W_layer a:hover { text-decoration: underline; }
+.clearfix:after { content: "."; display: block; height: 0pt; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; }
+.W_layer { font: 12px/1.125 Arial,Helvetica,sans-serif; color: rgb(89, 89, 89); }
+.W_layer a { text-decoration: none; }
+.global_footer { width: 910px; margin: 20px auto 0pt; padding: 20px 20px 10px; }
+.global_footer .list { float: left; width: 21%; color: rgb(89, 89, 89); display: inline; margin: 0pt; }
+.global_footer .list_right { width: 110px; margin-left: 20px; }
+.global_footer .list dt { padding: 0pt 0pt 5px; }
+.global_footer .list dd { line-height: 20px; }
+.global_footer .other_link { margin: 15px 0pt 0pt; border-top-width: 1px; border-top-style: dotted; }
+.global_footer .other_link p { padding: 3px 0pt 0pt; line-height: 18px; }
+.global_footer .help_link { float: left; padding: 10px 0pt 0pt; }
+.global_footer .copy { float: right; text-align: right; line-height: 20px; padding-top: 10px; }
+.global_footer .copy p { padding: 0pt; }
+.global_footer .copy .W_linkb { padding-bottom: 2px; }
+.global_footer .company { margin-right: 5px; }
+.global_header, .global_footer, .layer_menu_list { font: 12px/1.125 Arial,Helvetica,sans-serif; }
+.global_header h3, .global_header dl, .global_header dt, .global_header dd, .global_header ul, .global_header ol, .global_header li, .global_header p, .global_header form, .global_header input, .global_footer dl, .global_footer dt, .global_footer dd, .global_footer ul, .global_footer ol, .global_footer li, .global_footer p { margin: 0pt; padding: 0pt; }
+.global_header li, .layer_menu_list li { list-style: none outside none; }
+.global_header em, .global_header i { font-style: normal; font-weight: normal; }
+.global_header fieldset, .global_header img { border: 0pt none; }
+.global_header input, .global_header textarea { outline-style: none; }
+.global_header { color: rgb(102, 102, 102); }
+.global_header a, .global_footer a { color: rgb(0, 149, 205); text-decoration: none ! important; }
+.global_header a:hover, .global_footer a:hover { text-decoration: underline; }
+.clearfix:after { content: "."; display: block; height: 0pt; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; }
+.approve_co { width: 14px; height: 12px; background: url('../../images/school_map/maps/ico.png') no-repeat scroll 0pt -231px transparent; display: inline-block; }
+.global_header {  }
+.global_header .header .list li a.link:hover {  }
+.global_header .header .person li a.link {  }
+.global_header .header .person li a.link:hover {  }
+.global_header .header .person li a.link .W_arr_d {  }
+.global_header .header .person li a.link .W_arr_d .b1 {  }
+.male { width: 11px; height: 13px; background: url('../../images/school_map/maps/ico.png') no-repeat scroll 0pt -540px transparent; margin: 0pt 2px; display: inline-block; }
+.female { width: 11px; height: 13px; background: url('../../images/school_map/maps/ico.png') no-repeat scroll 0pt -560px transparent; margin: 0pt 2px; display: inline-block; }
+.global_footer { background-color: rgba(255, 255, 255, 0.5); }
+.global_footer .help_link { padding-top: 10px; }
+.global_footer .other_link p { padding: 0pt; line-height: 25px; }

@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,body{ margin:0; padding:0; border:none; height:100%;}
+.mydiv {
+background-color: #FFf;
+border: 5px solid #999;
+text-align: left;
+font-size: 12px;
+z-index:999;
+width: 230px;
+height: 120px;
+line-height:24px;
+left:50%;
+top:50%;
+margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+margin-top:0px;
+position:fixed!important;/* FF IE7*/
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+}
+.bg,.popIframe,.bger {
+width:100%;
+height:100%;
+background-color: #666; display:none;
+left:0;
+top:0;/*FF IE7*/
+filter:alpha(opacity=50);/*IE*/
+opacity:0.5;/*FF*/
+z-index:1;
+position:fixed!important;/*FF IE7*/
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);
+}
+.popIframe {
+filter:alpha(opacity=0);/*IE*/
+opacity:0;/*FF*/
+}
+
+.youdiv {
+background-color: #FFf;
+border: 5px solid #999;
+text-align: left;
+font-size: 12px;
+z-index:999;
+width: 200px;
+height: 120px;
+line-height:24px;
+left:50%;
+top:50%;
+margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+margin-top:0px;
+position:fixed!important;/* FF IE7*/
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+}
+
+.shxx{ 
+width:500px;
+height:700px;
+padding:10px 20px;
+background:#FFFFFF;
+border:5px solid #CCCCCC; 
+z-index:999;
+left:50%;
+top:50%;
+margin-left:-250px!important;/*FF IE7 该值为本身宽的一半 */
+margin-top:-250px!important;/*FF IE7 该值为本身高的一半*/
+margin-top:0px;
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/0 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+}
+
+.sqgl_clse{display:block;height:24px; line-height:24px;font-weight:bold; padding-left:400px;}
+.bms_djck{margin-left:20px;}
+
+
+/*申请管理-管理*/
+.text{width:140px; height:20px; line-height:20px; padding-left:4px;}
+.blue_btn{background:url(../images/blue_btn.jpg) 0 0 no-repeat; width:75px; height:23px; border:none; color:#fff; margin-left:10px; cursor:pointer;}/*blue-btn*/
+.gray_btn{background:url(../images/gray_btn.gif) 0 0 no-repeat; width:75px; height:23px; border:none; color:#333; margin-left:10px; cursor:pointer;}/*gray-btn*/
+
+.sqgl_tab{background:#CCC;}
+  .sqgl_tab td{text-align:center; height:30px; background:#FFF;}
+  .sqgl_tab th{height:30px; background:#99ccff; color:#333;}
+  
+  .gray_a{background:url(../images/gray_btn.gif) 0 0 no-repeat; display:block; width:75px; height:23px; text-align:center; line-height:23px; color:#333;}/*gray-a*/
+  .blue_a{background:url(../images/blue_btn.jpg) 0 0 no-repeat; display:block; width:75px; height:23px; text-align:center; line-height:23px; color:#fff;}/*blue-a*/
+
+.a_bj1{background:url(../images/blue_bjk.gif) 0 0 no-repeat; width:124px; height:27px; display:block; color:#fff; text-align:center; line-height:27px; float:left; margin-right:6px;}
+.a_bj2{background:url(../images/blue_xt.gif) 0 0 no-repeat; width:124px; height:27px; display:block; color:#fff; text-align:center; line-height:27px; float:left; margin-right:6px; color:#333;}
+.line{background:url(../images/line.gif) repeat-x bottom;}
+
+/*学校基本信息*/
+.xxjbxx_tab{ background:#ccc; margin:0px;}
+  .xxjbxx_tab td{height:30px; background:#fff; padding-left:10px;}
+  .xxjbxx_tab th{background:#99ccff; font-weight:bold; height:30px; text-align:left; padding-left:10px;}
+.mydiv .gly_a a{width:75px; height:23px; line-height:23px;}
+
+
+.blue_a2{background:url(../images/blue_btn2.jpg) 0 0 no-repeat; width:92px; height:23px; display:inline-block; text-align:center; line-height:23px; color:#fff; margin-left:10px;}
+.blue_btn3{background:url(../images/blue_btn3.jpg) 0 0 no-repeat; width:150px; height:23px; text-align:center; line-height:23px; color:#fff; border:none; cursor:pointer;}
+.blue_a3{background:url(../images/blue_btn3.jpg) 0 0 no-repeat; width:150px; height:23px; text-align:center; line-height:23px; color:#fff; display:inline-block; margin-left:10px; cursor:pointer;}
+
+/*手机号绑定*/
+.select{margin-right:10px;}
+.file{width:200px; height:20px; line-height:20px; border:1px #ccc solid;}
+
+
+
+
+

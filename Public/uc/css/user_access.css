@@ -1,0 +1,26 @@
+@charset "utf-8";
+.user_access_main{padding:10px;}
+  .user_access_main h3{margin:10px 0px;}
+  .user_access_main p a{width:204px; height:100px; border:1px #98a4b4 solid;display:inline-block; margin:10px 20px 0px 0px;}
+ .all{background:url(../images/user_access/pic01.jpg) center center no-repeat;}
+ .friend{background:url(../images/user_access/pic02.jpg) center center no-repeat;}
+ .me{background:url(../images/user_access/pic03.jpg) center center no-repeat;}
+ 
+.all:hover{ background:url(../images/user_access/pic01_hover.jpg) center center no-repeat;}
+.friend:hover{background:url(../images/user_access/pic02_hover.jpg) center center no-repeat;}
+.me:hover{background:url(../images/user_access/pic03_hover.jpg) center center no-repeat;}
+
+.all_Current{background:url(../images/user_access/pic01_hover.jpg) center center no-repeat;}
+.friend_Current{background:url(../images/user_access/pic02_hover.jpg) center center no-repeat;}
+.me_Current{background:url(../images/user_access/pic03_hover.jpg) center center no-repeat;}
+
+
+
+
+
+
+
+
+
+
+ 

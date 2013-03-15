@@ -1,0 +1,23 @@
+*{ margin:0; padding:0;}
+.content_frame_01{ width:953px; margin:20px auto; }
+.content_frame_01_top{ background:url(../wmw_images/wmw_tips_images/content_bg_top.gif) no-repeat; width:953px; height:22px;}
+.content_frame_01_con{ background:url(../wmw_images/wmw_tips_images/content_bg_middle.gif) repeat-y; width:913px; padding:0 20px; min-height:400px; }
+.content_frame_01_bottom{ background:url(../wmw_images/wmw_tips_images/content_bg_bottom.gif) no-repeat; width:953px; height:19px;}
+.common_tip{ margin:0 auto; font:14px/25px "宋体"; text-align:center ; height:330px; }
+.error_icon{ background:url(../wmw_images/wmw_tips_images/error_icon.gif) 0 50% no-repeat; width:65px; height:66px; display:inline-block; float:left;}
+.success_icon{background:url(../wmw_images/wmw_tips_images/success_icon.gif) 0 50% no-repeat; width:65px; height:66px; display:inline-block; float:left;}
+.xttz{ color:#6e6e6e; font-size:12px; margin:0 auto;}
+.container{ background:url(../wmw_images/wmw_tips_images/main_bj.gif) repeat-x;border-top:#ecf6ff solid 1px;}
+
+
+/*常规蓝色链接*/
+.cg_link_blue{ color:#0078cc; text-decoration:underline;}
+
+.font_red{color:#FF0000;}
+
+
+/*website_error 页面*/
+.website_error_bg{ background:url(../wmw_images/wmw_tips_images/bg_01.gif) 0 0 repeat;}
+.w_e_content{ margin:0 auto; width:900px; text-align:center; margin-top:150px; color:#636363; font:18px "宋体";}
+.img_logo{ background:url(../wmw_images/wmw_tips_images/logo.gif) 0 0 no-repeat; width:104px; height:64px; display:inline-block;}
+
