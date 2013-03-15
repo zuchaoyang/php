@@ -1,0 +1,52 @@
+<script src="http://node.wmw.cn/socket.io/socket.io.js"></script>
+<script>
+
+  //One sec
+  var timeout = 2000;
+  //Starting socket.io
+  var t = io.connect("http://node.wmw.cn/ping", {
+          'port': 3000,
+          'connect timeout': timeout,
+          'reconnect': true,
+          'reconnection delay': 2000,
+          'max reconnection attempts': 5,
+          'force new connection':false
+  });
+
+  t.on("connect", function() {
+	 console.log('client connectting');
+  });
+  
+  t.on("connecting", function() {
+	 console.log('client connectting');
+  });
+
+  t.on("connect_failed", function() {
+	 console.log('client connect_failed');
+  });
+
+  t.on("close", function() {
+	 console.log('client close');
+  });
+
+  t.on("disconnect", function() {
+	 console.log('client disconnect');
+  });
+
+  t.on("reconnect", function() {
+	 console.log('client reconnect');
+  });
+
+  t.on("reconnecting", function() {
+	 console.log('client reconnecting');
+  });
+
+  t.on("reconnect_failed", function() {
+	 console.log('client reconnect_failed');
+  });
+
+  t.on("error", function(){
+	  console.log('client error');
+  });  
+
+</script>

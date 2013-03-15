@@ -1,0 +1,13 @@
+{
+  "name": "wmw-node",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "socket.io": 	">= 0.9.11",
+    "redis": 		">= 0.8.2",
+    "node-cluster": ">= 0.1.18" 
+  }
+}

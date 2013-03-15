@@ -1,0 +1,102 @@
+#!/bin/bash
+#
+# gearmand        Startup script for the Gearman server
+#
+# chkconfig: - 85 15
+# description: Gearman is a distributed job system.
+# processname: gearmand
+# config: /etc/sysconfig/gearmand
+# pidfile: /var/run/gearmand/gearmand.pid
+#
+### BEGIN INIT INFO
+# Provides: gearmand
+# Required-Start: $local_fs $network
+# Required-Stop: $local_fs $network
+# Default-Start:
+# Default-Stop:
+# Short-Description: start and stop the Gearman server
+# Description: Gearman is a distributed job system.
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# gearman conf
+#
+GM_USER=root
+GM_PORT=4730
+ 
+#
+# mysql conf
+#
+LOG_FILE=/var/log/wmw-gearmand-master.log
+MY_HOST=127.0.0.1
+MY_PORT=3306
+MY_USER=root
+MY_PASSWORD=root
+MY_DB=queue_db
+MY_TABLE=gearman_queue
+OPTIONS="-l $LOG_FILE -p $GM_PORT -q mysql --mysql-host=$MY_HOST --mysql-port=$MY_PORT --mysql-user=$MY_USER --mysql-password=$MY_PASSWORD --mysql-db=$MY_DB --mysql-table=gearman_queue"
+
+PIDDIR=/var/run/gearmand
+[ -z "${PIDFILE}" ] && pidfile="/var/run/gearmand/gearmand-master.pid"
+[ -z "${LOCKFILE}" ] && lockfile="/var/lock/subsys/gearmand-master"
+
+gearmand=/usr/local/sbin/gearmand
+prog=gearmand-master
+
+RETVAL=0
+
+start() {
+        echo -n $"Starting $prog: "
+		
+        if ! test -d ${PIDDIR}
+        then
+          mkdir ${PIDDIR}
+          chown ${GM_USER} ${PIDDIR}
+        fi		
+		
+        daemon --pidfile=$pidfile --user=root $gearmand -d $OPTIONS
+        RETVAL=$?
+        echo
+        [ $RETVAL = 0 ] && (touch $lockfile; pgrep -f $gearmand > $pidfile)
+        return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $prog: "
+	killproc -p $pidfile $gearmand
+	RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && rm -f $lockfile $pidfile
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+        status -p $pidfile $gearmand
+	RETVAL=$?
+	;;
+  restart|reload)
+	stop
+	start
+	;;
+  condrestart|try-restart)
+	if status -p $pidfile $gearmand >&/dev/null; then
+		stop
+		start
+	fi
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart|reload|condrestart|status|help}"
+	RETVAL=3
+esac
+
+exit $RETVAL
+
