@@ -1,0 +1,314 @@
+@CHARSET "UTF-8";
+
+/*发送框样式 */
+*{margin:0;padding:0}
+.sendboxcontainer_mini {
+    padding:0;
+    text-align: center;
+    width: 100%;
+    margin-left: 1px;
+    color: #333333;
+    font: 12px Tahoma,Arial,"宋体",sans-serif;
+}
+
+
+/* 全局样式 */
+.sendbox_mini a {
+	color: #2B4A78;
+	text-decoration: none;
+}
+.sendbox_mini table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.sendbox_mini ul, .sendbox_mini ol, .sendbox_mini li {
+	list-style:none;
+}
+.sendbox_mini em {
+	font-style:normal;
+}
+.sendbox_mini a:hover {
+	text-decoration:underline;
+}
+.sendbox_mini a img {
+	border:0;
+}
+.sendbox_mini input, .sendbox_mini label {
+	vertical-align:middle;
+}
+.sendbox_mini .gray {
+	color:gray;
+}
+.sendbox_mini .hide {
+	display:none;
+}
+.sendbox_mini .vbottom {
+	vertical-align:bottom;
+}
+.sendbox_mini .vtop {
+	vertical-align:top;
+}
+.sendbox_mini .vmiddle{
+	vertical-align:middle;
+}
+.sendbox_mini input[type="text"], .sendbox_mini input[type="password"], .sendbox_mini textarea, .sendbox_mini .placeholder{
+	font-size:12px;
+}
+.sendbox_mini .sendboxtitle {
+    display: block;
+    font: bold 12px/1.75 'MicroSoft YaHei',SimHei;
+    margin: 0 0 5px;
+}
+
+.sendbox_mini .holder {
+    line-height: 0;
+}
+
+.sendbox_mini .sendtext {
+    background-position: -1084px 0;
+    background-repeat: repeat-y;
+	
+}
+.sendbox_mini .sendtext textarea{ border:#e6e6e6 solid 1px;}
+
+.sendbox_mini .sendtext1, .sendbox_mini .sendtext2 {
+    font-size: 0;
+    height: 6px;
+}
+
+.sendbox_mini .actionlist {
+    float: left;
+    left: 0;
+    position: relative;
+    top: 5px;
+    width: 100%;
+	display:inline-block;
+	width:120px; 
+}
+.sendbox_mini .actionlist div {
+    display: inline-block;
+    float: left;
+    line-height: 100%;
+    margin-right: 8px;
+}
+.sendbox_mini .actionlist div b {
+    display: inline-block;
+    float: left;
+    height: 16px;
+    margin-right: 3px;
+    vertical-align: middle;
+    width: 18px;
+}
+.sendbox_mini .actionlist div b.huati {
+    width: 14px;
+}
+.sendbox_mini .actionlist div a {
+    display: inline-block;
+    float: left;
+    height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+}
+.sendbox_mini .actionlist div a.zhaopiantxt {
+}
+.sendbox_mini .actionlist div a input {
+    cursor: pointer;
+    left: -190px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+}
+.sendbox_mini .actionlist div a:hover {
+    text-decoration: underline;
+}
+.sendbox_mini .actionlist div .gray {
+    float: left;
+    line-height: 100%;
+}
+.sendbox_mini .txtandbutton {
+    clear: both;
+    text-align: right;
+}
+.sendbox_mini .sendcontrol {
+    float: right;
+    margin: 0 0 0;
+    text-align: right;
+	display:inline-block;
+}
+.sendbox_mini .sendcontrol .sendmsg {
+    display: inline-block;
+    float: left;
+    height: 27px;
+    line-height: 18px;
+    margin-right: 15px;
+}
+.sendbox_mini .sendcontrol .sendmsg big {
+    font-family: Georgia,Tahoma,Arial;
+    font-size: 26px;
+}
+.sendbox_mini .sendcontrol .sendbtn {
+    border: medium none;
+    cursor: pointer;
+    height: 27px;
+    vertical-align: top;
+    width: 73px;
+}
+.sendbox_mini .del {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 12px;
+    overflow: hidden;
+    width: 16px;
+}
+.sendbox_mini .sendcontrol .mainsendboxerror, .sendbox_mini .sendcontrol .mainsendboxsuccess {
+    line-height: 32px;
+    margin-right: 15px;
+}
+/**
+ * qq表情部分的css代码
+ */
+.iwbQQFace {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #ADADAD;
+    box-shadow: 1px 1px 2px #CAC8C8;
+    display: none;
+    padding: 30px 10px 10px;
+    position: absolute;
+    width: 436px;
+    z-index: 1999;
+}
+.iwbQQFace .qqFaceBox {
+    background: url("../images/qqface.gif") no-repeat scroll 0 0 transparent;
+    border-left: 1px solid #DFE6F6;
+    border-top: 1px solid #DFE6F6;
+    height: 203px;
+    margin-top: 5px;
+    position: relative;
+    width: 435px;
+}
+.iwbQQFace .qqFaceBox a {
+    border-bottom: 1px solid #DFE6F6;
+    border-right: 1px solid #DFE6F6;
+    display: block;
+    float: left;
+    height: 28px;
+    width: 28px;
+    color: #2B4A78;
+	text-decoration: none;
+}
+.iwbQQFace .qqFacePreview {
+    background: none repeat scroll 0 0 #008AFF;
+    border: 1px solid #DFE6F6;
+    display: none;
+    padding: 1px;
+    position: absolute;
+    top: 0;
+    width: 53px;
+}
+.iwbQQFace .qqFacePreviewImg {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 33px;
+    padding-top: 5px;
+    text-align: center;
+}
+.iwbQQFace .qqFacePreviewText {
+    background: none repeat scroll 0 0 #F1F1F1;
+    color: #999999;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+.iwbAutoCloseLayer .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.close {
+    background: url("mini/b1.gif") no-repeat scroll -232px -84px transparent;
+    height: 15px;
+    width: 15px;
+}
+.icon_home, .icon_at, .icon_loading, .icon_broadcast, .icon_arrowdown, .icon_collect, .icon_school, .icon_book, .icon_mail, .icon_mobile, .icon_real, .icon_vip, .close, .icon_angle, .icon_message, .icon_data, .icon_angledown, .icon_angleleft, .icon_topic, .icon_emotion, .icon_towall, .icon_down, .icon_up, .icon_mes, .icon_pic, .icon_ok, .icon_mess, .icon_note, .icon_error, .icon_living, .icon_lived, .icon_liver, .icon_ask, .icon_answer, .icon_facesetting, .icon_success, .icon_login {
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+.sendbox_mini .sendcontrol .sendbtn {
+    background: url("mini/submit2.gif") repeat scroll 0 0 transparent;
+}
+.sendbox_mini .actionlist div b.biaoqing {
+    background-position: -68px 0;
+}
+/*skin部分的css代码*/
+.sendboxcontainer_mini{
+	
+	margin-left:1px;
+}
+.nobg .sendboxcontainer_mini{
+	background:none;
+	filter:none;
+	border-bottom:none;
+}
+
+.sendbox_mini .actionlist div b{
+	background: url("mini/sendbox_btns.gif") no-repeat;
+}
+.sendbox_mini .actionlist div b.huati{
+	background-position:0 0;
+}
+.sendbox_mini .actionlist div b.zhaopian{
+	background-position: -16px 0;
+}
+.sendbox_mini .actionlist div b.pengyou{
+	background:url(mini/menu_icon.gif) -30px 0 no-repeat;
+}
+.sendbox_mini .actionlist div b.shipin{
+	background-position: -34px 0;
+}
+.sendbox_mini .actionlist div b.yinyue{
+	background-position: -50px 0;
+}
+.sendbox_mini .actionlist div b.biaoqing{
+	background-position: -68px 0;
+}
+.sendbox_mini .sendcontrol{
+	color:#999;
+}
+.sendbox_mini .sendcontrol .sendbtn{
+	background: url(mini/submit2.gif);
+}
+.sendbox_mini .sendcontrol .sendbtn:hover{
+	background-position:0 -27px;
+}
+.sendbox_mini .del{
+	background: url(mini/btns.gif) -133px -37px;
+}
+
+
+
+/*宽度为580px的样式*/
+.sendbox_mini textarea {
+    border: 0 none;
+	border: #c4e2f7 solid 1px;
+    font-size: 12px;
+    height: 65px;
+	padding:6px;
+   
+    outline: medium none;
+    overflow: auto;
+    resize: none;
+    width: 320px; 
+     margin: 0 auto;               /*文本框宽度 设定值-12px 文本框最小宽度不能小于320px*/
+}
+.sendbox_mini {
+    display: inline-block;
+    margin: 10px auto 0;
+    text-align: center;
+  
+}

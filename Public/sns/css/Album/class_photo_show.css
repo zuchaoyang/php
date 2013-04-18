@@ -1,7 +1,9 @@
 @charset "utf-8";
 /* CSS Document */
-.main h4{height:44px; margin:0px 10px 10px; width:920px;}
-	.main h4 a{float:right; margin-top:10px;}
+.main h4{height:35px; margin: 0px; width:940px;}
+	.main h4 a{float:right; margin-top:10px; margin-left:10px; color:#333;font:14px "宋体"}
+.efpClew{width:150px;height:35px;background:url(../../images/Common/sns_images/e_m_02.png) no-repeat 0 14px;float:left;}
+.efpClew a{ width:12px; height:35px; float:right; cursor:hand;}
 
 .publish_main{background:#fff; border:1px #6db500 solid;font:14px "微软雅黑";color:#464646; padding:20px 10px; overflow:hidden;}
 	
@@ -79,8 +81,9 @@
 	
 	
 /*移动照片*/
-.move_photo{background:#fff; border:1px #6db500 solid; border-top:none; width:150px;}
-	.move_photo p{height:150px; overflow:auto; font:14px "宋体";}
+.move_photo{background:#fff; border:1px #6db500 solid; width:150px;}
+	.move_photo div{overflow:auto; text-align:center;line-height:30px; font:14px "宋体"; background:#deeec1;}
+	.move_photo p{overflow:auto; font:14px "宋体";}
 	.move_photo p a{display:block; width:120px; height:30px; line-height:30px; color:#464646; padding-left:10px;}	
 	.move_photo p a span{width:80px; display:inline-block;}	
 		.move_photo p a:hover{background:#deeec1; text-decoration:none;}	

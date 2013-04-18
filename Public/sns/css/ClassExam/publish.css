@@ -105,7 +105,7 @@
 			   .library_right_commmet ul li{background:url(../../images/ClassExam/publish/icon_square.gif) left center no-repeat;height:32px; line-height:32px; border-bottom:1px #e8e7e7 dashed;}
 			   .library_right_commmet ul li a{margin-left:10px; color:#464646; display:inline-block;}
 			   
-			   .library_right_commmet ul li .width_logn{width:540px; display:inline-block; overflow:hidden;}
+			   .library_right_commmet ul li .width_logn{width:520px; display:inline-block; overflow:hidden; float:left;}
 			   .library_right_commmet ul li a:hover{color:#3a8a00;}
 			   
 /*我收藏的评语*/

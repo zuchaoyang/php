@@ -7,8 +7,7 @@
 <title>同步资源</title>
 <link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/upload_style.css" />
 
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/style.css"  />
 
 <link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/js/ui/css/jquery-ui-min.css"  />
 
@@ -30,15 +29,18 @@
 
 <body onload="shownav('{$checked_nav.column_id}');">
 <input type="hidden" id="total_page" value="{$totalpage}"/>
-<div class="box">
-<div class="nav">
-<!--  <iframe width="100%" height="76" scrolling="no" frameborder="0" src="../head.html" style="display:block;"></iframe> -->
-{insert name="publicHeader" class_code = $class_code}
-
+{insert name="sns_header"}
+<div class="tip">
+   <div class="tip_main_resource">
+	    <a href="/Sns/Resource/Resource/synchroresource" class="bjgl_dq">同步资源</a> 
+	    <a href="/Sns/Resource/Resource/qualityresource" >精品资源</a>
+	    <a href="/Sns/Resource/Resource/qualityschool1" >精品网校</a>
+	    <div class="clear"></div>
+   </div> 
+</div>
 
   <div class="cotent">
   <div class="re_left">
-    {insert name="account_left" class_code = $class_code}
   </div>
 	 <!--upload_right start-->
  <div class="upload_right">
@@ -149,9 +151,7 @@
     <div class="clean"></div>
   </div>
 <!-- <iframe width="100%" scrolling="no" frameborder="0" src="footer.html"></iframe> -->
-{include file="Public/footer.html"}
-</div>
-</div>
+{include file="Public/sns_footer.html"}
 <!-- 资源文件上传 -->
 <div class="upload_tcc" id="upload_file_div" style="display:none;">
 	<div style="width:520px;">

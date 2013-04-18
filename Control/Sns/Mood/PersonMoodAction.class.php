@@ -32,14 +32,20 @@ class PersonMoodAction extends SnsController {
      * 显示个人说说列表
      */
     public function mood_list() {
+        $this->display('person_list');
+    }
+    
+    /**
+     * 获取用户发表的说说总数
+     */
+    public function getPersonMoodStatAjax() {
+        $client_account = $this->user['client_account'];
         
-        $client_account = $this->user['client_account']; 
         $mMoodPersonRelation = ClsFactory::Create('Model.Mood.mMoodPersonRelation');
         $stat_list = $mMoodPersonRelation->statPersonMood($client_account);
         $mood_nums = & $stat_list[$client_account];
         
-        $this->assign('mood_nums', $mood_nums);
-        $this->display('person_list');
+        $this->ajaxReturn($mood_nums, '获取成功', 1, 'json');
     }
     
     /**
@@ -61,9 +67,9 @@ class PersonMoodAction extends SnsController {
         if(empty($mood_list)) {
             $this->ajaxReturn(null, '获取失败!', -1, 'json');
         }
+        
         $this->ajaxReturn($mood_list, '获取成功!', 1, 'json');
     }
-    
     
  	/**
      * 发表个人说说
@@ -88,10 +94,19 @@ class PersonMoodAction extends SnsController {
             $this->ajaxReturn(null, '说说发表失败!', -1, 'json');
         }
         
+        import('@.Control.Api.FeedApi');
+        $FeedApi = new FeedApi();
+        $feed_id = $FeedApi->user_create($this->user['client_account'], $mood_id, FEED_MOOD, FEED_ACTION_PUBLISH);
+        
+        $feed_info = $FeedApi->getFeedById($feed_id);
+        
         //获取说说的相关信息
         $mood_info = $MoodApi->getPersonMood($this->user['client_account'], $mood_id);
         
-        $this->ajaxReturn($mood_info, '说说发表成功!', 1, 'json');
+        $result = array('mood_info' => $mood_info,
+                        'feed_info' => $feed_info);
+        
+        $this->ajaxReturn($result, '说说发表成功!', 1, 'json');
     }
     
     /**

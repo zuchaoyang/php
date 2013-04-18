@@ -1,8 +1,9 @@
 @CHARSET "UTF-8";
 
 /*发送框样式 */
+*{margin:0;padding:0}
 .sendboxcontainer {
-    padding: 8px 0 15px;
+    padding:0;
     text-align: center;
     width: 100%;
     background: none repeat scroll 0 0 #ECF5FB;
@@ -158,6 +159,7 @@
     height: 12px;
     overflow: hidden;
     width: 16px;
+    background: url("default/btns.gif") -133px -37px;
 }
 .sendbox .sendcontrol .mainsendboxerror, .sendbox .sendcontrol .mainsendboxsuccess {
     line-height: 32px;
@@ -283,9 +285,7 @@
 .sendbox .sendcontrol .sendbtn:hover{
 	background-position:0 -32px;
 }
-.sendbox .del{
-	background: url("default/btns.gif") -133px -37px;
-}
+
 
 /*宽度为580px的样式*/
 .sendbox textarea {
@@ -303,5 +303,5 @@
 .sendbox {
     display: inline-block;
     margin: 10px auto 0;
-    text-align: left;
+    text-align: center;
 }

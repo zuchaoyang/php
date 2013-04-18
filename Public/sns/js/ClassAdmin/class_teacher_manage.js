@@ -93,11 +93,13 @@ class_teacher_manage.prototype.teacher_add = function() {
 	$("#add_teacher").live('click', function(){
 		var uid = ($(':input:radio:checked',$("#teacher_list")).attr('id').toString().match(/(\d+)/) || [])[1];
 		var is_can_add = self.checked_is_add(self.selected_subject_id);
-		if(!!is_can_add.result) {
+		if(is_can_add.result == false) {
 			var windowWidth = document.documentElement.clientWidth;   
 		    var windowHeight = document.documentElement.clientHeight;   
 		    var popupHeight = $("#del_teacher_tip").height();   
 		    var popupWidth = $("#del_teacher_tip").width();  
+		    var subject_name= $("#subject_id_" + self.selected_subject_id, $("#subject_list")).html();
+		    $("p:eq(1)", $("#teacher_selected_repeat")).html(subject_name + "课老师已存在&nbsp;请重新选择");
 			$("#teacher_selected_repeat").css({
 				'z-index':200,
 				"position":"absolute",
@@ -132,8 +134,11 @@ class_teacher_manage.prototype.teacher_select = function(){
 class_teacher_manage.prototype.checked_is_add = function(subject_id){
 	var context = $("#teacher_select_list");
 	var con = $("#selected_subject_" + subject_id, context).html();
-	
-	return {'result':!$.isEmptyObject(con)};
+	var result = false;
+	if(con == null)
+		result = true;
+
+	return {'result':result};
 };
 
 class_teacher_manage.prototype.data = function(data,type){

@@ -1,0 +1,154 @@
+ <!--老师名片 star-->
+ {literal}
+  <div id="teacher_info" class="stu_card" style="display:none;">
+    <p class="card_top"></p>
+    <div class="card_center">
+      <div class="card_title"></div>
+      <div class="card_center_main">
+       <dl>
+         <dt><img class="photo_width60" src="{teacher_info.header_pic}"></dt>
+       </dl>
+       <div class="stu_info">
+         <strong>{teacher_info.client_name}</strong>
+         <p>{teacher_info.school_address}</p>
+         <p>活跃值：{teacher_info.active_value}</p>
+         <p>
+         	{if teacher_info.is_self == false}
+         	<input type="button" value="" id="private_msg_{teacher_info.client_account}" class="gt_btn">
+         	{if teacher_info.is_friend == false}
+         		<input type="button" id="client_account_{teacher_info.client_account}" value="" class="add_btn">
+         	{/if}
+         	<input id="client_name_{teacher_info.client_account}" type="hidden" value="{teacher_info.client_name}"/>
+         	{/if}
+        </p>
+       </div>
+       <div class="clear"></div>
+      </div>
+    </div>
+    <p class="card_bottom"></p>
+  </div>
+  {/literal}
+ <!--老师名片 end-->
+ 
+ <!--学生名片 star-->
+ {literal}
+  <div id="student_info" class="stu_card" style="display:none;">
+    <p class="card_top"></p>
+    <div class="card_center">
+      <div class="card_title stu_card_title"></div>
+      <!--card_center_main star-->
+      <div class="card_center_main">
+      <dl>
+        <dt><img class="photo_width60" src="{student_info.header_pic}"></dt>
+        <dt class="xsmp_jlq">
+        	{if student_info.is_self == false}
+        	{if student_info.is_friend == false}
+          	<input type="button" value="" id="client_account_{student_info.client_account}" title="加好友" class="jhy  add_friend">{/if}<input type="button" value="" id="private_msg_{student_info.client_account}" class="sx" title="发私信">
+          	<input id="client_name_{student_info.client_account}" type="hidden" value="{student_info.client_name}"/>
+          	{/if}
+        </dt>
+      </dl>
+      <div class="stu_info">
+        <strong>{student_info.client_name}</strong>
+        <p>{student_info.school_address}</p>
+        <p>活跃值：{student_info.active_value}</p>
+      </div>
+      <div class="clear"></div>
+      <div class="stu_main">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><p id="child_father">{student_info.client_name}的父亲</p></td>
+            <td><p id="child_mather">{student_info.client_name}的母亲</p></td>
+          </tr>
+          <tr>
+            <td id="father_name">{student_info.father_name}</td>
+            <td id="mather_name">{student_info.mather_name}</td>
+          </tr>
+          <tr>
+            <td>
+            	{if student_info.is_father_self == false}
+            	<input type="button" value="" id="private_msg_{student_info.father_account}" class="gt_btn mr3">{if student_info.is_father_friend == false}<input type="button" value="" id="client_account_{student_info.father_account}" class="add_btn  add_friend">{/if}
+            	<input id="client_name_{student_info.father_account}" type="hidden" value="{student_info.father_name}"/>
+            	{/if}
+            </td>
+            <td>
+            	{if student_info.is_mather_self == false}
+            	<input type="button" value="" id="private_msg_{student_info.mather_account}" class="gt_btn mr3">{if student_info.is_mather_friend == false}<input type="button" value="" id="client_account_{student_info.mather_account}" class="add_btn  add_friend">{/if}
+            	<input id="client_name_{student_info.mather_account}" type="hidden" value="{student_info.mather_name}"/>
+            	{/if}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="clear"></div>
+      </div>
+      <!--card_center_main end-->
+    </div>
+    <p class="card_bottom"></p>
+  </div>
+  {/literal}
+ <!--学生名片 end-->
+ 
+ <!--添加好友 star-->
+ <div class="edit_comment" id="add_frient_div"  style="display:none;">
+   <h1 class="tcc_title">向<span></span>发送好友请求</h1>
+   <p class="textarea_main">
+    <textarea id="add_friend_textarea"></textarea>
+   </p>
+ </div>
+ <!--添加好友 end-->
+ 
+ 
+ <!--添加私信 star-->
+ <div class="edit_comment" id="add_privatemsg_div"  style="display:none;">
+   <h1 class="tcc_title">向<span></span>发送私信</h1>
+   <p class="textarea_main">
+    <textarea id="add_privatemsg_textarea"></textarea>
+   </p>
+ </div>
+ <!--添加私信 end-->
+ 
+ <!--提示信息弹出层 star-->
+  <div class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_warn"></span></dt>
+      </dl>
+      <p>
+       	请您输入附加信息。
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="qd_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+     <div class="msg_center_main">
+      <dl>
+       <dt><span class="icon_right"></span></dt>
+      </dl>
+      <p>
+       您的好友添加请求已经发送成功，正在等待对方确认。
+      </p>
+      <div class="clear"></div>
+     </div>
+     <p class="tcc_btn_right"><input type="button" class="orange_btn"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+ 
+ <!--保存成功 star-->
+   <div class="success" style="display:none;">
+     <p>保存成功</p>
+   </div>
+ <!--保存成功 end-->
+<!--弹出层 end-->

@@ -1,0 +1,27 @@
+<div id="comment_2nd_unit_div" class="comment_2nd_unit_selector" style="display:none;">
+	{literal}
+	<table cellpadding="0" cellspacing="0" border="0" class="second_comment" >
+	    <tr>
+	        <td rowspan="2" class="user_tx">
+	            <img data-original="{child_comment.user_info.client_headimg_url}" class="photo_width40" />                    				
+	        </td>
+	        <td colspan="2">
+	            <a href="/Sns/PersonIndex/Index/index/client_account/{child_comment.client_account}" class="f_green">{child_comment.user_info.client_name}</a>
+	            <span>：{child_comment.content}</span>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td class="comment_time">
+	        	<span>{child_comment.add_time_format}</span>
+	        </td>
+	        <td class="comment_btn">
+				<a href="javascript:;" class="reply_btn reply_2nd_simple_selector"></a>
+	        	{if child_comment.can_del}
+	        	<a href="javascript:;" class="comment_2nd_delete_selector">删除</a>
+	        	{/if}
+				
+	        </td>
+	    </tr>                                                       
+	</table>
+	{/literal}
+</div>

@@ -89,6 +89,9 @@
       </dl>
       <div class="list_main_right">
         <p>发给<a href="#">{$val.to_name}</a>{$val.content}</p>
+        {if $val.img_url}
+        <p><a href = "{$val.big_img_url}" target="_blank"><img src="{$val.img_url}"/></a>
+        {/if}
         <p><span class="time_width f12">{$val.add_time}</span></p>
       </div>
       <div class="clear"></div>

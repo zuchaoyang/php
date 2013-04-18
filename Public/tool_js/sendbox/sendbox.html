@@ -1,4 +1,5 @@
-<div class="sendboxcontainer sendbox_selector" style="display:none;">
+<!-- sendbox default -->
+<div id="sendbox_default" class="sendboxcontainer" style="display:none;">
  <div class="sendbox">
 	 <form enctype="multipart/form-data" method="post">
 		<div class="holder">
@@ -25,6 +26,41 @@
 	 	    </div>
 		</div>
 	   <div class="sendcontrol">
+	      <span id="sendmsgtip" class="sendmsg">还能输入<big>{chars}</big>字</span>
+	      <input type="button" id="sendbtn" class="sendbtn">
+       </div>
+    </form>
+  </div>
+</div>
+
+<!-- sendbox mini-->
+<div id="sendbox_mini" class="sendboxcontainer_mini" style="display:none;">
+ <div class="sendbox_mini">
+	 <form enctype="multipart/form-data" method="post">
+		<div class="holder">
+			<div class="holderhighlight"></div>
+			<div class="sendtext">
+				<div class="sendtext1"></div>
+				<textarea placeholder="来，说说你在做什么，想什么" name="content" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" class="iwbFriendControlInput iwbTopicControlInput" id="msgTxt"></textarea>
+				<div class="sendtext2"></div>
+			</div>
+		</div>
+		<div class="actionlist">
+			<div class="emote_selector" style="display:none;">
+				<a onFocus="this.blur();" title="表情" id="biaoqingtxt" data-for="#msgTxt" class="biaoqingtxt iwbEmotesBtn" href="javascript:void(0);">
+					<b class="biaoqing"></b>表情
+				</a>
+				<span title="删除" class="usebtns cancelMusic"></span>
+			</div>
+			
+			<div class="upload_selector" style="display:none;">
+				<a id="zhaopiantxt" class="zhaopiantxt" href="javascript:void(0);" >
+					<b class="zhaopian"></b>
+					照片<input type="file" title="可选择jpg、jpeg、gif、png格式，文件小于2M" name="pic" id="uploadPic" style="position:absolute;filter:alpha(opacity=0);" >
+		        </a>
+	 	    </div>
+		</div>
+	   <div class="sendcontrol" >
 	      <span id="sendmsgtip" class="sendmsg">还能输入<big>{chars}</big>字</span>
 	      <input type="button" id="sendbtn" class="sendbtn">
        </div>

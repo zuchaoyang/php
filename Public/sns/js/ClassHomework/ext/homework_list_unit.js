@@ -128,6 +128,7 @@ homework_list_unit.prototype.delegateEvent=function() {
 					return false;
 				}
 				$.showSuccess(json.info);
+				$("#i_knowd_btn",ancestorObj).show();
 				//成功后删掉该按钮
 				btnObj.parents('a:first').remove();
 			}
@@ -236,10 +237,12 @@ homework_list_unit.prototype.attachEventForUserDefine=function() {
 		$('#status', divObj).sprintfHtml(homework_datas.status);
 		$('#add_time', divObj).sprintfHtml(homework_datas.add_time);
 		$('#client_name', divObj).sprintfHtml(homework_datas.client_name);
+		$('#subject_name',divObj).html(homework_datas.subject_name);
 		//按钮的处理
-		var show_know_btn = (homework_datas.homework_access_list || {}).show_know_btn;
+		var show_know_btn = (homework_datas.homework_access_list || {}).is_show_i_know_btn;
 		if(!show_know_btn) {
 			$('.i_know_btn_selector', divObj).parents('a:first').remove();
+			$("#i_knowd_btn", divObj).show();
 		}
 		//回调函数处理复制后的对象
 		if(typeof options.callback == 'function') {
@@ -259,6 +262,7 @@ homework_list_unit.prototype.attachEventForUserDefine=function() {
 		$('#status', divObj).sprintfHtml(homework_datas.status);
 		$('#add_time', divObj).sprintfHtml(homework_datas.add_time);
 		$('#client_name', divObj).sprintfHtml(homework_datas.client_name);
+		$('#subject_name',divObj).html(homework_datas.subject_name);
 		//按钮的处理
 		var show_know_btn = (homework_datas.homework_access_list || {}).show_know_btn;
 		if(!show_know_btn) {

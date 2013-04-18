@@ -57,19 +57,55 @@ class_mood_show.prototype = {
 		var me = this;
 		//初始化一级评论发送框
 		var mood_id = $('#mood_id').val();
-		$('.pl_textarea', $('#send_1st_mood_div')).publishBySendBox(mood_id, {
-			callback:function(divObj) {
+		var context = $('#send_1st_mood_div');
+		$('.pl_textarea', context).sendBox({
+			panels:'emote',
+			type:'post',
+			url:'/Sns/Mood/Comments/publishMoodCommentsAjax',
+			dataType:'json',
+			data:{
+				mood_id:mood_id,
+				up_id:0
+			},
+			success:function(json) {
+				if(json.status < 0) {
+					$.showError(json.info);
+					return false;
+				}
+				//处理成功后的回调函数
+				var divObj = comment_1st_unit.create(json.data || {});
+				
 				$('#comment_list_div').prepend(divObj);
 				class_mood_show.reflushCommentNum(1);
 			}
 		});
 		
-		//加载评论信息
-		$('#comment_list_div').loadMoodComments(mood_id, {
-			callback:function(num) {
-				class_mood_show.reflushCommentNum(num);
+		//加载图片信息
+		$('#mood_img').each(function() {
+			var data_original = $(this).attr('data-original');
+			if(data_original) {
+				var imgObj = $(this);
+				var img = new Image();
+				img.src = data_original;
+				img.onload = function() {
+					var height = img.height;
+					var width = img.width;
+					if(width > 620) {
+						img.width = 620;
+						img.height = (620 / width) * height;
+					}
+					imgObj.replaceWith($(img));
+				};
 			}
 		});
+		
+		//加载评论信息
+		var options = {
+			callback:function(num) {
+				class_mood_show.reflushCommentNum(num);
+			}	
+		};
+		$('#comment_list_div').loadMoodComments(mood_id, options);
 	}
 };
 

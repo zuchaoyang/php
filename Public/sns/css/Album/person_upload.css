@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+.main h4{background:url(../../images/Album/person_upload/h4_bj.jpg) 0 0 no-repeat; height:44px; margin:10px; width:920px;}
+	.main h4 a{float:right; margin-top:10px;}
+	.main h4 span{ font:normal 14px/24px "微软雅黑";}
+
+.publish_main{background:#fff; border-left:1px #6db500 solid;border-right:1px #6db500 solid; border-top:1px #6db500 solid;font:14px "微软雅黑";color:#464646; padding:20px 20px 0px;}
+	.publish_main h3{height:22px; background:#deeec1; font:14px "微软雅黑"; color:#464646; padding:4px 10px;}
+	
+	.publish_main_tab{padding:10px; overflow:hidden;}
+		.publish_main_tab table th{width:72px; font:normal 14px "微软雅黑"; height:35px;}
+		.volign{vertical-align:top; padding-top:10px;}
+		.publish_main_tab table td{width:810px;}
+		.publish_main_tab table td a{color:#464646; margin-left:10px; display:inline-block;}
+		.publish_main_tab table td a:hover{color:#3a8a00;}
+		.publish_main_tab table td img{margin:10px 10px 10px 0px;}
+		
+		.publish_main_tab table td .select_font{width:210px;padding:3px 0px;}
+		.liulan_text{width:220px; height:26px; border:1px #ccc solid; cursor:pointer; float:left;}
+		
+		
+		
+/*弹出层*/
+	
+/*创建相册*/
+.edit_comment{width:500px;border:1px #6db500 solid; background:#fff;}
+	.tcc_title{font:14px "微软雅黑"; background:#f8f8f8; border-bottom:1px #e9e9e9 solid; padding:0px 10px; height:33px; line-height:33px; width:480px; position:relative;}
+	    .close_icon{background:url(../../images/Album/person_upload/icon_close.gif) 0 0 no-repeat;width:10px;height:9px;display:inline-block;position:absolute;right:10px;top:12px;overflow:hidden;}
+	  
+	.edit_comment_tab{padding:10px; font:12px "宋体";}  
+		.edit_comment_tab th{width:62px; text-align:right; color:#464646;font-weight:normal; height:45px;}
+			.align-top{vertical-align:top; padding-top:2px;}
+		.text{width:408px; height:24px; border:1px #e9e9e9 solid; line-height:24px; padding-left:2px;}
+		.textarea{width:410px; height:60px; border:1px #e9e9e9 solid;}
+		.edit_comment_tab td p{text-align:right; line-height:28px; color:#464646; padding-right:10px;}
+		 
+	
+	.msg_btn{padding:6px 10px 0px; height:30px; background:#f2f2f2;}	
+		.msg_btn p{text-align:right;}
+		.green_btn{background:url(../../images/Album/person_upload/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
+		.qx_btn{background:url(../../images/Album/person_upload/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}		
+
+/*上传照片*/
+.sczp{ background:url(../../images/Album/person_upload/tcc_bj02.gif) 0 0 no-repeat; width:370px; height:53px; padding:15px; font:14px/55px "微软雅黑"; color:#333; text-align:center;}
+.sczp a{color:green; margin:0 8px;}		
+
+		
+		
+		
+			

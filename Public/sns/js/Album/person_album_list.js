@@ -26,6 +26,10 @@ albumlist.prototype.attachEvent = function(){
 		var parentObj = $(this).parents("div:first");
 		//打开创建弹出层
 		$('#create_album_div').trigger('openEvent', [{
+			add_post_url:'/Sns/Album/Personalbum/createAlbum',//添加相册路径
+			get_grant_url:'/Sns/Album/Personalbum/getGrantList',//获取相册权限路径
+			get_album_url:'/Sns/Album/Personalbum/getAlbum/client_account/'+me.client_account,
+			add_form_info:{client_account:me.client_account},
 			client_account:me.client_account,
 			callback:function(album_list) {
 				me.fillAlbum(album_list);
@@ -76,6 +80,10 @@ albumlist.prototype.delegateEvent=function() {
 		var album_datas = ancestorOb.data('datas') || {};
 		var album_id = album_datas.album_id;
 		$('#edit_album_div').trigger('openEvent',[{
+			upd_post_url:'/Sns/Album/Personalbum/updAlbum',//添加相册路径
+			get_grant_url:'/Sns/Album/Personalbum/getGrantList',//获取相册权限路径
+			get_album_url:'/Sns/Album/Personalbum/getAlbum/client_account/'+me.client_account+'/album_id/'+album_id,
+			add_form_info:{client_account:me.client_account,album_id:album_id},
 			client_account:me.client_account,
 			album_id:album_id,
 			callback:function(datas) {
@@ -112,7 +120,7 @@ albumlist.prototype.deleteAlbum=function(obj) {
 	$.ajax({
 		type:"get",
 		dataType:"json",
-		url:"/Api/Album/delAlbumByPerson/client_account/" + me.client_account + "/album_id/" + album_id,
+		url:"/Sns/Album/Personalbum/delAlbum/client_account/" + me.client_account + "/album_id/" + album_id,
 		async:false,
 		success:function(json) {
 			if(json.status < 0) {
@@ -139,7 +147,7 @@ albumlist.prototype.loadMoreAlbum=function(options) {
 	var is_success = true;
 	$.ajax({
 		type:"get",
-		url:"/Api/Album/getListByPerson/client_account/" + me.client_account + serilize_params,
+		url:"/Sns/Album/Personalbum/loadMoreAlbum/client_account/" + me.client_account + serilize_params,
 		dataType:"json",
 		async:false,
 		success:function(json) {

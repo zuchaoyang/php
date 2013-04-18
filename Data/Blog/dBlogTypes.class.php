@@ -29,6 +29,7 @@ class dBlogTypes extends dBase {
     }
     
     public function modifyBlogTypes($type_datas, $type_id) {
+
         return $this->modify($type_datas, $type_id);
     }
     

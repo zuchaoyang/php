@@ -18,7 +18,7 @@ notice_refer.prototype.attachEventUserDefine=function() {
 				follow:options.follow || {},
 				content:divObj.get(0),
 				init:function() {
-					me.loadNoticeAccepters(notice_datas.notice_id || 0);
+					me.loadNoticeAccepters(notice_datas.notice_id || 0,notice_datas.class_code);
 				}
 			});
 		},
@@ -32,14 +32,14 @@ notice_refer.prototype.attachEventUserDefine=function() {
 	});
 };
 //加载班级的接受对象相关的数据
-notice_refer.prototype.loadNoticeAccepters=function(notice_id) {
+notice_refer.prototype.loadNoticeAccepters=function(notice_id,class_code) {
 	var me = this;
 	var cache_datas = me.accepters_cache[notice_id] || {};
 	if($.isEmptyObject(cache_datas) && notice_id) {
 		$.ajax({
 			type:'post',
 			url:'/Sns/ClassNotice/Published/getNoticeAcceptersAjax',
-			data:{'notice_id':notice_id},
+			data:{'notice_id':notice_id,'class_code':class_code},
 			dataType:'json',
 			async:false,
 			success:function(json) {

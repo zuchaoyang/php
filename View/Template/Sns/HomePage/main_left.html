@@ -1,0 +1,39 @@
+<div class="jh_main_left">
+   	<!--头像 star-->
+<div class="jh_m_l_tx">
+   	<a href="#" ><img src="{$user_info.client_headimg_url}" width="160" height="160" /></a>
+       <h4>{$user_info.client_name}</h4> 
+   </div>
+   <!--头像 end-->
+
+<!-- 班级功能模块列表 star-->
+<div class="bj_gn_list">
+	<div class="bj_mc_list" id="show_class_list">
+    	<span class="bj_dqmc">{$user_info.class_info[$class_code].class_name}</span>
+        <a href="#" class="bj_list_btn"></a>                    
+    </div>
+    <div class="bj_gn_list_border">
+        	<a href="/Sns/ClassNotice/Publish/index/class_code/{$class_code}" class="gg">发布公告</a>
+            <a href="/Sns/ClassHomework/Publish/index/class_code/{$class_code}" class="zy">布置作业</a>
+            <a href="/Sns/ClassExam/Publish/index/class_code/{$class_code}" class="cj">发布成绩</a>
+            <a href="/Sns/Resource/Resource/upload_resource" class="sczy" target="_blank">上传资源</a> 
+    </div>
+    
+    <div class="gr_gn_list_border">
+    	<a href="#" class="ss">个人说说</a>
+        <a href="/Sns/Blog/PersonList/index/client_account/{$user_info.client_account}" class="rz">个人日志</a><a href="/Sns/Blog/PersonPublish/index" class="fb">发表</a>
+        <a href="/Sns/Album/Person/albumlist/client_account/{$user_info.client_account}" class="xc">个人相册</a><a href="/Sns/Album/Person/uplaodPhoto/client_account/{$user_info.client_account}" class="sc">上传</a>
+    </div>
+    
+    <div class="zh_gn_list_border">
+    	<a href="/Oa/Index/index" class="jzbg" target="_blank">集中办公平台</a>
+        <a href="http://zuoye.wmw.cn" class="zycp" target="_blank">作业评测系统</a>
+        <a href="http://www.zscy.cn" class="cyzz" target="_blank">雏鹰争章</a>
+        <a href="http://www.wm616.cn" class="lydh" target="_blank">乐优导航</a>
+    </div>
+
+</div>
+
+<!-- 班级功能模块列表 end-->
+
+</div>

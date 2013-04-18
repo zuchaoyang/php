@@ -6,6 +6,7 @@ class dBlogClassRelation extends dBase {
         'id',
         'class_code',
         'blog_id',
+    	'grant',
     );
     
     protected $_index_list = array(
@@ -45,11 +46,11 @@ class dBlogClassRelation extends dBase {
         $offset = max(intval($offset), 0);
         $limit = $limit > 0 ? $limit : 10;
         
-        $selectsql = "select a.class_code,b.* from wmw_blog_class_relation a inner join wmw_blog b on a.blog_id=b.blog_id";
+        $selectsql = "select a.class_code,a.grant,b.* from wmw_blog_class_relation a inner join wmw_blog b on a.blog_id=b.blog_id";
         $wheresql = "where " . implode(" and ", $wherearr);
         $orderbysql = !empty($orderby) ? "order by b.{$orderby}" : '';
         $limitsql = "limit $offset,$limit";
-
+        //dump("$selectsql $wheresql $orderbysql $limitsql");exit;
         $class_blog_arr = $this->query("$selectsql $wheresql $orderbysql $limitsql");
         
         //数组重组

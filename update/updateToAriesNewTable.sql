@@ -4,112 +4,87 @@
 DROP TABLE IF EXISTS `wmw_album`;
 CREATE TABLE IF NOT EXISTS `wmw_album` (
   `album_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `album_name` varchar(30) NOT NULL COMMENT '°à¼¶Ïà²áÃû³Æ',
-  `album_explain` varchar(200) NOT NULL COMMENT '¶ÔÏà²á½øĞĞÃèÊö(²»³¬¹ı60×Ö)',
-  `album_img` varchar(50) NOT NULL COMMENT 'Ïà²á·âÃæÍ¼Æ¬',
-  `add_account` bigint(20) unsigned NOT NULL COMMENT 'Ìí¼ÓĞÅÏ¢ÈËµÄÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓĞÅÏ¢µÄÊ±¼ä',
-  `upd_account` bigint(20) unsigned NOT NULL COMMENT 'ĞŞ¸ÄĞÅÏ¢ÈËµÄÕËºÅ',
-  `upd_time` int(10) unsigned NOT NULL COMMENT 'ĞŞ¸ÄĞÅÏ¢µÄÊ±¼ä',
-  `album_auto_img` varchar(50) NOT NULL COMMENT 'ÏµÍ³Ïà²á·âÃæ',
-  `photo_num` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'ÏàÆ¬Êı',
+  `album_name` varchar(30) NOT NULL COMMENT 'ç­çº§ç›¸å†Œåç§°',
+  `album_explain` varchar(200) NOT NULL COMMENT 'å¯¹ç›¸å†Œè¿›è¡Œæè¿°(ä¸è¶…è¿‡60å­—)',
+  `album_img` varchar(50) NOT NULL COMMENT 'ç›¸å†Œå°é¢å›¾ç‰‡',
+  `add_account` bigint(20) unsigned NOT NULL COMMENT 'æ·»åŠ ä¿¡æ¯äººçš„è´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ ä¿¡æ¯çš„æ—¶é—´',
+  `upd_account` bigint(20) unsigned NOT NULL COMMENT 'ä¿®æ”¹ä¿¡æ¯äººçš„è´¦å·',
+  `upd_time` int(10) unsigned NOT NULL COMMENT 'ä¿®æ”¹ä¿¡æ¯çš„æ—¶é—´',
+  `album_auto_img` varchar(50) NOT NULL COMMENT 'ç³»ç»Ÿç›¸å†Œå°é¢',
+  `photo_num` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'ç›¸ç‰‡æ•°',
   PRIMARY KEY (`album_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Ïà²áĞÅÏ¢±í' AUTO_INCREMENT=16 ;
-
--- ----------------------------
--- Table structure for `wmw_album_class_grants`
--- ----------------------------
-DROP TABLE IF EXISTS `wmw_album_class_grants`;
-CREATE TABLE `wmw_album_class_grants` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `class_code` bigint(20) unsigned NOT NULL COMMENT '°à¼¶code',
-  `album_id` int(10) unsigned NOT NULL COMMENT 'Ïà²áid',
-  `grant` tinyint(1) unsigned NOT NULL COMMENT 'Ïà²á²é¿´È¨ÏŞ£¬0:¹«¿ª 1:±¾°à 2:¹ÜÀíÔ± 3:±¾Ñ§Ğ£',
-  PRIMARY KEY (`id`),
-  KEY `class_code` (`class_code`),
-  KEY `album_id` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='°à¼¶Ïà²áÈ¨ÏŞ±í';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='ç›¸å†Œä¿¡æ¯è¡¨' AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_album_class_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_album_class_relation`;
-CREATE TABLE `wmw_album_class_relation` (
+
+CREATE TABLE IF NOT EXISTS `wmw_album_class_relation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `class_code` int(20) unsigned NOT NULL COMMENT '°à¼¶±àºÅ',
-  `album_id` int(11) unsigned NOT NULL COMMENT 'Ïà²áid',
+  `class_code` int(20) unsigned NOT NULL COMMENT 'ç­çº§ç¼–å·',
+  `album_id` int(11) unsigned NOT NULL COMMENT 'ç›¸å†Œid',
+  `grant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'ç›¸å†ŒæŸ¥çœ‹æƒé™ï¼Œ0:å…¬å¼€ 1:æœ¬ç­ 2:ç®¡ç†å‘˜ 3:æœ¬å­¦æ ¡',
   PRIMARY KEY (`id`),
   KEY `class_code` (`class_code`),
   KEY `album_id` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='°à¼¶ÓëÏà²á¹ØÏµ±í';
-
--- ----------------------------
--- Table structure for `wmw_album_person_grants`
--- ----------------------------
-DROP TABLE IF EXISTS `wmw_album_person_grants`;
-CREATE TABLE `wmw_album_person_grants` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `album_id` int(10) unsigned NOT NULL COMMENT 'Ïà²áid',
-  `grant` tinyint(3) unsigned NOT NULL COMMENT 'Ïà²á²é¿´È¨ÏŞ£¬0:¹«¿ª 1:ºÃÓÑ 2:½öÖ÷ÈË',
-  PRIMARY KEY (`id`),
-  KEY `client_account` (`client_account`),
-  KEY `album_id` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='¸öÈËÏà²áÈ¨ÏŞ±í';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='ç­çº§ä¸ç›¸å†Œå…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_album_person_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_album_person_relation`;
-CREATE TABLE `wmw_album_person_relation` (
+CREATE TABLE IF NOT EXISTS `wmw_album_person_relation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `album_id` int(11) unsigned NOT NULL COMMENT 'Ïà²áid',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·è´¦å·',
+  `album_id` int(11) unsigned NOT NULL COMMENT 'ç›¸å†Œid',
+  `grant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'ç›¸å†ŒæŸ¥çœ‹æƒé™ï¼Œ0:å…¬å¼€ 1:å¥½å‹ 2:ä»…ä¸»äºº',
   PRIMARY KEY (`id`),
   KEY `client_account` (`client_account`),
   KEY `album_id` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=ucs2 COMMENT='¸öÈËÓëÏà²á¹ØÏµ±í';
+) ENGINE=InnoDB DEFAULT CHARSET=ucs2 COMMENT='ä¸ªäººä¸ç›¸å†Œå…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_album_photo_comments`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_album_photo_comments`;
 CREATE TABLE `wmw_album_photo_comments` (
-  `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Ö÷¼ü£¬×ÔÔö',
-  `up_id` int(10) unsigned NOT NULL COMMENT '¶ÔÕÕÆ¬µÄÆÀÂÛÄÚÈİidÆÀÂÛ »òÕß ¶ÔÏàÆ¬µÄÆÀÂÛµÄÆÀÂÛ',
-  `photo_id` int(10) unsigned NOT NULL COMMENT 'ÕÕÆ¬id',
-  `content` varchar(255) NOT NULL COMMENT '¶ÔÕÕÆ¬µÄÆÀÂÛÄÚÈİ',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÆÀÂÛÈËÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
-  `level` tinyint(3) unsigned NOT NULL COMMENT 'Ö»Ö§³ÖÁ½¼¶ 1£¬2 1:¶ÔÕÕÆ¬µÄÆÀÂÛ2:¶ÔÕÕÆ¬ÆÀÂÛµÄÆÀ',
+  `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é”®ï¼Œè‡ªå¢',
+  `up_id` int(10) unsigned NOT NULL COMMENT 'å¯¹ç…§ç‰‡çš„è¯„è®ºå†…å®¹idè¯„è®º æˆ–è€… å¯¹ç›¸ç‰‡çš„è¯„è®ºçš„è¯„è®º',
+  `photo_id` int(10) unsigned NOT NULL COMMENT 'ç…§ç‰‡id',
+  `content` varchar(255) NOT NULL COMMENT 'å¯¹ç…§ç‰‡çš„è¯„è®ºå†…å®¹',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'è¯„è®ºäººè´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `level` tinyint(3) unsigned NOT NULL COMMENT 'åªæ”¯æŒä¸¤çº§ 1ï¼Œ2 1:å¯¹ç…§ç‰‡çš„è¯„è®º2:å¯¹ç…§ç‰‡è¯„è®ºçš„è¯„',
   PRIMARY KEY (`comment_id`),
   KEY `photo_id` (`photo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ÕÕÆ¬ÆÀÂÛ±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ç…§ç‰‡è¯„è®ºè¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_album_photos`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_album_photos`;
 CREATE TABLE `wmw_album_photos` (
-  `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ÕÕÆ¬id',
-  `album_id` int(10) unsigned NOT NULL COMMENT 'ÕÕÆ¬ËùÊôÏà²á',
-  `name` varchar(50) NOT NULL COMMENT 'ÕÕÆ¬Ãû³Æ',
-  `file_big` varchar(50) NOT NULL COMMENT 'ÕÕÆ¬Á´½ÓµØÖ·',
-  `file_middle` varchar(50) NOT NULL COMMENT 'ÕÕÆ¬ËõÂÔÍ¼',
+  `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç…§ç‰‡id',
+  `album_id` int(10) unsigned NOT NULL COMMENT 'ç…§ç‰‡æ‰€å±ç›¸å†Œ',
+  `name` varchar(50) NOT NULL COMMENT 'ç…§ç‰‡åç§°',
+  `file_big` varchar(50) NOT NULL COMMENT 'ç…§ç‰‡é“¾æ¥åœ°å€',
+  `file_middle` varchar(50) NOT NULL COMMENT 'ç…§ç‰‡ç¼©ç•¥å›¾',
   `file_small` varchar(50) NOT NULL,
-  `description` varchar(255) NOT NULL COMMENT 'ÕÕÆ¬ÃèÊö',
-  `comments` mediumint(9) unsigned NOT NULL COMMENT 'ÕÕÆ¬ÆÀÂÛ×ÜÊı',
-  `upd_account` bigint(20) unsigned NOT NULL COMMENT '×îºó¸üĞÂÈËÕËºÅ',
-  `upd_time` int(11) unsigned NOT NULL COMMENT '×îºó¸üĞÂÊ±¼ä',
+  `description` varchar(255) NOT NULL COMMENT 'ç…§ç‰‡æè¿°',
+  `comments` mediumint(9) unsigned NOT NULL COMMENT 'ç…§ç‰‡è¯„è®ºæ€»æ•°',
+  `upd_account` bigint(20) unsigned NOT NULL COMMENT 'æœ€åæ›´æ–°äººè´¦å·',
+  `upd_time` int(11) unsigned NOT NULL COMMENT 'æœ€åæ›´æ–°æ—¶é—´',
   PRIMARY KEY (`photo_id`),
   KEY `album_id` (`album_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ÕÕÆ¬ĞÅÏ¢±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ç…§ç‰‡ä¿¡æ¯è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_blog`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_blog`;
-CREATE TABLE `wmw_blog` (
+CREATE TABLE IF NOT EXISTS `wmw_blog` (
   `blog_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(60) NOT NULL,
   `type_id` int(11) unsigned NOT NULL,
@@ -119,39 +94,27 @@ CREATE TABLE `wmw_blog` (
   `summary` varchar(255) NOT NULL,
   `comments` mediumint(8) unsigned NOT NULL,
   `add_account` bigint(20) unsigned NOT NULL,
-  `add_time` int(10) unsigned NOT NULL,
+  `add_time` int(11) unsigned NOT NULL,
   `upd_account` bigint(20) unsigned NOT NULL,
-  `upd_time` int(10) unsigned NOT NULL,
+  `upd_time` int(11) unsigned NOT NULL,
+  `first_img` varchar(1024) DEFAULT NULL COMMENT 'ç¬¬ä¸€å¼ å›¾ç‰‡',
   PRIMARY KEY (`blog_id`),
   KEY `fk_add_account` (`add_account`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for `wmw_blog_class_grants`
--- ----------------------------
-DROP TABLE IF EXISTS `wmw_blog_class_grants`;
-CREATE TABLE `wmw_blog_class_grants` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `class_code` int(10) unsigned NOT NULL COMMENT '°à¼¶±àºÅ',
-  `blog_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ID',
-  `grant` tinyint(1) NOT NULL COMMENT 'È¨ÏŞ',
-  PRIMARY KEY (`id`),
-  KEY `blog_id` (`blog_id`),
-  KEY `class_code` (`class_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='°à¼¶ÈÕÖ¾È¨ÏŞ±í';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_blog_class_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_blog_class_relation`;
-CREATE TABLE `wmw_blog_class_relation` (
+CREATE TABLE IF NOT EXISTS `wmw_blog_class_relation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `class_code` int(10) unsigned NOT NULL COMMENT '°à¼¶±àºÅ',
-  `blog_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ID',
+  `class_code` int(10) unsigned NOT NULL COMMENT 'ç­çº§ç¼–å·',
+  `blog_id` int(10) unsigned NOT NULL COMMENT 'æ—¥å¿—ID',
+  `grant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'æƒé™ 0:å…¬å¼€ 1:å¥½å‹ 2:ä»…ä¸»äºº',
   PRIMARY KEY (`id`),
   KEY `class_code` (`class_code`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='°à¼¶ÓëÈÕÖ¾¹ØÏµ±í';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='ç­çº§ä¸æ—¥å¿—å…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_blog_comments`
@@ -159,20 +122,15 @@ CREATE TABLE `wmw_blog_class_relation` (
 DROP TABLE IF EXISTS `wmw_blog_comments`;
 CREATE TABLE `wmw_blog_comments` (
   `comment_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `blog_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ID ',
-  `content` varchar(255) NOT NULL COMMENT '¶ÔÈÕÖ¾µÄÆÀÂÛÄÚÈİ',
-  `up_id` int(10) unsigned NOT NULL COMMENT '¶ÔÈÕÖ¾µÄÆÀÂÛÄÚÈİidÆÀÂÛ »òÕß ¶ÔÈÕÖ¾µÄÆÀÂÛµÄÆÀÂÛ',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÆÀÂÛĞÅÏ¢ÈËµÄÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'ÆÀÂÛĞÅÏ¢Ê±µÄÊ±¼ä',
-  `level` tinyint(1) NOT NULL COMMENT 'Ö»Ö§³ÖÁ½¼¶ 1£¬2 1:¶ÔÕÕÆ¬µÄÆÀÂÛ2:¶ÔÕÕÆ¬ÆÀÂÛµÄÆÀÂÛ',
+  `blog_id` int(10) unsigned NOT NULL COMMENT 'æ—¥å¿—ID ',
+  `content` varchar(255) NOT NULL COMMENT 'å¯¹æ—¥å¿—çš„è¯„è®ºå†…å®¹',
+  `up_id` int(10) unsigned NOT NULL COMMENT 'å¯¹æ—¥å¿—çš„è¯„è®ºå†…å®¹idè¯„è®º æˆ–è€… å¯¹æ—¥å¿—çš„è¯„è®ºçš„è¯„è®º',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'è¯„è®ºä¿¡æ¯äººçš„è´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'è¯„è®ºä¿¡æ¯æ—¶çš„æ—¶é—´',
+  `level` tinyint(1) NOT NULL COMMENT 'åªæ”¯æŒä¸¤çº§ 1ï¼Œ2 1:å¯¹ç…§ç‰‡çš„è¯„è®º2:å¯¹ç…§ç‰‡è¯„è®ºçš„è¯„è®º',
   PRIMARY KEY (`comment_id`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ÈÕÖ¾ÆÀÂÛ±í';
-
--- ----------------------------
--- Records of wmw_blog_comments
--- ----------------------------
-INSERT INTO `wmw_blog_comments` VALUES ('1', '64', '123', '0', '11070004', '0', '0');
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='æ—¥å¿—è¯„è®ºè¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_blog_content`
@@ -185,32 +143,19 @@ CREATE TABLE `wmw_blog_content` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for `wmw_blog_person_grants`
--- ----------------------------
-DROP TABLE IF EXISTS `wmw_blog_person_grants`;
-CREATE TABLE `wmw_blog_person_grants` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `blog_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ID',
-  `grant` tinyint(1) NOT NULL COMMENT 'È¨ÏŞ',
-  PRIMARY KEY (`id`),
-  KEY `blog_id` (`blog_id`),
-  KEY `client_account` (`client_account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¸öÈËÈÕÖ¾È¨ÏŞ±í';
-
-
--- ----------------------------
 -- Table structure for `wmw_blog_person_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_blog_person_relation`;
-CREATE TABLE `wmw_blog_person_relation` (
+
+CREATE TABLE IF NOT EXISTS `wmw_blog_person_relation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `blog_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ID',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·è´¦å·',
+  `blog_id` int(10) unsigned NOT NULL COMMENT 'æ—¥å¿—ID',
+  `grant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0:å…¬å¼€ 1:æœ¬ç­ 2:æœ¬å­¦æ ¡',
   PRIMARY KEY (`id`),
   KEY `client_account` (`client_account`),
   KEY `blog_id` (`blog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¸öÈËÓëÈÕÖ¾¹ØÏµ±í';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='ä¸ªäººä¸æ—¥å¿—å…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 
 -- ----------------------------
@@ -219,7 +164,7 @@ CREATE TABLE `wmw_blog_person_relation` (
 DROP TABLE IF EXISTS `wmw_blog_types`;
 CREATE TABLE `wmw_blog_types` (
   `type_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
+  `name` varchar(12) NOT NULL,
   `add_account` bigint(20) unsigned NOT NULL,
   `add_time` int(11) unsigned NOT NULL,
   PRIMARY KEY (`type_id`)
@@ -231,12 +176,12 @@ CREATE TABLE `wmw_blog_types` (
 DROP TABLE IF EXISTS `wmw_blog_types_class_relation`;
 CREATE TABLE `wmw_blog_types_class_relation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `class_code` int(10) unsigned NOT NULL COMMENT '°à¼¶±àºÅ',
-  `type_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ÀàĞÍID',
+  `class_code` int(10) unsigned NOT NULL COMMENT 'ç­çº§ç¼–å·',
+  `type_id` int(10) unsigned NOT NULL COMMENT 'æ—¥å¿—ç±»å‹ID',
   PRIMARY KEY (`id`),
   KEY `class_code` (`class_code`),
   KEY `blog_id` (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='°à¼¶ÓëÈÕÖ¾¹ØÏµ±í';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='ç­çº§ä¸æ—¥å¿—å…³ç³»è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_blog_types_person_relation`
@@ -244,23 +189,23 @@ CREATE TABLE `wmw_blog_types_class_relation` (
 DROP TABLE IF EXISTS `wmw_blog_types_person_relation`;
 CREATE TABLE `wmw_blog_types_person_relation` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `type_id` int(10) unsigned NOT NULL COMMENT 'ÈÕÖ¾ÀàĞÍID',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·è´¦å·',
+  `type_id` int(10) unsigned NOT NULL COMMENT 'æ—¥å¿—ç±»å‹ID',
   PRIMARY KEY (`id`),
   KEY `client_account` (`client_account`),
   KEY `blog_id` (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¸öÈËÓëÈÕÖ¾¹ØÏµ±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ä¸ªäººä¸æ—¥å¿—å…³ç³»è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_checkin`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_checkin`;
 CREATE TABLE `wmw_checkin` (
-  `checkin_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Ç©µ½ID£¬Ö÷¼ü×ÔÔö',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'Ç©µ½ÓÃ»§ÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
+  `checkin_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç­¾åˆ°IDï¼Œä¸»é”®è‡ªå¢',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç­¾åˆ°ç”¨æˆ·è´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
   PRIMARY KEY (`checkin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ç©µ½±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç­¾åˆ°è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_class_course`
@@ -297,16 +242,16 @@ DROP TABLE IF EXISTS `wmw_class_course_skin`;
 CREATE TABLE `wmw_class_course_skin` (
   `skin_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
-  `url` varchar(20) NOT NULL COMMENT '¿Î³Ì±íÆ¤·ô',
-  `small_img` varchar(20) DEFAULT NULL COMMENT '¿Î³Ì±íÆ¤·ôĞ¡Í¼',
+  `url` varchar(20) NOT NULL COMMENT 'è¯¾ç¨‹è¡¨çš®è‚¤',
+  `small_img` varchar(20) DEFAULT NULL COMMENT 'è¯¾ç¨‹è¡¨çš®è‚¤å°å›¾',
   PRIMARY KEY (`skin_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
 INSERT INTO `wmw_class_course_skin` (`skin_id`, `name`, `url`, `small_img`) VALUES
-(1, 'Ä£°åÒ»', 'course_bj1.jpg', 'icon_pic01.jpg'),
-(2, 'Ä£°å¶ş', 'course_bj2.jpg', 'icon_pic02.jpg'),
-(3, 'Ä£°åÈı', 'course_bj3.jpg', 'icon_pic03.jpg'),
-(4, 'Ä£°åËÄ', 'course_bj4.jpg', 'icon_pic04.jpg');
+(1, 'æ¨¡æ¿ä¸€', 'course_bj1.jpg', 'icon_pic01.jpg'),
+(2, 'æ¨¡æ¿äºŒ', 'course_bj2.jpg', 'icon_pic02.jpg'),
+(3, 'æ¨¡æ¿ä¸‰', 'course_bj3.jpg', 'icon_pic03.jpg'),
+(4, 'æ¨¡æ¿å››', 'course_bj4.jpg', 'icon_pic04.jpg');
 
 -- ----------------------------
 -- Table structure for `wmw_class_exam`
@@ -325,8 +270,8 @@ CREATE TABLE `wmw_class_exam` (
   `exam_good` float unsigned NOT NULL,
   `exam_bad` float unsigned NOT NULL,
   `exam_well` float unsigned NOT NULL,
-  `is_published` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'ÊÇ·ñ·¢²¼ 0£º²İ¸å 1£º·¢²¼',
-  `is_sms` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '·ñÊÇ·¢¶ÌĞÅ 0£º²»·¢ËÍ 1£º·¢ËÍ',
+  `is_published` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'æ˜¯å¦å‘å¸ƒ 0ï¼šè‰ç¨¿ 1ï¼šå‘å¸ƒ',
+  `is_sms` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'å¦æ˜¯å‘çŸ­ä¿¡ 0ï¼šä¸å‘é€ 1ï¼šå‘é€',
   PRIMARY KEY (`exam_id`),
   KEY `class_code` (`class_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
@@ -420,8 +365,8 @@ CREATE TABLE `wmw_class_notice_foot` (
 DROP TABLE IF EXISTS `wmw_client_active`;
 CREATE TABLE `wmw_client_active` (
   `active_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `value` mediumint(8) unsigned NOT NULL COMMENT 'ÓÃ»§×Ü»îÔ¾Öµ',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·è´¦å·',
+  `value` mediumint(8) unsigned NOT NULL COMMENT 'ç”¨æˆ·æ€»æ´»è·ƒå€¼',
   PRIMARY KEY (`active_id`),
   UNIQUE KEY `client_account` (`client_account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
@@ -432,10 +377,10 @@ CREATE TABLE `wmw_client_active` (
 DROP TABLE IF EXISTS `wmw_client_active_log`;
 CREATE TABLE `wmw_client_active_log` (
   `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÕËºÅ',
-  `value` mediumint(8) unsigned NOT NULL COMMENT '±¾´ÎËùµÃ»îÔ¾Öµ',
-  `message` varchar(255) NOT NULL COMMENT '»îÔ¾ËµÃ÷',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'è´¦å·',
+  `value` mediumint(8) unsigned NOT NULL COMMENT 'æœ¬æ¬¡æ‰€å¾—æ´»è·ƒå€¼',
+  `message` varchar(255) NOT NULL COMMENT 'æ´»è·ƒè¯´æ˜',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
   `module` smallint(4) NOT NULL,
   `action` tinyint(4) NOT NULL,
   PRIMARY KEY (`log_id`),
@@ -447,42 +392,43 @@ CREATE TABLE `wmw_client_active_log` (
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_feed`;
 CREATE TABLE IF NOT EXISTS `wmw_feed` (
-  `feed_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Ö÷¼ü£¬×ÔÔö',
-  `feed_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1£ºËµËµ 2£ºÈÕÖ¾  3£ºÏà²á',
-  `title` varchar(50) NOT NULL COMMENT '¶¯Ì¬±êÌâ',
-  `add_account` bigint(20) unsigned NOT NULL COMMENT 'Ìí¼ÓÈË',
-  `timeline` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
-  `feed_content` varchar(255) NOT NULL COMMENT '¶¯Ì¬ÄÚÈİ',
-  `img_url` varchar(255) NOT NULL COMMENT '¶¯Ì¬ÖĞÉæ¼°µ½µÃÍ¼Æ¬µÄurl',
-  `from_id` int(10) unsigned NOT NULL COMMENT 'À´Ô´id',
-  `action` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '¶¯×÷ 1:·¢²¼ 2£ºÆÀÂÛ',
+  `feed_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é”®ï¼Œè‡ªå¢',
+  `feed_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1ï¼šè¯´è¯´ 2ï¼šæ—¥å¿—  3ï¼šç›¸å†Œ',
+  `title` varchar(50) NOT NULL COMMENT 'åŠ¨æ€æ ‡é¢˜',
+  `add_account` bigint(20) unsigned NOT NULL COMMENT 'æ·»åŠ äºº',
+  `timeline` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `feed_content` varchar(255) NOT NULL COMMENT 'åŠ¨æ€å†…å®¹',
+  `img_url` varchar(255) NOT NULL COMMENT 'åŠ¨æ€ä¸­æ¶‰åŠåˆ°å¾—å›¾ç‰‡çš„url',
+  `from_id` int(10) unsigned NOT NULL COMMENT 'æ¥æºid',
+  `from_class_code` int(11) unsigned NOT NULL COMMENT 'æ¥æºç­çº§ é»˜è®¤0 è¡¨ç¤ºä¸ºä¸ªäººï¼Œ > 0 è¡¨ç¤ºä¸ºç­çº§',
+  `action` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT 'åŠ¨ä½œ 1:å‘å¸ƒ 2ï¼šè¯„è®º',
   PRIMARY KEY (`feed_id`),
   KEY `add_account` (`add_account`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='¶¯Ì¬±í' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='åŠ¨æ€è¡¨' AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `wmw_feed_class_relation`;
 CREATE TABLE IF NOT EXISTS `wmw_feed_class_relation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `feed_id` int(11) unsigned NOT NULL COMMENT '¶¯Ì¬ID',
-  `class_code` int(11) unsigned NOT NULL COMMENT '°à¼¶ID',
-  `feed_type` tinyint(1) unsigned NOT NULL COMMENT '¶¯Ì¬ÀàĞÍ',
-  `timeline` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+  `feed_id` int(11) unsigned NOT NULL COMMENT 'åŠ¨æ€ID',
+  `class_code` int(11) unsigned NOT NULL COMMENT 'ç­çº§ID',
+  `feed_type` tinyint(1) unsigned NOT NULL COMMENT 'åŠ¨æ€ç±»å‹',
+  `timeline` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='°à¼¶¶¯Ì¬¹ØÏµ±í' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç­çº§åŠ¨æ€å…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 
 DROP TABLE IF EXISTS `wmw_feed_person_relation`;
 CREATE TABLE IF NOT EXISTS `wmw_feed_person_relation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `feed_id` int(11) unsigned NOT NULL COMMENT '¶¯Ì¬ID',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕÊºÅ',
-  `feed_type` tinyint(1) unsigned NOT NULL COMMENT '¶¯Ì¬ÀàĞÍ',
-  `timeline` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+  `feed_id` int(11) unsigned NOT NULL COMMENT 'åŠ¨æ€ID',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·å¸å·',
+  `feed_type` tinyint(1) unsigned NOT NULL COMMENT 'åŠ¨æ€ç±»å‹',
+  `timeline` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¸öÈË¶¯Ì¬¹ØÏµ±í' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ä¸ªäººåŠ¨æ€å…³ç³»è¡¨' AUTO_INCREMENT=1 ;
 
 --
--- ±íµÄ½á¹¹ `wmw_feed_timeline`
+-- è¡¨çš„ç»“æ„ `wmw_feed_timeline`
 --
 DROP TABLE IF EXISTS `wmw_feed_timeline`;
 CREATE TABLE IF NOT EXISTS `wmw_feed_timeline` (
@@ -491,64 +437,64 @@ CREATE TABLE IF NOT EXISTS `wmw_feed_timeline` (
   `feed_type` tinyint(1) NOT NULL,
   `client_account` bigint(20) unsigned NOT NULL,
   `timeline` int(11) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¶¯Ì¬Ê±¼äÏß±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='åŠ¨æ€æ—¶é—´çº¿è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_mood`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_mood`;
 CREATE TABLE IF NOT EXISTS `wmw_mood` (
-  `mood_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ËµËµID£¬Ö÷¼ü×ÔÔö',
-  `content` varchar(255) NOT NULL COMMENT 'ËµËµÄÚÈİ',
-  `img_url` varchar(255) NOT NULL COMMENT 'ËµËµÍ¼Æ¬£¬Ä¬ÈÏÎª¿Õ´®',
-  `add_account` bigint(20) unsigned NOT NULL COMMENT 'Ìí¼ÓÓÃ»§id',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
+  `mood_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'è¯´è¯´IDï¼Œä¸»é”®è‡ªå¢',
+  `content` varchar(255) NOT NULL COMMENT 'è¯´è¯´å†…å®¹',
+  `img_url` varchar(255) NOT NULL COMMENT 'è¯´è¯´å›¾ç‰‡ï¼Œé»˜è®¤ä¸ºç©ºä¸²',
+  `add_account` bigint(20) unsigned NOT NULL COMMENT 'æ·»åŠ ç”¨æˆ·id',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
   `comments` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`mood_id`),
   KEY `index_add_user` (`add_account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ËµËµ±í' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='è¯´è¯´è¡¨' AUTO_INCREMENT=1 ;
 
 -- ----------------------------
 -- Table structure for `wmw_mood_class_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_mood_class_relation`;
 CREATE TABLE `wmw_mood_class_relation` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID£¬Ö÷¼ü×ÔÔö',
-  `class_code` bigint(20) unsigned NOT NULL COMMENT '°à¼¶±àºÅ',
-  `mood_id` int(11) unsigned NOT NULL COMMENT 'ËµËµID',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'IDï¼Œä¸»é”®è‡ªå¢',
+  `class_code` bigint(20) unsigned NOT NULL COMMENT 'ç­çº§ç¼–å·',
+  `mood_id` int(11) unsigned NOT NULL COMMENT 'è¯´è¯´ID',
   PRIMARY KEY (`id`),
   KEY `index_class_code` (`class_code`),
   KEY `index_mood_id` (`mood_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='°à¼¶ÓëËµËµ¹ØÏµ±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç­çº§ä¸è¯´è¯´å…³ç³»è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_mood_comments`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_mood_comments`;
 CREATE TABLE `wmw_mood_comments` (
-  `comment_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ËµËµÆÀÂÛid£¬Ö÷¼ü×ÔÔö',
-  `up_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ÉÏ¼¶ÆÀÂÛid',
-  `mood_id` int(11) unsigned NOT NULL COMMENT 'ËµËµid',
-  `content` varchar(255) NOT NULL COMMENT 'ÆÀÂÛÄÚÈİ',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÆÀÂÛÈË',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'ÆÀÂÛÊ±¼ä',
-  `level` tinyint(1) unsigned NOT NULL COMMENT 'ÆÀÂÛµÈ¼¶£¬1:¶ÔËµËµµÄÆÀÂÛ2:¶ÔËµËµÆÀÂÛµÄÆÀÂÛ',
+  `comment_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'è¯´è¯´è¯„è®ºidï¼Œä¸»é”®è‡ªå¢',
+  `up_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ä¸Šçº§è¯„è®ºid',
+  `mood_id` int(11) unsigned NOT NULL COMMENT 'è¯´è¯´id',
+  `content` varchar(255) NOT NULL COMMENT 'è¯„è®ºå†…å®¹',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'è¯„è®ºäºº',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'è¯„è®ºæ—¶é—´',
+  `level` tinyint(1) unsigned NOT NULL COMMENT 'è¯„è®ºç­‰çº§ï¼Œ1:å¯¹è¯´è¯´çš„è¯„è®º2:å¯¹è¯´è¯´è¯„è®ºçš„è¯„è®º',
   PRIMARY KEY (`comment_id`),
   KEY `index_mood_id` (`mood_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ËµËµÆÀÂÛ±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='è¯´è¯´è¯„è®ºè¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_mood_person_relation`
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_mood_person_relation`;
 CREATE TABLE `wmw_mood_person_relation` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID£¬Ö÷¼ü×ÔÔö',
-  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ÓÃ»§ÕËºÅ',
-  `mood_id` int(11) unsigned NOT NULL COMMENT 'ËµËµID',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'IDï¼Œä¸»é”®è‡ªå¢',
+  `client_account` bigint(20) unsigned NOT NULL COMMENT 'ç”¨æˆ·è´¦å·',
+  `mood_id` int(11) unsigned NOT NULL COMMENT 'è¯´è¯´ID',
   PRIMARY KEY (`id`),
   KEY `index_client_account` (`client_account`),
   KEY `index_mood_id` (`mood_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¸öÈËÓëËµËµ¹ØÏµ±í';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ä¸ªäººä¸è¯´è¯´å…³ç³»è¡¨';
 
 -- ----------------------------
 -- Table structure for `wmw_msg_require`
@@ -556,10 +502,10 @@ CREATE TABLE `wmw_mood_person_relation` (
 DROP TABLE IF EXISTS `wmw_msg_require`;
 CREATE TABLE `wmw_msg_require` (
   `req_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `content` varchar(100) NOT NULL COMMENT 'ÇëÇóÄÚÈİ',
-  `to_account` bigint(20) unsigned NOT NULL COMMENT '½ÓÊÕÈËÕËºÅ',
-  `add_account` bigint(20) unsigned NOT NULL COMMENT 'ÇëÇóÈËÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
+  `content` varchar(100) NOT NULL COMMENT 'è¯·æ±‚å†…å®¹',
+  `to_account` bigint(20) unsigned NOT NULL COMMENT 'æ¥æ”¶äººè´¦å·',
+  `add_account` bigint(20) unsigned NOT NULL COMMENT 'è¯·æ±‚äººè´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
   PRIMARY KEY (`req_id`),
   KEY `to_account` (`to_account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -570,10 +516,10 @@ CREATE TABLE `wmw_msg_require` (
 DROP TABLE IF EXISTS `wmw_msg_response`;
 CREATE TABLE `wmw_msg_response` (
   `res_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `content` varchar(100) NOT NULL COMMENT 'ÇëÇóÄÚÈİ',
-  `to_account` bigint(20) unsigned NOT NULL COMMENT '½ÓÊÕÈËÕËºÅ',
-  `add_account` bigint(20) unsigned NOT NULL COMMENT '»ØÓ¦ÈËÕËºÅ',
-  `add_time` int(10) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
+  `content` varchar(100) NOT NULL COMMENT 'è¯·æ±‚å†…å®¹',
+  `to_account` bigint(20) unsigned NOT NULL COMMENT 'æ¥æ”¶äººè´¦å·',
+  `add_account` bigint(20) unsigned NOT NULL COMMENT 'å›åº”äººè´¦å·',
+  `add_time` int(10) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
   PRIMARY KEY (`res_id`),
   KEY `to_account` (`to_account`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -583,12 +529,12 @@ CREATE TABLE `wmw_msg_response` (
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_private_msg`;
 CREATE TABLE `wmw_private_msg` (
-  `msg_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Ë½ĞÅId',
-  `send_uid` bigint(20) unsigned NOT NULL COMMENT '·¢ÆğÕß',
-  `to_uid` bigint(20) unsigned NOT NULL COMMENT '½ÓÊÜÕß',
-  `content` varchar(255) NOT NULL COMMENT 'ÄÚÈİ',
-  `add_time` int(11) unsigned NOT NULL COMMENT 'Ìí¼ÓÊ±¼ä',
-  `img_url` varchar(255) DEFAULT NULL COMMENT 'Í¼Æ¬url',
+  `msg_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç§ä¿¡Id',
+  `send_uid` bigint(20) unsigned NOT NULL COMMENT 'å‘èµ·è€…',
+  `to_uid` bigint(20) unsigned NOT NULL COMMENT 'æ¥å—è€…',
+  `content` varchar(255) NOT NULL COMMENT 'å†…å®¹',
+  `add_time` int(11) unsigned NOT NULL COMMENT 'æ·»åŠ æ—¶é—´',
+  `img_url` varchar(255) DEFAULT NULL COMMENT 'å›¾ç‰‡url',
   PRIMARY KEY (`msg_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -598,10 +544,10 @@ CREATE TABLE `wmw_private_msg` (
 DROP TABLE IF EXISTS `wmw_private_msg_relation`;
 CREATE TABLE `wmw_private_msg_relation` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `send_uid` bigint(20) unsigned NOT NULL COMMENT 'ÓëÎÒÏà¹Ø',
-  `to_uid` bigint(20) unsigned NOT NULL COMMENT 'ÓëÎÒË½ĞÅµÄÕÊºÅ',
-  `new_msg_id` int(11) unsigned NOT NULL COMMENT '×îĞÂÒ»ÌõË½ĞÅID',
-  `msg_count` mediumint(11) unsigned NOT NULL DEFAULT '1' COMMENT '¹²¼¸ÌõË½ĞÅ',
+  `send_uid` bigint(20) unsigned NOT NULL COMMENT 'ä¸æˆ‘ç›¸å…³',
+  `to_uid` bigint(20) unsigned NOT NULL COMMENT 'ä¸æˆ‘ç§ä¿¡çš„å¸å·',
+  `new_msg_id` int(11) unsigned NOT NULL COMMENT 'æœ€æ–°ä¸€æ¡ç§ä¿¡ID',
+  `msg_count` mediumint(11) unsigned NOT NULL DEFAULT '1' COMMENT 'å…±å‡ æ¡ç§ä¿¡',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -610,10 +556,10 @@ CREATE TABLE `wmw_private_msg_relation` (
 -- ----------------------------
 DROP TABLE IF EXISTS `wmw_private_msg_session`;
 CREATE TABLE `wmw_private_msg_session` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Ë½ĞÅId',
-  `send_uid` bigint(20) unsigned NOT NULL COMMENT '·¢ÆğÕß',
-  `to_uid` bigint(20) unsigned NOT NULL COMMENT '½ÓÊÜÕß',
-  `msg_id` int(11) unsigned NOT NULL COMMENT 'Ë½ĞÅid',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç§ä¿¡Id',
+  `send_uid` bigint(20) unsigned NOT NULL COMMENT 'å‘èµ·è€…',
+  `to_uid` bigint(20) unsigned NOT NULL COMMENT 'æ¥å—è€…',
+  `msg_id` int(11) unsigned NOT NULL COMMENT 'ç§ä¿¡id',
   PRIMARY KEY (`id`),
   KEY `send_uid` (`send_uid`,`to_uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -621,8 +567,8 @@ CREATE TABLE `wmw_private_msg_session` (
 DROP TABLE IF EXISTS `wmw_person_vistior`;
 CREATE TABLE `wmw_person_vistior` (
 `id` INT( 11 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
-`uid` BIGINT( 20 ) UNSIGNED NOT NULL COMMENT 'Ö÷ÈË',
-`vuid` BIGINT( 20 ) UNSIGNED NOT NULL COMMENT '·Ã¿Í',
-`timeline` INT( 11 ) UNSIGNED NOT NULL COMMENT 'Ê±¼ä',
+`uid` BIGINT( 20 ) UNSIGNED NOT NULL COMMENT 'ä¸»äºº',
+`vuid` BIGINT( 20 ) UNSIGNED NOT NULL COMMENT 'è®¿å®¢',
+`timeline` INT( 11 ) UNSIGNED NOT NULL COMMENT 'æ—¶é—´',
 PRIMARY KEY ( `id` )
-) ENGINE = InnoDB COMMENT = '¸öÈË¿Õ¼ä·Ã¿Í' ;
+) ENGINE = InnoDB COMMENT = 'ä¸ªäººç©ºé—´è®¿å®¢' ;

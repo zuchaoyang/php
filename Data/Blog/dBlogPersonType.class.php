@@ -36,13 +36,13 @@ class dBlogPersonType extends dBase {
      * 根据班级client_account 获取日志类型列表和每个分类下的日志数量
      * 不包括草稿
      */
-    public function getBlogNumsByUid($client_account) {
+    public function getBlogNumsByUid($client_account, $grant_where = null) {
         if (empty($client_account)) {
             return false;
         }
-        
+        $grant_where = empty($grant_where) ? '' : "and $grant_where" ;
         $sql = "SELECT count(*) nums, a.type_id from wmw_blog_person_relation as b inner join  wmw_blog as a  on
-        	       " . " a.blog_id=b.blog_id where b.client_account='$client_account' and a.is_published=1 group by a.type_id";
+        	       " . " a.blog_id=b.blog_id where b.client_account='$client_account' and a.is_published=1 $grant_where  group by a.type_id";
         
         return $this->query($sql);
     }        

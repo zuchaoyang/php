@@ -109,15 +109,15 @@ class Pathmanagement_sns extends Pathmanagement {
     /**
      * 获取说说的附件的存放路径
      */
-    public static function uploadMood() {
-        return self::getWebroot() . self::getAttachment() . self::$mood_img_path;
+    public static function uploadMood($account) {
+        return self::getWebroot() . self::getAttachment() . self::$mood_img_path . $account;;
     }
     
     /**
      * 获取说说附件的显示路径
      */
-    public static function getMood() {
-        return "/" . self::getAttachment() . self::$mood_img_path;
+    public static function getMood($account) {
+        return "/" . self::getAttachment() . self::$mood_img_path . $account;
     }
     
     /*

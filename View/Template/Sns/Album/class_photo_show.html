@@ -6,16 +6,18 @@
 <title>查看单张照片</title>
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_photo_show.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/galleria/themes/classic/galleria.classic.css" type="text/css" charset="utf-8">
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
-
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
-<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_photo_comments.js"></script>
-
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/galleria/galleria-1.2.9.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/galleria/galleria.wmw.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/photo_show.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_photo_show.js"></script>
 </head>
 <body>
 <!--弹出层 star-->
@@ -33,7 +35,7 @@
           <tr>
             <td colspan="2">
             <div class="photo_info" {if $is_edit}title="点击"{/if}>
-            <p{if $is_edit} id="description"{/if}><a href="javascript:;">点此输入照片描述</a></p>
+            <p{if $is_edit} id="description"{/if} class="description_no><a href="javascript:;">点此输入照片描述</a></p>
             </div>
             </td>
          </tr>
@@ -45,15 +47,16 @@
             <td><input type="button" class="green_btn" value="确定" /><input type="button" class="gray_btn" value="取消" /></td>
           </tr>
         </table>
-
         </div>
         
         <div class="clear"></div>
+        {if $is_edit}
         <div id="photo_edit">
         <span><a href="javascript:;" id="set_img_evt">设为封面</a></span>
         <span><a href="javascript:;" id="move_evt">移动到</a></span>
         <span><a href="javascript:;" id="del_evt">删除照片</a></span>
         </div>
+        {/if}
        </div>
       <!--publish_main_right end--> 
 <!-- 相片详情弹出层 end -->
@@ -78,20 +81,11 @@
  
   <!--移动照片 star-->
  <div id="move_photo_div" class="move_photo" style="display:none;">
-   <p>
-   <a></a>
-   </p>
+   <div>相册列表</div>
+   <p><a></a></p>
  </div>
   <!--移动照片 end-->
- <!--浏览最后一张照片 star-->
- <div id="lastPic" class="edit_comment"  style="display:none;">
-   <h1 class="tcc_title">你已经浏览完所有图片<a href="#" class="close_icon"></a></h1>
-   <p><span class="icon_refer"></span><a href="javascript:;" id="review_photo">重新播放</a></p>
-   <div class="clear"></div>
- </div>
- <!--浏览最后一张照片 end-->
 <!--弹出层 end-->
- 
 <!--tip star-->
 {insert name="sns_header"}
 <!--tip star-->
@@ -104,67 +98,23 @@
    <!--nav star-->
     {insert name="sns_nav" class_code = $class_code}
     <!--nav end-->
+    <div class="efpClew"><a href="#" title="关闭"></a></div>
     <h4>
-	    <a href="/Sns/Album/Classphoto/photolist/album_id/{$album_id}/class_code/{$class_code}/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册</span></a>
-	    
-    	
+		 <a href="/Sns/Album/Classphoto/photolist/album_id/{$album_id}/class_code/{$class_code}/client_account/{$client_account}"  style="text-decoration:none;" class="" title=""><span >返回相册</span></a>
+		 <a href="#" class="photo_info_tail  xpxq_a"><span >相片详情</span><span id="icon_img" class="icon_down"></span></a>
+		 <a href="#" class="photo_info_tail " id="fullscreen_btn"><span>全屏浏览</span></a> 
     </h4>
+    
     <div class="clear"></div>
     <!--publish_main star-->
-    <div class="publish_main" >
+    <div class="publish_main">
      <!--publish_main_left star-->
-     <a href="#" class="photo_info_tail f_green xpxq_a"><span>相片详情</span><span id="icon_img" class="icon_down"></span></a>
-     <div class="publish_main_left">
-		<div id="yao" >
-			<div id="bd">
-			<div id="content" >
-				<div class="md" id="downloads">
-				<!--<h2>{$album.album_name}<em>{$album.client_name}</em></h2>-->
-				<div class="download_pic_w"  >
-			
-					<div id="carousel">
-					<div id="carousel_btn_lastgroup" ><a href="#1"  class="icon_zuo"></a></div>
-					<div id="carousel_container" >
-						 <ul id="samples_list">
-						 	{foreach from=$photo_list item=val}
-							 <li><a href="{$val.file_big}" id="{$val.photo_id}" target="_blank" title="{$val.name}"><img src="{$val.file_small}" alt="{$val.name}" /></a></li>
-							{/foreach}
-						 </ul>
-					</div>
-					<div id="carousel_btn_nextgroup"><a href="#1" class="icon_you"></a></div>
-					</div>
-					<div id="carousel_photo_container" >
-						 <img src="{$first_img.file_big}" id="carousel_photo" alt="{$first_img.name}" />
-					</div>
-					<p class="image" id="carousel_photo_intro">风景(1)</p>
-			
-			    </div>
-				</div>
-			</div>
-			<div id="side"></div>
-			</div>
-		</div>
-		<!--<div class="main_left_icon"><a href="#" class="icon_left"></a></div>
-        <div class="single_pic">
-          <img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_upload/big_photo1.jpg">        
-        </div>
-        <div class="main_left_icon"><a href="#" class="icon_right"></a></div>
-        <div class="clear"></div>
-        <div class="main_left_bottom">
-          <div class="main_bottom_icon"><a href="#" class="icon_zuo"></a></div>
-          <div class="more_photo_show">
-            <a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_photo_show/small_pic01.jpg"></a><a href="#"><img src"{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_photo_show/small_pic01.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_photo_show/small_pic01.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_photo_show/small_pic01.jpg"></a><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Album/class_photo_show/small_pic01.jpg"></a>
-          </div>
-          <div class="main_bottom_icon"><a href="#" class="icon_you"></a></div>
-          <div class="clear"></div>
-        </div>
-	  --></div> 
-  	 <!--publish_main_left end--> 
-  	 
- 
-      <div class="clear"></div>  
-      
-     <!--评论 star--> 
+	     
+	  <!--相片展示 start -->
+	  <div id="galleria" style="display:none;margin:0 auto;"></div>
+	  <!--相片展示 end -->
+      <div class="clear"></div> 
+      <!--评论 star--> 
       <div style="border-bottom:#CCCCCC solid 1px; margin:10px 0;"></div>
       <div style="margin-left:50px;">
       <p><strong>评论:</strong></p>
@@ -177,12 +127,12 @@
        <div id="comment_list_div"></div> 
        <!--list_comment_people end-->
        </div>
-       {include file="Sns/Album/Subtemplate/show_photo_comment.inc.html"}
        <!--more_active star-->
          <div class="more_active">
            <a href="javascript:;" id="morePage">查看更多</a>
          </div>
     </div>
+      <div class="clear"></div>  
     <!--publish_main end-->
     <div class="clear"></div>
   </div>
@@ -190,20 +140,14 @@
   <div class="clear"></div> 
   </div>
 <!--content end-->
-<input id="is_edit" class="del_ids" type="hidden" value="{$is_edit}"/>
-<input id="album_id" class="del_ids" type="hidden" value="{$album_id}">
-<input id="photo_id" class="del_ids" type="hidden">
-<input id="class_code" class="del_ids" type="hidden" value="{$class_code}">
-<input id="client_account" class="del_ids" type="hidden" value="{$client_account}">
+<input id="is_edit" type="hidden" value="{$is_edit}"/>
+<input id="album_id" type="hidden" value="{$album_id}">
+<input id="photo_id" type="hidden" value="{$photo_id}">
+<input id="photo_num" type="hidden" value="{$album.photo_num}"/>
+<input id="class_code" type="hidden" value="{$class_code}">
+<input id="client_account" type="hidden" value="{$client_account}">
 <input id="login_account" type="hidden" value="{$login_account}"/>
-<input id="client_name" type="hidden" value="{$client_name}"/>
-<input id="head_img" type="hidden" value="{$head_img}"/>
-<input id="img_server" class="del_ids" type="hidden" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
-
-<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/class_show_photo.js"></script>
-<script language="javascript" type="text/javascript">
-var Album = new YAO.YAlbum();
-</script>
+{include file="Sns/Album/Subtemplate/show_photo_comment.inc.html"}
 <!-- 尾部start -->
 {include file="Public/sns_footer.html"}
 <!-- 尾部end -->

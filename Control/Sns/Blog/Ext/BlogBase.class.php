@@ -19,86 +19,7 @@ abstract class BlogBase {
     
     abstract public function publishBlogType($type_datas,  $is_return_id = false);
     
-    abstract public function modifyBlogType($blog_datas, $blog_id);
-    
     abstract public function delBlogType($blog_id);
-    /**
-     * 提取日志内容
-     * @param $blog_datas
-     */
-    protected function extractBlogContent($blog_datas) {
-        if(empty($blog_datas)) {
-            return false;
-        }
-        
-        $blog_content_datas = array(
-            'blog_id' => $blog_datas['blog_id'],
-            'content' => $blog_datas['content']
-        );
-        
-        return $blog_content_datas;
-    }
-    
-    /**
-     * 提取日志的对应关系
-     * @param $blog_datas
-     */
-    abstract protected function extractBlogRelation($blog_datas);
-    
-    /**
-     * 提前日志的权限
-     * @param $blog_datas
-     */
-    abstract protected function extractBlogGrant($blog_datas);
-    
-    /**
-     * 判断是否需要修改权限表
-     * @param $blog_datas
-     */
-    protected function needModifyBlogGrants($blog_datas) {
-        if(empty($blog_datas)) {
-            return false;
-        }
-        
-        return isset($blog_datas['grant']) ? true : false;
-    }
- 	
-    /**
-     * 判断是否需要修改日志内容
-     * @param $blog_datas
-     */
-    protected function needModifyBlogContent($blog_datas) {
-        if(empty($blog_datas)) {
-            return false;
-        }
-        
-        return isset($blog_datas['content']) ? true : false;
-    }
-    
-    /**
-     * 判断是否需要修改实体表
-     * @param $blog_datas
-     */
-    protected function needModifyBlogEntity($blog_datas) {
-         $fields = array(
-             'title',
-             'type_id',
-             'views',
-             'is_published',
-             'upd_time',
-             'contentbg',
-             'summary',
-             'comments',
-         );
-         
-         foreach($fields as $field) {
-             if(isset($blog_datas[$field])) {
-                 return true;
-             }
-         }
-         
-         return false;
-    }
     
     /**
      * 处理日志图片
@@ -131,19 +52,23 @@ abstract class BlogBase {
        
         import("@.Common_wmw.WmwImage");
         $scaleObj = new WmwImage();
+        
         if(!empty($img_list)) {
             foreach($img_list as $img) {
                 $ImgParser = HtmlParser::createTagParser('img', $img);
                 $tmp_src = $ImgParser->attr('src');
-                if ((stripos($tmp_src, 'http://') === false) && (stripos($tmp_src, $tmp_path) !== false)) {
+                $is_remote_file = $this->isRemoteFile($tmp_src); //是否是远程文件
+                if (($is_remote_file == false) && (stripos($tmp_src, $tmp_path) !== false)) {
                     $new_src = str_replace($tmp_path, $new_path, $tmp_src);
                     $old_url = WEB_ROOT_DIR . $tmp_src;
                     $new_url = WEB_ROOT_DIR . $new_src;
                     
-                    $scale_list [] = array(
-                                        'path' => $new_url,
-                                        'scale' => 100 
-                                    );
+                    $scale_list = array(
+                                          array(
+                                          	  'path' => $new_url,
+                                          	  'scale' => 100 
+                                          )
+                                      );
                                     
                    $scaleObj->scale($old_url, $scale_list);
                    $content = str_replace($tmp_src, $new_src, $content); 
@@ -166,11 +91,11 @@ abstract class BlogBase {
          *                         )
          */
         if (!empty($max_width) && !empty($scale_arr)) {
-//                $img_str = $ImgParser->attr('weight', '60px')->toString();
-//                $img_str = $ImgParser->attr('alt', 'hdhhs')->toString();
-//                var_dump($ImgParser->attr('src'));
-//                
-//                dump($img_str);
+            //                $img_str = $ImgParser->attr('weight', '60px')->toString();
+            //                $img_str = $ImgParser->attr('alt', 'hdhhs')->toString();
+            //                var_dump($ImgParser->attr('src'));
+            //                
+            //                dump($img_str);
         }
         
         //替换处理后的图片路径
@@ -181,23 +106,117 @@ abstract class BlogBase {
     /**
      * 截取日志摘要
      * @param String $content
+     * @param $str_length 截取长度
      */
-    public function getSummary($content, $str_length = 108) {
+    public function getSummary($content, $str_length = 200) {
         if(empty($content)) {
             return false;
         }
         import('@.Common_wmw.WmwString');
         // html 实体转换成一般的html 代码
         $content = WmwString::unhtmlspecialchars($content);
-        //提取第一张图片
-        preg_match("/<img([^>]+?)\/>/im", $content, $matches);
-        
+                
         //去除html标签 包括 img 标签
         $content = WmwString::delhtml($content);
 
         //截取内容
         $content = WmwString::mbstrcut(trim($content), 0, $str_length, 1, $suffix=true);
 
-        return $matches[0] . $content;
+        return $content;
+    }
+    
+    /**
+     * 截取日志第一张图片用于列表页面展示
+     * @param String $content
+     */
+    public function getFirstImg($content) {
+        import('@.Common_wmw.HtmlParser');
+        $HtmlParser = new HtmlParser($content);
+        $img = $HtmlParser->getElementByTagName('img');
+        
+        return !empty($img) ? $img : '' ;
+    }
+    
+    
+    
+    /**************************************************************************************************
+     * 辅助函数
+     *************************************************************************************************/
+    /**
+     * 提取日志内容
+     * @param $blog_datas
+     */
+    protected function extractBlogContent($blog_datas) {
+        if(empty($blog_datas)) {
+            return false;
+        }
+        
+        $blog_content_datas = array(
+            'blog_id' => $blog_datas['blog_id'],
+            'content' => $blog_datas['content']
+        );
+        
+        return $blog_content_datas;
+    }
+    
+    /**
+     * 提取日志的对应关系
+     * 注：数据结构调整原来权限表合并到关系表
+     * @param $blog_datas
+     */
+    abstract protected function extractBlogRelation($blog_datas);
+    /**
+     * 判断是否需要修改日志的对应关系 和权限
+     * @param $blog_datas
+     */
+    abstract protected function needModifyBlogRelation($blog_datas);
+    
+    /**
+     * 判断是否需要修改日志内容
+     * @param $blog_datas
+     */
+    protected function needModifyBlogContent($blog_datas) {
+        if(empty($blog_datas)) {
+            return false;
+        }
+        
+        return isset($blog_datas['content']) ? true : false;
+    }
+    
+    /**
+     * 判断是否需要修改实体表
+     * @param $blog_datas
+     */
+    protected function needModifyBlogEntity($blog_datas) {
+         $fields = array(
+             'title',
+             'type_id',
+             'views',
+             'is_published',
+             'upd_time',
+             'contentbg',
+             'summary',
+         	 'first_img',
+             'comments',
+         );
+         
+         foreach($fields as $field) {
+             if(isset($blog_datas[$field])) {
+                 return true;
+             }
+         }
+         
+         return false;
+    }
+    
+	/**
+     * 判断是否是远程文件
+     */
+    private function isRemoteFile($pFileName) {
+        if(empty($pFileName)) {
+            return false;
+        }
+        
+        return preg_match("/^http(s)?:\/\/(.+)$/", trim($pFileName)) ? true : false;
     }
 }

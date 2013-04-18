@@ -132,17 +132,18 @@ class ImgParser {
         
         $attrs = array();
         //提取标准属性信息: src='' | src=""
-        $pattern_1 = "/([^\s]+?)(\s*=\s*)(\'|\")([^\\3]+?)(\\3)/im";
+        $pattern_1 = "/([^\s]+?)(\s*=\s*)(\'|\")([^\\3]*?)(\\3)/im";
         if(preg_match_all($pattern_1, $attr_str, $matches)) {
             $attrs = array_merge($attrs, (array)$matches[0]);
-            $attr_str = preg_replace($pattern_1, "", $attr_str);
+            foreach((array)$matches[0] as $str) {
+                $attr_str = str_replace($str, "", $attr_str);
+            }
         }
         
         //提取非规范属性，src=不包含空格的连续字符串
         $pattern_2 = "/([^\s]+?)(\s*=\s*)([^\s]+)/im";
         if(preg_match_all($pattern_2, $attr_str, $matches)) {
             $attrs = array_merge($attrs, (array)$matches[0]);
-            $attr_str = preg_replace($pattern_2, "", $attr_str);
         }
         //对于非规范格式，忽略
         

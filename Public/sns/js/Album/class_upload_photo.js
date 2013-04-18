@@ -24,6 +24,7 @@ function class_photo_upload() {
 	this.class_code = $("#class_code").val();
 	this.album_id = $("#album_id").val();
 	this.img_server = $('#img_server').val() || '/Public';
+	this.is_edit = $("#is_edit").val();
 	this.album_list_cache = {};
 	this.initUpload();
 	this.attachEvent();
@@ -37,7 +38,7 @@ function filesUploadComplete() {
 	    //background: '#600', // 背景色
 	    opacity: 0.5,	// 透明度
 		title:'上传结束',
-		content:$(".edit_comment").get(0),
+		content:$(".finishupload").get(0),
 		drag: false,
 		fixed: true //固定定位 ie 支持不好回默认转成绝对定位
 	}).lock();
@@ -50,27 +51,29 @@ function filesUploadComplete() {
 }
 class_photo_upload.prototype.attachEvent=function() {
 	var me = this;
+	var class_code = $("#class_code").val();
+	var album_id = $("#xcid").val();
 	//创建相册按钮
 	$("#create_album_btn").click(function() {
 		//打开创建弹出层
 		me.createAlbum();
 	});
-	$("#upload_finish_close",$(".edit_comment")).click(function() {
+	$("#upload_finish_close",$(".finishupload")).click(function() {
 		var dialogObj = art.dialog.list['upload_end'];
 		if(!$.isEmptyObject(dialogObj)) {
 			dialogObj.close();
 		}
-		window.location.href='/Sns/Album/Class/uplaodPhoto/class_code/'+me.class_code+'/album_id/'+me.album_id;
+		window.location.href='/Sns/Album/Classphoto/uplaodPhoto/class_code/'+class_code+'/album_id/'+album_id;
 	});
 	//绑定开始上传的事件
 	$("#start_upload").click(function() {
 		var secret_key = $("#secret_key").val();
-		var album_obj = $("#xcid") || {};
-		if($.isEmptyObject(album_obj)) {
+		var xcid = $("#xcid").val() || '';
+		if(xcid == '') {
 			me.no_album_tip();
 			return false;
 		}
-		var postobj = { "secret_key" : secret_key, "client_account" : me.client_account, "album_id" : album_obj.val()};
+		var postobj = { "secret_key" : secret_key, "client_account" : me.client_account, "album_id" : xcid,"class_code":me.class_code};
 		me.swfu.setPostParams(postobj);
 		me.swfu.startUpload();
 	});
@@ -90,7 +93,7 @@ class_photo_upload.prototype.initUpload=function() {
 	var me = this;
 	var settings = {
 		flash_url : me.img_server + "/tool_flash/swfupload/swfupload.swf",
-		upload_url: "/Sns/Album/Classphotoupload/index",
+		upload_url: "/Sns/Album/Photoupload/index",
 		post_params:{
 			
 		},
@@ -135,15 +138,26 @@ class_photo_upload.prototype.fillClassAlbumList=function() {
 	if($.isEmptyObject(album_list)) {
 		$.ajax({
 			type:'get',
+			url:"/Sns/Album/Classphoto/getAlbumList/class_code/" + me.class_code,
 			dataType:"json",
-			url:"/Api/Album/getOnlyAlbumListByClassCode/class_code/" + me.class_code,
 			async:false,
 			success:function(json) {
 				if(json.status<0) {
 					me.no_album_tip();
 					return false;
 				}
-				album_list = me.album_list_cache[cache_key] = json.data || {};
+				album_list = json.data || {};
+				for(var i in album_list) {
+					var album_info = album_list[i];
+					if(album_info.upd_account != me.client_account){
+						delete album_list[i];
+					}
+				}
+				if($.isEmptyObject(album_list)) {
+					me.no_album_tip();
+					return false;
+				}
+				album_list = me.album_list_cache[cache_key] = album_list || {};
 			}
 		});
 	}
@@ -162,7 +176,6 @@ class_photo_upload.prototype.fillClassAlbumList=function() {
 };
 class_photo_upload.prototype.no_album_tip = function() {
 	var me = this;
-	
 	art.dialog({
 		id:'no_album_tips',
 	    //background: '#600', // 背景色
@@ -178,6 +191,10 @@ class_photo_upload.prototype.createAlbum = function () {
 	var me = this;
 	//打开创建弹出层
 	$('#create_album_div').trigger('openEvent', [{
+		add_post_url:'/Sns/Album/Classalbum/createAlbum',//添加相册路径
+		get_grant_url:'/Sns/Album/Classalbum/getClassGrantList',//获取相册权限路径
+		get_album_url:'/Sns/Album/Classalbum/getAlbum/class_code/'+me.class_code,
+		add_form_info:{class_code:me.class_code,client_account:me.client_account},
 		class_code:me.class_code,
 		client_account:me.client_account,
 		callback:function(album_list) {
@@ -188,6 +205,7 @@ class_photo_upload.prototype.createAlbum = function () {
 				album_id = i; 
 			}
 			if(album_id != '') {
+				me.album_id = album_id;
 				xcselect_obj.val(album_id);
 			}
 		}

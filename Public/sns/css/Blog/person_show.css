@@ -4,12 +4,12 @@
 	.main h4 a{float:right; margin-top:10px;}
 
 .publish_main{background:#fff;border:1px #6db500 solid; border-bottom:none; font:14px "微软雅黑"; color:#464646; padding:20px;}
-	.list_main_top{height:90px; border-bottom:1px #ccc dashed;}
+	.list_main_top{height:90px; }
 		.list_main_top dl{float:left; width:82px; text-align:center;}
 			.list_main_top dl dt img{width:82px; height:56px;}
-		.list_main_top_right{float:left;}
-			.list_main_top h3{font:bold 16px "微软雅黑";}
-			.list_main_top p{padding:0px 10px; margin-top:38px;}
+		.list_main_top_right{float:left;width:100%}
+			.list_main_top h3{font:bold 16px/35px "微软雅黑";}
+			.list_main_top p{padding:0px 10px;display:inline-block; float:left; }
 			.list_main_top p a{color:#3a8a00;}
 			.pr10{padding-right:10px;}
 			.pl_r10{padding:0px 10px;}
@@ -23,14 +23,14 @@
 		.publish_main ul li a{color:#3a8a00;}
 		
 	.list_comment{width:600px;}
-			.list_textarea{width:600px; height:60px;}
+			.list_textarea{width:550px; height:60px;}
 			.list_comment p{height:25px; width:600px; padding-top:10px;}
 		    	.icon_face{background:url(../../images/Blog/person_show/icon_face.gif) left center no-repeat; display:inline-block; float:left; width:40px; padding-left:20px; color:#3a8a00;}
 				.green_btn{background:url(../../images/Blog/person_show/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; color:#fff; cursor:pointer; float:left;}
 				.list_comment p span{float:left; width:472px; display:inline-block; text-align:right; padding:4px 10px 0px 0px;}
 	.list_comment_people{padding:10px 0px 0px; width:898px;}
-		.list_comment_people dl{float:left; width:110px;}
-		.list_comment_people dl dt img{width:100px; height:100px;}
+		.list_comment_people dl{float:left; width:50px;}
+		.list_comment_people dl dt img{width:40px; height:40px;}
 		
 		.say_text{width:394px; height:20px; padding:0px 2px 0px; line-height:20px;}
 		
@@ -45,7 +45,8 @@
 				.list_people dl dt img{width:36px; height:36px;}
 				.people_comment{float:left;}
 				
-			
+	.more_active{width:898px; text-align:center; margin-top:10px; border:1px #ccc dashed; padding:10px 0px;}	
+		.more_active a{background:url(../../images/Blog/class_show/icon_more.jpg) right center no-repeat; display:inline-block; padding-right:10px; color:#5f9400; font:14px "宋体";}		
 	
 
 /*弹出层*/

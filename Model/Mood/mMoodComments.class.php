@@ -44,6 +44,58 @@ class mMoodComments extends mBase{
         return !empty($comment_arr) ? $comment_arr : false;
     }
     
+    /**
+     * 分组统计
+     * @param $up_ids
+     */
+    public function getMoodCommentsChildrenStatByUpid($up_ids) {
+        if(empty($up_ids)) {
+            return false;
+        }
+        
+        $table_name = $this->_dMoodComments->getTableName();
+         //统计孩子节点的个数
+        $stat_sql = "select up_id, count(*) as nums from $table_name where up_id in('" . implode("','", (array)$up_ids) . "') group by up_id";
+        $stat_list = $this->_dMoodComments->query($stat_sql);
+        
+        $new_stat_list = array();
+        if(!empty($stat_list)) {
+            foreach($stat_list as $stat) {
+                $new_stat_list[$stat['up_id']] = $stat['nums'];
+            }
+        }
+        
+        return !empty($new_stat_list) ? $new_stat_list : false;
+    }
+    
+    /**
+     * 通过上级id获取对应的最新的孩子结点数
+     * @param $up_ids
+     * @param $each_limit
+     */
+    public function getMoodCommentsChildrenByUpid($up_ids, $each_limit = 5) {
+        if(empty($up_ids)) {
+            return false;
+        }
+        
+        $table_name = $this->_dMoodComments->getTableName();
+        
+        $select_children_sql = "select * from (select * from $table_name a where a.up_id in('" . implode("','", (array)$up_ids) . "')) as b where " .
+        	   				   "$each_limit>(select count(*) from $table_name c where c.up_id=b.up_id and c.comment_id > b.comment_id)";
+        
+        $comment_list = $this->_dMoodComments->query($select_children_sql);
+        
+        $new_comment_list = array();
+        if(!empty($comment_list)) {
+            foreach($comment_list as $comment_id => $comment) {
+                $new_comment_list[$comment['up_id']][$comment['comment_id']] = $comment;
+                unset($comment_list[$comment_id]);
+            }
+        }
+        
+        return !empty($new_comment_list) ? $new_comment_list : false;
+    }
+    
     public function getMoodCommentsByUpid($up_ids) {
         if(empty($up_ids)) {
             return false;

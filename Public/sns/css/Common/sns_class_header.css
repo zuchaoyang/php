@@ -1,0 +1,53 @@
+
+/*style the main menu*/
+.class_change_ul {
+	margin:0 ;
+	padding:0;
+	float:right;
+	
+}
+
+.class_change_ul li {
+	list-style:none;
+	float:left;
+	font:14px "宋体";;
+}
+
+.class_change_ul li a:link, .class_change_ul li a:visited {
+	display:block;
+	text-decoration:none;
+	padding: 0.5em 2em;
+	font:bold 14px/20px "宋体";
+	margin:0;
+	color:#1d4700;
+}
+.class_change_ul li a:hover {
+	color:white;
+	background-color:#2b6800;	
+}
+
+.class_change_ul li a.class_change_ul_a{ color:#2b6800; font:bold 14px/25px "宋体";background:none;}
+
+/*style the sub menu*/
+.class_change_ul li ul {
+	position:absolute;
+	visibility:visible;
+	border-top:1px solid #fff;
+	margin:0;
+	padding:0;
+}
+
+.class_change_ul li ul li {
+	display:inline;
+	float:none;
+}
+
+.class_change_ul li ul li a:link, .class_change_ul li ul li a:visited {
+	background-color:#5eac25;
+	width:auto;
+}
+
+.class_change_ul li ul li a:hover {
+	background-color:#2b6800;	
+	color:white;
+}

@@ -6,7 +6,7 @@ class IndexAction extends SnsController{
     
     public function index(){
         $class_code = $this->checkoutClassCode($class_code);
-        $this->redirect("/Sns/ClassIndex/Index/index/class_code/" . $class_code);
+        $this->redirect("/Sns/HomePage/Index/index/class_code/" . $class_code);
     }
     
     public function getTemplate() {

@@ -36,7 +36,7 @@ function filesUploadComplete() {
 	    //background: '#600', // 背景色
 	    opacity: 0.5,	// 透明度
 		title:'上传结束',
-		content:$(".edit_comment").get(0),
+		content:$(".sczp").get(0),
 		drag: false,
 		fixed: true //固定定位 ie 支持不好回默认转成绝对定位
 	}).lock();
@@ -53,22 +53,22 @@ class_photo_upload.prototype.attachEvent=function() {
 		//打开创建弹出层
 		me.createAlbum();
 	});
-	$("#upload_finish_close",$(".edit_comment")).click(function() {
+	$("#upload_finish_close",$(".finishupload")).click(function() {
 		var dialogObj = art.dialog.list['upload_end'];
 		if(!$.isEmptyObject(dialogObj)) {
 			dialogObj.close();
 		}
-		window.location.href='/Sns/Album/Person/uplaodPhoto/client_account/'+me.client_account+'/album_id/'+me.album_id;
+		window.location.href='/Sns/Album/Personphoto/uplaodPhoto/client_account/'+me.client_account+'/album_id/'+me.album_id;
 	});
 	//绑定开始上传的事件
 	$("#start_upload").click(function() {
 		var secret_key = $("#secret_key").val();
-		var album_obj = $("#xcid") || {};
-		if($.isEmptyObject(album_obj)) {
+		var xcid = $("#xcid").val() || '';
+		if(xcid == '') {
 			me.no_album_tip();
 			return false;
 		}
-		var postobj = { "secret_key" : secret_key, "client_account" : me.client_account, "album_id" : album_obj.val()};
+		var postobj = { "secret_key" : secret_key, "client_account" : me.client_account, "album_id" :xcid};
 		me.swfu.setPostParams(postobj);
 		me.swfu.startUpload();
 	});
@@ -88,7 +88,7 @@ class_photo_upload.prototype.initUpload=function() {
 	var me = this;
 	var settings = {
 		flash_url : me.img_server + "/tool_flash/swfupload/swfupload.swf",
-		upload_url: "/Sns/Album/Personphotoupload/index",
+		upload_url: "/Sns/Album/Photoupload/index",
 		post_params:{
 			
 		},
@@ -134,7 +134,7 @@ class_photo_upload.prototype.fillPersonAlbumList=function() {
 		$.ajax({
 			type:'get',
 			dataType:"json",
-			url:"/Api/Album/getOnlyAlbumListByClientAccount/client_account/" + me.client_account,
+			url:"/Sns/Album/Personphoto/getAlbumList/client_account/" + me.client_account,
 			async:false,
 			success:function(json) {
 				if(json.status<0) {
@@ -176,6 +176,10 @@ class_photo_upload.prototype.createAlbum = function () {
 	var me = this;
 	//打开创建弹出层
 	$('#create_album_div').trigger('openEvent', [{
+		add_post_url:'/Sns/Album/Personalbum/createAlbum',//添加相册路径
+		get_grant_url:'/Sns/Album/Personalbum/getGrantList',//获取相册权限路径
+		get_album_url:'/Sns/Album/Personalbum/getAlbum/client_account/'+me.client_account,
+		add_form_info:{client_account:me.client_account},
 		client_account:me.client_account,
 		callback:function(album_list) {
 			var xcselect_obj = $("#xcid");
@@ -185,6 +189,7 @@ class_photo_upload.prototype.createAlbum = function () {
 				album_id = i; 
 			}
 			if(album_id != '') {
+				me.album_id = album_id;
 				xcselect_obj.val(album_id);
 			}
 		}

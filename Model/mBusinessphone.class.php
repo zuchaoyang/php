@@ -53,7 +53,6 @@ class mBusinessphone extends mBase {
         	
             foreach ($val as $key2=>$data) {
                 $userinfos = $mUser->getUserBaseByUid($data['business_num']);
-                
                 if (empty($userinfos)) {
                     $errordata=array(
                         'wbp_log_bnum'=>$data['business_num'],

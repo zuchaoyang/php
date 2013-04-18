@@ -139,7 +139,7 @@ function selectPro(){
         this.req = $.ajax({	
 			type:"get",
 			dataType:"json",
-			url:"/Amscontrol/AmsclassList/showTeacherInfoBySubjectId",
+			url:"/Amscontrol/Amsclasslist/showTeacherInfoBySubjectId",
 			data:param,
 			success:function(json){
                 obj.complete(json);

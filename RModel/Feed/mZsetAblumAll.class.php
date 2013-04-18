@@ -3,8 +3,8 @@ import('@.RModel.Feed.mFeedBase');
 class mZsetAblumAll extends mFeedBase {
     
     public function __construct() {
-        import('RData.Feed.dZsetClassAll');
-        $this->_rdata = new dZsetClassAll();
+        import('RData.Feed.dZsetAlbumAll');
+        $this->_rdata = new dZsetAlbumAll();
     }
     
     /**

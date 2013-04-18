@@ -6,6 +6,7 @@ class dBlogPersonRelation extends dBase {
                     'id',
                     'client_account',
                     'blog_id',
+    				'grant',
               );
     protected $_index_list = array(
                     'id',
@@ -18,11 +19,13 @@ class dBlogPersonRelation extends dBase {
       * 通用的获取班级日志的函数
       * @param $person_codes
       * @param $where_appends
-      * 注明：$where_appends只能是数组，并且一个元素只能包含一个过滤条件
+      * 注明：$where_appends只能是数组，并且要标示是哪个表的过滤条件
+      * 	两张表 wmw_blog 别名b wmw_blog_person_relation 别名 a
+      * 	   并且一个元素只能包含一个过滤条件
       *       ef:
       *       $where_appends = array(
-      *       	"add_time>='1000'",
-      *       	"add_time<='2000'"
+      *       	"b.add_time>='1000'",
+      *       	"b.add_time<='2000'"
       *       );
       * @param $offset
       * @param $limit
@@ -38,14 +41,14 @@ class dBlogPersonRelation extends dBase {
         if(!empty($where_appends) && is_array($where_appends)) {
             foreach($where_appends as $where_condition) {
                 $where_condition = trim($where_condition);
-                $wherearr[] = "b." . $where_condition; 
+                $wherearr[] = $where_condition; 
             } 
         }
         
         $offset = max(intval($offset), 0);
         $limit = $limit > 0 ? $limit : 10;
         
-        $selectsql = "select a.client_account,b.* from wmw_blog_person_relation a inner join wmw_blog b on a.blog_id=b.blog_id";
+        $selectsql = "select a.client_account,a.grant,b.* from wmw_blog_person_relation a inner join wmw_blog b on a.blog_id=b.blog_id";
         $wheresql = "where " . implode(" and ", $wherearr);
         $orderbysql = !empty($orderby) ? "order by b.{$orderby}" : '';
         $limitsql = "limit $offset,$limit";
@@ -70,7 +73,7 @@ class dBlogPersonRelation extends dBase {
      * @param $datas
      * @param $return_insert_id
      */
-    public function addBlogClassRelation($datas, $return_insert_id = false) {
+    public function addBlogPersonRelation($datas, $return_insert_id = false) {
         if(empty($datas)) {
             return false;
         }
@@ -83,7 +86,7 @@ class dBlogPersonRelation extends dBase {
      * @param $datas
      * @param $id
      */
-    public function modifyBlogClassRelation($datas, $id) {
+    public function modifyBlogPersonRelation($datas, $id) {
         if(empty($datas) || empty($id)) {
             return false;
         }
@@ -95,7 +98,7 @@ class dBlogPersonRelation extends dBase {
      * 删除
      * @param  $id
      */
-    public function delBlogClassRelation($id) {
+    public function delBlogPersonRelation($id) {
         if(empty($id)) {
             return false;
         }
@@ -104,7 +107,7 @@ class dBlogPersonRelation extends dBase {
     }
     
     //根据blog_id 删除信息
-    public function delBlogClassRelationByBlogId($blog_id) {
+    public function delBlogPersonRelationByBlogId($blog_id) {
         if(empty($blog_id)) {
             return false;
         }

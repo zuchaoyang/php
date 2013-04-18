@@ -9,7 +9,7 @@
 	.upload_main_top .ml20{margin-left:20px;}
 	
 	.publish_main dl{width:220px; height:232px; border:1px #c9c7c8 solid; margin:0px 10px 15px 0px; float:left;text-align:center;}
-	    .publish_main dl dt{padding:10px 0px 0px 0px;}
+	    .publish_main dl dt{padding:10px 0px 0px 0px; height:145px;}
 		.publish_main dl dd{text-align:left; padding-left:14px; line-height:20px;}
 		.hide_main{margin-top:10px; background:#fafafa;}
 		.hide_main a{margin-right:20px;}

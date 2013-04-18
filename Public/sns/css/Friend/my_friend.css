@@ -10,7 +10,7 @@
 			.green_btn{background:url(../../images/Friend/my_friend/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer; color:#fff;}
 			
 		.nr_title{height:30px; line-height:30px; margin:10px 0px;}
-		.bj_color{padding-left:10px; background:#eef7dd; height:25px; line-height:25px;}
+		.bj_color{background:#eef7dd; height:25px; line-height:25px; }
 			.bj_color a{color:#464646;}
 				.bj_color a:hover{color:#3a8a00;}
 			

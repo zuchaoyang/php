@@ -6,7 +6,7 @@
 		.mood_main ul li{float:left; width:460px;}
 		.align_right{text-align:right;}
 		.pt10{padding-top:10px;}
-		.main_nav_a1{background:url(../../images/PrivateMsg/list/main_nav_a1.jpg) 0 0 no-repeat;width:112px;height:36px;display:inline-block;text-align:center;line-height:36px; color:#fff;}
+		.main_nav_a1{background:url(../../images/PrivateMsg/list/main_nav_a1.jpg) 0 0 no-repeat;width:112px;height:36px;display:inline-block;text-align:center;font:16px "微软雅黑";line-height:36px; color:#fff;}
 		
 	.list_main{width:938px; margin:10px 0px 0px; position:relative;}	
 		.list_main dl{width:76px; margin-right:10px; float:left;}

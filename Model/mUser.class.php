@@ -499,9 +499,15 @@ class mUser extends mBase {
          *  2012-11-15 增加辽宁运营策略的学校用户学习资源权限全开放
          *  2012-11-16 增加广东运营策略的学校用户学习资源权限全开放
          *  2013-01-18 关闭广东运营策略的学校用户学习资源权限全开放
+         *  2013-04-10 增加辽宁省营口市鲅鱼圈区实验小学（1444）未绑定手机的家长和学生不能查看资源，其余学校没有限制
         */
-        if ($client_type == CLIENT_TYPE_TEACHER || $operation_strategy == OPERATION_STRATEGY_DEFAULT || $operation_strategy == OPERATION_STRATEGY_LN) {
+        if ($client_type == CLIENT_TYPE_TEACHER || $operation_strategy == OPERATION_STRATEGY_DEFAULT) {
             return 3;
+        }
+        
+    	//针对辽宁学校特殊处理
+        if($operation_strategy == OPERATION_STRATEGY_LN && $school_id != 1444){
+        	return 3;
         }
         
         //家长
@@ -526,7 +532,7 @@ class mUser extends mBase {
             $phone_info = $mBusinessphone->getbusinessphonebyalias_id($family_accounts);
             
             //黑龙江联通策略
-        	if ($operation_strategy == OPERATION_STRATEGY_HLJ) {
+        	if ($operation_strategy == OPERATION_STRATEGY_HLJ || $operation_strategy == OPERATION_STRATEGY_LN) {
         		return !empty($phone_info) ? 3 : 0;
         	}
         	
@@ -554,7 +560,7 @@ class mUser extends mBase {
             $phone_info = $mBusinessphone->getbusinessphonebyalias_id($family_accounts);
 
             //黑龙江联通策略
-        	if ($operation_strategy == 2) {
+        	if ($operation_strategy == OPERATION_STRATEGY_HLJ || $operation_strategy == OPERATION_STRATEGY_LN) {
         		return !empty($phone_info) ? 3 : 0;
         	}
         	
@@ -712,7 +718,7 @@ class mUser extends mBase {
 	/********************************************************************************
      * 辅助类函数
      ********************************************************************************/
-	/**
+/**
 	 * 翻译用户中的部分数据
 	 * @param  $user
 	 */
@@ -947,21 +953,24 @@ class mUser extends mBase {
 	
     //自动生成账号
     public function createNewUid() {        
-        
 		$mAccountRule = ClsFactory::Create('Model.mAccountRule');
         $new_account = '';
 		$user_flag = 1;//使用标志
 	    $current_rule = $mAccountRule->getAccountRuleByUseFlag($user_flag);
 		$current_rule = array_shift($current_rule);
         $new_account  = $this->createAccount($current_rule['account_length']);
+        
 		//查询数据库$clientCoutn是否存在--$icount
 		$client_account = $this->getUserBaseByUid($new_account);
+
 		if (!empty($client_account)) {
 			$new_account = $this->createNewUid();
 		}
+		
 		//查询数据库wmw_account_lock锁定账号表--账号是否被锁定
 		$mAccountLock = ClsFactory::Create('Model.mAccountLock');
 		$account_lock = $mAccountLock->getAccountLockById($new_account);
+		
 		if (!empty($account_lock)) {
 			$new_account = $this->createNewUid();
 		}

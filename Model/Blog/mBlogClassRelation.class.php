@@ -6,6 +6,22 @@ class mBlogClassRelation extends mBase {
         $this->_dBlogClassRelation = ClsFactory::Create('Data.Blog.dBlogClassRelation');
     }
     
+    
+     /**
+      * 通过条件获取关系信息
+      * @param $where_arr
+      * @param $order_by
+      * @param $offset
+      * @param $limit
+      */
+     public function getBlogClassRelationInfo($where_arr, $order_by = null, $offset = 0, $limit = 20){
+         if (empty($where_arr)) {
+             return false;
+         }
+
+         return $this->_dBlogClassRelation->getInfo($where_arr, $order_by, $offset, $limit);
+     }
+     
 	/**
      * 通用的获取班级日志的函数
      * @param $class_codes
@@ -25,14 +41,6 @@ class mBlogClassRelation extends mBase {
         }
         
         return $this->_dBlogClassRelation->getClassBlogByClassCode($class_codes, $where_appends, $orderby, $offset, $limit);
-    }
-    
-    public function getBlogClassRelationInfo($wheresql, $orderby=null, $offset=null, $limit=null){
-        if(empty($wheresql)) {
-            return false;
-        }
-        
-        return $this->_dBlogClassRelation->getInfo($wheresql, $orderby, $offset, $limit);
     }
     
     /**
@@ -58,7 +66,7 @@ class mBlogClassRelation extends mBase {
             return false;
         }
         
-        return $this->_dBlogClassRelation->delBlogClassRelation($datas, $id);
+        return $this->_dBlogClassRelation->modifyBlogClassRelation($datas, $id);
     }
 
     /**

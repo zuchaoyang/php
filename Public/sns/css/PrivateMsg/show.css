@@ -8,7 +8,7 @@
 
 .mood_main{width:938px; margin:0 auto; border:1px #e5e5e5 solid; font:14px "微软雅黑"; padding:10px; background:#fff; color:#464646; margin-bottom:10px;}
 	.say_tab{width:938px; margin-bottom:10px;}
-		.say_textarea{width:936px; border:1px #ccc solid; height:60px; margin:4px 0px 6px;}
+		.say_textarea{width:900px; border:1px #ccc solid; height:60px; margin:4px 0px 6px;}
 		.icon_say{background:url(../../images/PrivateMsg/show/icon_say_pic.gif) 0 0 no-repeat; width:26px; height:22px; display:inline-block; float:left; margin:0px 4px;}
 		.align_right{text-align:right;}
 		

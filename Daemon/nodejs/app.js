@@ -48,7 +48,7 @@ var io = sio.listen(app);
  //设置session
 io.set('authorization', function(handshakeData, callback){
 	// 通过客户端的cookie字符串来获取其session数据
-	console.log(handshakeData);
+//	console.log(handshakeData);
 	
 	if (handshakeData.headers.cookie) {
 

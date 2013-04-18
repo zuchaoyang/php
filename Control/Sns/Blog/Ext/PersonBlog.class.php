@@ -24,7 +24,7 @@ class PersonBlog extends BlogBase {
 //        );
 
         $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonRelation');
-        $blog_list = $mBlogPersonRelation->getPersonBlogByPersonCode($this->client_account, $where_arr, $orderby, $offset, $limit);
+        $blog_list = $mBlogPersonRelation->getPersonBlogByUid($this->client_account, $where_arr, $orderby, $offset, $limit);
         
         return !empty($blog_list) ? $blog_list : false;
     }
@@ -41,7 +41,7 @@ class PersonBlog extends BlogBase {
         
         $in_str = implode(',', (array)$blog_ids);
         $where_arr = array(
-            "blog_id in($in_str)"
+            "b.blog_id in($in_str)"
         );
         $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonRelation');
         $blog_list = $mBlogPersonRelation->getPersonBlogByUid($this->client_account, $where_arr, null, $offset, $limit);
@@ -57,26 +57,14 @@ class PersonBlog extends BlogBase {
 
         // 获取个人日志权限 列表
         import("@.Common_wmw.Constancearr");
-        $blog_grant = Constancearr::get_blog_person_grant();
-        $where_arr = array(
-            "client_account='$this->client_account'",
-            "blog_id in($in_str)"
-        );
-        $mBlogPersonGrants = ClsFactory::Create('Model.Blog.mBlogPersonGrants');
-        $grant_list = $mBlogPersonGrants->getGrantInfo($where_arr, "blog_id");
-
-        $new_grant_list = array();
-        foreach ($grant_list as $key=>$grant) {
-            $new_grant_list[$grant['blog_id']] = $grant;
-        }
         
         //数据组装
         $new_blog_list = array();
         foreach ($blog_list as $blog_id=>$blog_info) {
-            $blog_info['content'] = $content_list[$blog_id]['content'];
-            $blog_info['type_name']    = $type_list[$blog_info['type_id']]['name'];
-            $blog_info['grant']      = $new_grant_list[$blog_id]['grant'];
-            $blog_info['grant_name'] = Constancearr::get_blog_class_grant($blog_info['grant']);
+            $blog_info['content']    = $content_list[$blog_id]['content'];
+            $blog_info['type_name']  = $type_list[$blog_info['type_id']]['name'];
+            $blog_info['grant']      = $blog_info['grant'];
+            $blog_info['grant_name'] = Constancearr::get_blog_person_grant($blog_info['grant']);
             
             $new_blog_list[$blog_id] = $blog_info;
         }
@@ -121,17 +109,10 @@ class PersonBlog extends BlogBase {
             return false;
         }
 
-        //权限表的数据保存
-        $blog_class_grants_datas = $this->extractBlogGrant($blog_datas);
-        $mBlogPersonGrants = ClsFactory::Create('Model.Blog.mBlogPersonGrants');
-        if(!$mBlogPersonGrants->addBlogPersonGrants($blog_class_grants_datas)) {
-            return false;
-        }
-        
-        //个人和日志的关系表
-        $blog_class_relation_datas = $this->extractBlogRelation($blog_datas);
+        //个人和日志的关系表 包含权限
+        $blog_person_relation_datas = $this->extractBlogRelation($blog_datas);
         $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonRelation');
-        if(!$mBlogPersonRelation->addBlogPersonRelation($blog_class_relation_datas, true)) {
+        if(!$mBlogPersonRelation->addBlogPersonRelation($blog_person_relation_datas, true)) {
             return false;
         }
 
@@ -148,7 +129,7 @@ class PersonBlog extends BlogBase {
             return false;
         }
         
-        //修改涉及到的表: 权限表，日志内容表，日志基本信息表
+        //修改涉及到的表: 日志关系表， 日志内容表，日志基本信息表
         if($this->needModifyBlogEntity($blog_datas)) {
             $mBlog = ClsFactory::Create('Model.Blog.mBlog');
             $mBlog->modifyBlog($blog_datas, $blog_id);
@@ -158,17 +139,21 @@ class PersonBlog extends BlogBase {
             $mBlogContent = ClsFactory::Create('Model.Blog.mBlogContent');
             $mBlogContent->modifyBlogContent($blog_datas, $blog_id);
         }
-        //日志的关系表示不会涉及到修改的
-        if($this->needModifyBlogGrants($blog_datas)) {
-            $mBlogPersonGrants = ClsFactory::Create('Model.Blog.mBlogPersonGrants');
-            $where_arr = array(
-                "blog_id='$blog_id'",
-                "class_code='$this->client_account'"
-            );
-            
-            $mBlogPersonGrants->modifyBlogPersonGrantByWhere($blog_datas, $where_arr);
-        }
         
+        //日志关系表修改
+        if($this->needModifyBlogRelation($blog_datas)) {
+            //个人和日志的关系表 包含权限
+            $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonRelation');
+            $where = array(
+                'client_account='. $this->client_account,
+                "blog_id='$blog_id'"
+            );
+            $relation_info = $mBlogPersonRelation->getBlogPersonRelationInfo($where, null, 0, 1); 
+            $relation_info = reset($relation_info);
+
+            $mBlogPersonRelation->modifyBlogPersonRelation($blog_datas, $relation_info['id']);
+
+        }
         return true;
     }
     
@@ -180,24 +165,20 @@ class PersonBlog extends BlogBase {
         if(empty($blog_id)) {
             return false;
         }
-     
-        //删除 日志内容表
-        $mBlogContent = ClsFactory::Create('Model.Blog.mBlogContent');
-        $content_del = $mBlogContent->delByBlogId($blog_id);
 
         //删除日志评论表
         $mBlogComments = ClsFactory::Create('Model.Blog.mBlogComments');
         $comment_del = $mBlogComments->delAllByBlogId($blog_id);
-
-        //删除个人日志权限表
-        $mBlogPersonGrants = ClsFactory::Create('Model.Blog.mBlogPersonGrants');
-        $grants_del = $mBlogPersonGrants->delGrantByBlogId($blog_id);
 
         //删除个人和日志的关系表
         $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonRelation');
         if(!$mBlogPersonRelation->delBlogPersonRelationByBlogId($blog_id)) {
             return false;
         }
+             
+        //删除 日志内容表
+        $mBlogContent = ClsFactory::Create('Model.Blog.mBlogContent');
+        $content_del = $mBlogContent->delByBlogId($blog_id);
         
         //删除日志详细信息表
         $mBlog = ClsFactory::Create('Model.Blog.mBlog');
@@ -222,10 +203,10 @@ class PersonBlog extends BlogBase {
         }
         
         $mBlogTypePersonRelation = ClsFactory::Create('Model.Blog.mBlogPersonType');
-        $class_type_list = $mBlogTypePersonRelation->getBlogPersonTypeByUid($this->client_account);
-        $class_type_list = & $class_type_list[$this->client_account];
-        if (!empty($class_type_list)) {
-            foreach ($class_type_list as $key=>$type_relation) {
+        $person_type_list = $mBlogTypePersonRelation->getBlogPersonTypeByUid($this->client_account);
+        $person_type_list = & $person_type_list[$this->client_account];
+        if (!empty($person_type_list)) {
+            foreach ($person_type_list as $key=>$type_relation) {
                 $type_ids[] = $type_relation['type_id'];
             }
             $mBlogTypes = ClsFactory::Create('Model.Blog.mBlogTypes');
@@ -275,10 +256,6 @@ class PersonBlog extends BlogBase {
         return !empty($is_return_id) ? $type_id : true;
     }
     
-    public function modifyBlogType($blog_datas, $blog_id) {
-    
-    }
-    
     /**
      * 删除个人日志分类
      * @param unknown_type $blog_id
@@ -313,10 +290,10 @@ class PersonBlog extends BlogBase {
 
         //删除日志分类与个人关系表
         $mBlogPersonType = ClsFactory::Create('Model.Blog.mBlogPersonType');
-        $class_type_relations = $mBlogPersonType->getBlogPersonTypeByTypeId($type_id);
-        $class_type_relations = $class_type_relations[$type_id];
-        if (!empty($class_type_relations)) {
-            $relation_ids = array_keys($class_type_relations);
+        $person_type_relations = $mBlogPersonType->getBlogPersonTypeByTypeId($type_id);
+        $person_type_relations = $person_type_relations[$type_id];
+        if (!empty($person_type_relations)) {
+            $relation_ids = array_keys($person_type_relations);
             $del_realtion_success = $mBlogPersonType->delById($relation_ids);
             if (empty($del_realtion_success)) {
                 return false;
@@ -348,27 +325,36 @@ class PersonBlog extends BlogBase {
         }
         
         $blog_person_relation = array(
-            'class_code' => $this->client_account,
-            'blog_id' => $blog_datas['blog_id'],
+            'client_account' => $this->client_account,
+            'grant'   => $blog_datas['grant'],
+        	'blog_id' => $blog_datas['blog_id']
         );
         
         return $blog_person_relation;
     }
     
+    /*****************************************************************************************
+     * 日志分类修改辅助函数
+     * ***************************************************************************************/
+     protected function needModifyBlogRelation($blog_datas) {
+         if(empty($blog_datas)) {
+             return false;
+         }
+         $fields = array(
+            'client_account',
+            'grant',
+         	'blog_id',
+         );
+         
+         foreach($fields as $field) {
+             if(isset($blog_datas[$field])) {
+                 return true;
+             }
+         }
+         
+         return false;
+     }
     
-    protected function extractBlogGrant($blog_datas) {
-        if(empty($blog_datas)) {
-            return false;
-        }
-        
-        $blog_person_grants_datas = array(
-            'blog_id' => $blog_datas['blog_id'],
-            'class_code' => $this->client_account,
-            'grant' => $blog_datas['grant'],
-        );
-        
-        return $blog_person_grants_datas;
-    }
     
     
     /*************************************************************************************
@@ -379,11 +365,12 @@ class PersonBlog extends BlogBase {
             return false;
         }
         
-        $blog_type_class_relation = array(
-            'class_code' => $this->client_account,
+        $blog_type_person_relation = array(
+            'client_account' => $this->client_account,
             'type_id' => $datas['type_id'],
         );
         
-        return $blog_type_class_relation;
+        return $blog_type_person_relation;
     }
+    
 }

@@ -49,6 +49,7 @@ class CreateFeed {
         
         //mysql入库操作
         $feed_datas['action'] = $action;
+        $feed_datas['from_class_code'] = $class_code;
         $feed_id = $this->saveFeed($feed_datas);
         
         if(empty($feed_id)) return false;

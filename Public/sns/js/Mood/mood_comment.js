@@ -10,10 +10,6 @@
 	 * }
 	 */
 	$.fn.loadMoodComments=function(mood_id, options) {
-		//show_load_more默认是显示
-		if(typeof options.show_load_more == 'undefine') {
-			options.show_load_more = true;
-		}
 		comment.globalInit();
 		this.each(function() {
 			var elem = this;
@@ -25,35 +21,19 @@
 		return this;
 	};
 	
-	$.fn.publishBySendBox=function(mood_id, options) {
-		options = options || {};
-		comment.globalInit();
-		this.each(function() {
-			$(this).sendBox({
-				panels:'emote',
-				type:'post',
-				url:'/Sns/Mood/Comments/publishMoodCommentsAjax',
-				dataType:'json',
-				data:{
-					mood_id:mood_id,
-					up_id:0
-				},
-				success:function(json) {
-					if(json.status < 0) {
-						$.showError(json.info);
-						return false;
-					}
-					//处理成功后的回调函数
-					var divObj = comment_1st_unit.create(json.data);
-					if(typeof options.callback == 'function') {
-						options.callback(divObj);
-					}
-				}
-			});
+	//加载容器内部的图片信息
+	$.fn.loadImg=function() {
+		$('img', $(this)).each(function() {
+			var data_original = $(this).attr('data-original');
+			var data_from = $(this).attr('data-from');
+			if(data_original) {
+				$(this).attr('src', data_original);
+			} else if(data_from) {
+				$(this).attr('src', $(data_from).val());
+			}
 		});
 		return this;
 	};
-	
 })(jQuery);
 
 function comment(elem, mood_id, options) {
@@ -84,29 +64,28 @@ comment.prototype = {
 		var me = this;
 		
 		//创建加载更多的按钮
-		var show_load_more = me.options.show_load_more;
-		if(typeof show_load_more == 'boolean' && show_load_more) {
-			var divObj = $('#load_more_div').clone().removeAttr('id').show();
-			divObj.appendTo(me.$elem);
-			$('#load_more_comment_a', divObj).click(function() {
-				var page = $(this).data('page') || 1;
-				var hasNextPage = me.loadDatas(page + 1);
-				if(!hasNextPage) {
-					divObj.hide();
-				} else {
-					divObj.show();
-					$(this).data('page', page + 1);
-				}
-				//防止页面跳转和事件冒泡
-				return false;
-			});
+		var divObj = $('#load_more_div').clone().removeAttr('id').show();
+		divObj.appendTo(me.$elem);
+		$('#load_more_comment_a', divObj).click(function() {
+			var page = $(this).data('page') || 1;
+			var hasNextPage = me.loadDatas(page + 1);
+			if(!hasNextPage) {
+				divObj.hide();
+			} else {
+				divObj.show();
+				$(this).data('page', page + 1);
+			}
+			//防止页面跳转和事件冒泡
+			return false;
+		});
+		//隐藏加载更多的按钮
+		if(me.options.show_load_more === false) {
+			$('#load_more_comment_a', divObj).parent().hide();
 		}
+		//初始化第一页的数据
 		me.loadDatas(1);
-		
 		//绑定刷新的相关事件
-		if(!$.isEmptyObject(me.options)) {
-			me.$elem.addClass('ancestor_selector').data('options', me.options);
-		}
+		me.$elem.addClass('ancestor_selector').data('options', me.options || {});
 	},
 	
 	//加载说说的评论信息
@@ -122,9 +101,9 @@ comment.prototype = {
 			success:function(json) {
 				if(json.status < 0 || $.isEmptyObject(json.data) || !json.data.has_next_page) {
 					hasNextPage = false;
-				} else {
-					me.fillCommentDatas(json.data.comment_list);
 				}
+				//填充相应的数据
+				me.fillCommentDatas(json.data.comment_list || {});
 			}
 		});
 		return hasNextPage;
@@ -136,8 +115,7 @@ comment.prototype = {
 		comment_list = comment_list || {};
 		var insertPosObj = $('.load_more_selector', me.$elem);
 		for(var i in comment_list) {
-			var comment = comment_list[i];
-			var divObj = comment_1st_unit.create(comment);
+			var divObj = comment_1st_unit.create(comment_list[i]);
 			if(insertPosObj.length >= 1) {
 				divObj.insertBefore(insertPosObj);
 			} else {
@@ -200,6 +178,7 @@ comment_1st_unit.prototype = {
 				var mood_id = $(':input[name="mood_id"]', ancestorObj).val();
 				$('.reply_textarea', replyDivObj).sendBox({
 					panels:'emote',
+					skin:'mini',
 					type:'post',
 					url:'/Sns/Mood/Comments/publishMoodCommentsAjax',
 					dataType:'json',
@@ -251,6 +230,7 @@ comment_1st_unit.prototype = {
 				var mood_id = $(':input[name="mood_id"]', ancestorObj).val();
 				sayDivObj[0].sendBoxObj = $('.reply_textarea', sayDivObj).sendBox({
 					panels:'emote',
+					skin:'mini',
 					type:'post',
 					url:'/Sns/Mood/Comments/publishMoodCommentsAjax',
 					dataType:'json',
@@ -298,6 +278,8 @@ comment_1st_unit.create=function(comment) {
 		}
 	}
 	
+	$(comment1stUnitDiv).loadImg();
+	
 	return $(comment1stUnitDiv).show();
 };
 
@@ -336,6 +318,9 @@ comment_2nd_unit.create=function(child_comment) {
 	comment2ndUnitDiv.renderHtml({
 		child_comment:child_comment
 	});
+	
+	$(comment2ndUnitDiv).loadImg();
+	
 	return $(comment2ndUnitDiv).show();
 };
 

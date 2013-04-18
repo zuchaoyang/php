@@ -126,13 +126,23 @@ class MoodComments {
             return false;
         }
         
+        $each_limit = 5;
         $up_ids = (array)array_keys($comment_list);
         $mMoodComments = ClsFactory::Create('Model.Mood.mMoodComments');
-        $child_comment_arr = $mMoodComments->getMoodCommentsByUpid($up_ids);
+        //统计孩子节点的个数
+        $stat_list = $mMoodComments->getMoodCommentsChildrenStatByUpid($up_ids);
+        //获取孩子节点的数据
+        $child_comment_arr = $mMoodComments->getMoodCommentsChildrenByUpid($up_ids, $each_limit);
+        
         if(!empty($child_comment_arr)) {
             foreach($comment_list as $comment_id=>$comment) {
                 if(isset($child_comment_arr[$comment_id])) {
                     $comment['child_items'] = $child_comment_arr[$comment_id];
+                    
+                    $remain_nums = $stat_list[$comment_id] - $each_limit;
+                    if($remain_nums > 0) {
+                        $comment['remain_nums'] = $remain_nums;
+                    }
                 }
                 $comment_list[$comment_id] = $comment;
             }

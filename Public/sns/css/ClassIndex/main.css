@@ -14,7 +14,7 @@
 			.black_right p a{color:#fff; font:16px "微软雅黑"; line-height:20px; display:inline-block; margin-top:4px;}
 			.black_right p .tommor_bj{background:#fff; color:#00733c;}
 		.black_right table{width:220px; margin-bottom:10px; font:16px "微软雅黑";}	
-			.black_right table td{width:20px;}	
+			.black_right table td{width:20px;vertical-align:top;}	
 
 .active_member{background:url(../../images/ClassIndex/class_people_bj.gif) repeat; width:940px; margin:20px 0px; padding:10px;}
 	.active_member_title{height:30px;}
@@ -23,8 +23,9 @@
 		.p_width{width:590px; cursor:pointer;}
 		.icon_dsjx{background:url(../../images/Common/sns_images/triangle_green.gif) 0 0 no-repeat;width:9px;height:5px;display:inline-block;overflow:hidden;margin:0px 4px 2px;_margin-bottom:6px;}
 		.icon_upsjx{ background:url(../../images/Common/sns_images/up_sjx_green.gif) 0 0 no-repeat;width:9px;height:5px;display:inline-block;overflow:hidden;margin:0px 4px 2px;_margin-bottom:6px;}
+        .active_member_title p.pr10{float:right;padding-right:5px;}
 		.active_member_title p a{color:#288c00; font:18px "微软雅黑";}
-		.pr10{padding-right:10px;}	
+		.active_member_title p.pr10 a{text-decoration:none; }
 	
 	.class_people{}
 		.class_people_small p{height:60px;}
@@ -45,8 +46,8 @@
 		.main_nav_a1{background:url(../../images/ClassIndex/main_nav_a1.jpg) 0 0 no-repeat; width:112px; height:36px; display:inline-block; text-align:center; font:16px "微软雅黑";line-height:36px;                      color:#fff;}
 		.main_nav_a2{background:url(../../images/ClassIndex/main_nav_a2.jpg) 0 0 no-repeat; width:112px; height:36px; display:inline-block; text-align:center; font:16px "微软雅黑";line-height:36px; color:#464646;}
 		.mr6{margin-right:6px;}
-	.say_box{width:746px; border:1px #d2d2d2 solid; margin:10px 0px; background:#fff; padding:1px;}
-		.say_text{width:742px; border:none; background:#fff; padding:2px 0px 0px 2px; height:60px;}	
+	.say_box{width:746px; border:1px #d2d2d2 solid; margin:10px 0px; padding:1px;}
+		.say_text{width:730px; border:none; background:#fff; padding:2px 0px 0px 2px; height:60px;margin:0 auto;}	
 		.say_box .say_box_main{background:#e5f6cc; color:#6b6b6b; height:28px; padding:0px 20px;}
 			.icon_face{background:url(../../images/ClassIndex/icon_face.gif) 0 0 no-repeat; width:22px; height:22px; display:inline-block; float:left; margin:3px 10px 0px 0px;}
 			.icon_pic{background:url(../../images/ClassIndex/icon_pic.gif) 0 0 no-repeat; width:24px; height:20px; display:block; float:left; margin:4px 0px 0px 0px;}
@@ -195,7 +196,7 @@
 	.card_top{background:url(../../images/ClassIndex/card_top_bj.gif) 0 0 no-repeat; height:10px; overflow:hidden;}
 	.card_center{background:url(../../images/ClassIndex/card_center_bj.gif) repeat-y; padding:10px 20px; width:310px; position:relative;}
 		.card_center_main dl{width:80px; float:left; margin-right:10px;}
-			.card_center_main dl dt{border-right:1px #6e706d solid; border-bottom:1px #6e706d solid;}
+			.card_center_main dl dt{border-right:1px #6e706d solid; border-bottom:1px #6e706d solid; cursor:pointer;}
 		.stu_info{width:220px; float:left; color:#2b6800; padding-top:8px; z-index:-1;}	
 			.stu_info p{line-height:28px;}
 			.gt_btn{background:url(../../images/ClassIndex/gt_btn.jpg) 0 0 no-repeat; width:74px; height:27px; border:none; cursor:pointer; margin-right:10px;}
@@ -219,7 +220,7 @@
 
 
 /*添加好友*/
-.edit_comment{width:500px;border:1px #6db500 solid; background:#fff; font:14px "宋体";}
+.edit_comment{width:550px;border:1px #6db500 solid; background:#fff; font:14px "宋体";}
 	.tcc_title{font:14px "宋体"; background:#f8f8f8; border-bottom:1px #e9e9e9 solid; padding:0px 10px; height:33px; line-height:33px; width:480px; position:relative;}
 	  .close_icon{background:url(../../images/Common/sns_images/icon_close.gif) 0 0 no-repeat; width:10px; height:9px; display:inline-block; position:absolute; right:10px; top:12px;}
 	.textarea_main{padding:10px;}

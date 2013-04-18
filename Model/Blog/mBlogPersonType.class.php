@@ -28,13 +28,15 @@ class mBlogPersonType extends mBase {
     
     /**
      * 根据用户账号 获取日志类型列表和每个分类下的日志数量
+     * @param $grant_where 权限条件
+     * @param $client_account 要查询的账号
      */
-    public function getBlogNumsByUid($client_account) {
+    public function getBlogNumsByUid($client_account, $grant_where) {
         if (empty($client_account)) {
             return false;
         }
 
-        $nums_list = $this->_dBlogPersonType->getBlogNumsByUid($client_account);
+        $nums_list = $this->_dBlogPersonType->getBlogNumsByUid($client_account, $grant_where);
         
         if(empty($nums_list)) {
             return false;

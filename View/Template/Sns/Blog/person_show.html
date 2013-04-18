@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>查看日志-评论</title>
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Blog/person_show.css" type="text/css" charset="utf-8">
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/sendbox/sendbox.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/template/template.js"></script>
+
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/person_show.js"></script>
+</head>
+<body>
+{insert name="sns_header" }
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $uid}
+<!--per_tip end-->
+
+<!--content star-->
+<div class="content">
+  <!--main star-->
+   <div class="main">
+    <h4><a href="/Sns/Blog/PersonList/index/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回日志列表</span></a></h4>
+    <div class="clear"></div>
+    <!--publish_main star-->
+     <div class="publish_main">
+      <!--list_main_top star-->
+       <div class="list_main_top">
+         
+         <div class="list_main_top_right">
+           <h3>{$blog_info.title}</h3>
+           <p>
+            <span class="pr10">发布日期：{$blog_info.add_time}</span><span class="pr10">发布者：{$add_blog_client_name}</span><span class="pr10">分类标签：{$blog_info.type_name}</span>|
+            <span class="pl_r10">{$blog_info.grant_name}</span><span class="pr10" id="class_blog_views">阅读({$blog_info.views})</span>|<span class="pl_r10"><a id="comment_text_num" href="#comment_text">评论({$blog_info.comments})</a></span>
+            {if $can_edit}
+            <span class="pr10"><a href="/Sns/Blog/PersonPublish/index/edit_id/{$blog_info.blog_id}">编辑</a></span>
+            {/if}
+            {if $can_del}
+            <span class="pr10"><a href="javascript:;" id="del_blog">删除</a></span>
+            {/if}
+           </p>
+           <ul>
+		        <li>
+			        <a href="/Sns/Blog/PersonContent/up_blog/blog_id/{$blog_info.blog_id}/client_account/{$client_account}" class="pl_r10">上一篇</a>|
+			        <a href="/Sns/Blog/PersonContent/next_blog/blog_id/{$blog_info.blog_id}/client_account/{$client_account}" class="pl10">下一篇</a>
+		        </li>
+	       </ul>
+           
+        </div>
+       </div>
+       <!--list_main_top end-->
+       <div class="blog_main_bjt">
+       <p class="main_text">{$blog_info.content}
+       </p>
+       </div>
+       <ul>
+        <li><a href="/Sns/Blog/PersonContent/up_blog/blog_id/{$blog_info.blog_id}/client_account/{$client_account}" class="pl_r10">上一篇</a>|
+        <a href="/Sns/Blog/PersonContent/next_blog/blog_id/{$blog_info.blog_id}/client_account/{$client_account}" class="pl10">下一篇</a></li>
+       </ul>
+       <p><strong>评论:</strong></p>
+       <!--list_comment star-->
+       <a href="javascript:;" name="comment_text"></a>
+       <div class="list_comment">
+          <textarea id="1st_comments_content" class="list_textarea"></textarea>
+       </div>
+       <!--list_comment end-->
+ 	   <div id="comment_list_div">
+ 	      
+ 	   </div>
+ 	   {include file="Sns/Blog/Subtemplate/person_blog_comment.html"}
+       <!--more_active star-->
+         <div class="more_active" id="more_comments">
+           <a href="javascript:;">查看更多评论</a>
+         </div>
+       <!--more_active end-->
+       <div class="clear"></div> 
+     </div>
+    <!--publish_main end--> 
+    <div class="clear"></div>
+    <div class="main_bottom"></div>
+  </div>
+  <!--main end-->
+  <div class="clear"></div> 
+  </div>
+<!--content end-->
+<input type="hidden" id="page" value="2"/>
+
+{include file="Public/sns_footer.html"}
+
+<!--弹出层 star-->
+<!--提示信息弹出层 star-->
+  <div class="tcc_msg" id="is_del" style="display:none;">
+    <p class="tcc_msg_top"></p>
+    <div class="tcc_msg_center">
+      <span class="icon_question"></span>&nbsp;<span class="f12">确认要删除这篇日志吗？</span>
+      <p><input type="button" id="del_true" class="qd_btn"><input type="button" class="qx_btn" id="del_false" value="取消"></p>
+    </div>
+    <p class="tcc_msg_bottom"></p>
+  </div>
+<!--提示信息弹出层 end--> 
+
+<!--提示信息弹出层 star-->
+<div class="tcc_msg" id="is_del_comments" style="display:none;">
+  <p class="tcc_msg_top"></p>
+  <div class="tcc_msg_center">
+    <span class="icon_question"></span>&nbsp;<span class="f12">确认要删除这条评论吗？</span>
+    <p><input type="button" id="del_true_comments" class="qd_btn"><input type="button" class="qx_btn" id="del_false_comments" value="取消"></p>
+  </div>
+  <p class="tcc_msg_bottom"></p>
+  <input type="hidden" name="comment_id"/>
+</div>
+<!--提示信息弹出层 end--> 
+ 
+<!--弹出层 end-->
+<input type="hidden" id="client_account" value="{$client_account}"/>
+<input type="hidden" id="blog_id" value="{$blog_info.blog_id}"/>
+
+</body>
+</html>
+
+
+

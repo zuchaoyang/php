@@ -128,6 +128,7 @@ my_py.prototype.loadDatas=function() {
 my_py.prototype.fillDatas=function(datas) {
 	var me = this;
 	var context = $('#my_py_div');
+	var max_len = 38;
 	//清楚已有的数据
 	var parent = $('#my_py_list_ul', context);
 	$('li:gt(0)', parent).remove();
@@ -137,6 +138,9 @@ my_py.prototype.fillDatas=function(datas) {
 		var liObj = liClone.clone().removeClass('clone').appendTo(parent).show();
 		//将数据绑定到li元素上
 		liObj.data('data', datas[i] || {});
+		
+		//显示的时候处理长度
+		py_content = py_content.length > max_len ? py_content.substring(0, max_len) + "... " : py_content;
 		$('.py_content', liObj).html(py_content);
 	}
 };
@@ -148,7 +152,8 @@ my_py.prototype.attachEventForPy=function() {
 		//获取当前对应的评语内容
 		var options = $('#my_py_div').data('options') || {};
 		if(typeof options.callback == 'function') {
-			var py_content = $('.py_content', $(this).parents('li:first')).html();
+			var data = $(this).closest('li').data('data');
+			var py_content =  data.py_content;
 			options.callback(py_content);
 		}
 		$('#my_py_div').trigger('closeMyPyDialogEvent');

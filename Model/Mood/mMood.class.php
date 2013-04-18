@@ -71,7 +71,8 @@ class mMood extends mBase{
         //获取mood的图片信息
         import('@.Common_wmw.');
         if(!empty($mood['img_url'])) {
-            $mood['img_url'] = Pathmanagement_sns::getMood() . $mood['img_url'];
+            $client_account = $mood['add_account'];
+            $mood['img_url'] = Pathmanagement_sns::getMood($client_account) . '/' . $mood['img_url'];
         }
         
         return $mood;

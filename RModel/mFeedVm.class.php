@@ -56,7 +56,7 @@ class mFeedVm {
         
         $mZsetUserAll = ClsFactory::Create("RModel.Feed.mZsetUserAll");
         $feed_id_list = $mZsetUserAll->getFeedById($uid, $lastId, $limit);
-        
+
         return $this->getFeed($feed_id_list);
     }
     
@@ -129,9 +129,9 @@ class mFeedVm {
             return false;
         }
         
-        $mZsetUserFriendFeed = ClsFactory::Create("RModel.Feed.mZsetUserFriendFeed");
+        $mZsetUserFriend = ClsFactory::Create("RModel.Feed.mZsetUserFriend");
         
-        $feed_id_list = $mZsetUserFriendFeed->getFeedById($uid, $lastId, $limit);
+        $feed_id_list = $mZsetUserFriend->getFeedById($uid, $lastId, $limit);
         
         return $this->getFeed($feed_id_list);
     }
@@ -145,11 +145,19 @@ class mFeedVm {
      * 							)
      */
     
-    private function getFeed($feed_ids) {
-        if(empty($feed_ids)) {
+    private function getFeed($datas) {
+        if(empty($datas)) {
             return false;
         }
+
         $mFeed = ClsFactory::Create("Model.Feed.mFeed");
+        
+        $feed_ids = array();
+        $len = count($datas);
+
+        foreach($datas as $key => $val) {
+            $feed_ids[] = $key;
+        }
         $feed_list = $mFeed->getFeedByid($feed_ids);
         return $feed_list;
     }

@@ -12,7 +12,6 @@ class mPersonVistior extends mBase{
         if(empty($dataarr)) {
             return false;
         }
-        
         return $this->_dPersonVistior->addPersonVistior($dataarr);
         
     }

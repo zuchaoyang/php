@@ -7,21 +7,22 @@
 <link rel="stylesheet" href="__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
 <link rel="stylesheet" href="__PUBLIC__/sns/css/PersonIndex/active_info.css" type="text/css" charset="utf-8">
 
-<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/wmw_js/jquery-1.5.2.js"></script>
 
 </head>
 <body>
+<!--弹出层 star-->
 {insert name="sns_header"}
 
 <!--per_tip star-->
-{insert name="sns_person_second_header" uid = $current_uid}
+{insert name="sns_person_second_header" uid=$uid}
 <!--per_tip end--> 
 <!--content star-->
 <div class="content">
   <!--main star-->
   <div class="main">
        <ul>
-        <li><a href="javascript:;" class="main_nav_a1 mr6">活跃值</a><a href="/Sns/PersonIndex/Active/showActiveRule" target="_blank" class="main_nav_a2">活跃值规则</a></li>
+        <li><a href="#" class="main_nav_a1 mr6">活跃值</a><a href="#" class="main_nav_a2">活跃值规则</a></li>
        </ul> 
     <div class="active_main">
       <h3>{$client_name}</h3>
@@ -43,19 +44,32 @@
       <p>（2）可以提升自己在圈圈活跃成员的排名。</p>
       <p>（3）可以提升班级在班级广场的综合排名。</p>
      <h3>活跃值详情</h3>
-     <table width="100%" border="0" cellspacing="1" cellpadding="0">
+     <table width="100%" border="0" cellspacing="1" cellpadding="0" border=1>
       <tr>
-        <th>每日操作</th>
-        <th>获得活跃值</th>
-        <th>每日上限（活跃值）</th>
-        <th>今日已获得活跃值</th>
+      	<th rowspan="2">获得活跃值项目</th>
+        <th colspan="2">增加活跃值</th>
+        <th rowspan="2">每日获得最大活跃值</th>
+      </tr>
+      <tr>
+        <th>操作</th>
+        <th>加分</th>
       </tr>
       {foreach from=$active_log_list item=val}
       <tr>
-        <td>{$val.message}</td>
-        <td>+{$val.add_value}</td>
-        <td>{$val.day_limit}</td>
-        <td>{$val.value}</td>
+      	<td rowspan="{$val.action_num}">{$val.message}</td>
+      	{foreach from=$val.action_list item=val1}
+      	{if $val.action_num>1}
+      	<tr>
+	        <td>{$val1.action}</td>
+	        <td>+{$val1.value}</td>
+	        <td>{$val1.day_limit}</td>
+        </tr>
+        {else}
+        	<td>{$val1.action}</td>
+	        <td>+{$val1.value}</td>
+	        <td>{$val1.day_limit}</td>
+        {/if}
+        {/foreach}
       </tr>
       {/foreach}
     </table>

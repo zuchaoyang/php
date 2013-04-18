@@ -27,6 +27,10 @@ albumlist.prototype.attachEvent = function(){
 		var parentObj = $(this).parents("div:first");
 		//打开创建弹出层
 		$('#create_album_div').trigger('openEvent', [{
+			add_post_url:'/Sns/Album/Classalbum/createAlbum',//添加相册路径
+			get_grant_url:'/Sns/Album/Classalbum/getClassGrantList',//获取相册权限路径
+			get_album_url:'/Sns/Album/Classalbum/getAlbum/class_code/'+me.class_code,
+			add_form_info:{class_code:me.class_code,client_account:me.client_account},
 			class_code:me.class_code,
 			client_account:me.client_account,
 			callback:function(album_list) {
@@ -56,7 +60,7 @@ albumlist.prototype.delegateEvent=function() {
 	var me = this;
 	
 	$('#dl_list').delegate('dl', 'mouseover', function() {
-		if($("#is_edit").val()) {
+		if(me.is_edit || $(this).data('is_edit')) {
 			$('.hide_main', $(this)).show();
 			$('#photo_num_dd',$(this)).hide();
 		}else{
@@ -78,6 +82,10 @@ albumlist.prototype.delegateEvent=function() {
 		var album_datas = ancestorOb.data('datas') || {};
 		var album_id = album_datas.album_id;
 		$('#edit_album_div').trigger('openEvent',[{
+			upd_post_url:'/Sns/Album/Classalbum/updAlbum',//添加相册路径
+			get_grant_url:'/Sns/Album/Classalbum/getClassGrantList',//获取相册权限路径
+			get_album_url:'/Sns/Album/Classalbum/getAlbum/class_code/'+me.class_code+'/album_id/'+album_id,
+			add_form_info:{class_code:me.class_code,client_account:me.client_account,album_id:album_id},
 			class_code:me.class_code,
 			album_id:album_id,
 			client_account:me.client_account,
@@ -110,12 +118,11 @@ albumlist.prototype.deleteAlbum=function(obj) {
 	var me = this;
 	var ancestorOb = obj;
 	var album_datas = ancestorOb.data('datas') || {};
-	
 	var album_id = album_datas.album_id;
 	$.ajax({
 		type:"get",
 		dataType:"json",
-		url:"/Api/Album/delAlbumByClass/class_code/" + me.class_code + "/album_id/" + album_id,
+		url:"/Sns/Album/Classalbum/delClassAlbum/class_code/" + me.class_code + "/album_id/" + album_id,
 		async:false,
 		success:function(json) {
 			if(json.status < 0) {
@@ -142,7 +149,7 @@ albumlist.prototype.loadMoreAlbum=function(options) {
 	var is_success = true;
 	$.ajax({
 		type:"get",
-		url:"/Api/Album/getListByClass/class_code/" + me.class_code + serilize_params,
+		url:"/Sns/Album/Classalbum/loadMoreAlbum/class_code/" + me.class_code + serilize_params,
 		dataType:"json",
 		async:false,
 		success:function(json) {
@@ -170,7 +177,16 @@ albumlist.prototype.fillAlbum=function(album_list) {
 		if(album_datas.album_img_path == '') {
 			album_datas.album_img_path = me.no_photo_img;
 		}
-		var dlObj = dlClone.clone().removeClass('clone_selector').insertBefore(insertPosDivObj).show();
+		var dlObj = dlClone.clone();
+		if(!me.is_edit) {
+			if(me.client_account == album_datas.upd_account) {
+				dlObj.data('is_edit', true);
+			}else{
+				dlObj.data('is_edit', false);
+			}
+		}
+		
+		dlObj.removeClass('clone_selector').insertBefore(insertPosDivObj).show();
 		dlObj.data('datas', album_datas).renderHtml(album_datas);
 	}
 };

@@ -1,7 +1,7 @@
 <?php
 import('RData.RedisFeedKey');
 
-class dZsetUserAll extends rBaseZset {
+class dZsetUserMy extends rBaseZset {
     
     protected $zset_max_size = 100;
     

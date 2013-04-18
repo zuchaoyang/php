@@ -207,7 +207,7 @@ class StudentImportAction extends SnsController {
             $client_accounts_dataarr[$family1_account] = array(
             	'client_account'  => $family1_account,
                 'client_password' => $default_password,
-                'client_type'	  => CLIENT_TYPE_STUDENT,
+                'client_type'	  => CLIENT_TYPE_FAMILY,
                 'client_name'	  => '父亲',
                 'status'		  => CLIENT_STOP_FLAG,
                 'add_time'		  => time(),
@@ -216,7 +216,7 @@ class StudentImportAction extends SnsController {
             $client_accounts_dataarr[$family2_account] = array(
             	'client_account'  => $family2_account,
                 'client_password' => $default_password,
-                'client_type'	  => CLIENT_TYPE_STUDENT,
+                'client_type'	  => CLIENT_TYPE_FAMILY,
                 'client_name'	  => '母亲',
                 'status'		  => CLIENT_STOP_FLAG,
                 'add_time'		  => time(),

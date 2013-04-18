@@ -15,17 +15,17 @@ class NoticeApi extends ApiController{
      */
     function getLastNoticeByClassCode() {
         $class_code = $this->objInput->getInt('class_code');
-        if(empty($class_code)) {
-            return false;
-        }
         
-        $mClassNotice = ClsFactory::Create('Model.ClassNotice.mClassNotice');
-        $NoticeInfo = $mClassNotice->getLastNoticeByClassCode($class_code);
+        if(empty($class_code)) {
+            $this->ajaxReturn(null, '获取最新公告失败！', -1, 'json');
+        }
+        import("@.Control.Api.Class.NoticeImpl.Notice");
+        $notice_obj = new Notice();
+        $NoticeInfo = $notice_obj->getLastNoticeByClassCode($class_code);
         if(empty($NoticeInfo)) {
             $this->ajaxReturn(null, '获取最新公告失败！', -1, 'json');
         }
-        $NoticeInfo = reset($NoticeInfo);
-        $NoticeInfo['add_time'] = date('Y.m.d H:i', $NoticeInfo['add_time']);
+        
         $this->ajaxReturn($NoticeInfo, '获取最新公告成功！', 1, 'json');
     }
 }

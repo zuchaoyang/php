@@ -110,7 +110,7 @@ class mClientClass extends mBase {
 	    	return false;
 	    }
 	       
-	    return $this->_dClientClass->modifyClientClass ( $clientInfo, $id );
+	    return $this->_dClientClass->modifyClientClass($clientInfo, $id );
 	}
 	
 	

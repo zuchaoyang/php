@@ -8,10 +8,10 @@ class IndexAction extends SnsController {
     
     public function index() {
         $class_code = $this->objInput->getInt('class_code');
-
+        
         //todolist 跳转到个人空间
         $class_code = $this->checkoutClassCode($class_code);
-
+        
         if(empty($class_code)) {
             $this->showError('您暂时不能进入班级空间!', '/Sns/');
         }
@@ -114,7 +114,9 @@ class IndexAction extends SnsController {
         
         //好友检测
         $mAccountRelation = ClsFactory::Create('Model.mAccountrelation');
+
         $account_relation_infos = $mAccountRelation->getAccountRelationByClientAccout($current_uid);
+
         $account_relation_infos = $account_relation_infos[$current_uid];
         $friend_list = array();
         
@@ -143,7 +145,6 @@ class IndexAction extends SnsController {
             //父母的好友检测
             $account_relation_infos = $mAccountRelation->getAccountRelationByClientAccout($family_account);
             $account_relation_infos = $account_relation_infos[$current_uid];
-            $friend_list = array();
             
             foreach($account_relation_infos as $val){
                 $parent_friend_list[] = $val['friend_account'];
@@ -168,7 +169,7 @@ class IndexAction extends SnsController {
         
         $new_info['is_friend'] = !in_array($uid, $friend_list) ? false : true;
         $new_info['is_self'] = $uid == $current_uid ? true : false;
-//        dump($new_info);die;
+
         if(empty($new_info)) {
             $this->ajaxReturn(null, "获取用户选项卡失败！", -1, 'json');
         }

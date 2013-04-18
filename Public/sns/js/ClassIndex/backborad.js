@@ -56,17 +56,21 @@ backborad.prototype.fillcourseinfo = function(data){
 	var context = $("#backborad");
 	var am_course = data[0];
 	var pm_course = data[1];
-	
+	var max_len = 6;
 	var tr_str_1 = "<tr>";
 	var tr_str_2 = "<tr>";
 	
 	for(var i in am_course){
-		var course = $.isEmptyObject(am_course[i])? "暂无" : am_course[i].name;
+		var course_name = am_course[i].name || '';
+		course_name = course_name.length > max_len ? course_name.substring(0, max_len) + " .." : course_name;
+		var course = $.isEmptyObject(am_course[i])? "暂无" : course_name;
 		tr_str_1 += "<td>"+ i +"</td>";
 		tr_str_2 += "<td>"+ course +"</td>";
 	}
 	for(var i in pm_course){
-		var course = $.isEmptyObject(pm_course[i])? "暂无" : pm_course[i].name;
+		var course_name = pm_course[i].name || '';
+		course_name = course_name.length > max_len ? course_name.substring(0, max_len) + " .." : course_name;
+		var course = $.isEmptyObject(pm_course[i])? "暂无" : course_name;
 		tr_str_1 += "<td>"+ i +"</td>";
 		tr_str_2 += "<td>"+ course +"</td>";
 	}

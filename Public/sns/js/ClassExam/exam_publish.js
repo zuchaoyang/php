@@ -17,6 +17,7 @@
 		var html = this.html().toString().replace('%s', str);
 		this.html(html);
 	};
+	
 })(jQuery);
 
 /**
@@ -100,6 +101,7 @@ Pub.prototype.attachEventForBase=function() {
 			}
 		}).lock();
 	});
+	
 	//form表单的提交事件要去掉相应的file域
 	$('form:first').submit(function() {
 		$(':input[type="file"]', $(this)).remove();
@@ -168,6 +170,7 @@ Pub.prototype.attachEventForImport=function() {
 					$.showError('请选择要上传的Excel文件,只支持后缀名为:xls,xlsx的文件!');
 					return false;
 				}
+				
 				//弹出提示层
 				dialog_settings.openDialog();
 				return true;
@@ -334,7 +337,7 @@ Pub.prototype.validatorExamInfo=function() {
 		$.showError('请填写及格分数!');
 		return false;
 	}
-	var pattern = /^\d{1,3}(\.\d{1})?$/;
+	var pattern = /^\d{1,4}(\.\d{1})?$/;
 	if(!exam_well.match(pattern)) {
 		$.showError('满分必须是有效数字');
 		return false;
@@ -355,15 +358,19 @@ Pub.prototype.validatorExamInfo=function() {
 Pub.prototype.validatorExamScore=function() {
 	var exam_score_list = this.extractExamScore();
 	
+	var exam_well = $.trim($('#exam_well').val());
+	
 	//检测分数是否是正确的，不正确将背景颜色设为红色
 	var context = $('#student_list_tab');
 	var is_passed = true;
 	for(var uid in exam_score_list) {
 		var exam_score = exam_score_list[uid].exam_score.toString();
 		var inpObj = $('#tr_' + uid, context).children('td:eq(2)').children(':input:first');
-		if(exam_score && !exam_score.match(/^\d{1,3}(\.\d{1})?$/)) {
-			inpObj.css('border', '1px solid red');
-			is_passed = false;
+		if(exam_score) {
+			if (!exam_score.match(/^\d{1,4}(\.\d{1})?$/) || parseFloat(exam_score) > parseFloat(exam_well)) {
+				inpObj.css('border', '1px solid red');
+				is_passed = false;
+			}
 		} else {
 			inpObj.css('border', '1px solid #DCDCDC');
 		}

@@ -112,6 +112,8 @@ class UploadphotoAction extends SnsController {
     	        fwrite($fp, $dataarr['img_path']);
     	        fclose($fp);
     	        
+                $mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        	    $client_base = $mHashClient->getClientbyUid($uid, true);    	        
     	        
     	    } else {
     	        $dataarr = array(

@@ -6,35 +6,6 @@ class PublishAction extends SnsController{
         $this->assign('uid', $this->user['client_account']);  //todo 屏蔽头部js 错误
     }
 
-    public function checkFunc() {
-
-        //家长绑定手机号的学生账号 51142722 ,14591376,71140188,15063828
-        //$this->getParentPhoneByStudetAccount(array(99608848, 66215814,51142722 ,14591376,71140188,15063828));   //获取学生家长关系并且获取到家长对应的手机
-
-        //获取班级学生列表
-//        import('@.Control.Api.Class.MemberApi');
-//        $member_obj = new MemberApi();
-//        $student_list = $member_obj->getStuList($class_code);
-//     
-        
-        //下载成绩发布模板
-        //$this->downExamExcelTemplate();
-
-        //导入学生成绩
-        //$this->uploadExcelTemplateAjax();
-
-        //获取考试信息
-//        $mClassExam = ClsFactory::Create('Model.mClassExam');
-//        $exam_info = $mClassExam->getClassExam(null, 'exam_id desc', 0, 1);
-//        dump($exam_info);
-
-        //获取成绩信息
-//        $mClassExamScore = ClsFactory::Create('Model.mClassExamScore');
-//        $score_list = $mClassExamScore->getClassExamScoreByExamId(61);
-//        dump($score_list);
-        exit;
-    }
-
    /*
      * 添加班级成绩显示模板
      * 1. 要兼容发布时的空白页
@@ -506,8 +477,13 @@ class PublishAction extends SnsController{
         }
         
         //上传域中的文件名字: excel_template_file
+       
         $file_attrs = $this->uploadExcelFile('excel_template_file');
-                                  
+        if (!is_array($file_attrs)) {
+            $error_arr = explode('：', $file_attrs);
+            $this->ajaxReturn(null, $error_arr[1], -1, 'json');
+        }
+                     
         //解析excel文件
         $pFileName = $file_attrs['filename'];
         $HandlePHPExcel = ClsFactory::Create('@.Common_wmw.WmwPHPExcel');
@@ -1032,17 +1008,19 @@ class PublishAction extends SnsController{
         
         import("@.Common_wmw.Pathmanagement_wms");
         $up_init = array(
-            'max_size' => 1024 * 5,
+            'max_size' => 1024,
             'attachmentspath' => Pathmanagement_wms::UploadExcel(),
         	'renamed' => true,
-            'allow_type' => array('xls', 'xlsx')
+            'allow_type' => array('xls', 'xlsx'),
+            'error_mode' => true
         );
   
         $uploadObj = ClsFactory::Create('@.Common_wmw.WmwUpload');
         $uploadObj->_set_options($up_init);
         $up_rs = $uploadObj->upfile($inputfilename);
-
-        return !empty($up_rs) ? $up_rs : false;
+        $err_str = $uploadObj->get_error();
+        
+        return !empty($err_str) ? $err_str : $up_rs;
     }
 
     /**

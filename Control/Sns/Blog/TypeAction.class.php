@@ -83,7 +83,7 @@ class TypeAction extends SnsController {
         }
         import("@.Common_wmw.WmwString");
         if(WmwString::mbstrlen($name, 2) > 12) {
-            $this->ajaxReturn(null, '分类名称长度不能超过12个字母/6个汉', -1, 'JSON'); 
+            $this->ajaxReturn(null, '分类名称长度不能超过12个字母/6个汉字', -1, 'JSON'); 
         }
         
         $blogObj = $this->_initBlogObj($class_code);
@@ -160,7 +160,18 @@ class TypeAction extends SnsController {
         }
         import("@.Common_wmw.WmwString");
         if(WmwString::mbstrlen($name, 2) > 12) {
-            $this->ajaxReturn(null, '分类名称长度不能超过12个字母/6个汉', -1, 'JSON'); 
+            $this->ajaxReturn(null, '分类名称长度不能超过12个字母/6个汉字', -1, 'JSON'); 
+        }
+        
+            
+        $blogObj = $this->_initBlogObj($class_code);
+        $class_type_list = $blogObj->getBlogType();
+        if (!empty($class_type_list)) {
+            foreach ($class_type_list as $type_info) {
+                if ($name == $type_info['name'] || $name == '个人日志') {
+                    $this->ajaxReturn(null, "分类 \"$name\"已经存在，请不要重复添加", -1, 'JSON'); 
+                }
+            }
         }
         
         //验证权限

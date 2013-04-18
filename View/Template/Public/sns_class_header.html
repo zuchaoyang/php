@@ -1,19 +1,28 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Common/sns_class_header.js"></script>
-
-<!--年级班级 star-->
-<div id="class_list" class="urse_tcc" style="display:none;">
-   <ul>
-   	 {foreach from=$class_list item=val}
-     <li><a href="javascript:;" id="{$val.class_code}">{$val.grade_id_name} {$val.class_name}</a></li>
-     {/foreach}
-   </ul>
-</div>
-<!--年级班级 end-->
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_class_header.css" type="text/css" />
 
 <!--tip star-->
   <div id="sns_class_header" class="tip">
    <div class="tip_main">
-    <p class="f13 f_green">{$school_name}</p><p id="width_length" ><a href="#" class="f13 f_green"><span>{$class_info.grade_id_name}  {$class_info.class_name}</span><span class="icon_01"></span></a></p>
+    <p class="f13 f_green">{$school_name}</p>
+    <p id="width_length" ><a href="#" class="f13 f_green"><span>{$class_info.grade_id_name}  {$class_info.class_name}</span></a></p>
+	
+	<!--年级班级 star-->
+
+     <ul class="class_change_ul">
+         <li>
+         	 <a href="#" >切换班级>></a>   
+             <ul id="class_list" style="visibility:hidden;">
+		   	 {foreach from=$class_list item=val}
+		     <li id="{$val.class_code}"><a href="javascript:;" >{$val.grade_id_name} {$val.class_name}</a></li>
+		     {/foreach}  
+             </ul>
+         </li>
+   	</ul>	
+	
+	
+	<!--年级班级 end-->
+ 
     <p class="f13 f_green">班主任：{$class_info.headteacher_name}</p>
     {if !empty($is_admin)}
     <a href="/Sns/ClassAdmin/Index/index/class_code/{$class_code}" class="bjgl">班级管理>></a>

@@ -12,7 +12,7 @@
 			.td_width{width:500px;}
 			.align_right{text-align:right;}
 			
-			.add_friend{ background:url(../../images/Friend/nearest_visitor/add_friend.gif) 0 0 no-repeat; font:13px "宋体"; width:44px; height:18px; display:inline-block; color:#fff; padding:5px 0px 0px 30px;}
+			.add_friend{ background:url(../../images/Friend/nearest_visitor/add_friend.gif) 0 0 no-repeat; font:13px "宋体"; width:60px; height:18px; display:inline-block; color:#fff; padding:5px 0px 0px 30px;}
 			.add_friend:hover{text-decoration:none;}
 			.pass_friend{background:url(../../images/Friend/nearest_visitor/pass_friend.gif) 0 0 no-repeat; font:13px "宋体"; width:74px; height:23px; display:inline-block; color:#666; text-align:center; line-height:23px;}
 			.pass_friend:hover{text-decoration:none;}

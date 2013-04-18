@@ -21,14 +21,15 @@ class mAlbumClassRelation extends mBase {
     public function getAlbumClassRelByClassCode($class_code, $offset = null, $limit = null) {
         return $this->_dAlbumClassRelation->getAlbumClassRelByClassCode($class_code, $offset, $limit);
     }
+    
     public function getAlbumClassRelByClassAlbumId($album_id, $class_code) {
         if(empty($album_id) || empty($class_code)) {
             return false;
         }
         $wherearr[] = "class_code={$class_code}";
         $wherearr[] = "album_id={$album_id}";
-        $orderby = ' class_code asc';
- 
+        $orderby = 'id asc';
+       
         return $this->_dAlbumClassRelation->getInfo($wherearr, $orderby);
     }
     //通过相册album_id删除班级相册关系

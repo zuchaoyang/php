@@ -6,11 +6,10 @@
  
 <title>同步资源</title>
 
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/style.css"  />
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
-<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/js/resource_synchroresource.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/resource/resource_synchroresource.js"></script>
 {literal}
 <script type="text/javascript">
 	function showfestival(id,arr_str){
@@ -106,17 +105,21 @@
 </head>
 
 <body onload="shownav('{$checked_nav.column_id}');">
+
 <input type="hidden" id="total_page" value="{$totalpage}"/>
-<div class="box">
-<div class="nav">
-<!--  <iframe width="100%" height="76" scrolling="no" frameborder="0" src="../head.html" style="display:block;"></iframe> -->
-{insert name="publicHeader" class_code = $class_code}
+{insert name="sns_header"}
 
-
+<!-- 资源导航 start-->
+<div class="tip">
+   <div class="tip_main_resource">
+	    <a href="/Sns/Resource/Resource/synchroresource" class="bjgl_dq">同步资源</a> 
+	    <a href="/Sns/Resource/Resource/qualityresource" >精品资源</a>
+	    <a href="/Sns/Resource/Resource/qualityschool1" >精品网校</a>
+	    <div class="clear"></div>
+   </div> 
+</div>
+<!-- end -->
   <div class="cotent">
-  <div class="re_left">
-    {insert name="account_left" class_code = $class_code}
-  </div>
 
     <div class="re_right">
       <form id="searchform" method="post" action="/Sns/Resource/Resource/searchresource" target="_blank">
@@ -130,7 +133,7 @@
       </form>
       <div class="clean" style="height:10px;"></div>
       <!--main-->
-      <div class="main" style="width:750px;">
+      <div class="main">
         <p class="main_top"></p>
         <div class="main_center">
           <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab_grade">
@@ -182,7 +185,7 @@
           {/if}
         <div class="clean"></div>
         </div>
-        <p class="main_bottom"></p>
+        <p class="main_bottom_re"></p>
         <div class="clean"></div>
       </div>
       <!--main end-->
@@ -310,9 +313,7 @@
     <div class="clean"></div>
   </div>
 <!-- <iframe width="100%" scrolling="no" frameborder="0" src="footer.html"></iframe> -->
-{include file="Public/footer.html"}
-</div>
-</div>
+{include file="Public/sns_footer.html"}
 <input type="hidden" id="img_server" value="{$smarty.const.IMG_SERVER}__PUBLIC__"/>
 </body>
 </html>

@@ -10,7 +10,7 @@ class InsertSnsForAccountLeft implements InsertInterface {
     	
     	$UserInfo = $mUser->getUserByUid($LoginUserId);
     	$UserInfo = array_shift($UserInfo);
-    	
+    	$school_info = array_shift($UserInfo['school_info']);
     	if(empty($class_code)){
     		$class_code = key($UserInfo['class_info']);
     	}
@@ -44,6 +44,7 @@ class InsertSnsForAccountLeft implements InsertInterface {
     	}
     	$smarty->assign('var_teacher_class_role', $var_teacher_class_role);
     	$smarty->assign('UserInfo', $UserInfo);
+    	$smarty->assign('school_info',$school_info);
     	$smarty->assign('class_code', $class_code);
     	
     	//uc server地址

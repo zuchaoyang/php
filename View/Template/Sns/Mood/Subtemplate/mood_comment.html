@@ -5,14 +5,14 @@
    <div class="list_comment">
      <dl>
        <dt>
-       	 <img width="40" height="40" src="{comment.user_info.client_headimg_url}">
+       	 <img width="40" height="40" data-original="{comment.user_info.client_headimg_url}">
        </dt>
      </dl>
      <div class="list_comment_right">
        <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td>
-          	<a href="#" class="fc_288c00 mr10">{comment.user_info.client_name}</a>
+          	<a href="/Sns/PersonIndex/Index/index/client_account/{comment.client_account}" target="_blank" class="fc_288c00 mr10">{comment.user_info.client_name}</a>
           	<span>{comment.content}</span>
           	</td>
         </tr>
@@ -71,14 +71,14 @@
   {literal}
   <dl>
     <dt>
-    	<img width="40" height="40" src="{child_comment.user_info.client_headimg_url}">
+    	<img width="40" height="40" data-original="{child_comment.user_info.client_headimg_url}">
     </dt>
   </dl>
   <div class="list_comment_right">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="plej">
      <tr>
        <td>
-	       <a href="#" class="fc_288c00 mr10">{child_comment.user_info.client_name}</a>
+	       <a href="/Sns/PersonIndex/Index/index/client_account/{child_comment.client_account}" target="_blank" class="fc_288c00 mr10">{child_comment.user_info.client_name}</a>
 	       <span>{child_comment.content}</span>
        </td>
      </tr>

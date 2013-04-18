@@ -14,6 +14,7 @@ class dBlog extends dBase {
                     'upd_time',
                     'contentbg',
                     'summary',
+    				'first_img',
                     'comments',
               );
     protected $_index_list = array(

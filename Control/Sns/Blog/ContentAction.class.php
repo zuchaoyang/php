@@ -13,7 +13,7 @@ class ContentAction extends SnsController {
         $ClassBlog = new ClassBlog($class_code);
         $blog_info = reset($ClassBlog->getBlogInfoById($class_blog_id));
         if(empty($blog_info)){
-            $this->redirect("/Sns/Bolg/List/index/class_code/$class_code");
+            $this->redirect("/Sns/Blog/List/index/class_code/$class_code");
         }
         
         $add_account = $blog_info['add_account'];
@@ -25,6 +25,9 @@ class ContentAction extends SnsController {
         $this->assign("head_pic_url_", $user_info["client_headimg_url"]);
         $this->assign("blog_info", $blog_info);
         $this->assign("class_code", $class_code);
+        $this->assign("can_edit", $this->canEditBlog($blog_info));
+        $this->assign("can_del", $this->canDelBlog($blog_info, $class_code));
+        
         $this->display("class_show");
     }
     
@@ -39,36 +42,36 @@ class ContentAction extends SnsController {
         !empty($result) ? $this->ajaxReturn(null,"添加阅读数量成功！", 1, "json") : $this->ajaxReturn(null,"添加阅读数量失败！", -1, "json");
     }
     
-    public function next_blog(){
+    public function up_blog(){
         $class_code = $this->objInput->getInt("class_code");
         $class_code = $this->class_code = $this->checkoutClassCode($class_code);
         $class_blog_id = $this->objInput->getInt("blog_id");
         $mBlogClassRelation = ClsFactory::Create("Model.Blog.mBlogClassRelation");
         $wherearr = array(
             'blog_id>'.$class_blog_id,
-            'class_code='.$class_code,
             'is_published=1'
         );
         
-        $BlogClassRelation = $mBlogClassRelation->getBlogClassRelationInfo($wherearr, "blog_id asc", 0, 1);
+        $BlogClassRelation = $mBlogClassRelation->getClassBlogByClassCode($class_code, $wherearr, "blog_id asc", 0, 1);
+        $BlogClassRelation = $BlogClassRelation[$class_code];
         $BlogClassRelation = reset($BlogClassRelation);
         $next_blog_id = !empty($BlogClassRelation) ? $BlogClassRelation['blog_id'] : $class_blog_id;
-        
+
         $this->redirect("/Sns/Blog/Content/index/class_code/$class_code/blog_id/$next_blog_id");
     }
     
-    public function up_blog() {
+    public function next_blog() {
         $class_code = $this->objInput->getInt("class_code");
         $class_code = $this->class_code = $this->checkoutClassCode($class_code);
         $class_blog_id = $this->objInput->getInt("blog_id");
         $mBlogClassRelation = ClsFactory::Create("Model.Blog.mBlogClassRelation");
         $wherearr = array(
             'blog_id<'.$class_blog_id,
-            'class_code='.$class_code,
             'is_published=1'
         );
         
-        $BlogClassRelation = $mBlogClassRelation->getBlogClassRelationInfo($wherearr, "blog_id desc", 0, 1);
+        $BlogClassRelation = $mBlogClassRelation->getClassBlogByClassCode($class_code, $wherearr, "blog_id desc", 0, 1);
+        $BlogClassRelation = $BlogClassRelation[$class_code];
         $BlogClassRelation = reset($BlogClassRelation);
         $up_blog_id = !empty($BlogClassRelation) ? $BlogClassRelation['blog_id'] : $class_blog_id;
         
@@ -85,6 +88,7 @@ class ContentAction extends SnsController {
     public function addcommentjson() {
         $blog_id = $this->objInput->postInt("blog_id");
         $uid = $this->user['client_account'];
+        $class_code = $this->objInput->postInt("class_code");
         $content = $this->objInput->postStr("content");
         $up_id = $this->objInput->postInt("up_id");
         
@@ -128,6 +132,10 @@ class ContentAction extends SnsController {
             $comments_content[$comment_id]['client_name'] = $user_info[$uid]['client_name'];
             $comments_content[$comment_id]['header_pic_url'] = $user_info[$uid]['client_headimg_url'];
             $comments_content[$comment_id]['add_time'] = Date::timestamp($comments_content[$comment_id]['add_time']);
+            
+            import("@.Control.Api.FeedApi");
+            $feed_api = new FeedApi();
+            $feed_api->class_create($class_code, $this->user['client_account'], $blog_id, FEED_ACTION_COMMENT);
         }
         
         
@@ -257,5 +265,46 @@ class ContentAction extends SnsController {
         }
 
         return !empty($new_comments) ? $new_comments : false;
+    }
+    
+    /**
+     * 用户是否有权限修改日志
+     * 注： 只能修改自己添加的日志
+     */
+    private function canEditBlog($blog_info) {
+        if(empty($blog_info)) {
+            return false;
+        }
+        
+        // 验证权限 只能修改自己添加的权限
+        if(empty($blog_info) || $blog_info['add_account'] != $this->user['client_account']) {
+            return false;  
+        }
+        
+        return true;
+    }
+    
+    /**
+     * 判断用时候有删除班级日志的权限
+     * 1 班主任
+     * 2 管理员
+     * 3 添加人
+     */
+    private function canDelBlog($blog_info, $class_code) {
+        if (empty($blog_info)) {
+            return false;
+        }
+        
+        //自己发布的日志 有权限删除
+        if ($blog_info['add_account'] == $this->user['client_account']) {
+            return true;
+        }
+        
+        //班主任或者班级管理员有权限删除
+        if ($this->isClassAdminTeacher($class_code) || $this->isClassAdmin($class_code)) {
+            return true;
+        }
+        
+        return false;
     }
 }

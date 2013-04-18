@@ -1,5 +1,5 @@
 
-function class_show(){
+function pserson_show(){
 	this.hasNextPage = true;
 	this.init();
 	this.loadDatas(1);
@@ -8,7 +8,7 @@ function class_show(){
 	this.update_views();
 };
 
-class_show.create=function(comment_list, is_prepend) {
+pserson_show.create=function(comment_list, is_prepend) {
 	comment_list = comment_list || {};
 	var parentObj = $('#comment_list_div');
 	for(var i in comment_list) {
@@ -24,14 +24,14 @@ class_show.create=function(comment_list, is_prepend) {
 	}
 };
 
-class_show.prototype = {
+pserson_show.prototype = {
 	loadDatas:function(page) {
 		var me = this;
 		page = page >= 1 ? page : 1;
 		var blog_id = $("#blog_id").val();
 		$.ajax({
 			type:'get',
-			url:"/Sns/Blog/Content/getcommentjson/blog_id/" + blog_id +  "/page/" + page,
+			url:"/Sns/Blog/PersonContent/getcommentjson/blog_id/" + blog_id +  "/page/" + page,
 			dataType:'json',
 			success:function(json) {
 				if(!json.data) {
@@ -39,7 +39,7 @@ class_show.prototype = {
 					$("a","#more_comments").html("没有更多评论");
 				}
 				
-				class_show.create(json.data || {});
+				pserson_show.create(json.data || {});
 			}
 		});
 	},
@@ -68,7 +68,7 @@ class_show.prototype = {
 		$.ajax({
 			type:"get",
 			dataType:"json",
-			url:"/Sns/Blog/Content/update_blog_views/blog_id/" + blog_id,
+			url:"/Sns/Blog/PersonContent/update_blog_views/blog_id/" + blog_id,
 			success:function(json){
 				if(json.status>0){
 					var num = $("#class_blog_views").html().replace(/[^0-9]/ig, "");
@@ -112,7 +112,7 @@ class_show.prototype = {
 			//服务器返回数据后的回调函数
 			success:function(json) {
 				if(json.status > 0){
-					class_show.create(json.data || {}, true);
+					pserson_show.create(json.data || {}, true);
 					if($("#page").val() > 2) {
 						$(".comment_1st_unit_selector:last", $("#comment_list_div")).remove();
 					}
@@ -173,7 +173,7 @@ comment_1st_unit.prototype = {
 //					skin:'sendbox',
 					type:'post',
 					data:param,
-					url:'/Sns/Blog/Content/addcommentjson',
+					url:'/Sns/Blog/PersonContent/addcommentjson',
 					dataType:'json',
 					beforeSubmit:function() {
 						if(sendBoxObj.getSource() == ""){
@@ -271,7 +271,7 @@ comment_2nd_unit.prototype = {
 //					skin:'sendbox',
 					type:'post',
 					data:param,
-					url:'/Sns/Blog/Content/addcommentjson',
+					url:'/Sns/Blog/PersonContent/addcommentjson',
 					dataType:'json',
 					beforeSubmit:function() {
 						if(sendBoxObj.getSource() == ""){
@@ -354,7 +354,7 @@ comment_delete.prototype = {
 			var options = context.data('options') || {};
 			$.ajax({
 				type:'post',
-				url:"/Sns/Blog/Content/delcommentjson",
+				url:"/Sns/Blog/PersonContent/delcommentjson",
 				async:false,
 				data: {
 					comment_id:comment_id
@@ -412,11 +412,11 @@ blog_delete.prototype = {
 			var context = $('#is_del');
 			//确定删除按钮
 			$("#del_true", context).click(function() {
-				var class_code = $("#class_code").val();
+				var client_account = $("#client_account").val();
 				var blog_id = $("#blog_id").val();
 				$.ajax({
 					type:'get',
-					url:"/Sns/Blog/Publish/deleteBlogAjax/blog_id/" + blog_id +  "/class_code/" + class_code,
+					url:"/Sns/Blog/PersonPublish/deleteBlogAjax/blog_id/" + blog_id +  "/client_account/" + client_account,
 					data:null,
 					dataType:'json',
 					success:function(json) {
@@ -426,7 +426,7 @@ blog_delete.prototype = {
 						}
 						
 						//成功跳转到日志详情页
-						window.location.href = "/Sns/Blog/List/index/class_code/" + class_code;
+						window.location.href = "/Sns/Blog/PersonList/index/client_account/" + client_account;
 					}
 				});
 			});
@@ -439,7 +439,7 @@ blog_delete.prototype = {
 };
 
 $(function(){
-	new class_show();
+	new pserson_show();
 	new comment_1st_unit();
 	new comment_2nd_unit();
 	new comment_delete();

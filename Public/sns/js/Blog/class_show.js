@@ -81,9 +81,11 @@ class_show.prototype = {
 	
 	init:function(){
 		var blog_id = $("#blog_id").val();
+		var class_code = $("#class_code").val();
 		var param = {};
 		param.blog_id = blog_id;
 		param.up_id = 0;
+		param.class_code = class_code;
 		var sendBoxObj = $('#1st_comments_content').sendBox({
 			//加载工具条，多个选项之间使用逗号隔开，目前支持：表情：emoto，文件上传：upload(form表单提交的文件的名字为:pic)
 			panels:'emote',
@@ -159,12 +161,12 @@ comment_1st_unit.prototype = {
 			var aObj = $(this);
 			var ancestorObj = aObj.closest('.comment_1st_unit_selector');
 			var click_nums = aObj.data('click_nums') || 1;
-			
+			var class_code = $("#class_code").val();
 			var blog_id = $("#blog_id").val();
 			var param = {};
 			param.blog_id = blog_id;
 			param.up_id = $("input[type='hidden']:last", ancestorObj).val();
-			
+			param.class_code = class_code;
 			if(click_nums == 1) {
 				aObj[0].sendBoxObj = $('textarea:first', ancestorObj).sendBox({
 					panels:'emote',
@@ -259,8 +261,10 @@ comment_2nd_unit.prototype = {
 			var ancestorObj = aObj.closest('.comment_2nd_unit_selector');
 			var ancestorObj_ = $(ancestorObj).closest('.comment_1st_unit_selector');
 			var blog_id = $("#blog_id").val();
+			var class_code = $("#class_code").val();
 			var param = {};
 			param.blog_id = blog_id;
+			param.class_code = class_code;
 			param.up_id = $("input[type='hidden']:last", ancestorObj_).val();
 			var click_nums = aObj.data('click_nums') || 1;
 			if(click_nums == 1) {

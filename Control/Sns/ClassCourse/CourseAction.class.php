@@ -200,6 +200,7 @@ class CourseAction extends SnsController {
         
         //老师, 班级管理员具有修改课程表权限
         $client_class = $this->getUserClientClass($class_code);  //获取当前用户的当前班级关系
+
         return ($client_class['class_admin'] == IS_CLASS_ADMIN || $client_class['client_type']==CLIENT_TYPE_TEACHER) ? true : false;
     }
     

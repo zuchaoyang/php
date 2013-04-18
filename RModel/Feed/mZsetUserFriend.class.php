@@ -3,8 +3,8 @@ import('@.RModel.Feed.mFeedBase');
 class mZsetUserFriend extends mFeedBase {
 
     public function __construct() {
-        import('RData.Feed.dZsetClassAll');
-        $this->_rdata = new dZsetClassAll();
+        import('RData.Feed.dZsetUserFriend');
+        $this->_rdata = new dZsetUserFriend();
     }
     
     /**

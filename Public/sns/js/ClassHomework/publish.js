@@ -25,27 +25,12 @@ function tripTag(str) {
 
 //将事件的绑定和具体的实现函数分开
 function Publish() {
-	this.editor = {};
-	this.init();
+	this.limitInterval = null;
+	this.max_length = 180;
 	this.attachEvent();
 	this.attachEventUserDefine();
 }
 
-Publish.prototype.init=function() {
-	var context = $('#publish_main');
-	//加载编辑框
-	var bg = $('#ContentBg', context).val();
-	if(bg) $('#content', context).css('url', bg);
-	this.editor = $('#content', context).xheditor({
-		skin:'vista',
-		tools:'Separator,BtnBr,Blocktag,Fontface,FontSize,Bold,Italic,Underline,FontColor,BackColor,SelectAll',
-		upImgUrl:'/Sns/ClassHomework/Publish/uploadPath'
-	});
-};
-
-Publish.prototype.getEditor=function() {
-	return this.editor;
-};
 
 //绑定用户回调事件
 Publish.prototype.attachEventUserDefine=function() {
@@ -141,6 +126,24 @@ Publish.prototype.attachEvent=function() {
 		me.formDataCollect();
 		return me.validator();
 	});
+	
+	$('#content').keypress(function(evt) {
+		var content = $.trim($('#content').val()).toString();
+		if(content.length >= me.max_length) {
+			var keyCode = evt.keyCode || evt.which;
+			//字符超过限制后只有Backspace键能够按
+			if(keyCode != 8) {
+				$.showError('作业内容不能超过180字!');
+				return false;
+			}
+		}
+	}).focus(function() {
+		me.limitInterval = setInterval(function() {
+			me.reflushCounter();
+		}, 1000);
+	}).blur(function() {
+		clearInterval(me.limitInterval);
+	});
 };
 
 /**
@@ -158,7 +161,7 @@ Publish.prototype.attachEventForAcceptList=function(div_id) {
 	//回显信息的编辑按钮,以班级组织数据
 	$('#edit_a', context).click(function() {
 		var subject_id = $(':input[name="subject_id"]:checked', $('#publish_main')).val();
-		$('body').trigger('initPopDivEvent', [function(datas) {
+		$('#pop_div').trigger('initPopDivEvent', [function(datas) {
 			me.popDivCallback(datas);
 		}, subject_id, context.data('data') || {}]);
 	});
@@ -176,7 +179,7 @@ Publish.prototype.packFormDatas=function() {
 	var subject_id = $(':input[name="subject_id"]:checked', context).val();
 	var subject_name = $('#subject_name_' + subject_id, context).text();
 	var end_time = $('#end_time', context).val();
-	var content = me.editor.getSource();
+	var content = $('#content').val();
 	var upload_file_name = ($('#file_name', context).val().toString().split('/') || []).pop();
 	//收集接受对象,以class_code为key进行整理
 	var accepters_list = {};
@@ -221,7 +224,7 @@ Publish.prototype.validator=function() {
 		$.showError('请交作业日期!');
 		return false;
 	}
-	if(!me.editor.getSource()) {
+	if(!$('#content').val()) {
 		$.showError('请填写作业内容!');
 		return false;
 	}
@@ -236,35 +239,15 @@ Publish.prototype.isSelectAccepters=function() {
 	var packDatas = this.packFormDatas() || {};
 	return !$.isEmptyObject(packDatas.accepters_list) ? true : false;
 };
+Publish.prototype.reflushCounter=function() {
+	var me = this;
+	var len = $.trim($('#content').val()).toString().length;
+	var show_nums = me.max_length - len;
+	show_nums = show_nums > 0 ? show_nums : 0;
+	$("#content_counter").html(show_nums);
+};
 
 $(document).ready(function() {
 	var pub = new Publish();
-	
-	var editor = pub.getEditor();
-	var ifr = $('#xhe0_iframe')[0];
-	$(ifr.contentWindow.document).ready(function() {
-		//键盘的press事件负责内容超过时的提示
-		$(ifr.contentWindow.document).keypress(function(evt) {
-			var content = tripTag(editor.getSource());
-			if(content.length >= 180) {
-				var keyCode = evt.keyCode || evt.which;
-				//字符超过限制后只有Backspace键能够按
-				if(keyCode != 8) {
-					$.showError('公告内容不能超过180字!');
-					return false;
-				}
-			} else {
-				var content = tripTag(editor.getSource());
-				$('#content_counter').html(180 - content.length);
-				return true;
-			}
-		});
-		
-		//实时更新字符数统计
-		setInterval(function() {
-			var content = tripTag(editor.getSource());
-			$('#content_counter').html(180 - content.length);
-		}, 200);
-	});
-	
+	pub.reflushCounter();
 });

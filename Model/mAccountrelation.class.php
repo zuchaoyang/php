@@ -15,7 +15,7 @@ class mAccountrelation extends mBase{
 	    if(empty($client_accounts)) {
 	        return false;
 	    }
-	    
+
 	    return $this->_dAccountrelation->getAccountRelationByClientAccout($client_accounts,$orderby,$offset,$limit);
 	}
     
@@ -137,7 +137,7 @@ class mAccountrelation extends mBase{
             return false;
         }
         
-       return  $this->_dAccountrelation->getInfo($arrdata,'relation_id desc',$offset,$limit);
+       return $this->_dAccountrelation->getInfo($arrdata,'relation_id desc',$offset,$limit);
     }
     
     
@@ -154,6 +154,22 @@ class mAccountrelation extends mBase{
         return !empty($Accountrelationinfo) ? $Accountrelationinfo : false;
     }
     
+    /**
+     * 判断用户关系
+     * 
+     */
+    public function getAccountTrelationByUidAndFriendAccount($client_account, $friend_account) {
+        if (empty($client_account) || empty($friend_account)) {
+            return false;
+        }
+        $where = array(
+            "client_account='$client_account'",
+            "friend_account='$friend_account'"
+        ); 
+        $realation_arr = $this->_dAccountrelation->getInfo($where, 'relation_id desc', 0, 1);
+        
+        return !empty($realation_arr) ? true : false;
+    } 
     /**
      * 添加信息
      * @param $dataarr

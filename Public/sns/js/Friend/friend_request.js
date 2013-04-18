@@ -113,7 +113,7 @@ $('#friend_list_div').delegate('#quding_btn', 'click', function() {
 		data:{friend_account:friend_account,friend_name:friend_name,req_id:req_id},
 		dataType:'json',
 		success:function(json) {
-			msg = " 你同意了" + friend_name + "的好友请求";
+			var msg = " 你同意了" + friend_name + "的好友请求";
 			$.showSuccess(msg_div, msg);
 			context.remove();
 		}
@@ -133,7 +133,7 @@ $('#friend_list_div').delegate('#ignore_btn', 'click', function() {
 		data:{req_id:req_id},
 		dataType:'json',
 		success:function(json) {
-			msg = " 你忽略了" + friend_name + "的好友请求";
+			var msg = " 你忽略了" + friend_name + "的好友请求";
 			$.showSuccess(msg_div, msg);
 			context.remove();
 		}

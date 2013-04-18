@@ -11,6 +11,7 @@ class dFeed extends dBase{
         'img_url',
     	'timeline',
         'action',
+        'from_class_code'
     );
     protected $_pk = 'feed_id';
     protected $_index_list = array(

@@ -41,6 +41,7 @@ class mAlbumPhotos extends mBase {
     }
     
     public function getByAlbumId($album_id, $offset=null, $limit=null){
+        
         return $this->_dAlbumPhotos->getByAlbumId($album_id, $offset, $limit);
     }
     
@@ -74,5 +75,19 @@ class mAlbumPhotos extends mBase {
         return $this->_dAlbumPhotos->delByAlbumId($album_id);
     }
     
+    //通过
+    public function getPhotos($offset,$limit) {
+        
+        /*if($offset !== '' || $limit !== ''){
+            return false;
+        }*/
+        $table_name = $this->_dAlbumPhotos->getTableName();
+        $sql = "select * from {$table_name} limit {$offset},{$limit}";
+        return $this->_dAlbumPhotos->query($sql);
+    }
     
+    //相片总数
+    public function getAllCount() {
+        return $this->_dAlbumPhotos->getCount();
+    }
 }

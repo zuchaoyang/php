@@ -26,10 +26,14 @@ class mActiveLog extends mBase {
     }
     
     /**
+     * 
+     */
+    
+    /**
      * 根据时间动作和类型得到活跃信息
      */
-    public function getActive($uid, $module, $action, $time){
-        if(empty($module) || empty($action) || empty($time)) {
+    public function getActive($uid, $module, $action, $time = null){
+        if(empty($module) || empty($action)) {
             return false;
         }
         
@@ -37,8 +41,11 @@ class mActiveLog extends mBase {
             'client_account='.$uid, 
             'module='.$module,
             'action='.$action,
-            'add_time > '.$time,
         );
+        
+        if(!empty($time)) {
+            $wherearr[] =  'add_time > '.$time;
+        }
         
         return $this->_dActiveLog->getInfo($wherearr);
     }

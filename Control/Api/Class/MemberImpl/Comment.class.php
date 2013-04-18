@@ -32,7 +32,7 @@ class Comment{
         $uids = $new_client_class_list = array();
         foreach ($client_class_list as $key=>$client_class) {
             $client_account = $client_class['client_account'];
-            $client_account_arr[] = $client_account;
+            $client_account_arr[$client_account] = $client_account;
             
             $new_client_class_list[$client_account] = $client_class;
         }
@@ -41,13 +41,16 @@ class Comment{
         //提取账号
         $mUser = ClsFactory::Create('Model.mUser');
         $member_list = $mUser->getUserBaseByUid($client_account_arr);
+        
         if(empty($new_client_class_list)) {
             return false;
         }
 
         //循环班级会员关系数据 保证排序id ,过滤掉姓名为空的学生，追加账号详情
+        
         foreach ($new_client_class_list as $client_account=>$client_class) {
             if (!isset($member_list[$client_account]) || empty($member_list[$client_account]['client_name'])) {
+                unset($new_client_class_list[$client_account]);
                 continue;
             }
             

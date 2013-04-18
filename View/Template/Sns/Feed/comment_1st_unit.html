@@ -1,0 +1,61 @@
+<div id="comment_1st_unit_div" class="comment_1st_unit_selector" style="display:none;">
+	{literal}
+	<!--一级评论-->
+	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="first_comment" >
+	     <tr>
+	         <td rowspan="3" class="user_tx">
+	             <img data-original="{comment.user_info.client_headimg_url}" class="photo_width40" /> 
+	         </td>
+	         <td colspan="2">
+	             <a href="/Sns/PersonIndex/Index/index/client_account/{comment.client_account}" class="f_green">{comment.user_info.client_name}</a>
+	             <span>：{comment.content}</span>
+	         </td>
+	     </tr>
+	     <tr>
+	         <td class="comment_time">
+	         	<span>{comment.add_time_format}</span>
+	         </td>
+	         <td class="comment_btn">
+
+	         	<a href="javascript:;" class="reply_btn reply_2nd_simple_selector "></a>
+	         	{if comment.can_del}
+	         	<a href="javascript:;" class="delete_btn comment_1st_delete_selector">删除</a>
+	         	{/if}	         	
+	         </td>
+	     </tr>
+	     <tr>
+	         <td colspan="2">
+	             <!--二级评论 star-->
+	             <div id="second_comment_list" class="all_second_comment">
+	                 
+	             </div>
+	             {if comment.remain_nums}
+	             <p class="more_huifu">
+	                 <span>后面还有{comment.remain_nums}条评论回复</span> 
+	                 <a href="javascript:;" data-target="#feed_src_url" class="load_more_comment_a" target="_blank">点击查看&gt;&gt;</a>
+	             </p>
+	             {/if}
+	             <!--二级评论 end-->
+	            
+	             <!--默认回复样式 star-->
+	             <table class="mr_huifu reply_2nd_simple_div_selector simple_reply_div_selector" style="display:none;">
+	                 <tr>
+	                     <td class="user_tx">
+	                     	<img width="40px" height="40px" data-from="#user_headimg_url" />
+	                     </td>
+	                     <td>
+	                         <!--点击之后的样式 star-->
+	                         <div class="tk_huifu " >
+	                            <textarea id="reply_2nd_conent" name="" cols="5" rows="5"  class="textarea_border reply_2nd_simple_content_selector" name="content" ></textarea>
+	                         </div>
+	                         <!--点击之后的样式 end-->
+	                     </td>
+	                 </tr>
+	             </table>
+	             <!--默认回复样式 end-->
+	         </td>
+	     </tr>
+	</table>
+	{/literal}
+</div>
+                   

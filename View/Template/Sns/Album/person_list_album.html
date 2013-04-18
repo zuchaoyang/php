@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>个人相册</title>
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_list_album.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/person_list_album.css" type="text/css" charset="utf-8">
 
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
@@ -16,25 +16,26 @@
 
 </head>
 <body>
-{insert name="sns_header"}
-<!--tip star-->
-{insert name="sns_class_header" client_account = $client_account}
-<!--tip end--> 
+<!-- 头部start -->
+{insert name="sns_header" uid = $client_account}
+<!-- 头部end -->
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $client_account}
 <!--content star-->
 <div class="content">
   <!--main star-->
    <div class="main">
-     <!--nav star-->
-     {insert name="sns_nav" client_account = $client_account}
-     <!--nav end-->
     <h4></h4>
     <!--publish_main star-->
     <div class="publish_main">
+      {if $is_edit}
       <p class="upload_main_top">
-       <a href="/Sns/Album/Person/uplaodPhoto/client_account/{$client_account}" class="f14" title="上传照片"><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
+       <a href="/Sns/Album/Personphoto/uplaodPhoto/client_account/{$client_account}" class="f14" title="上传照片"><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
        <a href="#" class="f14 ml20" id="create_album_btn" title="创建相册"><span class="btn_left"></span><span class="btn_right">创建相册</span></a>
       </p>
       <div class="clear"></div>
+      {/if}
       <div id="dl_list">
       {literal}
       <dl class="clone_selector" style="display:none;">
@@ -72,9 +73,9 @@
 <!--content end-->
 
 <!-- start引入弹层模板 -->
-{include file="Sns/Album/Subtemplate/person_create_album.inc.html"}
-{include file="Sns/Album/Subtemplate/person_edit_album.inc.html"}
-{include file="Sns/Album/Subtemplate/person_del_album.inc.html"}
+{include file="Sns/Album/Subtemplate/create_album.inc.html"}
+{include file="Sns/Album/Subtemplate/edit_album.inc.html"}
+{include file="Sns/Album/Subtemplate/del_album.inc.html"}
 <!-- end引入弹层模板 -->
 
   <input type="hidden" id="is_edit" value="{$is_edit}"/>

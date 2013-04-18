@@ -16,10 +16,10 @@
 		.letter_paper .align_right{float:right; width:66px;}
 			.letter_paper .align_right a{color:#464646;}
 			.letter_paper .align_right a:hover{color:#3a8a00;}
-	.blog_title_text{padding:10px;}
-		.bt_text{width:600px; height:20px; border:1px #ccc solid; line-height:20px; padding-left:2px; color:#464646; font:14px "微软雅黑";}		
+	.blog_title_text{padding:10px;text-align:center;}
+		.bt_text{text-align:center; width:650px; height:36px; border:1px #ccc solid; padding-left:2px; color:#464646; font:bold 20px/36px "微软雅黑";}		
 			
-	.edit_device{margin:0px 10px 10px 10px; border:1px #CCCCCC solid;}	
+	.edit_device{margin:0px 10px 10px 10px; }	
 	
 	.blog_classified{height:18px; padding:6px 10px; background:#edf3e1; border-top:1px #e3e3e3 solid; line-height:18px;}	
 		.blog_classified select{margin:0px 15px 0px 4px;}
@@ -93,7 +93,9 @@
 					.back_color{background:#deeec1;}
 
 
-
+.fenye{ text-align:right;}
+.fenye a{font:13px/30px "宋体"; }
+.fenye a.no_dj{color:grey;cursor:text}
 
 
 

@@ -51,7 +51,7 @@ class dAlbumPhotos extends dBase {
         return $this->getInfoByPk($photo_ids);
     }
     //获得照片信息
-    public function getByAlbumId($album_id, $offset=0, $limit=10){
+    public function getByAlbumId($album_id, $offset=null, $limit=null){
         $orderby = ' photo_id asc';
         $wherearr[] = "album_id={$album_id}";
         

@@ -57,25 +57,13 @@ class ClassBlog extends BlogBase {
 
         // 获取班级日志权限 列表
         import("@.Common_wmw.Constancearr");
-        $blog_grant = Constancearr::get_blog_class_grant();
-        $where_arr = array(
-            "class_code='$this->class_code'",
-            "blog_id in($in_str)"
-        );
-        $mBlogClassGrants = ClsFactory::Create('Model.Blog.mBlogClassGrants');
-        $grant_list = $mBlogClassGrants->getGrantInfo($where_arr, "blog_id");
-
-        $new_grant_list = array();
-        foreach ($grant_list as $key=>$grant) {
-            $new_grant_list[$grant['blog_id']] = $grant;
-        }
         
         //数据组装
         $new_blog_list = array();
         foreach ($blog_list as $blog_id=>$blog_info) {
             $blog_info['content'] = $content_list[$blog_id]['content'];
-            $blog_info['type_name']    = $type_list[$blog_info['type_id']]['name'];
-            $blog_info['grant']      = $new_grant_list[$blog_id]['grant'];
+            $blog_info['type_name']  = $type_list[$blog_info['type_id']]['name'];
+            $blog_info['grant']      = $blog_info['grant'];
             $blog_info['grant_name'] = Constancearr::get_blog_class_grant($blog_info['grant']);
             
             $new_blog_list[$blog_id] = $blog_info;
@@ -121,13 +109,6 @@ class ClassBlog extends BlogBase {
             return false;
         }
 
-        //权限表的数据保存
-        $blog_class_grants_datas = $this->extractBlogGrant($blog_datas);
-        $mBlogClassGrants = ClsFactory::Create('Model.Blog.mBlogClassGrants');
-        if(!$mBlogClassGrants->addBlogClassGrants($blog_class_grants_datas)) {
-            return false;
-        }
-        
         //班级和日志的关系表
         $blog_class_relation_datas = $this->extractBlogRelation($blog_datas);
         $mBlogClassRelation = ClsFactory::Create('Model.Blog.mBlogClassRelation');
@@ -158,15 +139,20 @@ class ClassBlog extends BlogBase {
             $mBlogContent = ClsFactory::Create('Model.Blog.mBlogContent');
             $mBlogContent->modifyBlogContent($blog_datas, $blog_id);
         }
-        //日志的关系表示不会涉及到修改的
-        if($this->needModifyBlogGrants($blog_datas)) {
-            $mBlogClassGrants = ClsFactory::Create('Model.Blog.mBlogClassGrants');
-            $where_arr = array(
-                "blog_id='$blog_id'",
-                "class_code='$this->class_code'"
+        
+        //修改的班级日志关系表 主要是权限修改
+        if($this->needModifyBlogRelation($blog_datas)) {
+            //个人和日志的关系表 包含权限
+            $mBlogClassRelation = ClsFactory::Create('Model.Blog.mBlogClassRelation');
+            $where = array(
+                'class_code='. $this->class_code,
+                "blog_id='$blog_id'"
             );
-            
-            $mBlogClassGrants->modifyBlogClassGrantByWhere($blog_datas, $where_arr);
+            $relation_info = $mBlogClassRelation->getBlogClassRelationInfo($where, null, 0, 1); 
+            $relation_info = reset($relation_info);
+
+            $mBlogClassRelation->modifyBlogClassRelation($blog_datas, $relation_info['id']);
+
         }
         
         return true;
@@ -189,13 +175,9 @@ class ClassBlog extends BlogBase {
         $mBlogComments = ClsFactory::Create('Model.Blog.mBlogComments');
         $comment_del = $mBlogComments->delAllByBlogId($blog_id);
 
-        //删除班级日志权限表
-        $mBlogClassGrants = ClsFactory::Create('Model.Blog.mBlogClassGrants');
-        $grants_del = $mBlogClassGrants->delGrantByBlogId($blog_id);
-
         //删除班级和日志的关系表
-        $mBlogPersonRelation = ClsFactory::Create('Model.Blog.mBlogClassRelation');
-        if(!$mBlogPersonRelation->delBlogClassRelationByBlogId($blog_id)) {
+        $mBlogClassRelation = ClsFactory::Create('Model.Blog.mBlogClassRelation');
+        if(!$mBlogClassRelation->delBlogClassRelationByBlogId($blog_id)) {
             return false;
         }
         
@@ -275,10 +257,6 @@ class ClassBlog extends BlogBase {
         return !empty($is_return_id) ? $type_id : true;
     }
     
-    public function modifyBlogType($blog_datas, $blog_id) {
-    
-    }
-    
     /**
      * 删除班级日志分类
      * @param unknown_type $blog_id
@@ -334,11 +312,6 @@ class ClassBlog extends BlogBase {
     
     
     
-    
-    
-    
-    
-    
     /*************************************************************************************
      * 班级日志添加修改辅助函数
      **************************************************************************************/
@@ -347,29 +320,37 @@ class ClassBlog extends BlogBase {
             return false;
         }
         
-        $blog_person_relation = array(
-            'class_code' => $this->class_code,
-            'blog_id' => $blog_datas['blog_id'],
-        );
-        
-        return $blog_person_relation;
-    }
-    
-    
-    protected function extractBlogGrant($blog_datas) {
-        if(empty($blog_datas)) {
-            return false;
-        }
-        
-        $blog_person_grants_datas = array(
-            'blog_id' => $blog_datas['blog_id'],
+        $blog_class_relation = array(
             'class_code' => $this->class_code,
             'grant' => $blog_datas['grant'],
+        	'blog_id' => $blog_datas['blog_id'],
         );
         
-        return $blog_person_grants_datas;
+        return $blog_class_relation;
     }
     
+    
+    /*****************************************************************************************
+     * 日志分类修改辅助函数
+     * ***************************************************************************************/
+     protected function needModifyBlogRelation($blog_datas) {
+         if(empty($blog_datas)) {
+             return false;
+         }
+         $fields = array(
+            'class_code',
+            'grant',
+         	'blog_id',
+         );
+         
+         foreach($fields as $field) {
+             if(isset($blog_datas[$field])) {
+                 return true;
+             }
+         }
+         
+         return false;
+     }
     
     /*************************************************************************************
      * 日志分类  添加修改辅助函数

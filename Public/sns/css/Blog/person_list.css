@@ -13,7 +13,7 @@
 	.blog_main{width:938px;}
 		.blog_main_left{width:718px; float:left;}
 			.single_blog{background:#fff7e0; padding:10px; margin-bottom:20px;}
-				.single_blog h3{font:bold 14px "微软雅黑"; padding-bottom:6px;}
+				.single_blog h3{font:bold 14px "微软雅黑"; padding-bottom:6px; cursor: pointer;}
 	     		.single_blog_p{text-indent:30px; line-height:24px;}
 				.single_blog p a{color:#3a8a00;}
 				

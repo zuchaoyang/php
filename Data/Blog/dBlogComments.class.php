@@ -3,18 +3,20 @@ class dBlogComments extends dBase {
     protected $_pk = 'comment_id';
     protected $_tablename = 'wmw_blog_comments';
     protected $_fields = array(
-                    'comment_id',
-                    'blog_id',
-                    'content',
-                    'up_id',
-                    'client_account',
-                    'add_time',
-                    'level',
-              );
+        'comment_id',
+        'blog_id',
+        'content',
+        'up_id',
+        'client_account',
+        'add_time',
+        'level',
+    );
+    
     protected $_index_list = array(
-                    'comment_id',
-                    'blog_id'
-              );
+        'comment_id',
+        'blog_id',
+        'up_id',
+    );
               
     //根据日志评论ID获取信息列表          
     public function getById($comment_id) {
@@ -24,6 +26,10 @@ class dBlogComments extends dBase {
     public function getListByBlogId($blog_id) {
         //三维
         return $this->getInfoByFk($blog_id, 'blog_id');
+    }
+    
+    public function getBlogCommentsByUpId($up_ids) {
+        return $this->getInfoByFk($up_ids, 'up_id');
     }
     
     // 根据日志ID提取一级评论

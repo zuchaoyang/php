@@ -4,23 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>精品网校</title>
 
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
-<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/resource_style.css" type="text/css" />
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/resource_style.css" type="text/css" />
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
-<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/js/qualityschool1.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/resource/qualityschool1.js"></script>
 </head>
 
 <body>
+{insert name="sns_header"}
 
-<div class="box">
-<div class="nav">
-{insert name="publicHeader" class_code = $class_code}
+<!-- 资源导航 start-->
+<div class="tip">
+   <div class="tip_main_resource">
+	    <a href="/Sns/Resource/Resource/synchroresource" >同步资源</a>  
+	    <a href="/Sns/Resource/Resource/qualityresource" >精品资源</a>  
+	    <a href="/Sns/Resource/Resource/qualityschool1" class="bjgl_dq">精品网校</a>
+	    <div class="clear"></div>
+   </div> 
+</div>
+<!-- end -->
 <div class="big">
-
  <!--center star-->
  <div class="main">
- {insert name="account_left" class_code = $class_code}
   <div class="center">
 {literal}
     	<div class="news">
@@ -28,7 +33,7 @@
 
 			
 
-            var pic_width=481; //图片宽度
+            var pic_width=730; //图片宽度
 
             var pic_height=203; //图片高度
 
@@ -48,31 +53,31 @@
 
             var text=new Array();
 
-            imag[1]="http://vip.wmw.cn/study/peking/images/01.jpg";
+            imag[1]="__PUBLIC__/sns/images/resource/lh_img01.jpg";
 
             link[1]="http://ziyuan.wmw.cn/WLKT/BDFZFX/BEIDAHD/sanxia.html"
 
             text[1]="标题 1";
 
-            imag[2]="http://vip.wmw.cn/study/peking/images/02.jpg";
+            imag[2]="__PUBLIC__/sns/images/resource/lh_img02.jpg";
 
             link[2]="http://ziyuan.wmw.cn/WLKT/BDFZFX/BEIDAHD/nanji.html";
 
             text[2]="标题 2";
 
-            imag[3]="http://vip.wmw.cn/study/peking/images/03.jpg";
+            imag[3]="__PUBLIC__/sns/images/resource/lh_img03.jpg";
 
             link[3]="http://ziyuan.wmw.cn/WLKT/BDFZFX/BEIDAHD/huoshan.html";
 
             text[3]="标题 3";
 
-            imag[4]="http://vip.wmw.cn/study/peking/images/04.jpg";
+            imag[4]="__PUBLIC__/sns/images/resource/lh_img04.jpg";
 
             link[4]="http://ziyuan.wmw.cn/WLKT/BDFZFX/BEIDAHD/huaju.html";
 
             text[4]="标题 4";
 
-            imag[5]="http://vip.wmw.cn/study/peking/images/05.jpg";
+            imag[5]="__PUBLIC__/sns/images/resource/lh_img05.jpg";
 
             link[5]="http://ziyuan.wmw.cn/WLKT/BDFZFX/BEIDAHD/fifa.html";
 
@@ -353,8 +358,6 @@
   <div class="clean"></div>
 </div>
 </div>
-</div>
-</div>
-{include file="Public/footer.html"}
+{include file="Public/sns_footer.html"}
 </body>
 </html>

@@ -58,7 +58,7 @@ class mBlogPersonRelation extends mBase {
             return false;
         }
         
-        return $this->_dBlogPersonRelation->delBlogPersonRelation($datas, $id);
+        return $this->_dBlogPersonRelation->modifyBlogPersonRelation($datas, $id);
     }
 
     /**

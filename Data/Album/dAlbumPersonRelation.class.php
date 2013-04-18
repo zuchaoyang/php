@@ -6,7 +6,7 @@ class dAlbumPersonRelation extends dBase {
                     'id',
                     'client_account',
                     'album_id',
-    
+                    'grant'
                 );
     protected $_index_list = array(
                     'client_account',

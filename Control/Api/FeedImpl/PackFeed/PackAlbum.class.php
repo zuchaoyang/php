@@ -34,10 +34,10 @@ class PackAlbum implements IPack {
         import("@.Common_wmw.Pathmanagement_sns");
         $feed_datas = array(
             'feed_type'     => FEED_ALBUM,
-            'add_account'   => $photo_info['add_account'],
+            'add_account'   => $photo_info['upd_account'],
             'timeline'		=> time(),
             'feed_content'  => null,
-            'img_url'		=> Pathmanagement_sns::getAlbum($photo_info['add_account']) . $photo_info['file_middle'],
+            'img_url'		=> Pathmanagement_sns::getAlbum($photo_info['upd_account']) . $photo_info['file_middle'],
             'from_id'       => $photo_id,
         );
         

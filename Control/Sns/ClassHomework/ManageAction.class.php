@@ -77,6 +77,6 @@ class ManageAction extends SnsController {
             $this->ajaxReturn(null, '回执失败!', -1, 'json');
         }
         
-        $this->showSuccess(null, '回执成功!', 1, 'json');
+        $this->ajaxReturn(null, '回执成功!',1, 'json');
     }
 }

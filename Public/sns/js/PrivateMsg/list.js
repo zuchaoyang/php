@@ -66,7 +66,7 @@ list.prototype.del_private_relation = function(relation_id,to_uid,Obj){
 
 list.prototype.reply_msg_show = function(){
 	var me = this;
-	$("a[class='replay_msg']").click(function(){
+	$("a[id^='replay_'][class='reply_msg']").click(function(){
 		var to_uid = (this.id.toString().match(/(\d+)/ig) || [])[0];
 		var context = $("#replay_content");
 		var replay_private_msg = context;
@@ -95,6 +95,7 @@ list.prototype.reply_msg_show = function(){
 				}
 			}
 		});
+
 		$("h1",context).html("回复：" + $("#replay_name_"+to_uid).val());
 		me.show_send_box(to_uid);
 		replay_private_msg.trigger('openEvent');
@@ -109,6 +110,7 @@ list.prototype.show_send_box = function(to_uid) {
 		panels:'emote,upload',
 		//表单的提交类型，建议使用post的方式，支持(get, post)
 		type:'post',
+		async:false,
 		//表单提交到的位置
 		url:'/Sns/PrivateMsg/PrivateMsg/add_private_msg/to_uid/' + to_uid,
 		//数据返回格式，支持：json,html等数据格式，于success回调函数的数据格式保持一致
@@ -123,12 +125,16 @@ list.prototype.show_send_box = function(to_uid) {
 		},
 		//服务器返回数据后的回调函数
 		success:function(json) {
-			me.success();
+			if(json.status > 0)
+				me.success();
+			else
+				$.showError("发送失败");
+				
 		}
-	});
+	}, true);
 };
 
-list.prototype.success = function(){
+list.prototype.success = function(msg){
 	$.showSuccess("发送成功");
 	window.location.reload();
 };

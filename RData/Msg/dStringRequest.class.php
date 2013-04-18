@@ -11,7 +11,7 @@ class dStringRequest extends rBaseString {
         if(empty($id)) {
             return false;
         }
-        
+
         return RedisFeedKey::getUserReqMsgKey($id);
     }
 }

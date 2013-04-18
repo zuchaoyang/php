@@ -72,12 +72,20 @@ class MoodInfo {
         if(empty($mood_datas)) {
             return false;
         }
-        
+
+        $client_account = $mood_datas['add_account'];
         $img_file = '';
         if(!empty($_FILES['pic']['name'])) {
-            $img_file = $this->uploadPic('pic');            
+            $img_file = $this->uploadPic('pic', $client_account);            
         }
-        $mood_datas['img_url'] = $img_file;
+
+        import('@.Common_wmw.WmwScaleImage');
+        $wmwScaleImage = new WmwScaleImage();
+        $s_path = $wmwScaleImage->scaleSmall($img_file);
+        $m_path = $wmwScaleImage->scaleMiddle($img_file);        
+
+        
+        $mood_datas['img_url'] = basename($m_path);
         
         return $this->mMood->addMood($mood_datas, true);
     }
@@ -94,7 +102,7 @@ class MoodInfo {
         //获取说说实体的相关信息
         $mood_list = $this->mMood->getMoodById($mood_id);
         $mood_info = & $mood_list[$mood_id];
-        
+        $client_account = $mood_info['add_account'];
         //删除说说实体
         if(!$this->mMood->delMood($mood_id)) {
             return false;
@@ -104,7 +112,7 @@ class MoodInfo {
         $img_url = $mood_info['img_url'];
         if(!empty($img_url)) {
             import('@.Common_wmw.Pathmanagement_sns');
-            $file_name = Pathmanagement_sns::uploadMood() . pathinfo($img_url, PATHINFO_BASENAME);
+            $file_name = Pathmanagement_sns::uploadMood($client_account) . pathinfo($img_url, PATHINFO_BASENAME);
             if(is_file($file_name)) {
                 @ unlink($file_name);
             }
@@ -126,7 +134,7 @@ class MoodInfo {
     /**
      * 文件上传
      */
-    private function uploadPic($field = 'pic') {
+    private function uploadPic($field = 'pic', $client_account) {
         if(empty($field)) {
             $field = 'pic';
         }
@@ -137,16 +145,17 @@ class MoodInfo {
                 'png'
             ),
             'renamed' => true,
-            'attachmentspath' => Pathmanagement_sns::uploadMood(),
-            'newname' => 'mood_' . time() . "" . rand(),
+            'attachmentspath' => Pathmanagement_sns::uploadMood($client_account),
+            'newname' => time() . "" . rand(),
         );
         $upload = ClsFactory::Create('@.Common_wmw.WmwUpload');
         $file_attrs = $upload->upfile($field, $options);
+
         if(empty($file_attrs)) {
             return '';
         }
         
-        return pathinfo($file_attrs['filename'], PATHINFO_BASENAME);
+        return $file_attrs['filename'];
     }
     
 	/**

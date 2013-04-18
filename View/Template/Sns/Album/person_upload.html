@@ -5,10 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>上传照片</title>
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_upload.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/person_upload.css" type="text/css" charset="utf-8">
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
-
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery.form.min.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
 
@@ -23,59 +23,31 @@
 <body>
 <!--弹出层 star-->
  <!--提示信息弹出层-->
- <div class="edit_comment" style="width:300px;display:none;text-align:center;">
-   <div style="width:290px;"class="edit_comment_tab">
-     	已经成功上传<span id="upload_photo_count"></span>张图片,<a href="javascript:;" id="gotoAlbum"><span>点击进入相册</span></a>&nbsp;&nbsp;或&nbsp;&nbsp;<a href="javascript:;" id="upload_finish_close"><span>继续上传</span></a>
-  </div>
+ <!--上传照片 star-->
+ <div class="sczp finishupload" style="display:none;">
+ 	已经成功上传<span id="upload_photo_count"></span>张图片，点击<a href="javascript:;" id="gotoAlbum">进入相册</a>或<a href="javascript:;" id="upload_finish_close">继续上传</a> 
  </div>
  
- <div class="edit_comment upload_create_album" style="width:300px;display:none;text-align:center;">
-  <div style="width:290px;"class="edit_comment_tab">
+ <!--上传照片 end-->
+ 
+ <div class="sczp upload_create_album" style="display:none;">
     	还没有相册,<a href="javascript:;" id="upload_create_album">快来创建相册吧！</a>
-  </div>
  </div>
   
  <!--提示信息弹出层-->
- <!--创建相册 star-->
- <div class="edit_comment" style="display:none;">
-   <h1 class="tcc_title">创建相册<a href="#" class="close_icon"></a></h1>
-   <div class="edit_comment_tab">
-   <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <th>相册名称：</th>
-        <td><input type="text" class="text" value="请输入名称，你还可以输入30字"></td>
-      </tr>
-      <tr>
-        <th class="align-top">相册描述：</th>
-        <td>
-         <textarea class="textarea"></textarea>
-         <p>你还能输入<span class="f_orange">200</span>字。</p>
-        </td>
-      </tr>
-      <tr>
-        <th>权限设置：</th>
-        <td><select><option>公开（所有人可见）</option><option>个人成员可见</option><option>学校成员可见</option></select></td>
-      </tr>
-    </table>
-    </div>
-   <div class="msg_btn">
-     <p><input type="button" value="确定"  class="green_btn"><input type="button" value="取消" class="qx_btn"></p>
-   </div>
- </div>
- <!--创建相册 end-->
 <!--弹出层 end-->
 
-{insert name="sns_header"}
-<!--tip star-->
-{insert name="sns_class_header" client_account = $client_account}
+<!-- 头部start -->
+{insert name="sns_header" uid = $client_account}
+<!-- 头部end -->
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $client_account}
 <!--content star-->
 <div class="content">
   <!--main star-->
    <div class="main">
-    <!--nav star-->
-    {insert name="sns_nav" client_account = $client_account}
-    <!--nav end-->
-    <h4><a href="/Sns/Album/Person/albumlist/client_account/{$client_account}"><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
+    <h4><a href="/Sns/Album/Personalbum/albumlist/client_account/{$client_account}"><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
     <div class="clear"></div>
     <!--publish_main star-->
     <div class="publish_main">
@@ -133,7 +105,7 @@
   <!--main end-->
   <div class="clear"></div> 
   </div>
-  {include file="Sns/Album/Subtemplate/person_create_album.inc.html"}
+  {include file="Sns/Album/Subtemplate/create_album.inc.html"}
 <!--content end-->
 <input id="client_account" type="hidden" value="{$client_account}"/>
 <input id="album_id" type="hidden" value="{$album_id}"/>

@@ -25,9 +25,10 @@ class mAlbumPersonRelation extends mBase {
         if(empty($album_id) || empty($uid)) {
             return false;
         }
-        $wherearr['client_account'] = $uid;
-        $wherearr['album_id'] = $album_id;
+        $wherearr[] = 'client_account='.$uid;
+        $wherearr[] = 'album_id='.$album_id;
         $orderby = ' client_account asc';
+        $this->_dAlbumPersonRelation->getInfo($wherearr, $orderby);
         return $this->_dAlbumPersonRelation->getInfo($wherearr, $orderby);
     }
    /* public function getAlbumPersonRelByAlbumId($album_id) {

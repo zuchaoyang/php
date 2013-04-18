@@ -108,12 +108,8 @@ class ByClass extends Blog {
         $id = $this->check_grant($blog_id, $class_code);
         $grant_arr['grant'] = $dataarr['grant'];
         $mBlogClassGrants = ClsFactory::Create('Model.Blog.mBlogClassGrants');
-        $rs = $mBlogClassGrants->modifyById($dataarr, $id);
-        if($rs === false) {
-            return false;
-        }
         
-        return $rs;
+        return $mBlogClassGrants->modifyById($dataarr, $id);
     }
     
     /**

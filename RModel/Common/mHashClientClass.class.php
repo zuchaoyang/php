@@ -77,7 +77,7 @@ class mHashClientClass {
      * $param $fvalue  hash  field value
      */
     public function delClientClassByField($id, $fields) {
-        if(empty($id) || empty($fileds)) {
+        if(empty($id) || empty($fields)) {
             return false;
         }
         

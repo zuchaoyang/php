@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>个人相册-普通照片</title>
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_list_photo_n.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/person_list_photo_n.css" type="text/css" charset="utf-8">
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
 
@@ -17,16 +17,12 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/person_photo_list.js"></script>
 </head>
 <body>
-{insert name="sns_header"}
-<!--tip star-->
-{insert name="sns_class_header" uid = $login_account}
-  <!--<div class="tip">
-   <div class="tip_main">
-    <p class="f13 f_green">丰台区芳群园第一小学</p><p><a href="#" class="f13 f_green">一年二班<span class="icon_01"></span></a></p><span class="icon_02"></span><p class="f13 f_green">班主任：李老师</p>
-    <div class="clear"></div>
-   </div> 
-  </div>
---><!--tip end--> 
+<!-- 头部start -->
+{insert name="sns_header" uid = $client_account}
+<!-- 头部end -->
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $client_account}
 <!-- 相册详情弹层 star -->
 <div class="list_photo_right" id="xcxq_div" style="display:none;">
    <p>相册名称：<font class="album_name">{$album_list.album_name}</font></p>
@@ -53,10 +49,7 @@
 <div class="content">
   <!--main star-->
    <div class="main">
-     <!--nav star-->
-    {insert name="sns_nav" uid = $login_account}
-    <!--nav end-->
-    <h4><a href="/Sns/Album/Person/albumlist/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
+    <h4><a href="/Sns/Album/Personalbum/albumlist/client_account/{$client_account}"  style="text-decoration:none;" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
     <div class="clear"></div>
     <!--publish_main star-->
     <div class="publish_main">
@@ -65,8 +58,8 @@
       <div class="list_photo_main">
         <div class="list_photo_left">
           <p class="photo_left_top">
-           <a href="/Sns/Album/Person/uplaodPhoto/client_account/{$client_account}/album_id/{$album_id}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
-           <a href="/Sns/Album/Personphoto/photoPlist/client_account/{$client_account}/album_id/{$album_id}" class="up_photo" title="">瀑布流</a>
+           {if $is_edit}<a href="/Sns/Album/Personphoto/uplaodPhoto/client_account/{$client_account}/album_id/{$album_id}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">上传照片</span></a>{/if}
+           {if $album_list.photo_num gt 20}<a href="/Sns/Album/Personphoto/photoPlist/client_account/{$client_account}/album_id/{$album_id}" class="up_photo" title="">瀑布流</a>{/if}
            <a href="#" class="xcxq_zk f_green"><span>相册详情</span><span id="icon_img" class="icon_down"></span></a>
           </p>
           <div class="clear"></div>
@@ -107,8 +100,8 @@
   </div>
 <!--content end-->
 <!-- start引入弹层模板 -->
-{include file="Sns/Album/Subtemplate/person_edit_album.inc.html"}
-{include file="Sns/Album/Subtemplate/person_del_album.inc.html"}
+{include file="Sns/Album/Subtemplate/edit_album.inc.html"}
+{include file="Sns/Album/Subtemplate/del_album.inc.html"}
 <!-- end引入弹层模板 -->
 
 <!--弹出层 star-->

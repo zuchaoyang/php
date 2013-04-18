@@ -138,7 +138,7 @@ class MailbookAction extends SnsController{
             }
             
             $val['client_name'] = $val['client_name'];
-            $val['client_birthday'] = date('Y-m-d',$val['client_birthday']);
+            //$val['client_birthday'] = date('Y-m-d',$val['client_birthday']);
             $val['client_headimg_img'] = Pathmanagement_sns::getHeadImg($account).$val['client_headimg'];
             $new_info_arr[$account] = $val;
         }

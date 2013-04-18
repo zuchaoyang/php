@@ -12,7 +12,7 @@
 		
 	.class_admin{margin-top:10px; width:960px;}
 		.class_admin p{width:960px;}	
-		.class_admin p span{background:url(../../images/ClassAdmin/list/pic01.gif) 0 0 no-repeat; width:100px; height:31px; line-height:31px; color:#fff; padding-left:30px; display:inline-block;}
+		.class_admin p span{background:url(../../images/ClassAdmin/list/pic02.gif) 0 0 no-repeat; width:840px; height:31px; line-height:31px; color:#fff; padding-left:10px; display:inline-block;}
 		.class_admin_main{background:#fff; padding:20px; border:1px #d3d3d3 solid; width:918px;}
 			.class_admin_main dl{width:100px; float:left; margin-right:15px; text-align:center; position:relative;}
 				.class_admin_main dl dt img{border:1px #cdcdcd solid; width:99px; height:99px;}

@@ -73,6 +73,7 @@ show.prototype.show_send_box = function() {
 		panels:'emote,upload',
 		//表单的提交类型，建议使用post的方式，支持(get, post)
 		type:'post',
+		async:false,
 		//表单提交到的位置
 		url:'/Sns/PrivateMsg/PrivateMsg/add_private_msg/to_uid/' + to_uid,
 		//数据返回格式，支持：json,html等数据格式，于success回调函数的数据格式保持一致
@@ -87,15 +88,17 @@ show.prototype.show_send_box = function() {
 		},
 		//服务器返回数据后的回调函数
 		success:function(json) {
-			me.success();
+			if(json.status > 0){
+				$.showSuccess("发送成功");
+				window.location.reload();
+			}else{
+				$.showError("发送失败");
+			}
+
 		}
-	});
+	}, true);
 };
 
-show.prototype.success = function(){
-	$.showSuccess("发送成功");
-	window.location.reload();
-};
 
 $(function(){
 	new show();

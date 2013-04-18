@@ -40,20 +40,11 @@
 		.msg_btn p{text-align:right;}
 		.green_btn{background:url(../../images/Album/class_upload/green_btn.gif) 0 0 no-repeat; width:57px; height:24px; color:#fff; border:none; cursor:pointer;}
 		.qx_btn{background:url(../../images/Album/class_upload/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}		
-		
-/*提示信息*/	   
-.tcc_msg{width:310px; color:#666; background:#fff;}
-	.tcc_msg_top{background:url(../../images/Album/class_list_album/tcc_msg_top.gif) 0 0 no-repeat; height:5px; overflow:hidden;}
-	.tcc_msg_center{background:url(../../images/Album/class_list_album/tcc_msg_center.gif) 0 0 repeat-y; padding:20px 10px;}
-	    .msg_center_main dl{float:left; margin-right:8px;}
-		.icon_question{background:url(../../images/Album/class_list_album/icon_question.gif) 0 0 no-repeat; width:8px; height:14px; display:inline-block;}
-		.msg_center_main p{font:bold 14px "宋体"; text-align:center; line-height:24px;}
-		.msg_center_main p a{font:bold 14px "宋体"; color:#2b6800;}
-		.msg_center_btn{text-align:right; padding-top:10px;}
-		
-		.qd_btn{background:url(../../images/Album/class_list_album/qd_btn.gif) 0 0 no-repeat; width:57px; height:24px; border:none; cursor:pointer;}
-		.qx_btn{background:url(../../images/Album/class_list_album/qx_btn.gif) 0 0 no-repeat; width:57px; height:24px; line-height:24px; border:none; cursor:pointer; text-align:center; color:#73797c; margin-left:10px;}
-	.tcc_msg_bottom{background:url(../../images/Album/class_list_album/tcc_msg_bottom.gif) 0 0 no-repeat; height:5px; overflow:hidden;}				
+
+
+/*上传照片*/
+.sczp{ background:url(../../images/Album/class_upload/tcc_bj02.gif) 0 0 no-repeat; width:370px; height:53px; padding:15px; font:14px/55px "微软雅黑"; color:#333; text-align:center;}
+.sczp a{color:green; margin:0 8px;}		
 			
 		
 		

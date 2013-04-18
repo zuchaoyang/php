@@ -67,6 +67,9 @@ homework_preview.prototype.initPreviewDiv=function(datas) {
 	$('#content', context).html(datas.content);
 	//作业附件
 	$('#upload_file_name', context).html(datas.upload_file_name);
+	if(datas.upload_file_name == '') {
+		$("#fjxz").remove();
+	}
 	//情况已经存在的成员列表信息
 	var parentDiv = $('#accepters_list', context);
 	var divClone = $('.clone', parentDiv);

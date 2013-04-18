@@ -2,44 +2,46 @@
 /* CSS Document */
 .per_main{width:960px; margin:0 auto; font:14px "微软雅黑";}
 	.banner{background:url(../../images/PersonIndex/main_first/banner.jpg) 0 0 no-repeat; height:250px; position:relative;}
-		.head_pic{width:150px; position:absolute; top:120px; left:15px;}
-			.head_pic dl{width:150px; text-align:center;}
+		.head_pic{width:150px; position:absolute; top:100px; left:5px;}
+			.head_pic dl{width:150px; text-align:left; margin-top:15px;}
 				.head_pic dl dt{padding:5px; background:#fff; border:1px #ccc solid;}
 				.head_pic dl dt a img{display:block;}
+				.head_pic dl dd{ margin-top:5px; } 
 				
 				.align_left{text-align:left;}
 				.value_bj{background:url(../../images/PersonIndex/main_first/icon_sz_bj.jpg) 0 0 no-repeat; width:26px; height:20px; display:inline-block; color:#fff; padding-left:25px;}
 					.value_bj:hover{text-decoration:none;}
 				.ml10{margin-left:10px;}
 				
-		.head_btn{width:100px; height:25px; position:absolute; top:240px; left:80px;}
-			.gray_btn{width:64px; height:20px; border:1px #ccc solid; background:#f0f0f0; cursor:pointer;}
+		.head_btn{width:100px; height:25px; position:absolute; top:240px; left:87px; }
+			.gray_btn{width:64px; height:20px;  background:#f0f0f0; color:black; font:12px/20px "宋体"; display:inline-block; text-align:center; text-decoration:none;}
 				
 	.per_first_main{width:958px; border:1px #ccc solid; margin-top:10px; background:#fff;}	
 		
-		.first_main_left{width:180px; float:left; padding-top:60px;}
+		.first_main_left{width:158px; float:left; padding-top:60px;}
 			.first_main_left p{border-bottom:1px #ccc dashed; margin-bottom:8px;}
 		
-			.icon_sx{background:url(../../images/PersonIndex/main_first/icon_sx.jpg) 10px 0 no-repeat;}
-			.icon_say{background:url(../../images/PersonIndex/main_first/icon_say.jpg) 10px 0 no-repeat;}
-			.icon_photo{background:url(../../images/PersonIndex/main_first/icon_photo.jpg) 10px 0 no-repeat; position:relative;}
-			.icon_rz{background:url(../../images/PersonIndex/main_first/icon_rz.jpg) 10px 0 no-repeat;}
-			.icon_friend{background:url(../../images/PersonIndex/main_first/icon_friend.jpg) 10px 0 no-repeat;}
+			.icon_sx{background:url(../../images/PersonIndex/main_first/icon_sx.jpg) right 0 no-repeat;}
+			.icon_say{background:url(../../images/PersonIndex/main_first/icon_say.jpg) right 0 no-repeat;}
+			.icon_photo{background:url(../../images/PersonIndex/main_first/icon_photo.jpg) right 0 no-repeat; position:relative;}
+			.icon_rz{background:url(../../images/PersonIndex/main_first/icon_rz.jpg) right 0 no-repeat;}
+			.icon_friend{background:url(../../images/PersonIndex/main_first/icon_friend.jpg) right 0 no-repeat;}
 			
 			.first_main_left table td{padding:0px; height:46px;}
 			.first_main_left table td a{color:#212121;}
-				.first_main_left table td span{display:block; width:60px; height:40px;}
+				.first_main_left table td .f_16{ font:bold 15px "微软雅黑"; color:#212121}
+				.first_main_left table td span{display:block; width:55px; height:40px; text-align:right;}
 				.first_main_left table tr:hover,.first_main_left table tr.li_on{background:#e7fac6;}
-				.td_icon_width{width:80px;}
+				.td_icon_width{width:70px;}
 				.first_main_left table td .f_666{color:#666;}
 				
 				
 		
-		.first_main_center{width:536px; float:left; border-left:1px #ccc solid; padding:0px 10px 10px;}
-			.say_tab{width:536px; padding-top:6px; overflow:hidden;}
+		.first_main_center{width:580px; float:left; border-left:1px #ccc solid; padding:0px 10px 10px;}
+			.say_tab{width:580px; padding-top:6px; overflow:hidden;}
 				.icon_say_pic{background:url(../../images/PersonIndex/main_first/icon_say_pic.gif) 0 0 no-repeat;width:26px;height:22px;display:inline-block;float:left;margin:2px 8px 0px;}
 			    
-				.say_textarea{width:534px; height:40px; border:1px #ccc solid; margin:4px 0px 6px;}
+				.say_textarea{width:560px; height:40px; border:1px #ccc solid; margin:4px 0px 6px;}
 			  
 			    .say_tab p a{display:inline-block; color:#464646; margin-right:8px;}
 			  		.icon_face{background:url(../../images/PersonIndex/main_first/icon_face.gif) 0 0 no-repeat; width:22px; height:22px; display:inline-block; float:left;}
@@ -56,8 +58,8 @@
 				.main_nav_a1:hover{text-decoration:none;}
 				
 				
-			.first_info{width:514px; padding:10px; background:url(../../images/PersonIndex/main_first/class_people_bj.gif) repeat; border:1px #c9c9c9 solid; border-top:none;}
-				.pre_info{width:514px; margin-bottom:10px;}
+			.first_info{width:578px; padding:10px 0;  border-top:none;}
+				.pre_info{width:558px; margin-bottom:10px;}
 					.pre_info dl{width:60px; float:left; margin-right:10px; text-align:center;}
 						.pre_info dl dt img{width:60px; height:60px;}
 					
@@ -77,24 +79,24 @@
 							.f12{font:12px "微软雅黑"; line-height:14px; margin-left:10px; display:inline-block;}
 							
 							
-  			.more_active{width:534px; text-align:center; margin-top:10px; border:1px #ccc dashed; background:#ebebeb; padding:10px 0px;}	
+  			.more_active{width:578px; text-align:center; margin-top:10px; border:1px #ccc dashed; background:#ebebeb; padding:10px 0px;}	
 		      .more_active a{background:url(../../images/PersonIndex/main_first/icon_more.jpg) right center no-repeat;display:inline-block; padding-right:10px;color:#5f9400;font:14px "宋体";}				
 			    
 			  
 		
-		.first_main_right{width:210px; float:left;}
-			.my_friend{width:210px;}
+		.first_main_right{width:188px; float:left;}
+			.my_friend{width:188px;}
 				.my_friend h3{font:14px "微软雅黑"; color:#3a8a00; height:32px; line-height:32px; border-bottom:1px #cdced0 solid;}
-					.my_friend h3 span{width:160px; display:inline-block;}	
+					.my_friend h3 span{width:140px; display:inline-block;}	
 					.my_friend h3 a{color:#a0a0a0; font:13px "宋体"; display:inline-block;}	
 					.my_friend h3 a:hover{color:#3a8a00;}
 					
-				.my_friend p{background:url(../../images/PersonIndex/main_first/class_people_bj.gif) repeat; border:1px #ccc solid; padding:10px 4px; margin:10px 0px 0px 0px;}	
-					.my_friend p a{display:inline-block; margin:0px 8px 8px 0px; background:#fff;}
+				.my_friend p{background:url(../../images/PersonIndex/main_first/class_people_bj.gif) repeat; border:1px #ccc solid; padding:6px 3px; margin:10px 0px 0px 0px;}	
+					.my_friend p a{display:inline-block; margin:0px 3px 8px 0px; background:#fff; padding:1px;}
 			
-			.visitor{width:210px; color:#464646;}
+			.visitor{width:188px; color:#464646;}
 				.visitor h3{font:14px "微软雅黑"; color:#3a8a00; height:32px; line-height:32px; border-bottom:1px #cdced0 solid;}
-					.visitor h3 span{width:160px; display:inline-block;}	
+					.visitor h3 span{width:140px; display:inline-block;}	
 					.visitor h3 a{color:#a0a0a0; font:13px "宋体"; display:inline-block;}	
 					.visitor h3 a:hover{color:#3a8a00;}
 					
@@ -104,8 +106,9 @@
 						.visitor_main_tab td a img{width:38px; height:38px;}
 						.visitor_main_tab td{color:#4e4e4e;}
 						
-						.tcc_close{position:absolute; width:30px; height:30px; top:6px; right:0px;}	
-							.red_close{background:url(../../images/PersonIndex/main_first/icon_close_red.gif) 0 0 no-repeat; width:20px; height:20px; display:inline-block;}
+						.tcc_close{position:absolute; width:30px; height:30px; top:6px; right:5px; font:12px/32px "宋体";}	
+							.tcc_close a{color:grey;}
+						
 							
 					.visitor_p{margin:10px 0px; text-align:center;}	
 						.visitor_p span{padding-left:10px;}

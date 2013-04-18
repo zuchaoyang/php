@@ -29,6 +29,7 @@ Friend.prototype.init=function() {
 		async:false,
 		success:function(json) {
 			if(json.status < 0) {
+				//$("#friend_group_list_ul").html('暂无好友');
 				return false;
 			}
 			
@@ -302,6 +303,13 @@ Friend.prototype.delegateEventForLeftMenu=function() {
 		var ancestorObj = $(this).closest('li');
 		var group_name = $('.group_name_selector', ancestorObj).val();
 		var group_id = ancestorObj.attr('id').toString().match(/(\d+)/)[1];
+		var bj_color_obj = $(".bj_color",$("#friend_group_list_ul"));
+		var bj_color_length = bj_color_obj.length;
+		for(var i = 0; i < bj_color_length; i++) {
+			bj_color_obj.eq(i).removeClass('bj_color');
+		}
+		ancestorObj.addClass('bj_color');
+		
 		Friend.registerFilters({
 			type:'post',
 			url:'/Sns/Friend/Manage/getMyFriendByGroupIdAjax',
@@ -688,7 +696,7 @@ Friend.register(function() {
 		var sendBoxObj = $('#content', divObj).sendBox({
 			panels:'emote,upload',
 			type:'post',
-			url:'/Sns/Friend/Manage/sendPrivateSmgAjax',
+			url:'/Sns/PrivateMsg/PrivateMsg/add_private_msg',
 			dataType:'json',
 			//表单提交前得验证
 			beforeSubmit:function() {
@@ -700,7 +708,7 @@ Friend.register(function() {
 				}
 				var friend_account = $('#friend_account', divObj).val();
 				if($('*[name="friend_account"]').length == 0) {
-					$('<input type="hidden" name="friend_account" value="' + friend_account + '" />').appendTo(formObj);
+					$('<input type="hidden" name="to_uid" value="' + friend_account + '" />').appendTo(formObj);
 				} else {
 					$('*[name="friend_account"]').val(friend_account);
 				}

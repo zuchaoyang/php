@@ -69,6 +69,10 @@ class UserinfosAction extends UcController {
         
         $resault = $mUser->modifyUserClientInfo($datarr,$account);
         
+        
+        $mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        $client_base = $mHashClient->getClientbyUid($account, true); 
+        
         if(!empty($resault)) {
             $this->showSuccess('操作成功','/Uc/Userinfos/contact_manage');
         } else {
@@ -130,6 +134,9 @@ class UserinfosAction extends UcController {
             
           $result1 = $mUser->modifyUserClientAccount($datarr, $account);
         }
+        
+        $mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        $client_base = $mHashClient->getClientbyUid($account, true); 
         
         if($result || $result1) {
              $this->showSuccess("保存成功", "/Uc/Userinfos/UserBaseInfos");
@@ -391,6 +398,9 @@ class UserinfosAction extends UcController {
 		$mUser = ClsFactory::Create('Model.mUser');	    
 		$modifystretch = $mUser->modifyUserClientInfo($kzteacher,$account);
 		
+		$mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        $client_base = $mHashClient->getClientbyUid($account, true); 
+		
 	    if($modifystretch){
             $this->showSuccess("操作成功", "/Uc/Userinfos/getUserStretchInfo");
         }else{
@@ -413,6 +423,10 @@ class UserinfosAction extends UcController {
 	    
 		$mUser = ClsFactory::Create('Model.mUser');	    
 		$modifystretch = $mUser->modifyUserClientInfo($kzparent,$account);
+		
+		$mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        $client_base = $mHashClient->getClientbyUid($account, true); 
+        
     	if($modifystretch){
            $this->showSuccess("保存成功", "/Uc/Userinfos/getUserStretchInfo");
 	    } else{
@@ -474,6 +488,9 @@ class UserinfosAction extends UcController {
 	   $mUser = ClsFactory::Create('Model.mUser');	
 	   $effect_row = $mUser->modifyUserClientInfo($clientinfo_datas, $account);
 	   
+	   $mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+       $client_base = $mHashClient->getClientbyUid($account, true); 
+	   
 	   if(empty($effect_row)) {
 	       $this->showError("保存失败!", "/Uc/Userinfos/getUserStretchInfo");
 	   }
@@ -532,6 +549,8 @@ class UserinfosAction extends UcController {
     		$returndata = $mPersonconfig->modifyPersonConfig($personconfig_datas, $account);
 		}
 		
+		$mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+        $client_base = $mHashClient->getClientbyUid($account, true); 
 		
 		if(empty($returndata)) {
 		    $this->showError('隐私设置失败', "/Uc/Userinfos/AccountPrivacy");

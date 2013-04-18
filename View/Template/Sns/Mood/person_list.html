@@ -20,53 +20,38 @@
 
 </head>
 <body>
-<!--per_tip star-->
-  <div class="per_tip">
-   <div class="pertip_main">
-    <dl>
-      <dt>
-      	<a href="#">
-      		<img src="../../../../Public/sns/images/Common/sns_images/per_img.jpg">
-      	</a>
-      </dt>
-    </dl>
-    <a href="#">
-    	<span>皮卡丘</span>
-    	<span class="icon_white_sjx"></span>
-    </a>
-    <div class="clear"></div>
-   </div> 
-  </div>
-<!--per_tip end--> 
+{insert name="sns_header"}
+
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end-->
 <!--content star-->
 <div class="content pt20">
   <!--mood_main star-->
-  <div class="mood_main">
+  <div id="mood_main" class="mood_main">
     <!--say_tab star-->
     <div class="say_tab">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td><span class="icon_say"></span>说说</td>
         <td>&nbsp;</td>
-        {if $mood_nums > 0}
-        <td class="align_right">共<span class="f_orange">{$mood_nums}</span>条说说</td>
-        {/if}
+        <td class="align_right">共<span id="mood_stat_span" class="f_orange"></span>条说说</td>
       </tr>
       <tr>
-        <td colspan="3"><textarea class="say_textarea"></textarea></td>
+        <td colspan="3">
+        	<textarea class="say_textarea"></textarea>
+        </td>
       </tr>
     </table>
     </div>
     <!--say_tab end-->
     <ul>
       <li>
-      	<a href="#" class="main_nav_a1 mr6" title=""></a>
+      	<a href="javascript:;" class="main_nav_a1 mr6" title=""></a>
       </li>
     </ul>
     <div class="say_main">
     	<div id="show_mood_list_div">
-    	
-    	
     	</div>
         <!--more_active star-->
         <div id="more_mood_div" class="more_active">
@@ -87,14 +72,15 @@
  <div class="per_active_l">
    <dl>
      <dt>
-     	<img src="{mood_info.user_info.client_headimg_url}">
+     	<img data-original="{mood_info.user_info.client_headimg_url}">
      </dt>
     </dl>
  </div>
  <!--per_active_r star-->
  <div class="per_active_r">
    <p class="per_right_top">
-   	<a href="#" class="fc_288c00">{mood_info.user_info.client_name}</a>
+   	<a href="/Sns/PersonIndex/Index/index/client_account/{mood_info.add_account}" target="_blank" class="fc_288c00">{mood_info.user_info.client_name}</a>
+   	<a href="/Sns/Mood/PersonMood/show/client_account/{mood_info.add_account}/mood_id/{mood_info.mood_id}" target="_blank">查看说说</a>
    </p>
    <!--per_right_center star-->
    <div class="per_right_center">
@@ -102,7 +88,7 @@
        	{mood_info.content}
        	{if mood_info.img_url}
        		<br />
-			<img src="{mood_info.img_url}"/>       	
+			<img data-original="{mood_info.img_url}"/> 	
        	{/if}
      </p>
      <div class="per_release_time">

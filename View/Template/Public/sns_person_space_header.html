@@ -2,9 +2,9 @@
  <!-- 个人空间 导航菜单 star-->
  	<div class="gezkxq" id="person_space_nav" style="display:none;">
        <a href="#">说说</a>
-       <a href="#">日志</a>
-       <a href="#">相册</a>
-       <a href="#">好友</a>   
+       <a href="/Sns/Blog/PersonList/index/client_account/{$space_uid}">日志</a>
+       <a href="/Sns/Album/Person/albumlist/client_account/{$space_uid}">相册</a>
+       <a href="/Sns/Friend/Manage/index">好友</a>   
     </div>
  
  <!--个人空间 导航菜单 end-->
@@ -14,7 +14,7 @@
     <dl>
       <dt><a href="#"><img src="{$head_pic}"></a></dt>
     </dl>
-    <a href="#"><span>{$client_name} 的个人空间</span><span id="show_person_space_nav" class="icon_white_sjx"></span></a>
+    <a href="/Sns/PersonIndex/Index/index/client_account/{$space_uid}"><span>{$client_name} 的个人空间</span><span id="show_person_space_nav" class="icon_white_sjx"></span></a>
     <div class="clear"></div>
    </div> 
   </div>

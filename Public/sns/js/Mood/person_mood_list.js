@@ -7,7 +7,6 @@ function dump(obj) {
 
 function person_mood_list() {
 	this.attachEvent();
-	this.delegateEvent();
 	this.init();
 }
 
@@ -16,6 +15,10 @@ person_mood_list.prototype = {
 		var me = this;
 		//加载第一页的说说信息
 		me.loadMoodDatas(1);
+		me.getPersonMoodStat();
+		
+		//将对象绑定到div上
+		$('#mood_main').data('handler', me);
 	},
 		
 	attachEvent:function() {
@@ -36,11 +39,14 @@ person_mood_list.prototype = {
 					$.showError(json.info);
 					return false;
 				}
-				//$.showSuccess(json.info);
+				$.showSuccess(json.info);
 				//追加到当前的说说列表中
 				if(!$.isEmptyObject(json.data)) {
-					mood_unit.create(json.data || {}).prependTo($('#show_mood_list_div'));
+					var data = json.data;
+					var mood_info = data.mood_info;
+					mood_unit.create(mood_info || {}).prependTo($('#show_mood_list_div'));
 				}
+				me.getPersonMoodStat();
 			}
 		});
 		
@@ -56,10 +62,6 @@ person_mood_list.prototype = {
 			}
 			return false;
 		});
-	},
-	
-	delegateEvent:function() {
-		
 	},
 	
 	loadMoodDatas:function(page) {
@@ -93,6 +95,18 @@ person_mood_list.prototype = {
 			var mood_info = mood_list[i];
 			mood_unit.create(mood_info).appendTo(parentObj);
 		}
+	},
+	
+	getPersonMoodStat:function() {
+		$.ajax({
+			type:'get',
+			url:'/Sns/Mood/PersonMood/getPersonMoodStatAjax',
+			dataType:'json',
+			success:function(json) {
+				var mood_nums = json.data || 0;
+				$('#mood_stat_span').html(mood_nums);
+			}
+		});
 	}
 	
 };
@@ -105,6 +119,25 @@ mood_unit.create=function(mood_info) {
 	var divObj = $('#mood_unit_div').clone().removeAttr('id').show();
 	divObj.renderHtml({
 		mood_info:mood_info || {}
+	});
+	
+	//加载图片信息
+	$('img', divObj).each(function() {
+		var data_original = $(this).attr('data-original');
+		if(data_original) {
+			var imgObj = $(this);
+			var img = new Image();
+			img.src = data_original;
+			img.onload = function() {
+				var height = img.height;
+				var width = img.width;
+				if(width > 620) {
+					img.width = 620;
+					img.height = (620 / width) * height;
+				}
+				imgObj.replaceWith($(img));
+			};
+		}
 	});
 	
 	return $(divObj);
@@ -121,8 +154,12 @@ mood_unit.prototype = {
 			$.showDeleteMood({
 				follow:aObj[0],
 				url:'/Sns/Mood/PersonMood/deletePersonMoodAjax/mood_id/' + mood_id,
+				msg:'您确定要删除该说说信息?',
 				callback:function() {
 					ancestorObj.remove();
+					//刷新说说的记录数
+					var handler = $('#mood_main').data('handler');
+					handler.getPersonMoodStat();
 				}
 			});
 		});
@@ -148,20 +185,36 @@ mood_unit.prototype = {
 				}
 				
 				//加载sendbox的相关事件
-				$('.pl_textarea', ancestorObj).publishBySendBox(mood_id, {
-					callback:function(divObj) {
+				$('.pl_textarea', ancestorObj).sendBox({
+					panels:'emote',
+					type:'post',
+					url:'/Sns/Mood/Comments/publishMoodCommentsAjax',
+					dataType:'json',
+					data:{
+						mood_id:mood_id,
+						up_id:0
+					},
+					success:function(json) {
+						if(json.status < 0) {
+							$.showError(json.info);
+							return false;
+						}
+						//处理成功后的回调函数
+						var divObj = comment_1st_unit.create(json.data || {});
 						$('#comment_list_div', ancestorObj).prepend(divObj);
 						reflush(1);
 					}
 				});
+				
 				//加载评论的相关信息
-				$('#comment_list_div', ancestorObj).loadMoodComments(mood_id, {
+				var options = {
 					show_load_more:false,
 					//更新说说的评论数
 					callback:function(num) {
 						reflush(num);
 					}
-				});
+				};
+				$('#comment_list_div', ancestorObj).loadMoodComments(mood_id, options);
 				aObj.data('inited', true);
 			}
 			//处理相关的切换效果

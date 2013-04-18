@@ -24,16 +24,12 @@ function tripTag(str) {
 };
 
 function Publish() {
-	this.editor = {};
-	
+	this.limitInterval = null;
+	this.max_length = 180;
 	this.init();
 	this.attachEvent();
 	this.attachEventForPreviewDiv();
 	this.attachEventUserDefine();
-};
-
-Publish.prototype.getEditor=function() {
-	return this.editor;
 };
 
 Publish.prototype.attachEventUserDefine=function() {
@@ -60,13 +56,8 @@ Publish.prototype.init=function() {
 	//加载编辑框
 	var bg = $('#ContentBg').val();
 	if(bg) $('#context', formContext).css('url', bg);
-	this.editor = $('#content', formContext).xheditor({
-		skin:'vista',
-		tools:'Separator,BtnBr,Blocktag,Fontface,FontSize,Bold,Italic,Underline,FontColor,BackColor,SelectAll',
-		upImgUrl:'/Sns/ClassNotice/Publish/uploadPath'
-	});
+
 	//初始化字符计数器的值
-	var content = tripTag(this.editor.getSource());
 	$('#content_counter').html(180 - content.length);
 };
 
@@ -81,7 +72,7 @@ Publish.prototype.attachEvent=function() {
 		//初始化弹出层的相关数据
 		var formContext = $('form:first');
 		var notice_title = $('#notice_title', formContext).val();
-		var content = me.editor.getSource();
+		var content = $('#content').val();
 		$('body').trigger('openPreviewDivEvent', [{
 			'notice_title':notice_title,
 			'content':content
@@ -90,6 +81,24 @@ Publish.prototype.attachEvent=function() {
 	//表单提交事件
 	$('form:first').submit(function() {
 		return me.validator();
+	});
+	
+	$('#content').keypress(function(evt) {
+		var content = $.trim($('#content').val()).toString();
+		if(content.length >= me.max_length) {
+			var keyCode = evt.keyCode || evt.which;
+			//字符超过限制后只有Backspace键能够按
+			if(keyCode != 8) {
+				$.showError('公告内容不能超过180字!');
+				return false;
+			}
+		}
+	}).focus(function() {
+		me.limitInterval = setInterval(function() {
+			me.reflushCounter();
+		}, 1000);
+	}).blur(function() {
+		clearInterval(me.limitInterval);
 	});
 };
 
@@ -111,6 +120,15 @@ Publish.prototype.attachEventForPreviewDiv=function() {
 	});
 };
 
+
+Publish.prototype.reflushCounter=function() {
+	var me = this;
+	var len = $.trim($('#content').val()).toString().length;
+	var show_nums = me.max_length - len;
+	show_nums = show_nums > 0 ? show_nums : 0;
+	$("#content_counter").html(show_nums);
+};
+
 Publish.prototype.validator=function() {
 	var formContext = $('form:first');
 	var notice_title = $('#notice_title', formContext).val();
@@ -118,7 +136,7 @@ Publish.prototype.validator=function() {
 		$.showError('请您输入公告标题!');
 		return false;
 	}
-	var content = tripTag(this.editor.getSource());
+	var content = tripTag("#content");
 	if(!$.trim(content)) {
 		$.showError('请您输入公告内容!');
 		return false;
@@ -132,31 +150,5 @@ Publish.prototype.validator=function() {
 
 $(document).ready(function() {
 	var pub = new Publish();
-	var editor = pub.getEditor();
-	
-	var ifr = $('#xhe0_iframe')[0];
-	$(ifr.contentWindow.document).ready(function() {
-		//键盘的press事件负责内容超过时的提示
-		$(ifr.contentWindow.document).keypress(function(evt) {
-			var content = tripTag(editor.getSource());
-			if(content.length >= 180) {
-				var keyCode = evt.keyCode || evt.which;
-				//字符超过限制后只有Backspace键能够按
-				if(keyCode != 8) {
-					$.showError('公告内容不能超过180字!');
-					return false;
-				}
-			} else {
-				var content = tripTag(editor.getSource());
-				$('#content_counter').html(180 - content.length);
-				return true;
-			}
-		});
-		
-		//实时更新字符数统计
-		setInterval(function() {
-			var content = tripTag(editor.getSource());
-			$('#content_counter').html(180 - content.length);
-		}, 200);
-	});
+	pub.reflushCounter();
 });

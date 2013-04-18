@@ -43,6 +43,7 @@ nearest_visitor.prototype.init=function() {
 		async:false,
 		success:function(json) {
 			if(json.status < 0) {
+				$("#friend_list_div").html('暂无访客');
 				return false;
 			}
 			

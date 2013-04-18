@@ -28,21 +28,36 @@ class SnsController extends FrontController {
     protected function checkoutClassCode($class_code) {
         
         $class_code_list = $this->user['class_info'];
-        
+
         if(empty($class_code_list)) {
            return false; 
         }
-
+        
         if(!isset($class_code_list[$class_code])){
             foreach($class_code_list as $classcode => $class_info) {
-                if($this->user["client_account"] == $class_info["headteacher_account"]){
+                if($this->user['client_account'] == $class_info['headteacher_account']){
                     $class_code = $classcode;
                     break;
                 }
             }
         }
         
-        return isset($class_code_list[$class_code]) ? $class_code : key($class_code_list);
+        return in_array($class_code,array_keys($class_code_list)) ? $class_code : key($class_code_list);
+    }
+    
+    /**
+     * 验证用户是否存在
+     */
+    protected function checkoutAccount($client_account) {
+        if(empty($client_account)) {
+            return false;
+        }
+        
+        $mUser = ClsFactory::Create('RModel.mUserVm');
+        $user_list = $mUser->getClientAccountById($client_account);
+        $user_info = $user_list[$client_account];
+
+        return !empty($user_info) ? true : false;
     }
     
 	/**

@@ -1,14 +1,15 @@
 <!--list_comment_people star-->
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Album/photo_comments.js"></script>
 <div id="comment_1st_unit" class="list_comment_people comment_1st_unit_selector" style="display:none;">
   {literal}
   <dl>
-    <dt><a href="#" title={comment.client_name}><img src="{comment.client_head_img}"></a></dt>
+    <dt><a href="#" title={comment.client_name}><img src="{comment.client_headimg_url}"></a></dt>
   </dl>
   <div class="list_comment_main">
     <p >
      <a href="javascript:;" class="mr10" >{comment.client_name}</a>{comment.content}<br />
-     <span >{comment.add_date}</span>
-     <a href="javascript:;" class=" reply_1st_selector" >回复</a>
+     <span >{comment.add_time_format}</span>
+     <a href="javascript:;" class="reply_1st_selector" >回复</a>
      &nbsp;&nbsp;
      <span id="is_edit_del">
      <a href="javascript:;" class=" del_1st_comment">删除</a>
@@ -30,14 +31,14 @@
 <div id="comment_2nd_unit" class="list_people comment_2nd_unit_selector" style="display:none;">
   {literal}
   <dl>
-    <dt><img src="{child_comment.client_head_img}"></dt>
+    <dt><img src="{child_comment.client_headimg_url}"></dt>
   </dl>
   <div class="people_comment" id="people_comment">
    <p>
      <a href="javascript:;" class="mr10">{child_comment.client_name}</a>
      {child_comment.content}
      <br />
-     <span>{child_comment.add_date}</span>
+     <span>{child_comment.add_time_format}</span>
      <span id="is_edit_del">
      	<a href="javascript:;" class=" del_2nd_comment">删除</a>
      </span>

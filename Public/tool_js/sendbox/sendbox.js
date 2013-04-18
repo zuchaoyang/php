@@ -253,10 +253,12 @@ sendBox.prototype = {
 	
 	//创建相应的元素对象
 	createElem:function(textarea, options) {
+		var me = this;
 		//原始的textarea元素
 		this._jTextarea = $(textarea).hide();
 		//创建sendBox对象
-		var divObj = $('.sendbox_selector').clone().removeClass('sendbox_selector').insertAfter(this._jTextarea).simpleRender(options || {});
+		var skin = options['skin'] || 'default';
+		var divObj = $('#sendbox_' + skin).clone().removeAttr('id').insertAfter(this._jTextarea).simpleRender(options || {});
 		this._jDivObj = $(divObj).show();
 		//新生成的form元素
 		this._jForm = $('form:first', this._jDivObj);
@@ -365,7 +367,7 @@ sendBox.prototype = {
 				var keyCode = evt.keyCode || evt.which;
 				//字符超过限制后只有Backspace键能够按
 				if(keyCode != 8) {
-					$.showError('公告内容不能超过' + options.chars + '字!');
+					$.showError('内容不能超过' + options.chars + '字!');
 					return false;
 				}
 			}
@@ -685,7 +687,7 @@ $.fn.val=function(value) {
 			var divObj = fileObj.closest('div');
 			var picField = $("#zhaopiantxt", divObj).hide();
 			
-			var cancelPic = $("<span class=\"del upload_file_cancel_selector\" title=\"删除\"></span>").css('background-image', "url(" + sendBoxRoot + "/images/delete_btn.gif" + ")");
+			var cancelPic = $("<span class=\"del upload_file_cancel_selector\" title=\"删除\"></span>");
 			$("<span class=\"gray\">"+Util.limitFileName(picPath.match(/[^\/\\]+$/)[0],10)+"</span>").appendTo(divObj);
 			divObj.append(cancelPic);
 			

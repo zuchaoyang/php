@@ -33,13 +33,13 @@ module.exports.msg = function(io){
             msg_sender.mget(channl_list, function (err, response) {
             		var news_arr = {};
     	        		news_arr.homework = (response[0] == null) ? 0 : response[0];
-    	        		news_arr.comments = (response[1] == null) ? 0 : response[1];
+//    	        		news_arr.comments = (response[1] == null) ? 0 : response[1];
     	        		news_arr.req = (response[2] == null) ? 0 : response[2];
     	        		news_arr.notice = (response[3] == null) ? 0 : response[3];
     	        		news_arr.exam = (response[4] == null) ? 0 : response[4];
-    	        		news_arr.res = (response[5] == null) ? 0 : response[5];
+//    	        		news_arr.res = (response[5] == null) ? 0 : response[5];
     	        		news_arr.privatemsg = (response[6] == null) ? 0 : response[6];
-    	        		console.log(news_arr);
+
             		socket.emit('get_msg', news_arr);
             });
         });

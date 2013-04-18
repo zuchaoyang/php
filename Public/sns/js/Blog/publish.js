@@ -173,6 +173,7 @@ Publish.prototype.attachEvent=function() {
 		$('#preview_div').trigger('openEvent', [{
 			datas : blog_data || {},
 			callback:function() {
+				
 				$('#publish_btn', context).trigger('click');
 			}
 		}]);
@@ -182,8 +183,9 @@ Publish.prototype.attachEvent=function() {
 	$('#add_type_a', context).click(function() {
 		var blog_data = self.extractData();
 		var datas = {
-				'class_code'   : blog_data.class_code
+				'class_code' : blog_data.class_code
 		};
+
 		$('#add_type_div').trigger('openEvent', [{
 			datas : datas || {},
 			callback:function(json) {

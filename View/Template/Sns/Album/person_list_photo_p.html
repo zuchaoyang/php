@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>个人相册-瀑布流</title>
 <link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/class_list_photo_p.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Album/person_list_photo_p.css" type="text/css" charset="utf-8">
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.min.js"></script>
 
@@ -32,11 +32,12 @@ if(isWidescreen){document.write("<style type='text/css'>.demo{width:1194px;}</st
  <!--评论照片 end-->
  <!--弹出层 end-->
  
-<!--tip star-->
-{insert name="sns_header"}
-<!--tip star-->
-{insert name="sns_class_header" client_account = $client_account}
-<!--tip end--> 
+<!-- 头部start -->
+{insert name="sns_header" uid = $client_account}
+<!-- 头部end -->
+
+<!--per_tip star-->
+{insert name="sns_person_second_header" uid = $client_account}
   <!--<div class="tip">
    <div class="tip_main">
     <p class="f13 f_green">丰台区芳群园第一小学</p><p><a href="#" class="f13 f_green">一年二班<span class="icon_01"></span></a></p><span class="icon_02"></span><p class="f13 f_green">班主任：李老师</p>
@@ -48,22 +49,19 @@ if(isWidescreen){document.write("<style type='text/css'>.demo{width:1194px;}</st
 <div class="demo content">
   <!--main star-->
    <div class="main">
-     <!--nav star-->
-    {insert name="sns_nav" client_account = $client_account}
-    <!--nav end-->
-    <h4><a href="/Sns/Album/Person/albumlist/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
+    <h4><a href="/Sns/Album/Personalbum/albumlist/client_account/{$client_account}"  style="text-decoration:none;" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回相册首页</span></a></h4>
     <div class="clear"></div>
     <!--publish_main star-->
     <div class="publish_main">
       <h3>个人相册>{$album_list.album_name}</h3>
       <p class="photo_sub">
-         <a href="/Sns/Album/Person/uplaodPhoto/client_account/{$client_account}/album_id/{$album_id}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">上传照片</span></a><a href="/Sns/Album/Personphoto/photolist/client_account/{$client_account}/album_id/{$album_id}/client_account/{$client_account}" class="ppl_photo" title="">普通模式</a>
+         {if $is_edit}<a href="/Sns/Album/Personphoto/uplaodPhoto/client_account/{$client_account}/album_id/{$album_id}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">上传照片</span></a>{/if}<a href="/Sns/Album/Personphoto/photolist/client_account/{$client_account}/album_id/{$album_id}/client_account/{$client_account}" class="ppl_photo" title="">普通模式</a>
       </p>
       <div class="clear"></div>
       {literal}
       <div style="display:none;" class="clone_selector list_photo_single">
       <dl>
-       <dt><a href="/Sns/Album/Personphoto/photo/album_id/{album_id}/client_account/{client_account}"><img src="{middle_img}"></a></dt>
+       <dt><a href="/Sns/Album/Personphoto/photo/album_id/{album_id}/client_account/{client_account}/photo_id/{photo_id}"><img src="{middle_img}"></a></dt>
        	<!--float_main star-->
             <div class="float_main" style="display:none;">
               <div class="float_main_p">
@@ -82,7 +80,7 @@ if(isWidescreen){document.write("<style type='text/css'>.demo{width:1194px;}</st
       <div class="insert_pos_div"></div>
       </div>
       <div id="more">
-      	<a href="/Api/Album/getPersonPhotoListByAlbumId/client_account/{$client_account}/album_id/{$album_id}/page/2"></a>
+      	<a href="/Sns/Album/Personphoto/getPhotosByAlbumId/client_account/{$client_account}/album_id/{$album_id}/page/2"></a>
       </div>
       <div class="clear"></div>
     </div>

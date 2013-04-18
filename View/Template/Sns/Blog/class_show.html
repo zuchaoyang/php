@@ -63,15 +63,23 @@
      <div class="publish_main">
       <!--list_main_top star-->
        <div class="list_main_top">
-         <dl>
-          <dt><img src="{$head_pic_url_}"></dt>
-          <dd>{$add_blog_client_name}</dd>
-         </dl>
+         
          <div class="list_main_top_right">
            <h3>{$blog_info.title}</h3>
            <p>
-            <span class="pr10">发布日期：{$blog_info.add_time}</span><span class="pr10">分类标签：{$blog_info.type_name}</span>|<span class="pl_r10">{$blog_info.grant_name}</span><span class="pr10" id="class_blog_views">阅读({$blog_info.views})</span>|<span class="pl_r10"><a id="comment_text_num" href="#comment_text">评论({$blog_info.comments})</a></span><span class="pr10"><a href="/Sns/Blog/Publish/index/edit_id/{$blog_info.blog_id}/class_code/{$class_code}">编辑</a></span><span class="pr10"><a href="javascript:;" id="del_blog">删除</a></span><span class="pl_r20"><a href="/Sns/Blog/Content/up_blog/class_code/{$class_code}/blog_id/{$blog_info.blog_id}">上一篇</a></span>|<span class="pl10"><a href="/Sns/Blog/Content/next_blog/class_code/{$class_code}/blog_id/{$blog_info.blog_id}">下一篇</a></span>
+            <span class="pr10">发布日期：{$blog_info.add_time}</span><span class="pr10">发布者：{$add_blog_client_name}</span><span class="pr10">分类标签：{$blog_info.type_name}</span>|<span class="pl_r10">{$blog_info.grant_name}</span><span class="pr10" id="class_blog_views">阅读({$blog_info.views})</span>|<span class="pl_r10"><a id="comment_text_num" href="#comment_text">评论({$blog_info.comments})</a></span>
+            {if $can_edit}
+            <span class="pr10"><a href="/Sns/Blog/Publish/index/edit_id/{$blog_info.blog_id}/class_code/{$class_code}">编辑</a></span>
+            {/if}
+            {if $can_del}
+            <span class="pr10"><a href="javascript:;" id="del_blog">删除</a></span>
+            {/if}            
            </p>
+           <ul>
+        	<li>
+        		<a href="/Sns/Blog/Content/up_blog/class_code/{$class_code}/blog_id/{$blog_info.blog_id}" class="pl_r10">上一篇</a>|<a href="/Sns/Blog/Content/next_blog/class_code/{$class_code}/blog_id/{$blog_info.blog_id}" class="pl10">下一篇</a>
+       		</li>
+       </ul>
          </div>
        </div>
        <!--list_main_top end-->

@@ -29,7 +29,7 @@ class PersonPublishAction extends SnsController {
         $blogObj = $this->_initBlogObj($client_account);
         //获取日志详情并验证权限
         if (!empty($edit_id) || !empty($draft_id)) {
-            //获取班级日志详细信息(包含 权限,日志内容)
+            //获取个人日志详细信息(包含 权限,日志内容)
             $blog_id = !empty($edit_id) ? $edit_id : $draft_id ;
             $blog_info = $blogObj->getBlogInfoById($blog_id);
             $blog_info = $blog_info[$blog_id];
@@ -50,10 +50,12 @@ class PersonPublishAction extends SnsController {
        
         import("@.Common_wmw.Constancearr");
         $blog_grant = Constancearr::get_blog_person_grant();
+        
         $blog_type  = $blogObj->getBlogType();
 
         $this->assign('blog_type', $blog_type);
         $this->assign('blog_grant', $blog_grant);
+        $this->assign('uid', $client_account);
 
         $this->display("person_publish_edit");
     }
@@ -63,35 +65,33 @@ class PersonPublishAction extends SnsController {
      */
     public function publishBlogAjax() {
         
-        //1 表示发表个人日志，2表示发表班级日志
+        //1 表示发表个人日志，2表示发表个人日志
         $title = $this->objInput->postStr('title');
         $content = $this->objInput->postStr('content');
         $type_id = $this->objInput->postInt('type_id');
         $grant = $this->objInput->postInt('grant');
         $is_published = $this->objInput->postInt('is_published');
         $contentbg = $this->objInput->postStr('contentbg');
-        
-        $class_code   = $this->objInput->postInt('class_code');
-        $class_code = $this->checkoutClassCode($class_code);
-        if (empty($class_code)) {
-            $this->ajaxReturn(null, '班级不存在!', -1, 'json');
-        }
-        
-        //验证是否有发布权限（只有家长没有发布权限）
-        $can_publish = $this->canPublish($class_code);
-        if (empty($can_publish)) {
-            $this->showError('您暂时没有发布班级日志的权限', '/Sns/Blog/List/index/class_code/'.$class_code);
-        } 
+       
+        $client_account = $this->user['client_account'];
+//        //验证是否有发布权限(暂定所有用户 都有发布权限) 
+//        $can_publish = $this->canPublish($client_account);
+////        if (empty($can_publish)) {
+////            $this->showError('您暂时没有发布个人日志的权限', '/Sns/Blog/PersonList/index/client_account/'.$client_account);
+////        } 
         
         //验证数据的完整性
         if (empty($title) || empty($content) || $type_id < 0) {
              $this->ajaxReturn(null, '数据填写不完整!', -1, 'json');
         }
         
-        $BlogObj = $this->_initBlogObj($class_code);
+        $BlogObj = $this->_initBlogObj($client_account);
         
         // 处理日志内容 主要是把图片从临时文件夹移动到真实路径
         $content = $BlogObj->processBlogImage($content);  
+                
+        // 提取日志第一张图片
+        $first_img = $BlogObj->getFirstImg($content);
         
         // 提取日志摘要
         $summary = $BlogObj->getSummary($content, $this->summary_len);
@@ -102,19 +102,23 @@ class PersonPublishAction extends SnsController {
             'type_id' => $type_id,
             'views'   => 0,
             'is_published' => $is_published,  //默认发布 1 发布 0 草稿
-            'add_account'  => $this->user['client_account'],
+            'add_account'  => $client_account,
             'add_time'     => time(),
             'contentbg'    => $contentbg,
             'summary'      => $summary,
+        	'first_img'    => $first_img,
             'comments'     => 0,
             'grant'        => $grant
         );
         
         $blog_id = $BlogObj->publishBlog($blog_datas, true);
         
-        if (!empty($is_published)) {
+        if ($is_published == 1) {
             $error_msg = '日志发布失败!';
             $succeed_msg = '日志发布成功!';
+            import("@.Control.Api.FeedApi");
+            $feed_api = new FeedApi();
+            $feed_api->user_create($client_account, $blog_id, FEED_BLOG, FEED_ACTION_PUBLISH);
         } else {
             $error_msg = '草稿保存失败,请稍后重试!';
             $succeed_msg = '草稿保存成功!';
@@ -129,11 +133,11 @@ class PersonPublishAction extends SnsController {
     
     /**
      * 兼容 修改日志和修改草稿
+     * 注：只能修改自己的日志
      */
     public function editBlogAjax() {
-        //1 表示发表个人日志，2表示发表班级日志
+        //1 表示发表个人日志，2表示发表个人日志
         $blog_id      = $this->objInput->postInt('blog_id');
-        $class_code   = $this->objInput->postInt('class_code');
         $contentbg    = $this->objInput->postStr('contentbg');
         
         $title   = $this->objInput->postStr('title');
@@ -141,18 +145,13 @@ class PersonPublishAction extends SnsController {
         $type_id = $this->objInput->postInt('type_id');
         $grant   = $this->objInput->postInt('grant');
         
-        $class_code = $this->checkoutClassCode($class_code);
-        if (empty($class_code)) {
-            $this->ajaxReturn(null, '班级不存在!', -1, 'json');
-        }
-        
         //验证是否有修改权限（只能修改自己发布的日志）
-        $BlogObj = $this->_initBlogObj($class_code);
+        $client_account = $this->user['client_account'];
+        $BlogObj = $this->_initBlogObj($client_account);
         $blog_info = $BlogObj->getBlogInfoById($blog_id);
         $blog_info = & $blog_info[$blog_id];
-        $can_edit = $this->canEditBlog($blog_info);
-        if (empty($can_edit)) {
-            $this->showError('日志不存在或没有权限修改', '/Sns/Blog/List/index/class_code/'.$class_code);
+        if (empty($blog_info)) {
+            $this->showError('日志不存在或没有权限修改', '/Sns/Blog/PersonList/index/client_account/' . $client_account);
         } 
         //验证数据的完整性
         if (empty($title) || empty($content) || $type_id < 0) {
@@ -162,19 +161,23 @@ class PersonPublishAction extends SnsController {
         // 处理日志内容 主要是把图片从临时文件夹移动到真实路径
         $content = $BlogObj->processBlogImage($content);  
         
+        // 提取日志第一张图片
+        $first_img = $BlogObj->getFirstImg($content);
+
         // 提取日志摘要
         $summary = $BlogObj->getSummary($content, $this->summary_len);
         
         //拼装数据 为修改做准备  
         $blog_datas = array (
-            title   => $title,
-            content => $content,
-            type_id => $type_id,
-            contentbg    => $contentbg,
-            summary      => $summary,
-            grant        => $grant,
-            upd_account  => $this->user['client_account'], 
-            upd_time     => time()
+            'title'   => $title,
+            'content' => $content,
+            'type_id' => $type_id,
+            'contentbg'    => $contentbg,
+            'summary'      => $summary,
+            'first_img'    => $first_img,
+            'grant'        => $grant,
+            'upd_account'  => $client_account, 
+            'upd_time'     => time()
         );
         
         //用户权限的判断
@@ -187,27 +190,26 @@ class PersonPublishAction extends SnsController {
     }
     
     /**
-     * 删除班级日志 方法
+     * 删除个人日志 方法
      */
     public function deleteBlogAjax() {
         $blog_id = $this->objInput->getStr('blog_id'); //其实是bigint 类型
-        $class_code = $this->objInput->getStr('class_code'); //其实是bigint 类型
+        $client_account = $this->objInput->getStr('client_account'); //其实是bigint 类型
 
         if(empty($blog_id)) {
             $this->ajaxReturn(null, '要删除的信息不存在!', -1, 'json');   
         }
         
-        $BlogByClass = $this->_initBlogObj($class_code);
+        $BlogObj = $this->_initBlogObj($client_account);
         //验证是否具有删除权限
-        $del_blog_arr = $BlogByClass->getBlogInfoById($blog_id);
+        $del_blog_arr = $BlogObj->getBlogInfoById($blog_id);
         $del_blog_arr = $del_blog_arr[$blog_id];
-        
-        $can_del_blog = $this->canDelBlog($del_blog_arr, $class_code);
+        $can_del_blog = $this->canDelBlog($del_blog_arr);
         if (empty($can_del_blog)) {
-            $this->ajaxReturn(null, '要删除的草稿不存在或没有权限删除', -1, 'json'); 
+            $this->ajaxReturn(null, '要删除的日志不存在或没有权限删除', -1, 'json'); 
         }
         
-        $is_success = $BlogByClass->delBlog($blog_id);
+        $is_success = $BlogObj->delBlog($blog_id);
         if (empty($is_success)) {
              $this->ajaxReturn(null, '删除失败稍后重试', -1, 'json');
         }
@@ -220,14 +222,8 @@ class PersonPublishAction extends SnsController {
      */
     public function readDraftAjax() {
         $blog_id      = $this->objInput->getInt('blog_id');
-        $class_code   = $this->objInput->getStr('class_code');
-        
-        $class_code = $this->checkoutClassCode($class_code);
-        if(empty($class_code)) {
-            $this->ajaxReturn(null, '班级信息不存在!', -1, 'json');
-        }
-        
-        $blogObj = $this->_initBlogObj($class_code);
+        $client_account = $this->user['client_account'];
+        $blogObj = $this->_initBlogObj($client_account);
         $draft_arr = $blogObj->getBlogInfoById($blog_id);
         $draft_info = & $draft_arr[$blog_id];
         if(empty($draft_info)) {
@@ -246,34 +242,29 @@ class PersonPublishAction extends SnsController {
      */
     public function getDraftListAjax() {
         $page = $this->objInput->getInt('page');
-        $class_code = $this->objInput->getStr('class_code');
-        
-        $class_code = $this->checkoutClassCode($class_code);
-        if(empty($class_code)) {
-            $this->ajaxReturn(null, '班级信息不存在!', -1, 'json');
-        }
+        $client_account = $this->user['client_account'];
         
         $limit = 4;
         $page = $page > 1 ?  $page : 1;
         $offset = ($page-1) * $limit;
 
-        //获取用户在当前班级的 班级日志草稿
+        //获取用户在当前个人的 个人日志草稿
         $where_arr = array(
-            "add_account='". $this->user['client_account'] ."'",
+            "add_account='". $client_account ."'",
             "is_published=0"  //0 草稿 1 发布
         );
-        $blogObj = $this->_initBlogObj($class_code);
+        $blogObj = $this->_initBlogObj($client_account);
         $draft_list = $blogObj->getBlogList($where_arr,'blog_id desc', $offset, $limit + 1);
-        $draft_list = & $draft_list[$class_code];
+        $draft_list = & $draft_list[$client_account];
         
         $has_next_page = false;
         //格式化数据
         if(!empty($draft_list)){
             $has_next_page = count($draft_list) > $limit ? true : false;
             $draft_list = array_slice($draft_list,0 ,$limit);
-            
+            import("@.Common_wmw.Date");
             foreach($draft_list as $blog_id => $blog_info) {
-                $blog_info['add_time'] = date('Y-m-d H:i', $blog_info['add_time']);
+                $blog_info['add_time'] =Date::timestamp($blog_info["add_time"]);
                 
                 $draft_list[$blog_id] = $blog_info;
             }
@@ -290,24 +281,20 @@ class PersonPublishAction extends SnsController {
      */
     public function deleteDraftAjax() {
         $blog_id = $this->objInput->getStr('blog_id'); //其实是bigint 类型
-        $class_code = $this->objInput->getStr('class_code'); //其实是bigint 类型
-        $class_code = $this->checkoutClassCode($class_code);
-        if(empty($class_code)) {
-            $this->ajaxReturn(null, '班级信息不存在!', -1, 'json');
-        }
         if(empty($blog_id)) {
             $this->ajaxReturn(null, '要删除的信息不存在!', -1, 'json');   
         }
         
-        $BlogByClass = $this->_initBlogObj($class_code);
+        $client_account = $this->user['client_account'];
+        $BlogObj = $this->_initBlogObj($client_account);
         //验证是否具有删除权限
-        $del_blog_arr = $BlogByClass->getBlogInfoById($blog_id);
+        $del_blog_arr = $BlogObj->getBlogInfoById($blog_id);
         $del_blog_arr = $del_blog_arr[$blog_id];
         if ($del_blog_arr['add_account'] != $this->user['client_account']) {
             $this->ajaxReturn(null, '要删除的草稿不存在或没有权限删除', -1, 'json'); 
         }
         
-        $is_success = $BlogByClass->delBlog($blog_id);
+        $is_success = $BlogObj->delBlog($blog_id);
         if (empty($is_success)) {
              $this->ajaxReturn(null, '删除失败稍后重试', -1, 'json');
         }
@@ -350,15 +337,12 @@ class PersonPublishAction extends SnsController {
     /*****************************************************************************************
     *									公共辅助函数							
     *****************************************************************************************/
-    private function canPublish($class_code) {
-        if(empty($class_code)) {
+    private function canPublish($client_account) {
+        if(empty($client_account)) {
             return false;
         }
         
-        if($this->user['client_class'][$class_code]['client_type'] == CLIENT_TYPE_FAMILY) {
-            return false;
-        }
-        
+        //暂时的规则是所有人都可以发布个人日志        
         return true;
     }
     
@@ -379,12 +363,11 @@ class PersonPublishAction extends SnsController {
     }
     
     /**
-     * 判断用时候有删除班级日志的权限
-     * 1 班主任
-     * 2 管理员
-     * 3 添加人
+     * 判断用时候有删除个人日志的权限
+     * 只有添加人可以删除自己的日志  
+     * todo 管理员 有没有可能删除用户日志 或者冻结用户账号 当用户发表不和谐信息时
      */
-    private function canDelBlog($blog_info, $class_code) {
+    private function canDelBlog($blog_info) {
         if (empty($blog_info)) {
             return false;
         }
@@ -393,14 +376,7 @@ class PersonPublishAction extends SnsController {
         if ($blog_info['add_account'] == $this->user['client_account']) {
             return true;
         }
-        
-        //班主任或者班级管理员有权限删除
-        $client_class = $this->user['client_account'][$class_code];
-        $is_admin = in_array($client_class['teacher_class_role'], array(TEACHER_CLASS_ROLE_CLASSADMIN, TEACHER_CLASS_ROLE_CLASSBOTH));
-        if (!empty($is_admin) || ($client_class['class_admin'] == IS_CLASS_ADMIN)) {
-            return true;
-        }
-        
+
         return false;
     }
 }

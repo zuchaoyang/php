@@ -24,6 +24,12 @@ function insert_sns_person_second_header($params = array(), & $smarty){
     echo $insertObj->run($params, $smarty);
 }
 
+function insert_sns_resource_nav($params = array(), & $smarty){
+    import("@.Control.Sns.Insert.InsertSns.InsertSnsResourceNav");
+    $insertObj = new InsertSnsResourceNav();
+    echo $insertObj->run($params, $smarty);
+}
+
 
 /**
  * 2.0老的

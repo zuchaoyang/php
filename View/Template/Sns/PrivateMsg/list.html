@@ -65,14 +65,14 @@
 <!--弹出层 end-->
 {insert name="sns_header"}
 <!--per_tip star-->
-  {include file="Public/sns_person_space_header.html"}
+  {insert name="sns_person_second_header" uid=$uid}
 <!--per_tip end--> 
 <!--content star-->
 <div class="content pt20">
   <!--mood_main star-->
   <div class="mood_main">
     <ul>
-      <li><a href="#" class="main_nav_a1 f16" title="">我的私信</a></li>
+      <li><a href="#" class="main_nav_a1" title="">我的私信</a></li>
       <li class="align_right pt10"></li>
     </ul>
     {if !empty($private_list)}
@@ -85,7 +85,10 @@
 	      </dl>
 	      <div class="list_main_right">
 	        <p>发给 <a href="#">{$val.to_name}</a>{$val.content}</p>
-	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.to_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.to_uid}" class="reply_msg">回复</a><input type="hidden" value="{$val.to_name}" id="replay_name_{$val.send_uid}"/></p>
+	        {if $val.img_url}
+	        <p><a href = "{$val.big_img_url}" target="_blank"><img src="{$val.img_url}"/></a>
+	        {/if}		        
+	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.to_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.to_uid}" class="reply_msg">回复</a><input type="hidden" value="{$val.to_name}" id="replay_name_{$val.to_uid}"/></p>
 	      </div>
 	      <div class="clear"></div>
 	      <div class="tcc_close">
@@ -101,7 +104,10 @@
 	      </dl>
 	      <div class="list_main_right">
 	        <p><a href="#">{$val.send_name}:</a>{$val.content}</p>
-	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.send_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.send_uid}" class="replay_msg">回复</a><input type="hidden" value="{$val.send_name}" id="replay_name_{$val.send_uid}"/></p>
+	        {if $val.img_url}
+	        <p><a href = "{$val.big_img_url}" target="_blank"><img src="{$val.img_url}"/></a>
+	        {/if}	        
+	        <p><span class="time_width f12">{$val.add_time}</span><a href="/Sns/PrivateMsg/PrivateMsg/private_msg_list/to_uid/{$val.send_uid}">共{$val.msg_count}条私信</a><a href="javascript:;" id="replay_{$val.send_uid}" class="reply_msg">回复</a><input type="hidden" value="{$val.send_name}" id="replay_name_{$val.to_uid}"/></p>
 	      </div>
 	      <div class="clear"></div>
 	      <div class="tcc_close">

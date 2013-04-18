@@ -6,8 +6,7 @@
 
 <title>{if $product_id == 1}同步资源{elseif  $product_id == 2}精品网校{elseif  $product_id == 3}精品资源{/if}</title>
 
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/style.css"  />
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
 
@@ -84,15 +83,9 @@
 </head>
 
 <body>
+{insert name="sns_header"}
 <input type="hidden" id="total_page" value="{$totalpage}"/>
-<div class="box">
-<div class="nav">
-{insert name="publicHeader" class_code = $class_code}
   <div class="cotent">
-<div class="re_left">
-    {insert name="account_left" class_code = $class_code}
-</div>
-
     <div class="re_right">
       <p class="re_top_left"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/tb1.gif" width="31" height="31" />{if $product_id == 1}<a href="/Sns/Resource/Resource/synchroresource">同步资源</a>{elseif  $product_id == 2}<a href="/Sns/Resource/Resource/qualityschool">精品网校</a>{elseif  $product_id == 3}<a href="/Sns/Resource/Resource/qualityresource">精品资源</a>{/if}</p>
       <form id="searchform" method="post" action="/Sns/Resource/Resource/searchresource">
@@ -220,8 +213,6 @@
     </div>
     <div class="clean"></div>
   </div>
-{include file="Public/footer.html"}
-</div>
-</div>
+{include file="Public/sns_footer.html"}
 </body>
 </html>

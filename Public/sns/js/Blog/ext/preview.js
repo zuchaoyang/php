@@ -44,7 +44,7 @@ blog_preview.prototype.delegateEvent=function() {
 	
 	//发布按钮
 	$('#preview_div').delegate('#publish_btn', 'click', function() {
-		$('#preview_div').trigger('closeEvent');
+		//tudo 发表成功后会自动跳转不用关闭预览页面防止用户以为出错重复提交$('#preview_div').trigger('closeEvent');
 		var options = $('#preview_div').data('options') || {};
 		if(typeof options.callback == 'function') {
 			options.callback();

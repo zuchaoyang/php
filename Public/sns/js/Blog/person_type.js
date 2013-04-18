@@ -59,11 +59,11 @@ typeList.prototype.init = function() {
 //获取分类数据
 typeList.prototype.loadTypeDatas = function() {
 	var me = this;
-	var class_code = $('#class_code').val();
+	var client_account = $('#client_account').val();
 	var data = false;
 	$.ajax({
 		type:'get',
-		url:'/Sns/Blog/Type/getBlogTypeListAjax/class_code/' + class_code ,
+		url:'/Sns/Blog/PersonType/getBlogTypeListAjax/client_account/' + client_account ,
 		dataType:'json',
 		async:false,
 		success:function(json) {
@@ -119,7 +119,7 @@ typeList.prototype.fillRightTypeListDatas = function(type_list) {
 		return false;
 	}
 	var me = this;
-	var class_code = $('#class_code').val();
+	var client_account = $('#client_account').val();
 	var n = 0;
 	var show_type_num = 10;
 	
@@ -129,7 +129,7 @@ typeList.prototype.fillRightTypeListDatas = function(type_list) {
 	//循环赋值
 	for(var i in type_list) {
 		var type_data = type_list[i];
-		var url_str = '/Sns/Blog/List/index/class_code/' + class_code + '/type_id/' + type_data.type_id;
+		var url_str = '/Sns/Blog/PersonList/index/client_account/' + client_account + '/type_id/' + type_data.type_id;
 		type_data.url = url_str;
 		n ++;
 		if(n <= show_type_num) {
@@ -181,8 +181,8 @@ typeList.prototype.attachEvent = function() {
 	$('#search_btn_a', context).click(function(){
 		var start_time = $('#start_time', context).val();
 		var end_time   = $('#end_time', context).val();
-		var class_code = $('#class_code').val();
-		var url_str = "/Sns/Blog/List/index/type_id/-1/class_code/" + class_code;
+		var client_account = $('#client_account').val();
+		var url_str = "/Sns/Blog/PersonList/index/type_id/-1/client_account/" + client_account;
 		
 		if ($.trim(start_time)) {
 			url_str = url_str + "/start_time/" + start_time;
@@ -301,11 +301,11 @@ delete_type.prototype = {
 		$('#sure_btn', context).click(function() {
 			var options = $(this).closest('#delete_msg').data('options') || {};
 			var type_id = options.data.type_id;
-			var class_code = $('#class_code').val();
+			var client_account = $('#client_account').val();
 			$('#delete_msg').trigger('closeEvent');
 			$.ajax({
 				type:'get',
-				url:'/Sns/Blog/Type/deleteTypeAjax/type_id/' + type_id + '/class_code/' + class_code,
+				url:'/Sns/Blog/PersonType/deleteTypeAjax/type_id/' + type_id + '/client_account/' + client_account,
 				dataType:'json',
 				success:function(json) {
 					if(json.status < 0) {
@@ -370,11 +370,14 @@ modify_type.prototype = {
 			var options = $(this).closest('#modify_tr').data('options') || {};
 			var type_id = options.data.type_id;
 			var old_name = options.data.name;
-			var class_code = $('#class_code').val();
+			var client_account = $('#client_account').val();
 			var new_name = $('#name', context).val();
 			
 			if(!$.trim(new_name)) {
 				$.showError('分类名字不能为空!');
+				return false;
+			} else if($.strLength(new_name) > 12) {
+				$.showError('对不起,分类名称长度不能超过12个字母/6个汉字');
 				return false;
 			} else if (old_name == new_name) {
 				$('#modify_tr').trigger('closeEvent');
@@ -383,12 +386,13 @@ modify_type.prototype = {
 			
 			$.ajax({
 				type:'post',
-				url:'/Sns/Blog/Type/modlfyTypeAjax/class_code/' + class_code ,
+				url:'/Sns/Blog/PersonType/modlfyTypeAjax/client_account/' + client_account ,
 				data:{
 					name:new_name,
 					type_id:type_id
 				},
 				dataType:'json',
+				async:false,
 				success:function(json) {
 					if(json.status < 0) {
 						$.showError(json.info);
@@ -432,21 +436,22 @@ add_type.prototype = {
 		var context = $('.add_type_tr_selector');
 		$('#sure_btn', context).click(function() {
 			var name = $('#name', context).val();
-			var class_code = $('#class_code').val();
+			var client_account = $('#client_account').val();
 			if (!$.trim(name)) {
-				alert('请输入分类名称');
+				$.showError('分类名字不能为空!');
 				return false;
 			}
 			if($.strLength(name) > 12) {
-				alert('对不起,分类名称长度不能超过12个字母/6个汉');
+				$.showError('对不起,分类名称长度不能超过12个字母/6个汉字');
 				return false;
 			}
 			
 			$.ajax({
 				type:'post',
-				url:'/Sns/Blog/Type/publishAjax',
-				data:{name:name,class_code:class_code},
+				url:'/Sns/Blog/PersonType/publishAjax',
+				data:{name:name,client_account:client_account},
 				dataType:'json',
+				async:false,
 				success:function(json) {
 					if(json.status < 0) {
 						$.showError(json.info);

@@ -95,7 +95,7 @@ Publish.prototype.attachEvent=function() {
 		
 		var data = self.extractData() || {};
 		var blog_id = $('#blog_id').val();
-		var class_code = $('#class_code').val();
+		var uid = $('#uid').val();
 		//判断是修改还是 添加
 		if (! $.trim(blog_id)) {
 			data.is_published = 1;
@@ -111,6 +111,7 @@ Publish.prototype.attachEvent=function() {
 			url:url,
 			data:data,
 			dataType:'json',
+			async:false,
 			success:function(json) {
 				if(json.status < 0) {
 					$.showError(json.info);
@@ -118,7 +119,7 @@ Publish.prototype.attachEvent=function() {
 				}
 				
 				//成功跳转到日志详情页
-				window.location.href = "/Sns/Blog/PsersonContent/index/blog_id/" + json.data;
+				window.location.href = "/Sns/Blog/PersonContent/index/blog_id/" + json.data + "/client_account/" + uid;
 			}
 		});
 	});
@@ -147,6 +148,7 @@ Publish.prototype.attachEvent=function() {
 			url:url,
 			data:data,
 			dataType:'json',
+			async:false,
 			success:function(json) {
 				if(json.status < 0) {
 					$.showError(json.info);
@@ -180,12 +182,7 @@ Publish.prototype.attachEvent=function() {
 	
 	//绑定 添加日志分类按钮
 	$('#add_type_a', context).click(function() {
-		var blog_data = self.extractData();
-		var datas = {
-				'class_code'   : blog_data.class_code
-		};
 		$('#add_type_div').trigger('openEvent', [{
-			datas : datas || {},
 			callback:function(json) {
 				if(json.status < 0) {
 					$.showError(json.info);
@@ -223,7 +220,6 @@ Publish.prototype.extractData=function() {
 	var content = $.trim($('#content', parent).val());
 	var grant   = $.trim($('#grant', parent).val());
 	var type_id = $.trim($('#type_id', parent).val());
-	var class_code   = $.trim($('#class_code', parent).val());
 	var contentbg    = $.trim($('#contentbg', parent).val());
 
 	blog_arr = {
@@ -231,7 +227,6 @@ Publish.prototype.extractData=function() {
 		'content'       : content,
 		'grant'         : grant,
 		'type_id'       : type_id,
-		'class_code'    : class_code,
 		'contentbg'     : contentbg
 	};
 	

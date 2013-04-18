@@ -9,10 +9,11 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Common/user_ping.js"></script>
 <script type="text/javascript" src="http://node.wmw.cn/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Message/message.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery_plugins/jquery.cookie.js"></script>
 
 <input type="hidden" id="uid" value="{$uid}"/>
 <input type="hidden" id="class_code" value="{$class_code}"/>
-<div class="head" id="header_list">
+<div class="head" id="header_list" style="z-index:999;position:relative;">
   <!--head_main star-->
     <div class="head_main">
       <!--logo star-->
@@ -20,58 +21,66 @@
       <!--logo end-->
       
       <!--head_nav star-->
-      <div class="head_nav">
+      <div id ="head_nav" class="head_nav">
       	<!--首页链接-->
-        <a href="#" class="a1"></a>
+        <a href="/Sns/HomePage/Index/index" id="ha1" class="a1"></a>
         
         <!--班级空间链接-->
-        <a href="/Sns/ClassIndex/Index/index/class_code/{$class_code}" class="a2"></a>
+        <a href="/Sns/ClassIndex/Index/index" id="ha2" class="a2"></a>
         
         <!--个人空间链接-->
-        <a href="/Sns/PersonIndex/Index/index" class="a3"></a>
+        <a href="/Sns/PersonIndex/Index/index" id="ha3" class="a3"></a>
         
         <!--资源中心链接-->
-        <a href="#" class="a4"></a>      
+        <a href="/Sns/Resource/Resource/synchroresource" id="ha4" class="a4"></a>      
       </div>
       <!--head_nav end-->
       
       <!--urse_info star-->
-      <div class="urse_info">
-        <a href="javascript:;" class="f12_header" id="account_settings_dispaly"><span class="urse_photo"><img id="small_head_pic" src="{$head_pic}" /></span><span class="urse_name">{$client_name}</span><span class="icon_sjx"></span></a>
-        <span class="line"></span>
-        <a href="javascript:;" class="f12_header notice" id="msg_dispaly"><span class="urse_name">消息</span><span id="new_news_num" class="icon_circle">0</span><span class="icon_sjx"></span></a>
-      </div>
-      <!--urse_info end-->
+      
+	  <div class="user_info" id="msg_dispaly" >
+         <ul class="user_msg_ul" >
+             <li class="user_tcc">
+                 <a href="javascript:;" class="user_info_a">
+                     <span class="user_nav"><img id="small_head_pic" src="{$head_pic}" /></span>
+                     <span class="user_name">{$client_name}</span>
+                     <span class="icon_sjx_header"></span>
+                 </a>
+                 <ul style="visibility:hidden;">
+					<li><a href="/Uc/Accountset">账户设置</a></li>
+					<li><a href="/Uc/Userinfos/head_photo">用户信息</a></li>
+					<li><a href="{$uc_logout_url}">安全退出</a></li>
+                 </ul>
+             </li>
+             <li class="line_white">
+                 <span class="line"></span>
+             </li>
+             <li class="info_tcc">
+                 <a href="#" class="f12 notice" ><span class="user_name">消息</span><span class="icon_circle" id="new_news_num">0</span><span class="icon_sjx_header"></span></a>
+                 <ul style="visibility:hidden;">
+					<li><a href="/Sns/ClassNotice/Published/index/class_code/{$class_code}" id="notice">查看班级公告<span id="notice_num" class="f_orange"></span></a></li>
+					<li><a href="/Sns/ClassHomework/Published/index/class_code/{$class_code}" id="homework">查看班级作业<span id="homework_num" class="f_orange"></span></a></li>
+					<li><a href="/Sns/ClassExam/Exam/index/class_code/{$class_code}" id="exam">查看班级成绩<span id="exam_num" class="f_orange"></span></a></li>
+					<!-- <li><a href="#" id="comments">查看评论<span id="comments_num" class="f_orange"></span></a></li> -->
+					<li><a href="/Sns/Friend/Manage/friend_request" id="req">查看邀请<span id="req_num" class="f_orange"></span></a></li>
+					<!-- <li><a href="#" id="res">查看回复<span id="res_num" class="f_orange"></span></a></li> -->
+					<li><a href="/Sns/PrivateMsg/PrivateMsg/index" id="privatemsg">查看私信<span id="privatemsg_num" class="f_orange"></span></a></li>
+                 </ul>
+             </li>
+         </ul>	 
+        </div>
+      <!--user_info end-->
       <div class="clear"></div>
     </div>
   <!--head_main end-->  
  </div>
  
 <!--弹出层 star-->
- <div class="urse_tcc" id="account_settings" style="display:none;">
-   <ul>
-     <li><a href="/Uc/Accountset">账户设置</a></li>
-     <li><a href="/Uc/Userinfos/head_photo">用户信息</a></li>
-     <li><a href="{$uc_logout_url}">安全退出</a></li>
-   </ul>
- </div>
- <div class="urse_tcc_02 info_tcc" id="msg" style="display:none;">
-   <ul>
-     <li><a href="/Sns/ClassNotice/Published/index/class_code/{$class_code}" id="notice">查看班级公告<span id="notice_num" class="f_orange"></span></a></li>
-     <li><a href="/Sns/ClassHomework/Published/index/class_code/{$class_code}" id="homework">查看班级作业<span id="homework_num" class="f_orange"></span></a></li>
-     <li><a href="/Sns/ClassExam/Exam/index/class_code/{$class_code}" id="exam">查看班级成绩(2新)<span id="exam_num" class="f_orange"></span></a></li>
-     <li><a href="#" id="comments">查看评论<span id="comments_num" class="f_orange"></span></a></li>
-     <li><a href="/Sns/Friend/Manage/friend_request" id="req">查看邀请<span id="req_num" class="f_orange"></span></a></li>
-     <li><a href="#" id="res">查看回复<span id="res_num" class="f_orange"></span></a></li>
-     <li><a href="/Sns/PrivateMsg/PrivateMsg/index" id="privatemsg">查看私信<span id="privatemsg_num" class="f_orange"></span></a></li>
-   </ul>
- </div>
  
- <div id="show_msg_on_load" class="news_tcc"  style="display:none;">
+ <div id="show_msg_on_load" class="news_tcc"  style="z-index:1000;display:none;">
    <p class="news_tcc_top"></p>
    <div class="news_tcc_main" id="show_msg_load_main">
      <ul><a href="javascript:;" class="news_close"></a></ul>
-     
    </div>
  </div>
  <!--弹出层 end-->

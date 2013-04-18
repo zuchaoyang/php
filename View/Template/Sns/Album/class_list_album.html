@@ -30,11 +30,13 @@
     <h4></h4>
     <!--publish_main star-->
     <div class="publish_main">
+      {if $is_stu_edit}
       <p class="upload_main_top">
-       <a href="/Sns/Album/Class/uplaodPhoto/class_code/{$class_code}" class="f14" title="上传照片"><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
+       <a href="/Sns/Album/Classphoto/uplaodPhoto/class_code/{$class_code}" class="f14" title="上传照片"><span class="btn_left"></span><span class="btn_right">上传照片</span></a>
        <a href="#" class="f14 ml20" id="create_album_btn" title="创建相册"><span class="btn_left"></span><span class="btn_right">创建相册</span></a>
       </p>
       <div class="clear"></div>
+      {/if}
       <div id="dl_list">
       {literal}
       <dl class="clone_selector" style="display:none;">
@@ -72,9 +74,9 @@
 <!--content end-->
 
 <!-- start引入弹层模板 -->
-{include file="Sns/Album/Subtemplate/class_create_album.inc.html"}
-{include file="Sns/Album/Subtemplate/class_edit_album.inc.html"}
-{include file="Sns/Album/Subtemplate/class_del_album.inc.html"}
+{include file="Sns/Album/Subtemplate/create_album.inc.html"}
+{include file="Sns/Album/Subtemplate/edit_album.inc.html"}
+{include file="Sns/Album/Subtemplate/del_album.inc.html"}
 <!-- end引入弹层模板 -->
 
   <input type="hidden" id="is_edit" value="{$is_edit}"/>

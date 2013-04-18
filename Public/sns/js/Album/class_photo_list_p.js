@@ -4,7 +4,8 @@
 		var login_account = sendOptions.login_account || {};
 		var class_code = sendOptions.class_code || {};
 		var up_id = photo_id || {};
-		var paramData = {"photo_id":photo_id,"add_uid":login_account,"up_id":up_id,"class_code":class_code};
+		var album_id = sendOptions.album_id || {};
+		var paramData = {"photo_id":photo_id,"add_uid":login_account,"up_id":up_id,"class_code":class_code,"album_id":album_id};
 		var commnetTextareaObj = sendOptions.textareaObj || {};
 		var sendBoxObj = commnetTextareaObj.sendBox({
 			//加载工具条，多个选项之间使用逗号隔开，目前支持：表情：emoto，文件上传：upload(form表单提交的文件的名字为:pic)
@@ -18,7 +19,7 @@
 			//表单的提交类型，建议使用post的方式，支持(get, post)
 			type:'post',
 			//表单提交到的位置
-			url:'/Api/Album/addCommentByClass',
+			url:'/Sns/Album/Photocomment/addPhotoComment',
 			//数据返回格式，支持：json,html等数据格式，于success回调函数的数据格式保持一致
 			data:paramData,
 			dataType:'json',
@@ -43,9 +44,6 @@
 })(jQuery);
 
 function photo_list() {
-	this.limitInterval = null;
-	this.max_length = 140;
-	
 	this.client_account = $("#client_account").val();
 	this.login_account = $("#login_account").val();
 	this.class_code = $("#class_code").val();
@@ -142,36 +140,7 @@ photo_list.prototype.attachEvent = function(){
 		}
 	});
 	
-	//计算器 
-	$('.textarea', $("#edit_comment_div")).keypress(function(evt) {
-		var content = $.trim($(this).val()).toString();
-		if(content.length >= me.max_length) {
-			var keyCode = evt.keyCode || evt.which;
-			//字符超过限制后只有Backspace键能够按
-			if(keyCode != 8) {
-				$.showError('评论不能超过140字!');
-				return false;
-			}
-		}
-	}).focus(function() {
-		me.limitInterval = setInterval(function() {
-			me.reflushCounter();
-		}, 10);
-	}).blur(function() {
-		clearInterval(me.limitInterval);
-	});
-};
-
-//添加评论数
-//渲染页面
-photo_list.prototype.reflushCounter=function() {
-	var me = this;
-	var context = $('#edit_comment_div');
 	
-	var len = $.trim($('.textarea', context).val()).toString().length;
-	var show_nums = me.max_length - len;
-	show_nums = show_nums > 0 ? show_nums : 0;
-	$(".f_orange", context).html(show_nums);
 };
 
 photo_list.prototype.delegateEvent=function() {
@@ -205,6 +174,7 @@ photo_list.prototype.delegateEvent=function() {
 				photo_id:photo_data.photo_id || {},
 				login_account:me.login_account || {},
 				class_code:me.class_code || {},
+				album_id:me.album_id || {},
 				up_id:up_id,
 				callback:function(jsonData){
 					var dialogObj = art.dialog.list['edit_comment_div_dialog'];
@@ -249,7 +219,7 @@ photo_list.prototype.loadMorePhoto=function(options) {
 	var is_success = true;
 	$.ajax({
 		type:"get",
-		url:"/Api/Album/getClassPhotoListByAlbumId/class_code/" + me.class_code + '/album_id/'+ me.album_id + '/client_account/' + me.client_account + serilize_params,
+		url:"/Sns/Album/Classphoto/getPhotosByAlbumId/class_code/" + me.class_code + '/album_id/'+ me.album_id + '/client_account/' + me.client_account + serilize_params,
 		dataType:"json",
 		async:false,
 		success:function(json) {

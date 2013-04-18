@@ -130,11 +130,12 @@
             <a href="javascript:;" class="icon_hide"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/ClassExam/publish/icon_hide.gif" alt="我收藏的评语库"/></a>
             </td>
           </tr>
+          {if $student_list}
           {foreach from=$student_list item=student}
           <tr id="tr_{$student.client_account}">
             <td class="boder_left">{$student.num_id}</td>
             <td>{$student.client_name}</td>
-            <td><input type="text" value="{if $student.is_join == 1}{$student.exam_score}{/if}" maxlength="4" class="text100"></td>
+            <td><input type="text" value="{if $student.is_join == 1}{$student.exam_score}{/if}" maxlength="5" class="text100"></td>
             <td class="align_left">
 	            <input type="text" id="py_id_{$student.num_id}" value="{$student.score_py}" maxlength="80" class="text_comment"/>
 				<a href="javascript:;" id="syspy_img_{$student.num_id}" class="icon_write" title="系统评语库">
@@ -145,6 +146,7 @@
             </td>
           </tr>
           {/foreach}
+          {/if}
         </table>
         <p class="f12 f_orange align_left">注：成绩为空表示未添加</p>
         </div>

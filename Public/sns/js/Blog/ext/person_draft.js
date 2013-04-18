@@ -83,10 +83,7 @@ draft.prototype.loadDatas=function(page) {
 
 	$.ajax({
 		type:'get',
-		url:'/Sns/Blog/Publish/getDraftListAjax/page/' + page,
-		data:{
-			class_code:$('#class_code').val()
-		},
+		url:'/Sns/Blog/PersonPublish/getDraftListAjax/page/' + page,
 		async:false,
 		dataType:'json',
 		success:function(json) {
@@ -152,10 +149,7 @@ draft.prototype.delegateEvent=function() {
 		}
 		$.ajax({
 			type:'get',
-			url:'/Sns/Blog/Publish/readDraftAjax/blog_id/' + blog_id,
-			data:{
-				class_code:$('#class_code').val()
-			},
+			url:'/Sns/Blog/PersonPublish/readDraftAjax/blog_id/' + blog_id,
 			dataType:'json',
 			success:function(json_datas) {
 				// 读取草稿后 清空修改标示
@@ -175,10 +169,9 @@ draft.prototype.delegateEvent=function() {
 		}
 		$.ajax({
 			type:'get',
-			url:'/Sns/Blog/Publish/deleteDraftAjax',
+			url:'/Sns/Blog/PersonPublish/deleteDraftAjax',
 			data:{
-				blog_id: blog_id,
-				class_code:$('#class_code').val()
+				blog_id: blog_id
 			},
 			dataType:'json',
 			success:function(json) {

@@ -31,12 +31,7 @@ class PublishAction extends SnsController {
         if(empty($class_code) || !in_array($class_code,$class_code_arr)) {
             $class_code = reset($class_code_arr);
         }
-        
-        if(!empty($is_sms) && $is_sms == 1) {
-            $datarr = array();
-            $datarr['is_sms'] = $is_sms;
-        }
-        
+       
         $datarr = array(
                 'class_code' => $class_code,
                 'notice_title' => $notice_title,
@@ -44,6 +39,11 @@ class PublishAction extends SnsController {
                 'add_account' => $this->user['client_account'],
                 'add_time' => time(),
         );
+        
+        if(!empty($is_sms) && $is_sms == 1) {
+            $datarr['is_sms'] = $is_sms;
+        }
+        
         
         $mClassNotice = ClsFactory::Create('Model.ClassNotice.mClassNotice');
         $notice_id = $mClassNotice->addClassNotice($datarr,true);

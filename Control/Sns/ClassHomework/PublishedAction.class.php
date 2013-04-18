@@ -79,7 +79,7 @@ class PublishedAction extends SnsController {
         
         $page = max(1, $page);
         $start_time = !empty($start_time) ? strtotime($start_time) : 0;
-        $end_time = !empty($end_time) ? strtotime($end_time) : time();
+        $end_time = !empty($end_time) ? strtotime($end_time)+ 86400 : time();
         
         $class_code = $this->checkoutClassCode($class_code);
         if(empty($class_code)) {
@@ -94,16 +94,16 @@ class PublishedAction extends SnsController {
             $wherearr[] = "subject_id='$subject_id'";
         }
         
-        if($search_type == 'JZY') {
+        if($search_type == 'FBZY') {
             if(!empty($start_time)) {
                 $wherearr[] = "add_time>='$start_time'";
             }
             if(!empty($end_time)) {
                  $wherearr[] = "add_time<='$end_time'";
             }
-        }elseif($search_type == 'FBZY') {
+        }elseif($search_type == 'JZY') {
              if(!empty($start_time)) {
-               $wherearr[] = "end_time>='$end_time'";
+               $wherearr[] = "end_time>='$start_time'";
             }
             if(!empty($end_time)) {
                  $wherearr[] = "end_time<='$end_time'";
@@ -285,8 +285,8 @@ class PublishedAction extends SnsController {
         foreach($homework_list as $homeworkid=>$homeworkval) {
             $append_access_list = array();
             if($access_list['show_know_btn']) {
-                $is_show_i_know_btn = isset($homework_viewed_list[$homeworkid]) ? true : false;
-                $append_access_list['is_show_i_know_btn'] = !empty($is_show_i_know_btn) ? 1 : 0;
+                $is_show_i_know_btn = isset($homework_viewed_list[$homeworkid]) ? $homework_viewed_list[$homeworkid] : false;
+                $append_access_list['is_show_i_know_btn'] = !empty($is_show_i_know_btn) ? 0 : 1;
             }
             
             if($homeworkval['add_account'] == $this->user['client_account']) {

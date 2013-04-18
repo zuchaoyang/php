@@ -243,7 +243,6 @@ typeList.prototype.dynamicAttachEvent=function() {
 	$('#left_type_list_tab').delegate('.modify_a', 'click', function() {
 		var context = $(this).closest('.single_type');
 		var type_data = context.data('data') || {};
-		
 		$('#modify_tr').trigger('showEvent', [{
 			data:type_data,
 			target_elem:context,
@@ -346,8 +345,10 @@ modify_type.prototype = {
 				
 				trObj.insertAfter(target_elem);
 				target_elem.hide();
+				trObj.data('options', {});
 				
 				trObj.data('options', options).show();
+
 				$('#name', trObj).val(data.name);
 			},
 			
@@ -355,6 +356,7 @@ modify_type.prototype = {
 			closeEvent:function() {
 				var trObj = $(this).hide();
 				var options = trObj.data('options') || {};
+				
 				var target_elem = options.target_elem;
 				if(!$.isEmptyObject(target_elem)) {
 					$(target_elem).show();
@@ -368,6 +370,7 @@ modify_type.prototype = {
 		var context = $('#modify_tr');
 		$('#modify_sure_btn', context).click(function() {
 			var options = $(this).closest('#modify_tr').data('options') || {};
+
 			var type_id = options.data.type_id;
 			var old_name = options.data.name;
 			var class_code = $('#class_code').val();
@@ -434,11 +437,11 @@ add_type.prototype = {
 			var name = $('#name', context).val();
 			var class_code = $('#class_code').val();
 			if (!$.trim(name)) {
-				alert('请输入分类名称');
+				$.showError('请输入分类名称');
 				return false;
 			}
 			if($.strLength(name) > 12) {
-				alert('对不起,分类名称长度不能超过12个字母/6个汉');
+				$.showError('对不起,分类名称长度不能超过12个字母/6个汉字');
 				return false;
 			}
 			

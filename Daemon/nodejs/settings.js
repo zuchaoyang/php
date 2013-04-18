@@ -23,9 +23,9 @@ exports.REDIS_DEBUG_MODE = false;
 //消息频道列表
 exports.channl = channl = [];
 	channl[0] = "homework";
-	channl[1] = "comments";
+//	channl[1] = "comments";
 	channl[2] = "req";
 	channl[3] = "notice";
 	channl[4] = "exam";
-	channl[5] = "res";
+//	channl[5] = "res";
 	channl[6] = "privatemsg";

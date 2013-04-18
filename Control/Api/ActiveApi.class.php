@@ -56,6 +56,7 @@ class ActiveApi extends ApiController {
         
         $mActiveLog = ClsFactory::Create("Model.Active.mActiveLog");
         $ActiveLog_list = $mActiveLog->getActiveLogByClientAccount($client_account,$start_time,$end_time);
+
         $new_ActiveLog_list = array();
         $today_val = 0;
         
@@ -67,31 +68,36 @@ class ActiveApi extends ApiController {
         $current_person_active = $active_list[$UserInfog[$client_account]['client_type']];
         $action_list = C("action");
         $module_list = C("module");
-        
         if(!empty($ActiveLog_list)) {
             foreach($ActiveLog_list as $log_id => $active_log) {
-                if(isset($new_ActiveLog_list[$active_log['module'].$active_log['action']])){
-                    $new_ActiveLog_list[$active_log['module'].$active_log['action']]['value'] += $active_log["value"];
-                }else{
-                    $new_ActiveLog_list[$active_log['module'].$active_log['action']] = $active_log;
-                }
-                
+                $user_add_value[$active_log['module'].$active_log['action']] += $active_log['value'];
                 $today_val += $active_log["value"];
             }
         }
-        
-        foreach($current_person_active as $module => $action){
-            
-            if(empty($new_ActiveLog_list[$module.$action])){
-                $new_ActiveLog_list[$module.$action]["message"] = $action_list[$action].$module_list[$module]['msg'];
-                $new_ActiveLog_list[$module.$action]["value"] = 0;
-            }
 
-            $new_ActiveLog_list[$module.$action]["day_limit"] = $module_list[$module][$action]["day_limit"];
-            $new_ActiveLog_list[$module.$action]["add_value"] = $module_list[$module][$action]["value"];
+        foreach($current_person_active as $module => $action){
+            $action = (array)$action;
+            foreach($action as $sub_action) {
+                if(empty($user_add_value[$module.$sub_action])){
+                    $new_ActiveLog_list[$module]["message"] = $module_list[$module]['msg'];
+                    $new_ActiveLog_list[$module]["action_list"][$sub_action]["action"] = $action_list[$sub_action]; 
+                    $new_ActiveLog_list[$module]["action_list"][$sub_action]["value"] = 0;
+                }else{
+                    $new_ActiveLog_list[$module]["message"] = $module_list[$module]['msg'];
+                    $new_ActiveLog_list[$module]["action_list"][$sub_action]["action"] = $action_list[$sub_action]; 
+                    $new_ActiveLog_list[$module]["action_list"][$sub_action]["value"] = $user_add_value[$module.$sub_action];
+                }
+                
+                $new_ActiveLog_list[$module]["action_num"] +=1;
+                
+                $new_ActiveLog_list[$module]["action_list"][$sub_action]["day_limit"] = $module_list[$module][$sub_action]["day_limit"];
+                $new_ActiveLog_list[$module]["action_list"][$sub_action]["add_value"] = $module_list[$module][$sub_action]["value"];
+            }
+            
+            $new_ActiveLog_list[$module]["action_num"] = $new_ActiveLog_list[$module]["action_num"] > 1 ?  $new_ActiveLog_list[$module]["action_num"] + 1 : $new_ActiveLog_list[$module]["action_num"];
         }
-        
-        return !empty($new_ActiveLog_list) ? array($new_ActiveLog_list, $today_val) : false;
+
+        return !empty($new_ActiveLog_list) ? array($new_ActiveLog_list, $today_val) : array(array(), 0);
     }
 
     public function getactivemember() {

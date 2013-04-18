@@ -15,6 +15,7 @@
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/person_publish.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/ext/person_draft.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Blog/ext/person_type.js"></script>
 
 </head>
 <body>
@@ -24,27 +25,19 @@
 <!-- 头部end -->
 
 <!--per_tip star-->
-  <div class="per_tip">
-   <div class="pertip_main">
-    <dl>
-      <dt><a href="#"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/images/Common/sns_images/per_img.jpg"></a></dt>
-    </dl>
-    <a href="#"><span>皮卡丘的个人空间</span><span class="icon_white_sjx"></span></a>
-    <div class="clear"></div>
-   </div> 
-  </div>
+{insert name="sns_person_second_header" uid = $uid}
 <!--per_tip end-->
 
 <!--content star-->
 <div class="content">
   <!--main star-->
    <div class="main">
-    <h4><a href="/Sns/Blog/PersonList/index/client_account/{$client_account}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回日志列表</span></a></h4>
+    <h4><a href="/Sns/Blog/PersonList/index/client_account/{$uid}" class="f14" title=""><span class="btn_left"></span><span class="btn_right">返回日志列表</span></a></h4>
     <!--publish_main star-->
      <div class="publish_main" id="blog_info_div">
 
        <div class="blog_title">
-         <h3>写班级日志</h3><p><a href="javascript:;" id="draft_a">读取草稿</a></p>
+         <h3>写日志</h3><p><a href="javascript:;" id="draft_a">读取草稿</a></p>
        </div>
        <!-- todo 先不做信纸 --><!--
        <div class="letter_paper" style="display:none;">
@@ -78,9 +71,9 @@
        
        <ul>
          <li>
-         <input id="class_code" type="hidden" name="class_code" value="{$class_code}"/>
          <input id="blog_id" type="hidden" name="blog_id" value="{$blog_info.blog_id}"/>
          <input id="draft_id" type="hidden" name="draft_id" value="{$blog_info.draft_id}"/>
+         <input id="uid" type="hidden" name="uid" value="{$uid}"/>
          
          <input id="publish_btn" type="button" value="发表" class="publish_btn" >
          <input id="preview_btn" type="button" value="预览" class="preview_btn" >

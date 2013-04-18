@@ -10,7 +10,7 @@ sns_nav.prototype.init = function(){
 		if(i == first_pos) {
 			$(this).addClass('nav_a'+ num_th +'_hover');
 		} else {
-			$(this).removeClass('nav_a'+ num_th +'_hover').addClass('nav_a' + num_th);
+			$(this).removeClass('nav_a'+ num_th +'_hover').addClass('nav_a' + num_th);	
 		}
 	});
 };

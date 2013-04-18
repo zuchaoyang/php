@@ -43,7 +43,7 @@ draftList.prototype.attachEvent=function() {
 	$('#search_btn_a', context).click(function(){
 		var start_time = $('#start_time', context).val();
 		var end_time   = $('#end_time', context).val();
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		var url_str = "/Sns/Blog/PersonList/index/type_id/-1";
 		
 		if ($.trim(start_time)) {
@@ -78,7 +78,7 @@ draftList.prototype.dynamicAttachEvent=function() {
 	$('#draft_list_div').delegate('.delete_a', 'click', function() {
 		var context = $(this).closest('tr');
 		var blog_id = $(this).attr('id');
-		var class_code = $.trim($('#class_code').val());
+		var client_account = $.trim($('#client_account').val());
 		
 		art.dialog({
 			title:'删除日志',
@@ -137,11 +137,11 @@ show_type.prototype  = {
 	},
 	loadTypeDatas:function() {
 		var me = this;	
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		var data = false;
 		$.ajax({
 			type:'get',
-			url:'/Sns/Blog/Type/getBlogTypeListAjax/class_code/' + class_code,
+			url:'/Sns/Blog/PersonType/getBlogTypeListAjax/client_account/' + client_account,
 			dataType:'json',
 			async:false,
 			success:function(json) {
@@ -162,7 +162,7 @@ show_type.prototype  = {
 			return false;
 		}
 		var me = this;
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		var n = 0;
 		var show_type_num = 10;
 		//清空已有数据
@@ -172,7 +172,7 @@ show_type.prototype  = {
 		//循环赋值
 		for(var i in type_list) {
 			var type_data = type_list[i];
-			var url_str = '/Sns/Blog/PersonList/index/class_code/' + class_code + '/type_id/' + type_data.type_id;
+			var url_str = '/Sns/Blog/PersonList/index/client_account/' + client_account + '/type_id/' + type_data.type_id;
 			type_data.url = url_str;
 			n ++ ;
 			if (n <= show_type_num) {

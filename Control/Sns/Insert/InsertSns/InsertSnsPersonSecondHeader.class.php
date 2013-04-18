@@ -5,10 +5,10 @@ class InsertSnsPersonSecondHeader implements InsertInterface {
         
         $uid = $params['uid'];
         $RmUser = ClsFactory::Create("RModel.mUserVm");
-        $userinfo = $RmUser->getUserBaseByUid($uid);
-        $userinfo = reset($userinfo);
+        $userinfo = reset($RmUser->getUserBaseByUid($uid));
         $head_pic_url = $userinfo['client_headimg_url'];
         $smarty->assign('client_name', $userinfo['client_name']);
+        $smarty->assign('space_uid', $userinfo['client_account']);
         $smarty->assign('head_pic', $head_pic_url);
         
     	return $smarty->fetch("./Public/sns_person_space_header.html");

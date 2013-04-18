@@ -134,6 +134,7 @@ student_edit.prototype.attachEvent=function() {
 		var datas = options.datas || {};
 		var selectObj = $('#client_class_role_select', context);
 		
+		var class_code = $('#class_code').val();
 		var client_account = datas.client_account;
 		var new_client_name = $.trim($('#client_name', context).val());
 		var new_client_class_role = selectObj.val();
@@ -154,9 +155,9 @@ student_edit.prototype.attachEvent=function() {
 		var new_datas = {
 			'client_account':client_account,
 			'client_name':new_client_name,
-			'client_class_role':new_client_class_role
+			'client_class_role':new_client_class_role,
 		};
-		var class_code = $('#class_code').val();
+		
 		$.ajax({
 			type:'post',
 			url:'/Sns/ClassAdmin/StudentList/editStudentAjax/class_code/' + class_code,
@@ -222,7 +223,7 @@ student_delete.prototype.attachEvent=function() {
 			type:'post',
 			url:'/Sns/ClassAdmin/StudentList/removeStudentAjax/class_code/' + class_code,
 			data:{
-				'client_account':datas.client_account
+				'client_account':datas.client_account,
 			},
 			dataType:'json',
 			success:function(json) {

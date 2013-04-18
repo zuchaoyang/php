@@ -73,7 +73,7 @@
 			{if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_TEACHER}
           	<li><i class="yy8"></i><a target="_blank" href="/View/Template/Public/studyresources_teacher.html">学习资源</a></li>
             {/if}
-            {if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_STUDENT || $client_type == $smarty.const.CLIENT_TYPE_FAMILY}
+            {if $school_info.operation_strategy == $smarty.const.OPERATION_STRATEGY_LN || $UserInfo.client_type == $smarty.const.CLIENT_TYPE_STUDENT || $client_type == $smarty.const.CLIENT_TYPE_FAMILY}
           	<li><i class="yy8"></i><a target="_blank" href="/View/Template/Public/studyresources_student.html">学习资源</a></li>
             {/if}
             {if $UserInfo.client_type == $smarty.const.CLIENT_TYPE_FAMILY && $operation_strategy==true}

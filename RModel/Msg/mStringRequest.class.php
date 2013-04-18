@@ -64,7 +64,7 @@ class mStringRequest {
         if(empty($uids)){
             return false;
         }
-
+        
         return $this->_dStringRequest->stringDecr($uids);
     }     
 

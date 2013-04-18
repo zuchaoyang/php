@@ -28,9 +28,9 @@ active_member.prototype.getactivemember = function() {
 					var data = json.data.active_member[i];
 					var obj_p = $("div[class='class_people_small']>p", context);
 					if(data.is_live == true) {
-						$(obj_p).append('<a id="info_'+data.client_account+'" href="#"><img style="border:1px solid green;" src="' + data.client_headimg_url + '"></a>');
+						$(obj_p).append('<a id="info_'+data.client_account+'" href="/Sns/PersonIndex/Index/index/client_account/' + data.client_account + '" target="_blank"><img style="border:1px solid green;" src="' + data.client_headimg_url + '"></a>');
 					}else{
-						$(obj_p).append('<a id="info_'+data.client_account+'" href="#"><img src="' + data.client_headimg_url + '"></a>');
+						$(obj_p).append('<a id="info_'+data.client_account+'" href="/Sns/PersonIndex/Index/index/client_account/' + data.client_account + '" target="_blank"><img src="' + data.client_headimg_url + '"></a>');
 					}
 				}
 			}
@@ -131,13 +131,22 @@ active_member.prototype.showallmember = function(){
 								$("dt", dlObj).removeClass('side_color');
 							}
 							$("img", dlObj).attr('src',data.client_headimg_url);
+							$("img", dlObj).parent().attr({
+								'href':"/Sns/PersonIndex/Index/index/client_account/" + data.client_account,
+								'target':'_blank'
+							});
 							$("dd", dlObj).html(data.client_name);
 						}
 					}
 				}
 			});
 	    }
-	    
+
+	    if($("div[class='class_people_big']", context).css("display") == "block") {
+	    	$("a", $("p[class='f14 p_width']")).removeClass("icon_upsjx").addClass("icon_dsjx");
+	    }else{
+	    	$("a", $("p[class='f14 p_width']")).removeClass("icon_dsjx").addClass("icon_upsjx");
+	    }
 		$("div[class='class_people_big']", context).toggle(500);
 		$("div[class='class_people_small']", context).toggle(500);
 	});

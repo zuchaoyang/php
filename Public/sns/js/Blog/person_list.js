@@ -22,20 +22,20 @@
 	};
 })(jQuery);
 
-function classList () {
+function PersonList () {
 	this.attachEvent();
 	this.init();
 	this.dynamicAttachEvent();
 };
 
 //页面初始化加载数据
-classList.prototype.init = function() {
+PersonList.prototype.init = function() {
 	//调用查询方法初始化数据
 	var context = $('#search_h3');
 	$('#search_btn_a', context).trigger('click');
 };
 
-classList.prototype.attachEvent=function() {
+PersonList.prototype.attachEvent=function() {
 	var me = this;
 	//查询事件的绑定
 	var context = $('#search_h3');
@@ -90,7 +90,7 @@ classList.prototype.attachEvent=function() {
 };
 	
 //动态绑定事件
-classList.prototype.dynamicAttachEvent=function() {
+PersonList.prototype.dynamicAttachEvent=function() {
 	var me = this;
 	
 	//查看全文
@@ -98,9 +98,9 @@ classList.prototype.dynamicAttachEvent=function() {
 		var ancestorObj = $(this).closest('.single_blog');
 		var blog_data = ancestorObj.data('data') || {};
 		var blog_id = blog_data.blog_id;
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		
-		window.location.href="/Sns/Blog/Content/index/blog_id/" + blog_id + "/class_code/" + class_code;
+		window.location.href="/Sns/Blog/PersonContent/index/blog_id/" + blog_id + "/client_account/" + client_account;
 		return false;
 	});
 	
@@ -109,7 +109,7 @@ classList.prototype.dynamicAttachEvent=function() {
 		var context = $(this).closest('.single_blog');
 		var blog_data = context.data('data') || {};
 		var blog_id = blog_data.blog_id;
-		var class_code = $.trim($('#class_code').val());
+		var client_account = $.trim($('#client_account').val());
 		
 		art.dialog({
 			title:'删除日志',
@@ -121,7 +121,7 @@ classList.prototype.dynamicAttachEvent=function() {
 			ok:function() {
 				$.ajax({
 					type:'get',
-					url:'/Sns/Blog/Publish/deleteBlogAjax/blog_id/' + blog_id + '/class_code/' + class_code,
+					url:'/Sns/Blog/PersonPublish/deleteBlogAjax/blog_id/' + blog_id + '/client_account/' + client_account,
 					dataType:'json',
 					success:function(json) {
 						//操作失败时的处理
@@ -152,15 +152,15 @@ classList.prototype.dynamicAttachEvent=function() {
 };
 
 //数据加载数据
-classList.prototype.loadBlogDatas=function(page) {
+PersonList.prototype.loadBlogDatas=function(page) {
 	var me = this;
 	//缓存搜索条件
 	var options = $('#search_h3').data('search_options') || {};
-	var class_code = $('#class_code').val();
+	var client_account = $('#client_account').val();
 	var page = page >= 1 ? page : 1;
 	$.ajax({
 		type:'post',
-		url:'/Sns/Blog/List/getBlogListAjax/class_code/' + class_code + "/page/" + page,
+		url:'/Sns/Blog/PersonList/getBlogListAjax/client_account/' + client_account + "/page/" + page,
 		data:options,
 		dataType:'json',
 		async:false,
@@ -181,7 +181,7 @@ classList.prototype.loadBlogDatas=function(page) {
 };
 
 //分页处理
-classList.prototype.fillPage=function(page_list){
+PersonList.prototype.fillPage=function(page_list){
 	page_list = page_list || {};
 	
 	if(!page_list.has_next_page) {
@@ -193,7 +193,7 @@ classList.prototype.fillPage=function(page_list){
 };
 
 //数据显示处理
-classList.prototype.fillBlogList=function(blog_list){
+PersonList.prototype.fillBlogList=function(blog_list){
 	blog_list = blog_list || {};
 	var contexDiv = $('#blog_list_div');
     var cloneObj = $('.clone', contexDiv);
@@ -259,11 +259,11 @@ show_type.prototype  = {
 	
 	loadTypeDatas:function() {
 		var me = this;	
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		var data = false;
 		$.ajax({
 			type:'get',
-			url:'/Sns/Blog/Type/getBlogTypeListAjax/class_code/' + class_code,
+			url:'/Sns/Blog/PersonType/getBlogTypeListAjax/client_account/' + client_account,
 			dataType:'json',
 			async:false,
 			success:function(json) {
@@ -284,7 +284,7 @@ show_type.prototype  = {
 			return false;
 		}
 		var me = this;
-		var class_code = $('#class_code').val();
+		var client_account = $('#client_account').val();
 		var n = 0;
 		var show_type_num = 10;
 		//清空已有数据
@@ -294,7 +294,7 @@ show_type.prototype  = {
 		//循环赋值
 		for(var i in type_list) {
 			var type_data = type_list[i];
-			var url_str = '/Sns/Blog/List/index/class_code/' + class_code + '/type_id/' + type_data.type_id;
+			var url_str = '/Sns/Blog/PersonList/index/client_account/' + client_account + '/type_id/' + type_data.type_id;
 			type_data.url = url_str;
 			n ++ ;
 			if (n <= show_type_num) {
@@ -334,7 +334,7 @@ show_type.prototype  = {
 
 
 $(document).ready(function(){
-	new classList();
+	new PersonList();
 	new show_type();
 	
 	

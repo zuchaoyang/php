@@ -6,8 +6,7 @@
 
 <title>精品资源</title>
 
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/css/newhomepage.css"  />
-<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/css/style.css"  />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/resource/style.css"  />
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
 
@@ -50,15 +49,19 @@
 </head>
 
 <body>
-  <div class="box">
-  <div class="nav">
-{insert name="publicHeader" class_code = $class_code}
-  <div class="cotent">
- 
-     <div class="re_left">
-    {insert name="account_left" class_code = $class_code}
-</div>
+{insert name="sns_header"}
 
+<!-- 资源导航 start-->
+<div class="tip">
+   <div class="tip_main_resource">
+	    <a href="/Sns/Resource/Resource/synchroresource">同步资源</a>  
+	    <a href="/Sns/Resource/Resource/qualityresource"  class="bjgl_dq">精品资源</a>  
+	    <a href="/Sns/Resource/Resource/qualityschool1" >精品网校</a>
+	    <div class="clear"></div>
+   </div> 
+</div>
+<!-- end -->
+  <div class="cotent">
     <div class="re_right">
       <p class="re_top_left"><img src="{$smarty.const.IMG_SERVER}__PUBLIC__/resource/images/tb1.gif" width="31" height="31" />精品资源</p>
       <form id="searchform" method="post" action="/Sns/Resource/Resource/searchresource" target="_blank">
@@ -135,7 +138,7 @@
           {/if}
         <div class="clean"></div>
         </div>
-        <p class="main_bottom"></p>
+        <p class="main_bottom_re"></p>
       </div>
       <!--main end-->
       <!--koowleadge_point
@@ -224,8 +227,6 @@
     </div>
     <div class="clean"></div>
     </div>
-      {include file="Public/footer.html"}
-      </div>
-  </div>
+     {include file="Public/sns_footer.html"}
 </body>
 </html>

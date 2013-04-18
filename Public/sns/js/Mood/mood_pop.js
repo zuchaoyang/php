@@ -28,7 +28,7 @@ mood_delete.prototype = {
 					follow:options.follow || null,
 					lock:options.lock || false,
 					init:function() {
-						$('#msg', divObj).html(options.msg || me.default_msg);
+						$('#delete_msg', divObj).html(options.msg || me.default_msg).show();
 					}
 				});
 			},

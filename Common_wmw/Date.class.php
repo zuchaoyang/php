@@ -802,9 +802,11 @@ class Date {
 	    
 	    $daytime = (intval($daytime) == $daytime) ? $daytime : strtotime($daytime);
 	    
-	    $nowtime = time();
+	    $nowtime = strtotime(date("Y-m-d"));
 	    
-	    return ($nowtime - $daytime) > strtotime("day", -1) ? false : true;
+	    $daytime = $nowtime+86400 < $daytime ? $nowtime+86400 : $daytime;
+
+	    return abs($nowtime - $daytime) < 86400 && $daytime < $nowtime ? false : true;
 	}
 	
 	/**
@@ -823,9 +825,10 @@ class Date {
 	    
 	    $daytime = (intval($daytime) == $daytime) ? $daytime : strtotime($daytime);
 	    
-	    $nowtime = time();
+	    $nowtime = strtotime(date("Y-m-d"));
+	    $daytime = $nowtime+86400 < $daytime ? $nowtime+86400 : $daytime;
 	    
-	    return (strtotime("day", -2) > ($nowtime - $daytime)) && !Date::isToday($daytime) ? false : true;
+	    return 86400*2 < abs($nowtime - $daytime) && !Date::isToday($daytime) ? false : true;
 	}
 	
 	
@@ -857,7 +860,7 @@ class Date {
        if($nowY > $y){
            $format.= "$y-";
        }
-
+       
        //*  1. 如果日期为今天  则    ：   今天    14：29
        //*  2. 如果日期为昨天  则    ：   昨天    14：29
        //*  3. 如果为年内           则    :  12-19 14:29

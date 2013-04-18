@@ -18,25 +18,10 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/Mood/class_mood_show.js"></script>
 </head>
 <body>
-
-<!--per_tip star-->
-<div class="per_tip">
- <div class="pertip_main">
-  <dl>
-    <dt>
-	  <a href="#">
-	     <img width="24" height="24" src="{$user.client_headimg_url}">
-	  </a>
-    </dt>
-  </dl>
-  <a href="#">
-	  <span>{$user.client_name}</span>
-	  <span class="icon_white_sjx"></span>
-  </a>
-  <div class="clear"></div>
- </div> 
-</div>
-<!--per_tip end--> 
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end-->
 
 <!--content star-->
 <div class="content pt20" >
@@ -51,14 +36,14 @@
          <div class="per_active_l">
            <dl>
              <dt>
-             	<img width="76" height="76" src="{$mood_info.user_info.client_headimg_url}" />
+             	<img width="76px" height="76px" src="{$mood_info.user_info.client_headimg_url}" />
              </dt>
             </dl>
          </div>
          <!--per_active_r star-->
          <div class="per_active_r">
            <p class="per_right_top">
-             <a href="#" class="fc_288c00">{$mood_info.user_info.client_name}</a>
+             <a href="/Sns/PersonIndex/Index/index/client_account/{$mood_info.add_account}" target="_blank" class="fc_288c00">{$mood_info.user_info.client_name}</a>
            </p>
            <!--per_right_center star-->
            <div class="per_right_center">
@@ -66,7 +51,7 @@
               	{$mood_info.content}
               	{if $mood_info.img_url}
               		<br />
-              		<img src="{$mood_info.img_url}"/>
+              		<img id="mood_img" src="{$mood_info.img_url}"/>
               	{/if}
              </p>
              <div class="per_release_time">

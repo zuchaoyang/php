@@ -364,7 +364,7 @@ class ClassclientmanageAction extends AmsController{
 	     $class_student = $mSetClassStudent->getClassStudentById($cid, true);
 	     $class_family = $mSetClassFamily->getClassFamilyById($cid, true);
          
-         $this->redirect('/ClassClientManage/showclassClient/uid/'.$uid.'/classCode/'.$cid.'/gradeid/'.$gradeid.'/schoolid/'.$schoolid."/stop_flag/0");
+         $this->redirect('/Classclientmanage/showClassClient/uid/'.$uid.'/classCode/'.$cid.'/gradeid/'.$gradeid.'/schoolid/'.$schoolid."/stop_flag/0");
      }
      //得到不同的账号
      private function getAccount($accountArr) {
@@ -675,6 +675,9 @@ class ClassclientmanageAction extends AmsController{
            );
            $mUser = ClsFactory::Create('Model.mUser');
            $result = $mUser->modifyUserClientAccount($datarr , $child_account);
+           
+         $mHashClient = ClsFactory::Create('RModel.Common.mHashClient');
+         $client_base = $mHashClient->getClientbyUid($child_account, true); 
            echo $result;
        }else{
             echo false;

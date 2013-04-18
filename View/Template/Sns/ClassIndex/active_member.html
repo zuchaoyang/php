@@ -5,7 +5,7 @@
       <div class="active_member_title">
        <h3>班级活跃成员</h3>
        <p class="f14 p_width"><span></span><a href="javascript:;" class="icon_dsjx"></a>(<span class="f13 pr10"></span><span class="f13"></span>)</p>
-       <p class="pr10"><a href="/Sns/ClassIndex/Mailbook/index/class_code/{$class_code}">班级通讯录&gt;&gt;</a></p>
+       {if $user.client_type == $smarty.const.CLIENT_TYPE_TEACHER}<p class="pr10"><a href="/Sns/ClassIndex/Mailbook/index/class_code/{$class_code}">班级通讯录&gt;&gt;</a></p>{/if}
        <!-- <p><a href="#">老师圈圈&gt;&gt;</a></p> -->
       <div class="clear"></div>
       </div>

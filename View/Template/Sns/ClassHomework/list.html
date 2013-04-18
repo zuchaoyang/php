@@ -9,6 +9,7 @@
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/my97datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/js/ClassHomework/published.js"></script>
 </head>
 <body>
@@ -39,8 +40,8 @@
 	          	{/foreach}
 	          </select>
 	          <select class="select" name="search_type" id="search_type">
-		          <option value="FBZY" {if $timetype == 'FBZY'}selected{/if}>交作业日期</option>
-		          <option value="JZY"  {if $timetype == 'JZY'}selected{/if}>发布作业时间</option>
+		          <option value="JZY" {if $timetype == 'JZY'}selected{/if}>交作业日期</option>
+		          <option value="FBZY"  {if $timetype == 'FBZY'}selected{/if}>发布作业时间</option>
 	          </select>
          	 从&nbsp;<input type="text" class="text" name="startdate" id="start_time">至&nbsp;<input type="text" class="text" name="enddate" id="end_time">
          </p>

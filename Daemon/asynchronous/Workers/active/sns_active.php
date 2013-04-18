@@ -9,6 +9,7 @@ class sns_active extends BackGroundController {
 
         if($this->isDailyLimit($workload['uid'], $workload['module'], $workload['action'])) {
             $this->addActiveinfo($workload['uid'], $workload['module'], $workload['action']);
+            $this->addHeaderActiveInfo($workload['uid'], $workload['module'], $workload['action']);
         }
         
         return true;
@@ -25,6 +26,34 @@ class sns_active extends BackGroundController {
     }
     
     /**
+     * 
+     */
+    private function addHeaderActiveInfo($uid, $module, $action) {
+        
+        $mUserVm = ClsFactory::Create("RModel.mUserVm");
+        $current_user_info = $mUserVm->getUserBaseByUid($uid);
+        $client_type = $current_user_info[$uid]['client_type'];
+        
+        if($client_type == 1 || $client_type === false || !($action == 21 || $module == 301)) {
+            return false;
+        }
+        
+        $class_code = key($current_user_info[$uid]["client_class"]);
+        $mClassInfo = ClsFactory::Create("RModel.Common.mHashClass");
+
+        $ClassInfo = $mClassInfo->getClassById($class_code);
+
+        $module = $module == 301 ? 307 : $module;
+        $action = $action == 21 && $client_type == 0 ? 25 : $action;
+        $action = $action == 21 && $client_type == 3 ? 26 : $action;
+
+        $headteacher_account = $ClassInfo['headteacher_account'];
+
+        $this->addActiveinfo($headteacher_account, $module, $action);
+    }
+    
+    
+    /**
      * 添加用户的活跃度
      * @param unknown_type $module
      * @param unknown_type $action
@@ -32,7 +61,7 @@ class sns_active extends BackGroundController {
     private function addActiveinfo($uid, $module, $action){
         $active_config = $this->getActiveConfig();
         $value = $active_config['module'][$module][$action]['value'];
-        $msg = $active_config['action'][$action] . $active_config['module'][$module]['msg'];
+        $msg = $active_config['module'][$module]['msg'];
         $ative_info = array(
             'client_account' => $uid,
             'value' => $value,
@@ -42,9 +71,9 @@ class sns_active extends BackGroundController {
             'action' => $action,
         );
         
+        
         $mActiveLog = ClsFactory::Create("Model.Active.mActiveLog");
         $active_log_id = $mActiveLog->addActiveLog($ative_info, true);
-        
         if(!empty($active_log_id)){
             $mActive = ClsFactory::Create("Model.Active.mActive");
             $active_result = $mActive->getActiveByClientAccount($uid);
@@ -80,28 +109,38 @@ class sns_active extends BackGroundController {
         
         $time = strtotime(date('Y-m-d'));
         $mActiveLog = ClsFactory::Create("Model.Active.mActiveLog");
-        $ActiveLog_list = $mActiveLog->getActive($uid, $module, $action, $time);
-
-        //当天无记录
-        if (empty($ActiveLog_list)) {
-            return true;
-        }
+        $ActiveLog_list = $mActiveLog->getActive($uid, $module, $action);
 
         $active_config = $this->getActiveConfig();
         
-        //查找配置每天上限值
-        $day_limit = $active_config['module'][$module][$action]['day_limit'];
-        if (empty($day_limit)) {
-            return false;
+        
+        $is_once = $active_config['module'][$module][$action]['is_once'];
+        
+        if (!empty($is_once)) {
+            if(empty($ActiveLog_list)){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            //当天无记录
+            $ActiveLog_list = $mActiveLog->getActive($uid, $module, $action, $time);
+            if (empty($ActiveLog_list)) {
+                return true;
+            }
         }
         
+        
+        //查找配置每天上限值
+        $day_limit = $active_config['module'][$module][$action]['day_limit'];
+
         $max = 0;
         foreach ($ActiveLog_list as $key => $value) {
             if (isset($value['value'])) {
                 $max += (int)$value['value'];
             }
         }
-        
+
         return $max >=  (int)$day_limit ? false : true;
     }
 }

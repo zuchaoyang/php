@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{font:14px "宋体";}
+#top{width:100%; background:#a6d87d;}
+a{text-decoration:none;}
+ul{list-style:none;}
+.clean{clear:both;}
+
+
+/*横版*/
+
+.top-main-h{width:674px; padding:10px; margin:0 auto; _padding-bottom:0px;}
+  .top-main-h p{float:left; color:#fff;}
+  .welcome{width:300px;}
+  .top-main-h p a{color:#fff;}
+  .top-main-h p a:hover{color:#FF0000;}
+
+
+#cotent-h{width:674px; margin:0 auto; padding:0px 10px;}
+ .banner-h{background:url(../../images/resource/hb_banner.jpg) 0 0 no-repeat; height:130px;}
+ 
+ .nav-h{height:27px; padding:6px 0px;}
+ .nav-h ul li{float:left;}
+ .nav-h ul li a{display:block; background:url(../../images/resource/hb_a1.gif) 0 0 no-repeat; width:75px; height:27px; text-align:center; line-height:27px; margin-right:6px; color:#1f4300;}
+ .nav-h ul li a:hover{background:url(../../images/resource/hb_a2.gif) 0 0 no-repeat; color:#fff;}
+ .nav-h .study{background:url(../../images/resource/hb_a2.gif) 0 0 no-repeat; color:#fff;}
+ 
+ 
+ .content_hb{ border:#b7d24f solid 3px;  width:760px; padding:10px; }
+
+
+/*竖版*/
+.top-main-s{width:780px; padding:10px; margin:0 auto; _padding-bottom:0px;}
+  .top-main-s p{float:left; color:#fff;}
+  .top-main-s p a{color:#fff;}
+  .top-main-s a:hover{color:#FF0000;}
+  
+#cotent-s{width:780px; margin:0 auto; padding:0px 10px;}
+ .banner-s{background:url(../../images/resource/sb_banner.jpg) 0 0 no-repeat; height:130px;}
+ 
+ .nav-s{height:27px; padding:6px 0px; width:100px;  float:left;}
+ .nav-s ul li{ margin:8px 0;}
+ .nav-s ul li a{display:block; background:url(../../images/resource/sb_a1.gif) 0 0 no-repeat; width:85px; height:27px; text-align:center; line-height:27px; margin-right:6px; color:#1f4300;}
+ .nav-s ul li a:hover{background:url(../../images/resource/sb_a2.gif) 0 0 no-repeat; color:#fff;}
+ .nav-s .study{background:url(../../images/resource/sb_a2.gif) 0 0 no-repeat; color:#fff;}
+ 
+ .content_sb{ float:left; margin-top:15px; border:#b7d24f solid 3px;  width:648px; padding:10px; }
+

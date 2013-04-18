@@ -38,7 +38,7 @@ class PublishAction extends SnsController {
         $client_account = $this->getCookieAccount();
         $subject_id = $this->objInput->postInt('subject_id');
         $is_sms = $this->objInput->postInt('is_sms');
-        $class_code = $this->objInput->getInt('cl ass_code');
+        $class_code = $this->objInput->getInt('class_code');
         
         $class_code = $this->checkoutClassCode($class_code);
         
@@ -46,7 +46,7 @@ class PublishAction extends SnsController {
         $m = date('m');
         $d = date('d');
         $h = date('H:i:s');
-         //班级作业附件上传
+        //班级作业附件上传
         if(!empty($_FILES['file_name']['name'])) {
             import('@.Common_wmw.WmwUpload');
             $uploadObject = new WmwUpload();
@@ -57,11 +57,12 @@ class PublishAction extends SnsController {
                 'ifresize' => true,
                 //文件上传类的大小使用的单位是:kb，在这里需要转换
                 'max_size' => 8192,
+                'error_mode' => true
             );
             
             $upload_rs = $uploadObject->upfile('file_name', $options);
             if(empty($upload_rs)) {
-                exit;
+                $this->showError('上传附件错误!','/Sns/ClassHomework/Publish/index/class_code/' . $class_code);
             }
         }
         

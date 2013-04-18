@@ -13,7 +13,7 @@ class ViewAction extends SnsController {
     }
     
     public function index() {
-        $exam_id  = $this->objInput->getStr('exam_id');
+        $exam_id  = $this->objInput->getInt('exam_id');
         
         if(empty($exam_id)) {
             $this->showError('考试信息不存在!', '/Sns/ClassExam/Exam/index');   
@@ -42,10 +42,16 @@ class ViewAction extends SnsController {
         $mClassExamScore = ClsFactory::Create('Model.mClassExamScore');
         $exam_score_arr = $mClassExamScore->getClassExamScoreByExamId($exam_id);
         $exam_score_list = & $exam_score_arr[$exam_id];
+        $client_account_list = array();
+        foreach($exam_score_list as $score_id_key=>$socre_val) {
+            $client_account_list[$socre_val['client_account']] = $socre_val['client_account']; 
+        }
+        $mUser = ClsFactory::Create('Model.mUser');
+        $student_list = $mUser->getClientAccountById($client_account_list);
         //获取班级学生列表（按排序id 排序）
-        import('@.Control.Api.Class.MemberApi');
+        /*import('@.Control.Api.Class.MemberApi');
         $member_obj = new MemberApi();
-        $student_list = $member_obj->getStuList($class_exam['class_code']);
+        $student_list = $member_obj->getStuList($class_exam['class_code']);*/
          //整理考试成绩的相关信息,包括成绩的编辑权限
         $exam_score_list = $this->formatExamScore($student_list, $exam_score_list, $class_exam['can_edit']);
         //统计学生的信息

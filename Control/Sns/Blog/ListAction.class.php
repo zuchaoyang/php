@@ -182,20 +182,16 @@ class ListAction extends SnsController {
         $type_list  = $mBlogTypes->getByTypeId(array_unique($type_id_arr));
         
         //数据页面显示处理
+        import("@.Common_wmw.Date");
+        
         foreach($blog_list as $blog_id=>$blog_info) {
             $add_account = $blog_info['add_account'];
             $type_id = $blog_info['type_id'];
             
-            $blog_info['add_time']     = date('Y-m-d', $blog_info['add_time']);
+            $blog_info['add_time']     = Date::timestamp($blog_info['add_time']);
             $blog_info['type_name']    = !empty($type_list[$type_id]['name']) ? $type_list[$type_id]['name'] : '班级日志';
             $blog_info['client_name']  = $user_list[$add_account]['client_name'];
             
-            //获取内容中的第一张图片
-            preg_match("/<img([^>]+?)\/>/im", $blog_info['summary'], $matches);
-            if(!empty($matches[0])) {
-                $blog_info['top_img_html'] = $matches[0];
-                $blog_info['summary'] = str_replace($matches[0], '', $blog_info['summary']);
-            }
             $blog_list[$blog_id] = $blog_info;
         }
         

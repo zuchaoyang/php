@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" charset="utf-8" href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Mood/show.css">
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/jquery-1.5.2.js"></script>
+<script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/tool_js/tip_msg/showtip.js"></script>
 
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/artDialog.source.js?skin=idialog"></script>
 <script type="text/javascript" src="{$smarty.const.IMG_SERVER}__PUBLIC__/js/artDialog4.1.6/plugins/iframeTools.source.js"></script>
@@ -19,25 +20,10 @@
 
 </head>
 <body>
-
-<!--per_tip star-->
-<div class="per_tip">
- <div class="pertip_main">
-  <dl>
-    <dt>
-	  <a href="#">
-	     <img width="24" height="24" src="{$user.client_headimg_url}">
-	  </a>
-    </dt>
-  </dl>
-  <a href="#">
-	  <span>{$user.client_name}</span>
-	  <span class="icon_white_sjx"></span>
-  </a>
-  <div class="clear"></div>
- </div> 
-</div>
-<!--per_tip end-->
+{insert name="sns_header"}
+<!--tip star-->
+  {insert name="sns_class_header" class_code = $class_code}
+<!--tip end-->
 
 <!--content star-->
 <div class="content pt20" >
@@ -59,14 +45,14 @@
          <!--per_active_r star-->
          <div class="per_active_r">
            <p class="per_right_top">
-             <a href="#" class="fc_288c00">{$mood_info.user_info.client_name}</a>
+             <a href="/Sns/PersonIndex/Index/index/client_account/{$mood_info.add_account}" class="fc_288c00">{$mood_info.user_info.client_name}</a>
            </p>
            <!--per_right_center star-->
            <div class="per_right_center">
              <p>
               	{$mood_info.content}
               	{if $mood_info.img_url}
-              		<img src="{$mood_info.img_url}"/>
+              		<img id="mood_img" data-original="{$mood_info.img_url}"/>
               	{/if}
              </p>
              <div class="per_release_time">

@@ -203,7 +203,8 @@ class mUnicomInterface extends mBase {
 			$info['XMLCONTENT'] = $xmlcontent;
 			$mBusinessphone = ClsFactory::Create('Model.mBusinessphone');
             $rs = $mBusinessphone->batchmangebusinessphone($info);
-            if (empty($rs) && $flag) {
+
+            if (!empty($rs) && $flag) {
                 $result = array(
     				'result'=>true,
     				'info'=>$info

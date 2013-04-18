@@ -1,4 +1,4 @@
--- ·ÏÆú±íÖØÃüÃû
+-- åºŸå¼ƒè¡¨é‡å‘½å
 
 alter table wmw_album_info rename to old_wmw_album_info;
 alter table wmw_class_album rename to old_wmw_class_album;
@@ -20,7 +20,7 @@ alter table wmw_photo_plun rename to old_wmw_photo_plun;
 alter table wmw_photos_info rename to old_wmw_photos_info;
 alter table wmw_student_score rename to old_wmw_student_score;
 
--- ´¦ÀíÊÕ²ØÆÀÓï¿âÊı¾İ·ÖÀà
+-- å¤„ç†æ”¶è—è¯„è¯­åº“æ•°æ®åˆ†ç±»
 
 ALTER TABLE `wmw_py_collect` ADD COLUMN `py_type`  tinyint NOT NULL AFTER `add_time`, ADD COLUMN `py_att`  tinyint NOT NULL AFTER `py_type`;
 

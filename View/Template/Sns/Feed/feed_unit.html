@@ -1,0 +1,112 @@
+<!--每一条动态 star-->	
+<div id="feed_unit_div" class="dynamic_each feed_unit_selector" style="display:none;">
+	{literal}
+    <!--左侧用户头像信息 star-->
+    <div class="user_photo">
+        <img height="40px" width="40px" data-original="{feed.client_headimg_url}" class="user_photo70" />  	
+    </div>
+    <!--左侧用户头像信息 end-->
+    
+    <!--右侧动态内容部分 star-->
+    <div class="dynamic_content">
+        <div class="d_c_top">
+        	<a href="/Sns/PersonIndex/Index/index/client_account/{feed.add_account}">{feed.client_name}</a>
+        	{if feed.feed_type == 1}
+        	<span>{if feed.action == 1}发表{else}评论{/if}了说说</span>
+        	{else if feed.feed_type == 2}
+        	<span>{if feed.action == 1}发表{else}评论{/if}了日志</span>
+        	{else if feed.feed_type == 3}
+        	<span>{if feed.action == 1}上传{else}评论{/if}了照片</span>
+        	{/if}
+        </div>
+        <div class="d_c_content">                
+            <!--动态内容 star-->
+            <div>
+                <h3>
+                	<a href="{feed.src_url}" target="_blank">{feed.title}</a>
+                </h3>
+                {if feed.img_url}
+                	{if feed.feed_type == 1} 
+                		<a href = "{feed.big_img_url}" target="_blank"><img data-original="{feed.img_url}" /></a>
+                	{else if feed.feed_type == 2}
+                		<img data-original="{feed.img_url}" />
+                	{else if feed.feed_type == 3}
+                		
+                		<a id="feed_src_url" href="{feed.src_url}" target="_blank"><img data-original="{feed.img_url}" /></a>
+                	{/if}
+                {/if}
+                <p class="d_c_text">
+                	{if feed.feed_type == 1} 
+                		{feed.feed_content}
+                	{else if feed.feed_type == 2}
+                		{if feed.feed_content}
+                			{feed.feed_content}
+                		{/if}
+                		<a id="feed_src_url" href="{feed.src_url}" target="_blank">(阅读全文)</a>
+                	{else if feed.feed_type == 3}
+                		
+                	{/if}
+                   	
+                   	{if feed.src_url}
+                    
+                    {/if}
+                </p>
+                <div class="d_c_info" >
+                    <p class="d_c_time"><span>发布时间：{feed.add_time_format}</span></p> 
+                    <p class="d_c_active">
+                    	{if feed.can_del}
+	                    <a href="javascript:;" class="feed_delete_selector">删除</a>
+	                    {/if}
+	                    <a href="javascript:;" class="feed_comment_selector">评论{if feed.comments > 0}({feed.comments}){/if}</a>
+                    </p>
+                </div>
+            </div>
+            <!--动态内容 end-->
+            
+            <!--评论的内容 star-->
+            <div id="comment_main_div" class="layer_comment comment_main_selector" style="display:none;">
+                <div class="comment_top"></div>
+                <div class="comment_content">
+                    <!--一级默认评论框 star-->
+                    <div class="comment_content_mr reply_1st_selector">
+                    
+		             <!--默认回复样式 star-->
+		             <table class="mr_huifu reply_2nd_simple_div_selector">
+		                 <tr>
+		                     <td class="user_tx">
+		                     	<img width="40px" height="40px" data-from="#user_headimg_url" />&nbsp;&nbsp;
+		                     </td>
+		                     <td>
+		                        <!--默认样式 star-->
+		                        <input name="" type="text" width="100%" class="text_border reply_1st_txt_selector" value="我也说一句"/>
+		                        <!--默认样式 end-->     
+		                         
+		                        <!--点击后样式 star-->
+		                        <table id="reply_1st_tab" width="100%" border="0" cellspacing="0" cellpadding="0" style="display:none;">
+		                          <tr>
+		                            <td colspan="3">
+		                            	<textarea id="reply_1st_content" name="" cols="" rows="5" class="textarea_border textarea_border_width reply_1st_content_selector" name="content"></textarea>
+		                            </td>
+		                          </tr>
+		                        </table>
+		                        <!--点击后样式 end-->
+		                     </td>
+		                 </tr>
+		             </table>                    
+                    </div>
+
+                    <!--一级评论及其附属的二级评论 全部内容 star-->
+                    <div id="first_comment_list" class="all_first_comment">   
+                       
+                    </div>  
+                </div>
+                <!--一级评论及其附属的二级评论 全部内容 end-->
+            </div>
+		<!--评论内容 end-->
+        </div>
+        <div class="d_c_footer"></div>
+    </div>
+    <!--右侧动态内容部分 end-->
+    {/literal}
+</div>
+<!--每一条动态 end-->	

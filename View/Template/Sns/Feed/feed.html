@@ -1,15 +1,21 @@
-<div id="feed_list_div" style="width:100%; overflow:hidden;">
-	
-</div>
+<!--
+<link href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/sns_common.css" rel="stylesheet" type="text/css" />
+<link href="{$smarty.const.IMG_SERVER}__PUBLIC__/sns/css/Common/layer_dynamic_02.css" rel="stylesheet" type="text/css" />
+-->
+<div id="feed_div" class="layer_dynamic" style="display:none;">
+    <!--全部动态 star-->
+    <div id="feed_list_div" class="dynamic">
+        
+    </div>
+    <!--动态 end-->
 
-<!--more_active star-->
-<div id="load_more_div" class="more_active" style="display:none;">
-  <a id="load_more_feed_a" href="javascript:;">查看更多动态</a>
+	<!--加载更多 star-->
+	<div id="load_more_div" class="loadmore">
+    	<a id="load_more_feed_a" href="javascript:;">查看更多动态</a>
+    </div>
 </div>
+{include file="Sns/Feed/feed_unit.html"}
+{include file="Sns/Feed/comment_1st_unit.html"}
+{include file="Sns/Feed/comment_2nd_unit.html"}
 
 {include file="Sns/Feed/feed_delete.html"}
-
-{include file="Sns/Feed/Mood/feed_unit.html"}
-{include file="Sns/Feed/Mood/comment.html"}
-{include file="Sns/Feed/Mood/comment_1st_unit.html"}
-{include file="Sns/Feed/Mood/comment_2nd_unit.html"}

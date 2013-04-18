@@ -10,6 +10,7 @@ class IndexAction extends SnsController{
     }
     
     public function index() {
+        
         $class_code = $this->objInput->getInt('class_code');
         
         $class_code = $this->checkoutClassCode($class_code);
@@ -47,7 +48,7 @@ class IndexAction extends SnsController{
      */
     public function setClassAdminAjax(){
         $class_code     = $this->objInput->getInt('class_code');
-        $client_account = $this->objInput->postStr('client_account');
+        $client_account = $this->objInput->postInt('client_account');
         
         $class_code = $this->checkoutClassCode($class_code);
         if(empty($class_code) || !$this->isClassAdmin($class_code)) {
@@ -60,7 +61,8 @@ class IndexAction extends SnsController{
         
         $mClinetClass = ClsFactory::Create("Model.mClientClass");
         $client_class_id = $mClinetClass->getClientClassId($class_code, $client_account);
-        
+        $mClientClassVm = ClsFactory::Create("RModel.Common.mHashClientClass");
+        $mClientClassVm->setClientClassbyUid($client_account, $dataarr);
         if(!$mClinetClass->modifyClientClass($dataarr, $client_class_id)) {
             $this->ajaxReturn(null, "管理员设置失败！", -1, 'json');
         }

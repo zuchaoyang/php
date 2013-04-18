@@ -6,6 +6,7 @@ class dAlbumClassRelation extends dBase {
                     'id',
                     'class_code',
                     'album_id',
+                    'grant'
                 );
     protected $_index_list = array(
                     'class_code',
